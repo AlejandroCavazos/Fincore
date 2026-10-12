@@ -7,7 +7,8 @@ import { navigate, useRoute } from './state/router'
 import Dashboard from './pages/Dashboard'
 import Welcome from './pages/Welcome'
 import Courses from './pages/Courses'
-import PathPage from './pages/PathPage'
+import AreaPage from './pages/AreaPage'
+import { areaOfLevel } from './content/areas'
 import LessonPage from './pages/LessonPage'
 import Practice from './pages/Practice'
 import Exams from './pages/Exams'
@@ -92,11 +93,14 @@ export default function App() {
     case 'courses':
       page = <Courses />
       break
+    case 'area':
+      page = <AreaPage areaId={second ?? ''} />
+      break
     case 'path':
-      page = <PathPage levelId={Number(second)} />
+      page = <AreaPage areaId={/^[1-6]$/.test(second ?? '') ? areaOfLevel(Number(second)).id : ''} />
       break
     case 'lesson':
-      page = <LessonPage lessonId={second ?? ''} tab={route.query.get('tab')} />
+      page = <LessonPage lessonId={second ?? ''} tab={route.query.get('tab')} sub={route.query.get('s')} />
       break
     case 'practice':
       page = <Practice mode={second} />

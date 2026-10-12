@@ -67,6 +67,8 @@ export interface AppState {
   fraud: { bestScore: number; cases: Record<string, { score: number; at: string }> }
   exams: Record<string, ExamResult[]>
   tutor: { messages: number }
+  /** Short subtopics read inside a topic, "lessonId:index" → ISO date. */
+  subtopics: Record<string, string>
 }
 
 export function defaultState(): AppState {
@@ -84,6 +86,7 @@ export function defaultState(): AppState {
     fraud: { bestScore: 0, cases: {} },
     exams: {},
     tutor: { messages: 0 },
+    subtopics: {},
   }
 }
 
@@ -335,4 +338,12 @@ export function competencyStats(s: AppState, competencyOf: (exerciseId: string) 
     m.set(c, v)
   }
   return [...m.entries()].map(([competency, v]) => ({ competency, ...v, accuracy: v.correct / v.total })).sort((a, b) => a.accuracy - b.accuracy)
+}
+
+/** Marks one short subtopic of a topic as read (idempotent) and awards a small XP bonus once. */
+export function markSubtopic(s: AppState, lessonId: string, index: number, now = new Date()): AppState {
+  const key = `${lessonId}:${index}`
+  if (s.subtopics[key]) return s
+  const next = { ...s, subtopics: { ...s.subtopics, [key]: now.toISOString() } }
+  return awardXp(next, `sub:${key}`, 5, 'subtopic', now)
 }

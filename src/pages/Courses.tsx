@@ -1,47 +1,76 @@
-import { ChevronRight } from 'lucide-react'
-import { LEVELS } from '../content/curriculum'
-import { lessonForTopic } from '../content'
-import { Badge, Card, PageHeader, ProgressBar } from '../components/ui'
-import { levelProgress } from '../lib/selectors'
+import { BookOpen, Calculator, ChevronRight, Landmark, Play, TrendingUp } from 'lucide-react'
+import type { ReactNode } from 'react'
+import { AREAS, areaOfLevel, type AreaId } from '../content/areas'
+import { Card, cx, PageHeader, ProgressBar } from '../components/ui'
+import { areaProgress, lessonsOfArea, nextLesson, nextSubtopic, subtopicCount } from '../lib/selectors'
 import { useI18n, useStore } from '../state/store'
 
-const COLORS = ['from-electric-500 to-electric-700', 'from-navy-500 to-navy-700', 'from-money-500 to-money-700', 'from-electric-600 to-navy-700', 'from-navy-600 to-navy-900', 'from-money-600 to-navy-800']
+const ic = 'h-6 w-6'
+export const AREA_STYLE: Record<AreaId, { icon: ReactNode; tile: string }> = {
+  contabilidad: { icon: <BookOpen className={ic} />, tile: 'bg-electric-500/10 text-electric-600 dark:text-electric-300' },
+  costos: { icon: <Calculator className={ic} />, tile: 'bg-amber-500/15 text-amber-700 dark:text-amber-300' },
+  finanzas: { icon: <TrendingUp className={ic} />, tile: 'bg-money-500/15 text-money-700 dark:text-money-300' },
+  fiscal: { icon: <Landmark className={ic} />, tile: 'bg-navy-500/15 text-navy-700 dark:text-navy-200' },
+}
 
 export default function Courses() {
   const { state } = useStore()
   const { t, tx } = useI18n()
+  const next = nextLesson(state)
+  const sub = next ? nextSubtopic(state, next) : 0
+  const isReto = next ? sub === subtopicCount(next) - 1 : false
+
   return (
     <div>
-      <PageHeader title={tx('Catálogo de cursos', 'Course catalog')} subtitle={tx('Seis rutas progresivas, de cero a nivel avanzado.', 'Six progressive paths, from zero to advanced.')} />
-      <div className="grid gap-4 sm:grid-cols-2">
-        {LEVELS.map((l, i) => {
-          const p = levelProgress(state, l.id)
-          const covered = l.topics.filter((tp) => lessonForTopic(tp.id)).length
+      <PageHeader title={tx('Cursos', 'Courses')} subtitle={tx('Elige un área. Cada tema se divide en subtemas cortos de pocos minutos.', 'Pick an area. Each topic is split into short subtopics of a few minutes.')} />
+
+      {next && (
+        <a href={isReto ? `#/lesson/${next.id}?tab=practice` : `#/lesson/${next.id}?s=${sub}`} className="mb-5 block" data-testid="continue-card">
+          <div className="flex items-center gap-4 rounded-2xl bg-electric-500 p-4 text-white shadow-sm shadow-electric-500/30 transition hover:bg-electric-600">
+            <div className="min-w-0 flex-1">
+              <p className="text-xs font-bold uppercase tracking-wider text-white/85">{tx('Sigue donde te quedaste', 'Pick up where you left off')}</p>
+              <p className="mt-0.5 truncate text-lg font-bold">{isReto ? tx('Reto del tema', 'Topic challenge') : t(next.theory[sub].heading)}</p>
+              <p className="truncate text-sm text-white/90">
+                {t(areaOfLevel(next.level).title)} · {t(next.title)}
+              </p>
+            </div>
+            <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-white text-electric-600">
+              <Play className="h-5 w-5 fill-current" />
+            </span>
+          </div>
+        </a>
+      )}
+
+      <h2 className="mb-2 text-xs font-bold uppercase tracking-wider text-navy-500 dark:text-navy-300">{tx('Áreas', 'Areas')}</h2>
+      <div className="grid gap-3 sm:grid-cols-2">
+        {AREAS.map((a) => {
+          const p = areaProgress(state, a.levels)
+          const current = next ? a.levels.includes(next.level) : false
           return (
-            <a key={l.id} href={`#/path/${l.id}`} className="group block">
-              <Card className="h-full overflow-hidden p-0 transition group-hover:ring-electric-400">
-                <div className={`bg-gradient-to-br ${COLORS[i]} p-4 text-white`}>
-                  <div className="flex items-center justify-between">
-                    <Badge className="bg-white/20 text-white">{tx('Nivel', 'Level')} {l.id}</Badge>
-                    <ChevronRight className="h-5 w-5 opacity-80" />
-                  </div>
-                  <h2 className="mt-3 text-lg font-bold">{t(l.title)}</h2>
-                  <p className="mt-1 text-sm text-white/85">{t(l.description)}</p>
-                </div>
-                <div className="space-y-2 p-4">
-                  <div className="flex justify-between text-xs text-navy-500 dark:text-navy-300">
-                    <span>
-                      {p.total} {tx('lecciones', 'lessons')} · {covered}/{l.topics.length} {tx('temas cubiertos', 'topics covered')}
+            <a key={a.id} href={`#/area/${a.id}`} className="group block">
+              <Card className={cx('flex h-full items-center gap-4 transition group-hover:ring-electric-400', current && 'ring-2 ring-electric-500 dark:ring-electric-400')}>
+                <span className={cx('flex h-12 w-12 shrink-0 items-center justify-center rounded-xl', AREA_STYLE[a.id].tile)}>{AREA_STYLE[a.id].icon}</span>
+                <div className="min-w-0 flex-1">
+                  <p className="font-bold text-navy-900 dark:text-white">{t(a.title)}</p>
+                  <p className="text-sm text-navy-500 dark:text-navy-300">
+                    {lessonsOfArea(a.levels).length} {tx('temas', 'topics')} · {t(a.description)}
+                  </p>
+                  <div className="mt-2 flex items-center gap-2">
+                    <ProgressBar value={p.ratio} label={t(a.title)} />
+                    <span className="tabular shrink-0 text-xs font-semibold text-navy-500 dark:text-navy-300">
+                      {p.done}/{p.total}
                     </span>
-                    <span className="tabular font-semibold">{Math.round(p.ratio * 100)} %</span>
                   </div>
-                  <ProgressBar value={p.ratio} tone="money" label={t(l.title)} />
                 </div>
+                <ChevronRight className="h-5 w-5 shrink-0 text-navy-300 transition group-hover:translate-x-0.5" />
               </Card>
             </a>
           )
         })}
       </div>
+      <p className="mt-4 text-center text-xs text-navy-500 dark:text-navy-300">
+        {tx('Puedes empezar en cualquier área. El primer tema de cada nivel siempre está abierto.', 'You can start in any area. The first topic of each level is always open.')}
+      </p>
     </div>
   )
 }

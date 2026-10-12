@@ -123,6 +123,7 @@ export function validateState(input: unknown): V {
   out.exams = rec('exams', input.exams, (x) =>
     Array.isArray(x) && x.every((r) => isObj(r) && isNum(r.score) && isIso(r.at) && isBool(r.passed)) ? (x as AppState['exams'][string]) : null,
   )
+  out.subtopics = rec('subtopics', input.subtopics, (x) => (isIso(x) ? (x as string) : null))
   if (isObj(input.tutor) && isNum(input.tutor.messages)) out.tutor.messages = input.tutor.messages
 
   return errors.length ? { ok: false, errors } : { ok: true, state: out }

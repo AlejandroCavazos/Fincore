@@ -50,6 +50,30 @@ test('onboarding, lesson completion, XP and persistence across reload', async ({
   await expect(page).not.toHaveURL(/welcome/)
 })
 
+test('courses: area, topic and subtopics advance in order', async ({ page }) => {
+  await onboard(page)
+  await page.goto('./#/courses')
+  await page.locator('a[href="#/area/contabilidad"]').click()
+  await expect(page.getByRole('heading', { level: 1, name: 'Contabilidad' })).toBeVisible()
+  await shot(page, '10-area')
+  await page.getByRole('link', { name: /Introducción a la contabilidad/ }).click()
+  await expect(page.getByText(/0 de \d+ subtemas/)).toBeVisible()
+  await shot(page, '11-topic')
+  await page.getByText(/^Continuar$/i).click()
+  await expect(page).toHaveURL(/s=0/)
+  await shot(page, '12-subtopic')
+  await page.getByRole('button', { name: /Entendido, siguiente/ }).click()
+  await expect(page).toHaveURL(/s=1/)
+  await page.goto('./#/lesson/L1-01')
+  await expect(page.getByText(/1 de \d+ subtemas/)).toBeVisible()
+  await page.waitForTimeout(600)
+  await page.reload()
+  await expect(page.getByText(/1 de \d+ subtemas/)).toBeVisible()
+  // A subtopic that is not open yet falls back to the topic overview.
+  await page.goto('./#/lesson/L1-01?s=3')
+  await expect(page.getByText(/1 de \d+ subtemas/)).toBeVisible()
+})
+
 test('option order is stable within an attempt and survives reload', async ({ page }) => {
   await onboard(page)
   await page.goto('./#/lesson/L1-01?tab=practice')
@@ -113,7 +137,7 @@ test('every main screen renders without console errors; no horizontal overflow o
   page.on('pageerror', (e) => errors.push(e.message))
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()))
   await onboard(page)
-  const routes = ['/', '/courses', '/path/1', '/lesson/L4-04', '/practice', '/exams/1', '/tools', '/lab', '/calc/pv', '/calc/fv', '/calc/compound', '/calc/annuity', '/calc/project', '/calc/wacc', '/calc/breakeven', '/calc/ratios', '/invest', '/tutor', '/stats', '/settings', '/plans', '/account', '/legal/privacy', '/legal/cookies']
+  const routes = ['/', '/courses', '/area/contabilidad', '/area/finanzas', '/lesson/L1-01?s=0', '/path/1', '/lesson/L4-04', '/practice', '/exams/1', '/tools', '/lab', '/calc/pv', '/calc/fv', '/calc/compound', '/calc/annuity', '/calc/project', '/calc/wacc', '/calc/breakeven', '/calc/ratios', '/invest', '/tutor', '/stats', '/settings', '/plans', '/account', '/legal/privacy', '/legal/cookies']
   for (const r of routes) {
     await page.goto(`./#${r}`)
     await expect(page.locator('main h1').first()).toBeVisible()

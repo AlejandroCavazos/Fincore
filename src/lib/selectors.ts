@@ -46,3 +46,48 @@ export function accuracy(s: AppState) {
   const correct = s.answers.filter((a) => a.correct).length
   return { total, correct, ratio: total ? correct / total : 0 }
 }
+
+// ───────────────────────── Areas, topics and subtopics ─────────────────────────
+// A topic is a lesson. Its subtopics are the lesson's theory sections (one short
+// idea each) followed by the "Reto del tema", which is the lesson's practice.
+
+export type SubtopicState = 'done' | 'next' | 'todo'
+
+export function subtopicCount(lesson: Lesson) {
+  return lesson.theory.length + 1
+}
+
+export const isRetoIndex = (lesson: Lesson, i: number) => i === lesson.theory.length
+
+export function isSubtopicDone(s: AppState, lesson: Lesson, i: number) {
+  if (isLessonCompleted(s, lesson.id)) return true
+  return !isRetoIndex(lesson, i) && Boolean(s.subtopics[`${lesson.id}:${i}`])
+}
+
+/** Index of the first subtopic not done yet, or the reto when everything is done. */
+export function nextSubtopic(s: AppState, lesson: Lesson) {
+  const n = subtopicCount(lesson)
+  for (let i = 0; i < n; i++) if (!isSubtopicDone(s, lesson, i)) return i
+  return n - 1
+}
+
+export function subtopicStates(s: AppState, lesson: Lesson): SubtopicState[] {
+  const next = isLessonCompleted(s, lesson.id) ? -1 : nextSubtopic(s, lesson)
+  return Array.from({ length: subtopicCount(lesson) }, (_, i) => (isSubtopicDone(s, lesson, i) ? 'done' : i === next ? 'next' : 'todo'))
+}
+
+/** A subtopic opens once the previous one is done (free mode opens everything). */
+export function isSubtopicOpen(s: AppState, lesson: Lesson, i: number, freeMode = false) {
+  if (freeMode || i === 0 || isLessonCompleted(s, lesson.id)) return true
+  return isSubtopicDone(s, lesson, i - 1)
+}
+
+export function lessonsOfArea(levels: LevelId[]) {
+  return levels.flatMap((lv) => lessonsOfLevel(lv))
+}
+
+export function areaProgress(s: AppState, levels: LevelId[]) {
+  const list = lessonsOfArea(levels)
+  const done = list.filter((l) => isLessonCompleted(s, l.id)).length
+  return { done, total: list.length, ratio: list.length ? done / list.length : 0 }
+}

@@ -33,7 +33,7 @@ interface NavItem {
 const ic = 'h-5 w-5'
 export const MOBILE_NAV: NavItem[] = [
   { href: '/', match: ['/'], label: ['Inicio', 'Home'], icon: <House className={ic} /> },
-  { href: '/courses', match: ['/courses', '/path', '/lesson'], label: ['Cursos', 'Courses'], icon: <BookOpen className={ic} /> },
+  { href: '/courses', match: ['/courses', '/area', '/path', '/lesson'], label: ['Cursos', 'Courses'], icon: <BookOpen className={ic} /> },
   { href: '/practice', match: ['/practice', '/exams'], label: ['Práctica', 'Practice'], icon: <Dumbbell className={ic} /> },
   { href: '/tools', match: ['/tools', '/lab', '/calc', '/invest', '/tutor', '/plans', '/account'], label: ['Herramientas', 'Tools'], icon: <LayoutGrid className={ic} /> },
   { href: '/stats', match: ['/stats', '/settings'], label: ['Progreso', 'Progress'], icon: <BarChart3 className={ic} /> },
@@ -41,7 +41,7 @@ export const MOBILE_NAV: NavItem[] = [
 
 export const SIDE_NAV: NavItem[] = [
   { href: '/', match: ['/'], label: ['Inicio', 'Dashboard'], icon: <House className={ic} /> },
-  { href: '/courses', match: ['/courses', '/path', '/lesson'], label: ['Cursos', 'Courses'], icon: <BookOpen className={ic} /> },
+  { href: '/courses', match: ['/courses', '/area', '/path', '/lesson'], label: ['Cursos', 'Courses'], icon: <BookOpen className={ic} /> },
   { href: '/practice', match: ['/practice'], label: ['Práctica y repaso', 'Practice & review'], icon: <Dumbbell className={ic} /> },
   { href: '/exams', match: ['/exams'], label: ['Evaluaciones', 'Exams'], icon: <GraduationCap className={ic} /> },
   { href: '/lab', match: ['/lab'], label: ['Laboratorio contable', 'Accounting lab'], icon: <FlaskConical className={ic} /> },
