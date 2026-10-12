@@ -1,0 +1,108 @@
+@import 'tailwindcss';
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: 'JetBrains Mono', ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+
+  --color-navy-50: #eef3fb;
+  --color-navy-100: #d8e2f3;
+  --color-navy-200: #b0c3e6;
+  --color-navy-300: #7f9bd1;
+  --color-navy-400: #4f71b5;
+  --color-navy-500: #2f5196;
+  --color-navy-600: #1f3c78;
+  --color-navy-700: #172e5d;
+  --color-navy-800: #102145;
+  --color-navy-900: #0b1731;
+  --color-navy-950: #060e21;
+
+  --color-electric-300: #7cb6ff;
+  --color-electric-400: #4b98ff;
+  --color-electric-500: #1f7aff;
+  --color-electric-600: #0b5fe0;
+  --color-electric-700: #0a4bb3;
+
+  --color-money-300: #6fe0a8;
+  --color-money-400: #34c98a;
+  --color-money-500: #12a86d;
+  --color-money-600: #0b8a58;
+  --color-money-700: #0a6d47;
+}
+
+:root {
+  color-scheme: light;
+  -webkit-tap-highlight-color: transparent;
+}
+:root.dark {
+  color-scheme: dark;
+}
+
+html,
+body {
+  background: #f5f7fb;
+  overscroll-behavior-y: none;
+}
+:root.dark body,
+:root.dark {
+  background: #060e21;
+}
+
+body {
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+/* Visible keyboard focus everywhere */
+:focus-visible {
+  outline: 3px solid var(--color-electric-500);
+  outline-offset: 2px;
+  border-radius: 6px;
+}
+
+/* iOS: avoid zoom on focus by keeping inputs ≥16px */
+input,
+select,
+textarea {
+  font-size: 16px;
+}
+
+.pt-safe {
+  padding-top: env(safe-area-inset-top);
+}
+.pb-safe {
+  padding-bottom: env(safe-area-inset-bottom);
+}
+.pl-safe {
+  padding-left: env(safe-area-inset-left);
+}
+.pr-safe {
+  padding-right: env(safe-area-inset-right);
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes fc-pop {
+  0% { transform: scale(0.96); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+.animate-pop {
+  animation: fc-pop 0.18s ease-out;
+}
+@keyframes fc-fade-up {
+  0% { transform: translateY(6px); opacity: 0; }
+  100% { transform: translateY(0); opacity: 1; }
+}
+.animate-fade-up {
+  animation: fc-fade-up 0.25s ease-out;
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}

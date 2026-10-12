@@ -1,0 +1,13 @@
+{
+  "name": "fincore-tutor-server",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "Optional proxy for FINCORE's AI tutor. Keeps the Anthropic API key on the server.",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0"
+  }
+}
