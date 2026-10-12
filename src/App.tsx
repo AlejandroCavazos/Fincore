@@ -19,7 +19,6 @@ import NotFound from './pages/NotFound'
 const Lab = lazy(() => import('./pages/Lab'))
 const Calculators = lazy(() => import('./pages/Calculators'))
 const Invest = lazy(() => import('./pages/Invest'))
-const Fraud = lazy(() => import('./pages/Fraud'))
 const Tutor = lazy(() => import('./pages/Tutor'))
 
 function useTheme() {
@@ -96,9 +95,6 @@ export default function App() {
       break
     case 'invest':
       page = <Invest />
-      break
-    case 'fraud':
-      page = <Fraud />
       break
     case 'tutor':
       page = <Tutor exerciseId={route.query.get('ex')} />

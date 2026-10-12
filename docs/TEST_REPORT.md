@@ -1,12 +1,12 @@
 # FINCORE v1.0 — Reporte de pruebas
 
-**Fecha de ejecución:** 2026-10-12 · **Entorno:** Linux, Node 22.22.0, Chromium (Playwright 1.64) · **Build:** `npm run build` sin errores de TypeScript.
+**Fecha de ejecución:** 2026-10-12 (actualizado tras quitar Fraud Detective) · **Entorno:** Linux, Node 22.22.0, Chromium (Playwright 1.64) · **Build:** `npm run build` sin errores de TypeScript.
 
 ## Resumen
 
 | Suite | Herramienta | Resultado |
 |---|---|---|
-| Unitarias y de componentes | Vitest 5 + React Testing Library + fake-indexeddb | **93 / 93 pasan** (10 archivos) |
+| Unitarias y de componentes | Vitest 5 + React Testing Library + fake-indexeddb | **87 / 87 pasan** (9 archivos) |
 | Extremo a extremo | Playwright, 9 escenarios × 3 perfiles (viewport iPhone 14, Pixel 7, escritorio 1366×860) | **27 / 27 pasan** |
 | Tipos | `tsc -b` (strict, noUnusedLocals) | 0 errores |
 | Lint | oxlint | 0 errores (solo advertencias de estilo de React) |
@@ -28,8 +28,8 @@ Cómo reproducir: `npm test` y `PW_CHROMIUM=/ruta/chromium npm run test:e2e` (o 
 | 9 | Aleatorización de opciones | **PASS** | `shuffle.test.ts`: 10,000 barajados sin pérdidas ni duplicados; 4,000 intentos con la correcta en A, B, C y D (χ² < 16.27); las 24 permutaciones aparecen; calificación por ID en las 4 posiciones; orden estable en el intento y tras serializar; nuevo intento → nuevo orden; multirespuesta conserva su conjunto. RTL: orden estable tras rerender, selección y retroalimentación. E2E: orden igual tras recargar |
 | 10 | Persistencia | **PASS** | IndexedDB (fake-indexeddb) ida y vuelta; exportar → importar idéntico. E2E: XP y lección se conservan tras recargar en los 3 perfiles |
 | 11 | XP | **PASS** | Idempotente por clave; repetir lección, reenviar respuesta o volver a terminar no suma XP; respuesta bloqueada tras el primer envío; bono de examen una sola vez; umbrales de nivel |
-| 12 | Navegación | **PASS** | RTL: onboarding, rutas y 404. E2E: 21 rutas principales sin errores de consola en los 3 perfiles |
-| 13 | Diseño móvil | **PASS** (Chromium) | E2E sin desbordamiento horizontal en 21 pantallas con viewport iPhone 14 y Pixel 7; capturas revisadas. Se corrigieron dos defectos encontrados así (margen lateral en móvil y desbordamiento del laboratorio) |
+| 12 | Navegación | **PASS** | RTL: onboarding, rutas y 404. E2E: 20 rutas principales sin errores de consola en los 3 perfiles |
+| 13 | Diseño móvil | **PASS** (Chromium) | E2E sin desbordamiento horizontal en 20 pantallas con viewport iPhone 14 y Pixel 7; capturas revisadas. Se corrigieron dos defectos encontrados así (margen lateral en móvil y desbordamiento del laboratorio) |
 | 14 | Validación de entradas | **PASS** | Parser numérico ($, %, comas, coma decimal, negativos, no números); calculadoras muestran «Escribe un número válido»; importación rechaza JSON inválido, encabezado ajeno, tamaño > 5 MB, valores fuera de rango y `__proto__` |
 | 15 | Manejo de errores | **PASS** | Todos los códigos `Result` de finanzas probados en casos límite; tutor sin TIR no la inventa; respaldo con error visible (E2E); IndexedDB no disponible → modo memoria |
 
@@ -38,7 +38,6 @@ Cómo reproducir: `npm test` y `PW_CHROMIUM=/ruta/chromium npm run test:e2e` (o 
 | Verificación | Estado | Evidencia |
 |---|---|---|
 | Laboratorio: póliza cuadrada con cuenta equivocada marcada incorrecta | **PASS** | Unitaria y E2E (muestra «Cuenta no corresponde» y luego contabiliza la correcta) |
-| Fraud Detective: puntaje, falsos positivos y negativos, alerta vs. fraude | **PASS** | `fraud.test.ts`: caso determinista por semilla, 6 tipos de anomalía, al menos una alerta explicada, 100 % con respuesta perfecta, penalización por falsos positivos |
 | Tutor local: cálculos verificados y avisos fiscales | **PASS** | `tutor.test.ts`: VPN, TIR múltiple, WACC, 50 ejercicios generados verificados contra `npv()`, nota con jurisdicción, fecha y DOF; enlaces a lecciones existentes. E2E: respuesta en pantalla |
 | Contenido mínimo (§14) | **PASS** | 6 rutas, 32 lecciones, 221 ejercicios, sin lecciones vacías, sin preguntas duplicadas (enunciado + caso), MCQ con 4 opciones e IDs únicos |
 | PWA: manifest, service worker y uso sin conexión | **PASS** (Chromium) | E2E: manifest con 3 iconos, `sw.js` activo, recarga sin red muestra la app |

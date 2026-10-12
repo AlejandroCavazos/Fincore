@@ -11,7 +11,6 @@ import {
   House,
   Info,
   LayoutGrid,
-  Search,
   Settings,
   TrendingUp,
   TriangleAlert,
@@ -33,7 +32,7 @@ export const MOBILE_NAV: NavItem[] = [
   { href: '/', match: ['/'], label: ['Inicio', 'Home'], icon: <House className={ic} /> },
   { href: '/courses', match: ['/courses', '/path', '/lesson'], label: ['Cursos', 'Courses'], icon: <BookOpen className={ic} /> },
   { href: '/practice', match: ['/practice', '/exams'], label: ['Práctica', 'Practice'], icon: <Dumbbell className={ic} /> },
-  { href: '/tools', match: ['/tools', '/lab', '/calc', '/invest', '/fraud', '/tutor'], label: ['Herramientas', 'Tools'], icon: <LayoutGrid className={ic} /> },
+  { href: '/tools', match: ['/tools', '/lab', '/calc', '/invest', '/tutor'], label: ['Herramientas', 'Tools'], icon: <LayoutGrid className={ic} /> },
   { href: '/stats', match: ['/stats', '/settings'], label: ['Progreso', 'Progress'], icon: <BarChart3 className={ic} /> },
 ]
 
@@ -45,7 +44,6 @@ export const SIDE_NAV: NavItem[] = [
   { href: '/lab', match: ['/lab'], label: ['Laboratorio contable', 'Accounting lab'], icon: <FlaskConical className={ic} /> },
   { href: '/calc', match: ['/calc'], label: ['Calculadoras', 'Calculators'], icon: <Calculator className={ic} /> },
   { href: '/invest', match: ['/invest'], label: ['Inversión y valuación', 'Investing & valuation'], icon: <TrendingUp className={ic} /> },
-  { href: '/fraud', match: ['/fraud'], label: ['Fraud Detective', 'Fraud Detective'], icon: <Search className={ic} /> },
   { href: '/tutor', match: ['/tutor'], label: ['Tutor', 'Tutor'], icon: <Bot className={ic} /> },
   { href: '/stats', match: ['/stats'], label: ['Estadísticas', 'Statistics'], icon: <BarChart3 className={ic} /> },
   { href: '/settings', match: ['/settings'], label: ['Configuración', 'Settings'], icon: <Settings className={ic} /> },

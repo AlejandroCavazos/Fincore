@@ -16,7 +16,7 @@ Cada lección sigue la misma secuencia:
 6. **Evaluación**: la lección se aprueba con ≥ 60 %; los exámenes por nivel (12 ejercicios al azar, sin retroalimentación hasta el final) con ≥ 70 %.
 7. **Seguimiento**: XP, competencias, historial y repaso espaciado de lo que se falló.
 
-Principios aplicados: práctica de recuperación (preguntas antes de releer), retroalimentación elaborada, repaso espaciado (SM-2 simplificado), intercalado (práctica mixta por nivel y por competencias débiles), y aprendizaje en contexto (laboratorio, casos de empresas ficticias y caso forense).
+Principios aplicados: práctica de recuperación (preguntas antes de releer), retroalimentación elaborada, repaso espaciado (SM-2 simplificado), intercalado (práctica mixta por nivel y por competencias débiles), y aprendizaje en contexto (laboratorio, casos de empresas ficticias).
 
 ## Mapa del currículo
 
@@ -56,7 +56,6 @@ Cada ejercicio tiene ID, nivel, módulo (lección), enunciado bilingüe, opcione
 - **Laboratorio contable:** Comercializadora Aurora (ficticia), enero de 2026, inventarios perpetuos. 20 operaciones: aportación, préstamo, compras de contado y a crédito con IVA, ventas con costo, cobranza, anticipos, pagos, activos fijos, seguros prepagados, gastos y ajustes (depreciación, devengos, estimación de incobrables). Catálogo ficticio de 51 cuentas.
 - **Calculadoras:** cada una muestra fórmula, resultado, interpretación, tabla y gráfica, y rechaza entradas inválidas con un mensaje.
 - **Inversión y valuación:** dos empresas ficticias con tres años de estados; cada cifra se etiqueta como *dato*, *supuesto*, *cálculo* o *interpretación*.
-- **Financial Fraud Detective:** caso por semilla con 55 pagos y 11 operaciones anómalas (2 de ellas son alertas con explicación legítima) para practicar que una señal de alerta no es un fraude demostrado.
 - **Tutor local:** explica conceptos, calcula paso a paso con las mismas funciones verificadas, genera ejercicios con dificultad adaptativa y explica errores.
 
 ## Marco normativo y vigencia

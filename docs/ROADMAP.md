@@ -2,7 +2,7 @@
 
 ## v1.0 (esta entrega)
 
-PWA con 15 pantallas, 32 lecciones, 221 ejercicios, laboratorio contable, calculadoras, simulador de inversión y valuación, Fraud Detective, tutor local con modo IA opcional, gamificación, repaso espaciado, respaldo JSON y funcionamiento sin conexión.
+PWA con 14 pantallas, 32 lecciones, 221 ejercicios, laboratorio contable, calculadoras, simulador de inversión y valuación, tutor local con modo IA opcional, gamificación, repaso espaciado, respaldo JSON y funcionamiento sin conexión.
 
 ## v1.1 — Verificación en dispositivos y accesibilidad
 

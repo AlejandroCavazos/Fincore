@@ -283,7 +283,6 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'streak-3', icon: 'Flame', title: { es: 'Racha de 3 días', en: '3-day streak' }, description: { es: 'Estudia 3 días seguidos.', en: 'Study 3 days in a row.' }, test: (s) => streak(s).best >= 3 },
   { id: 'streak-7', icon: 'Flame', title: { es: 'Racha de 7 días', en: '7-day streak' }, description: { es: 'Estudia 7 días seguidos.', en: 'Study 7 days in a row.' }, test: (s) => streak(s).best >= 7 },
   { id: 'bookkeeper', icon: 'BookCheck', title: { es: 'Tenedor de libros', en: 'Bookkeeper' }, description: { es: 'Registra correctamente 5 operaciones en el laboratorio.', en: 'Correctly record 5 lab transactions.' }, test: (s) => Object.keys(s.lab.solved).length >= 5 },
-  { id: 'detective', icon: 'Search', title: { es: 'Detective financiero', en: 'Financial detective' }, description: { es: 'Obtén 80 % o más en un caso forense.', en: 'Score 80 % or more on a forensic case.' }, test: (s) => s.fraud.bestScore >= 0.8 },
   { id: 'examiner', icon: 'GraduationCap', title: { es: 'Examen aprobado', en: 'Exam passed' }, description: { es: 'Aprueba una evaluación de nivel.', en: 'Pass a level exam.' }, test: (s) => Object.values(s.exams).some((r) => r.some((x) => x.passed)) },
   { id: 'reviewer', icon: 'RotateCcw', title: { es: 'Memoria de largo plazo', en: 'Long-term memory' }, description: { es: 'Responde 10 repasos correctamente.', en: 'Answer 10 reviews correctly.' }, test: (s) => s.answers.filter((a) => a.mode === 'review' && a.correct).length >= 10 },
 ]

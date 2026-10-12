@@ -1,4 +1,4 @@
-import { Bot, Calculator, FlaskConical, GraduationCap, Search, TrendingUp, Settings } from 'lucide-react'
+import { Bot, Calculator, FlaskConical, GraduationCap, TrendingUp, Settings } from 'lucide-react'
 import { Card, PageHeader } from '../components/ui'
 import { useI18n } from '../state/store'
 
@@ -8,7 +8,6 @@ export default function Tools() {
     { href: '#/lab', icon: <FlaskConical />, title: tx('Laboratorio contable', 'Accounting lab'), desc: tx('Registra pólizas, consulta cuentas T y genera la balanza.', 'Record entries, view T-accounts and build the trial balance.') },
     { href: '#/calc', icon: <Calculator />, title: tx('Calculadoras financieras', 'Financial calculators'), desc: tx('VP, VF, interés compuesto, anualidades, VPN, TIR, payback, WACC, equilibrio y razones.', 'PV, FV, compound interest, annuities, NPV, IRR, payback, WACC, break-even and ratios.') },
     { href: '#/invest', icon: <TrendingUp />, title: tx('Inversión y valuación', 'Investing & valuation'), desc: tx('Casos de empresas, DCF, escenarios y portafolios.', 'Company cases, DCF, scenarios and portfolios.') },
-    { href: '#/fraud', icon: <Search />, title: 'Financial Fraud Detective', desc: tx('Investiga transacciones y detecta anomalías.', 'Investigate transactions and detect anomalies.') },
     { href: '#/exams', icon: <GraduationCap />, title: tx('Evaluaciones', 'Exams'), desc: tx('Exámenes por nivel.', 'Level exams.') },
     { href: '#/tutor', icon: <Bot />, title: tx('Tutor educativo', 'Learning tutor'), desc: tx('Explicaciones, cálculos verificados y ejercicios generados.', 'Explanations, verified calculations and generated exercises.') },
     { href: '#/settings', icon: <Settings />, title: tx('Configuración', 'Settings'), desc: tx('Idioma, tema, respaldo e instalación.', 'Language, theme, backup and install.') },

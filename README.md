@@ -14,8 +14,7 @@ Todo el contenido, las empresas y las transacciones son **ficticios y con fines 
 | Laboratorio contable | 20 operaciones de una empresa ficticia, catálogo de 51 cuentas, validación de pólizas (cuadre **y** cuentas correctas), diario, cuentas T, balanza y ecuación contable |
 | Calculadoras | VP, VF, interés compuesto, anualidades y amortización, VPN/TIR/payback/IP, WACC/CAPM, punto de equilibrio, 15 razones financieras; cada una con fórmula, interpretación, tabla y gráfica |
 | Inversión y valuación | 2 empresas ficticias: análisis, DCF simplificado, escenarios y sensibilidad, evaluación de proyecto, portafolio de 2 activos; cada cifra etiquetada como dato, supuesto, cálculo o interpretación |
-| Financial Fraud Detective | Caso forense generado por semilla: 55 pagos con 11 operaciones anómalas controladas (duplicados, montos inusuales, horarios atípicos, proveedor fantasma, inconsistencias documentales, fraccionamiento); puntaje con verdaderos/falsos positivos y negativos; distingue alerta de fraude demostrado |
-| Gamificación | XP idempotente, niveles, rachas, meta diaria, 10 logros, exámenes por nivel, historial, repaso espaciado (SM-2 simplificado), seguimiento por competencia |
+| Gamificación | XP idempotente, niveles, rachas, meta diaria, 9 logros, exámenes por nivel, historial, repaso espaciado (SM-2 simplificado), seguimiento por competencia |
 | Tutor | Modo local sin IA (etiquetado como tal): conceptos, cálculos verificados con código, ejercicios generados con dificultad adaptativa, explicación de errores, avisos fiscales con jurisdicción y fecha. Modo IA opcional mediante un servidor propio que guarda la clave |
 | Respaldo | Exportar e importar progreso en JSON con validación estricta |
 
@@ -35,8 +34,8 @@ npm run preview      # sirve dist/ en http://localhost:4173
 ## Pruebas
 
 ```bash
-npm test             # Vitest + React Testing Library (93 pruebas)
-npm run test:e2e     # Playwright: iPhone 14 (viewport), Pixel 7 y escritorio (21 pruebas)
+npm test             # Vitest + React Testing Library
+npm run test:e2e     # Playwright: iPhone 14 (viewport), Pixel 7 y escritorio
 npm run lint         # oxlint
 ```
 
@@ -82,7 +81,7 @@ No pongas la clave en variables `VITE_*`: todo lo que empieza con `VITE_` termin
 ```
 src/
   content/        currículo, lecciones y ejercicios (level1..6), catálogo de cuentas, operaciones del laboratorio, empresas
-  lib/            lógica pura y probada: shuffle, engine, accounting, finance, valuation, progress, fraud, tutor, db, backup
+  lib/            lógica pura y probada: shuffle, engine, accounting, finance, valuation, progress, tutor, db, backup
   state/          store (React context + IndexedDB) y router por hash
   components/     UI, ExerciseRunner/ExerciseView, JournalEditor, calculadoras
   pages/          las 15 pantallas

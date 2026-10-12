@@ -113,7 +113,7 @@ test('every main screen renders without console errors; no horizontal overflow o
   page.on('pageerror', (e) => errors.push(e.message))
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()))
   await onboard(page)
-  const routes = ['/', '/courses', '/path/1', '/lesson/L4-04', '/practice', '/exams/1', '/tools', '/lab', '/calc/pv', '/calc/fv', '/calc/compound', '/calc/annuity', '/calc/project', '/calc/wacc', '/calc/breakeven', '/calc/ratios', '/invest', '/fraud', '/tutor', '/stats', '/settings']
+  const routes = ['/', '/courses', '/path/1', '/lesson/L4-04', '/practice', '/exams/1', '/tools', '/lab', '/calc/pv', '/calc/fv', '/calc/compound', '/calc/annuity', '/calc/project', '/calc/wacc', '/calc/breakeven', '/calc/ratios', '/invest', '/tutor', '/stats', '/settings']
   for (const r of routes) {
     await page.goto(`./#${r}`)
     await expect(page.locator('main h1').first()).toBeVisible()
@@ -124,10 +124,8 @@ test('every main screen renders without console errors; no horizontal overflow o
   expect(errors).toEqual([])
 })
 
-test('fraud detective scores a submitted case; tutor answers locally', async ({ page }) => {
+test('tutor answers locally', async ({ page }) => {
   await onboard(page)
-  await page.goto('./#/fraud')
-  await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
   await page.goto('./#/tutor')
   await expect(page.getByText('Modo local (sin IA)')).toBeVisible()
   await page.getByLabel('Escribe tu pregunta').fill('VPN al 10% flujos: -1000, 300, 400, 500')

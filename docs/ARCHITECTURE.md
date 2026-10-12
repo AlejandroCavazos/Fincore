@@ -10,7 +10,7 @@
 | Lógica de dominio en funciones puras (`src/lib`) | Determinismo y pruebas unitarias sin DOM |
 | Errores financieros como `Result<T>` con código | Nunca se inventa un resultado: la UI muestra el motivo |
 | Service worker generado en build (`sw-plugin.ts`) | Precarga exacta de los archivos compilados; sin dependencias extra |
-| Pantallas pesadas con carga diferida (Lab, Calculadoras, Inversión, Fraude, Tutor) | Primer render más ligero en móvil |
+| Pantallas pesadas con carga diferida (Lab, Calculadoras, Inversión, Tutor) | Primer render más ligero en móvil |
 
 ## Componentes
 
@@ -18,7 +18,7 @@
 flowchart TB
   subgraph UI["Interfaz (src/pages, src/components)"]
     Layout["Layout<br/>barra lateral · navegación inferior · toasts"]
-    Pages["15 pantallas<br/>Welcome · Dashboard · Courses · Path · Lesson · Practice · Exams<br/>Tools · Lab · Calculators · Invest · Fraud · Tutor · Stats · Settings"]
+    Pages["15 pantallas<br/>Welcome · Dashboard · Courses · Path · Lesson · Practice · Exams<br/>Tools · Lab · Calculators · Invest · Tutor · Stats · Settings"]
     Runner["ExerciseRunner + ExerciseView"]
     Journal["JournalEditor"]
     Calc["calc.tsx (validación de campos)"]
@@ -33,7 +33,6 @@ flowchart TB
     Acc["accounting<br/>pólizas · mayor · balanza · ecuación"]
     Fin["finance + valuation<br/>VP/VF · anualidades · VPN/TIR · WACC · PE · razones · DCF"]
     Prog["progress + selectors<br/>XP idempotente · niveles · rachas · SRS · logros"]
-    Fraud["fraud<br/>caso por semilla · puntaje · analítica"]
     Tutor["tutor<br/>conceptos · cálculos · ejercicios generados"]
     DB["db (idb) + backup (validación)"]
   end
@@ -51,7 +50,7 @@ flowchart TB
   Runner --> Prog
   Journal --> Acc
   Calc --> Fin
-  Pages --> Fraud & Tutor & Fin & Acc
+  Pages --> Tutor & Fin & Acc
   Store --> Prog & DB
   Engine --> Acc
   Tutor --> Fin
@@ -91,7 +90,7 @@ sequenceDiagram
 ## Reglas clave
 
 - **Barajado.** Cada intento guarda en `attempt.orders` el orden de opciones (`exId`), espacios de fórmula (`exId:blankId`), elementos a clasificar (`exId:items`) y cuentas del selector (`exId:accounts`). Volver a renderizar, seleccionar, ver retroalimentación o recargar la página no cambia el orden; solo «Nuevo intento» baraja de nuevo. La respuesta se guarda como ID de opción, nunca como posición.
-- **XP sin duplicados.** `awardXp(estado, clave, xp)` no hace nada si la clave ya existe. Claves: `ex:ID` (una vez en la vida), `review:ID:día`, `lesson:ID`, `perfect:ID`, `exam-pass:clave`, `lab:TX`, `fraud:semilla`. Además, la primera respuesta de cada ejercicio en un intento queda bloqueada.
+- **XP sin duplicados.** `awardXp(estado, clave, xp)` no hace nada si la clave ya existe. Claves: `ex:ID` (una vez en la vida), `review:ID:día`, `lesson:ID`, `perfect:ID`, `exam-pass:clave`, `lab:TX`. Además, la primera respuesta de cada ejercicio en un intento queda bloqueada.
 - **Pólizas.** `checkJournal` agrega por cuenta y naturaleza; una póliza es correcta solo si cuadra, las cuentas y naturalezas coinciden y los importes coinciden (±0.005).
 - **Finanzas.** Todas las funciones validan entradas y devuelven `{ok:false, error}` en casos límite: sin TIR (`NO_SIGN_CHANGE`, `IRR_NOT_FOUND`), varias TIR (`multiple: true`), tasa ≤ −100 %, flujos insuficientes, división entre cero, `g ≥ WACC`, precio ≤ costo variable, etc.
 - **Persistencia.** `loadState` valida el documento; si está dañado o IndexedDB no existe (modo privado), la app usa memoria y lo indica en Configuración. La importación valida tipos, rangos, tamaño (5 MB) y bloquea claves como `__proto__`.

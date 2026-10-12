@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { ArrowRight, BookOpen, Calculator, FlaskConical, Search } from 'lucide-react'
+import { ArrowRight, BookOpen, Calculator, FlaskConical } from 'lucide-react'
 import { Logo } from '../components/Logo'
 import { Button, cx } from '../components/ui'
 import { navigate } from '../state/router'
@@ -21,7 +21,6 @@ export default function Welcome() {
     { icon: <BookOpen className="h-5 w-5" />, es: '6 niveles: de la partida doble a la valuación DCF', en: '6 levels: from double entry to DCF valuation' },
     { icon: <FlaskConical className="h-5 w-5" />, es: 'Laboratorio contable con pólizas, cuentas T y balanza', en: 'Accounting lab with journal entries, T-accounts and trial balance' },
     { icon: <Calculator className="h-5 w-5" />, es: 'Calculadoras de VPN, TIR, WACC y punto de equilibrio', en: 'NPV, IRR, WACC and break-even calculators' },
-    { icon: <Search className="h-5 w-5" />, es: 'Financial Fraud Detective: auditoría forense', en: 'Financial Fraud Detective: forensic audit' },
   ]
 
   return (

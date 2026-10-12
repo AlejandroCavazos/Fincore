@@ -1,4 +1,4 @@
-import { ArrowRight, Calculator, Flame, FlaskConical, GraduationCap, RotateCcw, Search, Target, TrendingUp, Zap } from 'lucide-react'
+import { ArrowRight, Bot, Calculator, Flame, FlaskConical, GraduationCap, RotateCcw, Target, TrendingUp, Zap } from 'lucide-react'
 import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
 import { LEVELS } from '../content/curriculum'
 import { LESSONS } from '../content'
@@ -26,7 +26,7 @@ export default function Dashboard() {
     { href: '#/lab', icon: <FlaskConical className="h-5 w-5" />, label: tx('Laboratorio', 'Lab') },
     { href: '#/calc', icon: <Calculator className="h-5 w-5" />, label: tx('Calculadoras', 'Calculators') },
     { href: '#/invest', icon: <TrendingUp className="h-5 w-5" />, label: tx('Valuación', 'Valuation') },
-    { href: '#/fraud', icon: <Search className="h-5 w-5" />, label: 'Fraud Detective' },
+    { href: '#/tutor', icon: <Bot className="h-5 w-5" />, label: tx('Tutor', 'Tutor') },
   ]
 
   return (
