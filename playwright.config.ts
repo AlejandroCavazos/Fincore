@@ -15,10 +15,11 @@ export default defineConfig({
     launchOptions: { executablePath },
   },
   webServer: {
-    command: 'npm run preview -- --port 4173 --strictPort',
+    // Built without .env.production, so accounts are off and tests run offline.
+    command: 'npm run build:e2e && npm run preview -- --port 4173 --strictPort',
     url: 'http://localhost:4173',
     reuseExistingServer: true,
-    timeout: 60_000,
+    timeout: 180_000,
   },
   projects: [
     // iPhone 14 viewport, touch and user agent, rendered by Chromium (not real Safari/WebKit).
