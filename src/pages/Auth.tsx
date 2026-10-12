@@ -1,7 +1,7 @@
 import { useState, type FormEvent } from 'react'
 import { Logo } from '../components/Logo'
 import { Button, Card, Field, Notice, cx } from '../components/ui'
-import { friendlyError, getClient, redirectUrl, validateCredentials, MIN_PASSWORD, type AuthErrorCode } from '../lib/auth'
+import { googleEnabled, friendlyError, getClient, redirectUrl, validateCredentials, MIN_PASSWORD, type AuthErrorCode } from '../lib/auth'
 import { useAuth } from '../state/auth'
 import { useI18n } from '../state/store'
 
@@ -186,7 +186,7 @@ export default function AuthScreen() {
             </Button>
           </form>
 
-          {showTabs && (
+          {showTabs && googleEnabled && (
             <>
               <div className="my-4 flex items-center gap-3 text-xs text-navy-400">
                 <span className="h-px flex-1 bg-navy-100 dark:bg-navy-700" />

@@ -49,7 +49,6 @@ export const SIDE_NAV: NavItem[] = [
   { href: '/invest', match: ['/invest'], label: ['Inversión y valuación', 'Investing & valuation'], icon: <TrendingUp className={ic} /> },
   { href: '/tutor', match: ['/tutor'], label: ['Tutor', 'Tutor'], icon: <Bot className={ic} /> },
   { href: '/stats', match: ['/stats'], label: ['Estadísticas', 'Statistics'], icon: <BarChart3 className={ic} /> },
-  { href: '/account', match: ['/account', '/plans'], label: ['Cuenta', 'Account'], icon: <UserRound className={ic} /> },
   { href: '/settings', match: ['/settings'], label: ['Configuración', 'Settings'], icon: <Settings className={ic} /> },
 ]
 
@@ -94,7 +93,7 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
             )
           })}
         </nav>
-        <a href="#/account" data-testid="sidebar-account" className="mt-3 flex items-center gap-3 rounded-xl border border-navy-100 px-3 py-2.5 transition hover:bg-navy-50 dark:border-navy-800 dark:hover:bg-navy-800">
+        <a href="#/account" data-testid="sidebar-account" aria-current={path === '/account' || path === '/plans' ? 'page' : undefined} className="mt-3 flex items-center gap-3 rounded-xl border border-navy-100 px-3 py-2.5 transition hover:bg-navy-50 aria-[current=page]:border-electric-400 aria-[current=page]:bg-electric-500/10 dark:border-navy-800 dark:hover:bg-navy-800">
           <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-electric-500/10 text-sm font-bold uppercase text-electric-600 dark:text-electric-300">
             {user?.email?.[0] ?? <UserRound className="h-4 w-4" />}
           </span>

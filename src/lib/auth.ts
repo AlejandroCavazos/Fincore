@@ -9,6 +9,8 @@ const URL_ = (import.meta.env.VITE_SUPABASE_URL as string | undefined)?.trim() |
 const KEY = (import.meta.env.VITE_SUPABASE_ANON_KEY as string | undefined)?.trim() || ''
 
 export const authEnabled = !!(URL_ && KEY)
+/** Show "Continue with Google" only once the provider is enabled in Supabase. */
+export const googleEnabled = authEnabled && import.meta.env.VITE_AUTH_GOOGLE === 'true'
 
 export type AuthUser = Pick<User, 'id' | 'email'>
 
