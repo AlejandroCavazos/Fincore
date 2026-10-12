@@ -1,10 +1,12 @@
 import { Check } from 'lucide-react'
 import { Badge, Button, Card, Notice, PageHeader, cx } from '../components/ui'
 import { useI18n } from '../state/store'
+import { useAuth } from '../state/auth'
 import { PLANS } from '../lib/plans'
 
 export default function Plans() {
   const { tx, lang } = useI18n()
+  const { plan: myPlan } = useAuth()
   const l = (p: [string, string]) => (lang === 'es' ? p[0] : p[1])
   return (
     <div>
@@ -20,7 +22,7 @@ export default function Plans() {
       </Notice>
       <div className="mt-4 grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
         {PLANS.map((p) => {
-          const current = p.id === 'free'
+          const current = p.id === myPlan
           return (
             <Card
               key={p.id}
@@ -33,8 +35,8 @@ export default function Plans() {
                 {!current && p.highlight && <Badge tone="electric">{tx('Recomendado', 'Recommended')}</Badge>}
               </div>
               <p className="text-sm text-navy-500 dark:text-navy-300">{l(p.tagline)}</p>
-              <p className={cx('tabular mt-3 font-bold text-navy-900 dark:text-white', current ? 'text-2xl' : 'text-lg leading-8 text-navy-500 dark:text-navy-300')}>
-                {current ? '$0' : tx('Precio por definir', 'Price TBD')}
+              <p className={cx('tabular mt-3 font-bold text-navy-900 dark:text-white', p.id === 'free' ? 'text-2xl' : 'text-lg leading-8 text-navy-500 dark:text-navy-300')}>
+                {p.id === 'free' ? '$0' : tx('Precio por definir', 'Price TBD')}
               </p>
               <ul className="mt-3 flex-1 space-y-2 text-sm">
                 {p.features.map((f) => (

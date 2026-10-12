@@ -21,7 +21,7 @@ import { useI18n, useStore } from '../state/store'
 import { cx } from './ui'
 import { Logo } from './Logo'
 import { useAuth } from '../state/auth'
-import { PLANS, currentPlanId } from '../lib/plans'
+import { PLANS } from '../lib/plans'
 
 interface NavItem {
   href: string
@@ -61,8 +61,8 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
   const { tx, lang } = useI18n()
   const { toasts, dismissToast } = useStore()
   const label = (l: [string, string]) => (lang === 'es' ? l[0] : l[1])
-  const { user } = useAuth()
-  const plan = PLANS.find((p) => p.id === currentPlanId())!
+  const { user, plan: authPlan } = useAuth()
+  const plan = PLANS.find((p) => p.id === authPlan)!
 
   return (
     <div className="min-h-dvh bg-[#f5f7fb] text-navy-800 dark:bg-navy-950 dark:text-navy-100">

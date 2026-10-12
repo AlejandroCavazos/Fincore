@@ -1,21 +1,40 @@
 import { createContext, useContext, useEffect, useState, type ReactNode } from 'react'
 import { authEnabled, getClient, type AuthUser } from '../lib/auth'
+import { planFromRow, type PlanId } from '../lib/plans'
 
 interface AuthValue {
   enabled: boolean
   loading: boolean
   user: AuthUser | null
+  /** Plan read from the subscriptions table; Free when unknown. */
+  plan: PlanId
   /** True after the user opened a password-reset link. */
   recovering: boolean
   doneRecovering: () => void
 }
 
-const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, recovering: false, doneRecovering: () => {} })
+const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, plan: 'free', recovering: false, doneRecovering: () => {} })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(authEnabled)
   const [user, setUser] = useState<AuthUser | null>(null)
   const [recovering, setRecovering] = useState(false)
+  const [plan, setPlan] = useState<PlanId>('free')
+
+  useEffect(() => {
+    if (!authEnabled || !user) {
+      setPlan('free')
+      return
+    }
+    let alive = true
+    getClient()
+      .then((c) => c.from('subscriptions').select('plan,status').eq('user_id', user.id).maybeSingle())
+      .then(({ data }) => alive && setPlan(planFromRow(data)))
+      .catch(() => {})
+    return () => {
+      alive = false
+    }
+  }, [user])
 
   useEffect(() => {
     if (!authEnabled) return
@@ -46,7 +65,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, recovering, doneRecovering: () => setRecovering(false) }}>
+    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, plan, recovering, doneRecovering: () => setRecovering(false) }}>
       {children}
     </AuthCtx.Provider>
   )

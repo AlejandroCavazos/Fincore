@@ -1,14 +1,14 @@
 import { LogOut, Mail, Star } from 'lucide-react'
 import { Badge, Button, Card, PageHeader, SectionTitle } from '../components/ui'
 import { getClient } from '../lib/auth'
-import { PLANS, currentPlanId } from '../lib/plans'
+import { PLANS } from '../lib/plans'
 import { useAuth } from '../state/auth'
 import { useI18n } from '../state/store'
 
 export default function Account() {
   const { tx, lang } = useI18n()
   const auth = useAuth()
-  const plan = PLANS.find((p) => p.id === currentPlanId())!
+  const plan = PLANS.find((p) => p.id === auth.plan)!
   const l = (p: [string, string]) => (lang === 'es' ? p[0] : p[1])
 
   return (

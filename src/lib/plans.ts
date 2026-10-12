@@ -62,7 +62,10 @@ export const PLANS: Plan[] = [
   },
 ]
 
-/** The signed-in user's plan. Everyone is on Free until payments exist. */
-export function currentPlanId(): PlanId {
-  return 'free'
+const PLAN_IDS: PlanId[] = ['free', 'plus', 'pro', 'institutional']
+
+/** Plan from a `subscriptions` row; anything missing, unknown or not active counts as Free. */
+export function planFromRow(row: { plan?: unknown; status?: unknown } | null | undefined): PlanId {
+  if (!row || !PLAN_IDS.includes(row.plan as PlanId)) return 'free'
+  return row.status === 'active' || row.status === 'trialing' ? (row.plan as PlanId) : 'free'
 }

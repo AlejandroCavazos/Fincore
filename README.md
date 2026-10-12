@@ -85,6 +85,10 @@ Si se definen `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` al compilar, la app
 - En Supabase → Authentication → URL Configuration, la *Site URL* y las *Redirect URLs* deben incluir la URL de la app publicada.
 - Para Google: habilitar el proveedor en Supabase → Authentication → Providers con un OAuth client de Google Cloud.
 
+### Planes y suscripciones
+
+`supabase/migrations/001_subscriptions.sql` crea la tabla `subscriptions` (una fila por usuario: `plan`, `status`, fin de periodo e ids de Stripe) y la vista `plan_counts` con el total por plan. Se ejecuta una vez en Supabase → SQL Editor. Cada cuenta nueva empieza en `free`; el usuario solo puede leer su propia fila y el plan solo se cambia desde el panel o el servidor (más adelante, el webhook de Stripe). La app muestra el plan leído de esa tabla.
+
 ## Estructura
 
 ```

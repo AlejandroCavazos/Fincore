@@ -12,3 +12,14 @@ describe('plans', () => {
     }
   })
 })
+
+import { planFromRow } from '../lib/plans'
+describe('planFromRow', () => {
+  it('uses the plan only when the subscription is active or trialing', () => {
+    expect(planFromRow({ plan: 'pro', status: 'active' })).toBe('pro')
+    expect(planFromRow({ plan: 'plus', status: 'trialing' })).toBe('plus')
+    expect(planFromRow({ plan: 'pro', status: 'canceled' })).toBe('free')
+    expect(planFromRow({ plan: 'gold', status: 'active' })).toBe('free')
+    expect(planFromRow(null)).toBe('free')
+  })
+})
