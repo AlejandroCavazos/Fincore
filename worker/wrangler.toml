@@ -1,0 +1,12 @@
+name = "fincore-tutor"
+main = "src/index.js"
+compatibility_date = "2026-09-01"
+compatibility_flags = ["nodejs_compat"]
+
+[vars]
+# Origins allowed to call the tutor (comma separated). The GitHub Pages site and local dev.
+ALLOWED_ORIGINS = "https://alejandrocavazos.github.io,http://localhost:5173,http://localhost:4173"
+TUTOR_MODEL = "claude-opus-5-5"
+
+# Secret (never committed): ANTHROPIC_API_KEY — set with `wrangler secret put ANTHROPIC_API_KEY`
+# or through the GitHub Actions workflow from the repository secret of the same name.

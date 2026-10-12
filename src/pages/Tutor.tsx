@@ -25,7 +25,7 @@ export default function Tutor({ exerciseId }: { exerciseId: string | null }) {
   const [input, setInput] = useState('')
   const [pending, setPending] = useState<GeneratedExercise | null>(null)
   const [recent, setRecent] = useState<boolean[]>([])
-  const [mode, setMode] = useState<'local' | 'ai'>('local')
+  const [mode, setMode] = useState<'local' | 'ai'>(API_URL ? 'ai' : 'local')
   const [busy, setBusy] = useState(false)
   const listRef = useRef<HTMLDivElement>(null)
   const handledEx = useRef<string | null>(null)

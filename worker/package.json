@@ -1,0 +1,17 @@
+{
+  "name": "fincore-tutor-worker",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "description": "FINCORE AI tutor proxy for Cloudflare Workers. Keeps the Anthropic API key server-side.",
+  "scripts": {
+    "dev": "wrangler dev",
+    "deploy": "wrangler deploy"
+  },
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.133.0"
+  },
+  "devDependencies": {
+    "wrangler": "^4.0.0"
+  }
+}
