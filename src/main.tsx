@@ -3,12 +3,15 @@ import { createRoot } from 'react-dom/client'
 import './index.css'
 import App from './App.tsx'
 import { StoreProvider } from './state/store'
+import { AuthProvider } from './state/auth'
 import { registerServiceWorker } from './pwa'
 
 createRoot(document.getElementById('root')!).render(
   <StrictMode>
     <StoreProvider>
-      <App />
+      <AuthProvider>
+        <App />
+      </AuthProvider>
     </StoreProvider>
   </StrictMode>,
 )

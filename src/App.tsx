@@ -2,6 +2,7 @@ import { lazy, Suspense, useEffect } from 'react'
 import { Layout } from './components/Layout'
 import { LogoMark } from './components/Logo'
 import { useStore } from './state/store'
+import { useAuth } from './state/auth'
 import { navigate, useRoute } from './state/router'
 import Dashboard from './pages/Dashboard'
 import Welcome from './pages/Welcome'
@@ -21,6 +22,7 @@ const Lab = lazy(() => import('./pages/Lab'))
 const Calculators = lazy(() => import('./pages/Calculators'))
 const Invest = lazy(() => import('./pages/Invest'))
 const Tutor = lazy(() => import('./pages/Tutor'))
+const AuthScreen = lazy(() => import('./pages/Auth'))
 
 function useTheme() {
   const { state } = useStore()
@@ -54,6 +56,7 @@ function Splash() {
 export default function App() {
   const { state, ready } = useStore()
   const route = useRoute()
+  const auth = useAuth()
   useTheme()
 
   const onboarding = route.path === '/welcome'
@@ -61,8 +64,14 @@ export default function App() {
     if (ready && !state.settings.onboarded && !onboarding) navigate('/welcome')
   }, [ready, state.settings.onboarded, onboarding])
 
-  if (!ready) return <Splash />
+  if (!ready || auth.loading) return <Splash />
   if (onboarding || !state.settings.onboarded) return <Welcome />
+  if (auth.enabled && (!auth.user || auth.recovering))
+    return (
+      <Suspense fallback={<Splash />}>
+        <AuthScreen />
+      </Suspense>
+    )
 
   const [first, second] = route.segments
   let page

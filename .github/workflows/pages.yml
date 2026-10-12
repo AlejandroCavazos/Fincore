@@ -28,6 +28,8 @@ jobs:
         env:
           # URL of the AI tutor Worker, set as a repository variable (Settings → Secrets and variables → Actions → Variables).
           VITE_TUTOR_API_URL: ${{ vars.TUTOR_API_URL }}
+          VITE_SUPABASE_URL: ${{ vars.SUPABASE_URL }}
+          VITE_SUPABASE_ANON_KEY: ${{ vars.SUPABASE_ANON_KEY }}
       - uses: actions/configure-pages@v5
       - uses: actions/upload-pages-artifact@v3
         with:

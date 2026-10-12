@@ -5,6 +5,7 @@ import { Button, cx } from '../components/ui'
 import { navigate } from '../state/router'
 import { useI18n, useStore } from '../state/store'
 import type { Lang } from '../types'
+import { authEnabled } from '../lib/auth'
 
 export default function Welcome() {
   const { update, state } = useStore()
@@ -53,7 +54,9 @@ export default function Welcome() {
               {tx('Comenzar', 'Get started')} <ArrowRight className="h-5 w-5" />
             </Button>
             <p className="mt-3 text-center text-xs text-navy-300">
-              {tx('Tu progreso se guarda solo en este dispositivo. No pedimos datos personales.', 'Your progress is stored only on this device. No personal data required.')}
+              {authEnabled
+                ? tx('Solo te pediremos tu correo para crear tu cuenta.', 'We will only ask for your email to create your account.')
+                : tx('Tu progreso se guarda solo en este dispositivo. No pedimos datos personales.', 'Your progress is stored only on this device. No personal data required.')}
             </p>
           </div>
         ) : (

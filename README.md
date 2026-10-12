@@ -76,6 +76,15 @@ Sin configuración, el tutor funciona en **modo local** y lo indica en pantalla.
 
 No pongas la clave en variables `VITE_*`: todo lo que empieza con `VITE_` termina dentro del JavaScript público.
 
+## Cuentas de usuario (opcional, Supabase)
+
+Si se definen `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY` al compilar, la app pide crear cuenta o iniciar sesión (correo y contraseña, o Google) después de elegir idioma. Sin esas variables la app funciona igual que antes, sin cuentas.
+
+- Solo se guarda el correo del usuario en Supabase Auth; el progreso sigue en IndexedDB del dispositivo.
+- En GitHub Pages se configuran como *variables* del repositorio: `SUPABASE_URL` y `SUPABASE_ANON_KEY` (la anon key es pública por diseño).
+- En Supabase → Authentication → URL Configuration, la *Site URL* y las *Redirect URLs* deben incluir la URL de la app publicada.
+- Para Google: habilitar el proveedor en Supabase → Authentication → Providers con un OAuth client de Google Cloud.
+
 ## Estructura
 
 ```

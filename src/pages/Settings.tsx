@@ -1,16 +1,19 @@
 import { useEffect, useRef, useState } from 'react'
-import { Download, Smartphone, Trash2, Upload } from 'lucide-react'
+import { Download, LogOut, Smartphone, Trash2, Upload } from 'lucide-react'
 import { Button, Card, Notice, PageHeader, SectionTitle, Segmented } from '../components/ui'
 import { exportState, importState } from '../lib/backup'
 import { clearState } from '../lib/db'
 import { defaultState, type ThemePref } from '../lib/progress'
 import { canPromptInstall, isIos, isStandalone, onInstallAvailabilityChange, promptInstall } from '../pwa'
 import { useI18n, useStore } from '../state/store'
+import { useAuth } from '../state/auth'
+import { getClient } from '../lib/auth'
 import type { Lang } from '../types'
 
 export default function SettingsPage() {
   const { state, update, replace, persistence, toast } = useStore()
   const { tx } = useI18n()
+  const auth = useAuth()
   const fileRef = useRef<HTMLInputElement>(null)
   const [importErrors, setImportErrors] = useState<string[] | null>(null)
   const [installable, setInstallable] = useState(canPromptInstall())
@@ -52,6 +55,21 @@ export default function SettingsPage() {
   return (
     <div>
       <PageHeader title={tx('Configuración', 'Settings')} />
+
+      {auth.enabled && auth.user && (
+        <>
+          <SectionTitle>{tx('Cuenta', 'Account')}</SectionTitle>
+          <Card className="flex flex-wrap items-center justify-between gap-3">
+            <div className="min-w-0">
+              <p className="text-xs text-navy-400">{tx('Sesión iniciada como', 'Signed in as')}</p>
+              <p data-testid="account-email" className="truncate font-semibold text-navy-900 dark:text-white">{auth.user.email}</p>
+            </div>
+            <Button variant="secondary" onClick={() => getClient().then((c) => c.auth.signOut())}>
+              <LogOut className="h-4 w-4" /> {tx('Cerrar sesión', 'Sign out')}
+            </Button>
+          </Card>
+        </>
+      )}
 
       <SectionTitle>{tx('Idioma', 'Language')}</SectionTitle>
       <Segmented<Lang>
@@ -165,10 +183,15 @@ export default function SettingsPage() {
       <SectionTitle>{tx('Privacidad y datos', 'Privacy & data')}</SectionTitle>
       <Card className="space-y-3 text-sm text-navy-600 dark:text-navy-300">
         <p>
-          {tx(
-            'FINCORE no solicita nombre, correo ni datos personales. Solo guarda tu progreso de aprendizaje en este dispositivo.',
-            'FINCORE does not ask for your name, email or personal data. It only stores your learning progress on this device.',
-          )}
+          {auth.enabled
+            ? tx(
+                'Para tu cuenta FINCORE solo guarda tu correo. Tu progreso de aprendizaje se guarda en este dispositivo.',
+                'For your account FINCORE only stores your email. Your learning progress is stored on this device.',
+              )
+            : tx(
+                'FINCORE no solicita nombre, correo ni datos personales. Solo guarda tu progreso de aprendizaje en este dispositivo.',
+                'FINCORE does not ask for your name, email or personal data. It only stores your learning progress on this device.',
+              )}
         </p>
         {!confirmReset ? (
           <Button variant="secondary" onClick={() => setConfirmReset(true)}>
