@@ -20,10 +20,28 @@ export function registerServiceWorker() {
     listeners.forEach((l) => l())
   })
   if (!import.meta.env.PROD || !('serviceWorker' in navigator)) return
+  // When a new version takes control, reload once so the learner sees it (only if an older version was running).
+  const hadController = !!navigator.serviceWorker.controller
+  let reloaded = false
+  navigator.serviceWorker.addEventListener('controllerchange', () => {
+    if (!hadController || reloaded) return
+    reloaded = true
+    window.location.reload()
+  })
   window.addEventListener('load', () => {
-    navigator.serviceWorker.register('./sw.js', { scope: './' }).catch(() => {
-      /* SW unsupported in this context (e.g. sandboxed preview); app keeps working online. */
-    })
+    navigator.serviceWorker
+      .register('./sw.js', { scope: './', updateViaCache: 'none' })
+      .then((reg) => {
+        // Installed apps are often resumed instead of reopened: look for a new version when they come back.
+        const check = () => {
+          if (document.visibilityState === 'visible') reg.update().catch(() => {})
+        }
+        document.addEventListener('visibilitychange', check)
+        window.addEventListener('focus', check)
+      })
+      .catch(() => {
+        /* SW unsupported in this context (e.g. sandboxed preview); app keeps working online. */
+      })
   })
 }
 
