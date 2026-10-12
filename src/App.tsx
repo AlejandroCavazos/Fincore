@@ -14,6 +14,7 @@ import Tools from './pages/Tools'
 import Stats from './pages/Stats'
 import SettingsPage from './pages/Settings'
 import NotFound from './pages/NotFound'
+import Plans from './pages/Plans'
 
 // Heavier tools are code-split.
 const Lab = lazy(() => import('./pages/Lab'))
@@ -101,6 +102,9 @@ export default function App() {
       break
     case 'stats':
       page = <Stats />
+      break
+    case 'plans':
+      page = <Plans />
       break
     case 'settings':
       page = <SettingsPage />
