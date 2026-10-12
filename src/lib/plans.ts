@@ -69,3 +69,6 @@ export function planFromRow(row: { plan?: unknown; status?: unknown } | null | u
   if (!row || !PLAN_IDS.includes(row.plan as PlanId)) return 'free'
   return row.status === 'active' || row.status === 'trialing' ? (row.plan as PlanId) : 'free'
 }
+
+/** Test mode: every plan costs $0 and can be picked from the Plans page. */
+export const freePlansMode = import.meta.env.VITE_FREE_PLANS === 'true'

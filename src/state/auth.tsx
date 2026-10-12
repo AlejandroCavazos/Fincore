@@ -8,18 +8,20 @@ interface AuthValue {
   user: AuthUser | null
   /** Plan read from the subscriptions table; Free when unknown. */
   plan: PlanId
+  refreshPlan: () => void
   /** True after the user opened a password-reset link. */
   recovering: boolean
   doneRecovering: () => void
 }
 
-const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, plan: 'free', recovering: false, doneRecovering: () => {} })
+const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, plan: 'free', refreshPlan: () => {}, recovering: false, doneRecovering: () => {} })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(authEnabled)
   const [user, setUser] = useState<AuthUser | null>(null)
   const [recovering, setRecovering] = useState(false)
   const [plan, setPlan] = useState<PlanId>('free')
+  const [planTick, setPlanTick] = useState(0)
 
   useEffect(() => {
     if (!authEnabled || !user) {
@@ -34,7 +36,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     return () => {
       alive = false
     }
-  }, [user])
+  }, [user, planTick])
 
   useEffect(() => {
     if (!authEnabled) return
@@ -65,7 +67,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   }, [])
 
   return (
-    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, plan, recovering, doneRecovering: () => setRecovering(false) }}>
+    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, plan, refreshPlan: () => setPlanTick((t) => t + 1), recovering, doneRecovering: () => setRecovering(false) }}>
       {children}
     </AuthCtx.Provider>
   )
