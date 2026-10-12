@@ -178,6 +178,10 @@ export default function SettingsPage() {
                 'FINCORE does not ask for your name, email or personal data. It only stores your learning progress on this device.',
               )}
         </p>
+        <p className="flex flex-wrap gap-x-4 gap-y-1">
+          <a href="#/legal/privacy" className="font-medium text-electric-600 hover:underline dark:text-electric-300">{tx('Aviso de Privacidad', 'Privacy Notice')}</a>
+          <a href="#/legal/cookies" className="font-medium text-electric-600 hover:underline dark:text-electric-300">{tx('Aviso de Cookies', 'Cookie Notice')}</a>
+        </p>
         {!confirmReset ? (
           <Button variant="secondary" onClick={() => setConfirmReset(true)}>
             <Trash2 className="h-4 w-4" /> {tx('Borrar todo mi progreso', 'Delete all my progress')}

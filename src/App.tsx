@@ -24,6 +24,7 @@ const Calculators = lazy(() => import('./pages/Calculators'))
 const Invest = lazy(() => import('./pages/Invest'))
 const Tutor = lazy(() => import('./pages/Tutor'))
 const AuthScreen = lazy(() => import('./pages/Auth'))
+const Legal = lazy(() => import('./pages/Legal'))
 
 function useTheme() {
   const { state } = useStore()
@@ -61,11 +62,19 @@ export default function App() {
   useTheme()
 
   const onboarding = route.path === '/welcome'
+  const legal = route.segments[0] === 'legal'
   useEffect(() => {
-    if (ready && !state.settings.onboarded && !onboarding) navigate('/welcome')
-  }, [ready, state.settings.onboarded, onboarding])
+    if (ready && !state.settings.onboarded && !onboarding && !legal) navigate('/welcome')
+  }, [ready, state.settings.onboarded, onboarding, legal])
 
   if (!ready || auth.loading) return <Splash />
+  // Legal notices are readable before onboarding and sign-in.
+  if (route.segments[0] === 'legal' && (onboarding || !state.settings.onboarded || (auth.enabled && !auth.user)))
+    return (
+      <Suspense fallback={<Splash />}>
+        <Legal which={route.segments[1]} standalone />
+      </Suspense>
+    )
   if (onboarding || !state.settings.onboarded) return <Welcome />
   if (auth.enabled && (!auth.user || auth.recovering))
     return (
@@ -112,6 +121,9 @@ export default function App() {
       break
     case 'stats':
       page = <Stats />
+      break
+    case 'legal':
+      page = <Legal which={second} />
       break
     case 'account':
       page = <Account />

@@ -56,8 +56,22 @@ describe('AuthScreen', () => {
     fireEvent.change(screen.getByLabelText('Contraseña'), { target: { value: 'secreta123' } })
     fireEvent.change(screen.getByLabelText('Confirma la contraseña'), { target: { value: 'secreta123' } })
     fireEvent.click(screen.getByRole('button', { name: 'Crear cuenta' }))
+    expect(await screen.findByText(/necesitas aceptar el Aviso de Privacidad/)).toBeTruthy()
+    expect(signUp).not.toHaveBeenCalled()
+
+    fireEvent.click(screen.getByRole('button', { name: 'Aviso de Privacidad' }))
+    expect(await screen.findByRole('dialog')).toBeTruthy()
+    fireEvent.click(screen.getByRole('button', { name: 'Entendido' }))
+    expect(screen.getByLabelText('Correo')).toHaveProperty('value', 'ana@example.com')
+
+    fireEvent.click(screen.getByTestId('accept-privacy'))
+    fireEvent.click(screen.getByRole('button', { name: 'Crear cuenta' }))
     await waitFor(() => expect(signUp).toHaveBeenCalledOnce())
-    expect(signUp.mock.calls[0][0]).toMatchObject({ email: 'ana@example.com', password: 'secreta123' })
+    expect(signUp.mock.calls[0][0]).toMatchObject({
+      email: 'ana@example.com',
+      password: 'secreta123',
+      options: { data: { privacy_version: '2026-10-12', marketing_opt_in: false } },
+    })
     expect(await screen.findByText(/Te enviamos un correo a ana@example.com/)).toBeTruthy()
   })
 

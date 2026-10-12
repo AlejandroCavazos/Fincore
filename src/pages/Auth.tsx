@@ -3,6 +3,9 @@ import { Logo } from '../components/Logo'
 import { Button, Card, Field, Notice, cx } from '../components/ui'
 import { googleEnabled, friendlyError, getClient, redirectUrl, validateCredentials, MIN_PASSWORD, type AuthErrorCode } from '../lib/auth'
 import { useAuth } from '../state/auth'
+import { COOKIES, LEGAL_VERSION, PRIVACY, type LegalDoc } from '../content/legal'
+import { LegalBody } from './Legal'
+import { X } from 'lucide-react'
 import { useI18n } from '../state/store'
 
 type Mode = 'signin' | 'signup' | 'forgot' | 'newpass'
@@ -14,6 +17,10 @@ export default function AuthScreen() {
   const [email, setEmail] = useState('')
   const [password, setPassword] = useState('')
   const [confirm, setConfirm] = useState('')
+  const [accepted, setAccepted] = useState(false)
+  const [marketing, setMarketing] = useState(false)
+  const [consentErr, setConsentErr] = useState(false)
+  const [showDoc, setShowDoc] = useState<LegalDoc | null>(null)
   const [busy, setBusy] = useState(false)
   const [fieldErr, setFieldErr] = useState<AuthErrorCode | null>(null)
   const [error, setError] = useState<string | null>(null)
@@ -72,14 +79,21 @@ export default function AuthScreen() {
     }
     const v = validateCredentials(email, password, mode === 'signup' ? confirm : undefined)
     setFieldErr(v)
-    if (v) return
+    const needsConsent = mode === 'signup' && !accepted
+    setConsentErr(needsConsent)
+    if (v || needsConsent) return
     return run(async () => {
       const c = await getClient()
       if (mode === 'signin') {
         const { error } = await c.auth.signInWithPassword({ email: email.trim(), password })
         if (error) throw error
       } else {
-        const { data, error } = await c.auth.signUp({ email: email.trim(), password, options: { emailRedirectTo: redirectUrl() } })
+        const { data, error } = await c.auth.signUp({ email: email.trim(), password, options: {
+            emailRedirectTo: redirectUrl(),
+            // Visible in Supabase → Authentication → Users → raw user metadata.
+            data: { privacy_version: LEGAL_VERSION, privacy_accepted_at: new Date().toISOString(), marketing_opt_in: marketing },
+          },
+        })
         if (error) throw error
         if (!data.session) {
           setInfo(tx(`Te enviamos un correo a ${email.trim()}. Abre el enlace para activar tu cuenta.`, `We sent an email to ${email.trim()}. Open the link to activate your account.`))
@@ -91,6 +105,10 @@ export default function AuthScreen() {
 
   const google = () =>
     run(async () => {
+      if (mode === 'signup' && !accepted) {
+        setConsentErr(true)
+        return
+      }
       const c = await getClient()
       const { error } = await c.auth.signInWithOAuth({ provider: 'google', options: { redirectTo: redirectUrl() } })
       if (error) throw error
@@ -173,6 +191,44 @@ export default function AuthScreen() {
                 error={fieldErr === 'mismatch' ? fieldMsg.mismatch : null}
               />
             )}
+            {mode === 'signup' && (
+              <div className="space-y-3 text-sm text-navy-700 dark:text-navy-200">
+                <label className="flex items-start gap-3">
+                  <input
+                    type="checkbox"
+                    data-testid="accept-privacy"
+                    checked={accepted}
+                    onChange={(e) => {
+                      setAccepted(e.target.checked)
+                      if (e.target.checked) setConsentErr(false)
+                    }}
+                    aria-invalid={consentErr}
+                    aria-describedby={consentErr ? 'consent-err' : undefined}
+                    className="mt-0.5 h-5 w-5 shrink-0 accent-electric-500"
+                  />
+                  <span>
+                    {tx('He leído y acepto el ', 'I have read and accept the ')}
+                    <button type="button" onClick={() => setShowDoc(PRIVACY)} className="font-medium text-electric-600 underline dark:text-electric-300">
+                      {tx('Aviso de Privacidad', 'Privacy Notice')}
+                    </button>
+                    {tx(' y el ', ' and the ')}
+                    <button type="button" onClick={() => setShowDoc(COOKIES)} className="font-medium text-electric-600 underline dark:text-electric-300">
+                      {tx('Aviso de Cookies', 'Cookie Notice')}
+                    </button>
+                    .
+                  </span>
+                </label>
+                {consentErr && (
+                  <p id="consent-err" role="alert" className="text-xs font-medium text-red-600 dark:text-red-400">
+                    {tx('Para crear tu cuenta necesitas aceptar el Aviso de Privacidad.', 'You need to accept the Privacy Notice to create your account.')}
+                  </p>
+                )}
+                <label className="flex items-start gap-3">
+                  <input type="checkbox" checked={marketing} onChange={(e) => setMarketing(e.target.checked)} className="mt-0.5 h-5 w-5 shrink-0 accent-electric-500" />
+                  <span>{tx('Quiero recibir novedades y promociones de FINCORE (opcional).', 'I want to receive FINCORE news and offers (optional).')}</span>
+                </label>
+              </div>
+            )}
             {error && <Notice tone="error">{error}</Notice>}
             {info && <Notice tone="success">{info}</Notice>}
             <Button type="submit" size="lg" className="w-full" disabled={busy}>
@@ -213,6 +269,24 @@ export default function AuthScreen() {
           </div>
         </Card>
       </div>
+      {showDoc && (
+        <div role="dialog" aria-modal="true" aria-labelledby="legal-title" className="fixed inset-0 z-50 flex items-end justify-center bg-navy-950/70 p-0 sm:items-center sm:p-4" onClick={() => setShowDoc(null)}>
+          <div className="flex max-h-[90dvh] w-full max-w-2xl flex-col rounded-t-2xl bg-white shadow-xl dark:bg-navy-900 sm:rounded-2xl" onClick={(e) => e.stopPropagation()}>
+            <div className="flex items-center justify-between gap-3 border-b border-navy-100 px-5 py-4 dark:border-navy-800">
+              <h2 id="legal-title" className="text-lg font-bold text-navy-900 dark:text-white">{showDoc.title}</h2>
+              <button type="button" onClick={() => setShowDoc(null)} aria-label={tx('Cerrar', 'Close')} className="rounded-lg p-1.5 text-navy-500 hover:bg-navy-100 dark:hover:bg-navy-800">
+                <X className="h-5 w-5" />
+              </button>
+            </div>
+            <div className="overflow-y-auto px-5 py-4">
+              <LegalBody doc={showDoc} />
+            </div>
+            <div className="border-t border-navy-100 px-5 py-3 dark:border-navy-800">
+              <Button className="w-full" onClick={() => setShowDoc(null)}>{tx('Entendido', 'Got it')}</Button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   )
 }

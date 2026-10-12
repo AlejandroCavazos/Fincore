@@ -113,7 +113,7 @@ test('every main screen renders without console errors; no horizontal overflow o
   page.on('pageerror', (e) => errors.push(e.message))
   page.on('console', (m) => m.type() === 'error' && errors.push(m.text()))
   await onboard(page)
-  const routes = ['/', '/courses', '/path/1', '/lesson/L4-04', '/practice', '/exams/1', '/tools', '/lab', '/calc/pv', '/calc/fv', '/calc/compound', '/calc/annuity', '/calc/project', '/calc/wacc', '/calc/breakeven', '/calc/ratios', '/invest', '/tutor', '/stats', '/settings', '/plans', '/account']
+  const routes = ['/', '/courses', '/path/1', '/lesson/L4-04', '/practice', '/exams/1', '/tools', '/lab', '/calc/pv', '/calc/fv', '/calc/compound', '/calc/annuity', '/calc/project', '/calc/wacc', '/calc/breakeven', '/calc/ratios', '/invest', '/tutor', '/stats', '/settings', '/plans', '/account', '/legal/privacy', '/legal/cookies']
   for (const r of routes) {
     await page.goto(`./#${r}`)
     await expect(page.locator('main h1').first()).toBeVisible()
