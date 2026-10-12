@@ -12,14 +12,16 @@ import {
   Info,
   LayoutGrid,
   Settings,
-  Star,
   TrendingUp,
   TriangleAlert,
+  UserRound,
   X,
 } from 'lucide-react'
 import { useI18n, useStore } from '../state/store'
 import { cx } from './ui'
 import { Logo } from './Logo'
+import { useAuth } from '../state/auth'
+import { PLANS, currentPlanId } from '../lib/plans'
 
 interface NavItem {
   href: string
@@ -33,7 +35,7 @@ export const MOBILE_NAV: NavItem[] = [
   { href: '/', match: ['/'], label: ['Inicio', 'Home'], icon: <House className={ic} /> },
   { href: '/courses', match: ['/courses', '/path', '/lesson'], label: ['Cursos', 'Courses'], icon: <BookOpen className={ic} /> },
   { href: '/practice', match: ['/practice', '/exams'], label: ['Práctica', 'Practice'], icon: <Dumbbell className={ic} /> },
-  { href: '/tools', match: ['/tools', '/lab', '/calc', '/invest', '/tutor', '/plans'], label: ['Herramientas', 'Tools'], icon: <LayoutGrid className={ic} /> },
+  { href: '/tools', match: ['/tools', '/lab', '/calc', '/invest', '/tutor', '/plans', '/account'], label: ['Herramientas', 'Tools'], icon: <LayoutGrid className={ic} /> },
   { href: '/stats', match: ['/stats', '/settings'], label: ['Progreso', 'Progress'], icon: <BarChart3 className={ic} /> },
 ]
 
@@ -47,7 +49,7 @@ export const SIDE_NAV: NavItem[] = [
   { href: '/invest', match: ['/invest'], label: ['Inversión y valuación', 'Investing & valuation'], icon: <TrendingUp className={ic} /> },
   { href: '/tutor', match: ['/tutor'], label: ['Tutor', 'Tutor'], icon: <Bot className={ic} /> },
   { href: '/stats', match: ['/stats'], label: ['Estadísticas', 'Statistics'], icon: <BarChart3 className={ic} /> },
-  { href: '/plans', match: ['/plans'], label: ['Planes', 'Plans'], icon: <Star className={ic} /> },
+  { href: '/account', match: ['/account', '/plans'], label: ['Cuenta', 'Account'], icon: <UserRound className={ic} /> },
   { href: '/settings', match: ['/settings'], label: ['Configuración', 'Settings'], icon: <Settings className={ic} /> },
 ]
 
@@ -59,6 +61,8 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
   const { tx, lang } = useI18n()
   const { toasts, dismissToast } = useStore()
   const label = (l: [string, string]) => (lang === 'es' ? l[0] : l[1])
+  const { user } = useAuth()
+  const plan = PLANS.find((p) => p.id === currentPlanId())!
 
   return (
     <div className="min-h-dvh bg-[#f5f7fb] text-navy-800 dark:bg-navy-950 dark:text-navy-100">
@@ -90,6 +94,15 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
             )
           })}
         </nav>
+        <a href="#/account" data-testid="sidebar-account" className="mt-3 flex items-center gap-3 rounded-xl border border-navy-100 px-3 py-2.5 transition hover:bg-navy-50 dark:border-navy-800 dark:hover:bg-navy-800">
+          <span className="flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-electric-500/10 text-sm font-bold uppercase text-electric-600 dark:text-electric-300">
+            {user?.email?.[0] ?? <UserRound className="h-4 w-4" />}
+          </span>
+          <span className="min-w-0">
+            <span className="block truncate text-sm font-medium text-navy-800 dark:text-navy-100">{user?.email ?? tx('Mi cuenta', 'My account')}</span>
+            <span className="block text-xs text-navy-400">{tx('Plan', 'Plan')} {label(plan.name)}</span>
+          </span>
+        </a>
         <p className="px-3 pt-4 text-[11px] text-navy-400">FINCORE v1.0 · {tx('Contenido educativo', 'Educational content')}</p>
       </aside>
 
@@ -102,6 +115,9 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
           <div className="flex items-center gap-1">
             <a href="#/tutor" className="rounded-lg p-2 text-navy-600 hover:bg-navy-100 dark:text-navy-200 dark:hover:bg-navy-800" aria-label={tx('Tutor', 'Tutor')}>
               <Bot className="h-5 w-5" />
+            </a>
+            <a href="#/account" className="rounded-lg p-2 text-navy-600 hover:bg-navy-100 dark:text-navy-200 dark:hover:bg-navy-800" aria-label={tx('Cuenta', 'Account')}>
+              <UserRound className="h-5 w-5" />
             </a>
             <a href="#/settings" className="rounded-lg p-2 text-navy-600 hover:bg-navy-100 dark:text-navy-200 dark:hover:bg-navy-800" aria-label={tx('Configuración', 'Settings')}>
               <Settings className="h-5 w-5" />

@@ -1,4 +1,4 @@
-import { Bot, Calculator, FlaskConical, GraduationCap, TrendingUp, Settings, Star } from 'lucide-react'
+import { Bot, Calculator, FlaskConical, GraduationCap, TrendingUp, Settings, UserRound } from 'lucide-react'
 import { Card, PageHeader } from '../components/ui'
 import { useI18n } from '../state/store'
 
@@ -10,7 +10,7 @@ export default function Tools() {
     { href: '#/invest', icon: <TrendingUp />, title: tx('Inversión y valuación', 'Investing & valuation'), desc: tx('Casos de empresas, DCF, escenarios y portafolios.', 'Company cases, DCF, scenarios and portfolios.') },
     { href: '#/exams', icon: <GraduationCap />, title: tx('Evaluaciones', 'Exams'), desc: tx('Exámenes por nivel.', 'Level exams.') },
     { href: '#/tutor', icon: <Bot />, title: tx('Tutor educativo', 'Learning tutor'), desc: tx('Explicaciones, cálculos verificados y ejercicios generados.', 'Explanations, verified calculations and generated exercises.') },
-    { href: '#/plans', icon: <Star />, title: tx('Planes', 'Plans'), desc: tx('Gratis, Plus, Pro e Institucional.', 'Free, Plus, Pro and Institutional.') },
+    { href: '#/account', icon: <UserRound />, title: tx('Cuenta y plan', 'Account & plan'), desc: tx('Tu cuenta, tu plan y los planes disponibles.', 'Your account, your plan and available plans.') },
     { href: '#/settings', icon: <Settings />, title: tx('Configuración', 'Settings'), desc: tx('Idioma, tema, respaldo e instalación.', 'Language, theme, backup and install.') },
   ]
   return (

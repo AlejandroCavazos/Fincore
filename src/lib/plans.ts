@@ -61,3 +61,8 @@ export const PLANS: Plan[] = [
     ],
   },
 ]
+
+/** The signed-in user's plan. Everyone is on Free until payments exist. */
+export function currentPlanId(): PlanId {
+  return 'free'
+}
