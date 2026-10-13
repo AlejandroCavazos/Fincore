@@ -58,12 +58,14 @@ export const AREAS: Area[] = [
       { title: { es: 'Nivel 1 · Unidad 3. Registro contable básico', en: 'Level 1 · Unit 3. Basic bookkeeping' }, stage: BASIC, lessonIds: range('L1', 8, 11) },
       { title: { es: 'Nivel 1 · Unidad 4. Ciclo contable e información financiera', en: 'Level 1 · Unit 4. Accounting cycle and financial information' }, stage: BASIC, lessonIds: range('L1', 12, 15) },
       { title: { es: 'Nivel 2 · Contabilidad financiera básica', en: 'Level 2 · Basic financial accounting' }, stage: MID, lessonIds: range('L2', 1, 6), examLevel: 2 },
+      { title: { es: 'Complementario · Ética profesional', en: 'Complementary · Professional ethics' }, stage: MID, lessonIds: ['L2-07'] },
     ],
     materias: [
       'Fundamentos de contabilidad', 'Historia y evolución de la contabilidad', 'Ciclo contable', 'Contabilidad financiera básica, intermedia y avanzada',
       'Normas de Información Financiera mexicanas (NIF)', 'Normas Internacionales de Información Financiera (NIIF/IFRS)', 'Elaboración y presentación de estados financieros',
       'Contabilidad de activos, pasivos y capital', 'Consolidación de estados financieros', 'Contabilidad internacional', 'Contabilidad gubernamental',
-      'Sistemas de información contable y cierres contables',
+      'Sistemas de información contable y cierres contables', 'Ética profesional del contador', 'Reportes de sostenibilidad (ESG)',
+      'Preparación para certificaciones profesionales de contaduría',
     ],
   },
   {
@@ -86,13 +88,17 @@ export const AREAS: Area[] = [
     discipline: { es: 'Contaduría Pública y Derecho Fiscal', en: 'Accounting and Tax Law' },
     description: { es: 'ISR, IVA, CFDI, regímenes y cumplimiento ante el SAT', en: 'Income tax, VAT, e-invoicing, regimes and SAT compliance' },
     business: { es: 'Tu despacho contable', en: 'Your accounting firm' },
-    sections: [{ title: { es: 'Fundamentos fiscales', en: 'Tax fundamentals' }, stage: ADV, lessonIds: ['L5-01', 'L5-02'], examLevel: 5 }],
+    sections: [
+      { title: { es: 'Fundamentos fiscales', en: 'Tax fundamentals' }, stage: ADV, lessonIds: ['L5-01', 'L5-02'], examLevel: 5 },
+      { title: { es: 'Complementario · Tu propio negocio', en: 'Complementary · Your own business' }, stage: BASIC, lessonIds: ['L5-06'] },
+    ],
     materias: [
       'Fundamentos del sistema tributario mexicano', 'Introducción al Servicio de Administración Tributaria (SAT)', 'Código Fiscal de la Federación (CFF)',
       'Impuesto sobre la Renta (ISR)', 'Ley del Impuesto sobre la Renta (LISR)', 'Impuesto al Valor Agregado (IVA)', 'Ley del Impuesto al Valor Agregado (LIVA)',
       'Regímenes fiscales de personas físicas', 'Regímenes fiscales de personas morales', 'CFDI y facturación electrónica', 'Contabilidad electrónica',
       'Nóminas, retenciones y obligaciones fiscales', 'Seguridad social: IMSS e INFONAVIT', 'Obligaciones y cumplimiento tributario', 'Planeación fiscal lícita',
       'Fiscalidad internacional y tratados fiscales', 'Auditoría fiscal y facultades de comprobación',
+      'Contabilidad y obligaciones fiscales para tu propio negocio (RESICO, facturación)',
     ],
   },
   {
@@ -138,6 +144,7 @@ export const AREAS: Area[] = [
       'Ingresos, gastos y ahorro', 'Inflación y poder adquisitivo', 'Interés simple y compuesto', 'Crédito y tarjetas de crédito', 'CAT, tasas de interés y endeudamiento',
       'Manejo y reducción de deudas', 'Fondo de emergencia', 'Introducción a las inversiones', 'Seguros y protección financiera', 'AFORE y ahorro para el retiro',
       'Planeación financiera y patrimonial', 'Prevención de fraudes financieros', 'Finanzas conductuales y hábitos financieros',
+      'Separar tus finanzas personales de las de tu negocio',
     ],
   },
   {
@@ -225,7 +232,7 @@ export const AREAS: Area[] = [
       'Investigación de mercados', 'Planeación estratégica', 'Análisis FODA y PESTEL', 'Análisis de las cinco fuerzas de Porter', 'Modelos de ingresos y monetización',
       'Administración de operaciones', 'Gestión de proyectos', 'Evaluación de viabilidad empresarial', 'Indicadores de desempeño (KPI)',
       'Innovación y transformación empresarial', 'Estrategias de crecimiento', 'Escalabilidad de negocios', 'Venture Capital y financiamiento de startups',
-      'Gobierno y dirección estratégica',
+      'Gobierno y dirección estratégica', 'Sostenibilidad y criterios ESG en los negocios',
     ],
   },
 ]
