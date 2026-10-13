@@ -26,7 +26,7 @@ export const lessons: Lesson[] = [
       es: "La contabilidad es el sistema que anota y ordena el dinero de un negocio para que cualquiera pueda entender cómo va y tomar buenas decisiones.",
       en: "Accounting is the system that records and organizes a business's money so anyone can understand how it is doing and make good decisions.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Explicar con tus palabras qué es la contabilidad, cuáles son sus objetivos y por qué es importante.", en: "Explain in your own words what accounting is, what its objectives are and why it matters." },
       { es: "Identificar quién usa la información financiera y distinguir usuarios internos y externos.", en: "Identify who uses financial information and distinguish internal and external users." },
@@ -47,6 +47,40 @@ export const lessons: Lesson[] = [
           {
             es: "¿Por qué es **importante**? Porque sin números confiables decides a ciegas: no sabes si subir precios, si te alcanza para contratar a alguien o si puedes pedir un préstamo. La contabilidad también ayuda a **controlar** (detectar faltantes o errores) y a **cumplir** con obligaciones, como pagar impuestos.",
             en: "Why is it **important**? Because without reliable numbers you decide blindly: you do not know whether to raise prices, whether you can afford to hire someone or whether you can ask for a loan. Accounting also helps to **control** (spot shortages or mistakes) and to **comply** with obligations, such as paying taxes.",
+          },
+          {
+            es: "El ejemplo más sencillo de control es el **corte de caja**: al cerrar, comparas el dinero que **debería** haber según tus anotaciones con el que **realmente** cuentas. Si no coinciden, hay un **faltante** (falta dinero) o un **sobrante** (sobra dinero), y sabes que algo hay que revisar.",
+            en: "The simplest example of control is the **cash count** (corte de caja): at closing, you compare the money that **should** be there according to your notes with the money you **actually** count. If they do not match, there is a **shortage** (money missing) or an **overage** (extra money), and you know something needs checking.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Dinero que debería haber en caja al cerrar (corte de caja)", en: "Money that should be in the cash box at closing (cash count)" },
+            expression: "Caja final = Saldo inicial + Entradas − Salidas",
+            variables: [
+              { symbol: "Caja final", meaning: { es: "Los pesos que deberían quedar en la caja al cerrar el día, según tus anotaciones.", en: "The pesos that should be left in the cash box at closing, according to your notes." } },
+              { symbol: "Saldo inicial", meaning: { es: "Los pesos con los que abriste la caja al empezar el día.", en: "The pesos you opened the cash box with at the start of the day." } },
+              { symbol: "Entradas", meaning: { es: "Todo el dinero que entró en el día, en pesos (por ejemplo, las ventas cobradas).", en: "All the money that came in during the day, in pesos (for example, sales collected)." } },
+              { symbol: "Salidas", meaning: { es: "Todo el dinero que salió en el día, en pesos (pagos a proveedores, reparaciones, compras).", en: "All the money that went out during the day, in pesos (payments to suppliers, repairs, purchases)." } },
+            ],
+            steps: [
+              { es: "Anota el saldo inicial: el dinero con el que abriste.", en: "Write down the opening balance: the money you opened with." },
+              { es: "Súmale todas las entradas del día.", en: "Add all of the day's inflows." },
+              { es: "Suma todas las salidas y réstalas al resultado anterior: eso es lo que debería haber.", en: "Add up all the outflows and subtract them from the previous result: that is what should be there." },
+              { es: "Compara con lo que cuentas: Diferencia = Caja final − Dinero contado. Si es positiva, falta dinero; si es negativa, sobra.", en: "Compare with what you count: Difference = Ending cash − Money counted. If positive, money is missing; if negative, there is extra." },
+            ],
+            example: {
+              es: "Una frutería abre con $600, vende $2,900 y paga $1,100 al proveedor y $300 de bolsas. Paso 2: $600 + $2,900 = $3,500. Paso 3: salidas $1,100 + $300 = $1,400; $3,500 − $1,400 = $2,100. Debería haber **$2,100**. Si al contar hay $2,050: $2,100 − $2,050 = $50 de faltante.",
+              en: "A fruit shop opens with $600, sells $2,900 and pays $1,100 to the supplier and $300 for bags. Step 2: $600 + $2,900 = $3,500. Step 3: outflows $1,100 + $300 = $1,400; $3,500 − $1,400 = $2,100. There should be **$2,100**. If the count shows $2,050: $2,100 − $2,050 = $50 short.",
+            },
+            interpret: {
+              es: "Si lo contado es igual a la caja final, la caja \"cuadra\". Si hay diferencia, revisa tus anotaciones: puede ser un error al cobrar, un pago sin anotar o un faltante real.",
+              en: "If the count equals the ending cash, the cash box \"balances\". If there is a difference, check your notes: it may be a charging error, an unrecorded payment or a real shortage.",
+            },
+            mistake: {
+              es: "Olvidar el saldo inicial y calcular solo Entradas − Salidas. Ese resultado dice cuánto cambió la caja en el día, no cuánto debe haber.",
+              en: "Forgetting the opening balance and computing only Inflows − Outflows. That result tells how much the cash box changed during the day, not how much should be in it.",
+            },
           },
         ],
         bullets: [
@@ -153,7 +187,7 @@ export const lessons: Lesson[] = [
       es: "La contabilidad nació hace miles de años para llevar la cuenta de bienes y deudas, se perfeccionó con la partida doble que difundió Luca Pacioli y hoy funciona con normas y computadoras.",
       en: "Accounting was born thousands of years ago to keep track of goods and debts, was refined with the double entry that Luca Pacioli spread, and today works with standards and computers.",
     },
-    minutes: 13,
+    minutes: 14,
     objectives: [
       { es: "Describir cómo surgieron los primeros registros contables en las civilizaciones antiguas.", en: "Describe how the first accounting records arose in ancient civilizations." },
       { es: "Explicar quién fue Luca Pacioli y en qué consiste la idea básica de la partida doble.", en: "Explain who Luca Pacioli was and the basic idea of double entry." },
@@ -192,8 +226,40 @@ export const lessons: Lesson[] = [
             es: "La idea de la **partida doble** es sencilla: **toda operación tiene dos lados** y ambos valen lo mismo. Si compras mercancía por $5,000 en efectivo, la mercancía aumenta $5,000 y el efectivo disminuye $5,000. Siempre se anota de dónde viene el valor y a dónde va.",
             en: "The idea of **double entry** is simple: **every transaction has two sides** and both are worth the same. If you buy $5,000 of goods in cash, goods increase by $5,000 and cash decreases by $5,000. You always record where the value comes from and where it goes.",
           },
+          {
+            es: "\"Doble\" no significa escribir dos veces lo mismo: significa ver los **dos efectos** de una misma operación. Es como comprar algo a meses: te llevas el producto completo, pagas una parte hoy y quedas debiendo el resto. Lo pagado más lo que debes es el precio total, y así las cuentas **cuadran**.",
+            en: "\"Double\" does not mean writing the same thing twice: it means seeing the **two effects** of one transaction. It is like buying something in installments: you take the whole product, pay part today and owe the rest. What you paid plus what you owe is the total price, and that is how the accounts **balance**.",
+          },
         ],
-        formula: "Lo que recibes = Lo que entregas o lo que quedas debiendo",
+        formulas: [
+          {
+            name: { es: "Los dos lados de una operación (partida doble)", en: "The two sides of a transaction (double entry)" },
+            expression: "Lo que recibes = Lo que entregas + Lo que quedas debiendo",
+            variables: [
+              { symbol: "Lo que recibes", meaning: { es: "El valor en pesos de lo que entra al negocio (mercancía, un equipo, una licuadora).", en: "The value in pesos of what comes into the business (goods, equipment, a blender)." } },
+              { symbol: "Lo que entregas", meaning: { es: "Los pesos que pagas en ese momento (efectivo o transferencia).", en: "The pesos you pay at that moment (cash or transfer)." } },
+              { symbol: "Lo que quedas debiendo", meaning: { es: "Los pesos que no pagaste todavía: una deuda nueva con quien te vendió.", en: "The pesos you have not paid yet: a new debt to whoever sold to you." } },
+            ],
+            steps: [
+              { es: "Identifica lo que recibes y su valor total.", en: "Identify what you receive and its total value." },
+              { es: "Identifica cuánto pagas hoy.", en: "Identify how much you pay today." },
+              { es: "Calcula la deuda: Lo que quedas debiendo = Lo que recibes − Lo que entregas.", en: "Compute the debt: What you still owe = What you receive − What you give." },
+              { es: "Comprueba: lo pagado + la deuda debe dar el valor total recibido.", en: "Check: amount paid + debt must equal the total value received." },
+            ],
+            example: {
+              es: "Una panadería compra un horno de $9,000; paga $4,000 en efectivo. Paso 3: deuda = $9,000 − $4,000 = $5,000. Paso 4: $4,000 + $5,000 = $9,000. Lado que recibe: horno $9,000. Otro lado: efectivo $4,000 + deuda $5,000 = $9,000. **Cuadra**.",
+              en: "A bakery buys a $9,000 oven; it pays $4,000 in cash. Step 3: debt = $9,000 − $4,000 = $5,000. Step 4: $4,000 + $5,000 = $9,000. Receiving side: oven $9,000. Other side: cash $4,000 + debt $5,000 = $9,000. **It balances**.",
+            },
+            interpret: {
+              es: "Si los dos lados dan lo mismo, la operación está bien registrada. Si no, falta anotar algo (casi siempre, la deuda).",
+              en: "If both sides are equal, the transaction is recorded correctly. If not, something is missing (almost always, the debt).",
+            },
+            mistake: {
+              es: "Anotar solo el dinero que pagaste y olvidar lo que quedaste debiendo. Así el lado que entrega queda más chico que lo que recibiste.",
+              en: "Recording only the money you paid and forgetting what you still owe. Then the giving side ends up smaller than what you received.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Evolución de la contabilidad moderna", en: "Evolution of modern accounting" },
@@ -274,7 +340,7 @@ export const lessons: Lesson[] = [
       es: "El dinero pasó del trueque a objetos valiosos, monedas, billetes respaldados por la confianza y hoy a saldos digitales, y la contabilidad lo usa como su unidad de medida.",
       en: "Money moved from barter to valuable objects, coins, bills backed by trust and today digital balances, and accounting uses it as its unit of measure.",
     },
-    minutes: 13,
+    minutes: 15,
     objectives: [
       { es: "Explicar por qué el trueque era incómodo y cómo el dinero lo resolvió.", en: "Explain why barter was inconvenient and how money solved it." },
       { es: "Describir el papel de los bancos y qué es el dinero fiduciario.", en: "Describe the role of banks and what fiat money is." },
@@ -297,6 +363,34 @@ export const lessons: Lesson[] = [
             es: "Después llegaron las **monedas de metal** (las primeras se atribuyen al reino de Lidia, en la actual Turquía, hace unos 2,600 años) y más tarde el **papel moneda**, que se usó primero en China. Un billete es mucho más fácil de cargar que un costal de cacao.",
             en: "Then came **metal coins** (the first are attributed to the kingdom of Lydia, in today's Turkey, about 2,600 years ago) and later **paper money**, first used in China. A bill is much easier to carry than a sack of cacao.",
           },
+          {
+            es: "El dinero cumple **tres funciones** (ver la lista). La de **unidad de cuenta** es la que más usa la contabilidad: como todo tiene precio en pesos, puedes comparar cosas muy distintas. Si sabes cuánto cuesta cada una, una división te dice cuántas de una equivalen a otra, sin necesidad de trueque.",
+            en: "Money has **three functions** (see the list). The **unit of account** is the one accounting uses most: since everything has a price in pesos, you can compare very different things. If you know what each one costs, a division tells you how many of one equal another, with no need for barter.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Equivalencia entre dos bienes usando su precio", en: "Equivalence between two goods using their price" },
+            expression: "Cantidad de B = Precio de A ÷ Precio de B",
+            variables: [
+              { symbol: "Cantidad de B", meaning: { es: "Cuántas unidades del bien B (kilos, piezas) valen lo mismo que una unidad de A.", en: "How many units of good B (kilos, pieces) are worth the same as one unit of A." } },
+              { symbol: "Precio de A", meaning: { es: "Lo que cuesta, en pesos, una unidad del bien que quieres \"cambiar\" (el más caro, normalmente).", en: "What one unit of the good you want to \"trade\" costs, in pesos (usually the more expensive one)." } },
+              { symbol: "Precio de B", meaning: { es: "Lo que cuesta, en pesos, una unidad del bien con el que lo comparas.", en: "What one unit of the good you compare it with costs, in pesos." } },
+            ],
+            steps: [
+              { es: "Verifica que los dos precios estén en la misma unidad (pesos).", en: "Check that both prices are in the same unit (pesos)." },
+              { es: "Divide el precio de A entre el precio de B.", en: "Divide the price of A by the price of B." },
+              { es: "Escribe el resultado con la unidad de B (kilos, piezas).", en: "Write the result with B's unit (kilos, pieces)." },
+            ],
+            example: {
+              es: "Un par de huaraches cuesta $360 y un kilo de jitomate $24. Paso 2: $360 ÷ $24 = 15. Un par de huaraches equivale a **15 kilos de jitomate**.",
+              en: "A pair of huaraches (sandals) costs $360 and a kilo of tomatoes $24. Step 2: $360 ÷ $24 = 15. One pair of huaraches equals **15 kilos of tomatoes**.",
+            },
+            mistake: {
+              es: "Multiplicar los precios en lugar de dividirlos, o dividir al revés ($24 ÷ $360 = 0.07 es la fracción de par que vale un kilo, no lo que te preguntan).",
+              en: "Multiplying the prices instead of dividing them, or dividing the wrong way ($24 ÷ $360 = 0.07 is the fraction of a pair a kilo is worth, not what you were asked).",
+            },
+          },
         ],
         bullets: [
           { es: "Medio de cambio: sirve para comprar y vender.", en: "Medium of exchange: used to buy and sell." },
@@ -318,6 +412,30 @@ export const lessons: Lesson[] = [
           {
             es: "Hoy usamos **dinero fiduciario**: \"fiduciario\" viene de *fe* o confianza. Un billete de $500 vale $500 no por el papel, sino porque **confiamos** en él y la ley obliga a aceptarlo. Durante mucho tiempo las monedas importantes estuvieron ligadas al oro; esa relación terminó en 1971, cuando Estados Unidos dejó de cambiar dólares por oro. En México, el **Banco de México** es quien emite los billetes y monedas.",
             en: "Today we use **fiat money**: its value rests on trust. A $500 bill is worth $500 not because of the paper but because we **trust** it and the law requires it to be accepted. For a long time major currencies were tied to gold; that link ended in 1971, when the United States stopped exchanging dollars for gold. In Mexico, **Banco de México** issues bills and coins.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Lo que gana un banco por la diferencia de intereses", en: "What a bank earns from the interest difference" },
+            expression: "Diferencia de intereses = Intereses cobrados − Intereses pagados",
+            variables: [
+              { symbol: "Diferencia de intereses", meaning: { es: "Los pesos que le quedan al banco para cubrir sus gastos y obtener su ganancia.", en: "The pesos left to the bank to cover its expenses and earn its profit." } },
+              { symbol: "Intereses cobrados", meaning: { es: "Los pesos que el banco cobra a quienes les prestó, en el periodo (por ejemplo, un año).", en: "The pesos the bank charges those it lent to, over the period (for example, one year)." } },
+              { symbol: "Intereses pagados", meaning: { es: "Los pesos que el banco paga a los ahorradores por sus depósitos, en el mismo periodo.", en: "The pesos the bank pays savers for their deposits, over the same period." } },
+            ],
+            steps: [
+              { es: "Identifica cuántos intereses cobra el banco por sus préstamos.", en: "Identify how much interest the bank collects on its loans." },
+              { es: "Identifica cuántos intereses paga a los ahorradores.", en: "Identify how much interest it pays savers." },
+              { es: "Resta: cobrados − pagados.", en: "Subtract: collected − paid." },
+            ],
+            example: {
+              es: "Un banco cobra $15,000 de intereses por sus préstamos y paga $4,000 a sus ahorradores. Paso 3: $15,000 − $4,000 = **$11,000** de diferencia.",
+              en: "A bank collects $15,000 of interest on its loans and pays $4,000 to its savers. Step 3: $15,000 − $4,000 = **$11,000** difference.",
+            },
+            mistake: {
+              es: "Restar el monto prestado o depositado (por ejemplo, $100,000) en lugar de los intereses. Solo se comparan los intereses.",
+              en: "Subtracting the amount lent or deposited (for example, $100,000) instead of the interest. Only the interest amounts are compared.",
+            },
           },
         ],
       },
@@ -398,7 +516,7 @@ export const lessons: Lesson[] = [
       es: "Todo negocio tiene cosas que le pertenecen (activos), deudas (pasivos) y lo que de verdad es de los dueños (capital contable), y estos tres elementos describen su patrimonio.",
       en: "Every business has things it owns (assets), debts (liabilities) and what truly belongs to the owners (equity), and these three elements describe its net worth.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Definir activo, pasivo y capital contable con palabras sencillas.", en: "Define assets, liabilities and equity in simple words." },
       { es: "Clasificar bienes, derechos y deudas comunes de un negocio.", en: "Classify a business's common goods, rights and debts." },
@@ -463,7 +581,35 @@ export const lessons: Lesson[] = [
             en: "Mini example: a coffee shop has assets of $80,000 and liabilities of $20,000. Its equity is $80,000 − $20,000 = $60,000.",
           },
         ],
-        formula: "Capital contable = Activo − Pasivo",
+        formulas: [
+          {
+            name: { es: "Capital contable (patrimonio neto)", en: "Equity (net worth)" },
+            expression: "Capital contable = Activo total − Pasivo total",
+            variables: [
+              { symbol: "Capital contable", meaning: { es: "Lo que de verdad es de los dueños, en pesos: lo que queda si el negocio pagara todas sus deudas.", en: "What truly belongs to the owners, in pesos: what would be left if the business paid all its debts." } },
+              { symbol: "Activo total", meaning: { es: "La suma en pesos de todo lo que el negocio controla: dinero, mercancía, equipo, lo que le deben sus clientes.", en: "The sum in pesos of everything the business controls: cash, goods, equipment, what customers owe it." } },
+              { symbol: "Pasivo total", meaning: { es: "La suma en pesos de todo lo que el negocio debe: proveedores, préstamos, sueldos por pagar.", en: "The sum in pesos of everything the business owes: suppliers, loans, wages payable." } },
+            ],
+            steps: [
+              { es: "Separa lo personal del dueño: no entra en el cálculo.", en: "Set aside the owner's personal items: they do not enter the calculation." },
+              { es: "Suma todos los activos del negocio: ese es el activo total.", en: "Add up all the business's assets: that is total assets." },
+              { es: "Suma todas las deudas: ese es el pasivo total.", en: "Add up all the debts: that is total liabilities." },
+              { es: "Resta: activo total − pasivo total = capital contable.", en: "Subtract: total assets − total liabilities = equity." },
+            ],
+            example: {
+              es: "Una papelería tiene mostrador $30,000, mercancía $22,000 y dinero en banco $13,000; debe $9,000 al proveedor y $16,000 de un préstamo. Paso 2: $30,000 + $22,000 + $13,000 = $65,000. Paso 3: $9,000 + $16,000 = $25,000. Paso 4: $65,000 − $25,000 = **$40,000** de capital contable.",
+              en: "A stationery shop has a counter $30,000, goods $22,000 and money in the bank $13,000; it owes $9,000 to the supplier and $16,000 on a loan. Step 2: $30,000 + $22,000 + $13,000 = $65,000. Step 3: $9,000 + $16,000 = $25,000. Step 4: $65,000 − $25,000 = **$40,000** of equity.",
+            },
+            interpret: {
+              es: "Un capital positivo es lo que pertenece a los dueños. Si sale negativo, el negocio debe más de lo que tiene: es una señal de alerta.",
+              en: "Positive equity is what belongs to the owners. If it is negative, the business owes more than it has: that is a warning sign.",
+            },
+            mistake: {
+              es: "Sumar activos y pasivos en lugar de restarlos, olvidar algún activo (como la mercancía en bodega) o incluir bienes personales del dueño.",
+              en: "Adding assets and liabilities instead of subtracting them, forgetting an asset (such as goods in storage) or including the owner's personal items.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -515,7 +661,7 @@ export const lessons: Lesson[] = [
       es: "La utilidad es lo que queda de los ingresos después de restar los costos y los gastos; si no alcanza, hay pérdida.",
       en: "Profit is what remains of revenue after subtracting costs and expenses; if it falls short, there is a loss.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Distinguir ingreso, costo y gasto con ejemplos de la vida diaria.", en: "Distinguish revenue, cost and expense with everyday examples." },
       { es: "Reconocer entradas de dinero que no son ingresos (préstamos, aportaciones).", en: "Recognize cash inflows that are not revenue (loans, contributions)." },
@@ -561,7 +707,58 @@ export const lessons: Lesson[] = [
             en: "Mini example: a corner store sells $50,000 in the month; those goods cost $30,000 and it paid $12,000 for rent and electricity. Gross profit: $20,000. Profit for the month: $20,000 − $12,000 = $8,000.",
           },
         ],
-        formula: "Utilidad bruta = Ingresos − Costo de ventas\nUtilidad (o pérdida) = Utilidad bruta − Gastos",
+        formulas: [
+          {
+            name: { es: "Utilidad bruta", en: "Gross profit" },
+            expression: "Utilidad bruta = Ingresos − Costo de ventas",
+            variables: [
+              { symbol: "Utilidad bruta", meaning: { es: "Lo que ganas, en pesos, solo por comprar (o producir) y vender, antes de pagar renta, luz o sueldos.", en: "What you earn, in pesos, just from buying (or making) and selling, before paying rent, electricity or wages." } },
+              { symbol: "Ingresos", meaning: { es: "Lo que vendiste en el periodo (mes, año), en pesos. No incluye préstamos ni aportaciones del dueño.", en: "What you sold in the period (month, year), in pesos. It does not include loans or owner contributions." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que te costó, en pesos, la mercancía o los insumos de lo que vendiste.", en: "What the goods or inputs of what you sold cost you, in pesos." } },
+            ],
+            steps: [
+              { es: "Toma solo los ingresos por ventas o servicios del periodo.", en: "Take only the period's revenue from sales or services." },
+              { es: "Resta el costo de lo que vendiste.", en: "Subtract the cost of what you sold." },
+            ],
+            example: {
+              es: "Una papelería vende $40,000 en el mes; esa mercancía le costó $24,000. Paso 2: $40,000 − $24,000 = **$16,000** de utilidad bruta.",
+              en: "A stationery shop sells $40,000 in the month; those goods cost it $24,000. Step 2: $40,000 − $24,000 = **$16,000** of gross profit.",
+            },
+            mistake: {
+              es: "Pensar que la utilidad bruta ya es la ganancia final: todavía faltan los gastos de operación.",
+              en: "Thinking gross profit is already the final gain: operating expenses still have to be subtracted.",
+            },
+          },
+          {
+            name: { es: "Utilidad (o pérdida) del periodo", en: "Profit (or loss) for the period" },
+            expression: "Utilidad (o pérdida) = Utilidad bruta − Gastos = Ingresos − Costo de ventas − Gastos",
+            variables: [
+              { symbol: "Utilidad (o pérdida)", meaning: { es: "El resultado final del periodo, en pesos. Si es positivo es utilidad (ganancia); si es negativo, pérdida.", en: "The final result for the period, in pesos. If positive it is profit; if negative, a loss." } },
+              { symbol: "Utilidad bruta", meaning: { es: "Ingresos − Costo de ventas (fórmula anterior), en pesos.", en: "Revenue − Cost of sales (previous formula), in pesos." } },
+              { symbol: "Ingresos", meaning: { es: "Lo que vendiste en el periodo, en pesos.", en: "What you sold in the period, in pesos." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que costó lo que vendiste, en pesos.", en: "What the things you sold cost, in pesos." } },
+              { symbol: "Gastos", meaning: { es: "La suma, en pesos, de lo que pagaste para operar: renta, luz, sueldos, publicidad.", en: "The sum, in pesos, of what you paid to operate: rent, electricity, wages, advertising." } },
+            ],
+            steps: [
+              { es: "Deja fuera las entradas que no son ingresos (préstamos, aportaciones del dueño).", en: "Leave out inflows that are not revenue (loans, owner contributions)." },
+              { es: "Calcula la utilidad bruta: ingresos − costo de ventas.", en: "Compute gross profit: revenue − cost of sales." },
+              { es: "Suma todos los gastos de operación.", en: "Add up all operating expenses." },
+              { es: "Resta: utilidad bruta − gastos. Si sale negativo, escríbelo con signo menos: es pérdida.", en: "Subtract: gross profit − expenses. If negative, write it with a minus sign: it is a loss." },
+            ],
+            example: {
+              es: "La papelería anterior (utilidad bruta $16,000) pagó renta $7,000, luz $1,500 y sueldo $5,000. Paso 3: $7,000 + $1,500 + $5,000 = $13,500. Paso 4: $16,000 − $13,500 = **$2,500** de utilidad. Si sus gastos hubieran sido $18,000: $16,000 − $18,000 = **−$2,000**, una pérdida.",
+              en: "The same stationery shop (gross profit $16,000) paid rent $7,000, electricity $1,500 and a wage of $5,000. Step 3: $7,000 + $1,500 + $5,000 = $13,500. Step 4: $16,000 − $13,500 = **$2,500** of profit. If its expenses had been $18,000: $16,000 − $18,000 = **−$2,000**, a loss.",
+            },
+            interpret: {
+              es: "Positivo: el negocio ganó. Cero: ni ganó ni perdió. Negativo: perdió, aunque tenga dinero en caja (ese dinero pudo venir de un préstamo o de una aportación).",
+              en: "Positive: the business made money. Zero: it broke even. Negative: it lost money, even if it has cash (that cash may have come from a loan or a contribution).",
+            },
+            mistake: {
+              es: "Contar un préstamo o una aportación como ingreso, o restar el costo de ventas dos veces (una como costo y otra dentro de los gastos).",
+              en: "Counting a loan or contribution as revenue, or subtracting cost of sales twice (once as cost and again inside expenses).",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Ejemplos prácticos", en: "Practical examples" },
