@@ -30,7 +30,7 @@ export const lessons: Lesson[] = [
       es: "Planear es decidir hoy a dónde quiere llegar la empresa y presupuestar es poner ese plan en pesos, mes por mes, para saber si alcanza el dinero y corregir a tiempo.",
       en: "Planning is deciding today where the company wants to go, and budgeting is putting that plan into pesos, month by month, to know whether the money will be enough and to correct course in time.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Distinguir la planeación financiera estratégica (largo plazo) de la operativa (corto plazo).", en: "Distinguish strategic (long-term) from operating (short-term) financial planning." },
       { es: "Describir las piezas del presupuesto maestro y el orden en que se preparan.", en: "Describe the pieces of the master budget and the order in which they are prepared." },
@@ -77,7 +77,31 @@ export const lessons: Lesson[] = [
             en: "Mini example: a huarache factory expects to sell 5,000 pairs, wants to end with 800 in the warehouse and starts with 600. It must produce 5,000 + 800 − 600 = 5,200 pairs.",
           },
         ],
-        formula: "Producción = Ventas esperadas + Inventario final deseado − Inventario inicial",
+        formulas: [
+          {
+            name: { es: "Unidades a producir", en: "Units to produce" },
+            expression: "Producción = Ventas esperadas + Inventario final deseado − Inventario inicial",
+            variables: [
+              { symbol: "Producción", meaning: { es: "Piezas que debes fabricar en el periodo (unidades).", en: "Units you must make in the period (units)." } },
+              { symbol: "Ventas esperadas", meaning: { es: "Piezas que planeas vender en el periodo, según el presupuesto de ventas (unidades).", en: "Units you plan to sell in the period, from the sales budget (units)." } },
+              { symbol: "Inventario final deseado", meaning: { es: "Piezas que quieres tener guardadas al terminar el periodo, como reserva (unidades).", en: "Units you want to have in stock at the end of the period, as a reserve (units)." } },
+              { symbol: "Inventario inicial", meaning: { es: "Piezas terminadas que ya tienes en bodega al empezar (unidades).", en: "Finished units already in the warehouse at the start (units)." } },
+            ],
+            steps: [
+              { es: "Toma las ventas esperadas del presupuesto de ventas.", en: "Take expected sales from the sales budget." },
+              { es: "Súmale el inventario final que quieres tener al cierre.", en: "Add the ending inventory you want at the close." },
+              { es: "Réstale el inventario inicial, porque esas piezas ya están hechas.", en: "Subtract the beginning inventory, because those units are already made." },
+            ],
+            example: {
+              es: "Una fábrica de cajas espera vender 8,000 cajas, quiere cerrar con 1,000 y tiene 700 al inicio. Paso 1: 8,000. Paso 2: 8,000 + 1,000 = 9,000. Paso 3: 9,000 − 700 = 8,300 cajas a producir.",
+              en: "A box factory expects to sell 8,000 boxes, wants to close with 1,000 and has 700 at the start. Step 1: 8,000. Step 2: 8,000 + 1,000 = 9,000. Step 3: 9,000 − 700 = 8,300 boxes to produce.",
+            },
+            mistake: {
+              es: "Sumar el inventario inicial en lugar de restarlo. Lo que ya tienes en bodega reduce lo que debes fabricar.",
+              en: "Adding the beginning inventory instead of subtracting it. What you already have in stock reduces what you must make.",
+            },
+          },
+        ],
         bullets: [
           { es: "Operativo: ventas, producción, compras, mano de obra, gastos.", en: "Operating: sales, production, purchases, labor, expenses." },
           { es: "Financiero: efectivo, inversiones de capital, estados proforma.", en: "Financial: cash, capital expenditures, pro forma statements." },
@@ -100,7 +124,104 @@ export const lessons: Lesson[] = [
             en: "The budget is also used to **control**. A **variance** is the difference between actual and budgeted figures. It is **favorable** if it helps profit (more revenue or lower expenses) and **unfavorable** if it reduces it. Mini example: you budgeted $40,000 for electricity and spent $46,000: an unfavorable variance of $6,000.",
           },
         ],
-        formula: "Saldo final = Saldo inicial + Cobros − Pagos;  Financiamiento = Saldo mínimo − Saldo final (si es positivo)",
+        formulas: [
+          {
+            name: { es: "Cobranza del mes", en: "Collections for the month" },
+            expression: "Cobros del mes = % de contado × Ventas del mes + % a crédito × Ventas del mes anterior",
+            variables: [
+              { symbol: "Cobros del mes", meaning: { es: "Dinero que de verdad entra al banco en el mes (pesos).", en: "Money that actually reaches the bank in the month (pesos)." } },
+              { symbol: "% de contado", meaning: { es: "Parte de las ventas que se cobra en el mismo mes de la venta (%).", en: "Share of sales collected in the same month as the sale (%)." } },
+              { symbol: "Ventas del mes", meaning: { es: "Lo que se vende en el mes que estás calculando (pesos).", en: "What is sold in the month you are computing (pesos)." } },
+              { symbol: "% a crédito", meaning: { es: "Parte de las ventas que se cobra hasta el mes siguiente (%).", en: "Share of sales collected the following month (%)." } },
+              { symbol: "Ventas del mes anterior", meaning: { es: "Lo que se vendió el mes pasado y todavía se debía (pesos).", en: "What was sold last month and was still owed (pesos)." } },
+            ],
+            steps: [
+              { es: "Convierte los porcentajes a decimal: 30% = 0.30.", en: "Convert the percentages to decimals: 30% = 0.30." },
+              { es: "Multiplica el % de contado por las ventas de este mes.", en: "Multiply the cash % by this month's sales." },
+              { es: "Multiplica el % a crédito por las ventas del mes anterior.", en: "Multiply the credit % by last month's sales." },
+              { es: "Suma los dos resultados.", en: "Add the two results." },
+            ],
+            example: {
+              es: "Una tienda vendió $150,000 en abril y $180,000 en mayo; cobra 30% de contado y 70% al mes siguiente. Mayo: 0.30 × 180,000 = $54,000; 0.70 × 150,000 = $105,000; cobros de mayo = 54,000 + 105,000 = $159,000.",
+              en: "A store sold $150,000 in April and $180,000 in May; it collects 30% cash and 70% the next month. May: 0.30 × 180,000 = $54,000; 0.70 × 150,000 = $105,000; May collections = 54,000 + 105,000 = $159,000.",
+            },
+            mistake: {
+              es: "Poner como cobro todas las ventas del mes. Vender no es cobrar: la parte a crédito llega el mes siguiente.",
+              en: "Counting all of the month's sales as collected. Selling is not collecting: the credit part arrives the next month.",
+            },
+          },
+          {
+            name: { es: "Saldo final antes de financiamiento", en: "Ending balance before financing" },
+            expression: "Saldo final = Saldo inicial + Cobros − Pagos",
+            variables: [
+              { symbol: "Saldo final", meaning: { es: "Dinero que quedaría en el banco al cerrar el periodo, antes de pedir préstamos (pesos).", en: "Money that would be left in the bank at the end of the period, before borrowing (pesos)." } },
+              { symbol: "Saldo inicial", meaning: { es: "Dinero en el banco al empezar el periodo (pesos).", en: "Money in the bank at the start of the period (pesos)." } },
+              { symbol: "Cobros", meaning: { es: "Dinero que entra en el periodo (pesos).", en: "Money coming in during the period (pesos)." } },
+              { symbol: "Pagos", meaning: { es: "Dinero que sale en el periodo: proveedores, sueldos, renta, impuestos (pesos).", en: "Money going out during the period: suppliers, wages, rent, taxes (pesos)." } },
+            ],
+            steps: [
+              { es: "Empieza con el saldo inicial en bancos.", en: "Start with the opening bank balance." },
+              { es: "Súmale los cobros esperados.", en: "Add the expected collections." },
+              { es: "Réstale los pagos esperados.", en: "Subtract the expected payments." },
+            ],
+            example: {
+              es: "Saldo inicial $20,000, cobros $90,000, pagos $100,000. Paso 2: 20,000 + 90,000 = $110,000. Paso 3: 110,000 − 100,000 = $10,000 de saldo final.",
+              en: "Opening balance $20,000, collections $90,000, payments $100,000. Step 2: 20,000 + 90,000 = $110,000. Step 3: 110,000 − 100,000 = $10,000 ending balance.",
+            },
+            interpret: {
+              es: "Si el saldo final es menor que el saldo mínimo (o negativo), vas a necesitar financiamiento.",
+              en: "If the ending balance is below the minimum balance (or negative), you will need financing.",
+            },
+          },
+          {
+            name: { es: "Financiamiento necesario", en: "Financing needed" },
+            expression: "Financiamiento = Saldo mínimo − Saldo final (solo si el resultado es positivo)",
+            variables: [
+              { symbol: "Financiamiento", meaning: { es: "Préstamo que necesitas para no quedar por debajo de tu colchón (pesos).", en: "Loan you need so you do not fall below your cushion (pesos)." } },
+              { symbol: "Saldo mínimo", meaning: { es: "Cantidad que la empresa decidió tener siempre en el banco (pesos).", en: "Amount the company decided to always keep in the bank (pesos)." } },
+              { symbol: "Saldo final", meaning: { es: "Lo que quedaría en el banco antes del préstamo (pesos).", en: "What would be left in the bank before the loan (pesos)." } },
+            ],
+            steps: [
+              { es: "Calcula primero el saldo final antes de financiamiento.", en: "First compute the ending balance before financing." },
+              { es: "Réstalo del saldo mínimo.", en: "Subtract it from the minimum balance." },
+              { es: "Si sale positivo, esa es la cantidad a pedir; si sale cero o negativo, no necesitas préstamo.", en: "If positive, that is the amount to borrow; if zero or negative, you do not need a loan." },
+            ],
+            example: {
+              es: "Con el saldo final de $10,000 del ejemplo anterior y un saldo mínimo de $18,000: 18,000 − 10,000 = $8,000 de financiamiento necesario.",
+              en: "With the $10,000 ending balance from the previous example and an $18,000 minimum balance: 18,000 − 10,000 = $8,000 of financing needed.",
+            },
+            mistake: {
+              es: "Pedir prestado todo el saldo mínimo, olvidando el dinero que ya queda en el banco.",
+              en: "Borrowing the whole minimum balance, forgetting the money already left in the bank.",
+            },
+          },
+          {
+            name: { es: "Variación presupuestal", en: "Budget variance" },
+            expression: "Variación = Real − Presupuestado",
+            variables: [
+              { symbol: "Variación", meaning: { es: "Diferencia entre lo que pasó y lo que planeaste (pesos).", en: "Difference between what happened and what you planned (pesos)." } },
+              { symbol: "Real", meaning: { es: "Cifra que de verdad ocurrió (pesos).", en: "Figure that actually happened (pesos)." } },
+              { symbol: "Presupuestado", meaning: { es: "Cifra que estaba en el plan (pesos).", en: "Figure that was in the plan (pesos)." } },
+            ],
+            steps: [
+              { es: "Resta lo presupuestado a lo real.", en: "Subtract the budgeted figure from the actual one." },
+              { es: "Fíjate si es un ingreso o un gasto.", en: "Check whether it is a revenue or an expense." },
+              { es: "Califícala: si sube la utilidad es favorable; si la baja, desfavorable.", en: "Label it: if it raises profit it is favorable; if it lowers it, unfavorable." },
+            ],
+            example: {
+              es: "Ventas: presupuesto $300,000, real $320,000: 320,000 − 300,000 = +$20,000, más ingreso, favorable. Gasto de renta: presupuesto $50,000, real $55,000: 55,000 − 50,000 = +$5,000, más gasto, desfavorable.",
+              en: "Sales: budget $300,000, actual $320,000: 320,000 − 300,000 = +$20,000, more revenue, favorable. Rent expense: budget $50,000, actual $55,000: 55,000 − 50,000 = +$5,000, more expense, unfavorable.",
+            },
+            interpret: {
+              es: "En ingresos, real mayor que el plan es favorable. En gastos es al revés: real menor que el plan es favorable.",
+              en: "For revenue, actual above plan is favorable. For expenses it is the opposite: actual below plan is favorable.",
+            },
+            mistake: {
+              es: "Llamar desfavorable a cualquier diferencia contra el plan. Gastar menos de lo presupuestado es favorable.",
+              en: "Calling any difference from plan unfavorable. Spending less than budgeted is favorable.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -158,7 +279,7 @@ export const lessons: Lesson[] = [
       es: "Evaluar un proyecto es estimar los flujos de efectivo adicionales que genera y medir, con criterios como el periodo de recuperación, si vale la pena arriesgar el dinero.",
       en: "Evaluating a project means estimating the additional cash flows it generates and measuring, with criteria such as the payback period, whether it is worth risking the money.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Reconocer los tipos de proyectos y la diferencia entre independientes y mutuamente excluyentes.", en: "Recognize project types and the difference between independent and mutually exclusive projects." },
       { es: "Identificar qué flujos son relevantes (incrementales) y cuáles no, como los costos hundidos.", en: "Identify which cash flows are relevant (incremental) and which are not, such as sunk costs." },
@@ -205,7 +326,35 @@ export const lessons: Lesson[] = [
             en: "**Depreciation** is not a cash outflow, but it reduces taxes. That is why **operating cash flow** (OCF) is computed as operating profit after taxes plus depreciation. Mini example: sales $500,000, costs $300,000, depreciation $50,000, taxes 30%: operating profit $150,000, taxes $45,000, OCF = 105,000 + 50,000 = $155,000.",
           },
         ],
-        formula: "FEO = (Ventas − Costos − Depreciación) × (1 − t) + Depreciación",
+        formulas: [
+          {
+            name: { es: "Flujo de efectivo operativo (FEO)", en: "Operating cash flow (OCF)" },
+            expression: "FEO = (Ventas − Costos − Depreciación) × (1 − t) + Depreciación",
+            variables: [
+              { symbol: "FEO", meaning: { es: "Dinero que la operación del proyecto deja cada año, ya pagados los impuestos (pesos por año).", en: "Money the project's operations leave each year, after taxes (pesos per year)." } },
+              { symbol: "Ventas", meaning: { es: "Ingresos anuales que genera el proyecto (pesos).", en: "Annual revenue the project generates (pesos)." } },
+              { symbol: "Costos", meaning: { es: "Costos y gastos que sí se pagan en efectivo cada año (pesos).", en: "Costs and expenses actually paid in cash each year (pesos)." } },
+              { symbol: "Depreciación", meaning: { es: "Parte del costo del equipo que se reconoce como gasto cada año; no sale dinero, pero baja los impuestos (pesos).", en: "Part of the equipment cost recognized as an expense each year; no money leaves, but it lowers taxes (pesos)." } },
+              { symbol: "Ventas − Costos − Depreciación", meaning: { es: "Utilidad de operación: lo que gana el proyecto antes de impuestos (pesos).", en: "Operating profit: what the project earns before taxes (pesos)." } },
+              { symbol: "t", meaning: { es: "Tasa de impuestos, en decimal (30% = 0.30).", en: "Tax rate, as a decimal (30% = 0.30)." } },
+              { symbol: "(1 − t)", meaning: { es: "La parte de la utilidad que te queda después de impuestos (0.70 si t = 30%).", en: "The share of profit you keep after taxes (0.70 if t = 30%)." } },
+            ],
+            steps: [
+              { es: "Utilidad de operación = Ventas − Costos − Depreciación.", en: "Operating profit = Sales − Costs − Depreciation." },
+              { es: "Impuestos = Utilidad de operación × t.", en: "Taxes = Operating profit × t." },
+              { es: "Utilidad después de impuestos = Utilidad de operación − Impuestos (es lo mismo que multiplicar por 1 − t).", en: "After-tax profit = Operating profit − Taxes (the same as multiplying by 1 − t)." },
+              { es: "FEO = Utilidad después de impuestos + Depreciación, porque la depreciación no fue salida de dinero.", en: "OCF = After-tax profit + Depreciation, because depreciation was not a cash outflow." },
+            ],
+            example: {
+              es: "Ventas $600,000, costos $350,000, depreciación $80,000, t = 30% (ilustrativa). Paso 1: 600,000 − 350,000 − 80,000 = $170,000. Paso 2: 170,000 × 0.30 = $51,000. Paso 3: 170,000 − 51,000 = $119,000. Paso 4: 119,000 + 80,000 = $199,000 de FEO al año.",
+              en: "Sales $600,000, costs $350,000, depreciation $80,000, t = 30% (illustrative). Step 1: 600,000 − 350,000 − 80,000 = $170,000. Step 2: 170,000 × 0.30 = $51,000. Step 3: 170,000 − 51,000 = $119,000. Step 4: 119,000 + 80,000 = $199,000 of OCF per year.",
+            },
+            mistake: {
+              es: "Olvidar sumar de vuelta la depreciación al final. Se resta para calcular impuestos, pero no es dinero que salga.",
+              en: "Forgetting to add depreciation back at the end. It is subtracted to compute taxes, but it is not money that leaves.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Criterios sencillos: recuperación y rendimiento contable", en: "Simple criteria: payback and accounting return" },
@@ -223,7 +372,36 @@ export const lessons: Lesson[] = [
             en: "That is why these criteria are used as a **complementary screen**; the main criteria are NPV and IRR, which you will see in the next topics. Mini example: you invest $90,000 and receive $30,000 a year: you recover it in 90,000 ÷ 30,000 = 3 years.",
           },
         ],
-        formula: "Recuperación = Años completos antes de recuperar + (Monto pendiente ÷ Flujo del año siguiente)",
+        formulas: [
+          {
+            name: { es: "Periodo de recuperación (payback)", en: "Payback period" },
+            expression: "Recuperación = Años completos antes de recuperar + (Monto pendiente ÷ Flujo del año siguiente)",
+            variables: [
+              { symbol: "Recuperación", meaning: { es: "Tiempo que tardas en recuperar lo invertido (años).", en: "Time it takes to get back what you invested (years)." } },
+              { symbol: "Años completos antes de recuperar", meaning: { es: "Último año en que el acumulado todavía no alcanza la inversión (años).", en: "Last year in which the cumulative total still falls short of the investment (years)." } },
+              { symbol: "Monto pendiente", meaning: { es: "Lo que falta por recuperar al terminar esos años completos: inversión − flujos acumulados (pesos).", en: "What is still to be recovered after those full years: investment − cumulative flows (pesos)." } },
+              { symbol: "Flujo del año siguiente", meaning: { es: "Flujo del año en que por fin se completa la recuperación (pesos).", en: "Flow of the year in which recovery is finally completed (pesos)." } },
+            ],
+            steps: [
+              { es: "Suma los flujos año por año (flujo acumulado).", en: "Add up the flows year by year (cumulative flow)." },
+              { es: "Identifica el último año en que el acumulado es menor que la inversión.", en: "Find the last year in which the cumulative total is below the investment." },
+              { es: "Calcula el monto pendiente: inversión − acumulado de ese año.", en: "Compute the amount still pending: investment − cumulative total of that year." },
+              { es: "Divide el monto pendiente entre el flujo del año siguiente y súmalo a los años completos.", en: "Divide the pending amount by the next year's flow and add it to the full years." },
+            ],
+            example: {
+              es: "Inversión $300,000; flujos $100,000, $120,000 y $150,000. Paso 1: acumulado 100,000 y 100,000 + 120,000 = 220,000. Paso 2: 2 años completos. Paso 3: 300,000 − 220,000 = $80,000. Paso 4: 80,000 ÷ 150,000 = 0.53; recuperación = 2 + 0.53 = 2.53 años (unos 2 años y 6 meses). Si los flujos son iguales cada año, basta con inversión ÷ flujo anual.",
+              en: "Investment $300,000; flows $100,000, $120,000 and $150,000. Step 1: cumulative 100,000 and 100,000 + 120,000 = 220,000. Step 2: 2 full years. Step 3: 300,000 − 220,000 = $80,000. Step 4: 80,000 ÷ 150,000 = 0.53; payback = 2 + 0.53 = 2.53 years (about 2 years and 6 months). If the flows are equal every year, investment ÷ annual flow is enough.",
+            },
+            interpret: {
+              es: "Menos años significa que recuperas tu dinero más rápido y estás menos tiempo expuesto al riesgo. No dice si el proyecto crea valor.",
+              en: "Fewer years means you get your money back faster and are exposed to risk for less time. It does not say whether the project creates value.",
+            },
+            mistake: {
+              es: "Dividir la inversión entre el flujo promedio cuando los flujos son desiguales. Hay que acumular año por año.",
+              en: "Dividing the investment by the average flow when the flows are uneven. You must accumulate year by year.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -281,7 +459,7 @@ export const lessons: Lesson[] = [
       es: "El VPN trae a pesos de hoy todos los flujos de un proyecto, descontados a la tasa que exige la empresa, y le resta la inversión: si queda positivo, el proyecto crea valor.",
       en: "NPV brings all of a project's cash flows into today's pesos, discounted at the rate the company requires, and subtracts the investment: if the result is positive, the project creates value.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar qué mide el VPN y por qué se usa una tasa de descuento.", en: "Explain what NPV measures and why a discount rate is used." },
       { es: "Calcular el VPN de un proyecto con flujos desiguales.", en: "Compute the NPV of a project with uneven cash flows." },
@@ -305,6 +483,32 @@ export const lessons: Lesson[] = [
             en: "Mini example: at a 10% rate, receiving $11,000 a year from now is worth 11,000 ÷ 1.10 = $10,000 today.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Valor presente de un flujo futuro", en: "Present value of a future flow" },
+            expression: "VP = FE ÷ (1 + k)ᵗ",
+            variables: [
+              { symbol: "VP", meaning: { es: "Cuánto vale hoy ese dinero futuro (pesos de hoy).", en: "What that future money is worth today (today's pesos)." } },
+              { symbol: "FE", meaning: { es: "Flujo de efectivo: el dinero que recibirás en el futuro (pesos).", en: "Cash flow: the money you will receive in the future (pesos)." } },
+              { symbol: "k", meaning: { es: "Tasa de descuento o rendimiento exigido, en decimal (10% = 0.10).", en: "Discount rate or required return, as a decimal (10% = 0.10)." } },
+              { symbol: "t", meaning: { es: "Número de años que faltan para recibir el flujo (años).", en: "Number of years until you receive the flow (years)." } },
+              { symbol: "(1 + k)ᵗ", meaning: { es: "1 + k multiplicado por sí mismo t veces; por ejemplo, (1.10)² = 1.10 × 1.10 = 1.21.", en: "1 + k multiplied by itself t times; for example, (1.10)² = 1.10 × 1.10 = 1.21." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal y súmale 1: 8% → 1.08.", en: "Convert the rate to a decimal and add 1: 8% → 1.08." },
+              { es: "Eleva ese número a t (multiplícalo por sí mismo t veces).", en: "Raise that number to t (multiply it by itself t times)." },
+              { es: "Divide el flujo futuro entre ese resultado.", en: "Divide the future flow by that result." },
+            ],
+            example: {
+              es: "Recibirás $25,000 dentro de 2 años y exiges 8%. Paso 1: 1.08. Paso 2: 1.08 × 1.08 = 1.1664. Paso 3: 25,000 ÷ 1.1664 = $21,433.47 de hoy.",
+              en: "You will receive $25,000 in 2 years and require 8%. Step 1: 1.08. Step 2: 1.08 × 1.08 = 1.1664. Step 3: 25,000 ÷ 1.1664 = $21,433.47 today.",
+            },
+            interpret: {
+              es: "El VP siempre es menor que el flujo futuro (si k es positiva). Entre más lejos o más alta la tasa, menos vale hoy.",
+              en: "PV is always smaller than the future flow (if k is positive). The farther away or the higher the rate, the less it is worth today.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cómo se calcula y cómo se lee", en: "How to compute and read it" },
@@ -322,7 +526,38 @@ export const lessons: Lesson[] = [
             en: "Mini example: you invest $100,000 and receive $40,000, $50,000 and $60,000 over three years, with k = 10%. Present values: $36,363.64 + $41,322.31 + $45,078.89 = $122,764.84. NPV = 122,764.84 − 100,000 = $22,764.84.",
           },
         ],
-        formula: "VPN = −I₀ + FE₁ ÷ (1 + k)¹ + FE₂ ÷ (1 + k)² + … + FEₙ ÷ (1 + k)ⁿ",
+        formulas: [
+          {
+            name: { es: "Valor presente neto (VPN)", en: "Net present value (NPV)" },
+            expression: "VPN = −I₀ + FE₁ ÷ (1 + k)¹ + FE₂ ÷ (1 + k)² + … + FEₙ ÷ (1 + k)ⁿ",
+            variables: [
+              { symbol: "VPN", meaning: { es: "Valor que el proyecto agrega (o quita) en pesos de hoy (pesos).", en: "Value the project adds (or destroys) in today's pesos (pesos)." } },
+              { symbol: "I₀", meaning: { es: "Inversión inicial, el dinero que pones hoy (año 0); por eso lleva signo menos (pesos).", en: "Initial investment, the money you put in today (year 0); that is why it has a minus sign (pesos)." } },
+              { symbol: "FE₁, FE₂, …, FEₙ", meaning: { es: "Flujos de efectivo que recibes al final de los años 1, 2, …, n (pesos).", en: "Cash flows you receive at the end of years 1, 2, …, n (pesos)." } },
+              { symbol: "k", meaning: { es: "Tasa de descuento: rendimiento mínimo exigido, en decimal (%).", en: "Discount rate: minimum required return, as a decimal (%)." } },
+              { symbol: "n", meaning: { es: "Último año del proyecto (años).", en: "Last year of the project (years)." } },
+              { symbol: "Σ", meaning: { es: "Letra griega sigma; significa sumar todos los términos (a veces la fórmula se escribe VPN = −I₀ + Σ FEₜ ÷ (1 + k)ᵗ).", en: "Greek letter sigma; it means add up all the terms (the formula is sometimes written NPV = −I₀ + Σ CFₜ ÷ (1 + k)ᵗ)." } },
+            ],
+            steps: [
+              { es: "Calcula (1 + k) elevado a cada año: año 1, año 2, año 3…", en: "Compute (1 + k) raised to each year: year 1, year 2, year 3…" },
+              { es: "Divide cada flujo entre el factor de su año: ese es su valor presente.", en: "Divide each flow by its year's factor: that is its present value." },
+              { es: "Suma todos los valores presentes.", en: "Add up all the present values." },
+              { es: "Resta la inversión inicial.", en: "Subtract the initial investment." },
+            ],
+            example: {
+              es: "Inviertes $50,000 y recibes $20,000, $25,000 y $15,000 en los años 1 a 3, con k = 8%. Paso 1: 1.08, 1.1664 y 1.259712. Paso 2: 20,000 ÷ 1.08 = 18,518.52; 25,000 ÷ 1.1664 = 21,433.47; 15,000 ÷ 1.259712 = 11,907.48. Paso 3: suma = $51,859.47. Paso 4: VPN = 51,859.47 − 50,000 = $1,859.47.",
+              en: "You invest $50,000 and receive $20,000, $25,000 and $15,000 in years 1 to 3, with k = 8%. Step 1: 1.08, 1.1664 and 1.259712. Step 2: 20,000 ÷ 1.08 = 18,518.52; 25,000 ÷ 1.1664 = 21,433.47; 15,000 ÷ 1.259712 = 11,907.48. Step 3: sum = $51,859.47. Step 4: NPV = 51,859.47 − 50,000 = $1,859.47.",
+            },
+            interpret: {
+              es: "VPN > 0: el proyecto paga la tasa exigida y además crea valor; aceptar. VPN = 0: gana justo la tasa exigida. VPN < 0: no alcanza a pagarla; rechazar.",
+              en: "NPV > 0: the project pays the required rate and also creates value; accept. NPV = 0: it earns exactly the required rate. NPV < 0: it does not cover it; reject.",
+            },
+            mistake: {
+              es: "Sumar los flujos sin descontarlos, o usar el mismo exponente para todos los años.",
+              en: "Adding the flows without discounting them, or using the same exponent for every year.",
+            },
+          },
+        ],
         bullets: [
           { es: "VPN > 0: aceptar, crea valor.", en: "NPV > 0: accept, it creates value." },
           { es: "VPN = 0: indiferente, gana justo lo exigido.", en: "NPV = 0: indifferent, it earns exactly what is required." },
@@ -403,7 +638,7 @@ export const lessons: Lesson[] = [
       es: "La TIR es la tasa de rendimiento que genera el propio proyecto, es decir, la tasa que hace su VPN igual a cero; se acepta si supera el costo de capital, cuidando sus trampas.",
       en: "IRR is the rate of return generated by the project itself, that is, the rate that makes its NPV equal to zero; it is accepted if it exceeds the cost of capital, while watching out for its pitfalls.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Definir la TIR como la tasa que hace el VPN igual a cero.", en: "Define IRR as the rate that makes NPV equal to zero." },
       { es: "Calcular la TIR en casos sencillos y estimarla por interpolación.", en: "Compute IRR in simple cases and estimate it by interpolation." },
@@ -427,7 +662,32 @@ export const lessons: Lesson[] = [
             en: "The rule: if **IRR is higher than the cost of capital** (the required rate), the project is accepted; if lower, it is rejected. Mini example: you invest $100,000 and in one year receive $115,000: IRR is 15%. If your cost of capital is 11%, it is worth it.",
           },
         ],
-        formula: "0 = −I₀ + Σ FEₜ ÷ (1 + TIR)ᵗ",
+        formulas: [
+          {
+            name: { es: "Definición de la TIR (la tasa que hace VPN = 0)", en: "Definition of IRR (the rate that makes NPV = 0)" },
+            expression: "0 = −I₀ + Σ FEₜ ÷ (1 + TIR)ᵗ",
+            variables: [
+              { symbol: "TIR", meaning: { es: "Tasa interna de retorno: el rendimiento anual del propio proyecto (%).", en: "Internal rate of return: the project's own annual return (%)." } },
+              { symbol: "I₀", meaning: { es: "Inversión inicial, hoy (pesos).", en: "Initial investment, today (pesos)." } },
+              { symbol: "FEₜ", meaning: { es: "Flujo de efectivo del año t (pesos).", en: "Cash flow of year t (pesos)." } },
+              { symbol: "t", meaning: { es: "Año en que llega cada flujo: 1, 2, 3… (años).", en: "Year in which each flow arrives: 1, 2, 3… (years)." } },
+              { symbol: "Σ", meaning: { es: "Suma de todos los flujos ya descontados.", en: "Sum of all the discounted flows." } },
+            ],
+            steps: [
+              { es: "Es la misma fórmula del VPN, pero en lugar de usar k buscas la tasa que deja el resultado en cero.", en: "It is the same NPV formula, but instead of using k you look for the rate that leaves the result at zero." },
+              { es: "Para comprobar una TIR, calcula el VPN con esa tasa: si da 0 (o casi), es la TIR.", en: "To check an IRR, compute NPV at that rate: if it gives 0 (or nearly), it is the IRR." },
+              { es: "Compara la TIR con el costo de capital para decidir.", en: "Compare the IRR with the cost of capital to decide." },
+            ],
+            example: {
+              es: "Inviertes $100,000 y recibes $55,000 en el año 1 y $60,500 en el año 2. Prueba con 10%: 55,000 ÷ 1.10 = 50,000; 60,500 ÷ 1.21 = 50,000; VPN = −100,000 + 50,000 + 50,000 = 0. La TIR es 10%.",
+              en: "You invest $100,000 and receive $55,000 in year 1 and $60,500 in year 2. Try 10%: 55,000 ÷ 1.10 = 50,000; 60,500 ÷ 1.21 = 50,000; NPV = −100,000 + 50,000 + 50,000 = 0. The IRR is 10%.",
+            },
+            interpret: {
+              es: "TIR mayor que el costo de capital: aceptar. TIR menor: rechazar.",
+              en: "IRR above the cost of capital: accept. IRR below: reject.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cómo se calcula", en: "How to compute it" },
@@ -445,7 +705,60 @@ export const lessons: Lesson[] = [
             en: "By hand, you can estimate it with **linear interpolation** between a rate with positive NPV and another with negative NPV. The result is an approximation: the closer the two rates, the better.",
           },
         ],
-        formula: "TIR ≈ r₁ + (r₂ − r₁) × VPN₁ ÷ (VPN₁ − VPN₂)",
+        formulas: [
+          {
+            name: { es: "TIR con un solo flujo futuro", en: "IRR with a single future flow" },
+            expression: "TIR = (Flujo final ÷ Inversión)^(1/n) − 1",
+            variables: [
+              { symbol: "Flujo final", meaning: { es: "Dinero que recibes una sola vez al final (pesos).", en: "Money you receive once at the end (pesos)." } },
+              { symbol: "Inversión", meaning: { es: "Dinero que pones hoy (pesos).", en: "Money you put in today (pesos)." } },
+              { symbol: "n", meaning: { es: "Años que pasan entre la inversión y el cobro (años).", en: "Years between the investment and the payoff (years)." } },
+              { symbol: "^(1/n)", meaning: { es: "Sacar raíz n: con n = 1 no cambia nada; con n = 2 es raíz cuadrada.", en: "Take the n-th root: with n = 1 nothing changes; with n = 2 it is the square root." } },
+            ],
+            steps: [
+              { es: "Divide el flujo final entre la inversión.", en: "Divide the final flow by the investment." },
+              { es: "Saca la raíz n de ese resultado (si n = 1, déjalo igual).", en: "Take the n-th root of that result (if n = 1, leave it as is)." },
+              { es: "Réstale 1 y multiplica por 100 para tenerlo en porcentaje.", en: "Subtract 1 and multiply by 100 to get a percentage." },
+            ],
+            example: {
+              es: "A un año: inviertes $20,000 y recibes $23,000. 23,000 ÷ 20,000 = 1.15; 1.15 − 1 = 0.15 = 15%. A dos años: inviertes $50,000 y recibes $72,000. 72,000 ÷ 50,000 = 1.44; √1.44 = 1.20; 1.20 − 1 = 0.20 = 20% anual.",
+              en: "One year: you invest $20,000 and receive $23,000. 23,000 ÷ 20,000 = 1.15; 1.15 − 1 = 0.15 = 15%. Two years: you invest $50,000 and receive $72,000. 72,000 ÷ 50,000 = 1.44; √1.44 = 1.20; 1.20 − 1 = 0.20 = 20% a year.",
+            },
+            mistake: {
+              es: "Con varios años, olvidar sacar la raíz: 44% sería el rendimiento de los dos años juntos, no el anual. Y medir la ganancia sobre lo recibido en vez de sobre lo invertido.",
+              en: "With several years, forgetting to take the root: 44% would be the return over both years together, not per year. And measuring the gain over what you receive instead of over what you invested.",
+            },
+          },
+          {
+            name: { es: "TIR aproximada por interpolación lineal", en: "IRR approximated by linear interpolation" },
+            expression: "TIR ≈ r₁ + (r₂ − r₁) × VPN₁ ÷ (VPN₁ − VPN₂)",
+            variables: [
+              { symbol: "r₁", meaning: { es: "Tasa más baja que probaste, con VPN positivo (%).", en: "Lower rate you tried, with a positive NPV (%)." } },
+              { symbol: "r₂", meaning: { es: "Tasa más alta que probaste, con VPN negativo (%).", en: "Higher rate you tried, with a negative NPV (%)." } },
+              { symbol: "VPN₁", meaning: { es: "VPN calculado con r₁ (pesos, positivo).", en: "NPV computed at r₁ (pesos, positive)." } },
+              { symbol: "VPN₂", meaning: { es: "VPN calculado con r₂ (pesos, negativo).", en: "NPV computed at r₂ (pesos, negative)." } },
+              { symbol: "≈", meaning: { es: "Aproximadamente igual: el resultado es una estimación.", en: "Approximately equal: the result is an estimate." } },
+            ],
+            steps: [
+              { es: "Calcula el VPN con una tasa r₁ y comprueba que sale positivo.", en: "Compute NPV at a rate r₁ and check that it is positive." },
+              { es: "Calcula el VPN con una tasa mayor r₂ y comprueba que sale negativo.", en: "Compute NPV at a higher rate r₂ and check that it is negative." },
+              { es: "Denominador: VPN₁ − VPN₂. Como VPN₂ es negativo, restar un negativo es sumar: es la distancia total entre ambos.", en: "Denominator: NPV₁ − NPV₂. Since NPV₂ is negative, subtracting a negative means adding: it is the total distance between them." },
+              { es: "Divide VPN₁ entre esa distancia, multiplica por (r₂ − r₁) y súmalo a r₁.", en: "Divide NPV₁ by that distance, multiply by (r₂ − r₁) and add it to r₁." },
+            ],
+            example: {
+              es: "Inviertes $50,000 y recibes $32,000 al final de cada uno de 2 años. Paso 1 (15%): 32,000 ÷ 1.15 + 32,000 ÷ 1.3225 − 50,000 = 27,826.09 + 24,196.60 − 50,000 = $2,022.69. Paso 2 (20%): 26,666.67 + 22,222.22 − 50,000 = −$1,111.11. Paso 3: 2,022.69 − (−1,111.11) = 3,133.80. Paso 4: 2,022.69 ÷ 3,133.80 = 0.6454; 5% × 0.6454 = 3.23%; TIR ≈ 15% + 3.23% = 18.23% (la exacta es 18.16%).",
+              en: "You invest $50,000 and receive $32,000 at the end of each of 2 years. Step 1 (15%): 32,000 ÷ 1.15 + 32,000 ÷ 1.3225 − 50,000 = 27,826.09 + 24,196.60 − 50,000 = $2,022.69. Step 2 (20%): 26,666.67 + 22,222.22 − 50,000 = −$1,111.11. Step 3: 2,022.69 − (−1,111.11) = 3,133.80. Step 4: 2,022.69 ÷ 3,133.80 = 0.6454; 5% × 0.6454 = 3.23%; IRR ≈ 15% + 3.23% = 18.23% (the exact one is 18.16%).",
+            },
+            interpret: {
+              es: "La TIR siempre queda entre r₁ y r₂. Entre más cercanas las dos tasas, más exacta la estimación.",
+              en: "The IRR always lies between r₁ and r₂. The closer the two rates, the more accurate the estimate.",
+            },
+            mistake: {
+              es: "Sumar los dos VPN con sus signos en el denominador (2,022.69 − 1,111.11). Se usa la distancia total entre ellos.",
+              en: "Adding the two NPVs with their signs in the denominator (2,022.69 − 1,111.11). Use the total distance between them.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Trampas de la TIR", en: "IRR pitfalls" },
@@ -524,7 +837,7 @@ export const lessons: Lesson[] = [
       es: "El WACC es el costo promedio de todo el dinero que usa la empresa, mezclando lo que cuesta la deuda después de impuestos y lo que exigen los accionistas, según cuánto pesa cada fuente.",
       en: "WACC is the average cost of all the money the company uses, blending the after-tax cost of debt and what shareholders require, according to how much each source weighs.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar qué es el costo de capital y por qué se pondera.", en: "Explain what the cost of capital is and why it is weighted." },
       { es: "Calcular el costo de la deuda después de impuestos.", en: "Compute the after-tax cost of debt." },
@@ -557,15 +870,65 @@ export const lessons: Lesson[] = [
             en: "**Cost of debt (kd).** It is the rate the creditor charges. Since interest is generally **tax deductible**, the real cost to the company is lower: kd × (1 − t). Mini example: a loan at 10% with a 30% tax rate actually costs 10% × 0.70 = 7%.",
           },
           {
-            es: "**Costo del capital propio (ke).** Lo que esperan los accionistas no está escrito en ningún contrato, así que se estima. El método más usado es el **CAPM**: una tasa libre de riesgo (rf, como la de un bono del gobierno) más una prima por riesgo. La **beta (β)** mide qué tanto se mueve la acción frente al mercado: β = 1 se mueve igual, β mayor a 1 es más volátil.",
-            en: "**Cost of equity (ke).** What shareholders expect is not written in any contract, so it is estimated. The most used method is **CAPM**: a risk-free rate (rf, like a government bond yield) plus a risk premium. **Beta (β)** measures how much the stock moves relative to the market: β = 1 moves the same, β above 1 is more volatile.",
+            es: "**Costo del capital propio (ke).** Lo que esperan los accionistas no está escrito en ningún contrato, así que se estima. El método más usado es el **CAPM**: una tasa libre de riesgo (rf, lo que paga una inversión casi segura, como un bono del gobierno) más una **prima por riesgo**: lo extra que paga el mercado de acciones sobre esa tasa (rm − rf, donde rm es el rendimiento esperado del mercado). La **beta (β)** mide qué tanto se mueve la acción frente al mercado: β = 1 se mueve igual, β mayor a 1 es más volátil.",
+            en: "**Cost of equity (ke).** What shareholders expect is not written in any contract, so it is estimated. The most used method is **CAPM**: a risk-free rate (rf, what an almost safe investment pays, such as a government bond) plus a **risk premium**: the extra the stock market pays over that rate (rm − rf, where rm is the expected market return). **Beta (β)** measures how much the stock moves relative to the market: β = 1 moves the same, β above 1 is more volatile.",
           },
           {
             es: "El capital propio **cuesta más que la deuda**: el accionista cobra al último (después de los acreedores) y sus dividendos no son deducibles. Mini ejemplo: rf = 8%, β = 1.2 y prima de mercado (rm − rf) = 6%: ke = 8% + 1.2 × 6% = 15.2%.",
             en: "Equity **costs more than debt**: shareholders get paid last (after creditors) and their dividends are not deductible. Mini example: rf = 8%, β = 1.2 and market premium (rm − rf) = 6%: ke = 8% + 1.2 × 6% = 15.2%.",
           },
         ],
-        formula: "kd después de impuestos = kd × (1 − t);  ke = rf + β × (rm − rf)",
+        formulas: [
+          {
+            name: { es: "Costo de la deuda después de impuestos", en: "After-tax cost of debt" },
+            expression: "kd después de impuestos = kd × (1 − t)",
+            variables: [
+              { symbol: "kd", meaning: { es: "Tasa de interés que cobra el acreedor, antes de impuestos (% anual).", en: "Interest rate the creditor charges, before taxes (% per year)." } },
+              { symbol: "t", meaning: { es: "Tasa de impuestos de la empresa, en decimal (30% = 0.30).", en: "Company tax rate, as a decimal (30% = 0.30)." } },
+              { symbol: "(1 − t)", meaning: { es: "La parte del interés que la empresa sí carga después del ahorro en impuestos.", en: "The part of the interest the company actually bears after the tax saving." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa de impuestos a decimal y réstala de 1: 1 − 0.30 = 0.70.", en: "Convert the tax rate to a decimal and subtract it from 1: 1 − 0.30 = 0.70." },
+              { es: "Multiplica la tasa de la deuda por ese resultado.", en: "Multiply the debt rate by that result." },
+            ],
+            example: {
+              es: "Un crédito al 9% con t = 30% (tasa de ejemplo). Paso 1: 1 − 0.30 = 0.70. Paso 2: 9% × 0.70 = 6.3%.",
+              en: "A loan at 9% with t = 30% (example rate). Step 1: 1 − 0.30 = 0.70. Step 2: 9% × 0.70 = 6.3%.",
+            },
+            mistake: {
+              es: "Restar los porcentajes (9% − 30%) o multiplicar por t (9% × 0.30 = 2.7%, que es solo el ahorro).",
+              en: "Subtracting the percentages (9% − 30%) or multiplying by t (9% × 0.30 = 2.7%, which is only the saving).",
+            },
+          },
+          {
+            name: { es: "Costo del capital propio con CAPM", en: "Cost of equity with CAPM" },
+            expression: "ke = rf + β × (rm − rf)",
+            variables: [
+              { symbol: "ke", meaning: { es: "Rendimiento que exigen los accionistas (% anual).", en: "Return shareholders require (% per year)." } },
+              { symbol: "rf", meaning: { es: "Tasa libre de riesgo: lo que paga una inversión casi segura, como un bono del gobierno (%).", en: "Risk-free rate: what an almost safe investment pays, such as a government bond (%)." } },
+              { symbol: "rm", meaning: { es: "Rendimiento esperado del mercado de acciones en general (%).", en: "Expected return of the stock market as a whole (%)." } },
+              { symbol: "(rm − rf)", meaning: { es: "Prima de riesgo de mercado: lo extra que paga el mercado por arriesgarse (%).", en: "Market risk premium: the extra the market pays for taking risk (%)." } },
+              { symbol: "β", meaning: { es: "Beta: qué tanto se mueve la acción frente al mercado (1 = igual; más de 1 = más volátil; menos de 1 = menos volátil). No tiene unidades.", en: "Beta: how much the stock moves relative to the market (1 = the same; above 1 = more volatile; below 1 = less volatile). It has no units." } },
+            ],
+            steps: [
+              { es: "Si te dan rm, calcula la prima: rm − rf. Si te dan la prima directamente, úsala tal cual.", en: "If you are given rm, compute the premium: rm − rf. If you are given the premium directly, use it as is." },
+              { es: "Multiplica la beta por la prima.", en: "Multiply beta by the premium." },
+              { es: "Súmale la tasa libre de riesgo.", en: "Add the risk-free rate." },
+            ],
+            example: {
+              es: "Datos de ejemplo: rf = 6%, rm = 11%, β = 1.5. Paso 1: 11% − 6% = 5%. Paso 2: 1.5 × 5% = 7.5%. Paso 3: ke = 6% + 7.5% = 13.5%.",
+              en: "Example data: rf = 6%, rm = 11%, β = 1.5. Step 1: 11% − 6% = 5%. Step 2: 1.5 × 5% = 7.5%. Step 3: ke = 6% + 7.5% = 13.5%.",
+            },
+            interpret: {
+              es: "A mayor beta, mayor riesgo y mayor ke. El capital propio suele costar más que la deuda.",
+              en: "The higher the beta, the higher the risk and the higher ke. Equity usually costs more than debt.",
+            },
+            mistake: {
+              es: "Multiplicar la beta por todo rm en lugar de solo por la prima (rm − rf).",
+              en: "Multiplying beta by the whole rm instead of only by the premium (rm − rf).",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Juntar todo: el WACC", en: "Putting it together: WACC" },
@@ -583,7 +946,59 @@ export const lessons: Lesson[] = [
             en: "Mini example: with 40% debt at 7% after taxes and 60% equity at 15.2%: WACC = 0.40 × 7% + 0.60 × 15.2% = 2.8% + 9.12% = 11.92%.",
           },
         ],
-        formula: "WACC = D/(D+E) × kd × (1 − t) + E/(D+E) × ke",
+        formulas: [
+          {
+            name: { es: "Peso de cada fuente", en: "Weight of each source" },
+            expression: "Peso de la deuda = D ÷ (D + E);  Peso del capital = E ÷ (D + E)",
+            variables: [
+              { symbol: "D", meaning: { es: "Deuda a valor de mercado (pesos).", en: "Debt at market value (pesos)." } },
+              { symbol: "E", meaning: { es: "Capital propio a valor de mercado (pesos).", en: "Equity at market value (pesos)." } },
+              { symbol: "D + E", meaning: { es: "Todo el dinero con que se financia la empresa (pesos).", en: "All the money financing the company (pesos)." } },
+            ],
+            steps: [
+              { es: "Suma deuda y capital: D + E.", en: "Add debt and equity: D + E." },
+              { es: "Divide la deuda entre ese total y multiplica por 100.", en: "Divide debt by that total and multiply by 100." },
+              { es: "Haz lo mismo con el capital. Los dos pesos deben sumar 100%.", en: "Do the same with equity. The two weights must add up to 100%." },
+            ],
+            example: {
+              es: "Deuda $1,500,000 y capital $3,500,000. Paso 1: 1,500,000 + 3,500,000 = $5,000,000. Paso 2: 1,500,000 ÷ 5,000,000 = 0.30 = 30%. Paso 3: 3,500,000 ÷ 5,000,000 = 0.70 = 70%; 30% + 70% = 100%.",
+              en: "Debt $1,500,000 and equity $3,500,000. Step 1: 1,500,000 + 3,500,000 = $5,000,000. Step 2: 1,500,000 ÷ 5,000,000 = 0.30 = 30%. Step 3: 3,500,000 ÷ 5,000,000 = 0.70 = 70%; 30% + 70% = 100%.",
+            },
+            mistake: {
+              es: "Usar D ÷ E como peso. El peso se mide contra el total, D + E.",
+              en: "Using D ÷ E as the weight. The weight is measured against the total, D + E.",
+            },
+          },
+          {
+            name: { es: "Costo promedio ponderado de capital (WACC)", en: "Weighted average cost of capital (WACC)" },
+            expression: "WACC = D/(D+E) × kd × (1 − t) + E/(D+E) × ke",
+            variables: [
+              { symbol: "WACC", meaning: { es: "Costo promedio de todo el dinero de la empresa (% anual).", en: "Average cost of all the company's money (% per year)." } },
+              { symbol: "D/(D+E)", meaning: { es: "Peso de la deuda (%).", en: "Weight of debt (%)." } },
+              { symbol: "kd × (1 − t)", meaning: { es: "Costo de la deuda después de impuestos (%).", en: "After-tax cost of debt (%)." } },
+              { symbol: "E/(D+E)", meaning: { es: "Peso del capital propio (%).", en: "Weight of equity (%)." } },
+              { symbol: "ke", meaning: { es: "Costo del capital propio, lo que exigen los accionistas (%).", en: "Cost of equity, what shareholders require (%)." } },
+            ],
+            steps: [
+              { es: "Calcula los pesos de deuda y capital.", en: "Compute the weights of debt and equity." },
+              { es: "Calcula el costo de la deuda después de impuestos: kd × (1 − t).", en: "Compute the after-tax cost of debt: kd × (1 − t)." },
+              { es: "Multiplica cada costo por su peso.", en: "Multiply each cost by its weight." },
+              { es: "Suma los dos resultados.", en: "Add the two results." },
+            ],
+            example: {
+              es: "Con los datos anteriores: deuda 30% a 9% antes de impuestos (t = 30%, tasa de ejemplo) y capital 70% a ke = 13.5%. Paso 2: 9% × 0.70 = 6.3%. Paso 3: 0.30 × 6.3% = 1.89%; 0.70 × 13.5% = 9.45%. Paso 4: WACC = 1.89% + 9.45% = 11.34%.",
+              en: "With the data above: debt 30% at 9% before taxes (t = 30%, example rate) and equity 70% at ke = 13.5%. Step 2: 9% × 0.70 = 6.3%. Step 3: 0.30 × 6.3% = 1.89%; 0.70 × 13.5% = 9.45%. Step 4: WACC = 1.89% + 9.45% = 11.34%.",
+            },
+            interpret: {
+              es: "Es la tasa mínima que debe rendir un proyecto de riesgo promedio. Si rinde menos, no alcanza a pagar a quienes lo financian.",
+              en: "It is the minimum rate an average-risk project must earn. If it earns less, it does not cover those who finance it.",
+            },
+            mistake: {
+              es: "Aplicar el (1 − t) también al costo del capital propio. Solo la deuda tiene ahorro de impuestos.",
+              en: "Applying (1 − t) to the cost of equity too. Only debt has a tax saving.",
+            },
+          },
+        ],
         bullets: [
           { es: "Usa pesos a valor de mercado.", en: "Use market-value weights." },
           { es: "La deuda entra después de impuestos.", en: "Debt enters after taxes." },
@@ -647,7 +1062,7 @@ export const lessons: Lesson[] = [
       es: "La estructura de capital es la mezcla de deuda y capital propio con la que se financia la empresa; la deuda puede multiplicar el rendimiento de los dueños, pero también su riesgo.",
       en: "Capital structure is the mix of debt and equity used to finance the company; debt can multiply the owners' return, but also their risk.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Clasificar las fuentes de financiamiento en deuda y capital, internas y externas.", en: "Classify financing sources into debt and equity, internal and external." },
       { es: "Calcular el efecto del apalancamiento financiero en el rendimiento sobre el capital (ROE).", en: "Compute the effect of financial leverage on return on equity (ROE)." },
@@ -693,7 +1108,77 @@ export const lessons: Lesson[] = [
             en: "Bad-year mini example: assets of $1,000,000 and operating profit of only $60,000 (t = 30%). Without debt: net income $42,000, ROE 4.2%. With $500,000 of debt at 10%: interest $50,000, net income $7,000 on $500,000 of equity, ROE 1.4%. Debt amplifies in both directions.",
           },
         ],
-        formula: "ROE = Utilidad neta ÷ Capital propio;  Escudo fiscal = Intereses × t",
+        formulas: [
+          {
+            name: { es: "Utilidad neta (con o sin deuda)", en: "Net income (with or without debt)" },
+            expression: "Utilidad neta = (Utilidad de operación − Intereses) × (1 − t)",
+            variables: [
+              { symbol: "Utilidad neta", meaning: { es: "Lo que les queda a los dueños después de intereses e impuestos (pesos).", en: "What is left for the owners after interest and taxes (pesos)." } },
+              { symbol: "Utilidad de operación", meaning: { es: "Lo que ganan los activos con el negocio, antes de intereses e impuestos (pesos).", en: "What the assets earn from the business, before interest and taxes (pesos)." } },
+              { symbol: "Intereses", meaning: { es: "Deuda × tasa de interés; si no hay deuda, valen cero (pesos).", en: "Debt × interest rate; with no debt they are zero (pesos)." } },
+              { symbol: "Utilidad de operación − Intereses", meaning: { es: "Utilidad antes de impuestos, UAI (pesos).", en: "Pre-tax income (pesos)." } },
+              { symbol: "t", meaning: { es: "Tasa de impuestos, en decimal (30% = 0.30).", en: "Tax rate, as a decimal (30% = 0.30)." } },
+            ],
+            steps: [
+              { es: "Intereses = Deuda × tasa de interés.", en: "Interest = Debt × interest rate." },
+              { es: "Utilidad antes de impuestos = Utilidad de operación − Intereses.", en: "Pre-tax income = Operating profit − Interest." },
+              { es: "Impuestos = Utilidad antes de impuestos × t.", en: "Taxes = Pre-tax income × t." },
+              { es: "Utilidad neta = Utilidad antes de impuestos − Impuestos.", en: "Net income = Pre-tax income − Taxes." },
+            ],
+            example: {
+              es: "Utilidad de operación $240,000, deuda $500,000 al 8%, t = 30% (ilustrativa). Paso 1: 500,000 × 0.08 = $40,000. Paso 2: 240,000 − 40,000 = $200,000. Paso 3: 200,000 × 0.30 = $60,000. Paso 4: 200,000 − 60,000 = $140,000. Sin deuda: 240,000 × 0.70 = $168,000.",
+              en: "Operating profit $240,000, debt $500,000 at 8%, t = 30% (illustrative). Step 1: 500,000 × 0.08 = $40,000. Step 2: 240,000 − 40,000 = $200,000. Step 3: 200,000 × 0.30 = $60,000. Step 4: 200,000 − 60,000 = $140,000. Without debt: 240,000 × 0.70 = $168,000.",
+            },
+          },
+          {
+            name: { es: "Rendimiento sobre el capital (ROE)", en: "Return on equity (ROE)" },
+            expression: "ROE = Utilidad neta ÷ Capital propio × 100",
+            variables: [
+              { symbol: "ROE", meaning: { es: "Cuánto ganan los dueños por cada peso que pusieron (%).", en: "How much the owners earn per peso they put in (%)." } },
+              { symbol: "Utilidad neta", meaning: { es: "Ganancia después de intereses e impuestos (pesos).", en: "Profit after interest and taxes (pesos)." } },
+              { symbol: "Capital propio", meaning: { es: "Dinero de los dueños: activos − deuda; sin deuda es igual a los activos (pesos).", en: "Owners' money: assets − debt; with no debt it equals the assets (pesos)." } },
+            ],
+            steps: [
+              { es: "Calcula la utilidad neta (con o sin intereses, según el caso).", en: "Compute net income (with or without interest, as the case may be)." },
+              { es: "Calcula el capital propio: activos − deuda.", en: "Compute equity: assets − debt." },
+              { es: "Divide la utilidad neta entre el capital propio y multiplica por 100.", en: "Divide net income by equity and multiply by 100." },
+            ],
+            example: {
+              es: "Activos $1,500,000. Sin deuda: 168,000 ÷ 1,500,000 = 0.112 = 11.2%. Con $500,000 de deuda: capital = 1,500,000 − 500,000 = $1,000,000; ROE = 140,000 ÷ 1,000,000 = 0.14 = 14%.",
+              en: "Assets $1,500,000. Without debt: 168,000 ÷ 1,500,000 = 0.112 = 11.2%. With $500,000 of debt: equity = 1,500,000 − 500,000 = $1,000,000; ROE = 140,000 ÷ 1,000,000 = 0.14 = 14%.",
+            },
+            interpret: {
+              es: "Si el ROE con deuda es mayor que sin deuda, el apalancamiento ayudó; en un año malo puede pasar lo contrario.",
+              en: "If ROE with debt is higher than without debt, leverage helped; in a bad year the opposite can happen.",
+            },
+            mistake: {
+              es: "Dividir la utilidad entre los activos totales en lugar de entre el capital de los dueños.",
+              en: "Dividing profit by total assets instead of by the owners' equity.",
+            },
+          },
+          {
+            name: { es: "Escudo fiscal de los intereses", en: "Interest tax shield" },
+            expression: "Escudo fiscal = Intereses × t",
+            variables: [
+              { symbol: "Escudo fiscal", meaning: { es: "Impuestos que dejas de pagar porque los intereses se deducen (pesos por año).", en: "Taxes you stop paying because interest is deducted (pesos per year)." } },
+              { symbol: "Intereses", meaning: { es: "Intereses deducibles pagados en el año (pesos).", en: "Deductible interest paid in the year (pesos)." } },
+              { symbol: "t", meaning: { es: "Tasa de impuestos, en decimal (%).", en: "Tax rate, as a decimal (%)." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa de impuestos a decimal: 30% = 0.30.", en: "Convert the tax rate to a decimal: 30% = 0.30." },
+              { es: "Multiplica los intereses por esa tasa: ese es el ahorro.", en: "Multiply the interest by that rate: that is the saving." },
+              { es: "Si quieres el costo neto: intereses − escudo fiscal.", en: "If you want the net cost: interest − tax shield." },
+            ],
+            example: {
+              es: "Intereses de $90,000 con t = 30% (ilustrativa). Paso 2: 90,000 × 0.30 = $27,000 de ahorro. Paso 3: 90,000 − 27,000 = $63,000 de costo neto.",
+              en: "Interest of $90,000 with t = 30% (illustrative). Step 2: 90,000 × 0.30 = $27,000 saved. Step 3: 90,000 − 27,000 = $63,000 net cost.",
+            },
+            mistake: {
+              es: "Confundir el escudo fiscal (el ahorro) con el costo neto de los intereses. Además, sin utilidades no hay impuestos que reducir.",
+              en: "Confusing the tax shield (the saving) with the net interest cost. Also, without profits there are no taxes to reduce.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "¿Existe una mezcla ideal?", en: "Is there an ideal mix?" },
