@@ -45,19 +45,19 @@ export const CONCEPTS: Concept[] = [
   C('equation', ['ecuacion contable', 'ecuación contable', 'accounting equation', 'activo pasivo capital'], { es: 'Ecuación contable', en: 'Accounting equation' }, {
     es: 'Todo lo que la empresa controla (activo) se financió con recursos de terceros (pasivo) o de los dueños (capital contable). Cada operación mantiene la igualdad.',
     en: 'Everything the entity controls (assets) was financed by third parties (liabilities) or owners (equity). Every transaction keeps the equality.',
-  }, 'Activo = Pasivo + Capital contable', 'L1-03'),
+  }, 'Activo = Pasivo + Capital contable', 'L1-06'),
   C('debit-credit', ['cargo', 'abono', 'debit', 'credit', 'naturaleza', 'deudora', 'acreedora', 'normal balance'], { es: 'Cargos y abonos', en: 'Debits and credits' }, {
     es: 'Cargar es anotar en el lado izquierdo (debe) y abonar en el derecho (haber). Activos y gastos aumentan con cargos; pasivos, capital e ingresos aumentan con abonos.',
     en: 'A debit is the left side, a credit the right side. Assets and expenses increase with debits; liabilities, equity and revenue increase with credits.',
-  }, undefined, 'L1-04'),
+  }, undefined, 'L1-09'),
   C('double-entry', ['partida doble', 'double entry', 'double-entry', 'poliza', 'póliza', 'asiento', 'journal entry'], { es: 'Partida doble', en: 'Double entry' }, {
     es: 'Toda operación afecta al menos dos cuentas y la suma de cargos es igual a la de abonos. Pero cuadrar no basta: las cuentas y su naturaleza deben ser las correctas.',
     en: 'Every transaction affects at least two accounts and total debits equal total credits. Balancing is not enough: the accounts and sides must be right.',
-  }, 'Σ cargos = Σ abonos', 'L1-05'),
+  }, 'Σ cargos = Σ abonos', 'L1-10'),
   C('trial-balance', ['balanza', 'trial balance', 'libro mayor', 'ledger', 'cuentas t', 't-account', 'cuenta t'], { es: 'Mayor y balanza de comprobación', en: 'Ledger and trial balance' }, {
     es: 'El libro mayor agrupa los movimientos por cuenta (cuentas T). La balanza lista los saldos y comprueba que los cargos totales igualen a los abonos; no detecta errores de clasificación ni omisiones completas.',
     en: 'The ledger groups postings by account (T-accounts). The trial balance lists balances and checks total debits equal total credits; it cannot detect misclassifications or fully omitted entries.',
-  }, undefined, 'L1-06'),
+  }, undefined, 'L1-12'),
   C('statements', ['estado de resultados', 'income statement', 'balance general', 'situacion financiera', 'situación financiera', 'balance sheet'], { es: 'Estados financieros básicos', en: 'Basic financial statements' }, {
     es: 'El estado de situación financiera muestra activos, pasivos y capital a una fecha; el estado de resultados muestra ingresos, costos y gastos de un periodo.',
     en: 'The statement of financial position shows assets, liabilities and equity at a date; the income statement shows revenue, costs and expenses for a period.',

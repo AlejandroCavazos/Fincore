@@ -1,6 +1,6 @@
 import { ArrowLeft, BookOpen, Check, Lightbulb, Lock, Play, Scale, Store, Target, X } from 'lucide-react'
-import { areaOfLevel, BUSINESS_PER_TOPIC } from '../content/areas'
-import { exercisesOfLesson, getLesson, lessonsOfLevel } from '../content'
+import { areaOfLesson, BUSINESS_PER_TOPIC } from '../content/areas'
+import { exercisesOfLesson, getLesson } from '../content'
 import { ExerciseRunner } from '../components/ExerciseRunner'
 import { Button, Card, cx, Notice, ProgressBar, Rich } from '../components/ui'
 import { markSubtopic } from '../lib/progress'
@@ -38,7 +38,7 @@ export default function LessonPage({ lessonId, tab, sub }: { lessonId: string; t
 
 function AreaLink({ lesson }: { lesson: Lesson }) {
   const { t } = useI18n()
-  const area = areaOfLevel(lesson.level)
+  const area = areaOfLesson(lesson.id)
   return (
     <a href={`#/area/${area.id}`} className="inline-flex items-center gap-1 text-sm font-semibold text-electric-600 dark:text-electric-300">
       <ArrowLeft className="h-4 w-4" /> {t(area.title)}
@@ -57,7 +57,7 @@ function Locked({ lesson }: { lesson: Lesson }) {
         <div>
           <p className="font-semibold text-navy-900 dark:text-white">{tx('Tema bloqueado', 'Topic locked')}</p>
           <p className="text-sm text-navy-500 dark:text-navy-300">
-            {tx('Domina el tema anterior de este nivel, o activa el modo libre en Configuración.', 'Master the previous topic in this level, or turn on free mode in Settings.')}
+            {tx('Domina el tema anterior de esta unidad, o activa el modo libre en Configuración.', 'Master the previous topic in this unit, or turn on free mode in Settings.')}
           </p>
           <a href="#/settings" className="mt-2 inline-block text-sm font-semibold text-electric-600">
             {tx('Ir a Configuración', 'Go to Settings')}
@@ -76,8 +76,8 @@ function Overview({ lesson, tx }: { lesson: Lesson; tx: (es: string, en: string)
   const states = subtopicStates(state, lesson)
   const done = states.filter((s) => s === 'done').length
   const free = state.settings.freeMode
-  const area = areaOfLevel(lesson.level)
-  const pos = lessonsOfLevel(lesson.level).findIndex((l) => l.id === lesson.id) + 1
+  const area = areaOfLesson(lesson.id)
+  const pos = lesson.topicIds[0]
   const items = [...lesson.theory.map((sec) => t(sec.heading)), tx('Reto del tema', 'Topic challenge')]
 
   return (
@@ -204,7 +204,7 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
   const { t, tx } = useI18n()
   const sec = lesson.theory[index]
   const last = index === lesson.theory.length - 1
-  const pos = lessonsOfLevel(lesson.level).findIndex((l) => l.id === lesson.id) + 1
+  const pos = lesson.topicIds[0]
   const finish = () => {
     update((s) => markSubtopic(s, lesson.id, index))
     navigate(last ? `/lesson/${lesson.id}?tab=practice` : `/lesson/${lesson.id}?s=${index + 1}`)
@@ -265,10 +265,10 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
 function Reto({ lesson }: { lesson: Lesson }) {
   const { state } = useStore()
   const { t, tx } = useI18n()
-  const area = areaOfLevel(lesson.level)
+  const area = areaOfLesson(lesson.id)
   const exercises = exercisesOfLesson(lesson)
-  const siblings = lessonsOfLevel(lesson.level)
-  const next = siblings[siblings.findIndex((l) => l.id === lesson.id) + 1]
+  const order = area.sections.flatMap((x) => x.lessonIds)
+  const next = getLesson(order[order.indexOf(lesson.id) + 1] ?? '')
   const mastered = isLessonCompleted(state, lesson.id)
   const theoryLeft = !state.settings.freeMode && !mastered && nextSubtopic(state, lesson) < lesson.theory.length
 
