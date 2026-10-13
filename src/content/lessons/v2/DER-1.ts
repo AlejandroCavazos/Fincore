@@ -43,7 +43,7 @@ export const lessons: Lesson[] = [
       "El derecho empresarial reúne las normas obligatorias que tocan a un negocio, desde quién es la persona que lo opera hasta sus impuestos, trabajadores y clientes, y conocerlas evita multas, juicios y pérdidas.",
       "Business law brings together the binding rules that affect a business, from who the person running it is to its taxes, workers and customers, and knowing them avoids fines, lawsuits and losses.",
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Explicar qué es una norma jurídica y en qué se distingue de una regla moral o de cortesía.", "Explain what a legal rule is and how it differs from a moral rule or a rule of courtesy."),
       t("Ubicar las ramas del derecho (público, privado y social) que afectan la vida de una empresa.", "Locate the branches of law (public, private and social) that affect a company's life."),
@@ -130,6 +130,30 @@ export const lessons: Lesson[] = [
           t("Patrimonio: conjunto de bienes, derechos y obligaciones de una persona.", "Estate: set of property, rights and obligations of a person."),
           t("Patrimonio separado: protege al socio de las deudas del negocio (con excepciones).", "Separate estate: shields the partner from the business's debts (with exceptions)."),
         ],
+        formulas: [
+          {
+            name: t("Faltante que puede cobrarse al dueño persona física", "Shortfall that can be collected from an individual owner"),
+            expression: "Faltante = Deudas del negocio − Valor de los bienes del negocio",
+            variables: [
+              { symbol: "Faltante", meaning: t("Lo que queda sin pagar después de vender los bienes del negocio, en pesos.", "What remains unpaid after selling the business's assets, in pesos.") },
+              { symbol: "Deudas del negocio", meaning: t("Todo lo que el negocio debe (a proveedores, bancos, etc.), en pesos.", "Everything the business owes (to suppliers, banks, etc.), in pesos.") },
+              { symbol: "Valor de los bienes del negocio", meaning: t("Lo que se obtiene al vender lo que tiene el negocio (mercancía, herramienta, equipo), en pesos.", "What is obtained by selling what the business has (inventory, tools, equipment), in pesos.") },
+            ],
+            steps: [
+              t("Suma todo lo que debe el negocio.", "Add up everything the business owes."),
+              t("Resta lo que se obtiene por los bienes del negocio.", "Subtract what is obtained for the business's assets."),
+              t("Revisa quién es el dueño legal: si es persona física, el faltante puede cobrarse de su patrimonio personal; si es una sociedad de responsabilidad limitada, en principio no.", "Check who the legal owner is: if it is an individual, the shortfall can be collected from their personal estate; if it is a limited-liability company, in principle it cannot."),
+            ],
+            example: t(
+              "Una estética de persona física debe $120,000 y sus bienes se venden en $45,000. Faltante: 120,000 − 45,000 = **$75,000**, que el acreedor puede cobrar de los ahorros o bienes personales de la dueña.",
+              "A hair salon run by an individual owes $120,000 and its assets sell for $45,000. Shortfall: 120,000 − 45,000 = **$75,000**, which the creditor can collect from the owner's personal savings or property.",
+            ),
+            mistake: t(
+              "Pensar que la persona física solo arriesga lo que está en el negocio. Eso aplica (en principio) a los socios de una S.A., no a quien opera como persona física.",
+              "Thinking an individual only risks what is in the business. That applies (in principle) to partners in an S.A., not to someone operating as an individual.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -189,7 +213,7 @@ export const lessons: Lesson[] = [
       "En México las normas forman una pirámide con la Constitución en la cima, se crean en los tres niveles de gobierno y nacen de fuentes como la ley y la jurisprudencia; saber dónde está cada regla te dice cuál pesa más.",
       "In Mexico, rules form a pyramid with the Constitution at the top, are created at the three levels of government and come from sources such as statutes and case law; knowing where each rule sits tells you which one carries more weight.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Ordenar las normas mexicanas en la pirámide jurídica, de la Constitución a los contratos.", "Rank Mexican rules in the legal pyramid, from the Constitution to contracts."),
       t("Distinguir qué regula la Federación, qué los estados y qué los municipios.", "Distinguish what the Federation, the states and the municipalities regulate."),
@@ -265,7 +289,33 @@ export const lessons: Lesson[] = [
             "Mini example: an accountant hears about a change in a law on social media. Before applying it, they look it up in the DOF and check the transitional articles to know from what date it counts.",
           ),
         ],
-        formula: 'Iniciativa → Discusión y aprobación (ambas Cámaras) → Promulgación → Publicación en el DOF → Entrada en vigor',
+        formulas: [
+          {
+            name: t("Ruta para crear una ley federal", "Route to create a federal law"),
+            expression: "Iniciativa → Discusión y aprobación (ambas Cámaras) → Promulgación → Publicación en el DOF → Entrada en vigor",
+            variables: [
+              { symbol: "Iniciativa", meaning: t("La propuesta de ley que presenta alguien con facultad para hacerlo (por ejemplo, el Presidente o un legislador).", "The bill submitted by someone with authority to do so (for example, the President or a legislator).") },
+              { symbol: "Discusión y aprobación (ambas Cámaras)", meaning: t("La Cámara de Diputados y el Senado la debaten y votan; debe aprobarse en las dos.", "The Chamber of Deputies and the Senate debate and vote on it; it must pass in both.") },
+              { symbol: "Promulgación", meaning: t("El Presidente (el Ejecutivo) la firma y ordena que se publique.", "The President (the Executive) signs it and orders its publication.") },
+              { symbol: "Publicación en el DOF", meaning: t("Se da a conocer en el Diario Oficial de la Federación, el periódico oficial del gobierno.", "It is made public in the Official Gazette of the Federation, the government's official newspaper.") },
+              { symbol: "Entrada en vigor", meaning: t("El día desde el que la ley empieza a aplicarse, según lo que ella misma diga en sus transitorios.", "The day from which the law starts to apply, according to what its own transitional articles say.") },
+            ],
+            steps: [
+              t("Se presenta la iniciativa.", "The bill is submitted."),
+              t("Se discute y se aprueba en las dos Cámaras.", "It is debated and approved in both Chambers."),
+              t("El Ejecutivo la promulga y se publica en el DOF.", "The Executive enacts it and it is published in the DOF."),
+              t("Lee los artículos transitorios para saber desde qué fecha se aplica.", "Read the transitional articles to know from what date it applies."),
+            ],
+            example: t(
+              "Una reforma hipotética se publica en el DOF el 10 de marzo y su transitorio dice que entra en vigor 30 días naturales después. Marzo tiene 31 días: del 10 al 31 de marzo van 21 días, y faltan 30 − 21 = 9. Entra en vigor el **9 de abril**. Entre el 10 de marzo y el 9 de abril corre la vacatio legis.",
+              "A hypothetical reform is published in the DOF on March 10 and its transitional article says it comes into force 30 calendar days later. March has 31 days: from March 10 to 31 there are 21 days, leaving 30 − 21 = 9. It comes into force on **April 9**. Between March 10 and April 9 the vacatio legis runs.",
+            ),
+            mistake: t(
+              "Creer que la Suprema Corte aprueba las leyes, o que una ley se aplica el mismo día que se publica. La Corte interpreta las leyes, y la fecha de aplicación la dicen los transitorios.",
+              "Believing the Supreme Court approves laws, or that a law applies the same day it is published. The Court interprets laws, and the transitional articles state the date it applies.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -324,7 +374,7 @@ export const lessons: Lesson[] = [
       "El derecho mercantil regula los actos de comercio, a los comerciantes y los títulos de crédito como el pagaré y el cheque, con reglas pensadas para que los negocios sean rápidos y seguros.",
       "Commercial law governs commercial acts, merchants and negotiable instruments such as promissory notes and checks, with rules designed to make business fast and secure.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Distinguir un acto de comercio de un acto civil y reconocer un acto mixto.", "Distinguish a commercial act from a civil act and recognize a mixed act."),
       t("Identificar quién es comerciante y cuáles son sus obligaciones básicas.", "Identify who is a merchant and what their basic obligations are."),
@@ -398,7 +448,37 @@ export const lessons: Lesson[] = [
             "Mini example: a furniture store sells a sofa set on credit and the customer signs a promissory note for $12,000. If the note says $12,000, that is what can be collected (plus the interest agreed in it), even if someone later claims \"another amount was discussed\".",
           ),
         ],
-        formula: 'Interés simple del pagaré = Capital × Tasa del periodo × Número de periodos',
+        formulas: [
+          {
+            name: t("Interés simple y total a pagar de un pagaré", "Simple interest and total due on a promissory note"),
+            expression: "Interés = Capital × Tasa del periodo × Número de periodos;  Total = Capital + Interés",
+            variables: [
+              { symbol: "Interés", meaning: t("Lo que se paga de más por usar el dinero prestado, en pesos.", "The extra paid for using the borrowed money, in pesos.") },
+              { symbol: "Capital", meaning: t("La cantidad original escrita en el pagaré, en pesos.", "The original amount written on the note, in pesos.") },
+              { symbol: "Tasa del periodo", meaning: t("El porcentaje de interés pactado por cada periodo (por ejemplo, 2% mensual), escrito en decimal.", "The agreed interest percentage per period (for example, 2% per month), written as a decimal.") },
+              { symbol: "Número de periodos", meaning: t("Cuántos periodos pasan hasta el vencimiento, en la misma unidad que la tasa (meses si la tasa es mensual).", "How many periods pass until maturity, in the same unit as the rate (months if the rate is monthly).") },
+              { symbol: "Total", meaning: t("Lo que se paga al vencimiento: capital más intereses, en pesos.", "What is paid at maturity: principal plus interest, in pesos.") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal: 1.5% = 0.015.", "Convert the rate to a decimal: 1.5% = 0.015."),
+              t("Revisa que la tasa y el plazo estén en la misma unidad (tasa mensual con meses).", "Check that the rate and the term are in the same unit (monthly rate with months)."),
+              t("Multiplica Capital × Tasa × Número de periodos para obtener el interés.", "Multiply Principal × Rate × Number of periods to get the interest."),
+              t("Suma el interés al capital para obtener el total a pagar.", "Add the interest to the principal to get the total due."),
+            ],
+            example: t(
+              "Un pagaré de $30,000 con interés simple de 1.5% mensual a 4 meses: tasa = 0.015. Interés: 30,000 × 0.015 × 4 = $1,800. Total: 30,000 + 1,800 = **$31,800**.",
+              "A $30,000 note with simple interest of 1.5% per month for 4 months: rate = 0.015. Interest: 30,000 × 0.015 × 4 = $1,800. Total: 30,000 + 1,800 = **$31,800**.",
+            ),
+            interpret: t(
+              "En el interés simple el interés de cada periodo es igual, porque siempre se calcula sobre el capital original.",
+              "With simple interest, each period's interest is the same, because it is always computed on the original principal.",
+            ),
+            mistake: t(
+              "Dar solo el interés cuando se pide el total, u olvidar multiplicar por el número de periodos.",
+              "Giving only the interest when the total is asked for, or forgetting to multiply by the number of periods.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -456,7 +536,7 @@ export const lessons: Lesson[] = [
       "Una sociedad mercantil es un negocio con personalidad propia formado por socios; la ley mexicana ofrece varios tipos y la gran diferencia entre ellos es hasta dónde responde cada socio por las deudas.",
       "A commercial company is a business with its own legal personality formed by partners; Mexican law offers several types, and the big difference between them is how far each partner is liable for the debts.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Enumerar los tipos de sociedad que reconoce la Ley General de Sociedades Mercantiles.", "List the company types recognized by the General Law of Commercial Companies."),
       t("Comparar la responsabilidad de los socios en la S.A., la S. de R.L., la S.A.S. y la sociedad en nombre colectivo.", "Compare partners' liability in the S.A., S. de R.L., S.A.S. and general partnership."),
@@ -510,7 +590,31 @@ export const lessons: Lesson[] = [
           t("S. de R.L.: limitada a las aportaciones; hasta 50 socios.", "S. de R.L.: limited to contributions; up to 50 partners."),
           t("S.A.S.: limitada; una o más personas físicas; tope de ingresos.", "S.A.S.: limited; one or more individuals; revenue cap."),
         ],
-        formula: 'Pérdida máxima del socio (responsabilidad limitada) = Valor de su aportación',
+        formulas: [
+          {
+            name: t("Pérdida máxima de un socio con responsabilidad limitada", "Maximum loss of a partner with limited liability"),
+            expression: "Pérdida máxima = Valor de su aportación = Número de acciones × Valor de cada acción",
+            variables: [
+              { symbol: "Pérdida máxima", meaning: t("Lo más que puede perder el socio si la sociedad quiebra, en pesos.", "The most the partner can lose if the company goes bankrupt, in pesos.") },
+              { symbol: "Valor de su aportación", meaning: t("Lo que el socio puso en la sociedad, en pesos.", "What the partner put into the company, in pesos.") },
+              { symbol: "Número de acciones", meaning: t("Cuántas acciones tiene el socio en una S.A.", "How many shares the partner holds in an S.A.") },
+              { symbol: "Valor de cada acción", meaning: t("Lo que vale cada acción según los estatutos, en pesos.", "What each share is worth under the bylaws, in pesos.") },
+            ],
+            steps: [
+              t("Confirma que la sociedad es de responsabilidad limitada (S.A., S. de R.L. o S.A.S.) y que el socio no firmó como aval.", "Confirm the company has limited liability (S.A., S. de R.L. or S.A.S.) and the partner did not sign as guarantor."),
+              t("Calcula su aportación: número de acciones × valor de cada acción.", "Compute the contribution: number of shares × value of each share."),
+              t("Esa aportación es su pérdida máxima; las deudas de la sociedad no cambian el resultado.", "That contribution is the maximum loss; the company's debts do not change the result."),
+            ],
+            example: t(
+              "Rosa tiene 80 acciones de $500 cada una en una S.A. que quiebra debiendo $1,500,000. Aportación: 80 × 500 = $40,000. Su pérdida máxima es **$40,000**, sin importar el tamaño de la deuda.",
+              "Rosa holds 80 shares of $500 each in an S.A. that goes bankrupt owing $1,500,000. Contribution: 80 × 500 = $40,000. Her maximum loss is **$40,000**, regardless of the size of the debt.",
+            ),
+            mistake: t(
+              "Repartir la deuda total entre los socios según su porcentaje, como si la responsabilidad fuera ilimitada.",
+              "Splitting the total debt among the partners by percentage, as if liability were unlimited.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Cómo se gobierna una S.A. y qué es el capital variable", "How an S.A. is governed and what variable capital is"),
@@ -596,7 +700,7 @@ export const lessons: Lesson[] = [
       "Formalizar un negocio implica elegir cómo operar, redactar y firmar el acta constitutiva con sus estatutos, inscribirla en el Registro Público de Comercio y darse de alta ante el SAT, el IMSS y el municipio.",
       "Formalizing a business means choosing how to operate, drafting and signing the articles of incorporation with their bylaws, registering them in the Public Registry of Commerce and registering with SAT, IMSS and the municipality.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Decidir entre emprender como persona física o constituir una sociedad.", "Decide between starting as an individual or incorporating a company."),
       t("Ordenar los pasos para constituir una sociedad y reconocer el contenido de los estatutos.", "Order the steps to incorporate a company and recognize the content of the bylaws."),
@@ -623,7 +727,50 @@ export const lessons: Lesson[] = [
             "Mini example: Iván contributes $120,000 in cash and Carla a van valued at $80,000. Share capital: $200,000. Stakes: Iván 60% and Carla 40%.",
           ),
         ],
-        formula: 'Participación del socio (%) = Aportación del socio ÷ Capital social total × 100',
+        formulas: [
+          {
+            name: t("Capital social", "Share capital"),
+            expression: "Capital social = Suma de las aportaciones de todos los socios (efectivo + especie)",
+            variables: [
+              { symbol: "Capital social", meaning: t("El total que los socios ponen para formar la sociedad, en pesos.", "The total the partners put in to form the company, in pesos.") },
+              { symbol: "Aportaciones", meaning: t("Lo que pone cada socio, en pesos: dinero (efectivo) o bienes con un valor asignado (especie).", "What each partner puts in, in pesos: money (cash) or property with an assigned value (in kind).") },
+            ],
+            steps: [
+              t("Anota la aportación de cada socio; si es un bien, usa el valor que se le asignó.", "Write down each partner's contribution; if it is property, use its assigned value."),
+              t("Suma todas las aportaciones.", "Add up all the contributions."),
+            ],
+            example: t(
+              "Ana aporta $90,000, Beto un horno valuado en $60,000 y Caro $50,000. Capital social: 90,000 + 60,000 + 50,000 = **$200,000**.",
+              "Ana contributes $90,000, Beto an oven valued at $60,000 and Caro $50,000. Share capital: 90,000 + 60,000 + 50,000 = **$200,000**.",
+            ),
+            mistake: t(
+              "Dejar fuera las aportaciones en especie por no ser dinero; cuentan igual que el efectivo por su valor asignado.",
+              "Leaving out in-kind contributions because they are not money; they count like cash at their assigned value.",
+            ),
+          },
+          {
+            name: t("Participación de cada socio", "Each partner's stake"),
+            expression: "Participación del socio (%) = Aportación del socio ÷ Capital social × 100",
+            variables: [
+              { symbol: "Participación del socio (%)", meaning: t("Qué parte de la sociedad le corresponde a ese socio, en porcentaje.", "What part of the company belongs to that partner, as a percentage.") },
+              { symbol: "Aportación del socio", meaning: t("Lo que puso ese socio, en pesos.", "What that partner put in, in pesos.") },
+              { symbol: "Capital social", meaning: t("La suma de todas las aportaciones, en pesos.", "The sum of all contributions, in pesos.") },
+            ],
+            steps: [
+              t("Calcula primero el capital social total.", "First compute the total share capital."),
+              t("Divide la aportación del socio entre el capital social.", "Divide the partner's contribution by the share capital."),
+              t("Multiplica por 100 para expresarlo en porcentaje.", "Multiply by 100 to express it as a percentage."),
+            ],
+            example: t(
+              "Con el capital de $200,000: Ana 90,000 ÷ 200,000 = 0.45 × 100 = **45%**; Beto 60,000 ÷ 200,000 = **30%**; Caro 50,000 ÷ 200,000 = **25%**.",
+              "With capital of $200,000: Ana 90,000 ÷ 200,000 = 0.45 × 100 = **45%**; Beto 60,000 ÷ 200,000 = **30%**; Caro 50,000 ÷ 200,000 = **25%**.",
+            ),
+            interpret: t(
+              "Las participaciones de todos los socios deben sumar 100%; si no, revisa tus cuentas.",
+              "All partners' stakes must add up to 100%; if not, check your math.",
+            ),
+          },
+        ],
       },
       {
         heading: t("El acta constitutiva y sus estatutos", "The articles of incorporation and their bylaws"),
@@ -650,6 +797,33 @@ export const lessons: Lesson[] = [
           t("Acta constitutiva ante notario o corredor público.", "Articles of incorporation before a notary or public broker."),
           t("Estatutos: objeto, nombre, duración, capital, domicilio, administración, utilidades.", "Bylaws: purpose, name, duration, capital, address, management, profits."),
           t("Inscripción en el Registro Público de Comercio.", "Registration in the Public Registry of Commerce."),
+        ],
+        formulas: [
+          {
+            name: t("Ruta típica para constituir una S.A. o S. de R.L.", "Typical route to incorporate an S.A. or S. de R.L."),
+            expression: "Autorización de denominación (Secretaría de Economía) → Acta constitutiva ante notario o corredor público → Inscripción en el Registro Público de Comercio → Alta en el RFC",
+            variables: [
+              { symbol: "Autorización de denominación", meaning: t("El permiso de la Secretaría de Economía para usar el nombre de la sociedad, para que no lo tenga otra empresa.", "The Ministry of Economy's permission to use the company's name, so no other company has it.") },
+              { symbol: "Acta constitutiva", meaning: t("El documento que crea la sociedad y contiene sus estatutos (reglas internas).", "The document that creates the company and contains its bylaws (internal rules).") },
+              { symbol: "Notario o corredor público", meaning: t("El fedatario: profesional autorizado para dar fe de que el acta es válida.", "The attestor: a professional authorized to certify that the articles are valid.") },
+              { symbol: "Registro Público de Comercio", meaning: t("El registro oficial donde se inscriben las sociedades para que cualquiera pueda consultarlas (no es el Registro Civil).", "The official registry where companies are recorded so anyone can look them up (it is not the Civil Registry).") },
+              { symbol: "Alta en el RFC", meaning: t("La inscripción de la sociedad ante el SAT para facturar y pagar impuestos.", "The company's registration with the SAT to invoice and pay taxes.") },
+            ],
+            steps: [
+              t("Pide y obtén la autorización del nombre en la Secretaría de Economía.", "Request and obtain the name authorization from the Ministry of Economy."),
+              t("Firma el acta constitutiva ante notario o corredor público.", "Sign the articles of incorporation before a notary or public broker."),
+              t("Inscribe el acta en el Registro Público de Comercio.", "Register the articles in the Public Registry of Commerce."),
+              t("Da de alta a la sociedad en el RFC; después vienen los permisos y, si contratará, el registro patronal.", "Register the company in the RFC; permits come next and, if it will hire, the employer registration."),
+            ],
+            example: t(
+              "Tres amigos quieren abrir \"Tostadas Doradas del Bajío, S.A.\": primero la Secretaría de Economía autoriza el nombre; luego firman el acta ante notario; el notario la inscribe en el Registro Público de Comercio; y al final la sociedad obtiene su RFC. Son **4 pasos** en ese orden.",
+              "Three friends want to open \"Tostadas Doradas del Bajío, S.A.\": first the Ministry of Economy authorizes the name; then they sign the articles before a notary; the notary registers them in the Public Registry of Commerce; finally the company gets its RFC. That is **4 steps** in that order.",
+            ),
+            mistake: t(
+              "Confundir el Registro Público de Comercio con el Registro Civil, o poner el registro patronal del IMSS antes del acta. Recuerda que la S.A.S. sigue otra ruta, en línea y sin notario.",
+              "Confusing the Public Registry of Commerce with the Civil Registry, or placing the IMSS employer registration before the articles. Remember that the S.A.S. follows another route, online and without a notary.",
+            ),
+          },
         ],
       },
       {
@@ -732,7 +906,7 @@ export const lessons: Lesson[] = [
       "Un contrato mercantil es un acuerdo que crea obligaciones entre negocios; para que proteja de verdad necesita consentimiento libre, un objeto claro y cláusulas bien pensadas sobre precio, plazos, penas y solución de conflictos.",
       "A commercial contract is an agreement that creates obligations between businesses; to truly protect you it needs free consent, a clear object and well-designed clauses on price, deadlines, penalties and dispute resolution.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Identificar los elementos de existencia y de validez de un contrato.", "Identify the elements of existence and validity of a contract."),
       t("Reconocer los contratos mercantiles más comunes y para qué sirve cada uno.", "Recognize the most common commercial contracts and what each one is for."),
@@ -806,7 +980,33 @@ export const lessons: Lesson[] = [
             "Mini example: a $200,000 contract sets a penalty of 1% of the value per day of delay. If the supplier delivers 5 days late, the penalty is 200,000 × 0.01 × 5 = $10,000.",
           ),
         ],
-        formula: 'Pena por retraso = Valor del contrato × % diario pactado × Días de retraso (tope: valor de la obligación principal)',
+        formulas: [
+          {
+            name: t("Pena convencional por retraso", "Late-delivery penalty clause"),
+            expression: "Pena por retraso = Valor del contrato × % diario pactado × Días de retraso (tope: valor de la obligación principal)",
+            variables: [
+              { symbol: "Pena por retraso", meaning: t("Lo que paga quien se retrasa, en pesos.", "What the late party pays, in pesos.") },
+              { symbol: "Valor del contrato", meaning: t("El precio total pactado en el contrato, en pesos.", "The total price agreed in the contract, in pesos.") },
+              { symbol: "% diario pactado", meaning: t("El porcentaje que se cobra por cada día de retraso, escrito en decimal (0.5% = 0.005).", "The percentage charged for each day of delay, written as a decimal (0.5% = 0.005).") },
+              { symbol: "Días de retraso", meaning: t("Cuántos días tarde se cumplió.", "How many days late the obligation was met.") },
+              { symbol: "Tope", meaning: t("El máximo: por regla general la pena no puede pasar del valor de la obligación principal.", "The maximum: as a general rule the penalty cannot exceed the value of the main obligation.") },
+            ],
+            steps: [
+              t("Convierte el porcentaje diario a decimal: 0.8% = 0.008.", "Convert the daily percentage to a decimal: 0.8% = 0.008."),
+              t("Calcula la pena de un día: Valor del contrato × % diario.", "Compute one day's penalty: Contract value × daily %."),
+              t("Multiplica por los días de retraso.", "Multiply by the days of delay."),
+              t("Compara con el tope: si el resultado lo rebasa, la pena se queda en el tope.", "Compare with the cap: if the result exceeds it, the penalty stays at the cap."),
+            ],
+            example: t(
+              "Contrato de $150,000 con pena de 0.8% diario y entrega 9 días tarde. Un día: 150,000 × 0.008 = $1,200. Nueve días: 1,200 × 9 = **$10,800**, menor que el tope de $150,000.",
+              "A $150,000 contract with a 0.8% daily penalty and delivery 9 days late. One day: 150,000 × 0.008 = $1,200. Nine days: 1,200 × 9 = **$10,800**, below the $150,000 cap.",
+            ),
+            mistake: t(
+              "Convertir mal el porcentaje (usar 0.08 en lugar de 0.008 para 0.8%) o calcular un solo día.",
+              "Converting the percentage wrongly (using 0.08 instead of 0.008 for 0.8%) or computing a single day.",
+            ),
+          },
+        ],
       },
     ],
     examples: [

@@ -41,7 +41,7 @@ export const lessons: Lesson[] = [
       es: "El dinero nació para resolver los problemas del trueque y hoy cumple tres funciones: sirve para intercambiar, para medir precios y para guardar valor.",
       en: "Money was born to solve the problems of barter and today it has three functions: it is used to exchange, to measure prices and to store value.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Explicar por qué el trueque era incómodo y cómo el dinero resolvió ese problema.", en: "Explain why barter was inconvenient and how money solved that problem." },
       { es: "Describir las etapas del dinero: mercancía, monedas, billetes y dinero digital.", en: "Describe the stages of money: commodity, coins, notes and digital money." },
@@ -93,6 +93,33 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: en 1993 México quitó tres ceros a su moneda y creó el \"nuevo peso\": $1,000 de los antiguos pasaron a ser $1 nuevo. Un precio de $5,000 pesos viejos quedó en $5. El valor no cambió, solo la forma de escribirlo.",
             en: "Mini example: in 1993 Mexico removed three zeros from its currency and created the \"new peso\": 1,000 old pesos became 1 new peso. A price of 5,000 old pesos became 5. The value did not change, only the way it was written.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Convertir pesos antiguos a nuevos pesos (1993)", en: "Converting old pesos to new pesos (1993)" },
+            expression: "Nuevos pesos = Pesos antiguos ÷ 1,000",
+            variables: [
+              { symbol: "Nuevos pesos", meaning: { es: "La cantidad expresada en la moneda creada en 1993, en pesos.", en: "The amount expressed in the currency created in 1993, in pesos." } },
+              { symbol: "Pesos antiguos", meaning: { es: "La cantidad escrita en los pesos de antes de 1993.", en: "The amount written in pre-1993 pesos." } },
+              { symbol: "1,000", meaning: { es: "Cuántos pesos antiguos equivalían a 1 nuevo peso (se le quitaron tres ceros).", en: "How many old pesos equaled 1 new peso (three zeros were removed)." } },
+            ],
+            steps: [
+              { es: "Toma la cantidad en pesos antiguos.", en: "Take the amount in old pesos." },
+              { es: "Divídela entre 1,000 (es lo mismo que quitarle tres ceros).", en: "Divide it by 1,000 (the same as removing three zeros)." },
+            ],
+            example: {
+              es: "Unos zapatos costaban $350,000 pesos antiguos: 350,000 ÷ 1,000 = **$350** nuevos pesos.",
+              en: "A pair of shoes cost 350,000 old pesos: 350,000 ÷ 1,000 = **$350** new pesos.",
+            },
+            interpret: {
+              es: "El resultado es un número más chico, pero el valor es el mismo: solo cambió la forma de escribir los precios.",
+              en: "The result is a smaller number, but the value is the same: only the way prices are written changed.",
+            },
+            mistake: {
+              es: "Multiplicar por 1,000 en lugar de dividir. Al pasar de pesos antiguos a nuevos el número siempre se hace más chico.",
+              en: "Multiplying by 1,000 instead of dividing. Going from old to new pesos the number always gets smaller.",
+            },
           },
         ],
       },
@@ -181,7 +208,7 @@ export const lessons: Lesson[] = [
       es: "La educación financiera es saber, querer y poder usar tu dinero para decidir mejor: distinguir necesidades de deseos, ponerte metas claras y comparar antes de comprometerte.",
       en: "Financial literacy is knowing, wanting and being able to use your money to decide better: telling needs from wants, setting clear goals and comparing before committing.",
     },
-    minutes: 14,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es la educación financiera y por qué no depende de cuánto ganas.", en: "Explain what financial literacy is and why it does not depend on how much you earn." },
       { es: "Distinguir necesidades de deseos y entender el costo de oportunidad.", en: "Tell needs from wants and understand opportunity cost." },
@@ -245,7 +272,59 @@ export const lessons: Lesson[] = [
             en: "Mini example: a TV costs $8,000 cash or \"only $450 a week\" for 24 weeks. 450 × 24 = $10,800. The payment looks small, but you would pay $2,800 more.",
           },
         ],
-        formula: "Costo total a plazos = pago periódico × número de pagos",
+        formulas: [
+          {
+            name: { es: "Costo total a plazos y cuánto pagas de más", en: "Total installment cost and how much extra you pay" },
+            expression: "Costo total a plazos = Pago periódico × Número de pagos ;  Pagas de más = Costo total a plazos − Precio de contado",
+            variables: [
+              { symbol: "Costo total a plazos", meaning: { es: "Todo lo que pagarás sumando cada pago, en pesos.", en: "Everything you will pay adding up each payment, in pesos." } },
+              { symbol: "Pago periódico", meaning: { es: "Lo que pagas cada vez (cada semana, quincena o mes), en pesos.", en: "What you pay each time (every week, two weeks or month), in pesos." } },
+              { symbol: "Número de pagos", meaning: { es: "Cuántos pagos harás en total.", en: "How many payments you will make in total." } },
+              { symbol: "Precio de contado", meaning: { es: "Lo que cuesta si pagas todo de una vez, en pesos.", en: "What it costs if you pay all at once, in pesos." } },
+              { symbol: "Pagas de más", meaning: { es: "La diferencia: lo extra que te cuesta comprar a plazos, en pesos.", en: "The difference: the extra cost of buying in installments, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica el pago periódico por el número de pagos.", en: "Multiply the periodic payment by the number of payments." },
+              { es: "Resta el precio de contado a ese total.", en: "Subtract the cash price from that total." },
+              { es: "Con esa diferencia decide si vale la pena pagar a plazos.", en: "Use that difference to decide whether paying in installments is worth it." },
+            ],
+            example: {
+              es: "Un celular cuesta $6,000 de contado o 18 pagos quincenales de $400. Total a plazos: 400 × 18 = $7,200. Pagas de más: 7,200 − 6,000 = **$1,200**.",
+              en: "A phone costs $6,000 in cash or 18 biweekly payments of $400. Installment total: 400 × 18 = $7,200. Extra paid: 7,200 − 6,000 = **$1,200**.",
+            },
+            interpret: {
+              es: "Si la diferencia es 0, los plazos no te cuestan nada extra (\"meses sin intereses\"). Entre más grande, más caro te sale comprar a plazos.",
+              en: "If the difference is 0, the installments cost you nothing extra (\"interest-free months\"). The bigger it is, the more expensive buying in installments is.",
+            },
+            mistake: {
+              es: "Responder el total a plazos cuando te preguntan cuánto pagas de más; esa es la diferencia contra el precio de contado.",
+              en: "Answering the installment total when asked how much extra you pay; that is the difference against the cash price.",
+            },
+          },
+          {
+            name: { es: "Cuánto ahorrar al mes para una meta", en: "How much to save each month for a goal" },
+            expression: "Ahorro mensual = (Meta − Lo que ya tienes) ÷ Meses que faltan",
+            variables: [
+              { symbol: "Ahorro mensual", meaning: { es: "Lo que debes separar cada mes, en pesos.", en: "What you must set aside each month, in pesos." } },
+              { symbol: "Meta", meaning: { es: "Cuánto cuesta lo que quieres lograr, en pesos.", en: "How much what you want to achieve costs, in pesos." } },
+              { symbol: "Lo que ya tienes", meaning: { es: "Lo que ya llevas ahorrado para esa meta, en pesos (si no tienes nada, es 0).", en: "What you have already saved for that goal, in pesos (if nothing, it is 0)." } },
+              { symbol: "Meses que faltan", meaning: { es: "Cuántos meses hay hasta la fecha de tu meta.", en: "How many months there are until your goal date." } },
+            ],
+            steps: [
+              { es: "Resta a la meta lo que ya tienes ahorrado.", en: "Subtract what you already have saved from the goal." },
+              { es: "Divide lo que falta entre los meses que quedan.", en: "Divide what is missing by the months left." },
+              { es: "Revisa si ese monto cabe en tu presupuesto; si no, alarga el plazo o ajusta la meta.", en: "Check whether that amount fits your budget; if not, extend the deadline or adjust the goal." },
+            ],
+            example: {
+              es: "Quieres una bicicleta de $4,500 en 6 meses y ya tienes $900. Falta: 4,500 − 900 = $3,600. Por mes: 3,600 ÷ 6 = **$600**.",
+              en: "You want a $4,500 bicycle in 6 months and already have $900. Missing: 4,500 − 900 = $3,600. Per month: 3,600 ÷ 6 = **$600**.",
+            },
+            mistake: {
+              es: "Dividir la meta completa entre los meses sin restar lo que ya tienes; así ahorrarías de más cada mes.",
+              en: "Dividing the whole goal by the months without subtracting what you already have; you would save too much each month.",
+            },
+          },
+        ],
         bullets: [
           { es: "Compara el costo total entre opciones.", en: "Compare the total cost between options." },
           { es: "Lee el contrato y las comisiones antes de firmar.", en: "Read the contract and fees before signing." },
@@ -311,7 +390,7 @@ export const lessons: Lesson[] = [
       es: "Administrar tu dinero es saber cuánto entra, cuánto sale y cuándo, para organizar tus pagos, evitar fugas y no quedarte sin efectivo antes de la siguiente quincena.",
       en: "Managing your money means knowing how much comes in, how much goes out and when, so you can organize payments, stop leaks and not run out of cash before the next payday.",
     },
-    minutes: 13,
+    minutes: 15,
     objectives: [
       { es: "Explicar qué es el flujo de efectivo personal y calcular tu saldo al final del periodo.", en: "Explain what personal cash flow is and compute your balance at the end of the period." },
       { es: "Registrar gastos y detectar gastos hormiga.", en: "Track expenses and spot small leaks (\"ant expenses\")." },
@@ -334,7 +413,36 @@ export const lessons: Lesson[] = [
             en: "Mini example: you start the month with $500, receive $12,000 and spend $11,200. Your ending balance is 500 + 12,000 − 11,200 = $1,300. If it were negative, you would have to cut back or borrow.",
           },
         ],
-        formula: "Saldo final = Saldo inicial + Entradas − Salidas",
+        formulas: [
+          {
+            name: { es: "Saldo final del mes (o de la quincena)", en: "Ending balance for the month (or pay period)" },
+            expression: "Saldo final = Saldo inicial + Entradas − Salidas",
+            variables: [
+              { symbol: "Saldo final", meaning: { es: "El dinero que te queda al terminar el periodo, en pesos.", en: "The money you have left at the end of the period, in pesos." } },
+              { symbol: "Saldo inicial", meaning: { es: "El dinero que ya tenías al empezar, en pesos.", en: "The money you already had at the start, in pesos." } },
+              { symbol: "Entradas", meaning: { es: "Todo lo que te llegó en el periodo (sueldo, ventas, apoyos), en pesos.", en: "Everything that came in during the period (salary, sales, support), in pesos." } },
+              { symbol: "Salidas", meaning: { es: "Todo lo que pagaste o gastaste en el periodo, en pesos.", en: "Everything you paid or spent during the period, in pesos." } },
+            ],
+            steps: [
+              { es: "Anota con cuánto empezaste.", en: "Write down what you started with." },
+              { es: "Suma todas las entradas; si cobras por quincena, cuenta cada quincena.", en: "Add all inflows; if you are paid every two weeks, count each payment." },
+              { es: "Suma todas las salidas.", en: "Add all outflows." },
+              { es: "Calcula: Saldo inicial + Entradas − Salidas.", en: "Compute: Opening balance + Inflows − Outflows." },
+            ],
+            example: {
+              es: "Empiezas con $800 y cobras dos quincenas de $6,000: entradas 6,000 × 2 = $12,000. Salidas: 4,500 + 3,000 + 1,200 + 700 = $9,400. Saldo final: 800 + 12,000 − 9,400 = **$3,400**.",
+              en: "You start with $800 and get two biweekly payments of $6,000: inflows 6,000 × 2 = $12,000. Outflows: 4,500 + 3,000 + 1,200 + 700 = $9,400. Ending balance: 800 + 12,000 − 9,400 = **$3,400**.",
+            },
+            interpret: {
+              es: "Si es positivo, te sobró dinero; si es negativo, gastaste más de lo que tenías y tendrás que recortar o pedir prestado.",
+              en: "If it is positive, you had money left over; if negative, you spent more than you had and will need to cut back or borrow.",
+            },
+            mistake: {
+              es: "Olvidar el saldo inicial o contar solo una de las quincenas.",
+              en: "Forgetting the opening balance or counting only one of the paychecks.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Registrar gastos y detectar fugas", en: "Tracking expenses and spotting leaks" },
@@ -358,6 +466,34 @@ export const lessons: Lesson[] = [
           { es: "Revisa cada semana y busca patrones.", en: "Review weekly and look for patterns." },
           { es: "Cancela suscripciones y comisiones que no aprovechas.", en: "Cancel subscriptions and fees you do not use." },
         ],
+        formulas: [
+          {
+            name: { es: "Costo de un gasto hormiga en el tiempo", en: "Cost of an ant expense over time" },
+            expression: "Gasto del periodo = Precio × Veces por semana × Número de semanas",
+            variables: [
+              { symbol: "Gasto del periodo", meaning: { es: "Cuánto gastas en total en ese tiempo, en pesos.", en: "How much you spend in total over that time, in pesos." } },
+              { symbol: "Precio", meaning: { es: "Lo que cuesta cada compra, en pesos.", en: "What each purchase costs, in pesos." } },
+              { symbol: "Veces por semana", meaning: { es: "Cuántas veces lo compras cada semana (por ejemplo, 5 si es cada día laboral).", en: "How many times you buy it each week (for example, 5 if it is every workday)." } },
+              { symbol: "Número de semanas", meaning: { es: "Cuántas semanas quieres medir (4 para un mes aproximado, 52 para un año).", en: "How many weeks you want to measure (4 for about a month, 52 for a year)." } },
+            ],
+            steps: [
+              { es: "Calcula el gasto de una semana: Precio × Veces por semana.", en: "Compute one week's spending: Price × Times per week." },
+              { es: "Multiplica por el número de semanas que quieres medir.", en: "Multiply by the number of weeks you want to measure." },
+            ],
+            example: {
+              es: "Un jugo de $30, 3 veces por semana. Por semana: 30 × 3 = $90. En 4 semanas: 90 × 4 = **$360**. En un año: 90 × 52 = **$4,680**.",
+              en: "A $30 juice, 3 times a week. Per week: 30 × 3 = $90. In 4 weeks: 90 × 4 = **$360**. In a year: 90 × 52 = **$4,680**.",
+            },
+            interpret: {
+              es: "Mira el total anual: así ves si ese gusto vale lo que cuesta o si prefieres usar ese dinero en otra cosa.",
+              en: "Look at the yearly total: it shows whether that treat is worth what it costs or whether you would rather use that money elsewhere.",
+            },
+            mistake: {
+              es: "Multiplicar por 7 días cuando solo lo compras algunos días de la semana.",
+              en: "Multiplying by 7 days when you only buy it on some days of the week.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Organizar: calendario de pagos y pagarte primero", en: "Organizing: payment calendar and paying yourself first" },
@@ -377,6 +513,33 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: cobras $8,000 cada quincena y tu renta de $6,000 vence el día 1. Apartas $3,000 en cada quincena para la renta y, el mismo día de cobro, mueves $400 a tu ahorro. Te quedan $4,600 para el resto de la quincena.",
             en: "Mini example: you earn $8,000 each fortnight and your $6,000 rent is due on the 1st. You set aside $3,000 each fortnight for rent and, on payday, move $400 to savings. You have $4,600 left for the rest of the fortnight.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Cuánto apartar por quincena y cuánto te queda libre", en: "How much to set aside per paycheck and how much is left free" },
+            expression: "Apartado por quincena = Pago mensual ÷ 2 ;  Dinero libre = Ingreso de la quincena − Apartados − Ahorro",
+            variables: [
+              { symbol: "Apartado por quincena", meaning: { es: "La parte de un pago fijo que guardas en cada quincena, en pesos.", en: "The part of a fixed payment you set aside each paycheck, in pesos." } },
+              { symbol: "Pago mensual", meaning: { es: "Un pago fijo que vence una vez al mes, como la renta, en pesos.", en: "A fixed payment due once a month, such as rent, in pesos." } },
+              { symbol: "2", meaning: { es: "Las dos quincenas del mes.", en: "The two paychecks in the month." } },
+              { symbol: "Ingreso de la quincena", meaning: { es: "Lo que cobras cada quincena, en pesos (neto).", en: "What you are paid each paycheck, in pesos (net)." } },
+              { symbol: "Ahorro", meaning: { es: "Lo que te pagas primero a ti, en pesos.", en: "What you pay yourself first, in pesos." } },
+              { symbol: "Dinero libre", meaning: { es: "Lo que puedes gastar en el resto de la quincena sin tocar lo comprometido, en pesos.", en: "What you can spend for the rest of the pay period without touching what is committed, in pesos." } },
+            ],
+            steps: [
+              { es: "Divide cada pago mensual grande entre 2 para repartirlo en tus dos quincenas.", en: "Divide each large monthly payment by 2 to spread it over your two paychecks." },
+              { es: "El día de cobro, separa ese apartado y tu ahorro.", en: "On payday, set aside that amount and your savings." },
+              { es: "Resta ambos a tu ingreso de la quincena para saber cuánto queda libre.", en: "Subtract both from your paycheck to know how much is left free." },
+            ],
+            example: {
+              es: "Cobras $6,500 por quincena y tu renta es de $4,400. Apartado: 4,400 ÷ 2 = $2,200 por quincena. Ahorro: $300. Libre: 6,500 − 2,200 − 300 = **$4,000**.",
+              en: "You are paid $6,500 per paycheck and your rent is $4,400. Set aside: 4,400 ÷ 2 = $2,200 per paycheck. Savings: $300. Free: 6,500 − 2,200 − 300 = **$4,000**.",
+            },
+            mistake: {
+              es: "Esperar a pagar con \"lo que sobre\" de una sola quincena; casi nunca sobra lo suficiente.",
+              en: "Waiting to pay with \"whatever is left\" from a single paycheck; there is rarely enough left.",
+            },
           },
         ],
       },
@@ -436,7 +599,7 @@ export const lessons: Lesson[] = [
       es: "Un presupuesto es un plan que decide por adelantado a dónde irá cada peso del mes; se arma con el ingreso neto, se reparte entre gastos fijos, variables y ahorro, y se revisa contra lo real.",
       en: "A budget is a plan that decides in advance where each peso of the month will go; it is built from net income, split between fixed costs, variable costs and savings, and checked against reality.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es un presupuesto y en qué se diferencia de solo registrar gastos.", en: "Explain what a budget is and how it differs from just tracking expenses." },
       { es: "Clasificar gastos en fijos y variables e incluir gastos anuales prorrateados.", en: "Classify expenses as fixed or variable and include prorated annual expenses." },
@@ -464,7 +627,53 @@ export const lessons: Lesson[] = [
             en: "Mini example: school enrollment costs $3,600 in August. If you set aside 3,600 ÷ 12 = $300 a month, by August you already have the full amount.",
           },
         ],
-        formula: "Monto mensual a apartar = Gasto anual ÷ 12",
+        formulas: [
+          {
+            name: { es: "Prorratear gastos anuales (apartar cada mes)", en: "Prorating yearly expenses (setting aside each month)" },
+            expression: "Monto mensual a apartar = Gasto anual ÷ 12",
+            variables: [
+              { symbol: "Monto mensual a apartar", meaning: { es: "Lo que guardas cada mes para ese gasto, en pesos.", en: "What you save each month for that expense, in pesos." } },
+              { symbol: "Gasto anual", meaning: { es: "Lo que pagas una vez al año (predial, seguro, inscripciones), en pesos. Si son varios, súmalos primero.", en: "What you pay once a year (property tax, insurance, enrollment), in pesos. If there are several, add them first." } },
+              { symbol: "12", meaning: { es: "Los meses del año.", en: "The months of the year." } },
+            ],
+            steps: [
+              { es: "Suma todos los gastos que pagas una vez al año.", en: "Add up all the expenses you pay once a year." },
+              { es: "Divide ese total entre 12.", en: "Divide that total by 12." },
+              { es: "Agrega ese monto a tu presupuesto de cada mes.", en: "Add that amount to your monthly budget." },
+            ],
+            example: {
+              es: "Pagas un seguro médico de $9,600 al año y gastas $2,400 en regalos de diciembre. Total: 9,600 + 2,400 = $12,000. Por mes: 12,000 ÷ 12 = **$1,000**.",
+              en: "You pay $9,600 a year for health insurance and spend $2,400 on December gifts. Total: 9,600 + 2,400 = $12,000. Per month: 12,000 ÷ 12 = **$1,000**.",
+            },
+            mistake: {
+              es: "Dividir entre 52 (semanas) cuando tu presupuesto es mensual, o prorratear solo uno de los gastos anuales.",
+              en: "Dividing by 52 (weeks) when your budget is monthly, or prorating only one of the yearly expenses.",
+            },
+          },
+          {
+            name: { es: "Dinero disponible después de tus gastos", en: "Money available after your expenses" },
+            expression: "Disponible = Ingreso neto − (Gastos fijos + Gastos variables + Prorrateos)",
+            variables: [
+              { symbol: "Disponible", meaning: { es: "Lo que queda para deseos y ahorro, en pesos.", en: "What is left for wants and savings, in pesos." } },
+              { symbol: "Ingreso neto", meaning: { es: "Lo que realmente te llega al mes, después de descuentos, en pesos.", en: "What actually reaches you each month, after deductions, in pesos." } },
+              { symbol: "Gastos fijos", meaning: { es: "Los que cuestan casi lo mismo cada mes (renta, internet), en pesos.", en: "Those that cost about the same each month (rent, internet), in pesos." } },
+              { symbol: "Gastos variables", meaning: { es: "Los que cambian según tu consumo (despensa, luz, gasolina), en pesos.", en: "Those that change with your use (groceries, electricity, gas), in pesos." } },
+              { symbol: "Prorrateos", meaning: { es: "La parte mensual de tus gastos anuales, en pesos.", en: "The monthly share of your yearly expenses, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma gastos fijos, variables y prorrateos: es tu total comprometido.", en: "Add fixed expenses, variable expenses and prorations: that is your total committed." },
+              { es: "Réstalo a tu ingreso neto.", en: "Subtract it from your net income." },
+            ],
+            example: {
+              es: "Ingreso neto $16,000; fijos $7,000; variables $5,500; prorrateo $1,000. Comprometido: 7,000 + 5,500 + 1,000 = $13,500. Disponible: 16,000 − 13,500 = **$2,500**.",
+              en: "Net income $16,000; fixed $7,000; variable $5,500; proration $1,000. Committed: 7,000 + 5,500 + 1,000 = $13,500. Available: 16,000 − 13,500 = **$2,500**.",
+            },
+            interpret: {
+              es: "Si es negativo, tus gastos planeados superan tu ingreso: hay que recortar antes de que empiece el mes.",
+              en: "If it is negative, your planned expenses exceed your income: you need to cut back before the month starts.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Dos métodos sencillos: 50/30/20 y base cero", en: "Two simple methods: 50/30/20 and zero-based" },
@@ -488,6 +697,52 @@ export const lessons: Lesson[] = [
           { es: "20% ahorro y deudas.", en: "20% savings and debt." },
           { es: "Base cero: ingreso − asignaciones = 0.", en: "Zero-based: income − allocations = 0." },
         ],
+        formulas: [
+          {
+            name: { es: "Reparto con la regla 50/30/20", en: "Split with the 50/30/20 rule" },
+            expression: "Necesidades = Ingreso neto × 0.50 ;  Deseos = Ingreso neto × 0.30 ;  Ahorro y deudas = Ingreso neto × 0.20",
+            variables: [
+              { symbol: "Ingreso neto", meaning: { es: "Lo que realmente recibes al mes, en pesos.", en: "What you actually receive each month, in pesos." } },
+              { symbol: "0.50, 0.30, 0.20", meaning: { es: "Los porcentajes 50%, 30% y 20% escritos en decimal.", en: "The percentages 50%, 30% and 20% written as decimals." } },
+              { symbol: "Necesidades / Deseos / Ahorro y deudas", meaning: { es: "Lo que la regla sugiere para cada grupo, en pesos.", en: "What the rule suggests for each group, in pesos." } },
+            ],
+            steps: [
+              { es: "Parte de tu ingreso neto, no del bruto.", en: "Start from your net income, not gross." },
+              { es: "Multiplícalo por 0.50, 0.30 y 0.20.", en: "Multiply it by 0.50, 0.30 and 0.20." },
+              { es: "Comprueba que los tres montos sumen tu ingreso neto.", en: "Check that the three amounts add up to your net income." },
+            ],
+            example: {
+              es: "Con $12,000 netos: necesidades 12,000 × 0.50 = $6,000; deseos 12,000 × 0.30 = $3,600; ahorro y deudas 12,000 × 0.20 = $2,400. Suma: 6,000 + 3,600 + 2,400 = **$12,000**.",
+              en: "With $12,000 net: needs 12,000 × 0.50 = $6,000; wants 12,000 × 0.30 = $3,600; savings and debt 12,000 × 0.20 = $2,400. Sum: 6,000 + 3,600 + 2,400 = **$12,000**.",
+            },
+            mistake: {
+              es: "Aplicar los porcentajes al ingreso bruto; ese dinero no te llega completo.",
+              en: "Applying the percentages to gross income; that money does not reach you in full.",
+            },
+          },
+          {
+            name: { es: "Comprobar un presupuesto base cero", en: "Checking a zero-based budget" },
+            expression: "Sin asignar = Ingreso neto − Suma de asignaciones (la meta es 0)",
+            variables: [
+              { symbol: "Sin asignar", meaning: { es: "Los pesos que todavía no tienen destino.", en: "The pesos that still have no destination." } },
+              { symbol: "Ingreso neto", meaning: { es: "Lo que recibes al mes, en pesos.", en: "What you receive each month, in pesos." } },
+              { symbol: "Suma de asignaciones", meaning: { es: "Todo lo que ya le diste un destino, incluido el ahorro, en pesos.", en: "Everything you have already given a destination, savings included, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todo lo que ya asignaste, ahorro incluido.", en: "Add up everything you have assigned, savings included." },
+              { es: "Réstalo al ingreso neto.", en: "Subtract it from your net income." },
+              { es: "Si sobra algo, asígnalo (por ejemplo, a ahorro) hasta que quede en 0.", en: "If something is left, assign it (for example, to savings) until it reaches 0." },
+            ],
+            example: {
+              es: "Ingreso $15,000. Asignaciones: renta 5,000 + comida 4,000 + transporte 1,500 + ahorro 2,000 + salidas 1,500 = $14,000. Sin asignar: 15,000 − 14,000 = $1,000. Pasas esos $1,000 a ahorro y queda en **$0**.",
+              en: "Income $15,000. Allocations: rent 5,000 + food 4,000 + transport 1,500 + savings 2,000 + outings 1,500 = $14,000. Unassigned: 15,000 − 14,000 = $1,000. You move that $1,000 to savings and it reaches **$0**.",
+            },
+            interpret: {
+              es: "Cero no significa gastarlo todo: significa que cada peso tiene un plan. Si da negativo, asignaste más dinero del que tienes.",
+              en: "Zero does not mean spending it all: it means every peso has a plan. If it is negative, you assigned more money than you have.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "El presupuesto familiar: seguimiento y ajustes", en: "The family budget: tracking and adjusting" },
@@ -505,7 +760,35 @@ export const lessons: Lesson[] = [
             en: "Mini example: they budgeted $1,000 for transportation and spent $1,250. Variance: 1,250 − 1,000 = $250, that is, 250 ÷ 1,000 = 25% over. They find it was late-night taxis and agree to leave earlier.",
           },
         ],
-        formula: "Desviación = Real − Presupuestado ; Desviación % = Desviación ÷ Presupuestado × 100",
+        formulas: [
+          {
+            name: { es: "Desviación del presupuesto", en: "Budget variance" },
+            expression: "Desviación = Real − Presupuestado ;  Desviación % = Desviación ÷ Presupuestado × 100",
+            variables: [
+              { symbol: "Desviación", meaning: { es: "La diferencia entre lo que gastaste y lo que planeaste, en pesos.", en: "The difference between what you spent and what you planned, in pesos." } },
+              { symbol: "Real", meaning: { es: "Lo que de verdad gastaste en esa categoría, en pesos.", en: "What you actually spent in that category, in pesos." } },
+              { symbol: "Presupuestado", meaning: { es: "Lo que habías planeado gastar, en pesos.", en: "What you had planned to spend, in pesos." } },
+              { symbol: "Desviación %", meaning: { es: "Qué tanto te desviaste comparado con lo planeado, en porcentaje.", en: "How far off you were compared with the plan, as a percentage." } },
+            ],
+            steps: [
+              { es: "Resta: Real − Presupuestado.", en: "Subtract: Actual − Budgeted." },
+              { es: "Divide la desviación entre lo presupuestado.", en: "Divide the variance by the budgeted amount." },
+              { es: "Multiplica por 100 para tenerla en porcentaje.", en: "Multiply by 100 to get it as a percentage." },
+            ],
+            example: {
+              es: "Presupuestaste $2,000 de comida y gastaste $2,300. Desviación: 2,300 − 2,000 = **+$300**. En porcentaje: 300 ÷ 2,000 × 100 = **15%** por encima.",
+              en: "You budgeted $2,000 for food and spent $2,300. Variance: 2,300 − 2,000 = **+$300**. As a percentage: 300 ÷ 2,000 × 100 = **15%** over.",
+            },
+            interpret: {
+              es: "Positiva: gastaste más de lo planeado. Negativa: gastaste menos. Cero: justo lo planeado.",
+              en: "Positive: you spent more than planned. Negative: you spent less. Zero: exactly as planned.",
+            },
+            mistake: {
+              es: "Dividir entre lo real en lugar de entre lo presupuestado.",
+              en: "Dividing by the actual amount instead of the budgeted amount.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -566,7 +849,7 @@ export const lessons: Lesson[] = [
       es: "Lo que ahorras es la diferencia entre lo que ganas y lo que gastas; conocer tus tipos de ingreso y de gasto te permite aumentar esa diferencia y guardarla en un lugar seguro.",
       en: "What you save is the difference between what you earn and what you spend; knowing your types of income and expenses lets you widen that gap and keep it somewhere safe.",
     },
-    minutes: 14,
+    minutes: 16,
     objectives: [
       { es: "Distinguir ingreso bruto y neto, y ingreso activo y pasivo.", en: "Distinguish gross and net income, and active and passive income." },
       { es: "Clasificar gastos en necesarios y discrecionales para encontrar margen de ahorro.", en: "Classify expenses as necessary or discretionary to find room to save." },
@@ -590,7 +873,30 @@ export const lessons: Lesson[] = [
             en: "Mini example: your payslip shows a $12,000 salary and $1,300 in deductions. Your net is 12,000 − 1,300 = $10,700. If you plan with $12,000, you will be $1,300 short every month.",
           },
         ],
-        formula: "Ingreso neto = Ingreso bruto − Retenciones",
+        formulas: [
+          {
+            name: { es: "Ingreso neto", en: "Net income" },
+            expression: "Ingreso neto = Ingreso bruto − Retenciones",
+            variables: [
+              { symbol: "Ingreso neto", meaning: { es: "Lo que de verdad recibes, en pesos.", en: "What you actually receive, in pesos." } },
+              { symbol: "Ingreso bruto", meaning: { es: "Lo que ganas antes de descuentos (el sueldo que dice tu contrato), en pesos.", en: "What you earn before deductions (the salary in your contract), in pesos." } },
+              { symbol: "Retenciones", meaning: { es: "Los descuentos que te hacen antes de pagarte, como impuestos y cuotas de seguridad social, en pesos.", en: "The deductions taken before you are paid, such as taxes and social security contributions, in pesos." } },
+            ],
+            steps: [
+              { es: "Busca en tu recibo de nómina el sueldo bruto.", en: "Find the gross salary on your payslip." },
+              { es: "Suma todas las retenciones (impuestos, seguridad social, otras).", en: "Add up all deductions (taxes, social security, others)." },
+              { es: "Réstalas al bruto.", en: "Subtract them from the gross." },
+            ],
+            example: {
+              es: "Sueldo bruto $11,000, impuestos $950 y seguridad social $280. Neto: 11,000 − 950 − 280 = **$9,770**.",
+              en: "Gross salary $11,000, taxes $950 and social security $280. Net: 11,000 − 950 − 280 = **$9,770**.",
+            },
+            mistake: {
+              es: "Planear con el bruto: te faltará justo lo de las retenciones cada mes.",
+              en: "Planning with gross income: you will be short by exactly the deductions every month.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Gastos necesarios y discrecionales", en: "Necessary and discretionary expenses" },
@@ -629,7 +935,95 @@ export const lessons: Lesson[] = [
             en: "Mini example: you earn $10,000 net and save $1,200. Your savings rate is 1,200 ÷ 10,000 × 100 = 12%.",
           },
         ],
-        formula: "Ahorro = Ingreso neto − Gastos ; Tasa de ahorro = Ahorro ÷ Ingreso neto × 100",
+        formulas: [
+          {
+            name: { es: "Ahorro del mes", en: "Monthly savings" },
+            expression: "Ahorro = Ingreso neto − Gastos",
+            variables: [
+              { symbol: "Ahorro", meaning: { es: "Lo que te queda sin gastar en el mes, en pesos.", en: "What you have left unspent in the month, in pesos." } },
+              { symbol: "Ingreso neto", meaning: { es: "Lo que realmente recibes, en pesos.", en: "What you actually receive, in pesos." } },
+              { symbol: "Gastos", meaning: { es: "Todo lo que gastaste en el mes, en pesos.", en: "Everything you spent in the month, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todos tus gastos del mes.", en: "Add up all your expenses for the month." },
+              { es: "Réstalos a tu ingreso neto.", en: "Subtract them from your net income." },
+            ],
+            example: {
+              es: "Ingreso neto $14,000 y gastos $12,180. Ahorro: 14,000 − 12,180 = **$1,820**.",
+              en: "Net income $14,000 and expenses $12,180. Savings: 14,000 − 12,180 = **$1,820**.",
+            },
+          },
+          {
+            name: { es: "Tasa de ahorro", en: "Savings rate" },
+            expression: "Tasa de ahorro (%) = Ahorro ÷ Ingreso neto × 100",
+            variables: [
+              { symbol: "Tasa de ahorro (%)", meaning: { es: "Qué parte de tu ingreso logras guardar, en porcentaje.", en: "What share of your income you manage to save, as a percentage." } },
+              { symbol: "Ahorro", meaning: { es: "Lo que guardaste en el mes, en pesos.", en: "What you saved in the month, in pesos." } },
+              { symbol: "Ingreso neto", meaning: { es: "Lo que realmente recibes, en pesos.", en: "What you actually receive, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula tu ahorro: Ingreso neto − Gastos.", en: "Compute your savings: Net income − Expenses." },
+              { es: "Divide el ahorro entre el ingreso neto.", en: "Divide savings by net income." },
+              { es: "Multiplica por 100.", en: "Multiply by 100." },
+            ],
+            example: {
+              es: "Con el ahorro de $1,820 e ingreso neto de $14,000: 1,820 ÷ 14,000 = 0.13 × 100 = **13%**.",
+              en: "With savings of $1,820 and net income of $14,000: 1,820 ÷ 14,000 = 0.13 × 100 = **13%**.",
+            },
+            interpret: {
+              es: "Muchas guías sugieren empezar con al menos 10%; si estás por debajo, revisa tus gastos discrecionales.",
+              en: "Many guides suggest starting with at least 10%; if you are below that, review your discretionary expenses.",
+            },
+            mistake: {
+              es: "Dividir entre los gastos o entre el ingreso bruto; siempre se divide entre el ingreso neto.",
+              en: "Dividing by expenses or by gross income; you always divide by net income.",
+            },
+          },
+          {
+            name: { es: "Ahorro planeado con un porcentaje", en: "Planned savings with a percentage" },
+            expression: "Ahorro planeado = Ingreso neto × % que quieres ahorrar",
+            variables: [
+              { symbol: "Ahorro planeado", meaning: { es: "Lo que separas apenas cobras, en pesos.", en: "What you set aside as soon as you are paid, in pesos." } },
+              { symbol: "Ingreso neto", meaning: { es: "Lo que realmente recibes, en pesos.", en: "What you actually receive, in pesos." } },
+              { symbol: "% que quieres ahorrar", meaning: { es: "El porcentaje que decides guardar, escrito en decimal (10% = 0.10).", en: "The percentage you decide to save, written as a decimal (10% = 0.10)." } },
+            ],
+            steps: [
+              { es: "Calcula tu ingreso neto.", en: "Compute your net income." },
+              { es: "Convierte el porcentaje a decimal.", en: "Convert the percentage to a decimal." },
+              { es: "Multiplica el ingreso neto por ese decimal.", en: "Multiply net income by that decimal." },
+            ],
+            example: {
+              es: "Ingreso neto $12,500 y quieres ahorrar 8% = 0.08. Ahorro: 12,500 × 0.08 = **$1,000** al mes.",
+              en: "Net income $12,500 and you want to save 8% = 0.08. Savings: 12,500 × 0.08 = **$1,000** a month.",
+            },
+            mistake: {
+              es: "Calcular el porcentaje sobre el bruto; te daría más de lo que realmente puedes separar.",
+              en: "Applying the percentage to gross pay; it would give more than you can really set aside.",
+            },
+          },
+          {
+            name: { es: "Cuánto ahorrar al mes para una meta", en: "How much to save each month for a goal" },
+            expression: "Ahorro mensual = (Meta − Lo ahorrado) ÷ Meses que faltan",
+            variables: [
+              { symbol: "Ahorro mensual", meaning: { es: "Lo que debes separar cada mes, en pesos.", en: "What you must set aside each month, in pesos." } },
+              { symbol: "Meta", meaning: { es: "El monto total que quieres juntar, en pesos.", en: "The total amount you want to gather, in pesos." } },
+              { symbol: "Lo ahorrado", meaning: { es: "Lo que ya tienes guardado para esa meta, en pesos.", en: "What you already have saved for that goal, in pesos." } },
+              { symbol: "Meses que faltan", meaning: { es: "Cuántos meses quedan hasta la fecha de tu meta.", en: "How many months remain until your goal date." } },
+            ],
+            steps: [
+              { es: "Resta a la meta lo que ya ahorraste.", en: "Subtract what you already saved from the goal." },
+              { es: "Divide lo que falta entre los meses que quedan.", en: "Divide what is missing by the months left." },
+            ],
+            example: {
+              es: "Quieres una tableta de $6,000 en 6 meses y ya tienes $1,200. Falta: 6,000 − 1,200 = $4,800. Por mes: 4,800 ÷ 6 = **$800**.",
+              en: "You want a $6,000 tablet in 6 months and already have $1,200. Missing: 6,000 − 1,200 = $4,800. Per month: 4,800 ÷ 6 = **$800**.",
+            },
+            mistake: {
+              es: "Dividir la meta completa sin restar lo que ya tienes.",
+              en: "Dividing the whole goal without subtracting what you already have.",
+            },
+          },
+        ],
         bullets: [
           { es: "Ahorro = lo que entra − lo que sale.", en: "Savings = what comes in − what goes out." },
           { es: "Monto mensual para una meta = (meta − lo ahorrado) ÷ meses.", en: "Monthly amount for a goal = (goal − already saved) ÷ months." },
@@ -693,7 +1087,7 @@ export const lessons: Lesson[] = [
       es: "La inflación es el aumento generalizado de los precios; hace que el mismo dinero compre menos, por eso tu ingreso y tu ahorro deben crecer al menos al mismo ritmo para no perder poder adquisitivo.",
       en: "Inflation is the general rise in prices; it makes the same money buy less, so your income and savings must grow at least at the same pace to avoid losing purchasing power.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Definir inflación y poder adquisitivo con ejemplos cotidianos.", en: "Define inflation and purchasing power with everyday examples." },
       { es: "Explicar cómo se mide la inflación en México con el INPC.", en: "Explain how inflation is measured in Mexico with the INPC." },
@@ -721,6 +1115,31 @@ export const lessons: Lesson[] = [
             en: "Mini example: last year your weekly groceries cost $1,000 and today, with the same products, they cost $1,050. Your groceries got 5% more expensive.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Aumento de precio en pesos y en porcentaje", en: "Price increase in pesos and as a percentage" },
+            expression: "Aumento = Precio nuevo − Precio anterior ;  Aumento % = Aumento ÷ Precio anterior × 100",
+            variables: [
+              { symbol: "Aumento", meaning: { es: "Cuántos pesos subió el precio.", en: "How many pesos the price rose." } },
+              { symbol: "Precio nuevo", meaning: { es: "Lo que cuesta hoy, en pesos.", en: "What it costs today, in pesos." } },
+              { symbol: "Precio anterior", meaning: { es: "Lo que costaba antes, en pesos.", en: "What it cost before, in pesos." } },
+              { symbol: "Aumento %", meaning: { es: "Cuánto subió comparado con el precio anterior, en porcentaje.", en: "How much it rose compared with the earlier price, as a percentage." } },
+            ],
+            steps: [
+              { es: "Resta: Precio nuevo − Precio anterior.", en: "Subtract: New price − Earlier price." },
+              { es: "Divide el aumento entre el precio anterior.", en: "Divide the increase by the earlier price." },
+              { es: "Multiplica por 100.", en: "Multiply by 100." },
+            ],
+            example: {
+              es: "Tu canasta costaba $1,500 y hoy cuesta $1,590. Aumento: 1,590 − 1,500 = **$90**. En porcentaje: 90 ÷ 1,500 × 100 = **6%**.",
+              en: "Your basket cost $1,500 and today costs $1,590. Increase: 1,590 − 1,500 = **$90**. As a percentage: 90 ÷ 1,500 × 100 = **6%**.",
+            },
+            mistake: {
+              es: "Dividir entre el precio nuevo; el cambio porcentual siempre se mide contra el precio de antes.",
+              en: "Dividing by the new price; the percentage change is always measured against the earlier price.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cómo se mide: el INPC", en: "How it is measured: the INPC" },
@@ -738,7 +1157,34 @@ export const lessons: Lesson[] = [
             en: "Mini example (hypothetical figures): the index was 120 in January of one year and 126 in January of the next. Annual inflation = (126 ÷ 120 − 1) × 100 = 5%.",
           },
         ],
-        formula: "Inflación % = (Índice final ÷ Índice inicial − 1) × 100",
+        formulas: [
+          {
+            name: { es: "Inflación a partir de un índice de precios", en: "Inflation from a price index" },
+            expression: "Inflación % = (Índice final ÷ Índice inicial − 1) × 100",
+            variables: [
+              { symbol: "Inflación %", meaning: { es: "Cuánto subieron los precios en promedio en el periodo, en porcentaje.", en: "How much prices rose on average over the period, as a percentage." } },
+              { symbol: "Índice final", meaning: { es: "El valor del índice (por ejemplo, el INPC) al final del periodo.", en: "The index value (for example, the INPC) at the end of the period." } },
+              { symbol: "Índice inicial", meaning: { es: "El valor del índice al inicio del periodo.", en: "The index value at the start of the period." } },
+            ],
+            steps: [
+              { es: "Divide el índice final entre el inicial.", en: "Divide the final index by the initial one." },
+              { es: "Réstale 1.", en: "Subtract 1." },
+              { es: "Multiplica por 100 para tenerlo en porcentaje.", en: "Multiply by 100 to get it as a percentage." },
+            ],
+            example: {
+              es: "Cifras hipotéticas: el índice pasa de 110 a 114.4. 114.4 ÷ 110 = 1.04; 1.04 − 1 = 0.04; 0.04 × 100 = **4%**.",
+              en: "Hypothetical figures: the index goes from 110 to 114.4. 114.4 ÷ 110 = 1.04; 1.04 − 1 = 0.04; 0.04 × 100 = **4%**.",
+            },
+            interpret: {
+              es: "Si da positivo, los precios subieron (inflación); si da negativo, bajaron (deflación).",
+              en: "If positive, prices rose (inflation); if negative, they fell (deflation).",
+            },
+            mistake: {
+              es: "Restar los índices (114.4 − 110 = 4.4) y llamarlo porcentaje; la inflación es el cambio relativo, no la diferencia de puntos.",
+              en: "Subtracting the indexes (114.4 − 110 = 4.4) and calling it a percentage; inflation is the relative change, not the difference in points.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Poder adquisitivo: lo que tu dinero realmente compra", en: "Purchasing power: what your money really buys" },
@@ -756,7 +1202,60 @@ export const lessons: Lesson[] = [
             en: "Mini example: you keep $5,000 in cash for a year and inflation is 5%. It is still $5,000, but its real value is 5,000 ÷ 1.05 ≈ $4,761.90 in today's money: you lost about $238 of purchasing power without noticing.",
           },
         ],
-        formula: "Valor real = Valor nominal ÷ (1 + inflación) ; Rendimiento real ≈ Rendimiento nominal − Inflación",
+        formulas: [
+          {
+            name: { es: "Valor real del dinero", en: "Real value of money" },
+            expression: "Valor real = Valor nominal ÷ (1 + inflación)",
+            variables: [
+              { symbol: "Valor real", meaning: { es: "Lo que tu dinero compra medido a precios del inicio, en pesos.", en: "What your money buys measured at starting prices, in pesos." } },
+              { symbol: "Valor nominal", meaning: { es: "El número de pesos que tienes (lo que ves en el billete o en la cuenta).", en: "The number of pesos you have (what you see on the note or in the account)." } },
+              { symbol: "inflación", meaning: { es: "La inflación del periodo en decimal (4% = 0.04).", en: "The period's inflation as a decimal (4% = 0.04)." } },
+            ],
+            steps: [
+              { es: "Convierte la inflación a decimal y súmale 1: 6% → 1.06.", en: "Convert inflation to a decimal and add 1: 6% → 1.06." },
+              { es: "Divide el valor nominal entre ese número.", en: "Divide the nominal value by that number." },
+              { es: "Redondea a centavos.", en: "Round to cents." },
+            ],
+            example: {
+              es: "Guardas $8,000 en efectivo un año con inflación de 6%: 8,000 ÷ 1.06 ≈ **$7,547.17**. Sigues teniendo $8,000, pero compran lo que antes compraban $7,547.17.",
+              en: "You keep $8,000 in cash for a year with 6% inflation: 8,000 ÷ 1.06 ≈ **$7,547.17**. You still have $8,000, but they buy what $7,547.17 used to buy.",
+            },
+            interpret: {
+              es: "Para conservar tu poder de compra necesitarías Valor × (1 + inflación); por ejemplo, un sueldo de $12,000 tendría que subir a 12,000 × 1.06 = $12,720.",
+              en: "To keep your purchasing power you would need Value × (1 + inflation); for example, a $12,000 salary would have to rise to 12,000 × 1.06 = $12,720.",
+            },
+            mistake: {
+              es: "Restar el porcentaje directo (8,000 × 0.94 = 7,520). Se parece, pero lo correcto es dividir entre 1 + inflación.",
+              en: "Subtracting the percentage directly (8,000 × 0.94 = 7,520). It is close, but the correct way is to divide by 1 + inflation.",
+            },
+          },
+          {
+            name: { es: "Rendimiento real (aumento real)", en: "Real return (real increase)" },
+            expression: "Rendimiento real ≈ Rendimiento nominal − Inflación ;  exacto: ((1 + nominal) ÷ (1 + inflación) − 1) × 100",
+            variables: [
+              { symbol: "Rendimiento real", meaning: { es: "Cuánto crece de verdad tu poder de compra, en porcentaje.", en: "How much your purchasing power really grows, as a percentage." } },
+              { symbol: "Rendimiento nominal", meaning: { es: "Lo que te paga la inversión o lo que sube tu sueldo, en porcentaje (en decimal para la fórmula exacta).", en: "What the investment pays or how much your salary rises, as a percentage (as a decimal for the exact formula)." } },
+              { symbol: "Inflación", meaning: { es: "Cuánto subieron los precios en el mismo periodo, en porcentaje (en decimal para la fórmula exacta).", en: "How much prices rose over the same period, as a percentage (as a decimal for the exact formula)." } },
+            ],
+            steps: [
+              { es: "Estimación rápida: resta la inflación al rendimiento nominal.", en: "Quick estimate: subtract inflation from the nominal return." },
+              { es: "Para el cálculo exacto, pasa ambos a decimal y súmales 1.", en: "For the exact calculation, convert both to decimals and add 1." },
+              { es: "Divide (1 + nominal) entre (1 + inflación), réstale 1 y multiplica por 100.", en: "Divide (1 + nominal) by (1 + inflation), subtract 1 and multiply by 100." },
+            ],
+            example: {
+              es: "Una cuenta paga 10% y la inflación es 6%. Rápido: 10% − 6% ≈ 4%. Exacto: 1.10 ÷ 1.06 ≈ 1.0377; 1.0377 − 1 = 0.0377; × 100 ≈ **3.77%**.",
+              en: "An account pays 10% and inflation is 6%. Quick: 10% − 6% ≈ 4%. Exact: 1.10 ÷ 1.06 ≈ 1.0377; 1.0377 − 1 = 0.0377; × 100 ≈ **3.77%**.",
+            },
+            interpret: {
+              es: "Positivo: tu dinero compra más que antes. Negativo: aunque tengas más pesos, compras menos.",
+              en: "Positive: your money buys more than before. Negative: even with more pesos, you buy less.",
+            },
+            mistake: {
+              es: "Creer que cualquier aumento de sueldo te hace más rico; si sube menos que la inflación, pierdes poder de compra.",
+              en: "Believing any raise makes you richer; if it rises less than inflation, you lose purchasing power.",
+            },
+          },
+        ],
         bullets: [
           { es: "Pide aumentos que al menos igualen la inflación.", en: "Ask for raises that at least match inflation." },
           { es: "Guarda tu ahorro donde pueda ganar un rendimiento, no solo en efectivo.", en: "Keep your savings where they can earn a return, not just in cash." },

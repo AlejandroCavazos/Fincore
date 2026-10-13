@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
       es: "Para abrir un negocio pequeño en orden necesitas separar tu dinero del del negocio, darte de alta en el SAT en el régimen correcto, facturar y guardar comprobantes, y cumplir a tiempo con tus declaraciones.",
       en: "To run a small business properly you need to separate your money from the business's, register with the SAT under the right regime, issue invoices and keep receipts, and file your returns on time.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar por qué conviene separar el dinero personal del dinero del negocio y cómo hacerlo.", en: "Explain why it pays to separate personal money from business money and how to do it." },
       { es: "Describir los pasos básicos para darte de alta en el SAT (RFC, e.firma, régimen fiscal) y la idea general del RESICO y de actividad empresarial y profesional.", en: "Describe the basic steps to register with the SAT (RFC, e.firma, tax regime) and the general idea of RESICO and the business and professional activity regime." },
@@ -49,7 +49,34 @@ export const lessons: Lesson[] = [
           { es: "Registrar cada venta y cada gasto con su fecha y su comprobante.", en: "Record every sale and expense with its date and receipt." },
           { es: "Mezclar el dinero te hace creer que ganas (o pierdes) más de lo real.", en: "Mixing money makes you believe you earn (or lose) more than you really do." },
         ],
-        formula: "Ganancia del negocio = Ventas − Gastos del negocio (tus gastos personales no entran)",
+        formulas: [
+          {
+            name: { es: "Ganancia del negocio en el mes", en: "The business's profit for the month" },
+            expression: "Ganancia del negocio = Ventas − Gastos del negocio",
+            variables: [
+              { symbol: "Ganancia del negocio", meaning: { es: "Lo que el negocio ganó de verdad en el mes, en pesos.", en: "What the business really earned in the month, in pesos." } },
+              { symbol: "Ventas", meaning: { es: "Todo lo que cobraste a tus clientes en el mes, en pesos (sin IVA).", en: "Everything you collected from customers in the month, in pesos (before VAT)." } },
+              { symbol: "Gastos del negocio", meaning: { es: "Lo que pagó el negocio para funcionar (mercancía, renta del local, luz), en pesos. Tus gastos personales no entran.", en: "What the business paid to operate (goods, shop rent, electricity), in pesos. Your personal expenses are not included." } },
+            ],
+            steps: [
+              { es: "Suma todas las ventas cobradas del mes.", en: "Add up all the sales collected in the month." },
+              { es: "Suma solo los gastos del negocio. Deja fuera lo que tomaste para tu casa: eso es un retiro tuyo, no un gasto del negocio.", en: "Add up only the business expenses. Leave out what you took for your home: that is your own withdrawal, not a business expense." },
+              { es: "Resta: Ventas − Gastos del negocio. El resultado es la ganancia.", en: "Subtract: Sales − Business expenses. The result is the profit." },
+            ],
+            example: {
+              es: "Una paletería vende $50,000 en el mes. Gastos del negocio: fruta y leche $20,000, renta $8,000 y luz $2,000. La dueña además tomó $6,000 para su casa. Gastos: 20,000 + 8,000 + 2,000 = $30,000 (los $6,000 no entran). Ganancia: 50,000 − 30,000 = **$20,000**.",
+              en: "An ice-pop shop sells $50,000 in the month. Business expenses: fruit and milk $20,000, rent $8,000 and electricity $2,000. The owner also took $6,000 for her home. Expenses: 20,000 + 8,000 + 2,000 = $30,000 (the $6,000 is not included). Profit: 50,000 − 30,000 = **$20,000**.",
+            },
+            interpret: {
+              es: "Si es positiva, el negocio gana; si es negativa, pierde. Si te pagas un sueldo, réstalo después a la ganancia para saber cuánto se queda en el negocio (por ejemplo, 20,000 − 8,000 de sueldo = $12,000).",
+              en: "If it is positive, the business makes money; if negative, it loses. If you pay yourself a salary, subtract it from the profit afterwards to see how much stays in the business (for example, 20,000 − 8,000 salary = $12,000).",
+            },
+            mistake: {
+              es: "Restar el dinero que tomaste para tu casa como si fuera gasto del negocio. Así parece que el negocio gana menos de lo que gana en realidad.",
+              en: "Subtracting the money you took for your home as if it were a business expense. That makes the business look like it earns less than it really does.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Darte de alta en el SAT: RFC, e.firma y régimen fiscal", en: "Registering with the SAT: RFC, e.firma and tax regime" },
@@ -78,7 +105,30 @@ export const lessons: Lesson[] = [
           { es: "Actividad empresarial: ISR sobre ganancia (ingresos − gastos deducibles).", en: "Business activity: ISR on profit (income − deductible expenses)." },
           { es: "RESICO: ISR con tasa baja sobre ingresos cobrados, con tope anual.", en: "RESICO: low-rate ISR on collected income, with a yearly cap." },
         ],
-        formula: "ISR mensual RESICO (idea general) = Ingresos cobrados del mes × tasa que corresponda",
+        formulas: [
+          {
+            name: { es: "ISR mensual en RESICO (idea general)", en: "Monthly ISR under RESICO (general idea)" },
+            expression: "ISR RESICO = Ingresos cobrados del mes × tasa",
+            variables: [
+              { symbol: "ISR RESICO", meaning: { es: "El impuesto sobre la renta que pagas ese mes, en pesos.", en: "The income tax you pay that month, in pesos." } },
+              { symbol: "Ingresos cobrados del mes", meaning: { es: "Lo que realmente te pagaron tus clientes en el mes, en pesos (sin IVA). No se restan gastos.", en: "What your customers actually paid you in the month, in pesos (before VAT). Expenses are not subtracted." } },
+              { symbol: "tasa", meaning: { es: "El porcentaje de ISR que te corresponde según cuánto cobras (como referencia, de 1 % a 2.5 %).", en: "The ISR percentage that applies to you based on how much you collect (as a reference, 1% to 2.5%)." } },
+            ],
+            steps: [
+              { es: "Toma lo que cobraste en el mes, sin IVA y sin restar ningún gasto.", en: "Take what you collected in the month, before VAT and without subtracting any expense." },
+              { es: "Convierte la tasa a decimal: divide entre 100 (por ejemplo, 1.5 % = 0.015).", en: "Convert the rate to a decimal: divide by 100 (for example, 1.5% = 0.015)." },
+              { es: "Multiplica: Ingresos cobrados × tasa en decimal. Ese es tu ISR del mes.", en: "Multiply: Collected income × decimal rate. That is your ISR for the month." },
+            ],
+            example: {
+              es: "Una costurera en RESICO cobra $24,000 en el mes y gasta $5,000 en telas. Tasa de ejemplo: 1.5 % = 0.015. ISR: 24,000 × 0.015 = **$360**. Los $5,000 de telas no se restan.",
+              en: "A seamstress under RESICO collects $24,000 in the month and spends $5,000 on fabric. Example rate: 1.5% = 0.015. ISR: 24,000 × 0.015 = **$360**. The $5,000 of fabric is not subtracted.",
+            },
+            mistake: {
+              es: "Restar los gastos antes de aplicar la tasa. Eso es la lógica de actividad empresarial, no la de RESICO, que se calcula sobre todo lo cobrado.",
+              en: "Subtracting expenses before applying the rate. That is the business-activity logic, not RESICO's, which is computed on everything collected.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Facturar y conservar comprobantes", en: "Invoicing and keeping receipts" },
@@ -100,7 +150,55 @@ export const lessons: Lesson[] = [
             en: "Mini example: your coffee shop sells $30,000 plus VAT, so you collect $4,800 of output VAT. You buy supplies for $10,000 plus VAT and pay $1,600 of input VAT. VAT payable: 4,800 − 1,600 = **$3,200**. If input VAT were larger than output VAT, you would have a **balance in your favor**.",
           },
         ],
-        formula: "IVA a pagar = IVA trasladado (ventas × 16 %) − IVA acreditable (compras con CFDI × 16 %)",
+        formulas: [
+          {
+            name: { es: "IVA de una venta o compra", en: "VAT on a sale or purchase" },
+            expression: "IVA = Base × 16 %",
+            variables: [
+              { symbol: "IVA", meaning: { es: "El impuesto que se cobra o se paga en esa operación, en pesos.", en: "The tax charged or paid on that transaction, in pesos." } },
+              { symbol: "Base", meaning: { es: "El precio sin IVA, en pesos. En ventas da el IVA trasladado; en compras con CFDI da el IVA acreditable.", en: "The price before VAT, in pesos. On sales it gives output VAT; on purchases with a CFDI it gives input VAT." } },
+              { symbol: "16 %", meaning: { es: "La tasa general del IVA; en decimal es 0.16.", en: "The general VAT rate; as a decimal it is 0.16." } },
+            ],
+            steps: [
+              { es: "Asegúrate de usar el monto sin IVA como base.", en: "Make sure you use the amount before VAT as the base." },
+              { es: "Multiplica la base por 0.16.", en: "Multiply the base by 0.16." },
+            ],
+            example: {
+              es: "Vendes $40,000 sin IVA: 40,000 × 0.16 = **$6,400** de IVA trasladado. Compras $15,000 sin IVA con CFDI: 15,000 × 0.16 = **$2,400** de IVA acreditable.",
+              en: "You sell $40,000 before VAT: 40,000 × 0.16 = **$6,400** of output VAT. You buy $15,000 before VAT with a CFDI: 15,000 × 0.16 = **$2,400** of input VAT.",
+            },
+            mistake: {
+              es: "Usar el monto que ya incluye IVA como base: le sacarías IVA al IVA.",
+              en: "Using the amount that already includes VAT as the base: you would be taxing the VAT itself.",
+            },
+          },
+          {
+            name: { es: "IVA a pagar del mes", en: "VAT payable for the month" },
+            expression: "IVA a pagar = IVA trasladado − IVA acreditable",
+            variables: [
+              { symbol: "IVA a pagar", meaning: { es: "Lo que entregas al SAT ese mes, en pesos.", en: "What you hand over to the SAT that month, in pesos." } },
+              { symbol: "IVA trasladado", meaning: { es: "El IVA que cobraste a tus clientes en tus ventas, en pesos.", en: "The VAT you charged your customers on your sales, in pesos." } },
+              { symbol: "IVA acreditable", meaning: { es: "El IVA que pagaste a tus proveedores en compras del negocio con CFDI a tu RFC, en pesos.", en: "The VAT you paid suppliers on business purchases with a CFDI to your RFC, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el IVA trasladado: ventas sin IVA × 0.16.", en: "Compute output VAT: sales before VAT × 0.16." },
+              { es: "Calcula el IVA acreditable: compras sin IVA con CFDI × 0.16.", en: "Compute input VAT: purchases before VAT with CFDI × 0.16." },
+              { es: "Resta: trasladado − acreditable.", en: "Subtract: output − input." },
+            ],
+            example: {
+              es: "Con los datos anteriores: trasladado $6,400 y acreditable $2,400. IVA a pagar: 6,400 − 2,400 = **$4,000**.",
+              en: "With the data above: output $6,400 and input $2,400. VAT payable: 6,400 − 2,400 = **$4,000**.",
+            },
+            interpret: {
+              es: "Si el resultado es positivo, lo pagas al SAT. Si es negativo (pagaste más IVA del que cobraste), tienes un saldo a favor.",
+              en: "If the result is positive, you pay it to the SAT. If it is negative (you paid more VAT than you charged), you have a balance in your favor.",
+            },
+            mistake: {
+              es: "Pagar todo el IVA trasladado sin restar el acreditable, o sumar los dos en lugar de restarlos.",
+              en: "Paying all the output VAT without subtracting the input VAT, or adding the two instead of subtracting.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Calendario básico: declaraciones y cuándo buscar un contador", en: "Basic calendar: returns and when to get an accountant" },
