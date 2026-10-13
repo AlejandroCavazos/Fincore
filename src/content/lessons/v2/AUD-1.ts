@@ -49,7 +49,7 @@ export const lessons: Lesson[] = [
       "Auditar es revisar de forma independiente y con evidencia si la información de alguien es confiable, para que un tercero pueda creer en ella; hay varios tipos de auditoría y todos se apoyan en independencia, escepticismo y juicio profesional.",
       "Auditing is independently reviewing, with evidence, whether someone's information is reliable so a third party can trust it; there are several types of audit and all rely on independence, skepticism and professional judgment.",
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Explicar qué es una auditoría y quiénes participan en ella.", "Explain what an audit is and who takes part in it."),
       t("Distinguir los principales tipos de auditoría por quién la hace y qué revisa.", "Distinguish the main types of audit by who performs it and what it reviews."),
@@ -120,7 +120,35 @@ export const lessons: Lesson[] = [
             "**Professional skepticism** is a questioning mindset: not assuming management is dishonest, but not believing everything without evidence either. **Professional judgment** is deciding, with knowledge and experience, what to review and how much. Mini example: the manager says \"that customer already paid.\" The skeptical auditor asks for the bank statement showing the deposit.",
           ),
         ],
-        formula: "Dependencia de honorarios (%) = Honorarios de un cliente ÷ Honorarios totales del despacho × 100",
+        formulas: [
+          {
+            name: t("Dependencia de honorarios: cuánto pesa un cliente en los ingresos del despacho", "Fee dependence: how much one client weighs in the firm's revenue"),
+            expression: "Dependencia (%) = Honorarios de un cliente ÷ Honorarios totales del despacho × 100",
+            variables: [
+              { symbol: "Dependencia (%)", meaning: t("Qué parte de todo lo que cobra el despacho viene de ese solo cliente, en porcentaje.", "What share of everything the firm bills comes from that single client, as a percentage.") },
+              { symbol: "Honorarios de un cliente", meaning: t("Lo que ese cliente paga al despacho en el año por auditoría y otros servicios, en pesos.", "What that client pays the firm in the year for the audit and other services, in pesos.") },
+              { symbol: "Honorarios totales del despacho", meaning: t("Todo lo que el despacho cobra en el año a todos sus clientes juntos, en pesos.", "Everything the firm bills in the year to all its clients together, in pesos.") },
+              { symbol: "× 100", meaning: t("Convierte el resultado decimal en porcentaje.", "Turns the decimal result into a percentage.") },
+            ],
+            steps: [
+              t("Identifica lo que paga el cliente (la parte) y lo que cobra el despacho en total (el todo).", "Identify what the client pays (the part) and what the firm bills in total (the whole)."),
+              t("Divide la parte entre el todo: honorarios del cliente ÷ honorarios totales.", "Divide the part by the whole: client fees ÷ total fees."),
+              t("Multiplica por 100 para expresarlo en porcentaje.", "Multiply by 100 to express it as a percentage."),
+            ],
+            example: t(
+              "Un despacho de Puebla cobra $2,500,000 al año y un cliente le paga $450,000. División: 450,000 ÷ 2,500,000 = 0.18. Porcentaje: 0.18 × 100 = **18 %** de sus ingresos vienen de ese cliente.",
+              "A firm in Puebla bills $2,500,000 a year and one client pays it $450,000. Division: 450,000 ÷ 2,500,000 = 0.18. Percentage: 0.18 × 100 = **18%** of its revenue comes from that client.",
+            ),
+            interpret: t(
+              "Cuanto más alto el porcentaje, más le dolería al despacho perder al cliente y más fuerte es la **amenaza de interés propio**. No hay un número mágico en esta lección: el despacho lo evalúa con juicio y, si es alto, aplica salvaguardas.",
+              "The higher the percentage, the more it would hurt the firm to lose the client and the stronger the **self-interest threat**. There is no magic number in this lesson: the firm assesses it with judgment and, if it is high, applies safeguards.",
+            ),
+            mistake: t(
+              "Dividir al revés (honorarios totales ÷ honorarios del cliente). Eso da un número como 5.6, que no es un porcentaje de dependencia.",
+              "Dividing the other way (total fees ÷ client fees). That gives a number like 5.6, which is not a dependence percentage.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -309,7 +337,7 @@ export const lessons: Lesson[] = [
       "Una auditoría avanza por etapas: aceptar el encargo, planear (conocer el negocio, fijar la materialidad y valorar riesgos), ejecutar pruebas de controles y sustantivas, y concluir; el modelo de riesgo de auditoría dice cuánto trabajo hacer.",
       "An audit moves through stages: accepting the engagement, planning (understanding the business, setting materiality and assessing risks), performing tests of controls and substantive tests, and concluding; the audit risk model tells how much work to do.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Ordenar las etapas de una auditoría, desde la aceptación hasta la conclusión.", "Order the stages of an audit, from acceptance to conclusion."),
       t("Calcular una materialidad ilustrativa y la materialidad de ejecución.", "Compute an illustrative materiality and performance materiality."),
@@ -356,14 +384,81 @@ export const lessons: Lesson[] = [
             "A threshold for **clearly trivial** errors is also set, below which they are not accumulated. Illustrative mini example: profit before tax of $2,000,000 × 5% = materiality of $100,000; performance materiality at 75% = $75,000. A $150,000 error in sales would be material; an $800 one would not.",
           ),
         ],
-        formula: "Materialidad = Base × % elegido   ·   Materialidad de ejecución = Materialidad × % (p. ej. 50 %-75 %)",
+        formulas: [
+          {
+            name: t("Materialidad: a partir de cuántos pesos un error importa", "Materiality: from how many pesos an error matters"),
+            expression: "Materialidad = Base × % elegido",
+            variables: [
+              { symbol: "Materialidad", meaning: t("El monto en pesos a partir del cual un error podría cambiar la decisión de quien lee los estados.", "The peso amount from which an error could change the decision of whoever reads the statements.") },
+              { symbol: "Base", meaning: t("La cifra de referencia elegida, en pesos: por ejemplo, la utilidad antes de impuestos, las ventas o los activos totales.", "The chosen reference figure, in pesos: for example, profit before tax, revenue or total assets.") },
+              { symbol: "% elegido", meaning: t("El porcentaje que el auditor aplica con su juicio (por ejemplo, 5 % de la utilidad antes de impuestos; es una referencia, no una regla).", "The percentage the auditor applies with judgment (for example, 5% of profit before tax; it is a benchmark, not a rule).") },
+            ],
+            steps: [
+              t("Elige la base que más le importa al lector (en una empresa con utilidades estables suele ser la utilidad antes de impuestos).", "Choose the benchmark that matters most to the reader (for a company with stable profits it is usually profit before tax)."),
+              t("Convierte el porcentaje a decimal: 5 % = 0.05.", "Convert the percentage to a decimal: 5% = 0.05."),
+              t("Multiplica la base por ese decimal: el resultado, en pesos, es la materialidad.", "Multiply the benchmark by that decimal: the result, in pesos, is materiality."),
+            ],
+            example: t(
+              "Una taquería con varias sucursales tiene utilidad antes de impuestos de $1,200,000. Decimal: 5 % = 0.05. Materialidad: 1,200,000 × 0.05 = **$60,000**. Un error de $70,000 sería material; uno de $2,000, no.",
+              "A taco chain with several branches has profit before tax of $1,200,000. Decimal: 5% = 0.05. Materiality: 1,200,000 × 0.05 = **$60,000**. A $70,000 error would be material; a $2,000 one would not.",
+            ),
+            mistake: t(
+              "Creer que el porcentaje es obligatorio por norma. Las NIA no fijan porcentajes: el auditor los elige y justifica.",
+              "Believing the percentage is mandatory under the standards. The ISAs do not set percentages: the auditor chooses and justifies them.",
+            ),
+          },
+          {
+            name: t("Materialidad de ejecución: el colchón de seguridad", "Performance materiality: the safety cushion"),
+            expression: "Materialidad de ejecución = Materialidad × % (p. ej. 50 %-75 %)",
+            variables: [
+              { symbol: "Materialidad de ejecución", meaning: t("Un monto más bajo que la materialidad, en pesos, con el que se diseñan las pruebas para dejar margen a errores no detectados.", "An amount lower than materiality, in pesos, used to design the tests and leave room for undetected errors.") },
+              { symbol: "Materialidad", meaning: t("El monto que calculaste en la fórmula anterior, en pesos.", "The amount you computed with the previous formula, in pesos.") },
+              { symbol: "%", meaning: t("El porcentaje que elige el auditor, normalmente entre 50 % y 75 % (referencia ilustrativa).", "The percentage the auditor chooses, usually between 50% and 75% (illustrative benchmark).") },
+            ],
+            steps: [
+              t("Calcula primero la materialidad.", "First compute materiality."),
+              t("Convierte el porcentaje de ejecución a decimal: 60 % = 0.60.", "Convert the performance percentage to a decimal: 60% = 0.60."),
+              t("Multiplica la **materialidad** (no la base) por ese decimal.", "Multiply **materiality** (not the benchmark) by that decimal."),
+            ],
+            example: t(
+              "Con la materialidad de $60,000 de la taquería y un 60 %: 60,000 × 0.60 = **$36,000** de materialidad de ejecución.",
+              "With the taco chain's $60,000 materiality and 60%: 60,000 × 0.60 = **$36,000** of performance materiality.",
+            ),
+            mistake: t(
+              "Aplicar el porcentaje a la base (la utilidad) en lugar de a la materialidad: da un monto enorme y absurdo.",
+              "Applying the percentage to the benchmark (profit) instead of materiality: it gives a huge, absurd amount.",
+            ),
+          },
+          {
+            name: t("Umbral de errores claramente insignificantes", "Clearly trivial threshold"),
+            expression: "Claramente insignificante = Materialidad × %",
+            variables: [
+              { symbol: "Claramente insignificante", meaning: t("El monto en pesos por debajo del cual un error es tan pequeño que ni siquiera se anota para sumarlo con otros.", "The peso amount below which an error is so small it is not even recorded to add up with others.") },
+              { symbol: "Materialidad", meaning: t("El monto de materialidad ya calculado, en pesos.", "The materiality amount already computed, in pesos.") },
+              { symbol: "%", meaning: t("Un porcentaje pequeño que elige el auditor (tasa de ejemplo: entre 3 % y 5 % de la materialidad).", "A small percentage chosen by the auditor (example rate: between 3% and 5% of materiality).") },
+            ],
+            steps: [
+              t("Toma la materialidad ya calculada.", "Take the materiality already computed."),
+              t("Convierte el porcentaje a decimal: 3 % = 0.03.", "Convert the percentage to a decimal: 3% = 0.03."),
+              t("Multiplica: el resultado es el umbral; los errores menores no se acumulan.", "Multiply: the result is the threshold; smaller errors are not accumulated."),
+            ],
+            example: t(
+              "Con materialidad de $60,000 y un 3 % de ejemplo: 60,000 × 0.03 = **$1,800**. Un error de $900 no se acumula; uno de $5,000 sí se anota.",
+              "With $60,000 materiality and an example 3%: 60,000 × 0.03 = **$1,800**. A $900 error is not accumulated; a $5,000 one is recorded.",
+            ),
+            mistake: t(
+              "Calcularlo sobre la utilidad o sobre la materialidad de ejecución. Aquí se parte de la materialidad.",
+              "Computing it on profit or on performance materiality. Here you start from materiality.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Riesgo de auditoría y tipos de pruebas", "Audit risk and types of tests"),
         body: [
           t(
-            "El **riesgo de auditoría** es el riesgo de dar una opinión limpia cuando los estados sí tienen un error material. Se descompone en tres: el **riesgo inherente** (qué tan propensa es la cuenta a errores antes de controles, como un inventario de joyería), el **riesgo de control** (que los controles de la empresa no prevengan o detecten el error) y el **riesgo de detección** (que las pruebas del auditor no lo encuentren).",
-            "**Audit risk** is the risk of giving a clean opinion when the statements do contain a material error. It breaks into three: **inherent risk** (how prone the account is to error before controls, such as jewelry inventory), **control risk** (that the company's controls do not prevent or detect the error) and **detection risk** (that the auditor's tests do not find it).",
+            "En palabras sencillas: el auditor nunca está 100 % seguro, así que decide cuánta probabilidad de equivocarse acepta y, con eso, cuánto trabajo hacer. Los riesgos se expresan como porcentajes (probabilidades): 5 % quiere decir «5 de cada 100 veces». El **riesgo de auditoría** es el riesgo de dar una opinión limpia cuando los estados sí tienen un error material. Se descompone en tres: el **riesgo inherente** (qué tan propensa es la cuenta a errores antes de controles, como un inventario de joyería), el **riesgo de control** (que los controles de la empresa no prevengan o detecten el error) y el **riesgo de detección** (que las pruebas del auditor no lo encuentren).",
+            "In simple words: the auditor is never 100% sure, so she decides how much probability of being wrong she accepts and, from that, how much work to do. Risks are expressed as percentages (probabilities): 5% means \"5 times out of 100\". **Audit risk** is the risk of giving a clean opinion when the statements do contain a material error. It breaks into three: **inherent risk** (how prone the account is to error before controls, such as jewelry inventory), **control risk** (that the company's controls do not prevent or detect the error) and **detection risk** (that the auditor's tests do not find it).",
           ),
           t(
             "El auditor no controla los dos primeros: solo los evalúa. Lo que sí controla es el **riesgo de detección**, ajustando cuánto y cómo prueba. Si el riesgo inherente y el de control son altos, el riesgo de detección aceptable debe ser **bajo**, y eso significa **más pruebas**, más grandes o más cerca del cierre.",
@@ -374,7 +469,36 @@ export const lessons: Lesson[] = [
             "There are two families of tests. **Tests of controls** check that a control works (did the manager actually sign the purchase orders?). **Substantive procedures** look for errors in the figures: **tests of details** (reviewing invoices, confirming balances) and **analytical procedures** (comparing trends and ratios). Mini example: if sales rose 40% but customers did not grow, the auditor investigates why.",
           ),
         ],
-        formula: "Riesgo de auditoría = Riesgo inherente × Riesgo de control × Riesgo de detección  →  RD = RA ÷ (RI × RC)",
+        formulas: [
+          {
+            name: t("Riesgo de detección aceptable (modelo de riesgo de auditoría)", "Acceptable detection risk (audit risk model)"),
+            expression: "RA = RI × RC × RD  →  RD = RA ÷ (RI × RC)",
+            variables: [
+              { symbol: "RA", meaning: t("Riesgo de auditoría: la probabilidad total de equivocarse que el auditor está dispuesto a aceptar, en % (por ejemplo, 5 %).", "Audit risk: the total probability of being wrong the auditor is willing to accept, in % (for example, 5%).") },
+              { symbol: "RI", meaning: t("Riesgo inherente: qué tan propensa a errores es la cuenta por su naturaleza, antes de controles, en %.", "Inherent risk: how error-prone the account is by nature, before controls, in %.") },
+              { symbol: "RC", meaning: t("Riesgo de control: probabilidad de que los controles de la empresa no frenen ni detecten el error, en %.", "Control risk: probability that the company's controls neither stop nor detect the error, in %.") },
+              { symbol: "RD", meaning: t("Riesgo de detección: probabilidad de que las pruebas del auditor no encuentren el error, en %. Es lo que se despeja.", "Detection risk: probability that the auditor's tests do not find the error, in %. It is what you solve for.") },
+            ],
+            steps: [
+              t("Convierte los tres porcentajes a decimal: 5 % = 0.05, 60 % = 0.60, 50 % = 0.50.", "Convert the three percentages to decimals: 5% = 0.05, 60% = 0.60, 50% = 0.50."),
+              t("Multiplica RI × RC (los riesgos que el auditor solo evalúa).", "Multiply IR × CR (the risks the auditor only assesses)."),
+              t("Divide RA entre ese producto: el resultado es RD en decimal.", "Divide AR by that product: the result is DR as a decimal."),
+              t("Multiplica por 100 para expresarlo en porcentaje.", "Multiply by 100 to express it as a percentage."),
+            ],
+            example: t(
+              "Un auditor quiere RA = 5 % y evalúa RI = 60 % y RC = 50 %. Decimales: 0.05, 0.60 y 0.50. Producto: 0.60 × 0.50 = 0.30. División: 0.05 ÷ 0.30 = 0.1667. Porcentaje: **16.7 %** de riesgo de detección aceptable.",
+              "An auditor wants AR = 5% and assesses IR = 60% and CR = 50%. Decimals: 0.05, 0.60 and 0.50. Product: 0.60 × 0.50 = 0.30. Division: 0.05 ÷ 0.30 = 0.1667. Percentage: **16.7%** acceptable detection risk.",
+            ),
+            interpret: t(
+              "Un RD **bajo** significa que el auditor casi no puede fallar en sus pruebas: necesita **más** pruebas sustantivas, muestras más grandes o pruebas cerca del cierre. Un RD **alto** permite hacer menos.",
+              "A **low** DR means the auditor can hardly afford to miss anything: she needs **more** substantive tests, larger samples or testing near year-end. A **high** DR allows doing less.",
+            ),
+            mistake: t(
+              "Multiplicar los tres valores (RA × RI × RC) en lugar de dividir RA entre RI × RC, o meter la materialidad (que es un monto en pesos, no una probabilidad).",
+              "Multiplying all three values (AR × IR × CR) instead of dividing AR by IR × CR, or putting materiality in (it is a peso amount, not a probability).",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -435,7 +559,7 @@ export const lessons: Lesson[] = [
       "La opinión del auditor vale lo que vale su evidencia: debe ser suficiente y adecuada, se obtiene con procedimientos como inspección, observación, confirmación o recálculo, y queda registrada en papeles de trabajo que otro auditor pueda entender.",
       "The auditor's opinion is only as good as its evidence: it must be sufficient and appropriate, is obtained through procedures such as inspection, observation, confirmation or recalculation, and is recorded in working papers that another auditor can understand.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué hace que la evidencia sea suficiente y adecuada.", "Explain what makes evidence sufficient and appropriate."),
       t("Ordenar fuentes de evidencia según su confiabilidad.", "Rank sources of evidence by their reliability."),
@@ -483,7 +607,35 @@ export const lessons: Lesson[] = [
             "A simple way to project is the **ratio**: if the error in the sample is 2% of the amount reviewed, the population is estimated to have a similar error. Mini example: a sample of invoices totaling $400,000 has $6,000 of error (1.5%); if the population is $8,000,000, the projected error is $120,000.",
           ),
         ],
-        formula: "Error proyectado = (Error en la muestra ÷ Monto de la muestra) × Monto de la población",
+        formulas: [
+          {
+            name: t("Error proyectado con el método de razón", "Projected error using the ratio method"),
+            expression: "Error proyectado = (Error en la muestra ÷ Monto de la muestra) × Monto de la población",
+            variables: [
+              { symbol: "Error proyectado", meaning: t("El error que se estima que hay en toda la cuenta, en pesos.", "The error estimated to exist in the whole account, in pesos.") },
+              { symbol: "Error en la muestra", meaning: t("La suma de los errores que el auditor encontró en las partidas que revisó, en pesos.", "The sum of the errors the auditor found in the items reviewed, in pesos.") },
+              { symbol: "Monto de la muestra", meaning: t("El total en pesos de las partidas revisadas (por ejemplo, las facturas elegidas).", "The total in pesos of the items reviewed (for example, the invoices chosen).") },
+              { symbol: "Monto de la población", meaning: t("El total en pesos de toda la cuenta de donde salió la muestra (por ejemplo, todas las ventas del año).", "The total in pesos of the whole account the sample came from (for example, all sales for the year).") },
+            ],
+            steps: [
+              t("Calcula la tasa de error de la muestra: error en la muestra ÷ monto de la muestra.", "Compute the sample's error rate: error in the sample ÷ sample amount."),
+              t("Multiplica esa tasa por el monto de la población.", "Multiply that rate by the population amount."),
+              t("Compara el error proyectado con la materialidad de ejecución.", "Compare the projected error with performance materiality."),
+            ],
+            example: t(
+              "Una papelería mayorista vende $6,000,000 en el año. El auditor revisa facturas por $200,000 y encuentra $3,000 de error. Tasa: 3,000 ÷ 200,000 = 0.015 (1.5 %). Proyección: 0.015 × 6,000,000 = **$90,000** de error estimado en todas las ventas.",
+              "A wholesale stationery business sells $6,000,000 in the year. The auditor reviews invoices for $200,000 and finds $3,000 of error. Rate: 3,000 ÷ 200,000 = 0.015 (1.5%). Projection: 0.015 × 6,000,000 = **$90,000** estimated error in all sales.",
+            ),
+            interpret: t(
+              "Si el error proyectado es menor que la materialidad de ejecución, la cuenta probablemente está bien; si es mayor, hace falta más trabajo (ampliar la muestra, buscar la causa o pedir un ajuste).",
+              "If the projected error is below performance materiality, the account is probably fine; if it is higher, more work is needed (extend the sample, find the cause or request an adjustment).",
+            ),
+            mistake: t(
+              "Quedarse con el error de la muestra ($3,000) y concluir que es pequeño. Lo que importa es cuánto error habría en toda la población.",
+              "Stopping at the sample error ($3,000) and concluding it is small. What matters is how much error the whole population would have.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Papeles de trabajo: documentar para que otro entienda", "Working papers: documenting so someone else understands"),
@@ -566,7 +718,7 @@ export const lessons: Lesson[] = [
       "El control interno es el conjunto de actividades que la propia empresa pone en marcha para lograr sus objetivos con menos sorpresas: hay controles preventivos, detectivos y correctivos, manuales y automáticos, y todos deben estar bien diseñados y funcionar en la práctica.",
       "Internal control is the set of activities a company puts in place to achieve its objectives with fewer surprises: there are preventive, detective and corrective controls, manual and automated, and all must be well designed and work in practice.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Definir control interno y explicar para qué le sirve a una empresa.", "Define internal control and explain what it does for a company."),
       t("Clasificar controles en preventivos, detectivos y correctivos, y en manuales o automáticos.", "Classify controls as preventive, detective and corrective, and as manual or automated."),
@@ -636,7 +788,35 @@ export const lessons: Lesson[] = [
             "When a control is missing, poorly designed or not operating, there is a **control deficiency**. The most serious (**significant deficiencies**) are communicated in writing to those charged with governance. Mini example: of 50 purchase orders reviewed, 3 lack the manager's signature: a 6% deviation rate; if the tolerable rate is 5%, the control is not reliable.",
           ),
         ],
-        formula: "Tasa de desviación = Casos sin control aplicado ÷ Casos revisados × 100",
+        formulas: [
+          {
+            name: t("Tasa de desviación de un control", "Deviation rate of a control"),
+            expression: "Tasa de desviación (%) = Casos sin control aplicado ÷ Casos revisados × 100",
+            variables: [
+              { symbol: "Tasa de desviación (%)", meaning: t("Qué porcentaje de las veces el control no se aplicó.", "What percentage of the time the control was not applied.") },
+              { symbol: "Casos sin control aplicado", meaning: t("Cuántos casos de la muestra no tenían el control (por ejemplo, órdenes sin firma). Se llaman desviaciones.", "How many cases in the sample lacked the control (for example, orders without a signature). They are called deviations.") },
+              { symbol: "Casos revisados", meaning: t("El total de casos de la muestra, con y sin control.", "The total cases in the sample, with and without the control.") },
+              { symbol: "× 100", meaning: t("Convierte el resultado decimal en porcentaje.", "Turns the decimal result into a percentage.") },
+            ],
+            steps: [
+              t("Cuenta las desviaciones encontradas en la muestra.", "Count the deviations found in the sample."),
+              t("Divídelas entre **todos** los casos revisados y multiplica por 100.", "Divide them by **all** cases reviewed and multiply by 100."),
+              t("Compara con la tasa tolerable fijada de antemano: si la tasa de desviación es mayor, el control no es confiable.", "Compare with the tolerable rate set in advance: if the deviation rate is higher, the control is not reliable."),
+            ],
+            example: t(
+              "Se revisan 60 notas de crédito y 4 no tienen la autorización del gerente. División: 4 ÷ 60 = 0.0667. Porcentaje: 0.0667 × 100 = **6.7 %**. Con una tasa tolerable de 5 %: 6.7 % > 5 %, el control no es confiable.",
+              "60 credit notes are reviewed and 4 lack the manager's approval. Division: 4 ÷ 60 = 0.0667. Percentage: 0.0667 × 100 = **6.7%**. With a 5% tolerable rate: 6.7% > 5%, the control is not reliable.",
+            ),
+            interpret: t(
+              "Tasa por debajo de la tolerable: el control opera y el auditor puede apoyarse en él. Por encima: no se confía en el control y se hacen más pruebas sustantivas.",
+              "Rate below the tolerable rate: the control operates and the auditor can rely on it. Above it: the control is not relied on and more substantive tests are done.",
+            ),
+            mistake: t(
+              "Dividir entre los casos correctos (4 ÷ 56) en lugar de entre todos los revisados (4 ÷ 60).",
+              "Dividing by the correct cases (4 ÷ 56) instead of by all cases reviewed (4 ÷ 60).",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -767,7 +947,33 @@ export const lessons: Lesson[] = [
             "Do not confuse it with **COSO ERM** (enterprise risk management), another framework from the same committee that links risk with strategy and performance. The internal control framework focuses on controls to achieve already-defined objectives. Mini example: a company with excellent reconciliations but a director who orders fake sales to be recorded has a deficient control environment: its internal control is not effective.",
           ),
         ],
-        formula: "17 principios = 5 (entorno) + 4 (riesgos) + 3 (actividades) + 3 (información) + 2 (supervisión)",
+        formulas: [
+          {
+            name: t("Reparto de los 17 principios de COSO 2013", "Distribution of the 17 COSO 2013 principles"),
+            expression: "17 principios = 5 (entorno) + 4 (riesgos) + 3 (actividades) + 3 (información) + 2 (supervisión)",
+            variables: [
+              { symbol: "5 (entorno)", meaning: t("Principios del entorno de control: integridad, supervisión del consejo, estructura, competencia y rendición de cuentas.", "Control environment principles: integrity, board oversight, structure, competence and accountability.") },
+              { symbol: "4 (riesgos)", meaning: t("Principios de evaluación de riesgos, incluido considerar el fraude y los cambios importantes.", "Risk assessment principles, including considering fraud and significant changes.") },
+              { symbol: "3 (actividades)", meaning: t("Principios de actividades de control, incluidos los controles sobre la tecnología.", "Control activities principles, including controls over technology.") },
+              { symbol: "3 (información)", meaning: t("Principios de información y comunicación (interna y externa).", "Information and communication principles (internal and external).") },
+              { symbol: "2 (supervisión)", meaning: t("Principios de actividades de supervisión: evaluar y comunicar deficiencias.", "Monitoring activities principles: evaluating and communicating deficiencies.") },
+              { symbol: "17 principios", meaning: t("El total de principios del marco.", "The framework's total number of principles.") },
+            ],
+            steps: [
+              t("Recuerda el orden de los componentes: entorno, riesgos, actividades, información, supervisión.", "Remember the order of the components: environment, risks, activities, information, monitoring."),
+              t("Asigna la secuencia 5-4-3-3-2 en ese mismo orden: va bajando, con el 3 repetido.", "Assign the sequence 5-4-3-3-2 in that same order: it goes down, with the 3 repeated."),
+              t("Comprueba sumando que el total da 17.", "Check by adding that the total is 17."),
+            ],
+            example: t(
+              "Comprobación: 5 + 4 = 9; 9 + 3 = 12; 12 + 3 = 15; 15 + 2 = **17**. Si tu suma no da 17, algún componente quedó mal.",
+              "Check: 5 + 4 = 9; 9 + 3 = 12; 12 + 3 = 15; 15 + 2 = **17**. If your sum is not 17, one component is wrong.",
+            ),
+            mistake: t(
+              "Repartirlos en partes iguales o pensar que las actividades de control tienen más principios. El que más tiene es el entorno de control, porque es la base.",
+              "Splitting them equally or thinking control activities have the most principles. The one with the most is the control environment, because it is the foundation.",
+            ),
+          },
+        ],
       },
     ],
     examples: [

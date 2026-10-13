@@ -16,7 +16,7 @@ export const lessons: Lesson[] = [
       es: "La planeación estratégica define hacia dónde quiere llegar un negocio, cómo va a llegar y cómo sabrá si va por buen camino.",
       en: "Strategic planning defines where a business wants to go, how it will get there and how it will know whether it is on track.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Distinguir misión, visión, valores y objetivos de un negocio.", en: "Distinguish a business's mission, vision, values and objectives." },
       { es: "Redactar objetivos SMART a partir de metas vagas.", en: "Write SMART objectives from vague goals." },
@@ -85,7 +85,75 @@ export const lessons: Lesson[] = [
             en: "Mini example: a beauty salon wants 120 new clients in the year. That is 10 per month. By March it has 22 instead of 30: it launches a referral promotion to catch up.",
           },
         ],
-        formula: "Meta mensual promedio = Meta anual ÷ 12   |   Avance (%) = Logrado ÷ Planeado × 100",
+        formulas: [
+          {
+            name: { es: "Meta anual a partir de un % de crecimiento", en: "Annual target from a growth %" },
+            expression: "Meta anual = Ventas del año pasado × (1 + % de crecimiento)",
+            variables: [
+              { symbol: "Meta anual", meaning: { es: "Lo que quieres vender este año, en pesos.", en: "What you want to sell this year, in pesos." } },
+              { symbol: "Ventas del año pasado", meaning: { es: "Lo que vendiste el año anterior, en pesos. Es tu punto de partida.", en: "What you sold the previous year, in pesos. It is your starting point." } },
+              { symbol: "% de crecimiento", meaning: { es: "Cuánto quieres crecer, en porcentaje (por ejemplo, 10%).", en: "How much you want to grow, as a percentage (for example, 10%)." } },
+              { symbol: "1 +", meaning: { es: "El 1 representa el 100% de lo que ya vendías; se le suma el crecimiento.", en: "The 1 stands for the 100% you already sold; the growth is added to it." } },
+            ],
+            steps: [
+              { es: "Convierte el porcentaje a decimal: 10% = 0.10.", en: "Convert the percentage to a decimal: 10% = 0.10." },
+              { es: "Súmale 1: 1 + 0.10 = 1.10.", en: "Add 1: 1 + 0.10 = 1.10." },
+              { es: "Multiplica las ventas del año pasado por ese número.", en: "Multiply last year's sales by that number." },
+            ],
+            example: {
+              es: "Una florería vendió $240,000 el año pasado y quiere crecer 10%. Decimal: 0.10. Factor: 1 + 0.10 = 1.10. Meta: 240,000 × 1.10 = **$264,000** al año.",
+              en: "A flower shop sold $240,000 last year and wants to grow 10%. Decimal: 0.10. Factor: 1 + 0.10 = 1.10. Target: 240,000 × 1.10 = **$264,000** for the year.",
+            },
+            mistake: {
+              es: "Multiplicar solo por 0.10. Eso da el **aumento** ($24,000), no la meta completa.",
+              en: "Multiplying only by 0.10. That gives the **increase** ($24,000), not the full target.",
+            },
+          },
+          {
+            name: { es: "Meta mensual promedio (desdoblar la meta anual)", en: "Average monthly target (breaking down the annual target)" },
+            expression: "Meta mensual promedio = Meta anual ÷ 12",
+            variables: [
+              { symbol: "Meta mensual promedio", meaning: { es: "Lo que deberías vender cada mes, en pesos, si repartes la meta en partes iguales.", en: "What you should sell each month, in pesos, if you split the target into equal parts." } },
+              { symbol: "Meta anual", meaning: { es: "La meta de todo el año, en pesos.", en: "The target for the whole year, in pesos." } },
+              { symbol: "12", meaning: { es: "Los meses del año. Para metas por trimestre se divide entre 4.", en: "The months in a year. For quarterly targets you divide by 4." } },
+            ],
+            steps: [
+              { es: "Divide la meta anual entre 12 para obtener la meta de cada mes.", en: "Divide the annual target by 12 to get each month's target." },
+              { es: "Si quieres saber cuánto más vender por mes, divide también las ventas del año pasado entre 12.", en: "If you want to know how much more to sell per month, also divide last year's sales by 12." },
+              { es: "Resta: meta mensual nueva − promedio mensual del año pasado.", en: "Subtract: new monthly target − last year's monthly average." },
+            ],
+            example: {
+              es: "La florería tiene meta de $264,000. Meta mensual: 264,000 ÷ 12 = **$22,000**. Año pasado: 240,000 ÷ 12 = $20,000 al mes. Aumento: 22,000 − 20,000 = **$2,000 más por mes**.",
+              en: "The flower shop's target is $264,000. Monthly target: 264,000 ÷ 12 = **$22,000**. Last year: 240,000 ÷ 12 = $20,000 a month. Increase: 22,000 − 20,000 = **$2,000 more per month**.",
+            },
+            mistake: {
+              es: "Dividir entre 4 cuando se piden meses (4 son trimestres, 12 son meses).",
+              en: "Dividing by 4 when months are asked (4 is quarters, 12 is months).",
+            },
+          },
+          {
+            name: { es: "Avance contra el plan", en: "Progress against the plan" },
+            expression: "Avance (%) = Logrado ÷ Planeado × 100",
+            variables: [
+              { symbol: "Avance (%)", meaning: { es: "Qué porcentaje de lo planeado ya lograste.", en: "What percentage of the plan you have already achieved." } },
+              { symbol: "Logrado", meaning: { es: "Lo que realmente conseguiste hasta hoy (pesos, clientes, piezas).", en: "What you actually achieved so far (pesos, clients, pieces)." } },
+              { symbol: "Planeado", meaning: { es: "Lo que debías llevar a esta fecha según el plan, en la misma unidad.", en: "What you should have by this date according to the plan, in the same unit." } },
+            ],
+            steps: [
+              { es: "Calcula lo planeado a la fecha: meta mensual × meses transcurridos.", en: "Compute the plan to date: monthly target × months elapsed." },
+              { es: "Divide lo logrado entre lo planeado.", en: "Divide what was achieved by what was planned." },
+              { es: "Multiplica por 100 para leerlo en porcentaje.", en: "Multiply by 100 to read it as a percentage." },
+            ],
+            example: {
+              es: "A fin de mayo la florería debía llevar 22,000 × 5 = $110,000 y lleva $99,000. División: 99,000 ÷ 110,000 = 0.90. Avance: 0.90 × 100 = **90%** del plan.",
+              en: "By the end of May the flower shop should have 22,000 × 5 = $110,000 and it has $99,000. Division: 99,000 ÷ 110,000 = 0.90. Progress: 0.90 × 100 = **90%** of plan.",
+            },
+            interpret: {
+              es: "100% = vas justo en el plan; menos de 100% = vas atrás y hay que ajustar acciones; más de 100% = vas adelantado.",
+              en: "100% = right on plan; below 100% = behind, so adjust actions; above 100% = ahead.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -274,7 +342,7 @@ export const lessons: Lesson[] = [
       es: "Las cinco fuerzas de Porter explican qué tan difícil es ganar dinero en una industria según la presión de competidores, clientes, proveedores, nuevos entrantes y sustitutos.",
       en: "Porter's five forces explain how hard it is to make money in an industry based on pressure from rivals, customers, suppliers, new entrants and substitutes.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Nombrar y explicar las cinco fuerzas de Porter.", en: "Name and explain Porter's five forces." },
       { es: "Reconocer señales de que una fuerza es alta o baja.", en: "Recognize signs that a force is high or low." },
@@ -313,15 +381,41 @@ export const lessons: Lesson[] = [
             en: "High **rivalry**: many similar competitors, almost identical products and price wars. **New entrants**: the threat is high when opening is cheap and easy; **barriers to entry** (large investment, permits, a recognized brand, loyal customers) reduce it.",
           },
           {
-            es: "**Clientes** con poder: pocos clientes que compran mucho, o que pueden cambiarse de proveedor sin costo. **Proveedores** con poder: pocos proveedores de un insumo clave, difícil de reemplazar. **Sustitutos** fuertes: hay una alternativa diferente, más barata o más cómoda.",
-            en: "Powerful **customers**: few customers buying a lot, or able to switch suppliers at no cost. Powerful **suppliers**: few suppliers of a key input that is hard to replace. Strong **substitutes**: there is a different alternative that is cheaper or more convenient.",
+            es: "Que alguien tenga **poder de negociación** significa que puede imponerte precios o condiciones porque tú lo necesitas más a él que él a ti. **Clientes** con poder: pocos clientes que compran mucho, o que pueden cambiarse de proveedor sin costo. **Proveedores** con poder: pocos proveedores de un insumo clave, difícil de reemplazar. **Sustitutos** fuertes: hay una alternativa diferente, más barata o más cómoda.",
+            en: "When someone has **bargaining power**, they can impose prices or terms on you because you need them more than they need you. Powerful **customers**: few customers buying a lot, or able to switch suppliers at no cost. Powerful **suppliers**: few suppliers of a key input that is hard to replace. Strong **substitutes**: there is a different alternative that is cheaper or more convenient.",
           },
           {
             es: "Mini ejemplo: un taller de costura que vende el 60% de su producción a una sola tienda departamental tiene un cliente con mucho poder: si la tienda pide descuento, es difícil decir que no.",
             en: "Mini example: a sewing workshop that sells 60% of its output to a single department store has a very powerful customer: if the store asks for a discount, it is hard to say no.",
           },
         ],
-        formula: "Concentración de un cliente (%) = Ventas a ese cliente ÷ Ventas totales × 100",
+        formulas: [
+          {
+            name: { es: "Concentración de un cliente: qué tanto dependes de él", en: "Customer concentration: how much you depend on one customer" },
+            expression: "Concentración de un cliente (%) = Ventas a ese cliente ÷ Ventas totales × 100",
+            variables: [
+              { symbol: "Concentración de un cliente (%)", meaning: { es: "Qué parte de todas tus ventas viene de ese solo cliente, en porcentaje.", en: "What share of all your sales comes from that single customer, as a percentage." } },
+              { symbol: "Ventas a ese cliente", meaning: { es: "Lo que le vendiste a ese cliente en el periodo, en pesos.", en: "What you sold to that customer in the period, in pesos." } },
+              { symbol: "Ventas totales", meaning: { es: "Todo lo que vendiste en el mismo periodo, a todos tus clientes, en pesos.", en: "Everything you sold in the same period, to all customers, in pesos." } },
+            ],
+            steps: [
+              { es: "Divide las ventas al cliente (la parte) entre las ventas totales (el todo).", en: "Divide sales to the customer (the part) by total sales (the whole)." },
+              { es: "Multiplica por 100 para expresarlo en porcentaje.", en: "Multiply by 100 to express it as a percentage." },
+            ],
+            example: {
+              es: "Una carpintería vendió $750,000 en el año; $180,000 fueron a una sola escuela. División: 180,000 ÷ 750,000 = 0.24. Porcentaje: 0.24 × 100 = **24%** de las ventas dependen de ese cliente.",
+              en: "A carpentry shop sold $750,000 in the year; $180,000 went to a single school. Division: 180,000 ÷ 750,000 = 0.24. Percentage: 0.24 × 100 = **24%** of sales depend on that customer.",
+            },
+            interpret: {
+              es: "Entre más alto el porcentaje, más poder de negociación tiene ese cliente: si se va, pierdes esa parte de tus ventas, así que le cuesta poco exigirte descuentos o plazos.",
+              en: "The higher the percentage, the more bargaining power that customer has: if it leaves, you lose that share of your sales, so it can easily demand discounts or payment terms.",
+            },
+            mistake: {
+              es: "Dividir al revés (ventas totales ÷ ventas al cliente). Da un número como 4.2, que no es un porcentaje.",
+              en: "Dividing the other way (total sales ÷ customer sales). It gives a number like 4.2, which is not a percentage.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Usar las fuerzas para decidir", en: "Using the forces to decide" },
@@ -396,7 +490,7 @@ export const lessons: Lesson[] = [
       es: "Un modelo de ingresos explica de qué forma concreta un negocio cobra por el valor que entrega y cómo se calcula ese ingreso.",
       en: "A revenue model explains the concrete way a business charges for the value it delivers and how that revenue is calculated.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Reconocer los principales modelos de ingresos: venta, suscripción, comisión, publicidad, freemium y renta o uso.", en: "Recognize the main revenue models: sales, subscription, commission, advertising, freemium and rental or usage." },
       { es: "Calcular ingresos básicos de cada modelo con su fórmula.", en: "Calculate basic revenue for each model with its formula." },
@@ -441,6 +535,90 @@ export const lessons: Lesson[] = [
           { es: "Suscripción: Ingreso mensual = Suscriptores × Cuota mensual.", en: "Subscription: Monthly revenue = Subscribers × Monthly fee." },
           { es: "Comisión: Ingreso = Valor de las transacciones × % de comisión.", en: "Commission: Revenue = Transaction value × Commission %." },
           { es: "Freemium: Ingreso = Usuarios × % de conversión × Precio premium.", en: "Freemium: Revenue = Users × Conversion % × Premium price." },
+        ],
+        formulas: [
+          {
+            name: { es: "Ingreso por venta única", en: "One-time sale revenue" },
+            expression: "Ingreso = Unidades × Precio",
+            variables: [
+              { symbol: "Ingreso", meaning: { es: "El dinero que entra por las ventas del periodo, en pesos.", en: "The money coming in from the period's sales, in pesos." } },
+              { symbol: "Unidades", meaning: { es: "Cuántas piezas o servicios vendiste en el periodo.", en: "How many items or services you sold in the period." } },
+              { symbol: "Precio", meaning: { es: "Lo que cobras por cada unidad, en pesos.", en: "What you charge per unit, in pesos." } },
+            ],
+            steps: [
+              { es: "Cuenta las unidades vendidas en el periodo que te piden (día, mes, año).", en: "Count the units sold in the period asked (day, month, year)." },
+              { es: "Multiplícalas por el precio de cada una.", en: "Multiply them by the price of each one." },
+            ],
+            example: {
+              es: "Una tienda de velas vende 350 velas al mes a $80 cada una: 350 × 80 = **$28,000** al mes.",
+              en: "A candle shop sells 350 candles a month at $80 each: 350 × 80 = **$28,000** a month.",
+            },
+          },
+          {
+            name: { es: "Ingreso mensual por suscripción", en: "Monthly subscription revenue" },
+            expression: "Ingreso mensual = Suscriptores × Cuota mensual",
+            variables: [
+              { symbol: "Ingreso mensual", meaning: { es: "Lo que entra cada mes por las suscripciones, en pesos.", en: "What comes in each month from subscriptions, in pesos." } },
+              { symbol: "Suscriptores", meaning: { es: "Cuántas personas están pagando la cuota ese mes.", en: "How many people are paying the fee that month." } },
+              { symbol: "Cuota mensual", meaning: { es: "Lo que paga cada suscriptor al mes, en pesos.", en: "What each subscriber pays per month, in pesos." } },
+            ],
+            steps: [
+              { es: "Toma el número de suscriptores que pagan este mes.", en: "Take the number of subscribers paying this month." },
+              { es: "Multiplícalo por la cuota mensual. Solo si te piden el año, multiplica después por 12.", en: "Multiply it by the monthly fee. Only if the year is asked, then multiply by 12." },
+            ],
+            example: {
+              es: "Un club de lectura en línea tiene 450 suscriptores que pagan $129 al mes: 450 × 129 = **$58,050** al mes.",
+              en: "An online book club has 450 subscribers paying $129 a month: 450 × 129 = **$58,050** a month.",
+            },
+            mistake: {
+              es: "Multiplicar por 12 cuando te piden el ingreso mensual: eso da el anual.",
+              en: "Multiplying by 12 when the monthly revenue is asked: that gives the annual figure.",
+            },
+          },
+          {
+            name: { es: "Ingreso por comisión", en: "Commission revenue" },
+            expression: "Ingreso = Valor de las transacciones × % de comisión",
+            variables: [
+              { symbol: "Ingreso", meaning: { es: "Lo que se queda quien cobra la comisión, en pesos.", en: "What the business charging the commission keeps, in pesos." } },
+              { symbol: "Valor de las transacciones", meaning: { es: "El total vendido a través de la plataforma o el agente, en pesos. La mayor parte es del vendedor, no tuya.", en: "The total sold through the platform or agent, in pesos. Most of it belongs to the seller, not you." } },
+              { symbol: "% de comisión", meaning: { es: "El porcentaje que cobras por conectar a comprador y vendedor (por ejemplo, 8%).", en: "The percentage you charge for connecting buyer and seller (for example, 8%)." } },
+            ],
+            steps: [
+              { es: "Convierte la comisión a decimal: 8% = 0.08.", en: "Convert the commission to a decimal: 8% = 0.08." },
+              { es: "Multiplica el valor total de las transacciones por ese decimal.", en: "Multiply the total transaction value by that decimal." },
+            ],
+            example: {
+              es: "Una app que conecta a plomeros con clientes procesa $180,000 en trabajos al mes y cobra 8%. Decimal: 0.08. Ingreso: 180,000 × 0.08 = **$14,400** al mes.",
+              en: "An app connecting plumbers with customers processes $180,000 in jobs a month and charges 8%. Decimal: 0.08. Revenue: 180,000 × 0.08 = **$14,400** a month.",
+            },
+            mistake: {
+              es: "Contar los $180,000 completos como ingreso propio. Tu ingreso es solo la comisión.",
+              en: "Counting the full $180,000 as your own revenue. Your revenue is only the commission.",
+            },
+          },
+          {
+            name: { es: "Ingreso freemium", en: "Freemium revenue" },
+            expression: "Ingreso = Usuarios × % de conversión × Precio premium",
+            variables: [
+              { symbol: "Usuarios", meaning: { es: "Todas las personas que usan la versión gratis.", en: "All the people using the free version." } },
+              { symbol: "% de conversión", meaning: { es: "Qué porcentaje de esos usuarios se pasa a pagar la versión premium.", en: "What percentage of those users upgrade to the paid premium version." } },
+              { symbol: "Precio premium", meaning: { es: "Lo que paga cada usuario premium, en pesos por mes.", en: "What each premium user pays, in pesos per month." } },
+              { symbol: "Ingreso", meaning: { es: "Lo que entra por la versión premium, en pesos por mes.", en: "What comes in from the premium version, in pesos per month." } },
+            ],
+            steps: [
+              { es: "Convierte la conversión a decimal: 3% = 0.03.", en: "Convert the conversion rate to a decimal: 3% = 0.03." },
+              { es: "Calcula los usuarios que pagan: usuarios × conversión.", en: "Compute paying users: users × conversion." },
+              { es: "Multiplica los usuarios que pagan por el precio premium.", en: "Multiply paying users by the premium price." },
+            ],
+            example: {
+              es: "Una app de ejercicio tiene 8,000 usuarios gratis y 3% pasa a premium de $89 al mes. Usuarios que pagan: 8,000 × 0.03 = 240. Ingreso: 240 × 89 = **$21,360** al mes.",
+              en: "A workout app has 8,000 free users and 3% upgrade to a $89-a-month premium. Paying users: 8,000 × 0.03 = 240. Revenue: 240 × 89 = **$21,360** a month.",
+            },
+            mistake: {
+              es: "Multiplicar todos los usuarios por el precio, como si todos pagaran. Solo pagan los que se convierten.",
+              en: "Multiplying all users by the price, as if everyone paid. Only those who convert pay.",
+            },
+          },
         ],
       },
       {
@@ -515,7 +693,7 @@ export const lessons: Lesson[] = [
       es: "La administración de operaciones organiza cómo un negocio convierte insumos en productos o servicios de forma eficiente, con calidad y a tiempo.",
       en: "Operations management organizes how a business turns inputs into products or services efficiently, with quality and on time.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Describir un proceso como insumos, transformación y resultados.", en: "Describe a process as inputs, transformation and outputs." },
       { es: "Calcular productividad, capacidad utilizada y el efecto de un cuello de botella.", en: "Calculate productivity, capacity utilization and the effect of a bottleneck." },
@@ -560,7 +738,99 @@ export const lessons: Lesson[] = [
             en: "Mini example: a pizzeria assembles 30 pizzas an hour, but the oven only bakes 20. Even if you hire more people to assemble, 20 an hour will come out: the oven rules.",
           },
         ],
-        formula: "Productividad = Producción ÷ Recurso usado   |   Utilización (%) = Producción real ÷ Capacidad × 100",
+        formulas: [
+          {
+            name: { es: "Productividad", en: "Productivity" },
+            expression: "Productividad = Producción ÷ Recurso usado",
+            variables: [
+              { symbol: "Productividad", meaning: { es: "Cuánto produces por cada unidad de recurso (por ejemplo, piezas por hora de trabajo).", en: "How much you produce per unit of resource (for example, pieces per labor hour)." } },
+              { symbol: "Producción", meaning: { es: "Lo que salió del proceso en el periodo (piezas, platos, servicios).", en: "What came out of the process in the period (pieces, dishes, services)." } },
+              { symbol: "Recurso usado", meaning: { es: "Lo que usaste para producirlo: horas de trabajo, kilos de material, horas máquina.", en: "What you used to produce it: labor hours, kilos of material, machine hours." } },
+            ],
+            steps: [
+              { es: "Calcula el recurso total usado. Si son varias personas: personas × horas de cada una.", en: "Compute the total resource used. If several people: people × hours each." },
+              { es: "Divide la producción entre ese recurso.", en: "Divide output by that resource." },
+            ],
+            example: {
+              es: "En una panadería, 3 panaderos trabajan 8 horas: 3 × 8 = 24 horas. Hacen 600 conchas: 600 ÷ 24 = **25 conchas por hora**.",
+              en: "At a bakery, 3 bakers work 8 hours: 3 × 8 = 24 hours. They make 600 conchas: 600 ÷ 24 = **25 conchas per hour**.",
+            },
+            mistake: {
+              es: "Dividir entre el número de personas en lugar de entre las horas totales: no es lo mismo producir por persona que por hora.",
+              en: "Dividing by the number of people instead of total hours: output per person is not the same as output per hour.",
+            },
+          },
+          {
+            name: { es: "Cambio de productividad en porcentaje", en: "Productivity change as a percentage" },
+            expression: "Cambio (%) = (Productividad nueva − Productividad anterior) ÷ Productividad anterior × 100",
+            variables: [
+              { symbol: "Cambio (%)", meaning: { es: "Cuánto subió (o bajó) la productividad, en porcentaje.", en: "How much productivity rose (or fell), as a percentage." } },
+              { symbol: "Productividad nueva", meaning: { es: "La productividad después del cambio (por ejemplo, después de reorganizar).", en: "Productivity after the change (for example, after reorganizing)." } },
+              { symbol: "Productividad anterior", meaning: { es: "La productividad de antes, que sirve como punto de comparación.", en: "The previous productivity, used as the comparison point." } },
+            ],
+            steps: [
+              { es: "Resta: productividad nueva − productividad anterior.", en: "Subtract: new productivity − previous productivity." },
+              { es: "Divide esa diferencia entre la productividad **anterior**.", en: "Divide that difference by the **previous** productivity." },
+              { es: "Multiplica por 100.", en: "Multiply by 100." },
+            ],
+            example: {
+              es: "La panadería reorganiza y con las mismas 24 horas hace 768 conchas: 768 ÷ 24 = 32 por hora. Diferencia: 32 − 25 = 7. División: 7 ÷ 25 = 0.28. Cambio: **+28%**.",
+              en: "The bakery reorganizes and with the same 24 hours makes 768 conchas: 768 ÷ 24 = 32 per hour. Difference: 32 − 25 = 7. Division: 7 ÷ 25 = 0.28. Change: **+28%**.",
+            },
+            mistake: {
+              es: "Dividir entre la productividad nueva (7 ÷ 32): el cambio siempre se mide contra el punto de partida.",
+              en: "Dividing by the new productivity (7 ÷ 32): change is always measured against the starting point.",
+            },
+          },
+          {
+            name: { es: "Utilización de la capacidad", en: "Capacity utilization" },
+            expression: "Utilización (%) = Producción real ÷ Capacidad × 100",
+            variables: [
+              { symbol: "Utilización (%)", meaning: { es: "Qué porcentaje de lo máximo posible realmente produjiste.", en: "What percentage of the maximum possible you actually produced." } },
+              { symbol: "Producción real", meaning: { es: "Lo que sí produjiste en el periodo.", en: "What you actually produced in the period." } },
+              { symbol: "Capacidad", meaning: { es: "Lo máximo que podrías producir en ese mismo periodo.", en: "The most you could produce in that same period." } },
+            ],
+            steps: [
+              { es: "Divide la producción real entre la capacidad (lo pequeño entre lo grande).", en: "Divide actual output by capacity (the small number by the big one)." },
+              { es: "Multiplica por 100 para leerlo en porcentaje.", en: "Multiply by 100 to read it as a percentage." },
+            ],
+            example: {
+              es: "Una purificadora puede llenar 2,000 garrafones al mes y llenó 1,500. División: 1,500 ÷ 2,000 = 0.75. Utilización: **75%**; le queda 25% libre.",
+              en: "A water plant can fill 2,000 jugs a month and filled 1,500. Division: 1,500 ÷ 2,000 = 0.75. Utilization: **75%**; 25% is spare.",
+            },
+            interpret: {
+              es: "Cerca de 100% = vas a tope y no hay margen para pedidos extra; muy bajo = tienes equipo o gente ociosa.",
+              en: "Near 100% = running flat out with no room for extra orders; very low = idle equipment or people.",
+            },
+            mistake: {
+              es: "Dividir la capacidad entre la producción: da más de 100%, que es imposible.",
+              en: "Dividing capacity by output: it gives over 100%, which is impossible.",
+            },
+          },
+          {
+            name: { es: "Capacidad de un proceso con cuello de botella", en: "Process capacity with a bottleneck" },
+            expression: "Capacidad del proceso por hora = Capacidad del paso más lento   ·   Producción por día = Capacidad por hora × Horas trabajadas",
+            variables: [
+              { symbol: "Capacidad del paso más lento", meaning: { es: "Las unidades por hora del paso que menos produce: el cuello de botella.", en: "Units per hour of the step that produces the least: the bottleneck." } },
+              { symbol: "Capacidad por hora", meaning: { es: "Lo que sale del proceso completo en una hora.", en: "What comes out of the whole process in one hour." } },
+              { symbol: "Horas trabajadas", meaning: { es: "Las horas que opera el proceso en el día.", en: "The hours the process runs in the day." } },
+              { symbol: "Producción por día", meaning: { es: "Las unidades terminadas en un día.", en: "Units finished in one day." } },
+            ],
+            steps: [
+              { es: "Anota la capacidad por hora de cada paso.", en: "Write down each step's capacity per hour." },
+              { es: "Elige la más baja: esa es la capacidad del proceso completo.", en: "Pick the lowest: that is the capacity of the whole process." },
+              { es: "Multiplícala por las horas trabajadas para obtener la producción del día.", en: "Multiply it by the hours worked to get the day's output." },
+            ],
+            example: {
+              es: "Un taller de mochilas: cortar 25 por hora, coser 15 por hora, planchar 20 por hora. El más lento es coser: **15 por hora**. En 10 horas: 15 × 10 = **150 mochilas** al día.",
+              en: "A backpack workshop: cutting 25 per hour, sewing 15 per hour, pressing 20 per hour. The slowest is sewing: **15 per hour**. In 10 hours: 15 × 10 = **150 backpacks** a day.",
+            },
+            mistake: {
+              es: "Sacar el promedio de los pasos o usar el más rápido. El proceso nunca va más rápido que su paso más lento.",
+              en: "Averaging the steps or using the fastest. The process never goes faster than its slowest step.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Calidad y desperdicios", en: "Quality and waste" },
@@ -642,7 +912,7 @@ export const lessons: Lesson[] = [
       es: "Gestionar un proyecto es planear, ejecutar y controlar un esfuerzo temporal para lograr un resultado único dentro del alcance, el tiempo y el costo acordados.",
       en: "Managing a project means planning, executing and controlling a temporary effort to achieve a unique result within the agreed scope, time and cost.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Distinguir un proyecto de una operación continua y explicar la triple restricción.", en: "Distinguish a project from an ongoing operation and explain the triple constraint." },
       { es: "Ubicar las tareas en las fases del ciclo de vida de un proyecto.", en: "Place tasks within the phases of a project's life cycle." },
@@ -689,6 +959,34 @@ export const lessons: Lesson[] = [
           { es: "Monitoreo y control: ¿vamos según el plan?", en: "Monitoring and controlling: are we on plan?" },
           { es: "Cierre: entregar y aprender.", en: "Closing: deliver and learn." },
         ],
+        formulas: [
+          {
+            name: { es: "¿Va bien el costo? (control del presupuesto)", en: "Is cost on track? (budget control)" },
+            expression: "Desviación de costo = Gasto real − (% de avance × Presupuesto total)",
+            variables: [
+              { symbol: "Desviación de costo", meaning: { es: "Cuántos pesos has gastado de más (si es positiva) o de menos (si es negativa) para el avance que llevas.", en: "How many pesos you have overspent (if positive) or underspent (if negative) for the progress made." } },
+              { symbol: "Gasto real", meaning: { es: "Lo que de verdad llevas gastado hasta hoy, en pesos.", en: "What you have actually spent so far, in pesos." } },
+              { symbol: "% de avance", meaning: { es: "Qué parte del trabajo está realmente terminada, en porcentaje.", en: "What share of the work is actually finished, as a percentage." } },
+              { symbol: "Presupuesto total", meaning: { es: "Lo que se planeó gastar en todo el proyecto, en pesos.", en: "What was planned to be spent on the whole project, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula lo que **debería** costar el trabajo hecho: % de avance (en decimal) × presupuesto total.", en: "Compute what the work done **should** cost: % progress (as a decimal) × total budget." },
+              { es: "Réstale ese monto al gasto real.", en: "Subtract that amount from actual spending." },
+            ],
+            example: {
+              es: "Pintar una escuela tiene presupuesto de $200,000. Lleva 40% de avance y se han gastado $95,000. Debería costar: 0.40 × 200,000 = $80,000. Desviación: 95,000 − 80,000 = **$15,000 de más**.",
+              en: "Painting a school has a $200,000 budget. It is 40% done and $95,000 has been spent. It should cost: 0.40 × 200,000 = $80,000. Variance: 95,000 − 80,000 = **$15,000 over**.",
+            },
+            interpret: {
+              es: "Positiva = gastas más de lo previsto para ese avance: busca la causa y corrige pronto. Cero o negativa = vas dentro del presupuesto.",
+              en: "Positive = spending more than planned for that progress: find the cause and correct it soon. Zero or negative = within budget.",
+            },
+            mistake: {
+              es: "Comparar el gasto real contra el presupuesto total ($95,000 contra $200,000) y concluir que vas bien. Hay que compararlo contra lo que debería costar el avance logrado.",
+              en: "Comparing actual spending with the total budget ($95,000 vs $200,000) and concluding all is well. Compare it with what the progress achieved should cost.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cronograma y ruta crítica", en: "Schedule and critical path" },
@@ -706,7 +1004,52 @@ export const lessons: Lesson[] = [
             en: "Mini example: to open a coffee shop, remodeling (20 days) and permit paperwork (12 days) can run in parallel. Remodeling is critical; the permits have 8 days of slack.",
           },
         ],
-        formula: "Holgura de una ruta = Duración de la ruta crítica − Duración de esa ruta",
+        formulas: [
+          {
+            name: { es: "Duración mínima del proyecto (ruta crítica)", en: "Minimum project duration (critical path)" },
+            expression: "Duración de una ruta = Suma de las duraciones de sus tareas   ·   Duración mínima = Duración de la ruta más larga",
+            variables: [
+              { symbol: "Ruta", meaning: { es: "Una cadena de tareas que van una tras otra desde el inicio hasta el final (por ejemplo, A-B-D).", en: "A chain of tasks that follow one another from start to finish (for example, A-B-D)." } },
+              { symbol: "Duración de una ruta", meaning: { es: "Los días que tarda esa cadena, sumando sus tareas.", en: "The days that chain takes, adding up its tasks." } },
+              { symbol: "Duración mínima", meaning: { es: "Lo menos que puede durar el proyecto, en días: la ruta más larga, llamada ruta crítica.", en: "The shortest the project can take, in days: the longest path, called the critical path." } },
+            ],
+            steps: [
+              { es: "Escribe todas las rutas posibles siguiendo las dependencias (qué tarea va después de cuál).", en: "Write down every possible path following the dependencies (which task comes after which)." },
+              { es: "Suma los días de cada ruta.", en: "Add up the days of each path." },
+              { es: "La ruta con más días es la ruta crítica, y su total es la duración mínima del proyecto.", en: "The path with the most days is the critical path, and its total is the project's minimum duration." },
+            ],
+            example: {
+              es: "Abrir una estética: A) rentar local, 2 días; B) remodelar, 6 días (después de A); C) comprar equipo, 4 días (después de A); D) inaugurar y promocionar, 5 días (después de B y C). Ruta A-B-D: 2 + 6 + 5 = 13 días. Ruta A-C-D: 2 + 4 + 5 = 11 días. La más larga es A-B-D: el proyecto dura como mínimo **13 días**.",
+              en: "Opening a beauty salon: A) rent the space, 2 days; B) remodel, 6 days (after A); C) buy equipment, 4 days (after A); D) launch and promote, 5 days (after B and C). Path A-B-D: 2 + 6 + 5 = 13 days. Path A-C-D: 2 + 4 + 5 = 11 days. The longest is A-B-D: the project takes at least **13 days**.",
+            },
+            mistake: {
+              es: "Sumar todas las tareas (2 + 6 + 4 + 5 = 17) sin notar que B y C van al mismo tiempo (en paralelo).",
+              en: "Adding all tasks (2 + 6 + 4 + 5 = 17) without noticing that B and C run at the same time (in parallel).",
+            },
+          },
+          {
+            name: { es: "Holgura de una ruta", en: "Slack of a path" },
+            expression: "Holgura de una ruta = Duración de la ruta crítica − Duración de esa ruta",
+            variables: [
+              { symbol: "Holgura", meaning: { es: "Los días que una tarea fuera de la ruta crítica puede retrasarse sin mover la fecha final.", en: "The days a task off the critical path can slip without moving the end date." } },
+              { symbol: "Duración de la ruta crítica", meaning: { es: "Los días de la ruta más larga.", en: "The days of the longest path." } },
+              { symbol: "Duración de esa ruta", meaning: { es: "Los días de la ruta donde está la tarea que te interesa.", en: "The days of the path containing the task you care about." } },
+            ],
+            steps: [
+              { es: "Encuentra la ruta crítica y su duración.", en: "Find the critical path and its duration." },
+              { es: "Suma los días de la ruta donde está la tarea.", en: "Add up the days of the path containing the task." },
+              { es: "Resta: ruta crítica − esa ruta.", en: "Subtract: critical path − that path." },
+            ],
+            example: {
+              es: "En la estética, la ruta crítica dura 13 días y la ruta A-C-D (comprar equipo) dura 11. Holgura: 13 − 11 = **2 días**. Comprar el equipo puede retrasarse hasta 2 días sin cambiar la inauguración.",
+              en: "In the beauty salon, the critical path takes 13 days and path A-C-D (buy equipment) takes 11. Slack: 13 − 11 = **2 days**. Buying equipment can slip up to 2 days without changing the opening.",
+            },
+            interpret: {
+              es: "Holgura 0 = la tarea es crítica: cualquier retraso mueve todo el proyecto.",
+              en: "Slack 0 = the task is critical: any delay moves the whole project.",
+            },
+          },
+        ],
       },
     ],
     examples: [
