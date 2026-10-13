@@ -62,7 +62,7 @@ export default function Courses() {
                 <div className="min-w-0 flex-1">
                   <p className="font-bold text-navy-900 dark:text-white">{t(a.title)}</p>
                   <p className="text-sm text-navy-500 dark:text-navy-300">
-                    {soon ? `${a.materias.length} ${tx('materias', 'subjects')}` : `${p.total} ${tx('temas', 'topics')}`} · {t(a.description)}
+                    {soon ? `${a.materias.length} ${tx('temas', 'topics')}` : `${p.total} ${tx('de', 'of')} ${p.total + a.pending.length} ${tx('temas', 'topics')}`} · {t(a.description)}
                   </p>
                   {soon ? (
                     <span className="mt-2 inline-block rounded-full bg-amber-500/15 px-2 py-0.5 text-xs font-bold text-amber-700 dark:text-amber-300">{tx('Próximamente', 'Coming soon')}</span>

@@ -102,14 +102,14 @@ export default function AreaPage({ areaId }: { areaId: string }) {
         </Card>
       )}
 
-      <section>
+      {area.pending.length > 0 && (<section>
         <h2 className="mb-2 text-xs font-bold uppercase tracking-wider text-navy-500 dark:text-navy-300">
-          {tx('Temario completo del área', 'Full syllabus of the area')}
+          {tx('Próximamente en esta área', 'Coming soon in this area')}
           {lang === 'en' && ' (in Spanish)'}
         </h2>
         <Card>
           <ul className="grid gap-x-6 gap-y-1.5 text-sm text-navy-700 sm:grid-cols-2 dark:text-navy-200">
-            {area.materias.map((m) => (
+            {area.pending.map((m) => (
               <li key={m} className="flex gap-2">
                 <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-navy-300 dark:bg-navy-600" />
                 {m}
@@ -117,7 +117,7 @@ export default function AreaPage({ areaId }: { areaId: string }) {
             ))}
           </ul>
         </Card>
-      </section>
+      </section>)}
 
       {area.sections.length > 0 && (<p className="text-xs text-navy-500 dark:text-navy-300">
         {free

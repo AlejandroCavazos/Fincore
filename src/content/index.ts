@@ -8,8 +8,13 @@ import * as n6 from './lessons/level6'
 import * as etica from './lessons/extra/etica'
 import * as negocio from './lessons/extra/negocio'
 
-export const LESSONS: Lesson[] = [...n1.lessons, ...n2.lessons, ...n3.lessons, ...n4.lessons, ...n5.lessons, ...n6.lessons, ...etica.lessons, ...negocio.lessons]
-export const EXERCISES: Exercise[] = [...n1.exercises, ...n2.exercises, ...n3.exercises, ...n4.exercises, ...n5.exercises, ...n6.exercises, ...etica.exercises, ...negocio.exercises]
+/** Syllabus v2.0 lessons: every file in lessons/v2 exports `lessons` and `exercises`. */
+const v2 = Object.values(import.meta.glob<{ lessons: Lesson[]; exercises: Exercise[] }>('./lessons/v2/*.ts', { eager: true })).sort((a, b) =>
+  (a.lessons[0]?.id ?? '').localeCompare(b.lessons[0]?.id ?? ''),
+)
+
+export const LESSONS: Lesson[] = [...n1.lessons, ...n2.lessons, ...n3.lessons, ...n4.lessons, ...n5.lessons, ...n6.lessons, ...etica.lessons, ...negocio.lessons, ...v2.flatMap((m) => m.lessons)]
+export const EXERCISES: Exercise[] = [...n1.exercises, ...n2.exercises, ...n3.exercises, ...n4.exercises, ...n5.exercises, ...n6.exercises, ...etica.exercises, ...negocio.exercises, ...v2.flatMap((m) => m.exercises)]
 
 const lessonById = new Map(LESSONS.map((l) => [l.id, l]))
 const exerciseById = new Map(EXERCISES.map((e) => [e.id, e]))
