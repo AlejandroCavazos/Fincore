@@ -18,7 +18,7 @@ export const lessons: Lesson[] = [
       "La contabilidad de costos mide cuánto cuesta fabricar un producto sumando materia prima directa, mano de obra directa y costos indirectos, y sigue ese costo desde la fábrica hasta el costo de ventas.",
       "Cost accounting measures how much it costs to make a product by adding direct materials, direct labor and overhead, and follows that cost from the factory to cost of goods sold.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar qué es la contabilidad de costos y en qué se diferencia un costo de un gasto.", "Explain what cost accounting is and how a cost differs from an expense."),
       t("Identificar los tres elementos del costo: materia prima directa, mano de obra directa y costos indirectos de fabricación.", "Identify the three cost elements: direct materials, direct labor and manufacturing overhead."),
@@ -64,7 +64,66 @@ export const lessons: Lesson[] = [
             "Two useful combinations: **prime cost** (DM + DL) shows what is direct, and **conversion cost** (DL + MOH) shows what it costs to transform the material. Mini example: a table uses $1,200 of wood, $800 of carpenter time and $400 of overhead; its production cost is $2,400, prime cost $2,000 and conversion cost $1,200.",
           ),
         ],
-        formula: "Costo de producción = MPD + MOD + CIF · Costo primo = MPD + MOD · Costo de conversión = MOD + CIF",
+        formulas: [
+          {
+            name: t("Costo de producción (lo que costó fabricar)", "Cost of production (what it cost to make)"),
+            expression: "Costo de producción = MPD + MOD + CIF",
+            variables: [
+              { symbol: "MPD", meaning: t("Materia prima directa: el material principal del producto, en pesos.", "Direct materials: the product's main material, in pesos.") },
+              { symbol: "MOD", meaning: t("Mano de obra directa: el sueldo de quien transforma el material, en pesos. Si te dan horas, MOD = horas × pago por hora.", "Direct labor: the wage of whoever transforms the material, in pesos. If you are given hours, DL = hours × pay per hour.") },
+              { symbol: "CIF", meaning: t("Costos indirectos de fabricación: renta, luz, supervisor y materiales menores de la fábrica, en pesos.", "Manufacturing overhead: the factory's rent, power, supervisor and minor materials, in pesos.") },
+            ],
+            steps: [
+              t("Separa cada costo en su elemento: MPD, MOD o CIF. Deja fuera lo de vender o administrar.", "Sort each cost into its element: DM, DL or MOH. Leave out selling and admin costs."),
+              t("Si la MOD viene en horas, multiplícalas por el pago por hora.", "If DL is given in hours, multiply them by the pay per hour."),
+              t("Suma los tres elementos.", "Add the three elements."),
+            ],
+            example: t(
+              "Un taller de bolsas de piel tiene MPD $9,000, MOD $5,000 y CIF $3,000. Costo de producción = 9,000 + 5,000 + 3,000 = **$17,000**.",
+              "A leather bag workshop has DM $9,000, DL $5,000 and MOH $3,000. Cost of production = 9,000 + 5,000 + 3,000 = **$17,000**.",
+            ),
+            mistake: t(
+              "Meter gastos de venta o administración (comisiones, publicidad, sueldo de la cajera). Esos no son costo de producción.",
+              "Including selling or admin expenses (commissions, advertising, the cashier's wage). Those are not cost of production.",
+            ),
+          },
+          {
+            name: t("Costo primo (lo directo)", "Prime cost (the direct part)"),
+            expression: "Costo primo = MPD + MOD",
+            variables: [
+              { symbol: "MPD", meaning: t("Materia prima directa, en pesos.", "Direct materials, in pesos.") },
+              { symbol: "MOD", meaning: t("Mano de obra directa, en pesos.", "Direct labor, in pesos.") },
+            ],
+            steps: [
+              t("Toma la MPD.", "Take DM."),
+              t("Súmale la MOD. Los CIF no entran.", "Add DL. Overhead does not go in."),
+            ],
+            example: t(
+              "Con el taller de bolsas: costo primo = 9,000 + 5,000 = **$14,000**.",
+              "With the bag workshop: prime cost = 9,000 + 5,000 = **$14,000**.",
+            ),
+          },
+          {
+            name: t("Costo de conversión (lo que cuesta transformar)", "Conversion cost (what it costs to transform)"),
+            expression: "Costo de conversión = MOD + CIF",
+            variables: [
+              { symbol: "MOD", meaning: t("Mano de obra directa, en pesos.", "Direct labor, in pesos.") },
+              { symbol: "CIF", meaning: t("Costos indirectos de fabricación, en pesos.", "Manufacturing overhead, in pesos.") },
+            ],
+            steps: [
+              t("Toma la MOD.", "Take DL."),
+              t("Súmale los CIF. La materia prima no entra.", "Add overhead. Raw materials do not go in."),
+            ],
+            example: t(
+              "Con el taller de bolsas: costo de conversión = 5,000 + 3,000 = **$8,000**.",
+              "With the bag workshop: conversion cost = 5,000 + 3,000 = **$8,000**.",
+            ),
+            mistake: t(
+              "Sumar costo primo + costo de conversión para sacar el costo de producción: así cuentas la MOD dos veces (14,000 + 8,000 = 22,000, no 17,000).",
+              "Adding prime cost + conversion cost to get cost of production: that counts DL twice (14,000 + 8,000 = 22,000, not 17,000).",
+            ),
+          },
+        ],
       },
       {
         heading: t("Del costo de producción al costo de ventas", "From cost of production to cost of goods sold"),
@@ -82,7 +141,69 @@ export const lessons: Lesson[] = [
             "Mini example: you finished goods for $90,000, had $12,000 of finished goods at the start and have $14,000 left at the end. Cost of goods sold is 12,000 + 90,000 − 14,000 = $88,000.",
           ),
         ],
-        formula: "MP usada = Inv. inicial MP + Compras − Inv. final MP · Costo de lo terminado = Inv. inicial PP + Costo de producción − Inv. final PP · Costo de ventas = Inv. inicial PT + Costo de lo terminado − Inv. final PT",
+        formulas: [
+          {
+            name: t("Materia prima usada en el periodo", "Raw materials used in the period"),
+            expression: "MP usada = Inv. inicial MP + Compras − Inv. final MP",
+            variables: [
+              { symbol: "MP usada", meaning: t("Los pesos de material que de verdad entraron a producción.", "The pesos of material that actually went into production.") },
+              { symbol: "Inv. inicial MP", meaning: t("Material que ya tenías en el almacén al empezar, en pesos.", "Material already in the storeroom at the start, in pesos.") },
+              { symbol: "Compras", meaning: t("Material que compraste en el periodo, en pesos.", "Material bought during the period, in pesos.") },
+              { symbol: "Inv. final MP", meaning: t("Material que sigue en el almacén al cierre, en pesos.", "Material still in the storeroom at closing, in pesos.") },
+            ],
+            steps: [
+              t("Suma lo que tenías al inicio más lo que compraste: es todo lo que pudiste usar.", "Add what you had at the start plus what you bought: that is everything you could use."),
+              t("Resta lo que sigue en el almacén al cierre: eso no se usó.", "Subtract what is still in the storeroom at closing: that was not used."),
+            ],
+            example: t(
+              "Una fábrica de huaraches tenía $7,000 de cuero, compró $30,000 y le quedan $5,000. Paso 1: 7,000 + 30,000 = 37,000. Paso 2: 37,000 − 5,000 = **$32,000** usados.",
+              "A sandal factory had $7,000 of leather, bought $30,000 and has $5,000 left. Step 1: 7,000 + 30,000 = 37,000. Step 2: 37,000 − 5,000 = **$32,000** used.",
+            ),
+            mistake: t(
+              "Tomar solo las compras y olvidar lo que ya había en el almacén al inicio.",
+              "Taking only purchases and forgetting what was already in the storeroom at the start.",
+            ),
+          },
+          {
+            name: t("Costo de lo terminado (producto que quedó listo)", "Cost of goods manufactured (product finished)"),
+            expression: "Costo de lo terminado = Inv. inicial PP + Costo de producción − Inv. final PP",
+            variables: [
+              { symbol: "Inv. inicial PP", meaning: t("Producción en proceso al inicio: lo que venía a medio hacer, en pesos.", "Opening work in process: what was half made at the start, in pesos.") },
+              { symbol: "Costo de producción", meaning: t("MP usada + MOD + CIF del periodo, en pesos.", "Materials used + DL + MOH for the period, in pesos.") },
+              { symbol: "Inv. final PP", meaning: t("Lo que quedó a medio hacer al cierre, en pesos.", "What is still half made at closing, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el costo de producción: MP usada + MOD + CIF.", "Compute cost of production: materials used + DL + MOH."),
+              t("Súmale lo que venía a medio hacer al inicio.", "Add what was half made at the start."),
+              t("Resta lo que quedó a medio hacer al cierre.", "Subtract what is still half made at closing."),
+            ],
+            example: t(
+              "Costo de producción $70,000, en proceso inicial $4,000 y final $6,000. 4,000 + 70,000 = 74,000; 74,000 − 6,000 = **$68,000** terminados.",
+              "Cost of production $70,000, opening WIP $4,000 and closing $6,000. 4,000 + 70,000 = 74,000; 74,000 − 6,000 = **$68,000** finished.",
+            ),
+          },
+          {
+            name: t("Costo de ventas (costo de lo que sí vendiste)", "Cost of goods sold (cost of what you actually sold)"),
+            expression: "Costo de ventas = Inv. inicial PT + Costo de lo terminado − Inv. final PT",
+            variables: [
+              { symbol: "Inv. inicial PT", meaning: t("Producto terminado que ya tenías listo al inicio, en pesos.", "Finished goods already on hand at the start, in pesos.") },
+              { symbol: "Costo de lo terminado", meaning: t("Lo que se terminó de fabricar en el periodo, en pesos.", "What was finished during the period, in pesos.") },
+              { symbol: "Inv. final PT", meaning: t("Producto terminado que sigue en bodega sin vender al cierre, en pesos.", "Finished goods still unsold in the warehouse at closing, in pesos.") },
+            ],
+            steps: [
+              t("Suma el producto terminado inicial más lo terminado en el periodo: es todo lo que pudiste vender.", "Add opening finished goods plus what was finished in the period: that is everything you could sell."),
+              t("Resta lo que sigue en bodega al cierre: eso no se vendió.", "Subtract what is still in the warehouse at closing: that was not sold."),
+            ],
+            example: t(
+              "Producto terminado inicial $10,000, terminado en el mes $68,000, final $9,000. 10,000 + 68,000 = 78,000; 78,000 − 9,000 = **$69,000** de costo de ventas.",
+              "Opening finished goods $10,000, finished in the month $68,000, closing $9,000. 10,000 + 68,000 = 78,000; 78,000 − 9,000 = **$69,000** cost of goods sold.",
+            ),
+            mistake: t(
+              "Sumar el inventario final en lugar de restarlo. Lo que queda en bodega no se vendió.",
+              "Adding the closing inventory instead of subtracting it. What is left in the warehouse was not sold.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -146,7 +267,7 @@ export const lessons: Lesson[] = [
       "Los costos se clasifican según a qué se pueden ligar (directos o indirectos), para qué función sirven y cuándo se restan (del producto o del periodo), y según cómo cambian cuando cambia el volumen (fijos, variables o mixtos).",
       "Costs are classified by what they can be traced to (direct or indirect), which function they serve and when they are deducted (product or period), and by how they change when volume changes (fixed, variable or mixed).",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Distinguir costos directos e indirectos respecto a un objeto de costo.", "Distinguish direct and indirect costs relative to a cost object."),
       t("Clasificar costos por función y como costos del producto o del periodo.", "Classify costs by function and as product or period costs."),
@@ -208,7 +329,50 @@ export const lessons: Lesson[] = [
             "A **mixed** (or semi-variable) **cost** has a fixed part and a variable part, like a phone bill with a monthly plan plus extra usage. Mini example: rent $30,000 and materials $50 per piece. With 1,000 pieces unit cost is 30 + 50 = $80; with 1,500 pieces it is 20 + 50 = $70.",
           ),
         ],
-        formula: "Costo total = Costo fijo + (Costo variable por unidad × Unidades) · Costo unitario = Costo total ÷ Unidades",
+        formulas: [
+          {
+            name: t("Costo total (sirve también para un costo mixto)", "Total cost (also works for a mixed cost)"),
+            expression: "Costo total = Costo fijo + (Costo variable por unidad × Unidades)",
+            variables: [
+              { symbol: "Costo total", meaning: t("Todo lo que cuesta el periodo, en pesos.", "Everything the period costs, in pesos.") },
+              { symbol: "Costo fijo", meaning: t("La parte que no cambia con el volumen (renta, cuota mensual), en pesos.", "The part that does not change with volume (rent, monthly fee), in pesos.") },
+              { symbol: "Costo variable por unidad", meaning: t("Lo que cuesta cada pieza, kilómetro o uso extra, en pesos por unidad.", "What each piece, kilometer or extra use costs, in pesos per unit.") },
+              { symbol: "Unidades", meaning: t("Cuántas piezas produces (o kilómetros, horas, etc. que usas).", "How many pieces you produce (or kilometers, hours, etc. you use).") },
+            ],
+            steps: [
+              t("Multiplica el costo variable por unidad por las unidades: esa es la parte variable.", "Multiply the variable cost per unit by the units: that is the variable part."),
+              t("Súmale el costo fijo completo.", "Add the full fixed cost."),
+            ],
+            example: t(
+              "Un taller de tazas tiene fijo $18,000 y variable $30 por taza. Con 1,000 tazas: 30 × 1,000 = 30,000; 18,000 + 30,000 = **$48,000**. Con 2,000 tazas: 30 × 2,000 = 60,000; 18,000 + 60,000 = **$78,000**.",
+              "A mug workshop has fixed cost $18,000 and variable $30 per mug. With 1,000 mugs: 30 × 1,000 = 30,000; 18,000 + 30,000 = **$48,000**. With 2,000 mugs: 30 × 2,000 = 60,000; 18,000 + 60,000 = **$78,000**.",
+            ),
+            mistake: t(
+              "Creer que si el volumen se duplica, el costo total también se duplica. Solo se duplica la parte variable; el fijo se queda igual.",
+              "Thinking that if volume doubles, total cost doubles too. Only the variable part doubles; the fixed part stays the same.",
+            ),
+          },
+          {
+            name: t("Costo unitario (cuánto cuesta cada pieza)", "Unit cost (what each piece costs)"),
+            expression: "Costo unitario = Costo total ÷ Unidades",
+            variables: [
+              { symbol: "Costo total", meaning: t("Costo fijo + parte variable, en pesos.", "Fixed cost + variable part, in pesos.") },
+              { symbol: "Unidades", meaning: t("Piezas producidas en el periodo.", "Pieces produced in the period.") },
+            ],
+            steps: [
+              t("Calcula primero el costo total con la fórmula anterior.", "First compute total cost with the previous formula."),
+              t("Divídelo entre las unidades producidas.", "Divide it by the units produced."),
+            ],
+            example: t(
+              "Con las tazas: 48,000 ÷ 1,000 = **$48** por taza; 78,000 ÷ 2,000 = **$39** por taza.",
+              "With the mugs: 48,000 ÷ 1,000 = **$48** per mug; 78,000 ÷ 2,000 = **$39** per mug.",
+            ),
+            interpret: t(
+              "Si el costo unitario baja al producir más, es porque el fijo se reparte entre más piezas (de $18 a $9 por taza); el variable sigue en $30.",
+              "If unit cost falls as you produce more, it is because the fixed cost is spread over more pieces ($18 to $9 per mug); the variable part stays at $30.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -267,7 +431,7 @@ export const lessons: Lesson[] = [
       "El costeo por órdenes acumula materia prima, mano de obra e indirectos aplicados con una tasa predeterminada en una hoja de costos por cada pedido distinto.",
       "Job order costing accumulates materials, labor and overhead applied with a predetermined rate on a cost sheet for each distinct order.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Reconocer qué negocios usan costeo por órdenes y para qué sirve la hoja de costos.", "Recognize which businesses use job order costing and what the job cost sheet is for."),
       t("Calcular una tasa predeterminada de costos indirectos y aplicarla a una orden.", "Compute a predetermined overhead rate and apply it to a job."),
@@ -295,6 +459,52 @@ export const lessons: Lesson[] = [
           t("MOD: horas registradas en la orden × tarifa por hora.", "DL: hours logged on the job × hourly rate."),
           t("CIF: se aplican con una tasa predeterminada.", "MOH: applied using a predetermined rate."),
         ],
+        formulas: [
+          {
+            name: t("Costo total de una orden", "Total cost of a job"),
+            expression: "Costo de la orden = MPD + (Horas MOD × Tarifa por hora) + CIF aplicados",
+            variables: [
+              { symbol: "MPD", meaning: t("Material que salió del almacén para esa orden, en pesos.", "Material issued from the storeroom for that job, in pesos.") },
+              { symbol: "Horas MOD", meaning: t("Horas de mano de obra directa trabajadas en esa orden.", "Direct labor hours worked on that job.") },
+              { symbol: "Tarifa por hora", meaning: t("Lo que se paga al trabajador por cada hora, en pesos.", "What the worker is paid per hour, in pesos.") },
+              { symbol: "CIF aplicados", meaning: t("Indirectos que le tocan a la orden: tasa predeterminada × base que usó (lo ves en la siguiente sección), en pesos.", "Overhead charged to the job: predetermined rate × base it used (see the next section), in pesos.") },
+            ],
+            steps: [
+              t("Anota la MPD de la orden.", "Write down the job's DM."),
+              t("Calcula la MOD: horas × tarifa por hora.", "Compute DL: hours × hourly rate."),
+              t("Calcula los CIF aplicados: tasa × horas (u otra base) de la orden.", "Compute applied overhead: rate × hours (or other base) of the job."),
+              t("Suma los tres.", "Add the three."),
+            ],
+            example: t(
+              "Una orden de 40 libreros usa $6,000 de madera y 30 horas a $140; los CIF se aplican a $60 por hora. MOD = 30 × 140 = 4,200. CIF = 30 × 60 = 1,800. Total = 6,000 + 4,200 + 1,800 = **$12,000**.",
+              "A job of 40 bookcases uses $6,000 of wood and 30 hours at $140; overhead is applied at $60 per hour. DL = 30 × 140 = 4,200. MOH = 30 × 60 = 1,800. Total = 6,000 + 4,200 + 1,800 = **$12,000**.",
+            ),
+            mistake: t(
+              "Olvidar los CIF y quedarse solo con material y mano de obra: la orden queda subcosteada y la cotizas barata.",
+              "Forgetting overhead and keeping only materials and labor: the job is undercosted and you quote it too cheap.",
+            ),
+          },
+          {
+            name: t("Costo por unidad de la orden", "Cost per unit of the job"),
+            expression: "Costo por unidad = Costo de la orden ÷ Unidades de la orden",
+            variables: [
+              { symbol: "Costo de la orden", meaning: t("El total de la hoja de costos, en pesos.", "The cost sheet total, in pesos.") },
+              { symbol: "Unidades de la orden", meaning: t("Cuántas piezas incluye el pedido.", "How many pieces the order includes.") },
+            ],
+            steps: [
+              t("Obtén el costo total de la orden.", "Get the job's total cost."),
+              t("Divídelo entre las piezas del pedido.", "Divide it by the pieces in the order."),
+            ],
+            example: t(
+              "Con los libreros: 12,000 ÷ 40 = **$300** por librero.",
+              "With the bookcases: 12,000 ÷ 40 = **$300** per bookcase.",
+            ),
+            interpret: t(
+              "Ese es el piso: si vendes cada pieza por menos, pierdes. El precio debe quedar arriba para dejar ganancia.",
+              "That is the floor: if you sell each piece for less, you lose money. The price must be above it to leave a profit.",
+            ),
+          },
+        ],
       },
       {
         heading: t("La tasa predeterminada de indirectos", "The predetermined overhead rate"),
@@ -312,7 +522,48 @@ export const lessons: Lesson[] = [
             "Mini example: budgeted overhead $600,000 and 12,000 budgeted DL hours → rate $50 per hour. Job #45 used 20 hours, so it receives 20 × 50 = $1,000 of overhead.",
           ),
         ],
-        formula: "Tasa predeterminada = CIF presupuestados ÷ Base presupuestada · CIF aplicados = Tasa × Base real de la orden",
+        formulas: [
+          {
+            name: t("Tasa predeterminada de CIF", "Predetermined overhead rate"),
+            expression: "Tasa predeterminada = CIF presupuestados ÷ Base presupuestada",
+            variables: [
+              { symbol: "CIF presupuestados", meaning: t("Los indirectos que esperas gastar en el año, en pesos (un estimado hecho al inicio).", "The overhead you expect to spend in the year, in pesos (an estimate made at the start).") },
+              { symbol: "Base presupuestada", meaning: t("Las horas de MOD u horas máquina que esperas usar en el año.", "The DL hours or machine hours you expect to use in the year.") },
+            ],
+            steps: [
+              t("Toma los CIF presupuestados del año (no los reales).", "Take the year's budgeted overhead (not actual)."),
+              t("Divídelos entre la base presupuestada: el resultado es pesos por hora.", "Divide by the budgeted base: the result is pesos per hour."),
+            ],
+            example: t(
+              "Un taller espera CIF de $750,000 y 25,000 horas máquina. Tasa = 750,000 ÷ 25,000 = **$30 por hora máquina**.",
+              "A workshop expects overhead of $750,000 and 25,000 machine hours. Rate = 750,000 ÷ 25,000 = **$30 per machine hour**.",
+            ),
+            mistake: t(
+              "Dividir al revés (horas ÷ pesos) o usar los CIF reales, que aún no se conocen cuando se fija la tasa.",
+              "Dividing the other way (hours ÷ pesos) or using actual overhead, which is not yet known when the rate is set.",
+            ),
+          },
+          {
+            name: t("CIF aplicados a una orden", "Overhead applied to a job"),
+            expression: "CIF aplicados = Tasa × Base real de la orden",
+            variables: [
+              { symbol: "Tasa", meaning: t("La tasa predeterminada, en pesos por hora.", "The predetermined rate, in pesos per hour.") },
+              { symbol: "Base real de la orden", meaning: t("Las horas (de MOD o de máquina) que esa orden realmente usó.", "The hours (DL or machine) that job actually used.") },
+            ],
+            steps: [
+              t("Revisa cuántas horas reales usó la orden, en la misma base de la tasa.", "Check how many actual hours the job used, in the same base as the rate."),
+              t("Multiplica esas horas por la tasa.", "Multiply those hours by the rate."),
+            ],
+            example: t(
+              "Con la tasa de $30, una orden que usó 45 horas máquina recibe 45 × 30 = **$1,350** de CIF.",
+              "With the $30 rate, a job that used 45 machine hours receives 45 × 30 = **$1,350** of overhead.",
+            ),
+            mistake: t(
+              "Multiplicar la tasa por los pesos de MOD en lugar de por las horas, o por las horas presupuestadas del año en lugar de las reales de la orden.",
+              "Multiplying the rate by DL pesos instead of hours, or by the year's budgeted hours instead of the job's actual hours.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Flujo del costo y ajuste de indirectos", "Cost flow and overhead adjustment"),
@@ -329,6 +580,33 @@ export const lessons: Lesson[] = [
             "Mini ejemplo: aplicaste 12,500 horas × $50 = $625,000 y los CIF reales fueron $610,000. Aplicaste $15,000 de más: CIF sobreaplicados por $15,000.",
             "Mini example: you applied 12,500 hours × $50 = $625,000 and actual overhead was $610,000. You applied $15,000 too much: overhead overapplied by $15,000.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("CIF subaplicados o sobreaplicados", "Underapplied or overapplied overhead"),
+            expression: "Diferencia = CIF reales − CIF aplicados",
+            variables: [
+              { symbol: "CIF reales", meaning: t("Los indirectos que de verdad se gastaron en el periodo, en pesos.", "The overhead actually spent in the period, in pesos.") },
+              { symbol: "CIF aplicados", meaning: t("Tasa × horas reales de todas las órdenes del periodo, en pesos.", "Rate × actual hours of all jobs in the period, in pesos.") },
+            ],
+            steps: [
+              t("Calcula los CIF aplicados del periodo: tasa × horas reales totales.", "Compute the period's applied overhead: rate × total actual hours."),
+              t("Réstalos a los CIF reales.", "Subtract them from actual overhead."),
+              t("Lee el signo: positivo = subaplicados; negativo = sobreaplicados.", "Read the sign: positive = underapplied; negative = overapplied."),
+            ],
+            example: t(
+              "Tasa $30, horas reales 9,500, CIF reales $293,500. Aplicados = 9,500 × 30 = 285,000. Diferencia = 293,500 − 285,000 = **$8,500 subaplicados**.",
+              "Rate $30, actual hours 9,500, actual overhead $293,500. Applied = 9,500 × 30 = 285,000. Difference = 293,500 − 285,000 = **$8,500 underapplied**.",
+            ),
+            interpret: t(
+              "Subaplicados: aplicaste menos de lo gastado, las órdenes quedaron baratas y el ajuste **sube** el costo de ventas. Sobreaplicados: aplicaste de más y el ajuste lo **baja**.",
+              "Underapplied: you applied less than you spent, jobs were undercosted and the adjustment **raises** cost of goods sold. Overapplied: you applied too much and the adjustment **lowers** it.",
+            ),
+            mistake: t(
+              "Confundir los nombres: si lo aplicado es menor que lo real es **sub**aplicado, aunque lo real esté \"arriba\".",
+              "Mixing up the names: if applied is less than actual it is **under**applied, even though actual is \"above\".",
+            ),
+          },
         ],
       },
     ],
@@ -388,7 +666,7 @@ export const lessons: Lesson[] = [
       "El costeo por procesos acumula los costos por departamento durante un periodo y los divide entre las unidades equivalentes para obtener un costo unitario promedio de productos idénticos fabricados en serie.",
       "Process costing accumulates costs by department over a period and divides them by equivalent units to get an average unit cost for identical products made in series.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Reconocer cuándo conviene el costeo por procesos y en qué se diferencia del de órdenes.", "Recognize when process costing fits and how it differs from job order costing."),
       t("Calcular unidades equivalentes según el grado de avance.", "Compute equivalent units based on degree of completion."),
@@ -433,7 +711,31 @@ export const lessons: Lesson[] = [
             "Mini example: you finished 10,000 jars and 2,000 remain 50% through conversion, with materials added at the start. Equivalent units for materials = 10,000 + 2,000 = 12,000; for conversion = 10,000 + 1,000 = 11,000.",
           ),
         ],
-        formula: "Unidades equivalentes = Unidades terminadas + (Unidades en proceso final × % de avance)",
+        formulas: [
+          {
+            name: t("Unidades equivalentes (UE)", "Equivalent units (EU)"),
+            expression: "Unidades equivalentes = Unidades terminadas + (Unidades en proceso final × % de avance)",
+            variables: [
+              { symbol: "Unidades terminadas", meaning: t("Piezas que se acabaron y pasaron al siguiente departamento (cuentan al 100 %).", "Pieces finished and passed to the next department (they count at 100%).") },
+              { symbol: "Unidades en proceso final", meaning: t("Piezas que quedaron a medio hacer al cierre.", "Pieces left half made at closing.") },
+              { symbol: "% de avance", meaning: t("Qué tan terminadas están esas piezas en ese elemento (materiales o conversión), en %.", "How complete those pieces are for that element (materials or conversion), in %.") },
+            ],
+            steps: [
+              t("Convierte el avance a decimal: 30 % = 0.30.", "Convert completion to a decimal: 30% = 0.30."),
+              t("Multiplica las unidades en proceso por ese decimal.", "Multiply the units in process by that decimal."),
+              t("Súmale las unidades terminadas.", "Add the finished units."),
+              t("Repite por separado para materiales y para conversión, porque su avance puede ser distinto.", "Repeat separately for materials and for conversion, because their completion can differ."),
+            ],
+            example: t(
+              "Se terminaron 6,000 botes y quedan 1,500 al 30 % de conversión; el material entra al inicio. Conversión: 1,500 × 0.30 = 450; 6,000 + 450 = **6,450 UE**. Materiales: 1,500 × 1.00 = 1,500; 6,000 + 1,500 = **7,500 UE**.",
+              "6,000 cans were finished and 1,500 remain 30% through conversion; materials go in at the start. Conversion: 1,500 × 0.30 = 450; 6,000 + 450 = **6,450 EU**. Materials: 1,500 × 1.00 = 1,500; 6,000 + 1,500 = **7,500 EU**.",
+            ),
+            mistake: t(
+              "Aplicar el % de conversión también a los materiales cuando estos entraron completos al inicio (ahí el avance es 100 %).",
+              "Applying the conversion % to materials too when they went in fully at the start (their completion is 100%).",
+            ),
+          },
+        ],
       },
       {
         heading: t("El informe de costos de producción", "The production cost report"),
@@ -443,15 +745,83 @@ export const lessons: Lesson[] = [
             "With equivalent units you build the department's **production cost report** in three steps: (1) cost per equivalent unit for each element, (2) cost of units completed and transferred, (3) cost of ending work in process.",
           ),
           t(
-            "La comprobación final es clave: terminadas + en proceso debe dar **exactamente** el costo total del departamento. Aquí usamos el método de **promedio ponderado** sin inventario inicial para que se entienda la idea; existe también el método **PEPS** (primeras entradas, primeras salidas), que separa el trabajo del mes anterior.",
-            "The final check is key: completed + in process must equal **exactly** the department's total cost. Here we use the **weighted-average** method with no opening inventory so the idea is clear; there is also the **FIFO** method (first in, first out), which separates last month's work.",
+            "La comprobación final es clave: terminadas + en proceso debe dar **exactamente** el costo total del departamento. Aquí usamos el método de **promedio ponderado** (todo el costo del mes se reparte en partes iguales entre todas las unidades equivalentes) sin inventario inicial para que se entienda la idea; existe también el método **PEPS** (primeras entradas, primeras salidas), que separa el trabajo del mes anterior.",
+            "The final check is key: completed + in process must equal **exactly** the department's total cost. Here we use the **weighted-average** method (the month's whole cost is spread evenly over all equivalent units) with no opening inventory so the idea is clear; there is also the **FIFO** method (first in, first out), which separates last month's work.",
           ),
           t(
             "Mini ejemplo: si el costo por unidad equivalente es $20 de material y $15 de conversión, cada unidad terminada vale $35, y una unidad al 50 % de conversión con todo su material vale 20 + 7.50 = $27.50.",
             "Mini example: if the cost per equivalent unit is $20 for materials and $15 for conversion, each finished unit is worth $35, and a unit 50% through conversion with all its materials is worth 20 + 7.50 = $27.50.",
           ),
         ],
-        formula: "Costo por unidad equivalente = Costo del elemento ÷ Unidades equivalentes del elemento",
+        formulas: [
+          {
+            name: t("Costo por unidad equivalente", "Cost per equivalent unit"),
+            expression: "Costo por UE = Costo del elemento ÷ UE del elemento",
+            variables: [
+              { symbol: "Costo por UE", meaning: t("Lo que cuesta una unidad completa de ese elemento, en pesos.", "What one complete unit of that element costs, in pesos.") },
+              { symbol: "Costo del elemento", meaning: t("Lo gastado en el mes en materiales, o en conversión (MOD + CIF), en pesos.", "What was spent in the month on materials, or on conversion (DL + MOH), in pesos.") },
+              { symbol: "UE del elemento", meaning: t("Las unidades equivalentes de ese mismo elemento.", "The equivalent units of that same element.") },
+            ],
+            steps: [
+              t("Calcula las UE de materiales y las de conversión por separado.", "Compute materials EU and conversion EU separately."),
+              t("Divide el costo de materiales entre las UE de materiales.", "Divide materials cost by materials EU."),
+              t("Divide el costo de conversión entre las UE de conversión.", "Divide conversion cost by conversion EU."),
+            ],
+            example: t(
+              "Con los botes: materiales $150,000 ÷ 7,500 = **$20**; conversión $96,750 ÷ 6,450 = **$15**. Un bote terminado cuesta 20 + 15 = $35.",
+              "With the cans: materials $150,000 ÷ 7,500 = **$20**; conversion $96,750 ÷ 6,450 = **$15**. A finished can costs 20 + 15 = $35.",
+            ),
+            mistake: t(
+              "Dividir el costo de conversión entre las UE de materiales (o al revés). Cada costo va con sus propias UE.",
+              "Dividing conversion cost by materials EU (or the other way). Each cost goes with its own EU.",
+            ),
+          },
+          {
+            name: t("Costo de las unidades terminadas y transferidas", "Cost of units completed and transferred"),
+            expression: "Costo terminadas = Unidades terminadas × (Costo por UE de materiales + Costo por UE de conversión)",
+            variables: [
+              { symbol: "Unidades terminadas", meaning: t("Piezas acabadas que pasan al siguiente departamento.", "Finished pieces passed to the next department.") },
+              { symbol: "Costo por UE de materiales", meaning: t("Pesos de material por unidad completa.", "Pesos of materials per complete unit.") },
+              { symbol: "Costo por UE de conversión", meaning: t("Pesos de MOD + CIF por unidad completa.", "Pesos of DL + MOH per complete unit.") },
+            ],
+            steps: [
+              t("Suma los dos costos por UE: es el costo de una pieza terminada.", "Add the two costs per EU: that is the cost of one finished piece."),
+              t("Multiplícalo por las unidades terminadas.", "Multiply it by the finished units."),
+            ],
+            example: t(
+              "Con los botes: 20 + 15 = 35; 6,000 × 35 = **$210,000** transferidos.",
+              "With the cans: 20 + 15 = 35; 6,000 × 35 = **$210,000** transferred.",
+            ),
+          },
+          {
+            name: t("Costo del inventario final en proceso", "Cost of ending work in process"),
+            expression: "Costo en proceso = (UE de materiales en proceso × Costo por UE de materiales) + (UE de conversión en proceso × Costo por UE de conversión)",
+            variables: [
+              { symbol: "UE de materiales en proceso", meaning: t("Unidades en proceso × % de avance en materiales.", "Units in process × materials completion %.") },
+              { symbol: "UE de conversión en proceso", meaning: t("Unidades en proceso × % de avance en conversión.", "Units in process × conversion completion %.") },
+              { symbol: "Costo por UE de materiales", meaning: t("Pesos de material por unidad completa.", "Pesos of materials per complete unit.") },
+              { symbol: "Costo por UE de conversión", meaning: t("Pesos de MOD + CIF por unidad completa.", "Pesos of DL + MOH per complete unit.") },
+            ],
+            steps: [
+              t("Calcula las UE que quedan en proceso de cada elemento (solo la parte a medio hacer).", "Compute the EU left in process for each element (only the half-made part)."),
+              t("Multiplica cada una por su costo por UE.", "Multiply each by its cost per EU."),
+              t("Suma los dos resultados.", "Add the two results."),
+              t("Comprueba: costo terminadas + costo en proceso = costo total del mes.", "Check: completed cost + in-process cost = the month's total cost."),
+            ],
+            example: t(
+              "Con los botes: materiales 1,500 × 20 = 30,000; conversión 450 × 15 = 6,750; total **$36,750**. Comprobación: 210,000 + 36,750 = 246,750 = 150,000 + 96,750.",
+              "With the cans: materials 1,500 × 20 = 30,000; conversion 450 × 15 = 6,750; total **$36,750**. Check: 210,000 + 36,750 = 246,750 = 150,000 + 96,750.",
+            ),
+            interpret: t(
+              "Si la comprobación no cuadra, revisa las UE: casi siempre el error está en el % de avance.",
+              "If the check does not tie, review the EU: the error is almost always in the completion %.",
+            ),
+            mistake: t(
+              "Valuar las piezas en proceso como si estuvieran completas (1,500 × 35), lo que infla el inventario.",
+              "Valuing the pieces in process as if they were complete (1,500 × 35), which inflates inventory.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -510,7 +880,7 @@ export const lessons: Lesson[] = [
       "El costeo ABC reparte los costos indirectos según las actividades que cada producto realmente consume, usando un generador de costo por actividad, lo que evita que unos productos subsidien a otros.",
       "ABC assigns overhead according to the activities each product actually consumes, using a cost driver per activity, which prevents some products from subsidizing others.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Explicar por qué una sola base de reparto puede distorsionar el costo de los productos.", "Explain why a single allocation base can distort product costs."),
       t("Aplicar los pasos del ABC: actividades, generadores de costo, tasas y asignación.", "Apply the ABC steps: activities, cost drivers, rates and assignment."),
@@ -557,7 +927,54 @@ export const lessons: Lesson[] = [
           t("4. Calcula la tasa: costo de la actividad ÷ total del generador.", "4. Compute the rate: activity cost ÷ total driver."),
           t("5. Asigna: tasa × generador que consumió cada producto.", "5. Assign: rate × driver each product consumed."),
         ],
-        formula: "Tasa de la actividad = Costo de la actividad ÷ Total del generador · CIF asignado = Tasa × Generador consumido por el producto",
+        formulas: [
+          {
+            name: t("Tasa de una actividad", "Activity rate"),
+            expression: "Tasa de la actividad = Costo de la actividad ÷ Total del generador",
+            variables: [
+              { symbol: "Costo de la actividad", meaning: t("Lo que costó esa actividad en el periodo (por ejemplo, todas las preparaciones), en pesos.", "What that activity cost in the period (for example, all setups), in pesos.") },
+              { symbol: "Total del generador", meaning: t("Cuántas veces ocurrió el generador en total: número de preparaciones, inspecciones, órdenes de compra u horas.", "How many times the driver occurred in total: number of setups, inspections, purchase orders or hours.") },
+            ],
+            steps: [
+              t("Toma el costo de una sola actividad.", "Take the cost of a single activity."),
+              t("Divídelo entre el total de su generador: el resultado es pesos por preparación, por inspección, etc.", "Divide it by its driver total: the result is pesos per setup, per inspection, etc."),
+              t("Repite para cada actividad.", "Repeat for each activity."),
+            ],
+            example: t(
+              "Recibir materiales cuesta $36,000 al año y hubo 240 recepciones. Tasa = 36,000 ÷ 240 = **$150 por recepción**.",
+              "Receiving materials costs $36,000 a year and there were 240 receipts. Rate = 36,000 ÷ 240 = **$150 per receipt**.",
+            ),
+            mistake: t(
+              "Dividir entre las unidades producidas en lugar del generador de esa actividad: eso regresa a la distorsión de una sola base.",
+              "Dividing by units produced instead of that activity's driver: that brings back the single-base distortion.",
+            ),
+          },
+          {
+            name: t("CIF asignados a un producto con ABC", "Overhead assigned to a product under ABC"),
+            expression: "CIF asignado = (Tasa₁ × Generador₁) + (Tasa₂ × Generador₂) + …",
+            variables: [
+              { symbol: "Tasa₁, Tasa₂…", meaning: t("La tasa de cada actividad, en pesos por vez que ocurre el generador.", "Each activity's rate, in pesos per driver occurrence.") },
+              { symbol: "Generador₁, Generador₂…", meaning: t("Cuánto de cada generador consumió **ese** producto (sus preparaciones, sus inspecciones…).", "How much of each driver **that** product consumed (its setups, its inspections…).") },
+            ],
+            steps: [
+              t("Para cada actividad, multiplica su tasa por lo que el producto consumió de su generador.", "For each activity, multiply its rate by what the product consumed of its driver."),
+              t("Suma los resultados de todas las actividades.", "Add the results of all activities."),
+              t("Si quieres el CIF por pieza, divide ese total entre las piezas producidas.", "If you want overhead per piece, divide that total by the pieces produced."),
+            ],
+            example: t(
+              "Recepción $150 y preparación $800. El producto X usó 40 recepciones y 15 preparaciones: 40 × 150 = 6,000; 15 × 800 = 12,000; total **$18,000**. Si hizo 3,000 piezas: 18,000 ÷ 3,000 = $6 por pieza.",
+              "Receiving $150 and setup $800. Product X used 40 receipts and 15 setups: 40 × 150 = 6,000; 15 × 800 = 12,000; total **$18,000**. If it made 3,000 pieces: 18,000 ÷ 3,000 = $6 per piece.",
+            ),
+            interpret: t(
+              "Comprueba que la suma de lo asignado a todos los productos dé el total de CIF: ABC no crea ni borra costos, solo los reparte mejor.",
+              "Check that the amounts assigned to all products add up to total overhead: ABC neither creates nor removes costs, it only spreads them better.",
+            ),
+            mistake: t(
+              "Cruzar tasas: multiplicar la tasa de preparación por el número de inspecciones.",
+              "Mixing up rates: multiplying the setup rate by the number of inspections.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Interpretar y decidir con ABC", "Interpreting and deciding with ABC"),
@@ -633,7 +1050,7 @@ export const lessons: Lesson[] = [
       "Un costo estándar es lo que un producto debería costar; comparar lo real contra el estándar en precio y cantidad (o tarifa y eficiencia) muestra dónde se ganó o se perdió dinero y quién debe explicarlo.",
       "A standard cost is what a product should cost; comparing actual against standard in price and quantity (or rate and efficiency) shows where money was gained or lost and who should explain it.",
     ),
-    minutes: 17,
+    minutes: 19,
     objectives: [
       t("Explicar qué es un costo estándar y para qué sirve.", "Explain what a standard cost is and what it is for."),
       t("Calcular las variaciones en precio y cantidad de materiales, y en tarifa y eficiencia de mano de obra.", "Compute materials price and quantity variances, and labor rate and efficiency variances."),
@@ -661,6 +1078,24 @@ export const lessons: Lesson[] = [
           t("Facilita presupuestos y cotizaciones rápidas.", "It makes budgets and quick quotes easier."),
           t("Permite la administración por excepción: revisar solo las variaciones grandes.", "It enables management by exception: review only large variances."),
         ],
+        formulas: [
+          {
+            name: t("Costo estándar por unidad", "Standard cost per unit"),
+            expression: "Costo estándar = Cantidad estándar × Precio estándar",
+            variables: [
+              { symbol: "Cantidad estándar", meaning: t("Cuánto material (kg, metros) u horas debería llevar una unidad.", "How much material (kg, meters) or how many hours one unit should take.") },
+              { symbol: "Precio estándar", meaning: t("Cuánto debería costar cada kilo, metro u hora, en pesos.", "What each kilo, meter or hour should cost, in pesos.") },
+            ],
+            steps: [
+              t("Para cada elemento (material, mano de obra), multiplica la cantidad estándar por su precio estándar.", "For each element (materials, labor), multiply the standard quantity by its standard price."),
+              t("Suma los elementos: eso es lo que la unidad debería costar.", "Add the elements: that is what the unit should cost."),
+            ],
+            example: t(
+              "Un pan dulce lleva 0.08 kg de harina a $25 el kilo y 0.1 horas de panadero a $90. Harina: 0.08 × 25 = 2. Mano de obra: 0.1 × 90 = 9. Estándar = 2 + 9 = **$11 por pan**.",
+              "A sweet bread uses 0.08 kg of flour at $25 per kilo and 0.1 baker hours at $90. Flour: 0.08 × 25 = 2. Labor: 0.1 × 90 = 9. Standard = 2 + 9 = **$11 per bread**.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Variaciones de materia prima", "Materials variances"),
@@ -678,7 +1113,61 @@ export const lessons: Lesson[] = [
             "Mini example: you produce 1,000 bars; 200 kg of cocoa are allowed. You used 210 kg at $95. Price: (95 − 100) × 210 = −$1,050 → $1,050 F. Quantity: (210 − 200) × 100 = $1,000 U. Total: $50 F.",
           ),
         ],
-        formula: "Var. precio = (Precio real − Precio estándar) × Cantidad real · Var. cantidad = (Cantidad real − Cantidad estándar permitida) × Precio estándar",
+        formulas: [
+          {
+            name: t("Variación en precio de materiales", "Materials price variance"),
+            expression: "Var. precio = (Precio real − Precio estándar) × Cantidad real",
+            variables: [
+              { symbol: "Precio real", meaning: t("Lo que realmente pagaste por kilo o metro, en pesos.", "What you actually paid per kilo or meter, in pesos.") },
+              { symbol: "Precio estándar", meaning: t("Lo que debías pagar por kilo o metro según el estándar, en pesos.", "What you should have paid per kilo or meter per the standard, in pesos.") },
+              { symbol: "Cantidad real", meaning: t("Los kilos o metros que realmente compraste o usaste.", "The kilos or meters you actually bought or used.") },
+            ],
+            steps: [
+              t("Resta precio real − precio estándar.", "Subtract actual price − standard price."),
+              t("Multiplica esa diferencia por la cantidad real.", "Multiply that difference by the actual quantity."),
+              t("Lee el signo: positivo = desfavorable (D); negativo = favorable (F).", "Read the sign: positive = unfavorable (U); negative = favorable (F)."),
+            ],
+            example: t(
+              "Se usaron 630 kg de chile comprados a $57; el estándar es $60. (57 − 60) × 630 = −3 × 630 = −1,890 → **$1,890 F**.",
+              "630 kg of chili were used, bought at $57; the standard is $60. (57 − 60) × 630 = −3 × 630 = −1,890 → **$1,890 F**.",
+            ),
+            interpret: t(
+              "Favorable: compraste más barato. Desfavorable: compraste más caro. Responsable usual: compras.",
+              "Favorable: you bought cheaper. Unfavorable: you bought more expensively. Usual owner: purchasing.",
+            ),
+            mistake: t(
+              "Multiplicar por la cantidad estándar permitida; aquí va la cantidad **real**.",
+              "Multiplying by the standard quantity allowed; the **actual** quantity goes here.",
+            ),
+          },
+          {
+            name: t("Variación en cantidad de materiales", "Materials quantity variance"),
+            expression: "Var. cantidad = (Cantidad real − Cantidad estándar permitida) × Precio estándar",
+            variables: [
+              { symbol: "Cantidad real", meaning: t("Los kilos o metros que realmente usaste.", "The kilos or meters you actually used.") },
+              { symbol: "Cantidad estándar permitida", meaning: t("Estándar por unidad × unidades **realmente** producidas: lo que debiste usar.", "Standard per unit × units **actually** produced: what you should have used.") },
+              { symbol: "Precio estándar", meaning: t("Precio por kilo o metro según el estándar, en pesos.", "Price per kilo or meter per the standard, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la cantidad estándar permitida: estándar por unidad × unidades producidas.", "Compute the standard quantity allowed: standard per unit × units produced."),
+              t("Resta cantidad real − cantidad permitida.", "Subtract actual quantity − allowed quantity."),
+              t("Multiplica por el precio estándar.", "Multiply by the standard price."),
+              t("Lee el signo: positivo = desfavorable; negativo = favorable.", "Read the sign: positive = unfavorable; negative = favorable."),
+            ],
+            example: t(
+              "Estándar 0.5 kg por frasco; se hicieron 1,200 frascos; precio estándar $60. Permitida = 0.5 × 1,200 = 600 kg. Se usaron 630 kg: (630 − 600) × 60 = 30 × 60 = **$1,800 D**.",
+              "Standard 0.5 kg per jar; 1,200 jars were made; standard price $60. Allowed = 0.5 × 1,200 = 600 kg. 630 kg were used: (630 − 600) × 60 = 30 × 60 = **$1,800 U**.",
+            ),
+            interpret: t(
+              "Desfavorable: hubo desperdicio (se usó más de lo permitido). Responsable usual: producción.",
+              "Unfavorable: there was waste (more was used than allowed). Usual owner: production.",
+            ),
+            mistake: t(
+              "Usar las unidades planeadas en lugar de las realmente producidas para la cantidad permitida, o multiplicar por el precio real.",
+              "Using planned units instead of units actually produced for the allowed quantity, or multiplying by the actual price.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Variaciones de mano de obra y su interpretación", "Labor variances and their interpretation"),
@@ -696,7 +1185,57 @@ export const lessons: Lesson[] = [
             "Mini example: standard 0.5 h per piece at $120; you produce 800 pieces, so 400 h are allowed. You used 420 h at $125. Rate: (125 − 120) × 420 = $2,100 U. Efficiency: (420 − 400) × 120 = $2,400 U.",
           ),
         ],
-        formula: "Var. tarifa = (Tarifa real − Tarifa estándar) × Horas reales · Var. eficiencia = (Horas reales − Horas estándar permitidas) × Tarifa estándar",
+        formulas: [
+          {
+            name: t("Variación en tarifa de mano de obra", "Labor rate variance"),
+            expression: "Var. tarifa = (Tarifa real − Tarifa estándar) × Horas reales",
+            variables: [
+              { symbol: "Tarifa real", meaning: t("Lo que realmente se pagó por hora, en pesos.", "What was actually paid per hour, in pesos.") },
+              { symbol: "Tarifa estándar", meaning: t("Lo que se debía pagar por hora según el estándar, en pesos.", "What should have been paid per hour per the standard, in pesos.") },
+              { symbol: "Horas reales", meaning: t("Las horas que de verdad se trabajaron.", "The hours actually worked.") },
+            ],
+            steps: [
+              t("Resta tarifa real − tarifa estándar.", "Subtract actual rate − standard rate."),
+              t("Multiplica por las horas reales.", "Multiply by actual hours."),
+              t("Lee el signo: positivo = desfavorable; negativo = favorable.", "Read the sign: positive = unfavorable; negative = favorable."),
+            ],
+            example: t(
+              "Tarifa estándar $100; se trabajaron 480 horas pagadas a $105. (105 − 100) × 480 = 5 × 480 = **$2,400 D**.",
+              "Standard rate $100; 480 hours were worked, paid at $105. (105 − 100) × 480 = 5 × 480 = **$2,400 U**.",
+            ),
+            mistake: t(
+              "Multiplicar por las horas permitidas; en la tarifa van las horas **reales**.",
+              "Multiplying by allowed hours; the rate variance uses **actual** hours.",
+            ),
+          },
+          {
+            name: t("Variación en eficiencia de mano de obra", "Labor efficiency variance"),
+            expression: "Var. eficiencia = (Horas reales − Horas estándar permitidas) × Tarifa estándar",
+            variables: [
+              { symbol: "Horas reales", meaning: t("Las horas que de verdad se trabajaron.", "The hours actually worked.") },
+              { symbol: "Horas estándar permitidas", meaning: t("Horas estándar por unidad × unidades realmente producidas: las horas que debieron bastar.", "Standard hours per unit × units actually produced: the hours that should have been enough.") },
+              { symbol: "Tarifa estándar", meaning: t("Pago por hora según el estándar, en pesos.", "Pay per hour per the standard, in pesos.") },
+            ],
+            steps: [
+              t("Calcula las horas permitidas: horas estándar por unidad × unidades producidas.", "Compute allowed hours: standard hours per unit × units produced."),
+              t("Resta horas reales − horas permitidas.", "Subtract actual hours − allowed hours."),
+              t("Multiplica por la tarifa estándar (no la real).", "Multiply by the standard rate (not the actual one)."),
+              t("Lee el signo: positivo = desfavorable; negativo = favorable.", "Read the sign: positive = unfavorable; negative = favorable."),
+            ],
+            example: t(
+              "Estándar 0.25 h por pieza; se hicieron 2,000 piezas; tarifa estándar $100. Permitidas = 0.25 × 2,000 = 500 h. Reales 480 h: (480 − 500) × 100 = −20 × 100 = −2,000 → **$2,000 F**.",
+              "Standard 0.25 h per piece; 2,000 pieces were made; standard rate $100. Allowed = 0.25 × 2,000 = 500 h. Actual 480 h: (480 − 500) × 100 = −20 × 100 = −2,000 → **$2,000 F**.",
+            ),
+            interpret: t(
+              "Favorable: se trabajó más rápido de lo esperado. Desfavorable: se tardaron más (máquinas paradas, personal nuevo, material malo).",
+              "Favorable: work was faster than expected. Unfavorable: it took longer (idle machines, new staff, poor material).",
+            ),
+            mistake: t(
+              "Valuar la diferencia de horas con la tarifa real; la eficiencia siempre se multiplica por la tarifa **estándar**.",
+              "Valuing the hour difference at the actual rate; efficiency is always multiplied by the **standard** rate.",
+            ),
+          },
+        ],
       },
     ],
     examples: [

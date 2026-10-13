@@ -18,7 +18,7 @@ export const lessons: Lesson[] = [
       "En México todos contribuimos al gasto público mediante impuestos, aportaciones de seguridad social, contribuciones de mejoras y derechos, que cobran la Federación, los estados y los municipios según lo que dicen las leyes.",
       "In Mexico we all contribute to public spending through taxes, social security contributions, improvement contributions and fees, collected by the Federation, the states and the municipalities according to the law.",
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Explicar por qué existe la obligación de pagar contribuciones y qué principios la limitan.", "Explain why the obligation to pay contributions exists and which principles limit it."),
       t("Distinguir los cuatro tipos de contribuciones: impuestos, aportaciones de seguridad social, contribuciones de mejoras y derechos.", "Distinguish the four types of contributions: taxes, social security contributions, improvement contributions and fees."),
@@ -85,7 +85,30 @@ export const lessons: Lesson[] = [
             "Mini example with hypothetical numbers: if the base is $50,000 and the rate is 2 %, the tax is 50,000 × 0.02 = $1,000.",
           ),
         ],
-        formula: "Impuesto / Tax = Base × Tasa / Rate",
+        formulas: [
+          {
+            name: t("Impuesto con tasa fija", "Tax with a flat rate"),
+            expression: "Impuesto = Base × Tasa",
+            variables: [
+              { symbol: "Impuesto", meaning: t("Los pesos que debes pagar.", "The pesos you must pay.") },
+              { symbol: "Base", meaning: t("La cantidad sobre la que se calcula, en pesos (los sueldos pagados, el valor de la casa, el ingreso).", "The amount it is computed on, in pesos (wages paid, the home's value, the income).") },
+              { symbol: "Tasa", meaning: t("El porcentaje que marca la ley, escrito en decimal para multiplicar.", "The percentage set by law, written as a decimal to multiply.") },
+            ],
+            steps: [
+              t("Identifica la base: ¿sobre qué cantidad se cobra?", "Identify the base: on what amount is it charged?"),
+              t("Convierte la tasa a decimal dividiendo entre 100: 2.5 % = 0.025.", "Convert the rate to a decimal by dividing by 100: 2.5% = 0.025."),
+              t("Multiplica la base por la tasa en decimal.", "Multiply the base by the decimal rate."),
+            ],
+            example: t(
+              "Con una tasa de ejemplo de 2.5 % y una base de $85,000: 2.5 ÷ 100 = 0.025; 85,000 × 0.025 = **$2,125** de impuesto.",
+              "With an example rate of 2.5% and a base of $85,000: 2.5 ÷ 100 = 0.025; 85,000 × 0.025 = **$2,125** of tax.",
+            ),
+            mistake: t(
+              "Multiplicar por 2.5 en lugar de 0.025: te da un impuesto 100 veces más grande. Siempre pasa el porcentaje a decimal.",
+              "Multiplying by 2.5 instead of 0.025: it gives a tax 100 times too large. Always turn the percentage into a decimal.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -144,7 +167,7 @@ export const lessons: Lesson[] = [
       "El SAT es la autoridad que recauda y vigila los impuestos federales; para tratar con él necesitas tu RFC, tu Contraseña o e.firma y tu buzón tributario.",
       "The SAT is the authority that collects and oversees federal taxes; to deal with it you need your RFC, your Password or e.firma and your tax mailbox.",
     ),
-    minutes: 13,
+    minutes: 14,
     objectives: [
       t("Describir qué es el SAT, qué hace y qué contribuciones no le corresponden.", "Describe what the SAT is, what it does and which contributions are not its responsibility."),
       t("Explicar cómo se forma el RFC y para qué sirve la Constancia de situación fiscal.", "Explain how the RFC is built and what the Tax Status Certificate is for."),
@@ -183,6 +206,30 @@ export const lessons: Lesson[] = [
             "La **Constancia de situación fiscal** es el documento que muestra tu RFC, nombre, domicilio fiscal, régimen y obligaciones. Te la piden para facturarte o para darte de alta en un trabajo. Mini ejemplo: un cliente te pide tu constancia para emitir correctamente tu factura.",
             "The **Tax Status Certificate** (Constancia de situación fiscal) shows your RFC, name, tax address, regime and obligations. People ask for it to invoice you or to register you at a job. Mini example: a client asks for your certificate to issue your invoice correctly.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Cómo se arma el RFC (cuántos caracteres tiene)", "How the RFC is built (how many characters it has)"),
+            expression: "RFC = Letras + Fecha (AAMMDD) + Homoclave",
+            variables: [
+              { symbol: "Letras", meaning: t("4 letras tomadas de tus apellidos y nombre si eres persona física; 3 letras tomadas de la razón social (el nombre legal) si es persona moral.", "4 letters taken from your surnames and name if you are an individual; 3 letters taken from the company's legal name if it is a legal entity.") },
+              { symbol: "Fecha (AAMMDD)", meaning: t("6 dígitos: año, mes y día de nacimiento (persona física) o de constitución de la empresa (persona moral).", "6 digits: year, month and day of birth (individual) or of incorporation (legal entity).") },
+              { symbol: "Homoclave", meaning: t("3 caracteres que asigna el SAT para que no haya dos claves iguales.", "3 characters assigned by the SAT so no two keys are the same.") },
+            ],
+            steps: [
+              t("Decide si es persona física (4 letras) o persona moral (3 letras).", "Decide whether it is an individual (4 letters) or a legal entity (3 letters)."),
+              t("Escribe la fecha en formato AAMMDD: dos dígitos de año, dos de mes y dos de día.", "Write the date as YYMMDD: two digits for year, two for month and two for day."),
+              t("Agrega los 3 caracteres de homoclave y cuenta el total.", "Add the 3 homoclave characters and count the total."),
+            ],
+            example: t(
+              "Daniel López Gómez, nacido el 21 de julio de 1992: letras LOGD (4) + fecha 920721 (6) + homoclave (3) = **13 caracteres**. Una empresa: 3 letras + 6 de fecha de constitución + 3 de homoclave = **12 caracteres**.",
+              "Daniel López Gómez, born July 21, 1992: letters LOGD (4) + date 920721 (6) + homoclave (3) = **13 characters**. A company: 3 letters + 6 for the incorporation date + 3 homoclave = **12 characters**.",
+            ),
+            mistake: t(
+              "Pensar que la persona moral también lleva 4 letras y 13 caracteres; lleva 3 letras y 12.",
+              "Thinking a legal entity also has 4 letters and 13 characters; it has 3 letters and 12.",
+            ),
+          },
         ],
       },
       {
@@ -264,7 +311,7 @@ export const lessons: Lesson[] = [
       "El CFF es la ley de reglas comunes para todos los impuestos federales: cómo registrarte, plazos, qué pasa si pagas tarde y cómo defenderte.",
       "The CFF is the law of common rules for all federal taxes: how to register, deadlines, what happens if you pay late and how to defend yourself.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar el papel del CFF frente a las leyes de cada impuesto.", "Explain the role of the CFF compared with the laws of each tax."),
       t("Enumerar las obligaciones básicas que marca el CFF y cómo se cuentan los plazos.", "List the basic obligations set by the CFF and how deadlines are counted."),
@@ -329,7 +376,66 @@ export const lessons: Lesson[] = [
             "You also have **rights**: free guidance, respectful treatment, knowing the status of your procedures and defending yourself. You can go to **PRODECON** (Taxpayer Ombudsman), file an **appeal for revocation** with the SAT itself, or a **lawsuit** before the Federal Court of Administrative Justice. Mini example: if you receive a charge you believe is wrong, you can challenge it within the period set by law.",
           ),
         ],
-        formula: "Contribución actualizada = Contribución × Factor · Recargos = Contribución actualizada × tasa mensual × meses",
+        formulas: [
+          {
+            name: t("Contribución actualizada por inflación", "Contribution adjusted for inflation"),
+            expression: "Contribución actualizada = Contribución × Factor de actualización",
+            variables: [
+              { symbol: "Contribución", meaning: t("Lo que debías pagar a tiempo, en pesos.", "What you should have paid on time, in pesos.") },
+              { symbol: "Factor de actualización", meaning: t("Un número un poco mayor que 1 que refleja la inflación del atraso; sale de comparar el INPC de cuando pagas contra el de cuando debiste pagar. En los ejercicios te lo dan.", "A number slightly above 1 reflecting inflation during the delay; it comes from comparing the INPC when you pay against when you should have paid. Exercises give it to you.") },
+            ],
+            steps: [
+              t("Toma el monto que debías.", "Take the amount you owed."),
+              t("Multiplícalo por el factor de actualización.", "Multiply it by the adjustment factor."),
+            ],
+            example: t(
+              "Debías $12,000 y el factor de ejemplo es 1.0300: 12,000 × 1.0300 = **$12,360**.",
+              "You owed $12,000 and the example factor is 1.0300: 12,000 × 1.0300 = **$12,360**.",
+            ),
+            interpret: t(
+              "La diferencia ($360) no es castigo: solo devuelve al gobierno el poder de compra que perdió por la inflación.",
+              "The difference ($360) is not a penalty: it only gives the government back the purchasing power lost to inflation.",
+            ),
+          },
+          {
+            name: t("Recargos por pagar tarde", "Surcharges for paying late"),
+            expression: "Recargos = Contribución actualizada × Tasa mensual de recargos × Meses de atraso",
+            variables: [
+              { symbol: "Contribución actualizada", meaning: t("El monto ya multiplicado por el factor de actualización, en pesos.", "The amount already multiplied by the adjustment factor, in pesos.") },
+              { symbol: "Tasa mensual de recargos", meaning: t("El porcentaje que se cobra por cada mes de atraso, en decimal (la fija la ley; en los ejemplos es hipotética).", "The percentage charged per month of delay, as a decimal (set by law; hypothetical in the examples).") },
+              { symbol: "Meses de atraso", meaning: t("Meses que pasaron sin pagar; una fracción de mes cuenta como mes completo.", "Months that passed without paying; a fraction of a month counts as a full month.") },
+            ],
+            steps: [
+              t("Calcula primero la contribución actualizada.", "First compute the adjusted contribution."),
+              t("Multiplica la tasa mensual por los meses de atraso: 1.5 % × 5 = 7.5 % = 0.075.", "Multiply the monthly rate by the months of delay: 1.5% × 5 = 7.5% = 0.075."),
+              t("Multiplica la contribución actualizada por esa tasa acumulada.", "Multiply the adjusted contribution by that accumulated rate."),
+            ],
+            example: t(
+              "Con $12,360 actualizados, tasa de ejemplo 1.5 % mensual y 5 meses: 1.5 % × 5 = 7.5 %; 12,360 × 0.075 = **$927** de recargos.",
+              "With $12,360 adjusted, an example rate of 1.5% a month and 5 months: 1.5% × 5 = 7.5%; 12,360 × 0.075 = **$927** of surcharges.",
+            ),
+            mistake: t(
+              "Calcular los recargos sobre la contribución original ($12,000) en lugar de sobre la actualizada, o volver a multiplicar por el factor.",
+              "Computing surcharges on the original contribution ($12,000) instead of the adjusted one, or multiplying by the factor again.",
+            ),
+          },
+          {
+            name: t("Total a pagar por un pago tardío", "Total due on a late payment"),
+            expression: "Total = Contribución actualizada + Recargos",
+            variables: [
+              { symbol: "Contribución actualizada", meaning: t("Lo que debías, ajustado por inflación, en pesos.", "What you owed, adjusted for inflation, in pesos.") },
+              { symbol: "Recargos", meaning: t("El \"interés\" por el atraso, en pesos.", "The \"interest\" for the delay, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la contribución actualizada y los recargos.", "Compute the adjusted contribution and the surcharges."),
+              t("Súmalos. Si el SAT ya te descubrió, además puede haber multa; si corriges por tu cuenta, por regla general no.", "Add them. If the SAT already caught it, there may also be a fine; if you correct it on your own, generally not."),
+            ],
+            example: t(
+              "12,360 + 927 = **$13,287**. Por pagar 5 meses tarde pagas $1,287 más que los $12,000 originales.",
+              "12,360 + 927 = **$13,287**. Paying 5 months late costs you $1,287 more than the original $12,000.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -386,7 +492,7 @@ export const lessons: Lesson[] = [
       "El ISR grava lo que ganas: se calcula sobre tus ingresos menos las deducciones permitidas, con tasa fija para empresas y tarifa progresiva para personas, y se paga por retención, pagos provisionales y declaración anual.",
       "ISR taxes what you earn: it is computed on your income minus allowed deductions, with a flat rate for companies and a progressive schedule for individuals, and it is paid through withholding, provisional payments and the annual return.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar qué grava el ISR y quién lo paga.", "Explain what ISR taxes and who pays it."),
       t("Calcular la base y el impuesto con una tarifa progresiva hipotética, distinguiendo tasa marginal y efectiva.", "Compute the base and the tax with a hypothetical progressive schedule, distinguishing marginal and effective rates."),
@@ -418,15 +524,80 @@ export const lessons: Lesson[] = [
             "You do not pay on everything that comes in. The **taxable base** is generally income minus **authorized deductions** (expenses the law lets you subtract). Some income is **exempt**: it is not taxed, sometimes only up to a limit.",
           ),
           t(
-            "Las **personas morales** usan, por regla general, una **tasa fija** del 30 %. Las **personas físicas** usan una **tarifa progresiva**: una tabla por renglones. Buscas el renglón de tu base, restas el **límite inferior**, al excedente le aplicas su porcentaje y sumas la **cuota fija** del renglón.",
-            "**Legal entities** generally use a **flat rate** of 30 %. **Individuals** use a **progressive schedule**: a table with brackets. You find the bracket for your base, subtract the **lower limit**, apply the bracket's percentage to the excess and add the bracket's **fixed fee**.",
+            "Las **personas morales** usan, por regla general, una **tasa fija** del 30 %. Las **personas físicas** usan una **tarifa progresiva**: una tabla por renglones, como escalones; entre más ganas, más alto es el porcentaje, pero solo para la parte que sube de escalón. Buscas el renglón de tu base, restas el **límite inferior** (donde empieza el renglón), al **excedente** (lo que sobra) le aplicas su porcentaje y sumas la **cuota fija** del renglón (el impuesto ya calculado de los escalones de abajo).",
+            "**Legal entities** generally use a **flat rate** of 30 %. **Individuals** use a **progressive schedule**: a table with brackets, like steps; the more you earn, the higher the percentage, but only on the part that climbs to the next step. You find the bracket for your base, subtract the **lower limit** (where the bracket starts), apply the bracket's percentage to the **excess** (what is left over) and add the bracket's **fixed fee** (the tax already worked out for the lower steps).",
           ),
           t(
             "La **tasa marginal** es el porcentaje que paga tu último peso; la **tasa efectiva** es ISR ÷ base. Mini ejemplo con una tarifa hipotética: base $30,000, límite inferior $25,000, cuota fija $2,500 y 20 % sobre excedente → 2,500 + 5,000 × 0.20 = $3,500. Tasa efectiva: 3,500 ÷ 30,000 ≈ 11.67 %, mucho menor que la marginal de 20 %.",
             "The **marginal rate** is the percentage your last peso pays; the **effective rate** is ISR ÷ base. Mini example with a hypothetical schedule: base $30,000, lower limit $25,000, fixed fee $2,500 and 20 % on the excess → 2,500 + 5,000 × 0.20 = $3,500. Effective rate: 3,500 ÷ 30,000 ≈ 11.67 %, much lower than the 20 % marginal rate.",
           ),
         ],
-        formula: "ISR = Cuota fija + (Base − Límite inferior) × % sobre excedente",
+        formulas: [
+          {
+            name: t("ISR de una persona moral (tasa fija)", "ISR of a legal entity (flat rate)"),
+            expression: "ISR = Base gravable × 30 %",
+            variables: [
+              { symbol: "Base gravable", meaning: t("Ingresos menos deducciones autorizadas de la empresa, en pesos.", "The company's income minus authorized deductions, in pesos.") },
+              { symbol: "30 %", meaning: t("La tasa general de ISR para personas morales; en decimal, 0.30.", "The general ISR rate for legal entities; as a decimal, 0.30.") },
+            ],
+            steps: [
+              t("Obtén la base gravable de la empresa.", "Get the company's taxable base."),
+              t("Multiplícala por 0.30.", "Multiply it by 0.30."),
+            ],
+            example: t(
+              "Una empresa con base de $250,000: 250,000 × 0.30 = **$75,000** de ISR anual (antes de restar pagos provisionales).",
+              "A company with a $250,000 base: 250,000 × 0.30 = **$75,000** of annual ISR (before subtracting provisional payments).",
+            ),
+            mistake: t(
+              "Usar una tarifa progresiva (es para personas físicas) o el 16 % (esa es la tasa de IVA).",
+              "Using a progressive schedule (that is for individuals) or 16% (that is the VAT rate).",
+            ),
+          },
+          {
+            name: t("ISR de una persona física con tarifa progresiva", "ISR of an individual with a progressive schedule"),
+            expression: "ISR = Cuota fija + (Base − Límite inferior) × % sobre excedente",
+            variables: [
+              { symbol: "Base", meaning: t("Tu base gravable, en pesos.", "Your taxable base, in pesos.") },
+              { symbol: "Límite inferior", meaning: t("El número donde empieza el renglón de la tabla en el que cae tu base, en pesos.", "The amount where the table bracket containing your base starts, in pesos.") },
+              { symbol: "Cuota fija", meaning: t("Pesos fijos que marca ese renglón: el impuesto de todo lo que está debajo del límite inferior.", "Fixed pesos set by that bracket: the tax on everything below the lower limit.") },
+              { symbol: "% sobre excedente", meaning: t("El porcentaje del renglón; se aplica solo a lo que pasa del límite inferior.", "The bracket's percentage; it applies only to what is above the lower limit.") },
+            ],
+            steps: [
+              t("Busca el renglón donde cae tu base (entre su límite inferior y su límite superior).", "Find the bracket your base falls in (between its lower and upper limits)."),
+              t("Calcula el excedente: base − límite inferior.", "Compute the excess: base − lower limit."),
+              t("Multiplica el excedente por el % del renglón en decimal: es el impuesto marginal.", "Multiply the excess by the bracket's % as a decimal: that is the marginal tax."),
+              t("Suma la cuota fija del renglón.", "Add the bracket's fixed fee."),
+            ],
+            example: t(
+              "Renglón de tarifa hipotética: límite inferior $20,000, cuota fija $1,800 y 18 %. Base $26,000. Excedente = 26,000 − 20,000 = 6,000. Marginal = 6,000 × 0.18 = 1,080. ISR = 1,800 + 1,080 = **$2,880**.",
+              "Hypothetical bracket: lower limit $20,000, fixed fee $1,800 and 18%. Base $26,000. Excess = 26,000 − 20,000 = 6,000. Marginal = 6,000 × 0.18 = 1,080. ISR = 1,800 + 1,080 = **$2,880**.",
+            ),
+            mistake: t(
+              "Aplicar el porcentaje a toda la base y olvidar la cuota fija.",
+              "Applying the percentage to the whole base and forgetting the fixed fee.",
+            ),
+          },
+          {
+            name: t("Tasa efectiva (cuánto pagas en promedio)", "Effective rate (what you pay on average)"),
+            expression: "Tasa efectiva = ISR ÷ Base × 100",
+            variables: [
+              { symbol: "ISR", meaning: t("El impuesto calculado, en pesos.", "The computed tax, in pesos.") },
+              { symbol: "Base", meaning: t("La base gravable sobre la que se calculó, en pesos.", "The taxable base it was computed on, in pesos.") },
+            ],
+            steps: [
+              t("Divide el ISR entre la base.", "Divide ISR by the base."),
+              t("Multiplica por 100 para expresarlo en % y redondea a 2 decimales.", "Multiply by 100 to express it as % and round to 2 decimals."),
+            ],
+            example: t(
+              "Con el ejemplo anterior: 2,880 ÷ 26,000 = 0.110769…; × 100 = **11.08 %**.",
+              "With the previous example: 2,880 ÷ 26,000 = 0.110769…; × 100 = **11.08%**.",
+            ),
+            interpret: t(
+              "La tasa efectiva (11.08 %) es menor que la marginal (18 %) porque solo tu último tramo paga el porcentaje más alto.",
+              "The effective rate (11.08%) is lower than the marginal rate (18%) because only your top slice pays the highest percentage.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Cómo se paga: retención, pagos provisionales y anual", "How it is paid: withholding, provisional payments and annual return"),
@@ -444,7 +615,30 @@ export const lessons: Lesson[] = [
             "In the **annual return** you compute the ISR for the whole year and subtract what was already withheld and the provisional payments. If you paid too little, there is a **balance due**; if you paid too much, a **refundable balance**, which you can ask to have returned. Mini example: annual ISR $40,000 and withholdings $43,500 → $3,500 refundable balance.",
           ),
         ],
-        formula: "Saldo = ISR anual − retenciones − pagos provisionales",
+        formulas: [
+          {
+            name: t("Saldo de la declaración anual", "Annual return balance"),
+            expression: "Saldo = ISR anual − Retenciones − Pagos provisionales",
+            variables: [
+              { symbol: "ISR anual", meaning: t("El impuesto de todo el año, calculado en la declaración, en pesos.", "The tax for the whole year, computed in the return, in pesos.") },
+              { symbol: "Retenciones", meaning: t("Lo que tu patrón, clientes o banco ya descontaron y pagaron por ti, en pesos.", "What your employer, clients or bank already withheld and paid for you, in pesos.") },
+              { symbol: "Pagos provisionales", meaning: t("Los anticipos que tú pagaste durante el año, en pesos (0 si no hiciste).", "The advances you paid during the year, in pesos (0 if you made none).") },
+            ],
+            steps: [
+              t("Suma todo lo ya pagado: retenciones + pagos provisionales.", "Add everything already paid: withholdings + provisional payments."),
+              t("Réstalo al ISR anual.", "Subtract it from annual ISR."),
+              t("Lee el signo: positivo = saldo a cargo (pagas); negativo = saldo a favor (te devuelven).", "Read the sign: positive = balance due (you pay); negative = refundable balance (you get money back)."),
+            ],
+            example: t(
+              "ISR anual $27,000, retenciones $24,500, sin pagos provisionales: 27,000 − 24,500 = **$2,500 a cargo**. Si le hubieran retenido $29,000: 27,000 − 29,000 = −2,000 → **$2,000 a favor**.",
+              "Annual ISR $27,000, withholdings $24,500, no provisional payments: 27,000 − 24,500 = **$2,500 due**. If $29,000 had been withheld: 27,000 − 29,000 = −2,000 → **$2,000 refundable**.",
+            ),
+            mistake: t(
+              "Invertir el signo y creer que un resultado negativo es deuda; negativo significa que pagaste de más.",
+              "Reversing the sign and thinking a negative result is a debt; negative means you overpaid.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -501,7 +695,7 @@ export const lessons: Lesson[] = [
       "La LISR se organiza por títulos y capítulos según quién eres y de dónde viene tu ingreso, fija los requisitos para deducir gastos y el camino de los ingresos al resultado fiscal.",
       "The LISR is organized in titles and chapters according to who you are and where your income comes from, and it sets the requirements to deduct expenses and the path from income to taxable result.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Ubicar en la LISR el título y el capítulo que corresponden a un tipo de contribuyente e ingreso.", "Locate in the LISR the title and chapter that correspond to a type of taxpayer and income."),
       t("Aplicar los requisitos generales para que un gasto sea deducible.", "Apply the general requirements for an expense to be deductible."),
@@ -553,8 +747,8 @@ export const lessons: Lesson[] = [
         heading: t("Del ingreso al resultado fiscal", "From income to taxable result"),
         body: [
           t(
-            "Para una **persona moral**, la ley marca un camino. Primero, la **utilidad fiscal**: ingresos acumulables menos deducciones autorizadas y menos la PTU pagada (reparto de utilidades a trabajadores). Luego, el **resultado fiscal**: utilidad fiscal menos **pérdidas fiscales** de años anteriores pendientes de aplicar. A ese resultado se le aplica el 30 %.",
-            "For a **legal entity**, the law sets a path. First, **taxable profit**: accruable income minus authorized deductions minus profit sharing paid to workers (PTU). Then, the **taxable result**: taxable profit minus prior years' **tax losses** still to be applied. The 30 % rate is applied to that result.",
+            "Para una **persona moral**, la ley marca un camino. Primero, la **utilidad fiscal**: **ingresos acumulables** (los ingresos del año que la ley obliga a sumar para el ISR) menos deducciones autorizadas y menos la PTU pagada (reparto de utilidades a trabajadores). Luego, el **resultado fiscal**: utilidad fiscal menos **pérdidas fiscales** de años anteriores pendientes de aplicar (años en que las deducciones fueron mayores que los ingresos; la ley deja restar esa pérdida en años siguientes). A ese resultado se le aplica el 30 %.",
+            "For a **legal entity**, the law sets a path. First, **taxable profit**: **accruable income** (the year's income the law requires you to add up for ISR) minus authorized deductions minus profit sharing paid to workers (PTU). Then, the **taxable result**: taxable profit minus prior years' **tax losses** still to be applied (years when deductions exceeded income; the law lets you subtract that loss in later years). The 30 % rate is applied to that result.",
           ),
           t(
             "Para **personas físicas**, en la declaración anual se pueden restar **deducciones personales**: gastos médicos, dentales y hospitalarios, gastos funerarios, donativos, intereses reales de crédito hipotecario, primas de seguros de gastos médicos, aportaciones voluntarias para el retiro, entre otras. Tienen un **tope global** y requisitos (CFDI y pago no en efectivo).",
@@ -565,7 +759,61 @@ export const lessons: Lesson[] = [
             "Mini example: income $1,000,000, deductions $700,000 → taxable profit $300,000; with no PTU or losses, the year's ISR is 300,000 × 0.30 = $90,000, minus the provisional payments made.",
           ),
         ],
-        formula: "Resultado fiscal = Ingresos acumulables − Deducciones autorizadas − PTU pagada − Pérdidas fiscales · ISR = Resultado × 30 %",
+        formulas: [
+          {
+            name: t("Utilidad fiscal", "Taxable profit"),
+            expression: "Utilidad fiscal = Ingresos acumulables − Deducciones autorizadas − PTU pagada",
+            variables: [
+              { symbol: "Ingresos acumulables", meaning: t("Los ingresos del año que cuentan para el ISR, en pesos.", "The year's income that counts for ISR, in pesos.") },
+              { symbol: "Deducciones autorizadas", meaning: t("Gastos que cumplen los requisitos de la ley y se pueden restar, en pesos.", "Expenses that meet the legal requirements and can be subtracted, in pesos.") },
+              { symbol: "PTU pagada", meaning: t("Reparto de utilidades pagado a los trabajadores en el año, en pesos.", "Profit sharing paid to workers in the year, in pesos.") },
+            ],
+            steps: [
+              t("Resta a los ingresos acumulables las deducciones autorizadas.", "Subtract authorized deductions from accruable income."),
+              t("Al resultado réstale la PTU pagada.", "Subtract the PTU paid from the result."),
+            ],
+            example: t(
+              "Datos hipotéticos: ingresos $1,500,000, deducciones $1,100,000 y PTU $20,000. 1,500,000 − 1,100,000 = 400,000; 400,000 − 20,000 = **$380,000**.",
+              "Hypothetical data: income $1,500,000, deductions $1,100,000 and PTU $20,000. 1,500,000 − 1,100,000 = 400,000; 400,000 − 20,000 = **$380,000**.",
+            ),
+          },
+          {
+            name: t("Resultado fiscal", "Taxable result"),
+            expression: "Resultado fiscal = Utilidad fiscal − Pérdidas fiscales pendientes",
+            variables: [
+              { symbol: "Utilidad fiscal", meaning: t("El resultado de la fórmula anterior, en pesos.", "The result of the previous formula, in pesos.") },
+              { symbol: "Pérdidas fiscales pendientes", meaning: t("Pérdidas de años anteriores que aún no se han restado, en pesos.", "Losses from prior years not yet subtracted, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la utilidad fiscal.", "Compute taxable profit."),
+              t("Réstale las pérdidas fiscales pendientes de años anteriores.", "Subtract pending tax losses from prior years."),
+            ],
+            example: t(
+              "Con pérdidas pendientes de $60,000: 380,000 − 60,000 = **$320,000**.",
+              "With pending losses of $60,000: 380,000 − 60,000 = **$320,000**.",
+            ),
+            mistake: t(
+              "Aplicar el 30 % a la utilidad fiscal sin restar antes las pérdidas: pagas de más.",
+              "Applying 30% to taxable profit without first subtracting losses: you overpay.",
+            ),
+          },
+          {
+            name: t("ISR del ejercicio de una persona moral", "Annual ISR of a legal entity"),
+            expression: "ISR del ejercicio = Resultado fiscal × 30 %",
+            variables: [
+              { symbol: "Resultado fiscal", meaning: t("Utilidad fiscal menos pérdidas pendientes, en pesos.", "Taxable profit minus pending losses, in pesos.") },
+              { symbol: "30 %", meaning: t("Tasa general para personas morales; en decimal, 0.30.", "General rate for legal entities; as a decimal, 0.30.") },
+            ],
+            steps: [
+              t("Multiplica el resultado fiscal por 0.30.", "Multiply the taxable result by 0.30."),
+              t("Para saber cuánto pagar en la anual, réstale los pagos provisionales del año.", "To know what to pay in the annual return, subtract the year's provisional payments."),
+            ],
+            example: t(
+              "320,000 × 0.30 = **$96,000**. Si hizo pagos provisionales por $70,000: 96,000 − 70,000 = $26,000 a cargo.",
+              "320,000 × 0.30 = **$96,000**. If it made provisional payments of $70,000: 96,000 − 70,000 = $26,000 due.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -622,7 +870,7 @@ export const lessons: Lesson[] = [
       "El IVA es un impuesto indirecto al consumo que se cobra en cada etapa de la cadena; cada mes pagas el IVA que cobraste menos el que pagaste.",
       "VAT is an indirect consumption tax charged at every stage of the chain; each month you pay the VAT you charged minus the VAT you paid.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar cómo funciona el IVA en la cadena y quién lo carga al final.", "Explain how VAT works along the chain and who ultimately bears it."),
       t("Distinguir actos gravados al 16 %, a tasa 0 % y exentos.", "Distinguish transactions taxed at 16 %, at the 0 % rate and exempt."),
@@ -684,7 +932,69 @@ export const lessons: Lesson[] = [
             "To **break out** the VAT from a price that already includes it, divide by 1.16. Mini example: a $2,900 receipt → base 2,900 ÷ 1.16 = $2,500 and VAT $400.",
           ),
         ],
-        formula: "IVA a pagar = IVA trasladado − IVA acreditable · Base = Precio con IVA ÷ 1.16",
+        formulas: [
+          {
+            name: t("IVA de una operación (trasladado o acreditable)", "VAT on a transaction (output or input)"),
+            expression: "IVA = Base × 16 %",
+            variables: [
+              { symbol: "IVA", meaning: t("El impuesto de esa operación, en pesos. Si es de tus ventas es **trasladado**; si es de tus compras, **acreditable**.", "The tax on that transaction, in pesos. If it is on your sales it is **output** VAT; on your purchases, **input** VAT.") },
+              { symbol: "Base", meaning: t("El precio **sin** IVA (lo que dice \"más IVA\"), en pesos.", "The price **without** VAT (the \"plus VAT\" amount), in pesos.") },
+              { symbol: "16 %", meaning: t("La tasa general de IVA; en decimal, 0.16.", "The general VAT rate; as a decimal, 0.16.") },
+            ],
+            steps: [
+              t("Asegúrate de tener el monto **sin** IVA.", "Make sure you have the amount **without** VAT."),
+              t("Multiplícalo por 0.16.", "Multiply it by 0.16."),
+              t("Hazlo por separado para ventas (trasladado) y para compras (acreditable).", "Do it separately for sales (output) and for purchases (input)."),
+            ],
+            example: t(
+              "Una papelería cobró ventas por $60,000 más IVA: 60,000 × 0.16 = **$9,600** trasladado. Pagó compras por $35,000 más IVA: 35,000 × 0.16 = **$5,600** acreditable.",
+              "A stationery shop collected sales of $60,000 plus VAT: 60,000 × 0.16 = **$9,600** output. It paid purchases of $35,000 plus VAT: 35,000 × 0.16 = **$5,600** input.",
+            ),
+          },
+          {
+            name: t("IVA a pagar del mes", "Monthly VAT payable"),
+            expression: "IVA a pagar = IVA trasladado − IVA acreditable",
+            variables: [
+              { symbol: "IVA trasladado", meaning: t("IVA que cobraste a tus clientes en el mes, en pesos.", "VAT you charged your customers in the month, in pesos.") },
+              { symbol: "IVA acreditable", meaning: t("IVA que pagaste en compras y gastos del negocio, con CFDI y ya pagados, en pesos.", "VAT you paid on business purchases and expenses, with CFDI and already paid, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el IVA trasladado y el acreditable del mes.", "Compute the month's output and input VAT."),
+              t("Resta trasladado − acreditable.", "Subtract output − input."),
+              t("Lee el signo: positivo = pagas al SAT; negativo = saldo a favor.", "Read the sign: positive = you pay the SAT; negative = balance in your favor."),
+            ],
+            example: t(
+              "Con la papelería: 9,600 − 5,600 = **$4,000** de IVA a pagar.",
+              "With the stationery shop: 9,600 − 5,600 = **$4,000** of VAT payable.",
+            ),
+            mistake: t(
+              "Restar ventas menos compras y sacar el 16 % de esa \"ganancia\": el IVA se calcula sobre cada flujo por separado y solo cuenta lo efectivamente cobrado y pagado.",
+              "Subtracting purchases from sales and taking 16% of that \"profit\": VAT is computed on each flow separately and only what was actually collected and paid counts.",
+            ),
+          },
+          {
+            name: t("Desglosar el IVA incluido en un precio", "Breaking out VAT included in a price"),
+            expression: "Base = Precio con IVA ÷ 1.16 · IVA = Precio con IVA − Base",
+            variables: [
+              { symbol: "Precio con IVA", meaning: t("Lo que pagaste en total, ya con IVA incluido, en pesos.", "What you paid in total, VAT already included, in pesos.") },
+              { symbol: "1.16", meaning: t("El precio sin IVA (1, o sea 100 %) más el 16 % de IVA (0.16).", "The price without VAT (1, i.e. 100%) plus 16% VAT (0.16).") },
+              { symbol: "Base", meaning: t("El precio sin IVA, en pesos.", "The price without VAT, in pesos.") },
+              { symbol: "IVA", meaning: t("El impuesto que venía dentro del precio, en pesos.", "The tax that was inside the price, in pesos.") },
+            ],
+            steps: [
+              t("Divide el precio con IVA entre 1.16: eso es la base.", "Divide the VAT-inclusive price by 1.16: that is the base."),
+              t("Resta precio con IVA − base: eso es el IVA (comprueba: base × 0.16 da lo mismo).", "Subtract VAT-inclusive price − base: that is the VAT (check: base × 0.16 gives the same)."),
+            ],
+            example: t(
+              "Un ticket de $1,856: 1,856 ÷ 1.16 = 1,600 de base; 1,856 − 1,600 = **$256** de IVA. Comprobación: 1,600 × 0.16 = 256.",
+              "A $1,856 receipt: 1,856 ÷ 1.16 = 1,600 base; 1,856 − 1,600 = **$256** of VAT. Check: 1,600 × 0.16 = 256.",
+            ),
+            mistake: t(
+              "Multiplicar el precio con IVA × 0.16 (1,856 × 0.16 = 296.96): así calculas IVA sobre un precio que ya lo trae.",
+              "Multiplying the VAT-inclusive price × 0.16 (1,856 × 0.16 = 296.96): that computes VAT on a price that already includes it.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
