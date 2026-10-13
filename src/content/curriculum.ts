@@ -50,6 +50,7 @@ export const LEVELS: Level[] = [
       t('2.10', 'Introducción a NIF e IFRS', 'Introduction to NIF and IFRS'),
       t('2.11', 'Arrendamientos', 'Leases'),
       t('2.12', 'Consolidación financiera', 'Consolidation'),
+      t('2.13', 'Ética profesional del contador', 'Professional ethics for accountants'),
     ],
   },
   {
@@ -119,6 +120,7 @@ export const LEVELS: Level[] = [
       t('5.11', 'Evidencia de auditoría', 'Audit evidence'),
       t('5.12', 'Fraude financiero', 'Financial fraud'),
       t('5.13', 'Auditoría forense', 'Forensic audit'),
+      t('5.14', 'Tu propio negocio: obligaciones fiscales básicas', 'Your own business: basic tax obligations'),
     ],
   },
   {
