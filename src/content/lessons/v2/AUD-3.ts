@@ -32,7 +32,7 @@ export const lessons: Lesson[] = [
       es: "El fraude aparece cuando coinciden presión, oportunidad y racionalización; se previene quitando oportunidades con controles y cultura, y se detecta con señales de alerta, denuncias y análisis de datos.",
       en: "Fraud appears when pressure, opportunity and rationalization meet; it is prevented by removing opportunities through controls and culture, and detected through red flags, tips and data analytics.",
     },
-    minutes: 17,
+    minutes: 18,
     objectives: [
       { es: "Explicar el triángulo del fraude y los tres grandes tipos de fraude ocupacional.", en: "Explain the fraud triangle and the three main types of occupational fraud." },
       { es: "Seleccionar controles preventivos que reduzcan la oportunidad de cometer fraude.", en: "Select preventive controls that reduce the opportunity to commit fraud." },
@@ -115,7 +115,66 @@ export const lessons: Lesson[] = [
             en: "Mini example: the limit for paying without the director's approval is $50,000. Analytics finds 40 payments between $49,000 and $49,999 to the same supplier in one year. It proves nothing by itself, but suggests someone is splitting payments to avoid approval.",
           },
         ],
-        formula: "Ley de Benford: P(primer dígito = d) = log10(1 + 1/d)  →  P(1) ≈ 30.1 %, P(9) ≈ 4.6 %",
+        formulas: [
+          {
+            name: { es: "Ley de Benford: cuántos montos deberían empezar con cada dígito", en: "Benford's law: how many amounts should begin with each digit" },
+            expression: "P(d) = log10(1 + 1/d)   →   Esperado = Total de montos × P(d)",
+            variables: [
+              { symbol: "d", meaning: { es: "El primer dígito del monto que estás revisando (del 1 al 9). En $4,320 el primer dígito es 4.", en: "The first digit of the amount you are checking (1 to 9). In $4,320 the first digit is 4." } },
+              { symbol: "P(d)", meaning: { es: "La proporción (en %) de montos que, de forma natural, empiezan con ese dígito. P(1) ≈ 30.1 % y P(9) ≈ 4.6 %.", en: "The proportion (in %) of amounts that naturally begin with that digit. P(1) ≈ 30.1% and P(9) ≈ 4.6%." } },
+              { symbol: "log10", meaning: { es: "El logaritmo base 10; lo calcula cualquier calculadora científica o Excel con =LOG10(). En la práctica se usan los porcentajes ya calculados.", en: "The base-10 logarithm; any scientific calculator or Excel's =LOG10() computes it. In practice the precomputed percentages are used." } },
+              { symbol: "Total de montos", meaning: { es: "Cuántas facturas, pagos o comprobantes analizas (número de casos).", en: "How many invoices, payments or receipts you analyze (number of cases)." } },
+              { symbol: "Esperado", meaning: { es: "Cuántos de esos montos deberían empezar con el dígito d si los datos son naturales (número de casos).", en: "How many of those amounts should begin with digit d if the data are natural (number of cases)." } },
+            ],
+            steps: [
+              { es: "Elige el dígito que quieres revisar y obtén su porcentaje: P(d) = log10(1 + 1/d). Para el 1: log10(2) ≈ 0.301 = 30.1 %.", en: "Pick the digit you want to check and get its percentage: P(d) = log10(1 + 1/d). For 1: log10(2) ≈ 0.301 = 30.1%." },
+              { es: "Convierte el porcentaje a decimal: 30.1 % = 0.301.", en: "Convert the percentage to a decimal: 30.1% = 0.301." },
+              { es: "Multiplica el total de montos por ese decimal: eso es lo esperado.", en: "Multiply the total number of amounts by that decimal: that is the expected count." },
+              { es: "Compara con lo que realmente observas. Una diferencia grande es una señal de alerta que pide revisar esos montos.", en: "Compare with what you actually observe. A large gap is a red flag that calls for reviewing those amounts." },
+            ],
+            example: {
+              es: "Revisas 1,500 facturas y te interesa el dígito 2. P(2) = log10(1 + 1/2) = log10(1.5) ≈ 0.176 = 17.6 %. Esperado = 1,500 × 0.176 = **264 facturas** que deberían empezar con 2. Si encuentras 410, hay muchas más de lo normal: conviene revisarlas.",
+              en: "You review 1,500 invoices and care about digit 2. P(2) = log10(1 + 1/2) = log10(1.5) ≈ 0.176 = 17.6%. Expected = 1,500 × 0.176 = **264 invoices** that should begin with 2. If you find 410, there are far more than normal: worth reviewing.",
+            },
+            interpret: {
+              es: "En palabras sencillas: en datos reales hay muchos más montos que empiezan con 1 que con 9. Cuando alguien inventa cifras, suele repartir los dígitos «parejo» o repetir montos justo debajo de un límite, y el patrón se rompe. Una desviación no prueba fraude: solo te dice dónde mirar.",
+              en: "In plain words: in real data there are many more amounts starting with 1 than with 9. When someone makes up figures, they tend to spread digits \"evenly\" or repeat amounts just below a limit, and the pattern breaks. A deviation does not prove fraud: it only tells you where to look.",
+            },
+            mistake: {
+              es: "Suponer que cada dígito aparece igual (1 entre 9, unos 11 %). Benford dice lo contrario: el 1 aparece casi tres veces más que eso.",
+              en: "Assuming every digit appears equally (1 in 9, about 11%). Benford says the opposite: 1 appears almost three times as often as that.",
+            },
+          },
+          {
+            name: { es: "Resultados de una prueba de pagos duplicados", en: "Results of a duplicate-payment test" },
+            expression: "Pérdida confirmada = Duplicados reales × Monto promedio  |  Falsos positivos = Casos marcados − Duplicados reales  |  Tasa de confirmación = Duplicados reales ÷ Casos marcados × 100",
+            variables: [
+              { symbol: "Casos marcados", meaning: { es: "Los pagos que el sistema señaló como posibles duplicados (número de casos).", en: "The payments the system flagged as possible duplicates (number of cases)." } },
+              { symbol: "Duplicados reales", meaning: { es: "Los marcados que, al revisarlos a mano, sí resultaron pagos dobles (número de casos).", en: "The flagged ones that, after manual review, really were double payments (number of cases)." } },
+              { symbol: "Monto promedio", meaning: { es: "Lo que en promedio vale cada duplicado real, en pesos.", en: "The average value of each real duplicate, in pesos." } },
+              { symbol: "Pérdida confirmada", meaning: { es: "El dinero que se pagó de más, en pesos.", en: "The money paid in excess, in pesos." } },
+              { symbol: "Falsos positivos", meaning: { es: "Los marcados que tenían una explicación válida: parecían duplicados pero no lo eran (número de casos).", en: "The flagged ones that had a valid explanation: they looked like duplicates but were not (number of cases)." } },
+              { symbol: "Tasa de confirmación", meaning: { es: "Qué porcentaje de lo marcado resultó real; mide qué tan precisa es la prueba (en %).", en: "What percentage of what was flagged turned out real; it measures how precise the test is (in %)." } },
+            ],
+            steps: [
+              { es: "Pérdida: multiplica los duplicados reales por su monto promedio.", en: "Loss: multiply the real duplicates by their average amount." },
+              { es: "Falsos positivos: resta los duplicados reales a los casos marcados.", en: "False positives: subtract the real duplicates from the flagged cases." },
+              { es: "Tasa de confirmación: divide duplicados reales entre casos marcados y multiplica por 100.", en: "Confirmation rate: divide real duplicates by flagged cases and multiply by 100." },
+            ],
+            example: {
+              es: "El sistema marca 50 pagos; al revisarlos, 30 son duplicados reales de $8,000 en promedio. Pérdida = 30 × $8,000 = **$240,000**. Falsos positivos = 50 − 30 = **20**. Tasa de confirmación = 30 ÷ 50 = 0.60 × 100 = **60 %**.",
+              en: "The system flags 50 payments; on review, 30 are real duplicates averaging $8,000. Loss = 30 × $8,000 = **$240,000**. False positives = 50 − 30 = **20**. Confirmation rate = 30 ÷ 50 = 0.60 × 100 = **60%**.",
+            },
+            interpret: {
+              es: "Una tasa de confirmación alta significa que la prueba está bien afinada y casi todo lo que marca es real. Una baja significa mucho «ruido»: revisas muchos casos para encontrar pocos problemas.",
+              en: "A high confirmation rate means the test is well tuned and almost everything it flags is real. A low one means a lot of \"noise\": you review many cases to find few problems.",
+            },
+            mistake: {
+              es: "Dividir entre el total de pagos del año en lugar de entre los casos marcados. Eso mide qué tan frecuentes son los duplicados en toda la población, no qué tan precisa es la prueba.",
+              en: "Dividing by the year's total payments instead of by the flagged cases. That measures how frequent duplicates are in the whole population, not how precise the test is.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -175,7 +234,7 @@ export const lessons: Lesson[] = [
       es: "Un programa de cumplimiento identifica las obligaciones de la empresa, asigna quién las cumple y quién las vigila según el modelo de las tres líneas, y las monitorea con indicadores y pruebas contra un apetito de riesgo definido.",
       en: "A compliance program identifies the company's obligations, assigns who meets them and who oversees them under the three lines model, and monitors them with indicators and tests against a defined risk appetite.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Describir los elementos de un programa de cumplimiento eficaz.", en: "Describe the elements of an effective compliance program." },
       { es: "Asignar responsabilidades con el modelo de las tres líneas.", en: "Assign responsibilities using the three lines model." },
@@ -250,15 +309,88 @@ export const lessons: Lesson[] = [
             en: "A **key risk indicator** (KRI) is a metric that warns **before** a risk materializes, with traffic-light thresholds: green, amber and red. For example, the number of unusual-transaction alerts still unreviewed after 30 days.",
           },
           {
-            es: "Las **pruebas de cumplimiento** toman una muestra y cuentan las **excepciones** (casos que no cumplen). La tasa de excepción se compara con la tolerancia: si la supera, se analiza la causa, se corrige y se reporta. Muchas empresas también estiman el **riesgo residual**: lo que queda del riesgo después de los controles.",
-            en: "**Compliance tests** take a sample and count the **exceptions** (cases that do not comply). The exception rate is compared with tolerance: if it exceeds it, the cause is analyzed, fixed and reported. Many companies also estimate **residual risk**: what remains of the risk after controls.",
+            es: "Las **pruebas de cumplimiento** toman una muestra y cuentan las **excepciones** (casos que no cumplen). La tasa de excepción se compara con la tolerancia: si la supera, se analiza la causa, se corrige y se reporta. Muchas empresas también estiman el **riesgo residual**: lo que queda del riesgo después de los controles, partiendo del **riesgo inherente** (el riesgo que habría si no existiera ningún control).",
+            en: "**Compliance tests** take a sample and count the **exceptions** (cases that do not comply). The exception rate is compared with tolerance: if it exceeds it, the cause is analyzed, fixed and reported. Many companies also estimate **residual risk**: what remains of the risk after controls, starting from **inherent risk** (the risk there would be if no control existed).",
           },
           {
             es: "Mini ejemplo: de 50 contratos de clientes revisados, 1 no tiene firma del aviso de privacidad. Tasa de excepción: 1 ÷ 50 = 2 %. Con tolerancia de 2 %, el indicador queda justo en el límite: amarillo, conviene vigilarlo.",
             en: "Mini example: of 50 customer contracts reviewed, 1 lacks a signed privacy notice. Exception rate: 1 ÷ 50 = 2%. With a 2% tolerance, the indicator sits right at the limit: amber, worth watching.",
           },
         ],
-        formula: "Tasa de excepción = Casos que no cumplen ÷ Casos revisados × 100  |  Riesgo residual (método simplificado) = Riesgo inherente × (1 − Efectividad del control)",
+        formulas: [
+          {
+            name: { es: "Tasa de excepción y tasa de cumplimiento", en: "Exception rate and compliance rate" },
+            expression: "Tasa de excepción = Casos que no cumplen ÷ Casos revisados × 100  |  Tasa de cumplimiento = 100 − Tasa de excepción",
+            variables: [
+              { symbol: "Casos que no cumplen", meaning: { es: "Las excepciones: expedientes, contratos o reportes de la muestra que tienen una falla (número de casos).", en: "The exceptions: files, contracts or reports in the sample that have a defect (number of cases)." } },
+              { symbol: "Casos revisados", meaning: { es: "El tamaño de la muestra: cuántos casos revisaste en total (número de casos).", en: "The sample size: how many cases you reviewed in total (number of cases)." } },
+              { symbol: "Tasa de excepción", meaning: { es: "Qué porcentaje de la muestra falla (en %).", en: "What percentage of the sample fails (in %)." } },
+              { symbol: "Tasa de cumplimiento", meaning: { es: "Qué porcentaje de la muestra sí cumple (en %). Las dos tasas siempre suman 100 %.", en: "What percentage of the sample does comply (in %). The two rates always add up to 100%." } },
+            ],
+            steps: [
+              { es: "Cuenta cuántos casos de la muestra no cumplen.", en: "Count how many cases in the sample do not comply." },
+              { es: "Divide ese número entre los casos revisados y multiplica por 100: es la tasa de excepción.", en: "Divide that number by the cases reviewed and multiply by 100: that is the exception rate." },
+              { es: "Resta la tasa de excepción a 100: es la tasa de cumplimiento.", en: "Subtract the exception rate from 100: that is the compliance rate." },
+            ],
+            example: {
+              es: "Revisas 150 expedientes y 9 están incompletos. Tasa de excepción = 9 ÷ 150 = 0.06 × 100 = **6 %**. Tasa de cumplimiento = 100 − 6 = **94 %**.",
+              en: "You review 150 files and 9 are incomplete. Exception rate = 9 ÷ 150 = 0.06 × 100 = **6%**. Compliance rate = 100 − 6 = **94%**.",
+            },
+            interpret: {
+              es: "Entre más baja la tasa de excepción, mejor funciona el control. Por sí sola no dice si está bien o mal: hay que compararla con la tolerancia.",
+              en: "The lower the exception rate, the better the control works. By itself it does not say whether it is good or bad: you must compare it with tolerance.",
+            },
+          },
+          {
+            name: { es: "Exceso sobre la tolerancia (en puntos porcentuales)", en: "Excess over tolerance (in percentage points)" },
+            expression: "Exceso = Tasa de excepción − Tolerancia",
+            variables: [
+              { symbol: "Tasa de excepción", meaning: { es: "El porcentaje de casos que fallan en la muestra (en %).", en: "The percentage of cases failing in the sample (in %)." } },
+              { symbol: "Tolerancia", meaning: { es: "El máximo porcentaje de fallas que el consejo acepta en esa métrica (en %).", en: "The maximum failure percentage the board accepts on that metric (in %)." } },
+              { symbol: "Exceso", meaning: { es: "Cuánto te pasaste del límite, en **puntos porcentuales**: la resta directa de dos porcentajes.", en: "How far you went over the limit, in **percentage points**: the straight difference between two percentages." } },
+            ],
+            steps: [
+              { es: "Calcula la tasa de excepción de la muestra.", en: "Compute the sample's exception rate." },
+              { es: "Réstale la tolerancia. Si el resultado es positivo, rebasaste la tolerancia; si es cero o negativo, estás dentro.", en: "Subtract the tolerance. If the result is positive, you exceeded tolerance; if it is zero or negative, you are within." },
+            ],
+            example: {
+              es: "Tasa de excepción de 6 % y tolerancia de 4 %. Exceso = 6 − 4 = **2 puntos porcentuales** por encima: hay que buscar la causa, corregir y reportar.",
+              en: "Exception rate of 6% and tolerance of 4%. Excess = 6 − 4 = **2 percentage points** above: the cause must be found, fixed and reported.",
+            },
+            mistake: {
+              es: "Dividir en vez de restar (6 ÷ 4 = 1.5) y llamarlo «1.5 %». Eso dice cuántas veces es mayor, no cuántos puntos te pasaste.",
+              en: "Dividing instead of subtracting (6 ÷ 4 = 1.5) and calling it \"1.5%\". That says how many times larger it is, not how many points you went over.",
+            },
+          },
+          {
+            name: { es: "Riesgo residual (método simplificado)", en: "Residual risk (simplified method)" },
+            expression: "Riesgo residual = Riesgo inherente × (1 − Efectividad del control)",
+            variables: [
+              { symbol: "Riesgo inherente", meaning: { es: "Qué tan grande es el riesgo si no existiera ningún control, en la escala que use la empresa (por ejemplo, de 1 a 25).", en: "How big the risk is if there were no controls at all, on the company's scale (for example, 1 to 25)." } },
+              { symbol: "Efectividad del control", meaning: { es: "Qué parte del riesgo eliminan los controles, en % (convertido a decimal: 70 % = 0.70).", en: "What share of the risk the controls remove, in % (converted to a decimal: 70% = 0.70)." } },
+              { symbol: "1 − Efectividad del control", meaning: { es: "La parte del riesgo que los controles **no** alcanzan a cubrir.", en: "The share of the risk the controls do **not** cover." } },
+              { symbol: "Riesgo residual", meaning: { es: "El riesgo que queda después de los controles, en la misma escala.", en: "The risk left after controls, on the same scale." } },
+            ],
+            steps: [
+              { es: "Convierte la efectividad a decimal: 60 % = 0.60.", en: "Convert effectiveness to a decimal: 60% = 0.60." },
+              { es: "Réstala a 1 para saber qué parte queda sin cubrir: 1 − 0.60 = 0.40.", en: "Subtract it from 1 to know what share is left uncovered: 1 − 0.60 = 0.40." },
+              { es: "Multiplica el riesgo inherente por ese resultado.", en: "Multiply the inherent risk by that result." },
+              { es: "Compara el residual con el apetito de riesgo que fijó el consejo.", en: "Compare the residual with the risk appetite set by the board." },
+            ],
+            example: {
+              es: "Riesgo inherente de 15 (escala 1 a 25) y controles con 60 % de efectividad. 1 − 0.60 = 0.40. Residual = 15 × 0.40 = **6**. Si el apetito máximo es 8, como 6 ≤ 8, está dentro.",
+              en: "Inherent risk of 15 (1 to 25 scale) and controls 60% effective. 1 − 0.60 = 0.40. Residual = 15 × 0.40 = **6**. If the maximum appetite is 8, since 6 ≤ 8, it is within.",
+            },
+            interpret: {
+              es: "En palabras sencillas: es como un paraguas con agujeros. El riesgo inherente es la lluvia; la efectividad es qué tanto te tapa el paraguas; el residual es lo que todavía te moja.",
+              en: "In plain words: it is like an umbrella with holes. Inherent risk is the rain; effectiveness is how much the umbrella covers you; residual is what still gets you wet.",
+            },
+            mistake: {
+              es: "Multiplicar por la efectividad (15 × 0.60 = 9). Eso es el riesgo que el control quita, no el que queda.",
+              en: "Multiplying by effectiveness (15 × 0.60 = 9). That is the risk the control removes, not what remains.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -318,7 +450,7 @@ export const lessons: Lesson[] = [
       es: "El informe es el producto final de la auditoría: el auditor externo emite una opinión limpia o modificada según la materialidad y el alcance del problema, y el auditor interno comunica hallazgos con condición, criterio, causa, efecto y recomendación.",
       en: "The report is the final product of the audit: the external auditor issues a clean or modified opinion based on the materiality and extent of the problem, and the internal auditor communicates findings with condition, criteria, cause, effect and recommendation.",
     },
-    minutes: 18,
+    minutes: 20,
     objectives: [
       { es: "Identificar las secciones del informe del auditor independiente.", en: "Identify the sections of the independent auditor's report." },
       { es: "Elegir el tipo de opinión según materialidad y generalización del problema.", en: "Choose the type of opinion based on materiality and pervasiveness of the issue." },
@@ -358,12 +490,12 @@ export const lessons: Lesson[] = [
         heading: { es: "Tipos de opinión: limpia o modificada", en: "Types of opinion: clean or modified" },
         body: [
           {
-            es: "La opinión **limpia** (no modificada) dice que todo es razonable. Las opiniones **modificadas** (NIA 705) son tres, y se eligen respondiendo dos preguntas: ¿el problema es una **incorrección** (algo mal registrado) o una **limitación** (no pude obtener evidencia)? ¿Y es **material pero no generalizado**, o **material y generalizado**?",
-            en: "A **clean** (unmodified) opinion says everything is fair. There are three **modified** opinions (ISA 705), chosen by answering two questions: is the issue a **misstatement** (something recorded wrongly) or a **limitation** (I could not obtain evidence)? And is it **material but not pervasive**, or **material and pervasive**?",
+            es: "En palabras sencillas: la opinión es la «calificación» que el auditor pone a los estados financieros. La opinión **limpia** (no modificada) dice que todo es razonable. Las opiniones **modificadas** (NIA 705) son tres, y se eligen respondiendo dos preguntas: ¿el problema es una **incorrección** (algo mal registrado) o una **limitación** (no pude obtener evidencia)? ¿Y es **material pero no generalizado**, o **material y generalizado**?",
+            en: "In plain words: the opinion is the \"grade\" the auditor gives the financial statements. A **clean** (unmodified) opinion says everything is fair. There are three **modified** opinions (ISA 705), chosen by answering two questions: is the issue a **misstatement** (something recorded wrongly) or a **limitation** (I could not obtain evidence)? And is it **material but not pervasive**, or **material and pervasive**?",
           },
           {
-            es: "**Material** quiere decir que su tamaño o naturaleza podría cambiar decisiones; se compara con la **materialidad** que el auditor fijó. **Generalizado** quiere decir que afecta muchas partes de los estados financieros o su esencia, no un renglón aislado. Un inventario sobrevaluado es material; si además toda la contabilidad está mal, es generalizado.",
-            en: "**Material** means its size or nature could change decisions; it is compared with the **materiality** the auditor set. **Pervasive** means it affects many parts of the statements or their essence, not an isolated line. An overstated inventory is material; if the whole bookkeeping is also wrong, it is pervasive.",
+            es: "**Material** quiere decir que su tamaño o naturaleza podría cambiar decisiones; se compara con la **materialidad** que el auditor fijó: el monto de error a partir del cual a un lector ya le importaría (por ejemplo, 5 % de la utilidad antes de impuestos). **Generalizado** quiere decir que afecta muchas partes de los estados financieros o su esencia, no un renglón aislado. Un inventario sobrevaluado es material; si además toda la contabilidad está mal, es generalizado.",
+            en: "**Material** means its size or nature could change decisions; it is compared with the **materiality** the auditor set: the amount of error from which a reader would start to care (for example, 5% of pre-tax profit). **Pervasive** means it affects many parts of the statements or their essence, not an isolated line. An overstated inventory is material; if the whole bookkeeping is also wrong, it is pervasive.",
           },
           {
             es: "Un **párrafo de énfasis** (NIA 706) **no** modifica la opinión: solo llama la atención sobre algo que ya está bien revelado en las notas, como un juicio importante o un desastre natural posterior al cierre. Confundirlo con una salvedad es un error frecuente.",
@@ -372,6 +504,38 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: con materialidad de $1,000,000, una empresa no reconoce una provisión de $1,500,000 por una demanda probable. Es material, pero afecta solo ese renglón y la utilidad: opinión **con salvedades**.",
             en: "Mini example: with $1,000,000 materiality, a company does not record a $1,500,000 provision for a probable lawsuit. It is material but affects only that line and profit: **qualified** opinion.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Materialidad global y comparación de las incorrecciones no corregidas", en: "Overall materiality and comparison of uncorrected misstatements" },
+            expression: "Materialidad = Base × % elegido  |  Total no corregido = Incorrección 1 + Incorrección 2 + …  |  Exceso = Total no corregido − Materialidad",
+            variables: [
+              { symbol: "Base", meaning: { es: "La cifra de referencia que elige el auditor, en pesos; a menudo la utilidad antes de impuestos.", en: "The benchmark figure the auditor chooses, in pesos; often pre-tax profit." } },
+              { symbol: "% elegido", meaning: { es: "El porcentaje que el auditor aplica a la base según su juicio (en el ejemplo de la lección, 5 %).", en: "The percentage the auditor applies to the base using judgment (in the lesson's example, 5%)." } },
+              { symbol: "Materialidad", meaning: { es: "El monto de error, en pesos, a partir del cual las cifras podrían engañar a quien las lee.", en: "The amount of error, in pesos, from which the figures could mislead readers." } },
+              { symbol: "Incorrección", meaning: { es: "Cada error que la empresa no quiso corregir, en pesos (por ejemplo, inventario sobrevaluado).", en: "Each error the company refused to correct, in pesos (for example, overstated inventory)." } },
+              { symbol: "Total no corregido", meaning: { es: "La suma de todas esas incorrecciones, en pesos.", en: "The sum of all those misstatements, in pesos." } },
+              { symbol: "Exceso", meaning: { es: "Cuánto rebasa el total a la materialidad, en pesos. Si es positivo, en conjunto son materiales.", en: "How much the total exceeds materiality, in pesos. If positive, together they are material." } },
+            ],
+            steps: [
+              { es: "Convierte el porcentaje a decimal (5 % = 0.05) y multiplícalo por la base: es la materialidad.", en: "Convert the percentage to a decimal (5% = 0.05) and multiply it by the base: that is materiality." },
+              { es: "Suma todas las incorrecciones no corregidas, aunque cada una sea pequeña.", en: "Add up all uncorrected misstatements, even if each one is small." },
+              { es: "Resta la materialidad al total. Si el resultado es positivo, las incorrecciones son materiales en conjunto.", en: "Subtract materiality from the total. If the result is positive, the misstatements are material together." },
+              { es: "Decide la opinión: si son materiales pero afectan solo algunos renglones, con salvedades; si afectan casi todo, desfavorable.", en: "Decide the opinion: if material but affecting only some lines, qualified; if they affect almost everything, adverse." },
+            ],
+            example: {
+              es: "Utilidad antes de impuestos de $30,000,000 y 5 %: materialidad = 30,000,000 × 0.05 = **$1,500,000**. Quedan sin corregir $700,000 + $600,000 + $300,000 = **$1,600,000**. Exceso = 1,600,000 − 1,500,000 = **$100,000**: juntas son materiales, aunque ninguna lo sea sola.",
+              en: "Pre-tax profit of $30,000,000 and 5%: materiality = 30,000,000 × 0.05 = **$1,500,000**. Uncorrected: $700,000 + $600,000 + $300,000 = **$1,600,000**. Excess = 1,600,000 − 1,500,000 = **$100,000**: together they are material, even though none is on its own.",
+            },
+            interpret: {
+              es: "Si el total queda por debajo de la materialidad, los errores no cambian la opinión limpia. Si la rebasa, la opinión se modifica (con salvedades o desfavorable, según qué tanto afecte).",
+              en: "If the total stays below materiality, the errors do not change the clean opinion. If it exceeds it, the opinion is modified (qualified or adverse, depending on how widely it affects).",
+            },
+            mistake: {
+              es: "Comparar cada incorrección por separado con la materialidad y concluir que todo está bien. Siempre se evalúa la suma.",
+              en: "Comparing each misstatement separately with materiality and concluding everything is fine. The sum is always what is evaluated.",
+            },
           },
         ],
         bullets: [
@@ -401,7 +565,36 @@ export const lessons: Lesson[] = [
             en: "Mini example: \"Of 40 credit notes reviewed, 12 lacked approval (condition). Policy requires the sales manager's signature (criteria). The system allows issuing them without an approval workflow (cause). $380,000 in discounts were granted without approval (effect). Configure mandatory approval in the system (recommendation).\"",
           },
         ],
-        formula: "Hallazgo = Condición vs. Criterio → Causa → Efecto → Recomendación (+ plan de acción, responsable y fecha)",
+        formulas: [
+          {
+            name: { es: "Estructura de un hallazgo de auditoría interna", en: "Structure of an internal audit finding" },
+            expression: "Hallazgo = Condición vs. Criterio → Causa → Efecto → Recomendación (+ plan de acción, responsable y fecha)",
+            variables: [
+              { symbol: "Condición", meaning: { es: "Lo que encontraste, con datos: «12 de 40 notas sin autorización».", en: "What you found, with data: \"12 of 40 credit notes without approval\"." } },
+              { symbol: "vs.", meaning: { es: "«Comparado con»: el hallazgo nace de la diferencia entre lo que es y lo que debería ser.", en: "\"Compared with\": the finding comes from the gap between what is and what should be." } },
+              { symbol: "Criterio", meaning: { es: "Lo que debería ser: la política, ley o contrato que marca la regla.", en: "What should be: the policy, law or contract that sets the rule." } },
+              { symbol: "Causa", meaning: { es: "Por qué pasó (falta de capacitación, un sistema mal configurado, una sola persona sin suplente).", en: "Why it happened (lack of training, a misconfigured system, a single person with no backup)." } },
+              { symbol: "Efecto", meaning: { es: "La consecuencia o el riesgo, en pesos si se puede.", en: "The consequence or risk, in pesos if possible." } },
+              { symbol: "Recomendación", meaning: { es: "Qué hacer para que no se repita, atacando la causa.", en: "What to do so it does not happen again, addressing the cause." } },
+              { symbol: "Plan de acción, responsable y fecha", meaning: { es: "La respuesta de la administración: quién lo corrige y para cuándo.", en: "Management's response: who fixes it and by when." } },
+            ],
+            steps: [
+              { es: "Escribe la condición con números verificables, sin adjetivos ni culpables.", en: "Write the condition with verifiable numbers, without adjectives or blame." },
+              { es: "Cita el criterio: la regla concreta que no se cumplió.", en: "Cite the criteria: the specific rule that was not met." },
+              { es: "Explica la causa: pregunta «¿por qué?» hasta llegar al origen del problema.", en: "Explain the cause: ask \"why?\" until you reach the root of the problem." },
+              { es: "Mide el efecto, idealmente en pesos.", en: "Measure the effect, ideally in pesos." },
+              { es: "Propón una recomendación que elimine la causa y pide un plan con responsable y fecha.", en: "Propose a recommendation that removes the cause and ask for a plan with an owner and a date." },
+            ],
+            example: {
+              es: "Condición: de 30 pagos a proveedores, 8 se hicieron sin orden de compra. Criterio: la política exige orden de compra antes de pagar. Causa: tesorería no tiene acceso al módulo de compras para verificarla. Efecto: $520,000 pagados sin autorización previa. Recomendación: dar acceso de consulta a tesorería y bloquear pagos sin orden. Plan: tesorero, 15 de marzo.",
+              en: "Condition: of 30 supplier payments, 8 were made without a purchase order. Criteria: policy requires a purchase order before paying. Cause: treasury has no access to the purchasing module to check it. Effect: $520,000 paid without prior approval. Recommendation: give treasury read access and block payments without an order. Plan: treasurer, March 15.",
+            },
+            mistake: {
+              es: "Confundir causa con efecto. La causa explica **por qué** pasó; el efecto dice **qué provocó**. Si la recomendación no ataca la causa, el problema vuelve.",
+              en: "Confusing cause with effect. The cause explains **why** it happened; the effect says **what it led to**. If the recommendation does not address the cause, the problem comes back.",
+            },
+          },
+        ],
       },
     ],
     examples: [

@@ -17,7 +17,7 @@ export const lessons: Lesson[] = [
       "El gobierno corporativo reparte el poder entre dueños, consejo y dirección para que la estrategia se decida con contrapesos, se ejecute con responsables claros y se vigile con información confiable.",
       "Corporate governance divides power among owners, board and management so that strategy is decided with checks and balances, executed with clear owners and monitored with reliable information.",
     ),
-    minutes: 17,
+    minutes: 18,
     objectives: [
       t(
         "Distinguir los papeles de la asamblea de accionistas, el consejo de administración y la dirección general.",
@@ -91,7 +91,51 @@ export const lessons: Lesson[] = [
           t("Conflicto de interés: declarar, abstenerse, precio de mercado.", "Conflict of interest: disclose, abstain, market price."),
           t("Protocolo familiar: reglas de familia y sucesión.", "Family protocol: family and succession rules."),
         ],
-        formula: "% independientes = consejeros independientes ÷ total de consejeros × 100",
+        formulas: [
+          {
+            name: t("Porcentaje de consejeros independientes", "Percentage of independent directors"),
+            expression: "% independientes = consejeros independientes ÷ total de consejeros × 100",
+            variables: [
+              { symbol: "consejeros independientes", meaning: t("Cuántos miembros del consejo no tienen ligas laborales, familiares ni de negocio relevantes con la empresa (número de personas).", "How many board members have no relevant employment, family or business ties to the company (number of people).") },
+              { symbol: "total de consejeros", meaning: t("Cuántas personas tiene el consejo en total, contando a los independientes (número de personas).", "How many people the board has in total, counting the independents (number of people).") },
+              { symbol: "% independientes", meaning: t("Qué parte del consejo es independiente (en %).", "What share of the board is independent (in %).") },
+            ],
+            steps: [
+              t("Cuenta a los consejeros independientes.", "Count the independent directors."),
+              t("Divide ese número entre el total de consejeros.", "Divide that number by the total number of directors."),
+              t("Multiplica por 100 para expresarlo en porcentaje y compáralo con la meta de la política.", "Multiply by 100 to express it as a percentage and compare it with the policy's target."),
+            ],
+            example: t(
+              "Un consejo de 9 personas tiene 3 independientes: 3 ÷ 9 = 0.333 × 100 = **33.3 %**. Si la política pide al menos 30 %, cumple.",
+              "A 9-person board has 3 independents: 3 ÷ 9 = 0.333 × 100 = **33.3%**. If the policy asks for at least 30%, it complies.",
+            ),
+          },
+          {
+            name: t("Cuántos independientes agregar para llegar a la meta", "How many independents to add to reach the target"),
+            expression: "(I + x) ÷ (T + x) ≥ meta   →   x ≥ (meta × T − I) ÷ (1 − meta)",
+            variables: [
+              { symbol: "I", meaning: t("Consejeros independientes que ya hay (número de personas).", "Independent directors already on the board (number of people).") },
+              { symbol: "T", meaning: t("Total de consejeros actual, antes de agregar a nadie (número de personas).", "Current total number of directors, before adding anyone (number of people).") },
+              { symbol: "x", meaning: t("Independientes nuevos que vas a agregar (número de personas). Es lo que buscas.", "New independents you will add (number of people). This is what you are looking for.") },
+              { symbol: "meta", meaning: t("El porcentaje mínimo de independientes que pide la política, en decimal (40 % = 0.40).", "The minimum percentage of independents the policy requires, as a decimal (40% = 0.40).") },
+            ],
+            steps: [
+              t("Convierte la meta a decimal: por ejemplo, 30 % = 0.30.", "Convert the target to a decimal: for example, 30% = 0.30."),
+              t("Calcula meta × T y réstale los independientes actuales (I).", "Compute target × T and subtract the current independents (I)."),
+              t("Divide ese resultado entre (1 − meta).", "Divide that result by (1 − target)."),
+              t("Redondea **siempre hacia arriba**: no se puede agregar media persona, y quedarte abajo no cumple.", "**Always round up**: you cannot add half a person, and falling short does not comply."),
+              t("Comprueba: (I + x) ÷ (T + x) debe dar la meta o más.", "Check: (I + x) ÷ (T + x) must equal the target or more."),
+            ],
+            example: t(
+              "Consejo de 7 con 1 independiente y meta de 30 %. 0.30 × 7 = 2.1; 2.1 − 1 = 1.1; 1 − 0.30 = 0.70; 1.1 ÷ 0.70 = 1.57 → redondeas a **2**. Comprobación: (1 + 2) ÷ (7 + 2) = 3 ÷ 9 = 33.3 % ✓. Con 1 solo: 2 ÷ 8 = 25 % ✗.",
+              "Board of 7 with 1 independent and a 30% target. 0.30 × 7 = 2.1; 2.1 − 1 = 1.1; 1 − 0.30 = 0.70; 1.1 ÷ 0.70 = 1.57 → round up to **2**. Check: (1 + 2) ÷ (7 + 2) = 3 ÷ 9 = 33.3% ✓. With only 1: 2 ÷ 8 = 25% ✗.",
+            ),
+            mistake: t(
+              "Calcular la meta sobre el consejo actual (por ejemplo, 30 % de 7) y olvidar que el consejo **también crece** cuando agregas a los nuevos. Por eso se divide entre (1 − meta).",
+              "Computing the target on the current board (for example, 30% of 7) and forgetting that the board **also grows** when you add the new members. That is why you divide by (1 − target).",
+            ),
+          },
+        ],
       },
       {
         heading: t("Dirección estratégica: del plan a la ejecución vigilada", "Strategic leadership: from plan to monitored execution"),
@@ -113,7 +157,37 @@ export const lessons: Lesson[] = [
             "Mini example: a bakery with a 50% weight on finance (80% achieved) and 50% on customers (100% achieved) scores 0.5 × 80 + 0.5 × 100 = 90%.",
           ),
         ],
-        formula: "Puntaje global = Σ (peso de la perspectiva × % de cumplimiento)",
+        formulas: [
+          {
+            name: t("Puntaje global ponderado del cuadro de mando", "Weighted overall scorecard score"),
+            expression: "Puntaje global = Σ (peso de la perspectiva × % de cumplimiento)",
+            variables: [
+              { symbol: "Σ", meaning: t("«Suma de»: haces la multiplicación para cada perspectiva y luego sumas todos los resultados.", "\"Sum of\": you do the multiplication for each perspective and then add all the results.") },
+              { symbol: "peso de la perspectiva", meaning: t("Qué tan importante es esa perspectiva para la empresa, en decimal (30 % = 0.30). Todos los pesos juntos deben sumar 100 %.", "How important that perspective is for the company, as a decimal (30% = 0.30). All weights together must add up to 100%.") },
+              { symbol: "% de cumplimiento", meaning: t("Qué tanto se logró de la meta de esa perspectiva (en %).", "How much of that perspective's target was achieved (in %).") },
+              { symbol: "Aportación", meaning: t("El resultado de peso × cumplimiento de una sola perspectiva: los puntos que esa perspectiva suma al total.", "The result of weight × achievement for a single perspective: the points that perspective adds to the total.") },
+              { symbol: "Puntaje global", meaning: t("La calificación general del periodo (en %).", "The overall grade for the period (in %).") },
+            ],
+            steps: [
+              t("Convierte cada peso a decimal: 35 % = 0.35.", "Convert each weight to a decimal: 35% = 0.35."),
+              t("Multiplica el peso de cada perspectiva por su % de cumplimiento: esa es su aportación.", "Multiply each perspective's weight by its % achievement: that is its contribution."),
+              t("Suma las aportaciones de todas las perspectivas: ese es el puntaje global.", "Add up the contributions of all perspectives: that is the overall score."),
+              t("Revisa además cada perspectiva por separado para ver cuál va rezagada.", "Also review each perspective separately to see which one is lagging."),
+            ],
+            example: t(
+              "Pesos: financiera 35 %, clientes 25 %, procesos 20 %, aprendizaje 20 %; cumplimientos: 80 %, 90 %, 70 % y 100 %. Aportaciones: 0.35 × 80 = 28; 0.25 × 90 = 22.5; 0.20 × 70 = 14; 0.20 × 100 = 20. Puntaje global = 28 + 22.5 + 14 + 20 = **84.5 %**.",
+              "Weights: financial 35%, customers 25%, processes 20%, learning 20%; achievements: 80%, 90%, 70% and 100%. Contributions: 0.35 × 80 = 28; 0.25 × 90 = 22.5; 0.20 × 70 = 14; 0.20 × 100 = 20. Overall score = 28 + 22.5 + 14 + 20 = **84.5%**.",
+            ),
+            interpret: t(
+              "Es como el promedio de una boleta donde unas materias valen más que otras. Un puntaje alto es buena señal, pero una perspectiva muy baja (como 70 % en procesos) merece conversación aunque el total se vea bien.",
+              "It is like a report-card average where some subjects count more than others. A high score is a good sign, but a very low perspective (such as 70% in processes) deserves discussion even if the total looks good.",
+            ),
+            mistake: t(
+              "Promediar los cumplimientos sin pesos (sumarlos y dividir entre 4). Eso trata a todas las perspectivas como si valieran lo mismo.",
+              "Averaging the achievements without weights (adding them and dividing by 4). That treats every perspective as if it were worth the same.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -177,7 +251,7 @@ export const lessons: Lesson[] = [
       "Los criterios ESG miden cómo una empresa maneja sus impactos y riesgos ambientales, sociales y de gobierno; bien aplicados, reducen costos y riesgos y abren financiamiento, siempre que se midan y comuniquen con honestidad.",
       "ESG criteria measure how a company manages its environmental, social and governance impacts and risks; applied well, they reduce costs and risks and open up financing, as long as they are measured and communicated honestly.",
     ),
-    minutes: 17,
+    minutes: 18,
     objectives: [
       t(
         "Clasificar temas de negocio en las dimensiones ambiental, social y de gobierno (ESG).",
@@ -244,7 +318,38 @@ export const lessons: Lesson[] = [
             "Mini example: a bakery emits 30 tCO₂e from its gas (scope 1) and 20 tCO₂e from its electricity (scope 2). If it sells $10 million a year, its scope 1 and 2 intensity is 50 ÷ 10 = 5 tCO₂e per million pesos.",
           ),
         ],
-        formula: "Intensidad = (emisiones alcance 1 + alcance 2) ÷ ventas en millones de pesos",
+        formulas: [
+          {
+            name: t("Emisiones por alcance e intensidad de alcances 1 y 2", "Emissions by scope and scope 1 and 2 intensity"),
+            expression: "Alcance 1 = suma de fuentes propias  |  Alcance 2 = electricidad (u otra energía) comprada  |  Intensidad = (alcance 1 + alcance 2) ÷ ventas en millones de pesos",
+            variables: [
+              { symbol: "Alcance 1", meaning: t("Emisiones de lo que la empresa quema directamente: gas de sus hornos o calderas, combustible de sus propios vehículos (en tCO₂e).", "Emissions from what the company burns directly: gas in its ovens or boilers, fuel in its own vehicles (in tCO₂e).") },
+              { symbol: "Alcance 2", meaning: t("Emisiones por la electricidad u otra energía que la empresa compra (en tCO₂e).", "Emissions from the electricity or other energy the company buys (in tCO₂e).") },
+              { symbol: "tCO₂e", meaning: t("Toneladas de CO₂ equivalente: una sola unidad para sumar distintos gases, como usar pesos para sumar monedas de distintos países.", "Tonnes of CO₂ equivalent: a single unit to add up different gases, like using pesos to add up coins from different countries.") },
+              { symbol: "ventas en millones de pesos", meaning: t("Las ventas del año expresadas en millones: $60,000,000 se escribe 60.", "The year's sales expressed in millions: $60,000,000 is written as 60.") },
+              { symbol: "Intensidad", meaning: t("Cuántas tCO₂e emite la empresa por cada millón de pesos que vende. Sirve para comparar empresas de distinto tamaño.", "How many tCO₂e the company emits for each million pesos it sells. Used to compare companies of different sizes.") },
+            ],
+            steps: [
+              t("Separa cada fuente: ¿es propia (alcance 1), es energía comprada (alcance 2) o es de la cadena de valor (alcance 3)?", "Sort each source: is it owned (scope 1), purchased energy (scope 2) or from the value chain (scope 3)?"),
+              t("Suma las fuentes propias: ese es el alcance 1.", "Add up the owned sources: that is scope 1."),
+              t("Toma las emisiones de la electricidad comprada: ese es el alcance 2.", "Take the emissions from purchased electricity: that is scope 2."),
+              t("Convierte las ventas a millones de pesos (divide entre 1,000,000).", "Convert sales to millions of pesos (divide by 1,000,000)."),
+              t("Suma alcance 1 + alcance 2 y divide entre las ventas en millones: esa es la intensidad.", "Add scope 1 + scope 2 and divide by sales in millions: that is the intensity."),
+            ],
+            example: t(
+              "Un restaurante emite 40 tCO₂e por el gas de su cocina y 25 tCO₂e por sus motos de reparto propias; su luz genera 55 tCO₂e; la mensajería contratada, 100 tCO₂e; vende $15,000,000. Alcance 1 = 40 + 25 = **65 tCO₂e**. Alcance 2 = **55 tCO₂e**. La mensajería es alcance 3 y no entra. Ventas: 15,000,000 ÷ 1,000,000 = 15. Intensidad = (65 + 55) ÷ 15 = 120 ÷ 15 = **8 tCO₂e por millón de pesos**.",
+              "A restaurant emits 40 tCO₂e from its kitchen gas and 25 tCO₂e from its own delivery motorbikes; its electricity generates 55 tCO₂e; contracted couriers, 100 tCO₂e; it sells $15,000,000. Scope 1 = 40 + 25 = **65 tCO₂e**. Scope 2 = **55 tCO₂e**. Couriers are scope 3 and are left out. Sales: 15,000,000 ÷ 1,000,000 = 15. Intensity = (65 + 55) ÷ 15 = 120 ÷ 15 = **8 tCO₂e per million pesos**.",
+            ),
+            interpret: t(
+              "Entre más baja la intensidad, menos contamina la empresa por cada peso que vende. Si la intensidad baja de un año a otro, la empresa crece contaminando proporcionalmente menos.",
+              "The lower the intensity, the less the company pollutes for each peso it sells. If intensity falls from one year to the next, the company is growing while polluting proportionally less.",
+            ),
+            mistake: t(
+              "Meter emisiones de proveedores o transporte contratado en el alcance 1 o en esta intensidad. Si no es tuyo ni es energía que compras, es alcance 3.",
+              "Putting supplier or contracted-transport emissions into scope 1 or into this intensity. If you don't own it and it isn't energy you buy, it is scope 3.",
+            ),
+          },
+        ],
       },
       {
         heading: t("ESG en la estrategia: inversiones, financiamiento y greenwashing", "ESG in strategy: investments, financing and greenwashing"),
@@ -272,7 +377,36 @@ export const lessons: Lesson[] = [
           t("Crédito vinculado a sostenibilidad: la tasa depende de metas.", "Sustainability-linked loan: the rate depends on targets."),
           t("Greenwashing: afirmaciones vagas, sin datos o engañosas.", "Greenwashing: vague, unsupported or misleading claims."),
         ],
-        formula: "Periodo de recuperación (años) = inversión ÷ (ahorro anual − costos anuales nuevos)",
+        formulas: [
+          {
+            name: t("Periodo de recuperación (payback) de una inversión sostenible", "Payback period of a sustainable investment"),
+            expression: "Periodo de recuperación (años) = inversión ÷ (ahorro anual − costos anuales nuevos)",
+            variables: [
+              { symbol: "inversión", meaning: t("Lo que pagas hoy por el proyecto (paneles, LED, sistema de agua), en pesos.", "What you pay today for the project (panels, LED, water system), in pesos.") },
+              { symbol: "ahorro anual", meaning: t("Lo que dejas de gastar cada año gracias al proyecto (luz, agua, gas), en pesos por año.", "What you stop spending each year thanks to the project (electricity, water, gas), in pesos per year.") },
+              { symbol: "costos anuales nuevos", meaning: t("Gastos que el proyecto agrega cada año, como mantenimiento o limpieza, en pesos por año.", "Costs the project adds each year, such as maintenance or cleaning, in pesos per year.") },
+              { symbol: "ahorro anual − costos anuales nuevos", meaning: t("El **ahorro neto**: lo que de verdad te queda cada año.", "The **net savings**: what you really keep each year.") },
+              { symbol: "Periodo de recuperación", meaning: t("Cuántos años tardas en recuperar lo invertido (en años).", "How many years it takes to get back what you invested (in years).") },
+            ],
+            steps: [
+              t("Calcula el ahorro neto: ahorro anual menos costos anuales nuevos.", "Compute net savings: annual savings minus new annual costs."),
+              t("Divide la inversión entre el ahorro neto: el resultado está en años.", "Divide the investment by the net savings: the result is in years."),
+              t("Compara con la regla de la empresa (por ejemplo, «máximo 6 años»).", "Compare with the company's rule (for example, \"at most 6 years\")."),
+            ],
+            example: t(
+              "Un calentador solar cuesta $90,000, ahorra $25,000 al año en gas y requiere $5,000 al año de mantenimiento. Ahorro neto = 25,000 − 5,000 = $20,000. Periodo = 90,000 ÷ 20,000 = **4.5 años**.",
+              "A solar water heater costs $90,000, saves $25,000 a year on gas and needs $5,000 a year in maintenance. Net savings = 25,000 − 5,000 = $20,000. Payback = 90,000 ÷ 20,000 = **4.5 years**.",
+            ),
+            interpret: t(
+              "Entre menos años, más rápido regresa tu dinero y menos riesgo corres. Es un primer filtro: no toma en cuenta lo que pasa después de recuperar la inversión.",
+              "The fewer the years, the faster your money comes back and the less risk you take. It is a first filter: it ignores what happens after the investment is recovered.",
+            ),
+            mistake: t(
+              "Usar el ahorro bruto y olvidar el mantenimiento (90,000 ÷ 25,000 = 3.6 años). El proyecto parece mejor de lo que es.",
+              "Using gross savings and forgetting maintenance (90,000 ÷ 25,000 = 3.6 years). The project looks better than it is.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
