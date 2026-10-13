@@ -20,7 +20,7 @@ export const lessons: Lesson[] = [
       es: "Una buena herramienta financiera digital nace de una necesidad concreta, calcula el dinero con precisión y reglas de redondeo claras, y se prueba y mantiene como un producto que la gente usará para decidir.",
       en: "A good digital financial tool starts from a concrete need, computes money precisely with clear rounding rules, and is tested and maintained as a product people will use to make decisions.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Traducir una necesidad financiera en requisitos, un producto mínimo viable y una estructura de entradas, cálculo, parámetros y salidas.", en: "Turn a financial need into requirements, a minimum viable product and a structure of inputs, calculation, parameters and outputs." },
       { es: "Calcular montos de dinero sin errores de precisión y aplicar reglas de redondeo que cuadren al centavo.", en: "Compute money amounts without precision errors and apply rounding rules that reconcile to the cent." },
@@ -75,7 +75,62 @@ export const lessons: Lesson[] = [
             en: "Mini example: splitting $100.00 into 3 payments gives 33.33, 33.33 and 33.34. If you left all three at 33.33, the sum would be 99.99 and one cent would be missing.",
           },
         ],
-        formula: "Pago = P × i ÷ (1 − (1 + i)^−n)   (P = monto, i = tasa por periodo, n = número de pagos; si i = 0, Pago = P ÷ n)",
+        formulas: [
+          {
+            name: { es: "Cuota fija de un crédito (fórmula de anualidad)", en: "Fixed loan payment (annuity formula)" },
+            expression: "Pago = P × i ÷ (1 − (1 + i)^−n)   (si i = 0, Pago = P ÷ n)",
+            variables: [
+              { symbol: "Pago", meaning: { es: "La cuota igual que se paga cada periodo (por ejemplo, cada mes), en pesos.", en: "The equal payment made each period (for example, each month), in pesos." } },
+              { symbol: "P", meaning: { es: "El monto que te prestan, en pesos.", en: "The amount borrowed, in pesos." } },
+              { symbol: "i", meaning: { es: "La tasa de interés por periodo, en decimal. Si pagas cada mes, debe ser la tasa mensual (1 % mensual = 0.01).", en: "The interest rate per period, as a decimal. If you pay monthly, it must be the monthly rate (1 % monthly = 0.01)." } },
+              { symbol: "n", meaning: { es: "El número de pagos (por ejemplo, 12 meses).", en: "The number of payments (for example, 12 months)." } },
+              { symbol: "(1 + i)^−n", meaning: { es: "Uno entre (1 + i) multiplicado por sí mismo n veces; en calculadora: (1 + i) ^ (−n).", en: "One divided by (1 + i) multiplied by itself n times; on a calculator: (1 + i) ^ (−n)." } },
+            ],
+            steps: [
+              { es: "Revisa que la tasa sea del mismo periodo que los pagos y conviértela a decimal (si te dan una tasa anual y pagas cada mes, divídela entre 12).", en: "Make sure the rate matches the payment period and convert it to a decimal (if you are given an annual rate and pay monthly, divide it by 12)." },
+              { es: "Calcula (1 + i)^−n.", en: "Compute (1 + i)^−n." },
+              { es: "Denominador: 1 − ese resultado. Numerador: P × i.", en: "Denominator: 1 − that result. Numerator: P × i." },
+              { es: "Divide numerador entre denominador y redondea al centavo solo al final.", en: "Divide numerator by denominator and round to the cent only at the end." },
+              { es: "Si la tasa es 0 %, no uses la fórmula (dividiría entre cero): la cuota es simplemente P ÷ n.", en: "If the rate is 0 %, do not use the formula (it would divide by zero): the payment is simply P ÷ n." },
+            ],
+            example: {
+              es: "Crédito hipotético de $30,000 a 10 meses con 1.5 % mensual: P = 30,000; i = 0.015; n = 10. (1.015)^−10 = 0.861667. Denominador = 1 − 0.861667 = 0.138333. Numerador = 30,000 × 0.015 = 450. Pago = 450 ÷ 0.138333 = **$3,253.03** al mes. Total pagado: 3,253.03 × 10 = $32,530.30; intereses: 32,530.30 − 30,000 = $2,530.30.",
+              en: "Hypothetical $30,000 loan over 10 months at 1.5 % monthly: P = 30,000; i = 0.015; n = 10. (1.015)^−10 = 0.861667. Denominator = 1 − 0.861667 = 0.138333. Numerator = 30,000 × 0.015 = 450. Payment = 450 ÷ 0.138333 = **$3,253.03** per month. Total paid: 3,253.03 × 10 = $32,530.30; interest: 32,530.30 − 30,000 = $2,530.30.",
+            },
+            interpret: {
+              es: "Pago × n siempre es mayor que P cuando hay interés; la diferencia es lo que te cuesta el crédito.",
+              en: "Payment × n is always greater than P when there is interest; the difference is what the loan costs you.",
+            },
+            mistake: {
+              es: "Usar la tasa anual con pagos mensuales, o redondear los pasos intermedios a dos decimales: el resultado se mueve varios pesos.",
+              en: "Using the annual rate with monthly payments, or rounding intermediate steps to two decimals: the result shifts by several pesos.",
+            },
+          },
+          {
+            name: { es: "Repartir un monto en pagos que cuadren al centavo", en: "Splitting an amount into payments that reconcile to the cent" },
+            expression: "Pago normal = Total ÷ número de pagos (redondeado al centavo hacia abajo)   ·   Último pago = Total − Pago normal × (número de pagos − 1)",
+            variables: [
+              { symbol: "Total", meaning: { es: "El monto que se va a dividir, en pesos.", en: "The amount to be split, in pesos." } },
+              { symbol: "número de pagos", meaning: { es: "En cuántas partes se divide.", en: "How many parts it is split into." } },
+              { symbol: "Pago normal", meaning: { es: "Lo que vale cada pago excepto el último, ya redondeado al centavo.", en: "What each payment except the last is worth, already rounded to the cent." } },
+              { symbol: "Último pago", meaning: { es: "El pago que absorbe el residuo (los centavos que sobran) para que la suma dé el total exacto.", en: "The payment that absorbs the remainder (the leftover cents) so the sum gives the exact total." } },
+            ],
+            steps: [
+              { es: "Divide el total entre el número de pagos.", en: "Divide the total by the number of payments." },
+              { es: "Redondea al centavo según la regla (aquí, hacia abajo): ese es el pago normal.", en: "Round to the cent according to the rule (here, down): that is the normal payment." },
+              { es: "Multiplica el pago normal por el número de pagos menos uno.", en: "Multiply the normal payment by the number of payments minus one." },
+              { es: "Resta eso al total: el resultado es el último pago. Comprueba que todo sume el total.", en: "Subtract that from the total: the result is the last payment. Check that everything adds up to the total." },
+            ],
+            example: {
+              es: "Repartir $500.00 en 3 pagos. 500 ÷ 3 = 166.666…, hacia abajo = **$166.66**. Dos pagos: 166.66 × 2 = 333.32. Último = 500.00 − 333.32 = **$166.68**. Comprobación: 166.66 + 166.66 + 166.68 = 500.00.",
+              en: "Split $500.00 into 3 payments. 500 ÷ 3 = 166.666…, rounded down = **$166.66**. Two payments: 166.66 × 2 = 333.32. Last = 500.00 − 333.32 = **$166.68**. Check: 166.66 + 166.66 + 166.68 = 500.00.",
+            },
+            mistake: {
+              es: "Cobrar todos los pagos iguales y redondeados: la suma queda unos centavos corta (o se cobra de más si redondeas hacia arriba).",
+              en: "Charging all payments equal and rounded: the sum ends up a few cents short (or you overcharge if you round up).",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Del prototipo a producción: pruebas y mantenimiento", en: "From prototype to production: testing and maintenance" },

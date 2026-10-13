@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
       "El federalismo fiscal estudia cómo se reparten los impuestos y los gastos entre la Federación, los estados y los municipios, y por qué en México la Federación recauda la mayor parte mientras los gobiernos locales dependen de transferencias.",
       "Fiscal federalism studies how taxes and spending are split among the Federation, the states and the municipalities, and why in Mexico the Federation collects most of the revenue while local governments depend on transfers.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué es el federalismo fiscal y el principio de correspondencia para asignar funciones entre órdenes de gobierno.", "Explain what fiscal federalism is and the correspondence principle for assigning functions among orders of government."),
       t("Identificar qué impuestos corresponden típicamente a la Federación, a los estados y a los municipios en México.", "Identify which taxes typically belong to the Federation, the states and the municipalities in Mexico."),
@@ -114,7 +114,65 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: a municipality receives $100 million in total; $20 million is own-source revenue (property tax, water, permits) and $80 million is transfers. Its autonomy is 20 % and its dependency 80 %.",
           ),
         ],
-        formula: "Autonomía = Ingresos propios ÷ Ingresos totales × 100   |   Dependencia = Transferencias ÷ Ingresos totales × 100",
+        formulas: [
+          {
+            name: t("Autonomía financiera y dependencia de transferencias", "Financial autonomy and dependency on transfers"),
+            expression: "Autonomía = Ingresos propios ÷ Ingresos totales × 100   ·   Dependencia = Transferencias ÷ Ingresos totales × 100",
+            variables: [
+              { symbol: "Ingresos propios", meaning: t("El dinero que el gobierno local genera por sí mismo, en pesos: predial, derechos (agua, licencias), productos y aprovechamientos.", "The money the local government raises by itself, in pesos: property tax, fees (water, permits), products and other charges.") },
+              { symbol: "Transferencias", meaning: t("El dinero que le manda la Federación, en pesos: participaciones, aportaciones y convenios.", "The money the Federation sends it, in pesos: revenue shares, earmarked contributions and agreements.") },
+              { symbol: "Ingresos totales", meaning: t("Ingresos propios + transferencias: todo lo que entró en el año, en pesos.", "Own-source revenue + transfers: everything that came in during the year, in pesos.") },
+              { symbol: "Autonomía", meaning: t("Qué porcentaje de cada peso lo genera el propio gobierno local (%).", "What percentage of each peso the local government generates itself (%).") },
+              { symbol: "Dependencia", meaning: t("Qué porcentaje de cada peso viene de la Federación (%).", "What percentage of each peso comes from the Federation (%).") },
+            ],
+            steps: [
+              t("Suma todos los ingresos propios (no solo el predial: también derechos y licencias).", "Add up all own-source revenue (not only property tax: also fees and permits)."),
+              t("Suma todas las transferencias (participaciones + aportaciones).", "Add up all transfers (revenue shares + earmarked contributions)."),
+              t("Calcula los ingresos totales: ingresos propios + transferencias.", "Compute total revenue: own-source revenue + transfers."),
+              t("Divide cada parte entre el total y multiplica por 100. Comprueba que autonomía + dependencia = 100 %.", "Divide each part by the total and multiply by 100. Check that autonomy + dependency = 100 %."),
+            ],
+            example: t(
+              "Un municipio hipotético cobra $28 millones de predial y $12 millones de derechos, y recibe $150 millones de participaciones y $60 millones de aportaciones. Propios = 28 + 12 = 40. Transferencias = 150 + 60 = 210. Total = 40 + 210 = 250. Autonomía = 40 ÷ 250 × 100 = **16 %**. Dependencia = 210 ÷ 250 × 100 = **84 %**. Suma: 16 + 84 = 100 %.",
+              "A hypothetical municipality collects $28 million in property tax and $12 million in fees, and receives $150 million in revenue shares and $60 million in earmarked contributions. Own = 28 + 12 = 40. Transfers = 150 + 60 = 210. Total = 40 + 210 = 250. Autonomy = 40 ÷ 250 × 100 = **16 %**. Dependency = 210 ÷ 250 × 100 = **84 %**. Sum: 16 + 84 = 100 %.",
+            ),
+            interpret: t(
+              "Autonomía alta: el gobierno local se sostiene solo y resiste mejor si bajan las transferencias. Autonomía baja (dependencia alta): cualquier recorte federal le pega directo a sus servicios.",
+              "High autonomy: the local government supports itself and copes better if transfers fall. Low autonomy (high dependency): any federal cut hits its services directly.",
+            ),
+            mistake: t(
+              "Contar solo el predial como ingreso propio y olvidar derechos y licencias, que también los cobra el municipio.",
+              "Counting only property tax as own-source revenue and forgetting fees and permits, which the municipality also collects.",
+            ),
+          },
+          {
+            name: t("Predial potencial y eficiencia recaudatoria", "Potential property tax and collection efficiency"),
+            expression: "Predial potencial = Valor catastral total × Tasa de predial   ·   Eficiencia = Predial recaudado ÷ Predial potencial × 100",
+            variables: [
+              { symbol: "Valor catastral total", meaning: t("La suma del valor oficial (catastral) de todas las casas y terrenos del municipio, en pesos.", "The sum of the official (cadastral) value of all houses and plots in the municipality, in pesos.") },
+              { symbol: "Tasa de predial", meaning: t("El porcentaje anual que se cobra sobre ese valor; se usa en decimal (0.25 % = 0.0025).", "The annual percentage charged on that value; it is used as a decimal (0.25 % = 0.0025).") },
+              { symbol: "Predial potencial", meaning: t("Lo que el municipio cobraría si todos pagaran completo, en pesos.", "What the municipality would collect if everyone paid in full, in pesos.") },
+              { symbol: "Predial recaudado", meaning: t("Lo que de verdad cobró en el año, en pesos.", "What it actually collected during the year, in pesos.") },
+              { symbol: "Eficiencia", meaning: t("Qué porcentaje del potencial logró cobrar (%).", "What percentage of the potential it managed to collect (%).") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal dividiéndola entre 100: por ejemplo, 0.3 % = 0.003.", "Convert the rate to a decimal by dividing it by 100: for example, 0.3 % = 0.003."),
+              t("Multiplica el valor catastral total por la tasa en decimal: ese es el predial potencial.", "Multiply the total cadastral value by the decimal rate: that is the potential property tax."),
+              t("Divide lo recaudado entre el potencial y multiplica por 100.", "Divide what was collected by the potential and multiply by 100."),
+            ],
+            example: t(
+              "Valor catastral total: $8,000 millones; tasa de ejemplo 0.3 % = 0.003; recaudado: $15 millones. Potencial = 8,000 × 0.003 = $24 millones. Eficiencia = 15 ÷ 24 × 100 = **62.5 %**.",
+              "Total cadastral value: $8,000 million; example rate 0.3 % = 0.003; collected: $15 million. Potential = 8,000 × 0.003 = $24 million. Efficiency = 15 ÷ 24 × 100 = **62.5 %**.",
+            ),
+            interpret: t(
+              "Lo que falta para llegar a 100 % es dinero que se pierde por morosos, padrones viejos o descuentos. Una eficiencia baja es una señal típica de pereza fiscal.",
+              "What is missing to reach 100 % is money lost to late payers, outdated rolls or discounts. Low efficiency is a typical sign of fiscal laziness.",
+            ),
+            mistake: t(
+              "Usar la tasa sin convertir (0.25 en vez de 0.0025): el potencial sale 100 veces más grande.",
+              "Using the rate without converting it (0.25 instead of 0.0025): the potential comes out 100 times larger.",
+            ),
+          },
+        ],
         bullets: [
           t("Ingresos propios: impuestos, derechos, productos y aprovechamientos locales.", "Own-source revenue: local taxes, fees, products and other charges."),
           t("Transferencias: participaciones y aportaciones federales, más convenios.", "Transfers: federal revenue shares and earmarked contributions, plus agreements."),
@@ -178,7 +236,7 @@ export const lessons: Lesson[] = [
       "Con el Sistema Nacional de Coordinación Fiscal los estados ceden ciertos impuestos a la Federación y, a cambio, reciben participaciones de libre uso y aportaciones etiquetadas que se reparten con fórmulas.",
       "Under the National Fiscal Coordination System states cede certain taxes to the Federation and, in exchange, receive unconditional revenue shares and earmarked contributions allocated by formulas.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Explicar cómo funciona el Sistema Nacional de Coordinación Fiscal y qué ganan y ceden los estados al adherirse.", "Explain how the National Fiscal Coordination System works and what states gain and give up by joining."),
       t("Distinguir participaciones (Ramo 28) de aportaciones (Ramo 33) y reconocer sus principales fondos.", "Distinguish revenue shares (Branch 28) from earmarked contributions (Branch 33) and recognize their main funds."),
@@ -223,6 +281,33 @@ export const lessons: Lesson[] = [
             "Mini example: with revenue shares, a municipality can pay its police payroll or buy a garbage truck; with FAIS it cannot pay for a town festival or pave a well-off residential area.",
           ),
         ],
+        formulas: [
+          {
+            name: t("Del Fondo General de Participaciones al municipio", "From the General Revenue-Sharing Fund to the municipality"),
+            expression: "Fondo General = RFP × 20 %   →   Participaciones del estado = Fondo General × Coeficiente   →   Mínimo para municipios = Participaciones del estado × 20 %",
+            variables: [
+              { symbol: "RFP", meaning: t("Recaudación Federal Participable: la bolsa de impuestos federales (ISR, IVA y otros) que se comparte, en pesos.", "Federal Shareable Revenue: the pool of federal taxes (ISR, VAT and others) that is shared, in pesos.") },
+              { symbol: "Fondo General", meaning: t("Fondo General de Participaciones: la parte de la RFP que se reparte entre los estados (en estos ejercicios, 20 %).", "General Revenue-Sharing Fund: the part of RFP distributed among the states (in these exercises, 20 %).") },
+              { symbol: "Coeficiente", meaning: t("El porcentaje del Fondo General que le toca a un estado; se usa en decimal (3 % = 0.03).", "The percentage of the General Fund that goes to one state; it is used as a decimal (3 % = 0.03).") },
+              { symbol: "Participaciones del estado", meaning: t("Los pesos que recibe el estado, de libre uso.", "The pesos the state receives, for unrestricted use.") },
+              { symbol: "Mínimo para municipios", meaning: t("Lo mínimo que el estado debe pasar a sus municipios: 20 % de sus participaciones, en pesos.", "The minimum the state must pass on to its municipalities: 20 % of its revenue shares, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el Fondo General: RFP × 0.20.", "Compute the General Fund: RFP × 0.20."),
+              t("Aplica el coeficiente del estado **al fondo**, no a la RFP: Fondo General × coeficiente en decimal.", "Apply the state's coefficient **to the fund**, not to RFP: General Fund × coefficient as a decimal."),
+              t("Calcula lo de los municipios: participaciones del estado × 0.20.", "Compute the municipalities' part: state revenue shares × 0.20."),
+              t("Si te lo piden, lo que conserva el estado = participaciones − monto para municipios.", "If asked, what the state keeps = revenue shares − amount for municipalities."),
+            ],
+            example: t(
+              "RFP hipotética de $2,000,000 millones; coeficiente del estado 4 %. Fondo General = 2,000,000 × 0.20 = $400,000 millones. Estado = 400,000 × 0.04 = **$16,000 millones**. Municipios = 16,000 × 0.20 = **$3,200 millones**. El estado conserva 16,000 − 3,200 = $12,800 millones.",
+              "Hypothetical RFP of $2,000,000 million; state coefficient 4 %. General Fund = 2,000,000 × 0.20 = $400,000 million. State = 400,000 × 0.04 = **$16,000 million**. Municipalities = 16,000 × 0.20 = **$3,200 million**. The state keeps 16,000 − 3,200 = $12,800 million.",
+            ),
+            mistake: t(
+              "Aplicar el coeficiente del estado a toda la RFP en lugar de al Fondo General, o aplicar el 20 % municipal a las aportaciones del Ramo 33.",
+              "Applying the state's coefficient to the whole RFP instead of the General Fund, or applying the municipal 20 % to Branch 33 contributions.",
+            ),
+          },
+        ],
         bullets: [
           t("FONE: nómina educativa y gasto operativo de educación básica.", "FONE: education payroll and operating spending for basic education."),
           t("FASSA: servicios de salud.", "FASSA: health services."),
@@ -251,7 +336,37 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: a $600 million fund is allocated 100 % by population between two states with 1 and 2 million residents. The first receives 600 × 1/3 = $200 million; the second, $400 million.",
           ),
         ],
-        formula: "Monto del estado i = Fondo × Σ (peso del criterio × participación del estado i en ese criterio)",
+        formulas: [
+          {
+            name: t("Reparto de un fondo con varios criterios", "Allocating a fund with several criteria"),
+            expression: "Monto del estado i = Fondo × Σ (peso del criterio × participación del estado i en ese criterio)",
+            variables: [
+              { symbol: "Monto del estado i", meaning: t("Lo que recibe un estado en particular (el estado \"i\"), en pesos.", "What one particular state (state \"i\") receives, in pesos.") },
+              { symbol: "Fondo", meaning: t("El total de dinero que se va a repartir, en pesos.", "The total money to be allocated, in pesos.") },
+              { symbol: "Σ", meaning: t("Sigma: \"suma\". Se calcula el término para cada criterio y se suman.", "Sigma: \"sum\". You compute the term for each criterion and add them up.") },
+              { symbol: "Peso del criterio", meaning: t("Qué parte del fondo se reparte con ese criterio, en decimal (70 % = 0.70). Los pesos de todos los criterios suman 1.", "What part of the fund is allocated by that criterion, as a decimal (70 % = 0.70). The weights of all criteria add up to 1.") },
+              { symbol: "Participación del estado i en ese criterio", meaning: t("Su parte del total en ese criterio: su población ÷ población total, sus pobres ÷ pobres totales, o 1 ÷ número de estados si es en partes iguales.", "Its share of the total in that criterion: its population ÷ total population, its poor ÷ total poor, or 1 ÷ number of states if it is in equal parts.") },
+            ],
+            steps: [
+              t("Divide el fondo en bolsas: Fondo × peso de cada criterio.", "Split the fund into pools: Fund × weight of each criterion."),
+              t("En cada bolsa, calcula la participación del estado (su dato ÷ el total de todos los estados).", "In each pool, compute the state's share (its figure ÷ the total of all states)."),
+              t("Multiplica cada bolsa por esa participación.", "Multiply each pool by that share."),
+              t("Suma lo que el estado obtiene de todas las bolsas.", "Add up what the state gets from all pools."),
+            ],
+            example: t(
+              "Fondo hipotético de $900 millones: 60 % por población y 40 % por pobreza. Estado A: 4 millones de habitantes y 1 millón de pobres; estado B: 2 millones y 1.5 millones. Bolsas: 900 × 0.60 = 540 y 900 × 0.40 = 360. Población: A = 540 × 4/6 = 360; B = 540 × 2/6 = 180. Pobreza (2.5 millones en total): A = 360 × 1/2.5 = 144; B = 360 × 1.5/2.5 = 216. Totales: A = 360 + 144 = **$504 millones**; B = 180 + 216 = **$396 millones** (504 + 396 = 900).",
+              "Hypothetical $900 million fund: 60 % by population and 40 % by poverty. State A: 4 million residents and 1 million poor; state B: 2 million and 1.5 million. Pools: 900 × 0.60 = 540 and 900 × 0.40 = 360. Population: A = 540 × 4/6 = 360; B = 540 × 2/6 = 180. Poverty (2.5 million in total): A = 360 × 1/2.5 = 144; B = 360 × 1.5/2.5 = 216. Totals: A = 360 + 144 = **$504 million**; B = 180 + 216 = **$396 million** (504 + 396 = 900).",
+            ),
+            interpret: t(
+              "Comprueba que lo de todos los estados sume el fondo completo. Un criterio de pobreza favorece a quien tiene más pobres en proporción; uno de recaudación, a quien cobra más.",
+              "Check that all states' amounts add up to the full fund. A poverty criterion favors whoever has proportionally more poor people; a collection criterion, whoever collects more.",
+            ),
+            mistake: t(
+              "Repartir todo el fondo con un solo criterio y olvidar las otras bolsas (por ejemplo, la parte igualitaria).",
+              "Allocating the whole fund with a single criterion and forgetting the other pools (for example, the equal part).",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -310,7 +425,7 @@ export const lessons: Lesson[] = [
       "La deuda pública es lo que el gobierno debe por haber gastado más de lo que ingresó; es sostenible cuando la razón deuda/PIB no crece sin control, lo que depende de la tasa de interés, el crecimiento y el balance primario.",
       "Public debt is what the government owes for having spent more than it took in; it is sustainable when the debt-to-GDP ratio does not grow out of control, which depends on the interest rate, growth and the primary balance.",
     ),
-    minutes: 17,
+    minutes: 19,
     objectives: [
       t("Definir la deuda pública, sus clasificaciones y los principales instrumentos con que se financia el Gobierno Federal en México.", "Define public debt, its classifications and the main instruments the Mexican Federal Government uses to borrow."),
       t("Distinguir balance primario y balance total y relacionarlos con el cambio en la deuda.", "Distinguish primary balance and overall balance and relate them to the change in debt."),
@@ -349,6 +464,10 @@ export const lessons: Lesson[] = [
         heading: t("Balance primario y dinámica de la deuda", "Primary balance and debt dynamics"),
         body: [
           t(
+            "En palabras sencillas: no basta saber cuánto debe el gobierno; hay que compararlo con el tamaño de la economía. El **PIB** es el valor de todo lo que produce el país en un año. La **razón deuda/PIB** dice cuántos pesos debe el gobierno por cada 100 pesos que produce el país, igual que comparar tu deuda de tarjeta con tu sueldo de un año: deber $50,000 no es lo mismo si ganas $100,000 que si ganas $1,000,000.",
+            "In simple words: it is not enough to know how much the government owes; you have to compare it with the size of the economy. **GDP** is the value of everything the country produces in a year. The **debt-to-GDP ratio** tells how many pesos the government owes for every 100 pesos the country produces, just like comparing your credit card debt with a year's salary: owing $50,000 is not the same if you earn $100,000 as if you earn $1,000,000.",
+          ),
+          t(
             "El **balance primario** compara ingresos con gasto **sin contar los intereses** de la deuda. Si es positivo hay **superávit primario**: el gobierno cubre todos sus gastos corrientes y de inversión con sus ingresos. El **balance total** (o financiero) sí resta los intereses. Puede haber superávit primario y aun así déficit total, si los intereses son muy altos.",
             "The **primary balance** compares revenue with spending **excluding interest** on debt. If it is positive there is a **primary surplus**: the government covers all its current and investment spending with its revenue. The **overall** (or financial) **balance** does subtract interest. There can be a primary surplus and still an overall deficit, if interest is very high.",
           ),
@@ -365,7 +484,89 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: with d = 40 %, r = 7 % and g = 7 %, the factor (1 + r)/(1 + g) is 1 and the ratio stays at 40 % if the primary balance is zero.",
           ),
         ],
-        formula: "d(t+1) = d(t) × (1 + r) ÷ (1 + g) − sp   |   sp estabilizador = (r − g) ÷ (1 + g) × d",
+        formulas: [
+          {
+            name: t("Balance primario, balance total y deuda al final del año", "Primary balance, overall balance and end-of-year debt"),
+            expression: "Balance primario = Ingresos − Gasto sin intereses   ·   Balance total = Balance primario − Intereses   ·   Deuda final = Deuda inicial − Balance total",
+            variables: [
+              { symbol: "Ingresos", meaning: t("Todo lo que el gobierno cobra en el año (impuestos y otros), en pesos.", "Everything the government collects in the year (taxes and other), in pesos.") },
+              { symbol: "Gasto sin intereses", meaning: t("Todo lo que gasta en programas, sueldos, obras, etc., sin contar los intereses de la deuda, en pesos.", "Everything it spends on programs, salaries, public works, etc., not counting interest on debt, in pesos.") },
+              { symbol: "Intereses", meaning: t("Lo que paga en el año por el costo de su deuda, en pesos.", "What it pays during the year as the cost of its debt, in pesos.") },
+              { symbol: "Balance primario", meaning: t("Positivo = superávit primario; negativo = déficit primario.", "Positive = primary surplus; negative = primary deficit.") },
+              { symbol: "Balance total", meaning: t("Positivo = superávit; negativo = déficit, que se cubre pidiendo prestado.", "Positive = surplus; negative = deficit, which is covered by borrowing.") },
+              { symbol: "Deuda inicial / Deuda final", meaning: t("Lo que se debía al empezar y al terminar el año, en pesos. Restar un balance negativo equivale a sumar el déficit.", "What was owed at the start and at the end of the year, in pesos. Subtracting a negative balance is the same as adding the deficit.") },
+            ],
+            steps: [
+              t("Calcula el balance primario: ingresos − gasto sin intereses.", "Compute the primary balance: revenue − non-interest spending."),
+              t("Réstale los intereses para obtener el balance total.", "Subtract interest to get the overall balance."),
+              t("Si el balance total es negativo (déficit), súmalo a la deuda inicial; si es positivo, la deuda baja.", "If the overall balance is negative (deficit), add it to the starting debt; if positive, debt falls."),
+            ],
+            example: t(
+              "Cifras hipotéticas en miles de millones: ingresos 3,000; gasto sin intereses 2,850; intereses 260; deuda inicial 6,000. Balance primario = 3,000 − 2,850 = **+150** (superávit). Balance total = 150 − 260 = **−110** (déficit). Deuda final = 6,000 + 110 = **6,110**.",
+              "Hypothetical figures in billions: revenue 3,000; non-interest spending 2,850; interest 260; starting debt 6,000. Primary balance = 3,000 − 2,850 = **+150** (surplus). Overall balance = 150 − 260 = **−110** (deficit). Ending debt = 6,000 + 110 = **6,110**.",
+            ),
+            mistake: t(
+              "Sumar todos los intereses a la deuda sin descontar el superávit primario que ayudó a pagarlos.",
+              "Adding all the interest to debt without subtracting the primary surplus that helped pay it.",
+            ),
+          },
+          {
+            name: t("Razón deuda/PIB del próximo año", "Next year's debt-to-GDP ratio"),
+            expression: "d(t+1) = d(t) × (1 + r) ÷ (1 + g) − sp",
+            variables: [
+              { symbol: "d(t)", meaning: t("Deuda de este año como % del PIB (por ejemplo, 50).", "This year's debt as % of GDP (for example, 50).") },
+              { symbol: "d(t+1)", meaning: t("Deuda del próximo año como % del PIB.", "Next year's debt as % of GDP.") },
+              { symbol: "r", meaning: t("Tasa de interés nominal que paga la deuda, en decimal (8 % = 0.08).", "Nominal interest rate paid on the debt, as a decimal (8 % = 0.08).") },
+              { symbol: "g", meaning: t("Crecimiento nominal del PIB en el año, en decimal (5 % = 0.05).", "Nominal GDP growth in the year, as a decimal (5 % = 0.05).") },
+              { symbol: "sp", meaning: t("Balance primario como % del PIB: positivo si es superávit (baja la deuda), negativo si es déficit (la sube).", "Primary balance as % of GDP: positive if a surplus (lowers debt), negative if a deficit (raises it).") },
+            ],
+            steps: [
+              t("Convierte r y g a decimales.", "Convert r and g to decimals."),
+              t("Calcula el factor: (1 + r) ÷ (1 + g).", "Compute the factor: (1 + r) ÷ (1 + g)."),
+              t("Multiplica la deuda actual d(t) por ese factor.", "Multiply current debt d(t) by that factor."),
+              t("Resta el balance primario sp (si es cero, no restas nada).", "Subtract the primary balance sp (if it is zero, subtract nothing)."),
+            ],
+            example: t(
+              "d = 40 % del PIB, r = 9 % y g = 4 %, con superávit primario de 0.5 % del PIB. Factor = 1.09 ÷ 1.04 = 1.0481. 40 × 1.0481 = 41.92. Nueva razón = 41.92 − 0.5 = **41.42 % del PIB**.",
+              "d = 40 % of GDP, r = 9 % and g = 4 %, with a primary surplus of 0.5 % of GDP. Factor = 1.09 ÷ 1.04 = 1.0481. 40 × 1.0481 = 41.92. New ratio = 41.92 − 0.5 = **41.42 % of GDP**.",
+            ),
+            interpret: t(
+              "Si el factor es mayor que 1 (r > g), la deuda crece sola como bola de nieve; si es menor que 1 (g > r), tiende a bajar sola.",
+              "If the factor is greater than 1 (r > g), debt grows on its own like a snowball; if it is less than 1 (g > r), it tends to fall on its own.",
+            ),
+            mistake: t(
+              "Sumar solo la diferencia r − g a la deuda (40 + 5) o multiplicar por (1 + r − g) sin dividir entre (1 + g).",
+              "Just adding the gap r − g to debt (40 + 5) or multiplying by (1 + r − g) without dividing by (1 + g).",
+            ),
+          },
+          {
+            name: t("Superávit primario que estabiliza la deuda", "Primary surplus that stabilizes debt"),
+            expression: "sp estabilizador = (r − g) ÷ (1 + g) × d",
+            variables: [
+              { symbol: "sp estabilizador", meaning: t("El balance primario (% del PIB) que deja la razón deuda/PIB igual de un año a otro.", "The primary balance (% of GDP) that keeps the debt-to-GDP ratio the same from one year to the next.") },
+              { symbol: "r", meaning: t("Tasa de interés nominal, en decimal.", "Nominal interest rate, as a decimal.") },
+              { symbol: "g", meaning: t("Crecimiento nominal del PIB, en decimal.", "Nominal GDP growth, as a decimal.") },
+              { symbol: "d", meaning: t("Deuda actual como % del PIB.", "Current debt as % of GDP.") },
+            ],
+            steps: [
+              t("Resta r − g (en decimales).", "Subtract r − g (as decimals)."),
+              t("Divide el resultado entre (1 + g).", "Divide the result by (1 + g)."),
+              t("Multiplica por la deuda d: el resultado ya queda en % del PIB.", "Multiply by debt d: the result is already in % of GDP."),
+            ],
+            example: t(
+              "d = 70 % del PIB, r = 8 %, g = 5 %. r − g = 0.08 − 0.05 = 0.03. 0.03 ÷ 1.05 = 0.02857. 0.02857 × 70 = **2.00 % del PIB** de superávit primario.",
+              "d = 70 % of GDP, r = 8 %, g = 5 %. r − g = 0.08 − 0.05 = 0.03. 0.03 ÷ 1.05 = 0.02857. 0.02857 × 70 = **2.00 % of GDP** primary surplus.",
+            ),
+            interpret: t(
+              "Si el resultado es positivo, el gobierno necesita ese superávit para que la deuda no suba. Si es negativo (g > r), podría tener un pequeño déficit primario y aun así mantener estable la razón.",
+              "If the result is positive, the government needs that surplus so debt does not rise. If negative (g > r), it could run a small primary deficit and still keep the ratio stable.",
+            ),
+            mistake: t(
+              "Olvidar dividir entre (1 + g) y calcular solo (r − g) × d.",
+              "Forgetting to divide by (1 + g) and computing only (r − g) × d.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Sostenibilidad, riesgos y límites legales", "Sustainability, risks and legal limits"),
@@ -445,7 +646,7 @@ export const lessons: Lesson[] = [
       "El desarrollo económico va más allá de que crezca el PIB: busca que la gente viva más, mejor educada, con ingresos suficientes, menos pobreza y desigualdad y sin agotar los recursos de las generaciones futuras.",
       "Economic development goes beyond GDP growth: it seeks for people to live longer, better educated, with sufficient income, less poverty and inequality and without depleting the resources of future generations.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Distinguir crecimiento de desarrollo económico y explicar por qué el PIB no basta.", "Distinguish economic growth from development and explain why GDP is not enough."),
       t("Calcular e interpretar el Índice de Desarrollo Humano, el crecimiento per cápita y el coeficiente de Gini.", "Compute and interpret the Human Development Index, per capita growth and the Gini coefficient."),
@@ -473,7 +674,84 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: if GDP grows 4 % and population 1 %, GDP per capita grows about 3 %; if population grew 4 %, income per person would barely improve.",
           ),
         ],
-        formula: "Índice de dimensión = (valor − mínimo) ÷ (máximo − mínimo)   |   IDH = (I salud × I educación × I ingreso)^(1/3)   |   Crec. per cápita = (1 + g PIB) ÷ (1 + g población) − 1",
+        formulas: [
+          {
+            name: t("Índice de una dimensión del IDH", "Index of one HDI dimension"),
+            expression: "Índice de dimensión = (valor − mínimo) ÷ (máximo − mínimo)",
+            variables: [
+              { symbol: "valor", meaning: t("El dato real de la región (por ejemplo, esperanza de vida en años).", "The region's actual figure (for example, life expectancy in years).") },
+              { symbol: "mínimo", meaning: t("El valor de referencia más bajo que fija el método (por ejemplo, 20 años).", "The lowest reference value set by the method (for example, 20 years).") },
+              { symbol: "máximo", meaning: t("El valor de referencia más alto (por ejemplo, 85 años).", "The highest reference value (for example, 85 years).") },
+              { symbol: "Índice de dimensión", meaning: t("Un número entre 0 y 1 que dice qué tan cerca está la región del máximo.", "A number between 0 and 1 that says how close the region is to the maximum.") },
+            ],
+            steps: [
+              t("Resta el mínimo al valor real.", "Subtract the minimum from the actual value."),
+              t("Resta el mínimo al máximo.", "Subtract the minimum from the maximum."),
+              t("Divide el primer resultado entre el segundo.", "Divide the first result by the second."),
+            ],
+            example: t(
+              "Esperanza de vida de 70 años, mínimo 20 y máximo 85. 70 − 20 = 50. 85 − 20 = 65. Índice de salud = 50 ÷ 65 = **0.769**.",
+              "Life expectancy of 70 years, minimum 20 and maximum 85. 70 − 20 = 50. 85 − 20 = 65. Health index = 50 ÷ 65 = **0.769**.",
+            ),
+            mistake: t(
+              "Dividir el valor entre el máximo (70 ÷ 85) sin restar el mínimo.",
+              "Dividing the value by the maximum (70 ÷ 85) without subtracting the minimum.",
+            ),
+          },
+          {
+            name: t("Índice de Desarrollo Humano (IDH)", "Human Development Index (HDI)"),
+            expression: "IDH = (I salud × I educación × I ingreso)^(1/3)",
+            variables: [
+              { symbol: "I salud", meaning: t("Índice de salud (0 a 1), sale de la esperanza de vida.", "Health index (0 to 1), from life expectancy.") },
+              { symbol: "I educación", meaning: t("Índice de educación (0 a 1), sale de los años de escolaridad.", "Education index (0 to 1), from years of schooling.") },
+              { symbol: "I ingreso", meaning: t("Índice de ingreso (0 a 1), sale del ingreso per cápita.", "Income index (0 to 1), from income per capita.") },
+              { symbol: "^(1/3)", meaning: t("Raíz cúbica: el número que, multiplicado por sí mismo tres veces, da el producto. Es la media geométrica de tres números.", "Cube root: the number that, multiplied by itself three times, gives the product. It is the geometric mean of three numbers.") },
+            ],
+            steps: [
+              t("Calcula o toma los tres índices (cada uno entre 0 y 1).", "Compute or take the three indices (each between 0 and 1)."),
+              t("Multiplícalos entre sí.", "Multiply them together."),
+              t("Saca la raíz cúbica del producto (en calculadora: producto ^ (1/3)).", "Take the cube root of the product (on a calculator: product ^ (1/3))."),
+            ],
+            example: t(
+              "I salud = 0.769, I educación = 0.65, I ingreso = 0.72. Producto = 0.769 × 0.65 × 0.72 = 0.360. Raíz cúbica: 0.360^(1/3) ≈ **0.711**. El promedio simple daría 0.713, un poco más.",
+              "Health = 0.769, education = 0.65, income = 0.72. Product = 0.769 × 0.65 × 0.72 = 0.360. Cube root: 0.360^(1/3) ≈ **0.711**. The simple average would give 0.713, slightly more.",
+            ),
+            interpret: t(
+              "Más cerca de 1 = más desarrollo humano. Como es media geométrica, una dimensión muy baja jala el IDH hacia abajo aunque las otras sean altas.",
+              "Closer to 1 = more human development. Because it is a geometric mean, one very low dimension pulls the HDI down even if the others are high.",
+            ),
+            mistake: t(
+              "Sacar el promedio simple (sumar y dividir entre 3) en lugar de multiplicar y sacar raíz cúbica.",
+              "Taking the simple average (adding and dividing by 3) instead of multiplying and taking the cube root.",
+            ),
+          },
+          {
+            name: t("Crecimiento del PIB per cápita (fórmula exacta)", "GDP per capita growth (exact formula)"),
+            expression: "Crec. per cápita = (1 + g PIB) ÷ (1 + g población) − 1",
+            variables: [
+              { symbol: "g PIB", meaning: t("Crecimiento del PIB en el año, en decimal (3.5 % = 0.035).", "GDP growth in the year, as a decimal (3.5 % = 0.035).") },
+              { symbol: "g población", meaning: t("Crecimiento de la población en el año, en decimal.", "Population growth in the year, as a decimal.") },
+              { symbol: "Crec. per cápita", meaning: t("Cuánto creció la producción por persona, en decimal; multiplícalo por 100 para tenerlo en %.", "How much output per person grew, as a decimal; multiply by 100 to get it in %.") },
+            ],
+            steps: [
+              t("Convierte ambos crecimientos a decimal y súmales 1.", "Convert both growth rates to decimals and add 1 to each."),
+              t("Divide (1 + g PIB) entre (1 + g población).", "Divide (1 + GDP g) by (1 + population g)."),
+              t("Resta 1 y multiplica por 100 para expresarlo en %.", "Subtract 1 and multiply by 100 to express it in %."),
+            ],
+            example: t(
+              "El PIB crece 4.2 % y la población 1.2 %. 1.042 ÷ 1.012 = 1.02964. 1.02964 − 1 = 0.02964 → **2.96 %**. La aproximación rápida (4.2 − 1.2 = 3 %) es cercana, pero no exacta.",
+              "GDP grows 4.2 % and population 1.2 %. 1.042 ÷ 1.012 = 1.02964. 1.02964 − 1 = 0.02964 → **2.96 %**. The quick approximation (4.2 − 1.2 = 3 %) is close, but not exact.",
+            ),
+            interpret: t(
+              "Si sale positivo, en promedio cada persona tiene más producción; si sale cerca de cero o negativo, la población creció tan rápido como la economía o más.",
+              "If positive, on average each person has more output; if near zero or negative, population grew as fast as the economy or faster.",
+            ),
+            mistake: t(
+              "Sumar los dos crecimientos: más población no sube el ingreso por persona, lo reparte entre más gente.",
+              "Adding the two growth rates: more population does not raise income per person, it spreads it among more people.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Teorías del desarrollo", "Development theories"),

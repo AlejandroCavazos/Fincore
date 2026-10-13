@@ -21,7 +21,7 @@ export const lessons: Lesson[] = [
       es: "Todo lo que tiene un negocio se financió con dinero de alguien más (pasivo) o de sus dueños (capital), y por eso Activo = Pasivo + Capital siempre se cumple.",
       en: "Everything a business owns was financed with someone else's money (liabilities) or its owners' money (equity), which is why Assets = Liabilities + Equity always holds.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar con tus palabras la ecuación Activo = Pasivo + Capital.", en: "Explain the equation Assets = Liabilities + Equity in your own words." },
       { es: "Despejar cualquier elemento de la ecuación cuando conoces los otros dos.", en: "Solve for any element of the equation when you know the other two." },
@@ -45,7 +45,35 @@ export const lessons: Lesson[] = [
             en: "Think of your car: it is worth $200,000, but you still owe $50,000 on the loan. The car is your asset, the loan is your liability, and what is really yours (your equity) is $150,000. If you know two figures, you can solve for the third.",
           },
         ],
-        formula: "Activo = Pasivo + Capital   ·   Capital = Activo − Pasivo   ·   Pasivo = Activo − Capital",
+        formulas: [
+          {
+            name: { es: "Ecuación contable (y cómo despejar el dato que falta)", en: "Accounting equation (and how to solve for the missing figure)" },
+            expression: "Activo = Pasivo + Capital   ·   Capital = Activo − Pasivo   ·   Pasivo = Activo − Capital",
+            variables: [
+              { symbol: "Activo", meaning: { es: "Todo lo que el negocio tiene, en pesos: efectivo, mercancía, equipo, lo que le deben.", en: "Everything the business has, in pesos: cash, goods, equipment, amounts owed to it." } },
+              { symbol: "Pasivo", meaning: { es: "Todo lo que el negocio debe a otros, en pesos: proveedores, bancos, préstamos.", en: "Everything the business owes to others, in pesos: suppliers, banks, loans." } },
+              { symbol: "Capital", meaning: { es: "La parte que de verdad es de los dueños, en pesos: lo que queda del activo después de pagar todas las deudas.", en: "The part that truly belongs to the owners, in pesos: what is left of the assets after paying all debts." } },
+            ],
+            steps: [
+              { es: "Identifica qué dato te falta: activo, pasivo o capital.", en: "Identify which figure is missing: assets, liabilities or equity." },
+              { es: "Si te dan varios bienes o varias deudas, súmalos primero para tener el total de cada elemento.", en: "If you are given several items or several debts, add them up first to get the total of each element." },
+              { es: "Usa la versión de la fórmula que deja solo el dato que buscas: para el capital, resta el pasivo al activo; para el activo, suma pasivo y capital.", en: "Use the version of the formula that isolates the figure you need: for equity, subtract liabilities from assets; for assets, add liabilities and equity." },
+              { es: "Comprueba: Pasivo + Capital debe darte exactamente el Activo.", en: "Check: Liabilities + Equity must give you exactly the Assets." },
+            ],
+            example: {
+              es: "Una estética tiene sillones y secadoras por $140,000 y $40,000 en el banco; debe $65,000 a una financiera. Activo = 140,000 + 40,000 = $180,000. Pasivo = $65,000. Capital = 180,000 − 65,000 = **$115,000**. Comprobación: 65,000 + 115,000 = 180,000.",
+              en: "A beauty salon has chairs and dryers worth $140,000 and $40,000 in the bank; it owes $65,000 to a lender. Assets = 140,000 + 40,000 = $180,000. Liabilities = $65,000. Equity = 180,000 − 65,000 = **$115,000**. Check: 65,000 + 115,000 = 180,000.",
+            },
+            interpret: {
+              es: "Un capital grande frente al pasivo significa que el negocio es mayormente de sus dueños. Si el capital sale negativo, el negocio debe más de lo que tiene: es una señal de alerta.",
+              en: "Large equity compared with liabilities means the business mostly belongs to its owners. If equity comes out negative, the business owes more than it has: that is a warning sign.",
+            },
+            mistake: {
+              es: "Sumar activo y pasivo para obtener el capital. El pasivo es lo que se debe, así que se **resta** del activo.",
+              en: "Adding assets and liabilities to get equity. Liabilities are what is owed, so they are **subtracted** from assets.",
+            },
+          },
+        ],
         bullets: [
           { es: "Activo: lo que el negocio tiene o controla y le traerá beneficios.", en: "Assets: what the business has or controls that will bring it benefits." },
           { es: "Pasivo: lo que el negocio debe a terceros.", en: "Liabilities: what the business owes to third parties." },
@@ -66,6 +94,32 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: una tiendita tiene Activo $80,000 = Pasivo $20,000 + Capital $60,000. Compra mercancía a crédito por $5,000. El activo sube a $85,000 y el pasivo a $25,000: $85,000 = $25,000 + $60,000. ¡Sigue en equilibrio!",
             en: "Mini example: a corner store has Assets $80,000 = Liabilities $20,000 + Equity $60,000. It buys goods on credit for $5,000. Assets rise to $85,000 and liabilities to $25,000: $85,000 = $25,000 + $60,000. Still balanced!",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Nuevos totales de la ecuación después de una operación", en: "New equation totals after a transaction" },
+            expression: "Nuevo total = Total anterior + Aumento − Disminución   (para Activo, Pasivo y Capital por separado)",
+            variables: [
+              { symbol: "Nuevo total", meaning: { es: "Cuánto vale el activo, el pasivo o el capital después de la operación, en pesos.", en: "What assets, liabilities or equity are worth after the transaction, in pesos." } },
+              { symbol: "Total anterior", meaning: { es: "Cuánto valía ese mismo elemento justo antes de la operación, en pesos.", en: "What that same element was worth just before the transaction, in pesos." } },
+              { symbol: "Aumento", meaning: { es: "Los pesos que la operación le suma (por ejemplo, entra dinero de un préstamo o de una aportación).", en: "The pesos the transaction adds to it (for example, money comes in from a loan or a contribution)." } },
+              { symbol: "Disminución", meaning: { es: "Los pesos que la operación le quita (por ejemplo, sale dinero para pagar una deuda).", en: "The pesos the transaction takes away from it (for example, money goes out to pay a debt)." } },
+            ],
+            steps: [
+              { es: "Escribe la ecuación inicial con sus tres totales.", en: "Write the starting equation with its three totals." },
+              { es: "Para la primera operación, decide qué dos elementos cambian y si suben o bajan.", en: "For the first transaction, decide which two elements change and whether they go up or down." },
+              { es: "Suma o resta el importe a esos elementos; el que no cambia se queda igual.", en: "Add or subtract the amount to those elements; the one that does not change stays the same." },
+              { es: "Comprueba que Activo = Pasivo + Capital y usa esos nuevos totales como punto de partida de la siguiente operación.", en: "Check that Assets = Liabilities + Equity and use those new totals as the starting point for the next transaction." },
+            ],
+            example: {
+              es: "Una lavandería inicia con Activo $90,000 = Pasivo $25,000 + Capital $65,000. (1) Le prestan $15,000: activo 90,000 + 15,000 = 105,000 y pasivo 25,000 + 15,000 = 40,000. (2) Paga $8,000 a un proveedor: activo 105,000 − 8,000 = 97,000 y pasivo 40,000 − 8,000 = 32,000. Resultado: **Activo $97,000 = Pasivo $32,000 + Capital $65,000** (32,000 + 65,000 = 97,000).",
+              en: "A laundry starts with Assets $90,000 = Liabilities $25,000 + Equity $65,000. (1) It receives a $15,000 loan: assets 90,000 + 15,000 = 105,000 and liabilities 25,000 + 15,000 = 40,000. (2) It pays a supplier $8,000: assets 105,000 − 8,000 = 97,000 and liabilities 40,000 − 8,000 = 32,000. Result: **Assets $97,000 = Liabilities $32,000 + Equity $65,000** (32,000 + 65,000 = 97,000).",
+            },
+            mistake: {
+              es: "Restar al capital el pago de una deuda. Pagar lo que debes baja el activo y el pasivo; lo que es del dueño no cambia. El capital solo se mueve con aportaciones, retiros, ganancias o pérdidas.",
+              en: "Subtracting a debt payment from equity. Paying what you owe lowers assets and liabilities; what belongs to the owner does not change. Equity only moves with contributions, withdrawals, profits or losses.",
+            },
           },
         ],
         bullets: [
@@ -210,6 +264,30 @@ export const lessons: Lesson[] = [
             en: "Hand in hand goes the **matching of costs and expenses with revenue**: costs and expenses are recorded in the same period as the revenue they helped generate. That way, each month's profit reflects what really happened that month.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Ingreso que corresponde a un periodo (devengado)", en: "Revenue that belongs to a period (accrued)" },
+            expression: "Ingreso del periodo = Ventas o servicios del periodo cobrados + Ventas o servicios del periodo pendientes de cobro",
+            variables: [
+              { symbol: "Ingreso del periodo", meaning: { es: "Los pesos de ingreso que se registran en ese mes (o año), porque el trabajo o la venta se hizo en ese mes.", en: "The pesos of revenue recorded in that month (or year), because the work or sale was done in that month." } },
+              { symbol: "Ventas o servicios del periodo cobrados", meaning: { es: "Lo que vendiste o el trabajo que hiciste en ese mes y ya te pagaron, en pesos.", en: "What you sold or the work you did that month and have already been paid for, in pesos." } },
+              { symbol: "Ventas o servicios del periodo pendientes de cobro", meaning: { es: "Lo que vendiste o hiciste en ese mes pero te pagarán después (a crédito), en pesos.", en: "What you sold or did that month but will be paid for later (on credit), in pesos." } },
+            ],
+            steps: [
+              { es: "Haz una lista de todo el dinero y de todas las ventas o servicios que mencionan.", en: "List all the money and all the sales or services mentioned." },
+              { es: "Para cada uno pregunta: ¿el trabajo o la venta se hizo en este periodo? Si sí, cuenta; si fue en otro periodo, no cuenta.", en: "For each one ask: was the work or sale done in this period? If yes, it counts; if it was in another period, it does not." },
+              { es: "Suma lo que sí cuenta, sin importar si ya se cobró o no.", en: "Add up what counts, whether or not it has been collected." },
+            ],
+            example: {
+              es: "En diciembre una carpintería entrega muebles por $24,000: le pagan $15,000 y le quedan a deber $9,000. Ese mismo mes cobra $4,000 de un trabajo de noviembre. Ingreso de diciembre = 15,000 + 9,000 = **$24,000**. Los $4,000 son ingreso de noviembre: en diciembre solo se registra que el cliente pagó.",
+              en: "In December a carpentry shop delivers furniture worth $24,000: it is paid $15,000 and is still owed $9,000. That same month it collects $4,000 for a November job. December revenue = 15,000 + 9,000 = **$24,000**. The $4,000 is November revenue: in December you only record that the customer paid.",
+            },
+            mistake: {
+              es: "Contar solo el dinero que entró en el mes, o sumar cobros de trabajos de meses anteriores. La pregunta es cuándo se hizo el trabajo, no cuándo llegó el dinero.",
+              en: "Counting only the cash that came in during the month, or adding collections for jobs from earlier months. The question is when the work was done, not when the money arrived.",
+            },
+          },
+        ],
         bullets: [
           { es: "Ingreso: cuando vendes o prestas el servicio, aunque cobres después.", en: "Revenue: when you sell or perform the service, even if you collect later." },
           { es: "Gasto: cuando lo consumes, aunque lo pagues después.", en: "Expense: when you consume it, even if you pay later." },
@@ -266,7 +344,7 @@ export const lessons: Lesson[] = [
       es: "Las cuentas son los cajones donde se ordena cada operación, y su naturaleza (deudora o acreedora) indica de qué lado crecen y qué saldo deben tener.",
       en: "Accounts are the drawers where each transaction is sorted, and their nature (debit or credit) tells you which side they grow on and which balance they should show.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es una cuenta contable y qué es un catálogo de cuentas.", en: "Explain what an account is and what a chart of accounts is." },
       { es: "Clasificar cuentas en activo, pasivo, capital, ingresos y gastos.", en: "Classify accounts into assets, liabilities, equity, revenue and expenses." },
@@ -335,7 +413,56 @@ export const lessons: Lesson[] = [
             en: "Mini example: $5,000 and $3,000 came into Cash on hand (debits) and $2,500 went out (credit). Balance = 8,000 − 2,500 = **$5,500 debit**.",
           },
         ],
-        formula: "Saldo deudor = Cargos − Abonos   ·   Saldo acreedor = Abonos − Cargos",
+        formulas: [
+          {
+            name: { es: "Saldo de una cuenta deudora (activo, costos y gastos)", en: "Balance of a debit-nature account (assets, costs and expenses)" },
+            expression: "Saldo deudor = Suma de cargos − Suma de abonos",
+            variables: [
+              { symbol: "Saldo deudor", meaning: { es: "Lo que queda en la cuenta al final, en pesos. En Caja o Bancos, por ejemplo, es el dinero que realmente tienes.", en: "What is left in the account at the end, in pesos. In Cash on hand or Bank, for example, it is the money you actually have." } },
+              { symbol: "Suma de cargos", meaning: { es: "El total de lo anotado del lado izquierdo (lo que hizo crecer la cuenta), en pesos. Si la cuenta trae saldo inicial, se suma aquí.", en: "The total written on the left side (what made the account grow), in pesos. If the account has an opening balance, it is added here." } },
+              { symbol: "Suma de abonos", meaning: { es: "El total de lo anotado del lado derecho (lo que hizo bajar la cuenta), en pesos.", en: "The total written on the right side (what made the account shrink), in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todos los cargos; si la cuenta empezó el mes con saldo, inclúyelo en esta suma.", en: "Add up all the debits; if the account started the month with a balance, include it in this sum." },
+              { es: "Suma todos los abonos.", en: "Add up all the credits." },
+              { es: "Resta: cargos menos abonos. Si sale positivo, es un saldo deudor normal.", en: "Subtract: debits minus credits. If it is positive, it is a normal debit balance." },
+            ],
+            example: {
+              es: "Bancos de una papelería empieza el mes con $6,000. Depósitos (cargos): $10,000 y $4,000. Pagos (abonos): $7,500. Cargos = 6,000 + 10,000 + 4,000 = 20,000. Abonos = 7,500. Saldo = 20,000 − 7,500 = **$12,500 deudor**.",
+              en: "A stationery store's Bank account starts the month with $6,000. Deposits (debits): $10,000 and $4,000. Payments (credits): $7,500. Debits = 6,000 + 10,000 + 4,000 = 20,000. Credits = 7,500. Balance = 20,000 − 7,500 = **$12,500 debit**.",
+            },
+            mistake: {
+              es: "Olvidar el saldo inicial. Lo que la cuenta ya traía de antes cuenta como un cargo más.",
+              en: "Forgetting the opening balance. What the account already had from before counts as one more debit.",
+            },
+          },
+          {
+            name: { es: "Saldo de una cuenta acreedora (pasivo, capital e ingresos)", en: "Balance of a credit-nature account (liabilities, equity and revenue)" },
+            expression: "Saldo acreedor = Suma de abonos − Suma de cargos",
+            variables: [
+              { symbol: "Saldo acreedor", meaning: { es: "Lo que queda en la cuenta al final, en pesos. En Proveedores o Préstamos, es lo que todavía debes.", en: "What is left in the account at the end, in pesos. In Accounts payable or Loans, it is what you still owe." } },
+              { symbol: "Suma de abonos", meaning: { es: "El total del lado derecho (lo que hizo crecer la cuenta, por ejemplo nuevas deudas), en pesos. Un saldo inicial se suma aquí.", en: "The total on the right side (what made the account grow, for example new debts), in pesos. An opening balance is added here." } },
+              { symbol: "Suma de cargos", meaning: { es: "El total del lado izquierdo (lo que hizo bajar la cuenta, por ejemplo pagos), en pesos.", en: "The total on the left side (what made the account shrink, for example payments), in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todos los abonos, incluido el saldo inicial si lo hay.", en: "Add up all the credits, including the opening balance if there is one." },
+              { es: "Suma todos los cargos.", en: "Add up all the debits." },
+              { es: "Resta: abonos menos cargos. El resultado es lo que se sigue debiendo (o lo acumulado de capital o ingresos).", en: "Subtract: credits minus debits. The result is what is still owed (or the accumulated equity or revenue)." },
+            ],
+            example: {
+              es: "Préstamos bancarios de un taller tiene un abono de $50,000 (el préstamo) y dos cargos de $12,000 y $8,000 (pagos). Abonos = 50,000. Cargos = 12,000 + 8,000 = 20,000. Saldo = 50,000 − 20,000 = **$30,000 acreedor**: aún se deben $30,000.",
+              en: "A workshop's Bank loans account has one credit of $50,000 (the loan) and two debits of $12,000 and $8,000 (payments). Credits = 50,000. Debits = 12,000 + 8,000 = 20,000. Balance = 50,000 − 20,000 = **$30,000 credit**: $30,000 is still owed.",
+            },
+            interpret: {
+              es: "Lo normal es que cada cuenta tenga saldo de su naturaleza. Si al restar te sale negativo, revisa: o usaste la fórmula equivocada o hay un error de registro.",
+              en: "Normally each account has a balance of its own nature. If the subtraction comes out negative, check: either you used the wrong formula or there is a recording error.",
+            },
+            mistake: {
+              es: "Usar la fórmula de las deudoras (cargos − abonos) en una cuenta acreedora y obtener un número negativo.",
+              en: "Using the debit-nature formula (debits − credits) on a credit-nature account and getting a negative number.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -506,7 +633,7 @@ export const lessons: Lesson[] = [
       es: "Cada operación afecta al menos dos cuentas y, en todo registro, la suma de los cargos es igual a la suma de los abonos.",
       en: "Every transaction affects at least two accounts and, in every entry, total debits equal total credits.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar el principio de dualidad en el que se basa la partida doble.", en: "Explain the duality principle behind double-entry bookkeeping." },
       { es: "Comprobar que en un asiento los cargos sean iguales a los abonos.", en: "Check that debits equal credits in an entry." },
@@ -543,7 +670,53 @@ export const lessons: Lesson[] = [
             en: "An entry can have more than two accounts: a **compound entry**. For example, one debit and two credits. What matters is not the number of lines but that **the totals balance**. If they do not, there is an error that must be checked before moving on.",
           },
         ],
-        formula: "Σ Cargos = Σ Abonos",
+        formulas: [
+          {
+            name: { es: "Comprobar que un asiento cuadra", en: "Checking that an entry balances" },
+            expression: "Σ Cargos = Σ Abonos",
+            variables: [
+              { symbol: "Σ", meaning: { es: "Letra griega sigma; significa \"la suma de todos\".", en: "The Greek letter sigma; it means \"the sum of all\"." } },
+              { symbol: "Σ Cargos", meaning: { es: "La suma, en pesos, de todos los importes anotados del lado izquierdo (debe) en el asiento.", en: "The sum, in pesos, of all the amounts written on the left side (debit) of the entry." } },
+              { symbol: "Σ Abonos", meaning: { es: "La suma, en pesos, de todos los importes anotados del lado derecho (haber) en el asiento.", en: "The sum, in pesos, of all the amounts written on the right side (credit) of the entry." } },
+            ],
+            steps: [
+              { es: "Suma todos los cargos del asiento, aunque sean varias cuentas.", en: "Add up all the debits in the entry, even if there are several accounts." },
+              { es: "Suma todos los abonos del asiento.", en: "Add up all the credits in the entry." },
+              { es: "Compara: si los dos totales son iguales, el asiento cuadra; si no, hay un error.", en: "Compare: if both totals are equal, the entry balances; if not, there is an error." },
+            ],
+            example: {
+              es: "Asiento: cargo Inventarios $6,000 y Papelería $500; abono Caja $2,500 y Proveedores $4,000. Σ Cargos = 6,000 + 500 = 6,500. Σ Abonos = 2,500 + 4,000 = 6,500. **6,500 = 6,500: cuadra.**",
+              en: "Entry: debit Inventory $6,000 and Office supplies $500; credit Cash $2,500 and Accounts payable $4,000. Σ Debits = 6,000 + 500 = 6,500. Σ Credits = 2,500 + 4,000 = 6,500. **6,500 = 6,500: it balances.**",
+            },
+            mistake: {
+              es: "Ver que hay un cargo y un abono y dar por hecho que cuadra, sin sumar los importes.",
+              en: "Seeing there is a debit and a credit and assuming it balances, without adding up the amounts.",
+            },
+          },
+          {
+            name: { es: "Importe que falta para que el asiento cuadre", en: "Missing amount that makes the entry balance" },
+            expression: "Importe faltante = Σ Cargos − Σ Abonos conocidos",
+            variables: [
+              { symbol: "Importe faltante", meaning: { es: "Los pesos que hay que anotar en la cuenta que falta (aquí, un abono) para que los dos lados sumen igual.", en: "The pesos to write in the missing account (here, a credit) so both sides add up the same." } },
+              { symbol: "Σ Cargos", meaning: { es: "La suma de todos los cargos del asiento, en pesos.", en: "The sum of all the debits in the entry, in pesos." } },
+              { symbol: "Σ Abonos conocidos", meaning: { es: "La suma de los abonos que ya conoces, en pesos.", en: "The sum of the credits you already know, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todos los cargos (no olvides ninguna cuenta).", en: "Add up all the debits (do not leave out any account)." },
+              { es: "Suma los abonos que ya tienes.", en: "Add up the credits you already have." },
+              { es: "Resta: lo que falta es la diferencia. Si lo que falta es un cargo, haz la resta al revés (Σ Abonos − Σ Cargos conocidos).", en: "Subtract: the missing amount is the difference. If the missing line is a debit, subtract the other way (Σ Credits − Σ known Debits)." },
+              { es: "Comprueba que, con ese importe, Σ Cargos = Σ Abonos.", en: "Check that, with that amount, Σ Debits = Σ Credits." },
+            ],
+            example: {
+              es: "Una tienda compra un mostrador de $20,000 y papelería de $1,500; paga $7,000 por transferencia y el resto queda a deber. Σ Cargos = 20,000 + 1,500 = 21,500. Abono conocido: Bancos 7,000. Faltante = 21,500 − 7,000 = **$14,500** a Acreedores diversos. Comprobación: 7,000 + 14,500 = 21,500.",
+              en: "A shop buys a $20,000 counter and $1,500 of office supplies; it pays $7,000 by transfer and owes the rest. Σ Debits = 20,000 + 1,500 = 21,500. Known credit: Bank 7,000. Missing = 21,500 − 7,000 = **$14,500** to Other payables. Check: 7,000 + 14,500 = 21,500.",
+            },
+            mistake: {
+              es: "Restar solo un cargo y olvidar los demás, o registrar como valor del bien solo lo que se pagó en ese momento.",
+              en: "Subtracting only one debit and forgetting the others, or recording only the amount paid at that moment as the item's value.",
+            },
+          },
+        ],
         bullets: [
           { es: "Toda operación afecta al menos dos cuentas.", en: "Every transaction affects at least two accounts." },
           { es: "Puede haber varios cargos y varios abonos en un mismo asiento.", en: "There can be several debits and several credits in the same entry." },
