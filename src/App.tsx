@@ -8,7 +8,9 @@ import Dashboard from './pages/Dashboard'
 import Welcome from './pages/Welcome'
 import Courses from './pages/Courses'
 import AreaPage from './pages/AreaPage'
-import { areaOfLevel } from './content/areas'
+import { areaOfLesson } from './content/areas'
+import { lessonsOfLevel } from './content'
+import type { LevelId } from './types'
 import LessonPage from './pages/LessonPage'
 import Practice from './pages/Practice'
 import Exams from './pages/Exams'
@@ -97,7 +99,7 @@ export default function App() {
       page = <AreaPage areaId={second ?? ''} />
       break
     case 'path':
-      page = <AreaPage areaId={/^[1-6]$/.test(second ?? '') ? areaOfLevel(Number(second)).id : ''} />
+      page = <AreaPage areaId={/^[1-6]$/.test(second ?? '') ? areaOfLesson(lessonsOfLevel(Number(second) as LevelId)[0]?.id ?? '').id : ''} />
       break
     case 'lesson':
       page = <LessonPage lessonId={second ?? ''} tab={route.query.get('tab')} sub={route.query.get('s')} />

@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { AREAS, areaOfLevel } from '../content/areas'
+import { AREAS, areaOfLesson, getArea } from '../content/areas'
 import { LESSONS } from '../content'
 import { defaultState, markSubtopic } from '../lib/progress'
 import { validateState } from '../lib/backup'
@@ -9,13 +9,22 @@ const lesson = LESSONS[0]
 
 describe('areas', () => {
   it('cover every lesson exactly once', () => {
-    const ids = AREAS.flatMap((a) => lessonsOfArea(a.levels).map((l) => l.id))
-    expect(ids.sort()).toEqual(LESSONS.map((l) => l.id).sort())
+    const ids = AREAS.flatMap((a) => a.sections.flatMap((s) => s.lessonIds))
+    expect([...ids].sort()).toEqual(LESSONS.map((l) => l.id).sort())
+    expect(AREAS.flatMap((a) => lessonsOfArea(a)).length).toBe(LESSONS.length)
   })
-  it('map levels to areas', () => {
-    expect(areaOfLevel(1).id).toBe('contabilidad')
-    expect(areaOfLevel(6).id).toBe('finanzas')
-    expect(areaOfLevel(5).id).toBe('fiscal')
+  it('follow the 12-area syllabus and map lessons to their area', () => {
+    expect(AREAS).toHaveLength(12)
+    for (const a of AREAS) expect(a.materias.length, a.id).toBeGreaterThan(0)
+    expect(areaOfLesson('L1-15').id).toBe('contabilidad')
+    expect(areaOfLesson('L5-01').id).toBe('fiscal')
+    expect(areaOfLesson('L5-03').id).toBe('auditoria')
+    expect(areaOfLesson('L6-05').id).toBe('inversiones')
+  })
+  it('Nivel 1 follows the 15 topics of the syllabus', () => {
+    const n1 = getArea('contabilidad')!.sections.filter((s) => s.lessonIds[0].startsWith('L1-')).flatMap((s) => s.lessonIds)
+    expect(n1).toHaveLength(15)
+    n1.forEach((id, i) => expect(LESSONS.find((l) => l.id === id)?.topicIds[0], id).toBe(`1.${i + 1}`))
   })
 })
 
@@ -42,7 +51,7 @@ describe('subtopics', () => {
   it('a completed lesson marks all subtopics done and counts for its area', () => {
     const s = { ...defaultState(), lessons: { [lesson.id]: { status: 'completed' as const, bestScore: 1, lastScore: 1, attempts: 1 } } }
     expect(subtopicStates(s, lesson).every((x) => x === 'done')).toBe(true)
-    expect(areaProgress(s, [1, 2]).done).toBe(1)
+    expect(areaProgress(s, getArea('contabilidad')!).done).toBe(1)
   })
   it('survive backup validation', () => {
     const s = markSubtopic(defaultState(), lesson.id, 0)

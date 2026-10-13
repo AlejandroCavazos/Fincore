@@ -1,4 +1,5 @@
-import { LESSONS, lessonsOfLevel } from '../content'
+import { getLesson, LESSONS, lessonsOfLevel } from '../content'
+import { locateLesson, type Area } from '../content/areas'
 import type { Lesson, LevelId } from '../types'
 import { addDays, localDay, type AppState } from './progress'
 
@@ -7,15 +8,15 @@ export function isLessonCompleted(s: AppState, id: string) {
 }
 
 /**
- * Unlock rule: the first lesson of each level is always open (learners may start at
- * any level); later lessons open when the previous lesson of the same level is
- * completed, unless free mode is on.
+ * Unlock rule: the first topic of each area section is always open (learners may
+ * start anywhere); later topics open when the previous topic of the same section
+ * is completed, unless free mode is on.
  */
 export function isLessonUnlocked(s: AppState, lesson: Lesson, freeMode = false): boolean {
   if (freeMode) return true
-  const list = lessonsOfLevel(lesson.level)
-  const i = list.findIndex((l) => l.id === lesson.id)
-  return i <= 0 || isLessonCompleted(s, list[i - 1].id)
+  const list = locateLesson(lesson.id).section.lessonIds
+  const i = list.indexOf(lesson.id)
+  return i <= 0 || isLessonCompleted(s, list[i - 1])
 }
 
 export function nextLesson(s: AppState): Lesson | undefined {
@@ -82,12 +83,12 @@ export function isSubtopicOpen(s: AppState, lesson: Lesson, i: number, freeMode 
   return isSubtopicDone(s, lesson, i - 1)
 }
 
-export function lessonsOfArea(levels: LevelId[]) {
-  return levels.flatMap((lv) => lessonsOfLevel(lv))
+export function lessonsOfArea(area: Area): Lesson[] {
+  return area.sections.flatMap((sec) => sec.lessonIds.map((id) => getLesson(id)).filter((l): l is Lesson => !!l))
 }
 
-export function areaProgress(s: AppState, levels: LevelId[]) {
-  const list = lessonsOfArea(levels)
+export function areaProgress(s: AppState, area: Area) {
+  const list = lessonsOfArea(area)
   const done = list.filter((l) => isLessonCompleted(s, l.id)).length
   return { done, total: list.length, ratio: list.length ? done / list.length : 0 }
 }
