@@ -1,7 +1,8 @@
-import { ArrowLeft, BookOpen, Check, Lightbulb, Lock, Play, Scale, Store, Target, X } from 'lucide-react'
+import { ArrowLeft, BookOpen, Calculator, Check, Lightbulb, Lock, Play, Scale, Store, Target, X } from 'lucide-react'
 import { areaOfLesson, BUSINESS_PER_TOPIC } from '../content/areas'
 import { exercisesOfLesson, getLesson } from '../content'
 import { ExerciseRunner } from '../components/ExerciseRunner'
+import { FormulaCard } from '../components/FormulaCard'
 import { Button, Card, cx, Notice, ProgressBar, Rich } from '../components/ui'
 import { markSubtopic } from '../lib/progress'
 import {
@@ -229,6 +230,7 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
           ))}
         </div>
         {sec.formula && <div className="overflow-x-auto whitespace-pre rounded-xl bg-navy-900 px-4 py-3 font-mono text-sm text-electric-300 dark:bg-navy-950">{sec.formula}</div>}
+        {sec.formulas?.map((f, k) => <FormulaCard key={k} f={f} />)}
         {sec.bullets && (
           <Card>
             <ul className="list-disc space-y-1 pl-5 text-[15px] text-navy-700 dark:text-navy-200">
@@ -270,6 +272,7 @@ function Reto({ lesson }: { lesson: Lesson }) {
   const order = area.sections.flatMap((x) => x.lessonIds)
   const next = getLesson(order[order.indexOf(lesson.id) + 1] ?? '')
   const mastered = isLessonCompleted(state, lesson.id)
+  const formulas = lesson.theory.flatMap((x) => x.formulas ?? [])
   const theoryLeft = !state.settings.freeMode && !mastered && nextSubtopic(state, lesson) < lesson.theory.length
 
   return (
@@ -299,6 +302,19 @@ function Reto({ lesson }: { lesson: Lesson }) {
           </a>
           .
         </Notice>
+      )}
+
+      {formulas.length > 0 && (
+        <details className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-navy-100 dark:bg-navy-900 dark:ring-navy-800">
+          <summary className="flex cursor-pointer items-center gap-2 font-semibold text-navy-900 dark:text-white">
+            <Calculator className="h-5 w-5 text-electric-500" /> {tx('Fórmulas del tema', 'Formulas of this topic')} ({formulas.length})
+          </summary>
+          <div className="mt-3 space-y-3">
+            {formulas.map((f, k) => (
+              <FormulaCard key={k} f={f} />
+            ))}
+          </div>
+        </details>
       )}
 
       <details className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-navy-100 dark:bg-navy-900 dark:ring-navy-800">

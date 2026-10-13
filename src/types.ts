@@ -39,10 +39,30 @@ export interface WorkedExample {
   result: L
 }
 
+/** A formula explained for beginners: what each symbol means and how to use it step by step. */
+export interface FormulaGuide {
+  /** What the formula calculates, e.g. "Valor presente neto (VPN)". */
+  name: L
+  /** The formula itself (plain text), e.g. "VPN = Σ FE_t / (1 + i)^t − Inversión inicial". */
+  expression: string
+  /** Every symbol or word in the expression with its meaning in plain language. */
+  variables: { symbol: string; meaning: L }[]
+  /** Ordered steps to apply it. */
+  steps: L[]
+  /** A short solved example with numbers. */
+  example: L
+  /** How to read the result (what a high/low/negative value means). */
+  interpret?: L
+  /** The most common mistake when using it. */
+  mistake?: L
+}
+
 export interface TheorySection {
   heading: L
   /** Paragraphs. Supports **bold** markup only. */
   body: L[]
+  /** Formulas used in this subtopic (and in the challenge), explained step by step. */
+  formulas?: FormulaGuide[]
   /** Optional formula shown in a highlighted box (plain text). */
   formula?: string
   /** Optional bullet list. */

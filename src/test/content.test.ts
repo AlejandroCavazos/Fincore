@@ -37,6 +37,22 @@ describe('content minimums (spec §14)', () => {
     const dups = prompts.filter((p, i) => prompts.indexOf(p) !== i)
     expect(dups).toEqual([])
   })
+  it('formula guides are complete and bilingual', () => {
+    const ok = (x: { es: string; en: string }) => x.es.trim().length > 0 && x.en.trim().length > 0
+    for (const l of LESSONS)
+      for (const sec of l.theory)
+        for (const f of sec.formulas ?? []) {
+          const where = `${l.id} · ${f.name.es}`
+          expect(ok(f.name) && f.expression.trim().length > 0 && ok(f.example), where).toBe(true)
+          expect(f.variables.length, where).toBeGreaterThan(0)
+          expect(f.variables.every((v) => v.symbol.trim().length > 0 && ok(v.meaning)), where).toBe(true)
+          expect(f.steps.length, where).toBeGreaterThanOrEqual(2)
+          expect(f.steps.every(ok), where).toBe(true)
+          if (f.interpret) expect(ok(f.interpret), where).toBe(true)
+          if (f.mistake) expect(ok(f.mistake), where).toBe(true)
+        }
+  })
+
   it('every exercise is bilingual, has explanation and positive points', () => {
     for (const e of EXERCISES) {
       expect(e.prompt.es && e.prompt.en, e.id).toBeTruthy()
