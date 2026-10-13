@@ -16,7 +16,7 @@ export const lessons: Lesson[] = [
       es: "Los indicadores clave (KPI) convierten la estrategia en números medibles: el ROI, el ingreso residual y el Balanced Scorecard te dicen si cada área avanza hacia sus metas.",
       en: "Key indicators (KPIs) turn strategy into measurable numbers: ROI, residual income and the Balanced Scorecard tell you whether each area is moving toward its goals.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Distinguir una métrica cualquiera de un indicador clave (KPI) bien diseñado.", en: "Distinguish an ordinary metric from a well-designed key indicator (KPI)." },
       { es: "Calcular el ROI con el modelo DuPont y el ingreso residual de una división.", en: "Compute ROI with the DuPont model and the residual income of a division." },
@@ -44,7 +44,35 @@ export const lessons: Lesson[] = [
             en: "Mini example: a taco shop in Guadalajara measures \"average home-delivery time\", with a 30-minute target, weekly review and the delivery manager as owner. That is a real KPI.",
           },
         ],
-        formula: "Cumplimiento (%) = Resultado real ÷ Meta × 100",
+        formulas: [
+          {
+            name: { es: "Porcentaje de cumplimiento de una meta", en: "Percentage of target achieved" },
+            expression: "Cumplimiento (%) = Resultado real ÷ Meta × 100",
+            variables: [
+              { symbol: "Cumplimiento (%)", meaning: { es: "Qué tanto de la meta lograste, en porcentaje.", en: "How much of the target you achieved, as a percentage." } },
+              { symbol: "Resultado real", meaning: { es: "Lo que de verdad pasó en el periodo (pesos vendidos, clientes atendidos, etc.).", en: "What actually happened in the period (pesos sold, customers served, etc.)." } },
+              { symbol: "Meta", meaning: { es: "El número que la empresa se propuso alcanzar, en la misma unidad que el resultado.", en: "The number the company set out to reach, in the same unit as the result." } },
+            ],
+            steps: [
+              { es: "Anota el resultado real y la meta en la misma unidad (los dos en pesos, los dos en piezas…).", en: "Write down the actual result and the target in the same unit (both in pesos, both in pieces…)." },
+              { es: "Divide el resultado real entre la meta.", en: "Divide the actual result by the target." },
+              { es: "Multiplica por 100 para expresarlo en porcentaje.", en: "Multiply by 100 to express it as a percentage." },
+              { es: "Compáralo con el semáforo: cerca de 100 % o más es verde; muy abajo, rojo.", en: "Compare it with the traffic light: near 100% or more is green; far below, red." },
+            ],
+            example: {
+              es: "Una tiendita tenía meta de vender $50,000 en el mes y vendió $45,000. 45,000 ÷ 50,000 = 0.9; 0.9 × 100 = **90 %** de cumplimiento.",
+              en: "A corner store had a target of selling $50,000 in the month and sold $45,000. 45,000 ÷ 50,000 = 0.9; 0.9 × 100 = **90%** achievement.",
+            },
+            interpret: {
+              es: "100 % significa que llegaste justo a la meta; más de 100 %, que la superaste; menos, que te faltó.",
+              en: "100% means you hit the target exactly; above 100%, you beat it; below, you fell short.",
+            },
+            mistake: {
+              es: "Olvidar que en indicadores donde «menos es mejor» (tiempo de entrega, defectos) quedar arriba de la meta es malo, no bueno.",
+              en: "Forgetting that in \"less is better\" indicators (delivery time, defects) being above the target is bad, not good.",
+            },
+          },
+        ],
         bullets: [
           { es: "Pocos y relevantes: de 5 a 10 KPI por área suele bastar.", en: "Few and relevant: 5 to 10 KPIs per area is usually enough." },
           { es: "Con meta, responsable y frecuencia de revisión.", en: "With a target, an owner and a review frequency." },
@@ -55,6 +83,10 @@ export const lessons: Lesson[] = [
       {
         heading: { es: "Indicadores financieros: ROI, DuPont e ingreso residual", en: "Financial indicators: ROI, DuPont and residual income" },
         body: [
+          {
+            es: "En palabras sencillas: el ROI responde «por cada peso que metí en el negocio, ¿cuántos centavos de ganancia me regresó?». La **utilidad operativa** es lo que gana el negocio con su actividad normal antes de intereses e impuestos; los **activos operativos** son lo que usa para trabajar (local, equipo, inventario, mercancía).",
+            en: "In plain words: ROI answers \"for every peso I put into the business, how many cents of profit did it give back?\". **Operating profit** is what the business earns from its normal activity before interest and taxes; **operating assets** are what it uses to work (premises, equipment, inventory, goods).",
+          },
           {
             es: "Cuando una empresa tiene divisiones o sucursales, cada una es un **centro de inversión**: su gerente decide ventas, costos y activos. Para evaluarlo se usa el **rendimiento sobre la inversión** (ROI): cuánta utilidad operativa genera cada peso invertido en activos operativos.",
             en: "When a company has divisions or branches, each one is an **investment center**: its manager decides sales, costs and assets. To evaluate it we use **return on investment** (ROI): how much operating profit each peso invested in operating assets generates.",
@@ -72,7 +104,65 @@ export const lessons: Lesson[] = [
             en: "Mini example: a branch sells $4,000,000, earns $400,000 and uses $2,000,000 of assets. Margin = 10%, turnover = 2 times, ROI = 20%. With a 12% minimum rate, residual income = 400,000 − 240,000 = $160,000.",
           },
         ],
-        formula: "ROI = Utilidad operativa ÷ Activos operativos = (Utilidad ÷ Ventas) × (Ventas ÷ Activos)  |  Ingreso residual = Utilidad operativa − (Tasa mínima × Activos operativos)",
+        formulas: [
+          {
+            name: { es: "ROI con el modelo DuPont (margen × rotación)", en: "ROI with the DuPont model (margin × turnover)" },
+            expression: "Margen = Utilidad operativa ÷ Ventas × 100  |  Rotación de activos = Ventas ÷ Activos operativos  |  ROI = Margen × Rotación = Utilidad operativa ÷ Activos operativos × 100",
+            variables: [
+              { symbol: "Utilidad operativa", meaning: { es: "Lo que ganó la división con su operación normal en el año, en pesos.", en: "What the division earned from its normal operations in the year, in pesos." } },
+              { symbol: "Ventas", meaning: { es: "Todo lo que vendió la división en el año, en pesos.", en: "Everything the division sold in the year, in pesos." } },
+              { symbol: "Activos operativos", meaning: { es: "El valor de lo que usa para trabajar (local, equipo, inventario), en pesos; normalmente el promedio del año.", en: "The value of what it uses to work (premises, equipment, inventory), in pesos; usually the year's average." } },
+              { symbol: "Margen", meaning: { es: "Qué parte de cada peso vendido queda como utilidad, en %.", en: "What share of each peso sold remains as profit, in %." } },
+              { symbol: "Rotación de activos", meaning: { es: "Cuántas veces al año los activos «se convierten» en ventas, en veces.", en: "How many times a year the assets \"turn into\" sales, in times." } },
+              { symbol: "ROI", meaning: { es: "Rendimiento sobre la inversión: utilidad por cada peso de activos, en %.", en: "Return on investment: profit per peso of assets, in %." } },
+            ],
+            steps: [
+              { es: "Calcula el margen: utilidad operativa ÷ ventas × 100.", en: "Compute the margin: operating profit ÷ sales × 100." },
+              { es: "Calcula la rotación: ventas ÷ activos operativos (el resultado son «veces», no %).", en: "Compute turnover: sales ÷ operating assets (the result is \"times\", not %)." },
+              { es: "Multiplica margen × rotación para obtener el ROI en %.", en: "Multiply margin × turnover to get ROI in %." },
+              { es: "Comprueba: utilidad operativa ÷ activos operativos × 100 debe darte el mismo ROI.", en: "Check: operating profit ÷ operating assets × 100 must give the same ROI." },
+            ],
+            example: {
+              es: "Una sucursal vende $6,000,000, gana $450,000 y usa activos por $3,000,000. Margen = 450,000 ÷ 6,000,000 × 100 = 7.5 %. Rotación = 6,000,000 ÷ 3,000,000 = 2 veces. ROI = 7.5 % × 2 = **15 %**. Comprobación: 450,000 ÷ 3,000,000 × 100 = 15 %.",
+              en: "A branch sells $6,000,000, earns $450,000 and uses $3,000,000 of assets. Margin = 450,000 ÷ 6,000,000 × 100 = 7.5%. Turnover = 6,000,000 ÷ 3,000,000 = 2 times. ROI = 7.5% × 2 = **15%**. Check: 450,000 ÷ 3,000,000 × 100 = 15%.",
+            },
+            interpret: {
+              es: "Un ROI de 15 % significa que cada $100 en activos generaron $15 de utilidad al año. Si el ROI es bajo, el desglose te dice si el problema es el margen (vendes barato o gastas mucho) o la rotación (tienes demasiados activos para lo que vendes).",
+              en: "A 15% ROI means every $100 in assets generated $15 of profit in the year. If ROI is low, the breakdown tells you whether the problem is margin (you sell cheap or spend a lot) or turnover (you have too many assets for what you sell).",
+            },
+            mistake: {
+              es: "Sumar margen y rotación en lugar de multiplicarlos, o dividir la utilidad entre las ventas y llamarle ROI (eso es solo el margen).",
+              en: "Adding margin and turnover instead of multiplying them, or dividing profit by sales and calling it ROI (that is only the margin).",
+            },
+          },
+          {
+            name: { es: "Ingreso residual", en: "Residual income" },
+            expression: "Ingreso residual = Utilidad operativa − (Tasa mínima × Activos operativos)",
+            variables: [
+              { symbol: "Ingreso residual", meaning: { es: "La utilidad que sobra después de cubrir el rendimiento mínimo que exige la empresa, en pesos.", en: "The profit left after covering the minimum return the company requires, in pesos." } },
+              { symbol: "Utilidad operativa", meaning: { es: "Lo que ganó la división (o el proyecto) con su operación, en pesos.", en: "What the division (or project) earned from its operations, in pesos." } },
+              { symbol: "Tasa mínima", meaning: { es: "El rendimiento mínimo anual que la empresa exige a sus inversiones, en % (úsalo en decimal: 12 % = 0.12).", en: "The minimum annual return the company requires on its investments, in % (use it as a decimal: 12% = 0.12)." } },
+              { symbol: "Activos operativos", meaning: { es: "Lo que la división (o el proyecto) tiene invertido en activos, en pesos.", en: "What the division (or project) has invested in assets, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa mínima a decimal: por ejemplo, 10 % = 0.10.", en: "Convert the minimum rate to a decimal: for example, 10% = 0.10." },
+              { es: "Calcula el cargo por capital: tasa mínima × activos operativos.", en: "Compute the capital charge: minimum rate × operating assets." },
+              { es: "Resta ese cargo a la utilidad operativa.", en: "Subtract that charge from operating profit." },
+            ],
+            example: {
+              es: "Una división gana $500,000 con activos de $4,000,000 y la tasa mínima es 10 %. Cargo por capital = 0.10 × 4,000,000 = $400,000. Ingreso residual = 500,000 − 400,000 = **$100,000**.",
+              en: "A division earns $500,000 with $4,000,000 of assets and the minimum rate is 10%. Capital charge = 0.10 × 4,000,000 = $400,000. Residual income = 500,000 − 400,000 = **$100,000**.",
+            },
+            interpret: {
+              es: "Positivo: la división (o el proyecto) gana más de lo mínimo exigido y crea valor. Negativo: no alcanza el mínimo. Para un proyecto nuevo, lo que importa es si su rendimiento supera la tasa mínima, no si supera el ROI actual de la división.",
+              en: "Positive: the division (or project) earns more than the required minimum and creates value. Negative: it does not reach the minimum. For a new project, what matters is whether its return beats the minimum rate, not whether it beats the division's current ROI.",
+            },
+            mistake: {
+              es: "Aplicar la tasa mínima a la utilidad (utilidad × tasa) en lugar de a los activos.",
+              en: "Applying the minimum rate to profit (profit × rate) instead of to assets.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Balanced Scorecard e indicadores operativos", en: "Balanced Scorecard and operating indicators" },
@@ -94,7 +184,60 @@ export const lessons: Lesson[] = [
             en: "Mini example: a furniture factory made 2,000 chairs and 30 were defective. Defect rate = 30 ÷ 2,000 = 1.5%. If its target is 1%, the indicator is red and the assembly process should be reviewed.",
           },
         ],
-        formula: "Rotación de inventario = Costo de ventas ÷ Inventario promedio  |  Días de inventario = 365 ÷ Rotación",
+        formulas: [
+          {
+            name: { es: "Rotación y días de inventario", en: "Inventory turnover and inventory days" },
+            expression: "Rotación de inventario = Costo de ventas ÷ Inventario promedio  |  Días de inventario = 365 ÷ Rotación",
+            variables: [
+              { symbol: "Costo de ventas", meaning: { es: "Lo que le costó a la empresa la mercancía que vendió en el año, en pesos (no el precio de venta).", en: "What the goods sold during the year cost the company, in pesos (not the selling price)." } },
+              { symbol: "Inventario promedio", meaning: { es: "La mercancía que suele tener en bodega, en pesos; si no te lo dan, es (inventario inicial + inventario final) ÷ 2.", en: "The goods it usually holds in stock, in pesos; if not given, it is (beginning inventory + ending inventory) ÷ 2." } },
+              { symbol: "Rotación de inventario", meaning: { es: "Cuántas veces al año se vende y se repone todo el inventario, en veces.", en: "How many times a year the whole inventory is sold and replaced, in times." } },
+              { symbol: "365", meaning: { es: "Los días de un año.", en: "The days in a year." } },
+              { symbol: "Días de inventario", meaning: { es: "Cuántos días tarda, en promedio, la mercancía en venderse.", en: "How many days, on average, goods take to sell." } },
+            ],
+            steps: [
+              { es: "Si hace falta, saca el inventario promedio: (inicial + final) ÷ 2.", en: "If needed, find the average inventory: (beginning + ending) ÷ 2." },
+              { es: "Calcula la rotación: costo de ventas ÷ inventario promedio.", en: "Compute turnover: cost of sales ÷ average inventory." },
+              { es: "Calcula los días: 365 ÷ rotación.", en: "Compute the days: 365 ÷ turnover." },
+              { es: "Compara los días con la meta.", en: "Compare the days with the target." },
+            ],
+            example: {
+              es: "Una papelería empezó el año con $700,000 de inventario y lo terminó con $760,000; su costo de ventas fue $3,650,000. Inventario promedio = (700,000 + 760,000) ÷ 2 = $730,000. Rotación = 3,650,000 ÷ 730,000 = 5 veces. Días = 365 ÷ 5 = **73 días**.",
+              en: "A stationery store began the year with $700,000 of inventory and ended with $760,000; its cost of sales was $3,650,000. Average inventory = (700,000 + 760,000) ÷ 2 = $730,000. Turnover = 3,650,000 ÷ 730,000 = 5 times. Days = 365 ÷ 5 = **73 days**.",
+            },
+            interpret: {
+              es: "Menos días es mejor: la mercancía se vende rápido y no inmoviliza dinero. Muchos días indican compras de más o productos que no se venden.",
+              en: "Fewer days is better: goods sell quickly and do not tie up money. Many days point to overbuying or products that do not sell.",
+            },
+            mistake: {
+              es: "Usar las ventas en lugar del costo de ventas, o dar como respuesta la rotación (veces) cuando te piden los días.",
+              en: "Using sales instead of cost of sales, or answering the turnover (times) when the days are asked for.",
+            },
+          },
+          {
+            name: { es: "Indicadores en porcentaje: tasa de defectos y entregas a tiempo", en: "Percentage indicators: defect rate and on-time deliveries" },
+            expression: "Tasa de defectos (%) = Piezas defectuosas ÷ Piezas producidas × 100  |  Entregas a tiempo (%) = Pedidos a tiempo ÷ Pedidos totales × 100",
+            variables: [
+              { symbol: "Piezas defectuosas", meaning: { es: "Las unidades que salieron mal en el periodo.", en: "The units that came out wrong in the period." } },
+              { symbol: "Piezas producidas", meaning: { es: "Todas las unidades fabricadas en el periodo, buenas y malas.", en: "All units made in the period, good and bad." } },
+              { symbol: "Pedidos a tiempo", meaning: { es: "Los pedidos que llegaron al cliente en la fecha prometida.", en: "Orders that reached the customer on the promised date." } },
+              { symbol: "Pedidos totales", meaning: { es: "Todos los pedidos entregados en el periodo.", en: "All orders delivered in the period." } },
+            ],
+            steps: [
+              { es: "Cuenta los casos que te interesan (defectos o pedidos a tiempo).", en: "Count the cases you care about (defects or on-time orders)." },
+              { es: "Divide entre el total de piezas o pedidos.", en: "Divide by the total pieces or orders." },
+              { es: "Multiplica por 100 y compara con la meta.", en: "Multiply by 100 and compare with the target." },
+            ],
+            example: {
+              es: "Un taller hizo 1,500 piezas y 12 salieron defectuosas: 12 ÷ 1,500 = 0.008; × 100 = **0.8 %** de defectos. De 600 pedidos, 576 llegaron a tiempo: 576 ÷ 600 = 0.96; × 100 = **96 %** a tiempo.",
+              en: "A workshop made 1,500 pieces and 12 were defective: 12 ÷ 1,500 = 0.008; × 100 = **0.8%** defects. Of 600 orders, 576 arrived on time: 576 ÷ 600 = 0.96; × 100 = **96%** on time.",
+            },
+            interpret: {
+              es: "En defectos, menos es mejor (debe quedar por debajo de la meta). En entregas a tiempo, más es mejor (debe quedar por encima).",
+              en: "For defects, less is better (it must stay below the target). For on-time deliveries, more is better (it must stay above).",
+            },
+          },
+        ],
         bullets: [
           { es: "Financiera: utilidad, ROI, ingreso residual, margen.", en: "Financial: profit, ROI, residual income, margin." },
           { es: "Clientes: satisfacción, recompra, participación de mercado.", en: "Customers: satisfaction, repeat purchases, market share." },
@@ -159,7 +302,7 @@ export const lessons: Lesson[] = [
       es: "Para decidir solo importan los costos e ingresos relevantes —futuros y que cambian entre alternativas—, aplicados a pedidos especiales, hacer o comprar, eliminar líneas y recursos limitados.",
       en: "To decide, only relevant costs and revenues matter —future ones that differ between alternatives— applied to special orders, make-or-buy, dropping product lines and limited resources.",
     },
-    minutes: 18,
+    minutes: 20,
     objectives: [
       { es: "Separar costos relevantes de costos hundidos e irrelevantes.", en: "Separate relevant costs from sunk and irrelevant costs." },
       { es: "Evaluar pedidos especiales, decisiones de hacer o comprar y de eliminar una línea.", en: "Evaluate special orders, make-or-buy and drop-a-line decisions." },
@@ -199,6 +342,10 @@ export const lessons: Lesson[] = [
         heading: { es: "Pedido especial, hacer o comprar y eliminar una línea", en: "Special order, make or buy and dropping a line" },
         body: [
           {
+            es: "Antes, tres palabras clave. **Costo variable**: el que crece con cada pieza que haces (tela, material, comisión por pieza). **Costo fijo**: el que pagas igual hagas 10 o 1,000 piezas (renta, sueldo del gerente). **Margen de contribución**: lo que queda de la venta después de pagar los costos variables; con eso se cubren los fijos y sale la ganancia. Un costo fijo es **evitable** si desaparece al tomar la decisión (por ejemplo, el sueldo de un supervisor que solo trabaja en esa línea).",
+            en: "First, three key words. **Variable cost**: one that grows with each piece you make (fabric, materials, commission per piece). **Fixed cost**: one you pay the same whether you make 10 or 1,000 pieces (rent, the manager's salary). **Contribution margin**: what remains from the sale after paying variable costs; it covers fixed costs and leaves the profit. A fixed cost is **avoidable** if it disappears when you make the decision (for example, the salary of a supervisor who only works on that line).",
+          },
+          {
             es: "**Pedido especial**: un cliente ofrece comprar un lote a un precio menor que el normal. Si tienes **capacidad ociosa** (máquinas y personal sin usar) y no afecta tus ventas normales, conviene aceptarlo si el precio cubre los **costos variables** y cualquier costo extra del pedido. Los costos fijos ya se pagan de todos modos.",
             en: "**Special order**: a customer offers to buy a batch below the normal price. If you have **idle capacity** (unused machines and staff) and it does not affect normal sales, accept it if the price covers **variable costs** and any extra cost of the order. Fixed costs are paid anyway.",
           },
@@ -215,7 +362,94 @@ export const lessons: Lesson[] = [
             en: "Mini example: a print shop with idle machines receives an order for 1,000 flyers at $1.50 each. Its variable cost is $0.90 and its \"full\" cost with fixed costs is $1.70. Accepting adds (1.50 − 0.90) × 1,000 = $600 of profit.",
           },
         ],
-        formula: "Efecto en la utilidad = Ingresos relevantes − Costos relevantes (variables + fijos evitables + costo de oportunidad)",
+        formulas: [
+          {
+            name: { es: "Efecto de aceptar un pedido especial", en: "Effect of accepting a special order" },
+            expression: "Efecto en la utilidad = (Precio especial − Costo variable unitario − Costo extra unitario) × Unidades del pedido",
+            variables: [
+              { symbol: "Efecto en la utilidad", meaning: { es: "Cuántos pesos sube (o baja) la utilidad si aceptas el pedido.", en: "How many pesos profit goes up (or down) if you accept the order." } },
+              { symbol: "Precio especial", meaning: { es: "Lo que el cliente ofrece pagar por cada pieza, en pesos.", en: "What the customer offers to pay per piece, in pesos." } },
+              { symbol: "Costo variable unitario", meaning: { es: "Lo que cuesta hacer una pieza más (materiales + mano de obra + gastos indirectos variables), en pesos.", en: "What it costs to make one more piece (materials + labor + variable overhead), in pesos." } },
+              { symbol: "Costo extra unitario", meaning: { es: "Lo que solo existe por este pedido (empaque, bordado, flete), en pesos por pieza.", en: "Costs that exist only because of this order (packaging, embroidery, freight), in pesos per piece." } },
+              { symbol: "Unidades del pedido", meaning: { es: "Cuántas piezas pide el cliente.", en: "How many pieces the customer orders." } },
+            ],
+            steps: [
+              { es: "Tacha los costos fijos prorrateados: con capacidad ociosa se pagan igual, aceptes o no.", en: "Cross out the allocated fixed costs: with idle capacity they are paid anyway, whether you accept or not." },
+              { es: "Suma el costo variable unitario y el costo extra del pedido: ese es el costo relevante por pieza.", en: "Add the unit variable cost and the order's extra cost: that is the relevant cost per piece." },
+              { es: "Resta ese costo al precio especial: es el margen por pieza.", en: "Subtract that cost from the special price: that is the margin per piece." },
+              { es: "Multiplica el margen por pieza por las unidades del pedido.", en: "Multiply the margin per piece by the units ordered." },
+            ],
+            example: {
+              es: "Una fábrica de gorras con máquinas libres vende cada gorra a $150; su costo variable es $70 y tiene $30 de fijos prorrateados. Le piden 800 gorras a $100 con un bordado extra de $8. Costo relevante = 70 + 8 = $78. Margen = 100 − 78 = $22. Efecto = 22 × 800 = **+$17,600**.",
+              en: "A cap factory with idle machines sells each cap at $150; its variable cost is $70 and it has $30 of allocated fixed costs. It receives an order for 800 caps at $100 with $8 of extra embroidery. Relevant cost = 70 + 8 = $78. Margin = 100 − 78 = $22. Effect = 22 × 800 = **+$17,600**.",
+            },
+            interpret: {
+              es: "Si el efecto es positivo (y hay capacidad ociosa), conviene aceptar; si es negativo, no.",
+              en: "If the effect is positive (and there is idle capacity), accept; if negative, do not.",
+            },
+            mistake: {
+              es: "Restar también los fijos prorrateados (100 − 70 − 8 − 30 = −8) y rechazar un pedido que sí deja ganancia.",
+              en: "Also subtracting the allocated fixed costs (100 − 70 − 8 − 30 = −8) and rejecting an order that does make money.",
+            },
+          },
+          {
+            name: { es: "Hacer o comprar", en: "Make or buy" },
+            expression: "Costo relevante de hacer = Costo variable unitario × Unidades + Fijos evitables (+ Costo de oportunidad)  |  Costo de comprar = Precio del proveedor × Unidades  |  Ahorro de hacer = Costo de comprar − Costo relevante de hacer",
+            variables: [
+              { symbol: "Costo variable unitario", meaning: { es: "Lo que cuesta producir una pieza (materiales + mano de obra + gastos indirectos variables), en pesos.", en: "What it costs to make one piece (materials + labor + variable overhead), in pesos." } },
+              { symbol: "Unidades", meaning: { es: "Cuántas piezas necesitas en el periodo.", en: "How many pieces you need in the period." } },
+              { symbol: "Fijos evitables", meaning: { es: "Los costos fijos que desaparecerían si dejas de producir (por ejemplo, un supervisor dedicado), en pesos.", en: "The fixed costs that would disappear if you stopped producing (for example, a dedicated supervisor), in pesos." } },
+              { symbol: "Costo de oportunidad", meaning: { es: "Lo que ganarías usando esa capacidad en otra cosa (por ejemplo, rentarla); solo si existe ese otro uso.", en: "What you would earn using that capacity for something else (for example, renting it out); only if that other use exists." } },
+              { symbol: "Precio del proveedor", meaning: { es: "Lo que cobra el proveedor por pieza, en pesos.", en: "What the supplier charges per piece, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma los costos variables de una pieza y multiplícalos por las unidades.", en: "Add up the variable costs of one piece and multiply by the units." },
+              { es: "Agrega solo los fijos evitables (y el costo de oportunidad si la capacidad tiene otro uso). Ignora los fijos que se pagan de todos modos.", en: "Add only the avoidable fixed costs (and the opportunity cost if the capacity has another use). Ignore fixed costs paid anyway." },
+              { es: "Calcula el costo de comprar: precio del proveedor × unidades.", en: "Compute the cost of buying: supplier price × units." },
+              { es: "Resta: costo de comprar − costo relevante de hacer.", en: "Subtract: cost of buying − relevant cost of making." },
+            ],
+            example: {
+              es: "Una fábrica necesita 5,000 tapas. Costo variable: $12 + $6 + $2 = $20 por tapa. Hacer = 20 × 5,000 = $100,000 + $15,000 de fijos evitables = $115,000. Comprar = $24 × 5,000 = $120,000. Ahorro de hacer = 120,000 − 115,000 = **$5,000**.",
+              en: "A factory needs 5,000 lids. Variable cost: $12 + $6 + $2 = $20 per lid. Make = 20 × 5,000 = $100,000 + $15,000 of avoidable fixed costs = $115,000. Buy = $24 × 5,000 = $120,000. Savings from making = 120,000 − 115,000 = **$5,000**.",
+            },
+            interpret: {
+              es: "Si el ahorro es positivo, conviene seguir haciéndolo; si es negativo, conviene comprarlo.",
+              en: "If the savings are positive, keep making it; if negative, buy it.",
+            },
+            mistake: {
+              es: "Sumar todos los fijos asignados, incluidos los que no desaparecen (renta, administración), y concluir por error que conviene comprar.",
+              en: "Adding all the allocated fixed costs, including those that do not disappear (rent, administration), and wrongly concluding that buying pays.",
+            },
+          },
+          {
+            name: { es: "Eliminar o mantener una línea", en: "Drop or keep a product line" },
+            expression: "Margen de contribución = Ventas − Costos variables  |  Efecto de eliminar = Fijos evitables − Margen de contribución",
+            variables: [
+              { symbol: "Ventas", meaning: { es: "Lo que vende la línea en el periodo, en pesos.", en: "What the line sells in the period, in pesos." } },
+              { symbol: "Costos variables", meaning: { es: "Los costos de la línea que suben y bajan con lo que vende, en pesos.", en: "The line's costs that rise and fall with what it sells, in pesos." } },
+              { symbol: "Margen de contribución", meaning: { es: "Lo que la línea aporta para pagar fijos y dejar utilidad; se pierde completo si la cierras, en pesos.", en: "What the line contributes to pay fixed costs and leave profit; it is lost completely if you close it, in pesos." } },
+              { symbol: "Fijos evitables", meaning: { es: "La parte de los fijos asignados que sí desaparece al cerrar la línea, en pesos.", en: "The part of the allocated fixed costs that does disappear when the line closes, in pesos." } },
+              { symbol: "Efecto de eliminar", meaning: { es: "Cuánto cambia la utilidad total de la empresa si cierras la línea, en pesos.", en: "How much the company's total profit changes if you close the line, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el margen de contribución: ventas − costos variables.", en: "Compute the contribution margin: sales − variable costs." },
+              { es: "Separa los fijos asignados: quédate solo con los evitables.", en: "Split the allocated fixed costs: keep only the avoidable ones." },
+              { es: "Resta: fijos evitables − margen de contribución.", en: "Subtract: avoidable fixed costs − contribution margin." },
+            ],
+            example: {
+              es: "Una tienda tiene una línea de dulces: ventas $300,000, costos variables $210,000 y fijos asignados $110,000, de los que solo $50,000 son evitables. El reporte muestra pérdida: 300,000 − 210,000 − 110,000 = −$20,000. Margen de contribución = 300,000 − 210,000 = $90,000. Efecto de eliminar = 50,000 − 90,000 = **−$40,000**: la utilidad total bajaría.",
+              en: "A store has a candy line: sales $300,000, variable costs $210,000 and allocated fixed costs $110,000, of which only $50,000 are avoidable. The report shows a loss: 300,000 − 210,000 − 110,000 = −$20,000. Contribution margin = 300,000 − 210,000 = $90,000. Effect of dropping = 50,000 − 90,000 = **−$40,000**: total profit would fall.",
+            },
+            interpret: {
+              es: "Negativo: eliminarla baja la utilidad, conviene mantenerla. Positivo: eliminarla sube la utilidad.",
+              en: "Negative: dropping it lowers profit, so keep it. Positive: dropping it raises profit.",
+            },
+            mistake: {
+              es: "Creer que al cerrar la línea se ahorran todos los fijos asignados, o decidir solo por la «pérdida» del reporte.",
+              en: "Believing that closing the line saves all the allocated fixed costs, or deciding only by the report's \"loss\".",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Recursos limitados y procesar más o vender", en: "Limited resources and sell or process further" },
@@ -237,7 +471,60 @@ export const lessons: Lesson[] = [
             en: "Mini example: an oven has 10 free hours. A cake leaves a $200 margin and uses 2 hours ($100 per hour); cookies leave $60 per tray and use 0.5 hours ($120 per hour). With the oven limited, bake cookies first.",
           },
         ],
-        formula: "Margen por recurso escaso = (Precio − Costo variable unitario) ÷ Unidades del recurso por producto",
+        formulas: [
+          {
+            name: { es: "Margen por unidad del recurso escaso y mejor mezcla", en: "Margin per unit of the scarce resource and best mix" },
+            expression: "Margen por recurso escaso = (Precio − Costo variable unitario) ÷ Unidades del recurso por producto",
+            variables: [
+              { symbol: "Precio − Costo variable unitario", meaning: { es: "El margen de contribución de una pieza, en pesos (a veces ya te lo dan calculado).", en: "The contribution margin of one piece, in pesos (sometimes it is already given)." } },
+              { symbol: "Unidades del recurso por producto", meaning: { es: "Cuánto del recurso limitado usa una pieza (horas máquina, kilos, metros).", en: "How much of the limited resource one piece uses (machine hours, kilos, meters)." } },
+              { symbol: "Margen por recurso escaso", meaning: { es: "Cuántos pesos de margen deja cada hora (o kilo, o metro) del recurso, en pesos por unidad del recurso.", en: "How many pesos of margin each hour (or kilo, or meter) of the resource leaves, in pesos per unit of the resource." } },
+            ],
+            steps: [
+              { es: "Calcula el margen por recurso de cada producto: margen por pieza ÷ recurso que usa.", en: "Compute each product's margin per resource: margin per piece ÷ resource it uses." },
+              { es: "Ordénalos de mayor a menor margen por recurso.", en: "Rank them from highest to lowest margin per resource." },
+              { es: "Produce primero el de mayor margen por recurso hasta cubrir su demanda máxima; anota cuánto recurso usaste.", en: "Make the one with the highest margin per resource first up to its maximum demand; note how much resource you used." },
+              { es: "Con el recurso que sobra, produce el siguiente: recurso sobrante ÷ recurso por pieza.", en: "With the leftover resource, make the next one: leftover resource ÷ resource per piece." },
+              { es: "Suma los márgenes: piezas de cada producto × su margen por pieza.", en: "Add up the margins: pieces of each product × its margin per piece." },
+            ],
+            example: {
+              es: "Una imprenta tiene 600 horas. El producto X deja $50 y usa 5 horas ($50 ÷ 5 = $10 por hora); el Y deja $36 y usa 3 horas ($36 ÷ 3 = $12 por hora). Demanda máxima: 100 X y 120 Y. Primero Y: 120 × 3 = 360 horas, margen 120 × 36 = $4,320. Sobran 600 − 360 = 240 horas: 240 ÷ 5 = 48 X, margen 48 × 50 = $2,400. Total = 4,320 + 2,400 = **$6,720**.",
+              en: "A print shop has 600 hours. Product X leaves $50 and uses 5 hours ($50 ÷ 5 = $10 per hour); Y leaves $36 and uses 3 hours ($36 ÷ 3 = $12 per hour). Maximum demand: 100 X and 120 Y. First Y: 120 × 3 = 360 hours, margin 120 × 36 = $4,320. 600 − 360 = 240 hours remain: 240 ÷ 5 = 48 X, margin 48 × 50 = $2,400. Total = 4,320 + 2,400 = **$6,720**.",
+            },
+            mistake: {
+              es: "Darle prioridad al producto que deja más por pieza. En el ejemplo, empezar por X da menos: 100 × 50 = $5,000 con 500 horas, y las 100 horas restantes solo alcanzan para 33 Y (33 × 36 = $1,188): total $6,188.",
+              en: "Prioritizing the product that leaves more per piece. In the example, starting with X gives less: 100 × 50 = $5,000 using 500 hours, and the remaining 100 hours only cover 33 Y (33 × 36 = $1,188): total $6,188.",
+            },
+          },
+          {
+            name: { es: "Vender así o procesar más", en: "Sell as is or process further" },
+            expression: "Ganancia adicional = (Precio después de procesar − Precio actual − Costo adicional) × Unidades",
+            variables: [
+              { symbol: "Precio después de procesar", meaning: { es: "A cuánto venderías cada pieza ya transformada, en pesos.", en: "What you would sell each transformed piece for, in pesos." } },
+              { symbol: "Precio actual", meaning: { es: "A cuánto puedes venderla hoy, tal como está, en pesos.", en: "What you can sell it for today, as is, in pesos." } },
+              { symbol: "Costo adicional", meaning: { es: "Lo que cuesta el paso extra por pieza (barniz, empaque, mano de obra), en pesos.", en: "What the extra step costs per piece (varnish, packaging, labor), in pesos." } },
+              { symbol: "Unidades", meaning: { es: "Cuántas piezas tienes para decidir.", en: "How many pieces you are deciding about." } },
+            ],
+            steps: [
+              { es: "Ignora lo que ya costó producir hasta hoy: es hundido.", en: "Ignore what it already cost to produce up to today: it is sunk." },
+              { es: "Calcula el ingreso adicional por pieza: precio después − precio actual.", en: "Compute the additional revenue per piece: price after − current price." },
+              { es: "Réstale el costo adicional por pieza.", en: "Subtract the additional cost per piece." },
+              { es: "Multiplica por las unidades.", en: "Multiply by the units." },
+            ],
+            example: {
+              es: "Una quesería tiene 200 kg de queso que le costaron $60/kg; lo vende fresco a $90/kg o ahumado a $130/kg, con $25/kg de costo de ahumado. Los $60 son hundidos. Ingreso adicional = 130 − 90 = $40/kg. Ganancia adicional = (40 − 25) × 200 = 15 × 200 = **$3,000**.",
+              en: "A cheese shop has 200 kg of cheese that cost $60/kg; it sells it fresh at $90/kg or smoked at $130/kg, with $25/kg of smoking cost. The $60 is sunk. Additional revenue = 130 − 90 = $40/kg. Additional gain = (40 − 25) × 200 = 15 × 200 = **$3,000**.",
+            },
+            interpret: {
+              es: "Positivo: conviene procesar más. Negativo: conviene vender así.",
+              en: "Positive: process further. Negative: sell as is.",
+            },
+            mistake: {
+              es: "Restar el costo que ya se gastó para llegar a ese punto; es hundido y no cambia con la decisión.",
+              en: "Subtracting the cost already spent to get to that point; it is sunk and does not change with the decision.",
+            },
+          },
+        ],
       },
     ],
     examples: [

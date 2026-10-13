@@ -41,7 +41,7 @@ export const lessons: Lesson[] = [
       es: "Quien contrata trabajadores en México debe inscribirlos al IMSS, calcular su salario base de cotización y pagar cada mes y cada bimestre las cuotas del IMSS y las aportaciones al INFONAVIT.",
       en: "Anyone who hires workers in Mexico must register them with IMSS, compute their contribution base salary and pay IMSS contributions and INFONAVIT payments every month and every two months.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Describir los cinco seguros del régimen obligatorio del IMSS y qué protege cada uno.", en: "Describe the five insurance branches of IMSS's mandatory regime and what each protects." },
       { es: "Calcular el salario base de cotización (SBC) de un trabajador con prestaciones mínimas de ley.", en: "Compute a worker's contribution base salary (SBC) with the legal minimum benefits." },
@@ -81,6 +81,10 @@ export const lessons: Lesson[] = [
         heading: { es: "El salario base de cotización (SBC)", en: "The contribution base salary (SBC)" },
         body: [
           {
+            es: "En palabras sencillas: además de su sueldo, el trabajador recibe al año aguinaldo y prima vacacional. El SBC reparte esos extras entre todos los días del año para saber cuánto gana \"de verdad\" cada día.",
+            en: "In plain words: besides their wage, the worker receives aguinaldo and a vacation premium each year. The SBC spreads those extras over every day of the year to find out how much they \"really\" earn each day.",
+          },
+          {
             es: "Las cuotas no se calculan sobre el sueldo \"a secas\", sino sobre el **salario base de cotización (SBC)**: el salario diario más las prestaciones que recibe el trabajador, convertidas a una cantidad por día. A esto se le llama **integrar** el salario. Por eso también se le dice **salario diario integrado**.",
             en: "Contributions are not computed on the \"plain\" salary but on the **contribution base salary (SBC)**: the daily wage plus the benefits the worker receives, converted to a per-day amount. This is called **integrating** the salary, which is why it is also known as the **integrated daily wage**.",
           },
@@ -97,7 +101,38 @@ export const lessons: Lesson[] = [
             en: "Mini example: with a $500 daily wage and first-year minimum benefits, the factor is (365 + 15 + 12 × 0.25) ÷ 365 = 383 ÷ 365 ≈ 1.0493. The SBC is 500 × 1.0493 ≈ $524.66 per day.",
           },
         ],
-        formula: "Factor de integración = (365 + días de aguinaldo + días de vacaciones × % prima vacacional) ÷ 365;  SBC = salario diario × factor",
+        formulas: [
+          {
+            name: { es: "Factor de integración y salario base de cotización (SBC)", en: "Integration factor and contribution base salary (SBC)" },
+            expression: "Factor de integración = (365 + días de aguinaldo + días de vacaciones × % prima vacacional) ÷ 365  |  SBC = salario diario × factor",
+            variables: [
+              { symbol: "365", meaning: { es: "Los días del año que el trabajador cobra su salario (las vacaciones ya están incluidas aquí).", en: "The days of the year the worker is paid a wage (vacation days are already included here)." } },
+              { symbol: "días de aguinaldo", meaning: { es: "Los días de salario que recibe como aguinaldo al año (mínimo de ley: 15).", en: "The days of wages received as aguinaldo per year (legal minimum: 15)." } },
+              { symbol: "días de vacaciones", meaning: { es: "Los días de vacaciones a los que tiene derecho ese año (primer año: 12).", en: "The vacation days the worker is entitled to that year (first year: 12)." } },
+              { symbol: "% prima vacacional", meaning: { es: "El extra que se paga sobre los días de vacaciones (mínimo 25%); úsalo en decimal: 25% = 0.25.", en: "The extra paid on vacation days (minimum 25%); use it as a decimal: 25% = 0.25." } },
+              { symbol: "salario diario", meaning: { es: "Lo que gana el trabajador por día, sin prestaciones, en pesos.", en: "What the worker earns per day, without benefits, in pesos." } },
+              { symbol: "SBC", meaning: { es: "Salario base de cotización: el salario diario ya con prestaciones, en pesos por día. Sobre él se calculan IMSS e INFONAVIT.", en: "Contribution base salary: the daily wage including benefits, in pesos per day. IMSS and INFONAVIT are computed on it." } },
+            ],
+            steps: [
+              { es: "Calcula los días de prima vacacional: días de vacaciones × % de prima en decimal (12 × 0.25 = 3).", en: "Compute the vacation premium days: vacation days × premium % as a decimal (12 × 0.25 = 3)." },
+              { es: "Suma los días pagados en el año: 365 + días de aguinaldo + días de prima.", en: "Add up the days paid in the year: 365 + aguinaldo days + premium days." },
+              { es: "Divide ese total entre 365: es el factor de integración (redondéalo a 4 decimales).", en: "Divide that total by 365: that is the integration factor (round it to 4 decimals)." },
+              { es: "Multiplica el salario diario por el factor. Para más precisión, haz salario × días pagados ÷ 365.", en: "Multiply the daily wage by the factor. For more precision, do wage × days paid ÷ 365." },
+            ],
+            example: {
+              es: "Una empresa da 20 días de aguinaldo, 12 días de vacaciones y 25% de prima; el salario diario es $450. Prima: 12 × 0.25 = 3 días. Días pagados: 365 + 20 + 3 = 388. Factor: 388 ÷ 365 ≈ 1.0630. SBC: 450 × 388 ÷ 365 ≈ **$478.36 diarios**.",
+              en: "A company gives 20 days of aguinaldo, 12 vacation days and a 25% premium; the daily wage is $450. Premium: 12 × 0.25 = 3 days. Days paid: 365 + 20 + 3 = 388. Factor: 388 ÷ 365 ≈ 1.0630. SBC: 450 × 388 ÷ 365 ≈ **$478.36 per day**.",
+            },
+            interpret: {
+              es: "El factor siempre es un poco mayor que 1: dice cuánto «pesan» las prestaciones sobre el salario. Con prestaciones mínimas de primer año queda cerca de 1.0493.",
+              en: "The factor is always a little above 1: it shows how much benefits \"weigh\" on the wage. With first-year minimum benefits it is about 1.0493.",
+            },
+            mistake: {
+              es: "Sumar los 12 días completos de vacaciones al factor. Las vacaciones ya se pagan dentro de los 365 días; solo se integra la prima vacacional.",
+              en: "Adding all 12 vacation days to the factor. Vacation days are already paid within the 365 days; only the vacation premium is integrated.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cuotas, aportaciones y obligaciones del patrón", en: "Contributions, payments and employer duties" },
@@ -117,6 +152,31 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: una panadería con SBC de $600 diarios para un empleado y un bimestre de 61 días aporta al INFONAVIT 600 × 61 × 5% = $1,830 por ese trabajador.",
             en: "Mini example: a bakery with a $600 daily SBC for an employee and a 61-day two-month period contributes 600 × 61 × 5% = $1,830 to INFONAVIT for that worker.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Aportación bimestral al INFONAVIT", en: "Bimonthly INFONAVIT contribution" },
+            expression: "Aportación INFONAVIT = SBC × días del bimestre × 5%  |  Total a enterar = Aportación + descuento del crédito (si lo hay)",
+            variables: [
+              { symbol: "SBC", meaning: { es: "Salario base de cotización diario del trabajador, en pesos.", en: "The worker's daily contribution base salary, in pesos." } },
+              { symbol: "días del bimestre", meaning: { es: "Los días que tienen los dos meses que se pagan (59, 61 o 62, según el bimestre).", en: "The number of days in the two months being paid (59, 61 or 62, depending on the period)." } },
+              { symbol: "5%", meaning: { es: "La aportación patronal de vivienda; en decimal, 0.05. La paga solo el patrón.", en: "The employer's housing contribution; as a decimal, 0.05. Only the employer pays it." } },
+              { symbol: "descuento del crédito", meaning: { es: "El abono del crédito de vivienda del trabajador, en pesos; sale de su sueldo y el patrón solo lo retiene y lo entrega.", en: "The installment on the worker's housing loan, in pesos; it comes out of their pay and the employer only withholds and remits it." } },
+            ],
+            steps: [
+              { es: "Multiplica el SBC por los días del bimestre: es el salario del bimestre.", en: "Multiply the SBC by the days in the period: that is the two-month wage." },
+              { es: "Multiplica ese salario por 0.05: es la aportación del patrón.", en: "Multiply that wage by 0.05: that is the employer's contribution." },
+              { es: "Si el trabajador tiene crédito INFONAVIT, suma el descuento del crédito para saber el total que se entera.", en: "If the worker has an INFONAVIT loan, add the loan deduction to get the total remitted." },
+            ],
+            example: {
+              es: "SBC de $720 y bimestre de 59 días. Salario del bimestre: 720 × 59 = $42,480. Aportación: 42,480 × 0.05 = **$2,124** (costo del patrón). Si además tiene un descuento de crédito de $1,500: total enterado = 2,124 + 1,500 = **$3,624**.",
+              en: "SBC of $720 and a 59-day period. Two-month wage: 720 × 59 = $42,480. Contribution: 42,480 × 0.05 = **$2,124** (employer's cost). If there is also a $1,500 loan deduction: total remitted = 2,124 + 1,500 = **$3,624**.",
+            },
+            mistake: {
+              es: "Descontarle al trabajador parte del 5%. Esa aportación no tiene parte obrera; al trabajador solo se le descuenta el abono de su crédito, si tiene.",
+              en: "Deducting part of the 5% from the worker. That contribution has no worker share; the worker only has their loan installment deducted, if they have one.",
+            },
           },
         ],
         bullets: [
@@ -185,7 +245,7 @@ export const lessons: Lesson[] = [
       es: "Cumplir con el fisco es más que pagar: implica cumplir a tiempo obligaciones formales y de pago, y cuando algo se paga tarde hay que sumar actualización y recargos.",
       en: "Complying with the tax authority is more than paying: it means meeting formal and payment obligations on time, and when something is paid late, inflation adjustment and surcharges must be added.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Distinguir las obligaciones sustantivas (pagar) de las formales (registrarse, declarar, avisar, conservar).", en: "Distinguish substantive obligations (paying) from formal ones (registering, filing, notifying, keeping records)." },
       { es: "Organizar un calendario de cumplimiento con pagos provisionales, declaraciones anuales e informativas.", en: "Organize a compliance calendar with provisional payments, annual and informative returns." },
@@ -261,7 +321,38 @@ export const lessons: Lesson[] = [
             en: "Mini example with hypothetical numbers: you owed $10,000; the adjustment factor is 1.012, so the adjusted amount is $10,120. With 3 months of delay and a 1.5% monthly surcharge rate, surcharges are 10,120 × 4.5% = $455.40. Total: $10,575.40.",
           },
         ],
-        formula: "Contribución actualizada = contribución × factor de actualización;  Recargos = actualizada × (tasa mensual × meses);  Total = actualizada + recargos",
+        formulas: [
+          {
+            name: { es: "Total a pagar por una contribución pagada tarde", en: "Total due on a contribution paid late" },
+            expression: "Contribución actualizada = contribución × factor de actualización  |  Recargos = actualizada × (tasa mensual × meses)  |  Total = actualizada + recargos",
+            variables: [
+              { symbol: "contribución", meaning: { es: "El impuesto que debiste pagar a tiempo, en pesos.", en: "The tax you should have paid on time, in pesos." } },
+              { symbol: "factor de actualización", meaning: { es: "Un número un poco mayor que 1 que sale de la inflación (INPC) entre la fecha en que debías pagar y la fecha en que pagas. En los ejercicios te lo dan.", en: "A number slightly above 1 derived from inflation (INPC) between the date you should have paid and the date you pay. Exercises give it to you." } },
+              { symbol: "actualizada", meaning: { es: "La contribución ya ajustada por inflación, en pesos.", en: "The contribution already adjusted for inflation, in pesos." } },
+              { symbol: "tasa mensual", meaning: { es: "La tasa de recargos por cada mes de atraso, en %; la fija la Ley de Ingresos cada año (en esta lección se usan tasas de ejemplo).", en: "The surcharge rate for each month late, in %; set each year by the Revenue Law (this lesson uses example rates)." } },
+              { symbol: "meses", meaning: { es: "Los meses (o fracción de mes) que pasaron desde que venció el pago.", en: "The months (or fraction of a month) since the payment was due." } },
+              { symbol: "Total", meaning: { es: "Lo que pagas en total, en pesos.", en: "What you pay in total, in pesos." } },
+            ],
+            steps: [
+              { es: "Actualiza: multiplica la contribución por el factor de actualización.", en: "Adjust: multiply the contribution by the adjustment factor." },
+              { es: "Saca la tasa acumulada de recargos: tasa mensual × meses de atraso, y pásala a decimal.", en: "Get the cumulative surcharge rate: monthly rate × months late, and convert it to a decimal." },
+              { es: "Calcula los recargos: contribución actualizada × tasa acumulada.", en: "Compute surcharges: adjusted contribution × cumulative rate." },
+              { es: "Suma la contribución actualizada y los recargos.", en: "Add the adjusted contribution and the surcharges." },
+            ],
+            example: {
+              es: "Debías $15,000 y pagas 6 meses tarde. Factor de ejemplo: 1.018; tasa de ejemplo: 1.47% mensual. Actualizada: 15,000 × 1.018 = $15,270. Tasa acumulada: 1.47% × 6 = 8.82% = 0.0882. Recargos: 15,270 × 0.0882 = $1,346.81. Total: 15,270 + 1,346.81 = **$16,616.81**.",
+              en: "You owed $15,000 and pay 6 months late. Example factor: 1.018; example rate: 1.47% per month. Adjusted: 15,000 × 1.018 = $15,270. Cumulative rate: 1.47% × 6 = 8.82% = 0.0882. Surcharges: 15,270 × 0.0882 = $1,346.81. Total: 15,270 + 1,346.81 = **$16,616.81**.",
+            },
+            interpret: {
+              es: "Lo que pagas de más (total − contribución original) es el costo de haberte atrasado. Si corriges antes de que el SAT te lo pida, en general no hay multa encima.",
+              en: "What you pay on top (total − original contribution) is the cost of being late. If you correct before SAT asks, in general no fine is added.",
+            },
+            mistake: {
+              es: "Calcular los recargos sobre la contribución original en lugar de sobre la actualizada, o usar la inflación anual como tasa de recargos.",
+              en: "Computing surcharges on the original contribution instead of the adjusted one, or using annual inflation as the surcharge rate.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -321,7 +412,7 @@ export const lessons: Lesson[] = [
       es: "Planear tus impuestos es elegir, dentro de la ley y con operaciones reales, la opción que menos carga fiscal te genera; usar simulaciones o esquemas sin razón de negocios cruza la línea hacia la elusión o la evasión.",
       en: "Tax planning means choosing, within the law and with real transactions, the option that creates the lowest tax burden; using sham transactions or schemes without business purpose crosses the line into avoidance or evasion.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Distinguir planeación fiscal lícita, elusión agresiva y evasión.", en: "Distinguish lawful tax planning, aggressive avoidance and evasion." },
       { es: "Aplicar las pruebas de materialidad y razón de negocios a una estrategia fiscal.", en: "Apply the substance and business-purpose tests to a tax strategy." },
@@ -396,7 +487,34 @@ export const lessons: Lesson[] = [
             en: "Mini example with a hypothetical rate: Jorge has a 30% marginal rate and makes a $20,000 deductible voluntary contribution. His income tax drops by 20,000 × 30% = $6,000, and he also saves for retirement.",
           },
         ],
-        formula: "Ahorro fiscal = deducción adicional × tasa marginal",
+        formulas: [
+          {
+            name: { es: "Ahorro de ISR por una deducción", en: "Income tax savings from a deduction" },
+            expression: "Ahorro fiscal = deducción adicional × tasa marginal",
+            variables: [
+              { symbol: "Ahorro fiscal", meaning: { es: "Los pesos de ISR que dejas de pagar gracias a la deducción.", en: "The pesos of income tax you stop paying thanks to the deduction." } },
+              { symbol: "deducción adicional", meaning: { es: "La suma de los gastos deducibles nuevos (dentro de topes y pagados por banco), en pesos.", en: "The sum of the new deductible expenses (within caps and paid through a bank), in pesos." } },
+              { symbol: "tasa marginal", meaning: { es: "La tasa de ISR que paga tu último peso de ingreso, en %; úsala en decimal (30% = 0.30).", en: "The income tax rate your last peso of income pays, in %; use it as a decimal (30% = 0.30)." } },
+            ],
+            steps: [
+              { es: "Suma todas las deducciones adicionales que vas a hacer.", en: "Add up all the additional deductions you will make." },
+              { es: "Convierte la tasa marginal a decimal.", en: "Convert the marginal rate to a decimal." },
+              { es: "Multiplica la suma de deducciones por la tasa marginal.", en: "Multiply the total deductions by the marginal rate." },
+            ],
+            example: {
+              es: "Con una tasa marginal de ejemplo de 35%, alguien paga $12,000 de gastos médicos y aporta $18,000 a su retiro. Deducciones: 12,000 + 18,000 = $30,000. Ahorro: 30,000 × 0.35 = **$10,500** de ISR.",
+              en: "With an example marginal rate of 35%, someone pays $12,000 of medical expenses and contributes $18,000 to retirement. Deductions: 12,000 + 18,000 = $30,000. Savings: 30,000 × 0.35 = **$10,500** of income tax.",
+            },
+            interpret: {
+              es: "La deducción no te «regresa» todo lo que gastaste: en el ejemplo, el gasto te cuesta en realidad 30,000 − 10,500 = $19,500. Conviene si el gasto lo ibas a hacer de todos modos o te deja algo útil (salud, retiro).",
+              en: "The deduction does not \"give back\" all you spent: in the example, the expense really costs 30,000 − 10,500 = $19,500. It pays off if you were going to spend it anyway or it leaves you something useful (health, retirement).",
+            },
+            mistake: {
+              es: "Restar la deducción directamente del impuesto, peso por peso. La deducción baja la base sobre la que se calcula el ISR, no el ISR mismo.",
+              en: "Subtracting the deduction directly from the tax, peso for peso. The deduction lowers the base on which income tax is computed, not the tax itself.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -455,7 +573,7 @@ export const lessons: Lesson[] = [
       es: "Cuando un ingreso cruza fronteras, dos países pueden querer cobrarle impuesto; la residencia, la fuente, los tratados y el acreditamiento de impuestos extranjeros evitan pagar dos veces.",
       en: "When income crosses borders, two countries may want to tax it; residence, source, treaties and the foreign tax credit prevent paying twice.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Explicar los criterios de residencia y fuente y por qué generan doble imposición.", en: "Explain the residence and source criteria and why they cause double taxation." },
       { es: "Describir para qué sirven los tratados para evitar la doble imposición y qué se necesita para aplicarlos.", en: "Describe what double tax treaties are for and what is needed to apply them." },
@@ -509,7 +627,58 @@ export const lessons: Lesson[] = [
             en: "Mini example with hypothetical rates: Ana earned $100,000 in Colombia and paid $15,000 there. Her Mexican income tax on that income would be $30,000. She credits $15,000 and pays only $15,000 more in Mexico. In total she paid $30,000, not $45,000.",
           },
         ],
-        formula: "Impuesto acreditable = menor entre (impuesto pagado en el extranjero, ISR mexicano sobre ese ingreso);  ISR a pagar en México = ISR mexicano − acreditable",
+        formulas: [
+          {
+            name: { es: "Acreditamiento del impuesto pagado en el extranjero", en: "Credit for tax paid abroad" },
+            expression: "Impuesto acreditable = menor entre (impuesto pagado en el extranjero, ISR mexicano sobre ese ingreso)  |  ISR a pagar en México = ISR mexicano − acreditable  |  Carga total = impuesto extranjero + ISR a pagar en México",
+            variables: [
+              { symbol: "impuesto pagado en el extranjero", meaning: { es: "Lo que el otro país te cobró o te retuvo por ese ingreso, en pesos.", en: "What the other country charged or withheld on that income, in pesos." } },
+              { symbol: "ISR mexicano sobre ese ingreso", meaning: { es: "El ISR que México te cobraría por ese mismo ingreso si no hubieras pagado nada afuera, en pesos. Es el límite.", en: "The income tax Mexico would charge on that same income if you had paid nothing abroad, in pesos. It is the limit." } },
+              { symbol: "Impuesto acreditable", meaning: { es: "La parte del impuesto extranjero que puedes restar de tu ISR mexicano, en pesos.", en: "The part of the foreign tax you can subtract from your Mexican income tax, in pesos." } },
+              { symbol: "ISR a pagar en México", meaning: { es: "Lo que todavía pagas aquí por ese ingreso, en pesos.", en: "What you still pay here on that income, in pesos." } },
+              { symbol: "Carga total", meaning: { es: "Todo lo que pagaste por ese ingreso sumando los dos países, en pesos.", en: "Everything you paid on that income adding both countries, in pesos." } },
+            ],
+            steps: [
+              { es: "Compara el impuesto extranjero con el ISR mexicano de ese ingreso y quédate con el menor: ese es el acreditable.", en: "Compare the foreign tax with the Mexican income tax on that income and keep the smaller one: that is the creditable amount." },
+              { es: "Resta el acreditable al ISR mexicano: es lo que pagas en México.", en: "Subtract the creditable amount from the Mexican income tax: that is what you pay in Mexico." },
+              { es: "Suma lo pagado afuera y lo pagado en México para ver la carga total.", en: "Add what was paid abroad and what is paid in Mexico to see the total burden." },
+            ],
+            example: {
+              es: "Con cifras de ejemplo: ganas $200,000 en otro país, que te cobra $70,000; el ISR mexicano de ese ingreso sería $60,000. Acreditable = menor entre 70,000 y 60,000 = $60,000. En México pagas 60,000 − 60,000 = **$0**. Carga total = 70,000 + 0 = **$70,000**. Los 70,000 − 60,000 = $10,000 de exceso no se acreditan ese año.",
+              en: "With example figures: you earn $200,000 in another country, which charges you $70,000; the Mexican income tax on that income would be $60,000. Creditable = smaller of 70,000 and 60,000 = $60,000. In Mexico you pay 60,000 − 60,000 = **$0**. Total burden = 70,000 + 0 = **$70,000**. The 70,000 − 60,000 = $10,000 excess is not credited that year.",
+            },
+            interpret: {
+              es: "Si el impuesto extranjero es menor que el mexicano, la carga total queda igual al ISR mexicano: no pagas doble. Si es mayor, la carga total es la del otro país y en México no pagas nada más por ese ingreso.",
+              en: "If the foreign tax is lower than the Mexican one, the total burden equals the Mexican income tax: you do not pay twice. If it is higher, the total burden is the other country's and you pay nothing more in Mexico on that income.",
+            },
+            mistake: {
+              es: "Acreditar todo lo pagado afuera aunque supere el ISR mexicano de ese ingreso, o sumar ambos impuestos sin acreditar (eso es justo la doble imposición).",
+              en: "Crediting everything paid abroad even when it exceeds the Mexican tax on that income, or adding both taxes without crediting (that is exactly double taxation).",
+            },
+          },
+          {
+            name: { es: "Retención a un extranjero con o sin tratado", en: "Withholding on a foreign recipient with or without a treaty" },
+            expression: "Retención = Pago bruto × tasa (tasa del tratado si acreditó su residencia; tasa de la ley interna si no)",
+            variables: [
+              { symbol: "Retención", meaning: { es: "El ISR que la empresa mexicana descuenta del pago y entrega al SAT, en pesos.", en: "The income tax the Mexican company deducts from the payment and remits to SAT, in pesos." } },
+              { symbol: "Pago bruto", meaning: { es: "El monto total que se paga al extranjero (regalías, intereses, dividendos), en pesos.", en: "The total amount paid to the foreign recipient (royalties, interest, dividends), in pesos." } },
+              { symbol: "tasa", meaning: { es: "El % de retención; úsalo en decimal. La del tratado suele ser menor que la de la ley interna.", en: "The withholding %; use it as a decimal. The treaty rate is usually lower than the domestic one." } },
+            ],
+            steps: [
+              { es: "Revisa si el extranjero entregó su constancia de residencia fiscal y cumple los requisitos del tratado.", en: "Check whether the foreign recipient provided a tax residence certificate and meets the treaty requirements." },
+              { es: "Elige la tasa: la del tratado si cumple; la de la ley interna si no.", en: "Pick the rate: the treaty rate if they qualify; the domestic rate if not." },
+              { es: "Multiplica el pago bruto por esa tasa en decimal.", en: "Multiply the gross payment by that rate as a decimal." },
+            ],
+            example: {
+              es: "Se pagan $500,000 de intereses a un residente de un país con tratado. Tasas de ejemplo: 35% interna y 15% del tratado. Con constancia: 500,000 × 0.15 = **$75,000**. Sin constancia: 500,000 × 0.35 = $175,000.",
+              en: "$500,000 of interest is paid to a resident of a treaty country. Example rates: 35% domestic and 15% treaty. With the certificate: 500,000 × 0.15 = **$75,000**. Without it: 500,000 × 0.35 = $175,000.",
+            },
+            mistake: {
+              es: "Aplicar la tasa del tratado sin tener la constancia de residencia: si el SAT lo rechaza, la empresa que retuvo de menos puede tener que pagar la diferencia.",
+              en: "Applying the treaty rate without the residence certificate: if SAT rejects it, the company that under-withheld may have to pay the difference.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Empresas que cruzan fronteras", en: "Businesses that cross borders" },
@@ -589,7 +758,7 @@ export const lessons: Lesson[] = [
       es: "El SAT puede revisar si pagaste bien mediante distintas facultades de comprobación, con procedimientos y plazos que también protegen tus derechos y te permiten corregirte o defenderte.",
       en: "SAT can check whether you paid correctly through different verification powers, with procedures and deadlines that also protect your rights and let you correct or defend yourself.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Identificar las principales facultades de comprobación del SAT y en qué se diferencian.", en: "Identify SAT's main verification powers and how they differ." },
       { es: "Describir las etapas de una revisión y los derechos del contribuyente en cada una.", en: "Describe the stages of a review and the taxpayer's rights in each." },
@@ -644,7 +813,57 @@ export const lessons: Lesson[] = [
             en: "Mini example: a person filed their 2023 annual return on April 30, 2024. In general, SAT can review that year until April 2029.",
           },
         ],
-        formula: "Diferencia presunta = depósitos bancarios − ingresos declarados − depósitos explicados (préstamos, traspasos, etc.)",
+        formulas: [
+          {
+            name: { es: "Ingreso presunto por depósitos e impuesto omitido estimado", en: "Presumed income from deposits and estimated omitted tax" },
+            expression: "Diferencia presunta = depósitos bancarios − ingresos declarados − depósitos explicados (préstamos, traspasos, etc.)  |  Impuesto omitido estimado = Diferencia presunta × tasa",
+            variables: [
+              { symbol: "depósitos bancarios", meaning: { es: "Todo lo que entró a tus cuentas en el año, en pesos.", en: "Everything that came into your accounts during the year, in pesos." } },
+              { symbol: "ingresos declarados", meaning: { es: "Los ingresos que reportaste al SAT en tu declaración, en pesos.", en: "The income you reported to SAT in your return, in pesos." } },
+              { symbol: "depósitos explicados", meaning: { es: "Los depósitos que pruebas que no son ingreso: préstamos, traspasos entre tus propias cuentas, herencias, en pesos.", en: "The deposits you prove are not income: loans, transfers between your own accounts, inheritances, in pesos." } },
+              { symbol: "Diferencia presunta", meaning: { es: "Lo que queda sin explicar y el SAT puede tratar como ingreso no declarado, en pesos.", en: "What remains unexplained and SAT can treat as undeclared income, in pesos." } },
+              { symbol: "tasa", meaning: { es: "La tasa de ISR que se aplica para estimar el impuesto, en % (en esta lección es una tasa de ejemplo).", en: "The income tax rate used to estimate the tax, in % (in this lesson it is an example rate)." } },
+            ],
+            steps: [
+              { es: "Resta los ingresos declarados a los depósitos: es la diferencia bruta.", en: "Subtract declared income from deposits: that is the gross difference." },
+              { es: "Resta los depósitos que puedes comprobar (préstamos, traspasos): queda el ingreso presunto.", en: "Subtract the deposits you can prove (loans, transfers): what remains is the presumed income." },
+              { es: "Multiplica el ingreso presunto por la tasa en decimal para estimar el impuesto omitido.", en: "Multiply the presumed income by the rate as a decimal to estimate the omitted tax." },
+            ],
+            example: {
+              es: "Depósitos de $780,000, ingresos declarados de $600,000 y un préstamo comprobado de $50,000. Diferencia bruta: 780,000 − 600,000 = $180,000. Ingreso presunto: 180,000 − 50,000 = **$130,000**. Con una tasa de ejemplo de 30%: 130,000 × 0.30 = **$39,000** de impuesto omitido estimado.",
+              en: "Deposits of $780,000, declared income of $600,000 and a proven $50,000 loan. Gross difference: 780,000 − 600,000 = $180,000. Presumed income: 180,000 − 50,000 = **$130,000**. With an example rate of 30%: 130,000 × 0.30 = **$39,000** of estimated omitted tax.",
+            },
+            interpret: {
+              es: "Cada peso que logras explicar con pruebas baja el ingreso presunto. Al impuesto estimado luego se le suman actualización, recargos y multas.",
+              en: "Every peso you explain with evidence lowers the presumed income. Adjustment, surcharges and fines are later added to the estimated tax.",
+            },
+            mistake: {
+              es: "Olvidar restar los traspasos entre tus propias cuentas o los préstamos comprobados: no son ingreso.",
+              en: "Forgetting to subtract transfers between your own accounts or proven loans: they are not income.",
+            },
+          },
+          {
+            name: { es: "Hasta cuándo puede revisarte el SAT (caducidad, regla general)", en: "Until when SAT can review you (statute of limitations, general rule)" },
+            expression: "Fin del plazo ≈ día siguiente a la presentación de la declaración + 5 años",
+            variables: [
+              { symbol: "día siguiente a la presentación", meaning: { es: "El día después de que presentaste la declaración; desde ahí empieza a contar el plazo.", en: "The day after you filed the return; the period starts counting from there." } },
+              { symbol: "5 años", meaning: { es: "El plazo general de caducidad (en ciertos casos son 10 años, y hay causas que lo suspenden).", en: "The general limitation period (in certain cases it is 10 years, and some events suspend it)." } },
+            ],
+            steps: [
+              { es: "Busca la fecha en que presentaste la declaración (no el año del ejercicio).", en: "Find the date you filed the return (not the tax year)." },
+              { es: "Toma el día siguiente: ahí empieza el plazo.", en: "Take the next day: that is when the period starts." },
+              { es: "Súmale 5 años para saber, en general, hasta cuándo puede revisar el SAT.", en: "Add 5 years to know, in general, until when SAT can review." },
+            ],
+            example: {
+              es: "Alguien presentó la declaración anual de 2023 el 15 de abril de 2024. El plazo empieza el 16 de abril de 2024. Sumando 5 años, en general el SAT puede revisar ese ejercicio hasta **mediados de abril de 2029**.",
+              en: "Someone filed their 2023 annual return on April 15, 2024. The period starts on April 16, 2024. Adding 5 years, in general SAT can review that year until **mid-April 2029**.",
+            },
+            mistake: {
+              es: "Contar los 5 años desde el año del ejercicio (2023) en lugar de desde la fecha en que se presentó la declaración. Además, si corriges la declaración, el plazo puede reiniciar para lo corregido.",
+              en: "Counting the 5 years from the tax year (2023) instead of from the date the return was filed. Also, if you amend the return, the period may restart for what was amended.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Autocorrección, acuerdos y medios de defensa", en: "Self-correction, agreements and legal remedies" },
