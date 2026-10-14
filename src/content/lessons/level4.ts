@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
       'Entiende por qué un peso hoy vale más que un peso mañana, calcula interés simple y compuesto, y convierte tasas nominales en tasas efectivas anuales.',
       'Understand why a peso today is worth more than a peso tomorrow, compute simple and compound interest, and convert nominal rates into effective annual rates.',
     ),
-    minutes: 14,
+    minutes: 16,
     objectives: [
       t(
         'Explicar las razones del valor del dinero en el tiempo: costo de oportunidad, inflación y riesgo.',
@@ -40,12 +40,16 @@ export const lessons: Lesson[] = [
         heading: t('¿Por qué el dinero vale distinto en el tiempo?', 'Why money has different value over time'),
         body: [
           t(
+            'En palabras sencillas: **$1,000 hoy valen más que $1,000 dentro de un año**. Si alguien te ofrece cualquiera de los dos, conviene tomarlos hoy.',
+            'In plain words: **$1,000 today is worth more than $1,000 a year from now**. If someone offers you either one, it is better to take it today.',
+          ),
+          t(
             'Un peso disponible hoy puede invertirse y generar rendimiento; recibirlo dentro de un año implica renunciar a ese rendimiento (**costo de oportunidad**). Además, la **inflación** reduce el poder adquisitivo y todo cobro futuro tiene cierto **riesgo** de no realizarse.',
             'A peso available today can be invested to earn a return; receiving it a year from now means giving up that return (**opportunity cost**). In addition, **inflation** erodes purchasing power and every future receipt carries some **risk** of not happening.',
           ),
           t(
-            'Por eso solo se pueden sumar o comparar cantidades que están en el **mismo punto del tiempo**. La tasa de interés es el "tipo de cambio" entre pesos de distintas fechas.',
-            'That is why only amounts at the **same point in time** can be added or compared. The interest rate is the "exchange rate" between pesos at different dates.',
+            'Por eso solo se pueden sumar o comparar cantidades que están en el **mismo punto del tiempo**. La tasa de interés es el "tipo de cambio" entre pesos de distintas fechas: igual que no sumas dólares con pesos sin convertirlos, no sumas pesos de hoy con pesos de 2030 sin ajustarlos con la tasa.',
+            'That is why only amounts at the **same point in time** can be added or compared. The interest rate is the "exchange rate" between pesos at different dates: just as you do not add dollars to pesos without converting them, you do not add today\'s pesos to 2030 pesos without adjusting them with the rate.',
           ),
         ],
       },
@@ -56,8 +60,38 @@ export const lessons: Lesson[] = [
             'En el **interés simple** los intereses se calculan siempre sobre el capital original; no se reinvierten. Se usa en operaciones de corto plazo como pagarés y algunos instrumentos de descuento. El tiempo debe expresarse en la misma unidad que la tasa (si la tasa es anual y el plazo es de 9 meses, n = 9/12).',
             'With **simple interest**, interest is always computed on the original principal; it is not reinvested. It is used in short-term operations such as promissory notes and some discount instruments. Time must be in the same unit as the rate (if the rate is annual and the term is 9 months, n = 9/12).',
           ),
+          t(
+            'Palabras clave: el **capital** es el dinero que prestas o inviertes al principio; el **interés** es lo que te pagan por prestarlo; el **monto** es lo que recibes al final (capital + interés). Un **pagaré** es un papel firmado donde alguien promete pagarte en una fecha.',
+            'Key words: **principal** is the money you lend or invest at the start; **interest** is what you are paid for lending it; the **amount** is what you receive at the end (principal + interest). A **promissory note** is a signed paper in which someone promises to pay you on a date.',
+          ),
         ],
-        formula: 'I = C × i × n;  M = C × (1 + i × n)',
+        formulas: [
+          {
+            name: t('Interés simple y monto final', 'Simple interest and final amount'),
+            expression: 'I = C × i × n;  M = C + I = C × (1 + i × n)',
+            variables: [
+              { symbol: 'I', meaning: t('Interés ganado, en pesos.', 'Interest earned, in pesos.') },
+              { symbol: 'C', meaning: t('Capital: el dinero que prestas o inviertes al inicio, en pesos.', 'Principal: the money you lend or invest at the start, in pesos.') },
+              { symbol: 'i', meaning: t('Tasa de interés por periodo, en decimal (12 % = 0.12).', 'Interest rate per period, as a decimal (12 % = 0.12).') },
+              { symbol: 'n', meaning: t('Tiempo, en la misma unidad que la tasa (si la tasa es anual, n va en años: 6 meses = 6/12 = 0.5).', 'Time, in the same unit as the rate (if the rate is annual, n is in years: 6 months = 6/12 = 0.5).') },
+              { symbol: 'M', meaning: t('Monto: lo que recibes al final, capital más intereses, en pesos.', 'Amount: what you receive at the end, principal plus interest, in pesos.') },
+            ],
+            steps: [
+              t('Convierte la tasa a decimal: 8 % = 0.08.', 'Convert the rate to a decimal: 8 % = 0.08.'),
+              t('Pon el tiempo en la unidad de la tasa: si la tasa es anual y el plazo está en meses, divide los meses entre 12.', 'Put time in the rate\'s unit: if the rate is annual and the term is in months, divide the months by 12.'),
+              t('Calcula el interés: I = C × i × n.', 'Compute the interest: I = C × i × n.'),
+              t('Suma el interés al capital para obtener el monto: M = C + I.', 'Add the interest to the principal to get the amount: M = C + I.'),
+            ],
+            example: t(
+              'Prestas $30,000 a 6 meses con 8 % anual simple. Tasa: 0.08. Tiempo: 6/12 = 0.5 años. I = 30,000 × 0.08 × 0.5 = $1,200. M = 30,000 + 1,200 = **$31,200**.',
+              'You lend $30,000 for 6 months at 8 % annual simple interest. Rate: 0.08. Time: 6/12 = 0.5 years. I = 30,000 × 0.08 × 0.5 = $1,200. A = 30,000 + 1,200 = **$31,200**.',
+            ),
+            mistake: t(
+              'Mezclar unidades: usar n = 6 (meses) con una tasa anual. Daría I = $14,400, ¡casi la mitad del capital en medio año!',
+              'Mixing units: using n = 6 (months) with an annual rate. It would give I = $14,400, almost half the principal in half a year!',
+            ),
+          },
+        ],
       },
       {
         heading: t('Interés compuesto', 'Compound interest'),
@@ -67,11 +101,46 @@ export const lessons: Lesson[] = [
             'With **compound interest**, each period\'s interest is added to principal and itself earns interest ("interest on interest"). Growth is exponential, so the gap versus simple interest widens with time.',
           ),
           t(
+            'Es como una bola de nieve: al rodar junta nieve, y la nieve nueva también ayuda a juntar más. **Capitalizar** significa justo eso: sumar los intereses al capital para que también generen intereses.',
+            'It is like a snowball: as it rolls it picks up snow, and the new snow also helps pick up more. **Compounding** means exactly that: adding interest to principal so it also earns interest.',
+          ),
+          t(
             'Si una tasa nominal anual j se capitaliza m veces al año, la tasa por periodo es j/m y el número de periodos es m × años. Ejemplo: 12 % anual capitalizable mensualmente equivale a 1 % mensual.',
             'If an annual nominal rate j is compounded m times a year, the rate per period is j/m and the number of periods is m × years. Example: 12 % annual compounded monthly is 1 % per month.',
           ),
         ],
-        formula: 'M = C × (1 + j/m)^(m × años)',
+        formulas: [
+          {
+            name: t('Monto con interés compuesto', 'Amount with compound interest'),
+            expression: 'M = C × (1 + j/m)^(m × años)',
+            variables: [
+              { symbol: 'M', meaning: t('Monto final: lo que tendrás al terminar el plazo, en pesos.', 'Final amount: what you will have at the end of the term, in pesos.') },
+              { symbol: 'C', meaning: t('Capital inicial que inviertes, en pesos.', 'Initial principal you invest, in pesos.') },
+              { symbol: 'j', meaning: t('Tasa nominal anual (la anunciada), en decimal.', 'Annual nominal (quoted) rate, as a decimal.') },
+              { symbol: 'm', meaning: t('Cuántas veces al año se suman los intereses al capital: anual = 1, semestral = 2, trimestral = 4, mensual = 12.', 'How many times a year interest is added to principal: annual = 1, semiannual = 2, quarterly = 4, monthly = 12.') },
+              { symbol: 'años', meaning: t('Duración de la inversión, en años.', 'Length of the investment, in years.') },
+              { symbol: '^', meaning: t('"Elevado a": multiplicar el paréntesis por sí mismo ese número de veces.', '"To the power of": multiply the bracket by itself that many times.') },
+            ],
+            steps: [
+              t('Convierte la tasa anual a decimal y divídela entre m para obtener la tasa por periodo: j/m.', 'Convert the annual rate to a decimal and divide it by m to get the rate per period: j/m.'),
+              t('Calcula el número de periodos: m × años.', 'Compute the number of periods: m × years.'),
+              t('Eleva (1 + j/m) a ese número de periodos (con calculadora, tecla ^ o xʸ).', 'Raise (1 + j/m) to that number of periods (on a calculator, the ^ or xʸ key).'),
+              t('Multiplica el resultado por el capital C.', 'Multiply the result by the principal C.'),
+            ],
+            example: t(
+              'Inviertes $20,000 a 6 % anual capitalizable trimestralmente durante 2 años. Tasa por periodo: 0.06 / 4 = 0.015. Periodos: 4 × 2 = 8. Factor: 1.015^8 = 1.126493. M = 20,000 × 1.126493 = **$22,529.85**. Si la capitalización fuera anual (m = 1), sería 20,000 × 1.06^2 = 20,000 × 1.1236 = $22,472.',
+              'You invest $20,000 at 6 % annual compounded quarterly for 2 years. Rate per period: 0.06 / 4 = 0.015. Periods: 4 × 2 = 8. Factor: 1.015^8 = 1.126493. A = 20,000 × 1.126493 = **$22,529.85**. With annual compounding (m = 1), it would be 20,000 × 1.06^2 = 20,000 × 1.1236 = $22,472.',
+            ),
+            interpret: t(
+              'Para ver cuánto aporta el "interés sobre interés", resta el monto con interés simple al monto con interés compuesto: la diferencia crece mientras más largo es el plazo.',
+              'To see how much "interest on interest" adds, subtract the simple-interest amount from the compound-interest amount: the difference grows the longer the term.',
+            ),
+            mistake: t(
+              'Usar la tasa anual completa con periodos mensuales (o al revés). La tasa y el número de periodos siempre deben ser de la misma frecuencia.',
+              'Using the full annual rate with monthly periods (or the other way around). The rate and the number of periods must always have the same frequency.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Tasa nominal y tasa efectiva anual', 'Nominal rate and effective annual rate'),
@@ -80,8 +149,39 @@ export const lessons: Lesson[] = [
             'La **tasa nominal** es la que se anuncia; la **tasa efectiva anual (TEA)** es el rendimiento real en un año considerando la capitalización. A mayor frecuencia de capitalización, mayor TEA para la misma tasa nominal. Para comparar créditos o inversiones con distinta capitalización, siempre compara TEA.',
             'The **nominal rate** is the quoted one; the **effective annual rate (EAR)** is the true one-year return considering compounding. The more frequent the compounding, the higher the EAR for the same nominal rate. To compare loans or investments with different compounding, always compare EARs.',
           ),
+          t(
+            'Ejemplo de la vida diaria: una tarjeta de crédito que anuncia 18 % anual cobrando intereses cada mes en realidad te cuesta más de 18 % al año, porque cada mes te cobran intereses también sobre los intereses del mes anterior.',
+            'Everyday example: a credit card that quotes 18 % a year but charges interest every month actually costs you more than 18 % a year, because each month you are also charged interest on the previous month\'s interest.',
+          ),
         ],
-        formula: 'TEA = (1 + j/m)^m − 1',
+        formulas: [
+          {
+            name: t('Tasa efectiva anual (TEA)', 'Effective annual rate (EAR)'),
+            expression: 'TEA = (1 + j/m)^m − 1',
+            variables: [
+              { symbol: 'TEA', meaning: t('Tasa efectiva anual: lo que realmente ganas (o pagas) en un año, en %.', 'Effective annual rate: what you really earn (or pay) in a year, in %.') },
+              { symbol: 'j', meaning: t('Tasa nominal anual anunciada, en decimal.', 'Quoted annual nominal rate, as a decimal.') },
+              { symbol: 'm', meaning: t('Capitalizaciones por año: 12 si es mensual, 4 si es trimestral, 2 si es semestral.', 'Compounding periods per year: 12 if monthly, 4 if quarterly, 2 if semiannual.') },
+            ],
+            steps: [
+              t('Divide la tasa nominal (en decimal) entre m: j/m.', 'Divide the nominal rate (as a decimal) by m: j/m.'),
+              t('Suma 1 y eleva el resultado a la m.', 'Add 1 and raise the result to the power m.'),
+              t('Resta 1 y multiplica por 100 para expresarla en %.', 'Subtract 1 and multiply by 100 to express it in %.'),
+            ],
+            example: t(
+              'Un crédito anuncia 24 % anual capitalizable trimestralmente. j/m = 0.24 / 4 = 0.06. (1.06)^4 = 1.262477. TEA = 1.262477 − 1 = 0.262477 = **26.25 %**.',
+              'A loan quotes 24 % annual compounded quarterly. j/m = 0.24 / 4 = 0.06. (1.06)^4 = 1.262477. EAR = 1.262477 − 1 = 0.262477 = **26.25 %**.',
+            ),
+            interpret: t(
+              'La TEA siempre es igual o mayor que la nominal. Entre dos ofertas de ahorro, gana la de mayor TEA; entre dos créditos, conviene el de menor TEA.',
+              'The EAR is always equal to or higher than the nominal rate. Between two savings offers, the higher EAR wins; between two loans, the lower EAR is better.',
+            ),
+            mistake: t(
+              'Usar siempre m = 12. Solo es 12 si la capitalización es mensual; trimestral es 4.',
+              'Always using m = 12. It is only 12 for monthly compounding; quarterly is 4.',
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -157,7 +257,7 @@ export const lessons: Lesson[] = [
       'Mueve cantidades en el tiempo: capitaliza hacia el futuro, descuenta hacia el presente y despeja la tasa o el plazo de una operación.',
       'Move amounts through time: compound forward, discount back to the present, and solve for the rate or term of an operation.',
     ),
-    minutes: 14,
+    minutes: 17,
     objectives: [
       t('Calcular el valor futuro de una cantidad única.', 'Compute the future value of a single amount.'),
       t('Calcular el valor presente de un cobro o pago futuro.', 'Compute the present value of a future receipt or payment.'),
@@ -175,8 +275,36 @@ export const lessons: Lesson[] = [
             'El **valor futuro (VF)** es lo que valdrá una cantidad actual después de n periodos ganando una tasa r por periodo. El factor (1 + r)^n se llama **factor de capitalización** y siempre es mayor que 1 si r > 0.',
             'The **future value (FV)** is what a current amount will be worth after n periods earning a rate r per period. The factor (1 + r)^n is the **compounding factor** and is always greater than 1 if r > 0.',
           ),
+          t(
+            'En palabras sencillas: el valor futuro responde "si guardo este dinero hoy, ¿cuánto tendré después?". Sirve para planear metas, como juntar para el enganche de un coche.',
+            'In plain words: future value answers "if I put this money away today, how much will I have later?". It helps you plan goals, like saving for a car down payment.',
+          ),
         ],
-        formula: 'VF = VP × (1 + r)^n',
+        formulas: [
+          {
+            name: t('Valor futuro de una cantidad', 'Future value of a single amount'),
+            expression: 'VF = VP × (1 + r)^n',
+            variables: [
+              { symbol: 'VF', meaning: t('Valor futuro: cuánto tendrás al final, en pesos.', 'Future value: how much you will have at the end, in pesos.') },
+              { symbol: 'VP', meaning: t('Valor presente: el dinero que inviertes hoy, en pesos.', 'Present value: the money you invest today, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa por periodo, en decimal (7 % = 0.07).', 'Rate per period, as a decimal (7 % = 0.07).') },
+              { symbol: 'n', meaning: t('Número de periodos (años si la tasa es anual).', 'Number of periods (years if the rate is annual).') },
+            ],
+            steps: [
+              t('Convierte la tasa a decimal y súmale 1: 6 % → 1.06.', 'Convert the rate to a decimal and add 1: 6 % → 1.06.'),
+              t('Eleva ese número a n para obtener el factor de capitalización.', 'Raise that number to the power n to get the compounding factor.'),
+              t('Multiplica el factor por el dinero de hoy (VP).', 'Multiply the factor by today\'s money (PV).'),
+            ],
+            example: t(
+              'Inviertes $15,000 a 6 % anual compuesto durante 4 años. Factor: 1.06^4 = 1.262477. VF = 15,000 × 1.262477 = **$18,937.15**. Intereses ganados: 18,937.15 − 15,000 = $3,937.15.',
+              'You invest $15,000 at 6 % a year compounded for 4 years. Factor: 1.06^4 = 1.262477. FV = 15,000 × 1.262477 = **$18,937.15**. Interest earned: 18,937.15 − 15,000 = $3,937.15.',
+            ),
+            mistake: t(
+              'Usar interés simple (15,000 × (1 + 0.06 × 4) = $18,600), que olvida que los intereses también ganan intereses.',
+              'Using simple interest (15,000 × (1 + 0.06 × 4) = $18,600), which forgets that interest also earns interest.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Valor presente (descuento)', 'Present value (discounting)'),
@@ -189,8 +317,62 @@ export const lessons: Lesson[] = [
             'El VP **disminuye** cuando la tasa sube o cuando el plazo se alarga: entre más lejos y más riesgoso es un cobro, menos vale hoy. Para una serie de flujos distintos, se descuenta cada uno con su propio n y se suman los resultados.',
             'PV **falls** when the rate rises or the term lengthens: the further away and riskier a receipt is, the less it is worth today. For a series of different flows, discount each with its own n and add the results.',
           ),
+          t(
+            'En palabras sencillas: **descontar** es el camino de regreso del valor futuro. Responde "¿cuánto vale hoy un dinero que me van a dar después?". Así puedes decidir si te conviene aceptar menos dinero hoy en lugar de esperar.',
+            'In plain words: **discounting** is the way back from future value. It answers "what is money I will get later worth today?". That lets you decide whether accepting less money today is better than waiting.',
+          ),
         ],
-        formula: 'VP = VF / (1 + r)^n;  VP serie = Σ FCt / (1 + r)^t',
+        formulas: [
+          {
+            name: t('Valor presente de una cantidad futura', 'Present value of a future amount'),
+            expression: 'VP = VF ÷ (1 + r)^n',
+            variables: [
+              { symbol: 'VP', meaning: t('Valor presente: lo que vale hoy ese cobro, en pesos.', 'Present value: what that receipt is worth today, in pesos.') },
+              { symbol: 'VF', meaning: t('Cantidad que recibirás (o pagarás) en el futuro, en pesos.', 'Amount you will receive (or pay) in the future, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa de descuento por periodo: el rendimiento que tú exiges, en decimal.', 'Discount rate per period: the return you require, as a decimal.') },
+              { symbol: 'n', meaning: t('Periodos que faltan para recibir el dinero (años si la tasa es anual).', 'Periods until you receive the money (years if the rate is annual).') },
+            ],
+            steps: [
+              t('Convierte la tasa a decimal y súmale 1: 8 % → 1.08.', 'Convert the rate to a decimal and add 1: 8 % → 1.08.'),
+              t('Eleva ese número a n.', 'Raise that number to the power n.'),
+              t('Divide la cantidad futura entre ese factor.', 'Divide the future amount by that factor.'),
+            ],
+            example: t(
+              'Te pagarán $50,000 dentro de 2 años y exiges 8 % anual. Factor: 1.08^2 = 1.1664. VP = 50,000 ÷ 1.1664 = **$42,866.94**.',
+              'You will be paid $50,000 in 2 years and you require 8 % a year. Factor: 1.08^2 = 1.1664. PV = 50,000 ÷ 1.1664 = **$42,866.94**.',
+            ),
+            interpret: t(
+              'Si hoy te ofrecen más que el VP, conviene aceptar hoy; si te ofrecen menos, conviene esperar. A mayor tasa o más años, menor VP.',
+              'If you are offered more than the PV today, accept today; if less, it is better to wait. Higher rate or more years → lower PV.',
+            ),
+            mistake: t(
+              'Multiplicar por el factor en lugar de dividir: eso calcula un valor futuro, no un valor presente.',
+              'Multiplying by the factor instead of dividing: that computes a future value, not a present value.',
+            ),
+          },
+          {
+            name: t('Valor presente de varios flujos distintos', 'Present value of several different flows'),
+            expression: 'VP total = FC₁ ÷ (1 + r)¹ + FC₂ ÷ (1 + r)² + … + FCₙ ÷ (1 + r)ⁿ',
+            variables: [
+              { symbol: 'VP total', meaning: t('Lo que vale hoy toda la serie de cobros, en pesos.', 'What the whole series of receipts is worth today, in pesos.') },
+              { symbol: 'FC₁, FC₂, … FCₙ', meaning: t('Flujo de cada año: el dinero que recibes al final del año 1, 2, … n, en pesos.', 'Each year\'s flow: the money you receive at the end of year 1, 2, … n, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa de descuento anual, en decimal.', 'Annual discount rate, as a decimal.') },
+              { symbol: '¹ ² ⁿ', meaning: t('El exponente es el año en que llega cada flujo.', 'The exponent is the year in which each flow arrives.') },
+            ],
+            steps: [
+              t('Descuenta cada flujo con su propio año: el del año 1 entre (1 + r)¹, el del año 2 entre (1 + r)², etc.', 'Discount each flow with its own year: year 1 by (1 + r)¹, year 2 by (1 + r)², and so on.'),
+              t('Suma todos los valores presentes.', 'Add all the present values.'),
+            ],
+            example: t(
+              'Recibirás $10,000 al final del año 1 y $15,000 al final del año 2; tasa 8 %. Año 1: 10,000 ÷ 1.08 = $9,259.26. Año 2: 15,000 ÷ 1.08^2 = 15,000 ÷ 1.1664 = $12,860.08. Total = 9,259.26 + 12,860.08 = **$22,119.34**.',
+              'You will receive $10,000 at the end of year 1 and $15,000 at the end of year 2; rate 8 %. Year 1: 10,000 ÷ 1.08 = $9,259.26. Year 2: 15,000 ÷ 1.08^2 = 15,000 ÷ 1.1664 = $12,860.08. Total = 9,259.26 + 12,860.08 = **$22,119.34**.',
+            ),
+            mistake: t(
+              'Sumar primero todos los flujos y descontar el total con el último año: trata todo como si llegara al final y da un VP demasiado bajo.',
+              'Adding all flows first and discounting the total with the last year: it treats everything as arriving at the end and gives a PV that is too low.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Despejar la tasa y el plazo', 'Solving for the rate and the term'),
@@ -200,7 +382,60 @@ export const lessons: Lesson[] = [
             'Knowing PV, FV and n you can find an investment\'s **compound rate of return**. Knowing PV, FV and r you can find the **term** using logarithms. The "rule of 72" approximates the years to double: 72 / rate in %.',
           ),
         ],
-        formula: 'r = (VF / VP)^(1/n) − 1;  n = ln(VF / VP) / ln(1 + r)',
+        formulas: [
+          {
+            name: t('Rendimiento anual compuesto (despejar la tasa)', 'Compound annual return (solving for the rate)'),
+            expression: 'r = (VF ÷ VP)^(1/n) − 1',
+            variables: [
+              { symbol: 'r', meaning: t('Rendimiento compuesto por periodo (por año si n está en años), en %.', 'Compound return per period (per year if n is in years), in %.') },
+              { symbol: 'VF', meaning: t('Lo que valía la inversión al final, en pesos.', 'What the investment was worth at the end, in pesos.') },
+              { symbol: 'VP', meaning: t('Lo que invertiste al principio, en pesos.', 'What you invested at the start, in pesos.') },
+              { symbol: 'n', meaning: t('Número de periodos (años) que pasaron.', 'Number of periods (years) that passed.') },
+              { symbol: '^(1/n)', meaning: t('Raíz n-ésima: en la calculadora, eleva a (1 ÷ n).', 'n-th root: on a calculator, raise to (1 ÷ n).') },
+            ],
+            steps: [
+              t('Divide lo final entre lo inicial: VF ÷ VP.', 'Divide the final value by the initial value: FV ÷ PV.'),
+              t('Eleva ese cociente a 1/n.', 'Raise that ratio to 1/n.'),
+              t('Resta 1 y multiplica por 100 para tener el %.', 'Subtract 1 and multiply by 100 to get the %.'),
+            ],
+            example: t(
+              'Invertiste $10,000 y a los 4 años tienes $16,000. 16,000 ÷ 10,000 = 1.6. 1.6^(1/4) = 1.6^0.25 = 1.124683. r = 1.124683 − 1 = **12.47 % anual**.',
+              'You invested $10,000 and after 4 years you have $16,000. 16,000 ÷ 10,000 = 1.6. 1.6^(1/4) = 1.6^0.25 = 1.124683. r = 1.124683 − 1 = **12.47 % a year**.',
+            ),
+            mistake: t(
+              'Dividir la ganancia total entre los años (60 % ÷ 4 = 15 %): ignora la capitalización y exagera el rendimiento anual.',
+              'Dividing the total gain by the years (60 % ÷ 4 = 15 %): it ignores compounding and overstates the annual return.',
+            ),
+          },
+          {
+            name: t('Tiempo necesario (despejar el plazo)', 'Time needed (solving for the term)'),
+            expression: 'n = ln(VF ÷ VP) ÷ ln(1 + r)',
+            variables: [
+              { symbol: 'n', meaning: t('Número de periodos (años si r es anual) que tarda en llegar a la meta.', 'Number of periods (years if r is annual) it takes to reach the goal.') },
+              { symbol: 'VF ÷ VP', meaning: t('Cuántas veces quieres multiplicar tu dinero (duplicar = 2, triplicar = 3).', 'How many times you want to multiply your money (double = 2, triple = 3).') },
+              { symbol: 'r', meaning: t('Tasa por periodo, en decimal.', 'Rate per period, as a decimal.') },
+              { symbol: 'ln', meaning: t('Logaritmo natural: una tecla de la calculadora ("ln") que "baja" el exponente.', 'Natural logarithm: a calculator key ("ln") that "brings down" the exponent.') },
+            ],
+            steps: [
+              t('Calcula VF ÷ VP (si solo quieres duplicar, es 2).', 'Compute FV ÷ PV (if you only want to double, it is 2).'),
+              t('Saca el ln de ese número.', 'Take the ln of that number.'),
+              t('Saca el ln de (1 + r).', 'Take the ln of (1 + r).'),
+              t('Divide el primero entre el segundo.', 'Divide the first by the second.'),
+            ],
+            example: t(
+              '¿Cuánto tardan $10,000 en volverse $25,000 al 10 % anual? 25,000 ÷ 10,000 = 2.5. ln 2.5 = 0.916291. ln 1.10 = 0.095310. n = 0.916291 ÷ 0.095310 = **9.61 años**.',
+              'How long does $10,000 take to become $25,000 at 10 % a year? 25,000 ÷ 10,000 = 2.5. ln 2.5 = 0.916291. ln 1.10 = 0.095310. n = 0.916291 ÷ 0.095310 = **9.61 years**.',
+            ),
+            interpret: t(
+              'Atajo para duplicar (regla del 72): años ≈ 72 ÷ tasa en %. Al 10 %: 72 ÷ 10 = 7.2 años, muy cerca del valor exacto (7.27).',
+              'Shortcut to double (rule of 72): years ≈ 72 ÷ rate in %. At 10 %: 72 ÷ 10 = 7.2 years, very close to the exact value (7.27).',
+            ),
+            mistake: t(
+              'Usar interés simple (100 ÷ tasa) para estimar cuándo se duplica: da demasiados años porque ignora el interés sobre interés.',
+              'Using simple interest (100 ÷ rate) to estimate when it doubles: it gives too many years because it ignores interest on interest.',
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -260,7 +495,7 @@ export const lessons: Lesson[] = [
       'Valúa series de pagos iguales: anualidades vencidas y anticipadas, el pago de un crédito y su tabla de amortización.',
       'Value series of equal payments: ordinary annuities and annuities due, a loan payment and its amortization schedule.',
     ),
-    minutes: 16,
+    minutes: 19,
     objectives: [
       t(
         'Distinguir entre anualidad vencida (ordinaria) y anticipada.',
@@ -281,6 +516,10 @@ export const lessons: Lesson[] = [
         heading: t('¿Qué es una anualidad?', 'What is an annuity?'),
         body: [
           t(
+            'En palabras sencillas: una anualidad es **el mismo pago repetido** cada cierto tiempo, como la mensualidad de un coche o la renta del departamento. En lugar de descontar pago por pago, una sola fórmula lo hace todo de golpe.',
+            'In plain words: an annuity is **the same payment repeated** at regular intervals, like a car instalment or the apartment rent. Instead of discounting payment by payment, one formula does it all at once.',
+          ),
+          t(
             'Una **anualidad** es una serie de pagos **iguales**, a intervalos **iguales** y con la **misma tasa** por periodo: rentas, mensualidades de un crédito, aportaciones periódicas al ahorro. El periodo no tiene que ser un año; puede ser mensual o trimestral, siempre que la tasa corresponda al mismo periodo.',
             'An **annuity** is a series of **equal** payments at **equal** intervals with the **same rate** per period: rents, loan instalments, periodic savings contributions. The period need not be a year; it can be monthly or quarterly as long as the rate matches the same period.',
           ),
@@ -289,7 +528,76 @@ export const lessons: Lesson[] = [
             'In an **ordinary annuity** payments occur at the **end** of each period (most loans). In an **annuity due** they occur at the **start** (rents, tuition). Because each payment is one period earlier, its value equals the ordinary annuity value multiplied by (1 + r).',
           ),
         ],
-        formula: 'VP = PMT × [1 − (1 + r)^−n] / r;  VF = PMT × [(1 + r)^n − 1] / r;  Anticipada = Vencida × (1 + r)',
+        formulas: [
+          {
+            name: t('Valor presente de una anualidad vencida', 'Present value of an ordinary annuity'),
+            expression: 'VP = PMT × [1 − (1 + r)^−n] ÷ r',
+            variables: [
+              { symbol: 'VP', meaning: t('Lo que valen hoy todos los pagos juntos, en pesos.', 'What all the payments are worth today, together, in pesos.') },
+              { symbol: 'PMT', meaning: t('El pago fijo de cada periodo, en pesos.', 'The fixed payment each period, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa por periodo, en decimal (si los pagos son mensuales, tasa anual ÷ 12).', 'Rate per period, as a decimal (if payments are monthly, annual rate ÷ 12).') },
+              { symbol: 'n', meaning: t('Número total de pagos.', 'Total number of payments.') },
+              { symbol: '(1 + r)^−n', meaning: t('Exponente negativo: es lo mismo que 1 ÷ (1 + r)^n.', 'Negative exponent: the same as 1 ÷ (1 + r)^n.') },
+            ],
+            steps: [
+              t('Calcula (1 + r)^−n, o sea 1 ÷ (1 + r)^n.', 'Compute (1 + r)^−n, that is 1 ÷ (1 + r)^n.'),
+              t('Réstalo a 1 y divide entre r: ese es el factor de la anualidad.', 'Subtract it from 1 and divide by r: that is the annuity factor.'),
+              t('Multiplica el factor por el pago PMT.', 'Multiply the factor by the payment PMT.'),
+            ],
+            example: t(
+              'Cobrarás $5,000 al final de cada año durante 4 años; tasa 10 %. 1.1^4 = 1.4641, así que 1.1^−4 = 0.683013. Factor = (1 − 0.683013) ÷ 0.10 = 3.169865. VP = 5,000 × 3.169865 = **$15,849.33**.',
+              'You will collect $5,000 at the end of each year for 4 years; rate 10 %. 1.1^4 = 1.4641, so 1.1^−4 = 0.683013. Factor = (1 − 0.683013) ÷ 0.10 = 3.169865. PV = 5,000 × 3.169865 = **$15,849.33**.',
+            ),
+            mistake: t(
+              'Sumar los pagos sin descontar (5,000 × 4 = $20,000): olvida que el dinero futuro vale menos hoy.',
+              'Adding the payments without discounting (5,000 × 4 = $20,000): it forgets that future money is worth less today.',
+            ),
+          },
+          {
+            name: t('Valor futuro de una anualidad vencida (ahorro periódico)', 'Future value of an ordinary annuity (periodic saving)'),
+            expression: 'VF = PMT × [(1 + r)^n − 1] ÷ r',
+            variables: [
+              { symbol: 'VF', meaning: t('Lo que juntarás al final, en pesos.', 'What you will have saved at the end, in pesos.') },
+              { symbol: 'PMT', meaning: t('El depósito fijo de cada periodo, en pesos.', 'The fixed deposit each period, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa por periodo, en decimal.', 'Rate per period, as a decimal.') },
+              { symbol: 'n', meaning: t('Número total de depósitos.', 'Total number of deposits.') },
+            ],
+            steps: [
+              t('Ajusta la tasa al periodo: 12 % anual capitalizable mensualmente = 0.12 ÷ 12 = 0.01 al mes.', 'Match the rate to the period: 12 % annual compounded monthly = 0.12 ÷ 12 = 0.01 per month.'),
+              t('Calcula (1 + r)^n, réstale 1 y divide entre r.', 'Compute (1 + r)^n, subtract 1 and divide by r.'),
+              t('Multiplica ese factor por el depósito PMT.', 'Multiply that factor by the deposit PMT.'),
+            ],
+            example: t(
+              'Ahorras $2,000 al final de cada mes durante 1 año al 1 % mensual. 1.01^12 = 1.126825. Factor = (1.126825 − 1) ÷ 0.01 = 12.682503. VF = 2,000 × 12.682503 = **$25,365.01**.',
+              'You save $2,000 at the end of each month for 1 year at 1 % per month. 1.01^12 = 1.126825. Factor = (1.126825 − 1) ÷ 0.01 = 12.682503. FV = 2,000 × 12.682503 = **$25,365.01**.',
+            ),
+          },
+          {
+            name: t('Anualidad anticipada (pagos al inicio)', 'Annuity due (payments at the start)'),
+            expression: 'Anticipada = Vencida × (1 + r)',
+            variables: [
+              { symbol: 'Anticipada', meaning: t('VP o VF cuando los pagos se hacen al inicio de cada periodo, en pesos.', 'PV or FV when payments are made at the start of each period, in pesos.') },
+              { symbol: 'Vencida', meaning: t('El mismo VP o VF calculado como si los pagos fueran al final, en pesos.', 'The same PV or FV computed as if payments were at the end, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa por periodo, en decimal.', 'Rate per period, as a decimal.') },
+            ],
+            steps: [
+              t('Calcula el VP o VF como si fuera vencida, con la fórmula de arriba.', 'Compute the PV or FV as if it were ordinary, with the formula above.'),
+              t('Multiplica el resultado por (1 + r).', 'Multiply the result by (1 + r).'),
+            ],
+            example: t(
+              'Si los $2,000 del ejemplo anterior se depositan al **inicio** de cada mes: 25,365.01 × 1.01 = **$25,618.66**.',
+              'If the $2,000 from the previous example is deposited at the **start** of each month: 25,365.01 × 1.01 = **$25,618.66**.',
+            ),
+            interpret: t(
+              'La anticipada siempre vale más que la vencida, porque cada pago llega (o se deposita) un periodo antes.',
+              'The annuity due is always worth more than the ordinary one, because each payment arrives (or is deposited) one period earlier.',
+            ),
+            mistake: t(
+              'Olvidar multiplicar por (1 + r) cuando el texto dice "al inicio de cada mes".',
+              'Forgetting to multiply by (1 + r) when the text says "at the start of each month".',
+            ),
+          },
+        ],
       },
       {
         heading: t('Pago de un préstamo', 'Loan payment'),
@@ -299,7 +607,36 @@ export const lessons: Lesson[] = [
             'A fixed-payment loan is an annuity whose present value is the amount borrowed. Solving for PMT gives the instalment. Use the rate per payment period (annual / 12 for monthly payments) and the total number of payments.',
           ),
         ],
-        formula: 'PMT = VP × r / [1 − (1 + r)^−n]',
+        formulas: [
+          {
+            name: t('Pago fijo de un préstamo (mensualidad)', 'Fixed loan payment (instalment)'),
+            expression: 'PMT = VP × r ÷ [1 − (1 + r)^−n]',
+            variables: [
+              { symbol: 'PMT', meaning: t('El pago fijo de cada periodo, en pesos.', 'The fixed payment each period, in pesos.') },
+              { symbol: 'VP', meaning: t('El monto que te prestan hoy, en pesos.', 'The amount you are lent today, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa por periodo de pago, en decimal (pagos mensuales: tasa anual ÷ 12).', 'Rate per payment period, as a decimal (monthly payments: annual rate ÷ 12).') },
+              { symbol: 'n', meaning: t('Número total de pagos (por ejemplo, 3 años de mensualidades = 36).', 'Total number of payments (for example, 3 years of monthly payments = 36).') },
+            ],
+            steps: [
+              t('Pasa la tasa al periodo de pago: 18 % anual mensual = 0.18 ÷ 12 = 0.015.', 'Convert the rate to the payment period: 18 % annual monthly = 0.18 ÷ 12 = 0.015.'),
+              t('Cuenta los pagos: 2 años × 12 = 24.', 'Count the payments: 2 years × 12 = 24.'),
+              t('Calcula el denominador: 1 − (1 + r)^−n.', 'Compute the denominator: 1 − (1 + r)^−n.'),
+              t('Multiplica el préstamo por r y divide entre el denominador.', 'Multiply the loan by r and divide by the denominator.'),
+            ],
+            example: t(
+              'Préstamo de $80,000 a 24 meses, 18 % anual capitalizable mensualmente. r = 0.015; n = 24. 1.015^−24 = 0.699544; denominador = 1 − 0.699544 = 0.300456. Numerador = 80,000 × 0.015 = 1,200. PMT = 1,200 ÷ 0.300456 = **$3,993.93 al mes**.',
+              'An $80,000 loan over 24 months at 18 % annual compounded monthly. r = 0.015; n = 24. 1.015^−24 = 0.699544; denominator = 1 − 0.699544 = 0.300456. Numerator = 80,000 × 0.015 = 1,200. PMT = 1,200 ÷ 0.300456 = **$3,993.93 per month**.',
+            ),
+            interpret: t(
+              'Pagos totales − préstamo = intereses totales: 24 × 3,993.93 = $95,854.32; intereses = 95,854.32 − 80,000 = $15,854.32.',
+              'Total payments − loan = total interest: 24 × 3,993.93 = $95,854.32; interest = 95,854.32 − 80,000 = $15,854.32.',
+            ),
+            mistake: t(
+              'Dividir el préstamo entre el número de pagos (80,000 ÷ 24): eso ignora los intereses.',
+              'Dividing the loan by the number of payments (80,000 ÷ 24): that ignores interest.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Tabla de amortización', 'Amortization schedule'),
@@ -312,6 +649,42 @@ export const lessons: Lesson[] = [
             'Este esquema de pagos iguales se conoce como sistema francés. En México, al comparar créditos al consumo conviene revisar también el Costo Anual Total (CAT), que incluye comisiones además de la tasa.',
             'This equal-payment scheme is known as the French system. In Mexico, when comparing consumer loans it is useful to also check the Total Annual Cost (CAT), which includes fees in addition to the rate.',
           ),
+          t(
+            'El **saldo insoluto** es lo que todavía debes. Por eso, al inicio de un crédito hipotecario casi todo tu pago se va a intereses y al final casi todo va a capital.',
+            'The **outstanding balance** is what you still owe. That is why, at the start of a mortgage, almost all of your payment goes to interest, and at the end almost all goes to principal.',
+          ),
+        ],
+        formulas: [
+          {
+            name: t('Una fila de la tabla de amortización', 'One row of the amortization schedule'),
+            expression: 'Interés = Saldo anterior × r;  Capital = PMT − Interés;  Saldo nuevo = Saldo anterior − Capital',
+            variables: [
+              { symbol: 'Saldo anterior', meaning: t('Lo que debías antes de este pago, en pesos.', 'What you owed before this payment, in pesos.') },
+              { symbol: 'r', meaning: t('Tasa por periodo, en decimal.', 'Rate per period, as a decimal.') },
+              { symbol: 'Interés', meaning: t('Parte del pago que se va a intereses, en pesos.', 'Part of the payment that goes to interest, in pesos.') },
+              { symbol: 'PMT', meaning: t('El pago fijo del periodo, en pesos.', 'The fixed payment for the period, in pesos.') },
+              { symbol: 'Capital', meaning: t('Parte del pago que reduce la deuda (abono a capital), en pesos.', 'Part of the payment that reduces the debt (principal), in pesos.') },
+              { symbol: 'Saldo nuevo', meaning: t('Lo que debes después del pago, en pesos.', 'What you owe after the payment, in pesos.') },
+            ],
+            steps: [
+              t('Calcula el pago fijo PMT con la fórmula del préstamo.', 'Compute the fixed payment PMT with the loan formula.'),
+              t('Interés del periodo = saldo anterior × r.', 'Interest for the period = previous balance × r.'),
+              t('Abono a capital = PMT − interés.', 'Principal = PMT − interest.'),
+              t('Saldo nuevo = saldo anterior − abono a capital. Repite con el siguiente periodo.', 'New balance = previous balance − principal. Repeat for the next period.'),
+            ],
+            example: t(
+              'Préstamo de $50,000 a 2 años, 8 % anual, pagos anuales. PMT = 50,000 × 0.08 ÷ (1 − 1.08^−2) = 4,000 ÷ 0.142661 = $28,038.46. Año 1: interés = 50,000 × 0.08 = $4,000; capital = 28,038.46 − 4,000 = $24,038.46; saldo = 50,000 − 24,038.46 = $25,961.54. Año 2: interés = 25,961.54 × 0.08 = $2,076.92; capital = 28,038.46 − 2,076.92 = $25,961.54; saldo = **$0**.',
+              'A $50,000 loan over 2 years at 8 % a year, annual payments. PMT = 50,000 × 0.08 ÷ (1 − 1.08^−2) = 4,000 ÷ 0.142661 = $28,038.46. Year 1: interest = 50,000 × 0.08 = $4,000; principal = 28,038.46 − 4,000 = $24,038.46; balance = 50,000 − 24,038.46 = $25,961.54. Year 2: interest = 25,961.54 × 0.08 = $2,076.92; principal = 28,038.46 − 2,076.92 = $25,961.54; balance = **$0**.',
+            ),
+            interpret: t(
+              'Si el último saldo da cero (o casi, por redondeo), la tabla está bien hecha.',
+              'If the last balance comes out to zero (or almost, due to rounding), the schedule is correct.',
+            ),
+            mistake: t(
+              'Restar el pago completo al saldo: una parte del pago son intereses y no reduce la deuda.',
+              'Subtracting the whole payment from the balance: part of the payment is interest and does not reduce the debt.',
+            ),
+          },
         ],
         bullets: [
           t('Interés t = Saldo t−1 × r', 'Interest t = Balance t−1 × r'),
@@ -401,7 +774,7 @@ export const lessons: Lesson[] = [
       'Identifica los flujos relevantes de un proyecto y evalúalo con valor presente neto, tasa interna de retorno, periodo de recuperación simple y descontado.',
       'Identify a project\'s relevant cash flows and evaluate it with net present value, internal rate of return, and simple and discounted payback.',
     ),
-    minutes: 20,
+    minutes: 23,
     objectives: [
       t(
         'Identificar los flujos de efectivo incrementales relevantes de un proyecto.',
@@ -422,6 +795,10 @@ export const lessons: Lesson[] = [
         heading: t('Flujos de efectivo relevantes', 'Relevant cash flows'),
         body: [
           t(
+            'En palabras sencillas: para saber si un proyecto conviene, solo cuenta **el dinero que entra o sale por hacerlo**. Pregúntate: "¿este peso existiría o cambiaría si no hiciera el proyecto?". Si la respuesta es no, ese peso no entra en el análisis.',
+            'In plain words: to know if a project is worth it, only count **the money that comes in or goes out because you do it**. Ask yourself: "would this peso exist or change if I did not do the project?". If the answer is no, that peso stays out of the analysis.',
+          ),
+          t(
             'Un proyecto se evalúa con **flujos de efectivo incrementales**: la diferencia entre el efectivo de la empresa con el proyecto y sin él. Se incluyen la inversión inicial, la inversión en capital de trabajo, los flujos operativos después de impuestos (incluido el ahorro fiscal de la depreciación), los costos de oportunidad y el valor de rescate.',
             'A project is evaluated with **incremental cash flows**: the difference between the firm\'s cash with and without the project. Include the initial investment, working capital investment, after-tax operating flows (including the depreciation tax shield), opportunity costs and salvage value.',
           ),
@@ -429,8 +806,37 @@ export const lessons: Lesson[] = [
             'Se excluyen los **costos hundidos** (estudios ya pagados), los gastos generales asignados que no cambian y los **intereses** del financiamiento, porque el costo de financiarse ya está en la tasa de descuento; incluirlos sería contarlo dos veces.',
             'Exclude **sunk costs** (studies already paid), allocated overhead that does not change and financing **interest**, because the cost of financing is already in the discount rate; including it would count it twice.',
           ),
+          t(
+            'Ejemplo: si vas a abrir una segunda taquería en un local que ya es tuyo, la renta que podrías cobrar por ese local es un **costo de oportunidad** (dinero al que renuncias) y sí cuenta. Lo que pagaste el año pasado por un estudio de mercado es un **costo hundido**: ya se gastó, decidas lo que decidas, así que no cuenta.',
+            'Example: if you will open a second taco shop in premises you already own, the rent you could charge for those premises is an **opportunity cost** (money you give up) and it counts. What you paid last year for a market study is a **sunk cost**: it is already spent whatever you decide, so it does not count.',
+          ),
         ],
-        formula: 'FCO = (Ingresos − Costos − Depreciación) × (1 − T) + Depreciación',
+        formulas: [
+          {
+            name: t('Flujo de caja operativo después de impuestos', 'After-tax operating cash flow'),
+            expression: 'FCO = (Ingresos − Costos − Depreciación) × (1 − T) + Depreciación',
+            variables: [
+              { symbol: 'FCO', meaning: t('Flujo de caja operativo: el efectivo que deja el proyecto en el año, en pesos.', 'Operating cash flow: the cash the project leaves in the year, in pesos.') },
+              { symbol: 'Ingresos', meaning: t('Ventas adicionales que genera el proyecto en el año, en pesos.', 'Extra sales the project generates in the year, in pesos.') },
+              { symbol: 'Costos', meaning: t('Costos y gastos en efectivo adicionales del proyecto, en pesos.', 'Extra cash costs and expenses of the project, in pesos.') },
+              { symbol: 'Depreciación', meaning: t('Parte del costo del equipo que se reparte como gasto cada año, en pesos. No es una salida de efectivo, pero reduce los impuestos.', 'Part of the equipment cost spread as an expense each year, in pesos. It is not a cash outflow, but it lowers taxes.') },
+              { symbol: 'T', meaning: t('Tasa de impuesto sobre la utilidad, en decimal (tasa de ejemplo: 30 % = 0.30).', 'Income tax rate, as a decimal (example rate: 30 % = 0.30).') },
+            ],
+            steps: [
+              t('Resta a los ingresos los costos y la depreciación: es la utilidad antes de impuestos.', 'Subtract costs and depreciation from revenue: that is profit before tax.'),
+              t('Multiplica por (1 − T) para quitar los impuestos.', 'Multiply by (1 − T) to remove taxes.'),
+              t('Vuelve a sumar la depreciación, porque no salió dinero de la caja por ella.', 'Add depreciation back, because no cash left the till for it.'),
+            ],
+            example: t(
+              'Ingresos $500,000, costos $300,000, depreciación $50,000, T = 30 %. Utilidad antes de impuestos: 500,000 − 300,000 − 50,000 = $150,000. Después de impuestos: 150,000 × 0.70 = $105,000. FCO = 105,000 + 50,000 = **$155,000**.',
+              'Revenue $500,000, costs $300,000, depreciation $50,000, T = 30 %. Profit before tax: 500,000 − 300,000 − 50,000 = $150,000. After tax: 150,000 × 0.70 = $105,000. OCF = 105,000 + 50,000 = **$155,000**.',
+            ),
+            mistake: t(
+              'Restar los intereses del préstamo dentro del flujo: el costo del financiamiento ya está en la tasa de descuento y se contaría dos veces.',
+              'Subtracting loan interest inside the flow: the financing cost is already in the discount rate and would be counted twice.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Valor presente neto (VPN)', 'Net present value (NPV)'),
@@ -439,8 +845,41 @@ export const lessons: Lesson[] = [
             'El **VPN** suma todos los flujos descontados al costo de capital, incluido el flujo inicial (t = 0, negativo). Si VPN > 0 el proyecto genera más que el rendimiento exigido y **crea valor**; si VPN < 0 lo destruye. Es el criterio más confiable porque mide la riqueza creada en pesos.',
             '**NPV** adds all flows discounted at the cost of capital, including the initial flow (t = 0, negative). If NPV > 0 the project earns more than the required return and **creates value**; if NPV < 0 it destroys value. It is the most reliable criterion because it measures wealth created in pesos.',
           ),
+          t(
+            'En palabras sencillas: el VPN responde "¿cuántos pesos de hoy me deja de ganancia el proyecto, después de pagar lo que pido ganar?". El **costo de capital** es ese rendimiento mínimo que exiges (lo que ganarías en otra inversión de riesgo parecido).',
+            'In plain words: NPV answers "how many of today\'s pesos does the project leave me as gain, after paying the return I ask for?". The **cost of capital** is that minimum return you require (what you would earn in another investment of similar risk).',
+          ),
         ],
-        formula: 'VPN = Σ FCt / (1 + r)^t, desde t = 0',
+        formulas: [
+          {
+            name: t('Valor presente neto (VPN)', 'Net present value (NPV)'),
+            expression: 'VPN = −I₀ + FC₁ ÷ (1 + r)¹ + FC₂ ÷ (1 + r)² + … + FCₙ ÷ (1 + r)ⁿ',
+            variables: [
+              { symbol: 'VPN', meaning: t('Valor presente neto: la ganancia del proyecto en pesos de hoy.', 'Net present value: the project\'s gain in today\'s pesos.') },
+              { symbol: 'I₀', meaning: t('Inversión inicial (año 0), en pesos. Entra con signo negativo.', 'Initial investment (year 0), in pesos. It enters with a minus sign.') },
+              { symbol: 'FC₁ … FCₙ', meaning: t('Flujo de efectivo de cada año del proyecto, en pesos.', 'Cash flow of each year of the project, in pesos.') },
+              { symbol: 'r', meaning: t('Costo de capital (tasa de descuento) anual, en decimal.', 'Annual cost of capital (discount rate), as a decimal.') },
+              { symbol: 'n', meaning: t('Último año del proyecto.', 'Last year of the project.') },
+            ],
+            steps: [
+              t('Descuenta cada flujo con su año: FC₁ ÷ (1 + r), FC₂ ÷ (1 + r)², etc.', 'Discount each flow with its year: CF₁ ÷ (1 + r), CF₂ ÷ (1 + r)², and so on.'),
+              t('Suma todos los flujos descontados.', 'Add all the discounted flows.'),
+              t('Resta la inversión inicial (no se descuenta porque ya está en el año 0).', 'Subtract the initial investment (it is not discounted because it is already at year 0).'),
+            ],
+            example: t(
+              'Inversión $100,000; flujos $40,000, $50,000 y $40,000 en los años 1 a 3; r = 10 %. Año 1: 40,000 ÷ 1.1 = $36,363.64. Año 2: 50,000 ÷ 1.21 = $41,322.31. Año 3: 40,000 ÷ 1.331 = $30,052.59. Suma = $107,738.54. VPN = 107,738.54 − 100,000 = **$7,738.54**.',
+              'Investment $100,000; flows $40,000, $50,000 and $40,000 in years 1 to 3; r = 10 %. Year 1: 40,000 ÷ 1.1 = $36,363.64. Year 2: 50,000 ÷ 1.21 = $41,322.31. Year 3: 40,000 ÷ 1.331 = $30,052.59. Sum = $107,738.54. NPV = 107,738.54 − 100,000 = **$7,738.54**.',
+            ),
+            interpret: t(
+              'VPN positivo: el proyecto gana más que tu rendimiento exigido y crea valor (se acepta). VPN negativo: destruye valor (se rechaza). Entre proyectos excluyentes, elige el de mayor VPN.',
+              'Positive NPV: the project earns more than your required return and creates value (accept). Negative NPV: it destroys value (reject). Between mutually exclusive projects, choose the higher NPV.',
+            ),
+            mistake: t(
+              'Restar la inversión a la suma de flujos sin descontarlos (130,000 − 100,000 = $30,000): exagera la ganancia.',
+              'Subtracting the investment from the undiscounted sum of flows (130,000 − 100,000 = $30,000): it overstates the gain.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Tasa interna de retorno (TIR)', 'Internal rate of return (IRR)'),
@@ -450,11 +889,44 @@ export const lessons: Lesson[] = [
             'The **IRR** is the rate that makes NPV = 0. A project is accepted if IRR > cost of capital. It is found by trial and error or with a calculator/spreadsheet; for conventional projects (one negative flow followed by positives) there is a single IRR.',
           ),
           t(
+            'En palabras sencillas: la TIR es **el rendimiento anual que da el proyecto por sí mismo**. Si un proyecto tiene TIR de 15 % y conseguir el dinero te cuesta 10 %, te sobra la diferencia.',
+            'In plain words: the IRR is **the annual return the project gives on its own**. If a project has a 15 % IRR and getting the money costs you 10 %, you keep the difference.',
+          ),
+          t(
             'Limitaciones: con **flujos no convencionales** (el signo cambia más de una vez, p. ej. un costo de cierre al final) puede haber **varias TIR** o **ninguna**. En proyectos **mutuamente excluyentes** de distinto tamaño o calendario, la TIR puede contradecir al VPN; en ese caso se elige el de **mayor VPN**.',
             'Limitations: with **non-conventional flows** (the sign changes more than once, e.g. a closing cost at the end) there may be **several IRRs** or **none**. For **mutually exclusive** projects of different size or timing, IRR can conflict with NPV; in that case choose the one with **higher NPV**.',
           ),
         ],
-        formula: '0 = Σ FCt / (1 + TIR)^t',
+        formulas: [
+          {
+            name: t('Tasa interna de retorno (TIR) por prueba y error', 'Internal rate of return (IRR) by trial and error'),
+            expression: '0 = −I₀ + FC₁ ÷ (1 + TIR)¹ + … + FCₙ ÷ (1 + TIR)ⁿ;  TIR ≈ r₁ + VPN₁ ÷ (VPN₁ − VPN₂) × (r₂ − r₁)',
+            variables: [
+              { symbol: 'TIR', meaning: t('La tasa que deja el VPN exactamente en cero: el rendimiento propio del proyecto, en %.', 'The rate that makes NPV exactly zero: the project\'s own return, in %.') },
+              { symbol: 'I₀, FC₁ … FCₙ', meaning: t('Inversión inicial y flujos de cada año, en pesos (los mismos del VPN).', 'Initial investment and each year\'s flows, in pesos (the same as for NPV).') },
+              { symbol: 'r₁, r₂', meaning: t('Dos tasas de prueba: con r₁ el VPN sale positivo y con r₂ sale negativo.', 'Two trial rates: at r₁ NPV is positive and at r₂ it is negative.') },
+              { symbol: 'VPN₁, VPN₂', meaning: t('El VPN calculado con r₁ y con r₂, en pesos.', 'The NPV computed at r₁ and at r₂, in pesos.') },
+            ],
+            steps: [
+              t('Calcula el VPN con una tasa; si sale positivo, prueba una tasa más alta.', 'Compute NPV at one rate; if it is positive, try a higher rate.'),
+              t('Sigue hasta encontrar una tasa con VPN negativo: la TIR está entre las dos.', 'Continue until you find a rate with negative NPV: the IRR lies between the two.'),
+              t('Estima la TIR con la interpolación de la fórmula (o usa la función TIR de una hoja de cálculo).', 'Estimate the IRR with the interpolation formula (or use a spreadsheet\'s IRR function).'),
+              t('Compara: si la TIR es mayor que el costo de capital, el proyecto se acepta.', 'Compare: if the IRR is above the cost of capital, accept the project.'),
+            ],
+            example: t(
+              'Proyecto anterior (−100,000; 40,000; 50,000; 40,000). Con 10 %: VPN = +$7,738.54. Con 15 %: 34,782.61 + 37,807.18 + 26,300.65 − 100,000 = −$1,109.56. Interpolación: 10 % + 7,738.54 ÷ (7,738.54 + 1,109.56) × 5 % = 10 % + 0.8746 × 5 % = **14.37 %** (el valor exacto con hoja de cálculo es 14.33 %).',
+              'Previous project (−100,000; 40,000; 50,000; 40,000). At 10 %: NPV = +$7,738.54. At 15 %: 34,782.61 + 37,807.18 + 26,300.65 − 100,000 = −$1,109.56. Interpolation: 10 % + 7,738.54 ÷ (7,738.54 + 1,109.56) × 5 % = 10 % + 0.8746 × 5 % = **14.37 %** (the exact spreadsheet value is 14.33 %).',
+            ),
+            interpret: t(
+              'TIR mayor que el costo de capital → se acepta; menor → se rechaza. Cuenta los cambios de signo de los flujos: si cambian más de una vez, puede haber varias TIR o ninguna, y entonces decide con el VPN.',
+              'IRR above the cost of capital → accept; below → reject. Count the sign changes in the flows: if they change more than once, there may be several IRRs or none, and then decide with NPV.',
+            ),
+            mistake: t(
+              'Elegir entre proyectos excluyentes por la TIR más alta: la TIR es un porcentaje y no mide cuántos pesos se ganan; manda el VPN.',
+              'Choosing between mutually exclusive projects by the higher IRR: IRR is a percentage and does not measure how many pesos are earned; NPV decides.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Periodo de recuperación (payback)', 'Payback period'),
@@ -467,8 +939,61 @@ export const lessons: Lesson[] = [
             'El **payback descontado** usa flujos descontados, por lo que siempre es mayor o igual al simple. Si un proyecto recupera su inversión descontada dentro de su vida, su VPN es positivo.',
             '**Discounted payback** uses discounted flows, so it is always greater than or equal to simple payback. If a project recovers its discounted investment within its life, its NPV is positive.',
           ),
+          t(
+            'En palabras sencillas: el payback responde "¿en cuánto tiempo me regresa el proyecto lo que invertí?". Es como calcular en cuántos meses "se paga sola" una máquina de café en tu negocio.',
+            'In plain words: payback answers "how long until the project gives me back what I invested?". It is like working out in how many months a coffee machine "pays for itself" in your business.',
+          ),
         ],
-        formula: 'Payback = años antes de recuperar + (monto por recuperar / flujo del año siguiente)',
+        formulas: [
+          {
+            name: t('Periodo de recuperación simple', 'Simple payback period'),
+            expression: 'Payback = años completos antes de recuperar + (monto por recuperar ÷ flujo del año siguiente)',
+            variables: [
+              { symbol: 'años completos antes de recuperar', meaning: t('Último año en que el acumulado todavía no alcanza la inversión.', 'Last year in which the cumulative total still falls short of the investment.') },
+              { symbol: 'monto por recuperar', meaning: t('Lo que falta para cubrir la inversión al cierre de ese año, en pesos.', 'What is still missing to cover the investment at the end of that year, in pesos.') },
+              { symbol: 'flujo del año siguiente', meaning: t('El flujo del año en que se termina de recuperar, en pesos.', 'The flow of the year in which recovery is completed, in pesos.') },
+            ],
+            steps: [
+              t('Acumula los flujos año por año (sin descontar).', 'Add up the flows year by year (undiscounted).'),
+              t('Identifica el último año en que el acumulado es menor que la inversión.', 'Find the last year in which the cumulative total is below the investment.'),
+              t('Calcula cuánto falta: inversión − acumulado de ese año.', 'Work out what is missing: investment − cumulative total for that year.'),
+              t('Divide lo que falta entre el flujo del año siguiente y súmalo a los años completos.', 'Divide what is missing by the next year\'s flow and add it to the full years.'),
+            ],
+            example: t(
+              'Inversión $100,000; flujos $40,000, $50,000, $40,000. Acumulado: año 1 = 40,000; año 2 = 90,000 (aún falta). Falta: 100,000 − 90,000 = $10,000. Fracción: 10,000 ÷ 40,000 = 0.25. Payback = 2 + 0.25 = **2.25 años**.',
+              'Investment $100,000; flows $40,000, $50,000, $40,000. Cumulative: year 1 = 40,000; year 2 = 90,000 (still short). Missing: 100,000 − 90,000 = $10,000. Fraction: 10,000 ÷ 40,000 = 0.25. Payback = 2 + 0.25 = **2.25 years**.',
+            ),
+            interpret: t(
+              'Menos años = recuperas tu dinero más rápido (menos riesgo). Pero no dice si el proyecto crea valor: para eso está el VPN.',
+              'Fewer years = you get your money back faster (less risk). But it does not say whether the project creates value: that is what NPV is for.',
+            ),
+          },
+          {
+            name: t('Periodo de recuperación descontado', 'Discounted payback period'),
+            expression: 'Payback descontado = años completos + (monto por recuperar ÷ flujo descontado del año siguiente)',
+            variables: [
+              { symbol: 'flujo descontado', meaning: t('Cada flujo dividido entre (1 + r)^t, en pesos.', 'Each flow divided by (1 + r)^t, in pesos.') },
+              { symbol: 'años completos', meaning: t('Último año en que el acumulado descontado aún no cubre la inversión.', 'Last year in which the cumulative discounted total still does not cover the investment.') },
+              { symbol: 'monto por recuperar', meaning: t('Inversión − acumulado descontado de ese año, en pesos.', 'Investment − cumulative discounted total for that year, in pesos.') },
+            ],
+            steps: [
+              t('Descuenta cada flujo: FCₜ ÷ (1 + r)ᵗ.', 'Discount each flow: CFₜ ÷ (1 + r)ᵗ.'),
+              t('Acumula los flujos descontados y aplica el mismo procedimiento que en el payback simple.', 'Add up the discounted flows and apply the same procedure as for simple payback.'),
+            ],
+            example: t(
+              'Mismo proyecto con r = 10 %. Flujos descontados: $36,363.64; $41,322.31; $30,052.59. Acumulado año 2 = 77,685.95. Falta: 100,000 − 77,685.95 = $22,314.05. Fracción: 22,314.05 ÷ 30,052.59 = 0.74. Payback descontado = 2 + 0.74 = **2.74 años**.',
+              'Same project with r = 10 %. Discounted flows: $36,363.64; $41,322.31; $30,052.59. Cumulative at year 2 = 77,685.95. Missing: 100,000 − 77,685.95 = $22,314.05. Fraction: 22,314.05 ÷ 30,052.59 = 0.74. Discounted payback = 2 + 0.74 = **2.74 years**.',
+            ),
+            interpret: t(
+              'Siempre sale mayor o igual que el simple. Si se recupera dentro de la vida del proyecto, el VPN es positivo.',
+              'It always comes out greater than or equal to simple payback. If it is recovered within the project\'s life, NPV is positive.',
+            ),
+            mistake: t(
+              'Dividir lo que falta entre el flujo sin descontar del año siguiente: mezcla pesos de distintas fechas.',
+              'Dividing what is missing by the next year\'s undiscounted flow: it mixes pesos from different dates.',
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -562,7 +1087,7 @@ export const lessons: Lesson[] = [
       'Estima el costo del capital propio con CAPM, combínalo con el costo de la deuda en el WACC, entiende cómo influye la estructura de capital y usa la tasa correcta para evaluar proyectos.',
       'Estimate the cost of equity with CAPM, combine it with the cost of debt in the WACC, understand how capital structure matters and use the right rate to evaluate projects.',
     ),
-    minutes: 20,
+    minutes: 23,
     objectives: [
       t(
         'Distinguir riesgo sistemático y no sistemático e interpretar la beta.',
@@ -594,6 +1119,32 @@ export const lessons: Lesson[] = [
             'Como el inversionista diversificado solo soporta riesgo sistemático, solo ese se premia. La **beta (β)** lo mide: β = 1 se mueve como el mercado; β = 1.2 tiende a moverse 20 % más que el mercado; β = 0.6, 40 % menos.',
             'Because a diversified investor only bears systematic risk, only that risk is rewarded. **Beta (β)** measures it: β = 1 moves with the market; β = 1.2 tends to move 20 % more than the market; β = 0.6, 40 % less.',
           ),
+          t(
+            'En palabras sencillas: **diversificar** es no poner todos los huevos en la misma canasta. Si tienes acciones de muchas empresas, la huelga en una se compensa con las demás. Pero si llega una recesión, todas bajan a la vez: ese riesgo no se quita y por eso se paga.',
+            'In plain words: **diversifying** means not putting all your eggs in one basket. If you own shares of many companies, a strike at one is offset by the others. But if a recession hits, they all fall at once: that risk cannot be removed, which is why it is paid for.',
+          ),
+        ],
+        formulas: [
+          {
+            name: t('Cómo leer la beta', 'How to read beta'),
+            expression: 'Movimiento esperado de la acción ≈ β × movimiento del mercado',
+            variables: [
+              { symbol: 'β', meaning: t('Beta: qué tanto se mueve la acción cuando se mueve todo el mercado (número sin unidades).', 'Beta: how much the stock moves when the whole market moves (a number without units).') },
+              { symbol: 'movimiento del mercado', meaning: t('Cuánto sube o baja el mercado en conjunto (por ejemplo, el índice de la bolsa), en %.', 'How much the market as a whole goes up or down (for example, the stock index), in %.') },
+            ],
+            steps: [
+              t('Toma el cambio del mercado en %.', 'Take the market\'s change in %.'),
+              t('Multiplícalo por la beta de la acción.', 'Multiply it by the stock\'s beta.'),
+            ],
+            example: t(
+              'Una acción tiene β = 0.8. Si el mercado sube 10 %, la acción tiende a subir 0.8 × 10 % = **8 %**; si el mercado baja 10 %, tiende a bajar 8 %.',
+              'A stock has β = 0.8. If the market rises 10 %, the stock tends to rise 0.8 × 10 % = **8 %**; if the market falls 10 %, it tends to fall 8 %.',
+            ),
+            interpret: t(
+              'β mayor que 1: más riesgosa que el mercado. β menor que 1: más tranquila. β no es un rendimiento ni mide el riesgo total, solo el de mercado.',
+              'β above 1: riskier than the market. β below 1: calmer. β is not a return and does not measure total risk, only market risk.',
+            ),
+          },
         ],
       },
       {
@@ -603,8 +1154,41 @@ export const lessons: Lesson[] = [
             'El **modelo de valuación de activos de capital (CAPM)** establece que el rendimiento exigido es la tasa libre de riesgo más una prima por riesgo de mercado multiplicada por la beta. En México suele usarse como tasa libre de riesgo el rendimiento de bonos gubernamentales (Cetes o Bonos M) del plazo adecuado.',
             'The **capital asset pricing model (CAPM)** states that the required return equals the risk-free rate plus the market risk premium times beta. In Mexico, government bond yields (Cetes or Bonos M) of a suitable maturity are commonly used as the risk-free rate.',
           ),
+          t(
+            'En palabras sencillas: quien invierte en una empresa pide **lo que ganaría sin riesgo** (prestándole al gobierno) **más un extra por aguantar el riesgo**. Ese extra crece con la beta.',
+            'In plain words: whoever invests in a company asks for **what they would earn risk-free** (lending to the government) **plus an extra for bearing the risk**. That extra grows with beta.',
+          ),
         ],
-        formula: 'Re = rf + β × (Rm − rf)',
+        formulas: [
+          {
+            name: t('Costo del capital propio con CAPM', 'Cost of equity with CAPM'),
+            expression: 'Re = rf + β × (Rm − rf)',
+            variables: [
+              { symbol: 'Re', meaning: t('Rendimiento que exigen los accionistas (costo del capital propio), en % anual.', 'Return shareholders require (cost of equity), in % per year.') },
+              { symbol: 'rf', meaning: t('Tasa libre de riesgo: lo que paga un bono del gobierno, en %.', 'Risk-free rate: what a government bond pays, in %.') },
+              { symbol: 'β', meaning: t('Beta de la empresa: su sensibilidad al mercado.', 'The company\'s beta: its sensitivity to the market.') },
+              { symbol: 'Rm', meaning: t('Rendimiento esperado del mercado de acciones, en %.', 'Expected stock market return, in %.') },
+              { symbol: 'Rm − rf', meaning: t('Prima de riesgo de mercado: el extra que paga el mercado sobre la tasa sin riesgo, en %.', 'Market risk premium: the extra the market pays over the risk-free rate, in %.') },
+            ],
+            steps: [
+              t('Calcula la prima de mercado: Rm − rf.', 'Compute the market premium: Rm − rf.'),
+              t('Multiplica la prima por la beta.', 'Multiply the premium by beta.'),
+              t('Suma la tasa libre de riesgo.', 'Add the risk-free rate.'),
+            ],
+            example: t(
+              'rf = 7 %, Rm = 12 %, β = 0.8. Prima: 12 % − 7 % = 5 %. Ajuste por riesgo: 0.8 × 5 % = 4 %. Re = 7 % + 4 % = **11 %**.',
+              'rf = 7 %, Rm = 12 %, β = 0.8. Premium: 12 % − 7 % = 5 %. Risk adjustment: 0.8 × 5 % = 4 %. Re = 7 % + 4 % = **11 %**.',
+            ),
+            interpret: t(
+              'Es el rendimiento mínimo que la empresa debe dar a sus accionistas. A mayor beta, mayor Re.',
+              'It is the minimum return the company must give its shareholders. Higher beta → higher Re.',
+            ),
+            mistake: t(
+              'Multiplicar la beta por Rm en lugar de por la prima (7 % + 0.8 × 12 % = 16.6 %): se cuenta dos veces la tasa libre de riesgo.',
+              'Multiplying beta by Rm instead of by the premium (7 % + 0.8 × 12 % = 16.6 %): the risk-free rate gets counted twice.',
+            ),
+          },
+        ],
       },
       {
         heading: t('WACC: costo promedio ponderado de capital', 'WACC: weighted average cost of capital'),
@@ -613,8 +1197,61 @@ export const lessons: Lesson[] = [
             'El **WACC** es el rendimiento mínimo que deben generar los activos para satisfacer a acreedores y accionistas. Pondera cada fuente por su **valor de mercado** y usa el costo de la deuda **después de impuestos**, porque los intereses son deducibles y generan un **escudo fiscal**.',
             'The **WACC** is the minimum return assets must earn to satisfy lenders and shareholders. It weights each source by its **market value** and uses the **after-tax** cost of debt because interest is deductible and creates a **tax shield**.',
           ),
+          t(
+            'En palabras sencillas: la empresa consigue dinero de dos fuentes, los **socios** (capital) y los **bancos** (deuda), y cada una cobra distinto. El WACC es el **costo promedio** de todo ese dinero, dando más peso a la fuente que aporta más. **Escudo fiscal** significa que, como los intereses se restan antes de calcular el impuesto, la deuda sale más barata de lo que dice su tasa.',
+            'In plain words: the company gets money from two sources, **owners** (equity) and **banks** (debt), and each one charges differently. WACC is the **average cost** of all that money, giving more weight to the source that provides more. **Tax shield** means that, since interest is subtracted before computing tax, debt is cheaper than its rate suggests.',
+          ),
         ],
-        formula: 'WACC = E/V × Re + D/V × Rd × (1 − T),  V = E + D',
+        formulas: [
+          {
+            name: t('Costo de la deuda después de impuestos', 'After-tax cost of debt'),
+            expression: 'Rd neto = Rd × (1 − T)',
+            variables: [
+              { symbol: 'Rd neto', meaning: t('Lo que realmente cuesta la deuda tras el ahorro de impuestos, en %.', 'What debt really costs after the tax saving, in %.') },
+              { symbol: 'Rd', meaning: t('Tasa de interés de la deuda antes de impuestos, en %.', 'Interest rate on debt before taxes, in %.') },
+              { symbol: 'T', meaning: t('Tasa de impuesto sobre la utilidad, en decimal (en la lección: 30 % = 0.30).', 'Income tax rate, as a decimal (in this lesson: 30 % = 0.30).') },
+            ],
+            steps: [
+              t('Calcula (1 − T): con 30 %, 1 − 0.30 = 0.70.', 'Compute (1 − T): with 30 %, 1 − 0.30 = 0.70.'),
+              t('Multiplica la tasa de la deuda por ese número.', 'Multiply the debt rate by that number.'),
+            ],
+            example: t(
+              'Rd = 9 %, T = 30 %. Rd neto = 9 % × 0.70 = **6.3 %**.',
+              'Rd = 9 %, T = 30 %. After-tax Rd = 9 % × 0.70 = **6.3 %**.',
+            ),
+          },
+          {
+            name: t('Costo promedio ponderado de capital (WACC)', 'Weighted average cost of capital (WACC)'),
+            expression: 'WACC = E/V × Re + D/V × Rd × (1 − T),  con V = E + D',
+            variables: [
+              { symbol: 'E', meaning: t('Valor de mercado del capital (lo que valen las acciones), en pesos.', 'Market value of equity (what the shares are worth), in pesos.') },
+              { symbol: 'D', meaning: t('Valor de mercado de la deuda, en pesos.', 'Market value of debt, in pesos.') },
+              { symbol: 'V', meaning: t('Valor total de la empresa: E + D, en pesos.', 'Total firm value: E + D, in pesos.') },
+              { symbol: 'E/V, D/V', meaning: t('Pesos: qué parte del total aporta cada fuente, en % (suman 100 %).', 'Weights: what share of the total each source provides, in % (they add up to 100 %).') },
+              { symbol: 'Re', meaning: t('Costo del capital propio (por ejemplo, con CAPM), en %.', 'Cost of equity (for example, from CAPM), in %.') },
+              { symbol: 'Rd', meaning: t('Costo de la deuda antes de impuestos, en %.', 'Pre-tax cost of debt, in %.') },
+              { symbol: 'T', meaning: t('Tasa de impuesto sobre la utilidad, en decimal.', 'Income tax rate, as a decimal.') },
+            ],
+            steps: [
+              t('Suma V = E + D.', 'Add V = E + D.'),
+              t('Calcula los pesos: E/V y D/V.', 'Compute the weights: E/V and D/V.'),
+              t('Calcula el costo de la deuda después de impuestos: Rd × (1 − T).', 'Compute the after-tax cost of debt: Rd × (1 − T).'),
+              t('Multiplica cada costo por su peso y suma los dos resultados.', 'Multiply each cost by its weight and add the two results.'),
+            ],
+            example: t(
+              'E = $8,000,000, D = $2,000,000, Re = 14 %, Rd = 9 %, T = 30 %. V = 10,000,000; E/V = 80 %, D/V = 20 %. Rd neto = 9 % × 0.70 = 6.3 %. WACC = 0.80 × 14 % + 0.20 × 6.3 % = 11.2 % + 1.26 % = **12.46 %**.',
+              'E = $8,000,000, D = $2,000,000, Re = 14 %, Rd = 9 %, T = 30 %. V = 10,000,000; E/V = 80 %, D/V = 20 %. After-tax Rd = 9 % × 0.70 = 6.3 %. WACC = 0.80 × 14 % + 0.20 × 6.3 % = 11.2 % + 1.26 % = **12.46 %**.',
+            ),
+            interpret: t(
+              'Es la tasa mínima que deben rendir los proyectos de riesgo normal de la empresa. Si un proyecto rinde menos, no alcanza a pagar a bancos y socios.',
+              'It is the minimum rate the firm\'s normal-risk projects must earn. If a project earns less, it cannot pay banks and owners.',
+            ),
+            mistake: t(
+              'Usar Rd antes de impuestos, aplicar (1 − T) también al Re, o usar valores en libros en lugar de valores de mercado.',
+              'Using pre-tax Rd, applying (1 − T) to Re too, or using book values instead of market values.',
+            ),
+          },
+        ],
       },
       {
         heading: t('Estructura de capital', 'Capital structure'),
@@ -622,6 +1259,10 @@ export const lessons: Lesson[] = [
           t(
             'Según Modigliani-Miller sin impuestos, la estructura de capital no cambia el valor. Con impuestos, la deuda agrega valor por el escudo fiscal. La **teoría del trade-off** completa el análisis: a mayor deuda aumentan los **costos de dificultades financieras** (riesgo de quiebra, pérdida de clientes, restricciones), por lo que existe un nivel de deuda óptimo.',
             'Under Modigliani-Miller without taxes, capital structure does not change value. With taxes, debt adds value through the tax shield. **Trade-off theory** completes the picture: as debt rises so do **financial distress costs** (bankruptcy risk, lost customers, restrictions), so there is an optimal debt level.',
+          ),
+          t(
+            'En palabras sencillas: la **estructura de capital** es la mezcla de deuda y dinero de los socios. Un poco de deuda ayuda (ahorra impuestos), pero demasiada es como una tarjeta de crédito al tope: cualquier mal mes te pone en riesgo de no pagar.',
+            'In plain words: **capital structure** is the mix of debt and owners\' money. A little debt helps (it saves taxes), but too much is like a maxed-out credit card: any bad month puts you at risk of not paying.',
           ),
           t(
             'Más deuda también hace más riesgoso el capital propio: el **Re aumenta** con el apalancamiento. Por eso sustituir capital por deuda "barata" no reduce el WACC indefinidamente.',
@@ -640,6 +1281,36 @@ export const lessons: Lesson[] = [
             'Usar un WACC único para todo lleva a aceptar proyectos riesgosos que destruyen valor y rechazar proyectos seguros que sí lo crean.',
             'Using a single WACC for everything leads to accepting risky projects that destroy value and rejecting safe projects that create it.',
           ),
+        ],
+        formulas: [
+          {
+            name: t('VPN de un proyecto con flujos iguales cada año', 'NPV of a project with equal yearly flows'),
+            expression: 'VPN = −I₀ + FC × [1 − (1 + k)^−n] ÷ k',
+            variables: [
+              { symbol: 'I₀', meaning: t('Inversión inicial, en pesos.', 'Initial investment, in pesos.') },
+              { symbol: 'FC', meaning: t('Flujo de efectivo igual que llega al final de cada año, en pesos.', 'Equal cash flow arriving at the end of each year, in pesos.') },
+              { symbol: 'k', meaning: t('Tasa de descuento acorde con el riesgo del proyecto (el WACC si el riesgo es como el de la empresa), en decimal.', 'Discount rate matching the project\'s risk (the WACC if the risk is like the firm\'s), as a decimal.') },
+              { symbol: 'n', meaning: t('Número de años de flujos.', 'Number of years of flows.') },
+            ],
+            steps: [
+              t('Elige la tasa: WACC si el proyecto se parece al negocio actual; una tasa mayor si es más riesgoso.', 'Pick the rate: WACC if the project resembles the current business; a higher rate if it is riskier.'),
+              t('Calcula el factor de anualidad: [1 − (1 + k)^−n] ÷ k.', 'Compute the annuity factor: [1 − (1 + k)^−n] ÷ k.'),
+              t('Multiplica el flujo anual por el factor para obtener el VP de los flujos.', 'Multiply the annual flow by the factor to get the PV of the flows.'),
+              t('Resta la inversión inicial.', 'Subtract the initial investment.'),
+            ],
+            example: t(
+              'Inversión $500,000; $140,000 al año durante 5 años; k = 12 %. 1.12^−5 = 0.567427. Factor = (1 − 0.567427) ÷ 0.12 = 3.604776. VP flujos = 140,000 × 3.604776 = $504,668.67. VPN = 504,668.67 − 500,000 = **$4,668.67**.',
+              'Investment $500,000; $140,000 a year for 5 years; k = 12 %. 1.12^−5 = 0.567427. Factor = (1 − 0.567427) ÷ 0.12 = 3.604776. PV of flows = 140,000 × 3.604776 = $504,668.67. NPV = 504,668.67 − 500,000 = **$4,668.67**.',
+            ),
+            interpret: t(
+              'Positivo: el proyecto paga el costo de capital y aún sobra (se acepta). Negativo: no alcanza (se rechaza), aunque recupere la inversión en payback simple.',
+              'Positive: the project pays the cost of capital with something left over (accept). Negative: it falls short (reject), even if it pays back on a simple basis.',
+            ),
+            mistake: t(
+              'Usar el WACC de la empresa para un proyecto de otra industria más riesgosa: hace que proyectos malos parezcan buenos.',
+              'Using the firm\'s WACC for a project in a riskier industry: it makes bad projects look good.',
+            ),
+          },
         ],
       },
     ],

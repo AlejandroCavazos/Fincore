@@ -27,7 +27,7 @@ export const lessons: Lesson[] = [
       es: "La tecnología en una empresa es un sistema de hardware, software, datos, personas y procesos que convierte datos en información para operar y decidir, ya sea en equipos propios o en la nube.",
       en: "Technology in a company is a system of hardware, software, data, people and processes that turns data into information to operate and decide, whether on its own equipment or in the cloud.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Identificar los cinco componentes de un sistema de información y distinguir dato de información.", en: "Identify the five components of an information system and tell data apart from information." },
       { es: "Reconocer los tipos de sistemas que usa una empresa: transaccionales, gerenciales y de apoyo a decisiones.", en: "Recognize the types of systems a company uses: transactional, management and decision support." },
@@ -97,7 +97,36 @@ export const lessons: Lesson[] = [
             en: "To compare options the upfront price is not enough. The **total cost of ownership** adds everything you pay over the solution's life: purchase or subscription, equipment, maintenance, support and training. Mini example: a $20,000 program with $5,000 of yearly maintenance costs $35,000 over three years, not $20,000.",
           },
         ],
-        formula: "Costo total de propiedad = Costo inicial + Σ (costos recurrentes de cada periodo)",
+        formulas: [
+          {
+            name: { es: "Costo total de propiedad (CTP)", en: "Total cost of ownership (TCO)" },
+            expression: "CTP = Costo inicial + costo recurrente por periodo × número de periodos",
+            variables: [
+              { symbol: "CTP", meaning: { es: "Todo lo que pagas por la solución durante el plazo que comparas, en pesos.", en: "Everything you pay for the solution over the period you compare, in pesos." } },
+              { symbol: "Costo inicial", meaning: { es: "Pagos de una sola vez al empezar: licencia, servidor, instalación, en pesos.", en: "One-time payments at the start: license, server, installation, in pesos." } },
+              { symbol: "costo recurrente por periodo", meaning: { es: "Lo que pagas cada mes o cada año: suscripción, soporte, mantenimiento, en pesos.", en: "What you pay every month or year: subscription, support, maintenance, in pesos." } },
+              { symbol: "número de periodos", meaning: { es: "Cuántos meses o años dura la comparación; debe estar en la misma unidad que el costo recurrente.", en: "How many months or years the comparison lasts; it must be in the same unit as the recurring cost." } },
+            ],
+            steps: [
+              { es: "Suma todos los pagos de una sola vez (costo inicial).", en: "Add up all one-time payments (upfront cost)." },
+              { es: "Multiplica cada costo recurrente por el número de periodos: si es mensual, usa meses (3 años = 36 meses).", en: "Multiply each recurring cost by the number of periods: if it is monthly, use months (3 years = 36 months)." },
+              { es: "Suma el costo inicial y los recurrentes para cada opción.", en: "Add the upfront and recurring costs for each option." },
+              { es: "Resta los totales: la opción con menor CTP es la más barata en ese plazo.", en: "Subtract the totals: the option with the lower TCO is cheaper over that period." },
+            ],
+            example: {
+              es: "A 2 años. Opción A: licencia $15,000 + equipo $10,000 + soporte $3,000 al año × 2 = 15,000 + 10,000 + 6,000 = $31,000. Opción B (SaaS): $1,200 al mes × 24 meses = $28,800. Diferencia: 31,000 − 28,800 = **$2,200 a favor de B**.",
+              en: "Over 2 years. Option A: $15,000 license + $10,000 equipment + $3,000 support per year × 2 = 15,000 + 10,000 + 6,000 = $31,000. Option B (SaaS): $1,200 per month × 24 months = $28,800. Difference: 31,000 − 28,800 = **$2,200 in favor of B**.",
+            },
+            interpret: {
+              es: "El número no lo es todo: también pesa la flexibilidad, las actualizaciones y el riesgo de cada opción.",
+              en: "The number is not everything: flexibility, updates and the risk of each option also matter.",
+            },
+            mistake: {
+              es: "Multiplicar una suscripción mensual por los años en lugar de por los meses, o comparar solo el pago inicial.",
+              en: "Multiplying a monthly subscription by years instead of months, or comparing only the upfront payment.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -155,7 +184,7 @@ export const lessons: Lesson[] = [
       es: "Excel organiza datos en celdas y los procesa con fórmulas, referencias, funciones condicionales, búsquedas y tablas dinámicas, desde una suma hasta un resumen de miles de filas.",
       en: "Excel organizes data in cells and processes it with formulas, references, conditional functions, lookups and pivot tables, from a simple sum to a summary of thousands of rows.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Escribir fórmulas con referencias relativas y absolutas y predecir cómo cambian al copiarlas.", en: "Write formulas with relative and absolute references and predict how they change when copied." },
       { es: "Usar funciones condicionales como SI, CONTAR.SI y SUMAR.SI.", en: "Use conditional functions such as IF, COUNTIF and SUMIF." },
@@ -207,6 +236,54 @@ export const lessons: Lesson[] = [
           { es: "CONTAR.SI / SUMAR.SI: cuentan o suman con un criterio.", en: "COUNTIF / SUMIF: count or add with one criterion." },
           { es: "BUSCARV / BUSCARX: traen datos de otra tabla.", en: "VLOOKUP / XLOOKUP: bring data from another table." },
           { es: "SI.ERROR: muestra algo amigable en lugar de un error.", en: "IFERROR: shows something friendly instead of an error." },
+        ],
+        formulas: [
+          {
+            name: { es: "Función SI con un cálculo (por ejemplo, un bono)", en: "IF function with a calculation (for example, a bonus)" },
+            expression: "=SI(prueba, valor si verdadero, valor si falso)",
+            variables: [
+              { symbol: "prueba", meaning: { es: "La pregunta de sí o no que Excel revisa, como B2>=10000 (¿la venta es de 10,000 o más?).", en: "The yes-or-no question Excel checks, such as B2>=10000 (is the sale 10,000 or more?)." } },
+              { symbol: "valor si verdadero", meaning: { es: "Lo que muestra si la prueba se cumple; puede ser un cálculo, como B2*5%.", en: "What it shows if the test is met; it can be a calculation, such as B2*5%." } },
+              { symbol: "valor si falso", meaning: { es: "Lo que muestra si la prueba no se cumple, por ejemplo 0.", en: "What it shows if the test is not met, for example 0." } },
+              { symbol: ">=", meaning: { es: "Mayor o igual que: el valor exacto de la meta también cumple.", en: "Greater than or equal to: the exact target value also passes." } },
+            ],
+            steps: [
+              { es: "Sustituye la celda por su valor y revisa la prueba: ¿es verdadera o falsa?", en: "Replace the cell with its value and check the test: is it true or false?" },
+              { es: "Si es verdadera, calcula el segundo argumento; si es falsa, toma el tercero.", en: "If it is true, compute the second argument; if false, take the third." },
+              { es: "Haz la operación con el valor completo de la celda (no solo con lo que pasa de la meta).", en: "Do the math with the cell's full value (not just the part above the target)." },
+            ],
+            example: {
+              es: "En B2 hay $9,500 y en C2 está =SI(B2>=8000, B2*3%, 0). Prueba: 9,500 >= 8,000 es verdadera. Resultado: 9,500 × 0.03 = **$285**. Si B2 fuera $7,000, la prueba sería falsa y C2 mostraría **0**.",
+              en: "B2 holds $9,500 and C2 has =IF(B2>=8000, B2*3%, 0). Test: 9,500 >= 8,000 is true. Result: 9,500 × 0.03 = **$285**. If B2 were $7,000, the test would be false and C2 would show **0**.",
+            },
+            mistake: {
+              es: "Calcular el porcentaje solo sobre lo que excede la meta: la fórmula multiplica la celda completa.",
+              en: "Computing the percentage only on the amount above the target: the formula multiplies the whole cell.",
+            },
+          },
+          {
+            name: { es: "Sumar y contar con un criterio: SUMAR.SI y CONTAR.SI", en: "Adding and counting with a criterion: SUMIF and COUNTIF" },
+            expression: "=SUMAR.SI(rango donde buscas, criterio, rango que sumas);  =CONTAR.SI(rango, criterio)",
+            variables: [
+              { symbol: "rango donde buscas", meaning: { es: "Columna donde Excel revisa el criterio (por ejemplo, las zonas o los nombres).", en: "Column where Excel checks the criterion (for example, regions or names)." } },
+              { symbol: "criterio", meaning: { es: "Lo que debe cumplir la fila: un texto como \"Norte\" o una condición como \">=9000\".", en: "What the row must meet: text such as \"North\" or a condition such as \">=9000\"." } },
+              { symbol: "rango que sumas", meaning: { es: "Columna con los importes que se suman; si lo omites, se suma el mismo rango donde buscas.", en: "Column with the amounts to add; if you leave it out, the search range itself is added." } },
+              { symbol: "CONTAR.SI", meaning: { es: "Cuenta cuántas filas cumplen el criterio, sin sumar importes.", en: "Counts how many rows meet the criterion, without adding amounts." } },
+            ],
+            steps: [
+              { es: "Recorre el rango donde buscas y marca las filas que cumplen el criterio.", en: "Go through the search range and mark the rows that meet the criterion." },
+              { es: "Para SUMAR.SI, suma los importes de esas filas en el rango que sumas.", en: "For SUMIF, add the amounts of those rows in the sum range." },
+              { es: "Para CONTAR.SI, cuenta cuántas filas marcaste.", en: "For COUNTIF, count how many rows you marked." },
+            ],
+            example: {
+              es: "A2:A6 = Café, Té, Café, Jugo, Café; B2:B6 = 120, 80, 200, 60, 50. =SUMAR.SI(A2:A6, \"Café\", B2:B6) = 120 + 200 + 50 = **370**. =CONTAR.SI(A2:A6, \"Café\") = **3**. =SUMAR.SI(B2:B6, \">=100\") = 120 + 200 = **320**.",
+              en: "A2:A6 = Coffee, Tea, Coffee, Juice, Coffee; B2:B6 = 120, 80, 200, 60, 50. =SUMIF(A2:A6, \"Coffee\", B2:B6) = 120 + 200 + 50 = **370**. =COUNTIF(A2:A6, \"Coffee\") = **3**. =SUMIF(B2:B6, \">=100\") = 120 + 200 = **320**.",
+            },
+            mistake: {
+              es: "Poner primero el rango que se suma (ese es el orden de SUMAR.SI.CONJUNTO) o leer \">=\" como \">\" y dejar fuera el valor exacto.",
+              en: "Putting the sum range first (that is the SUMIFS order) or reading \">=\" as \">\" and leaving out the exact value.",
+            },
+          },
         ],
       },
       {
@@ -283,7 +360,7 @@ export const lessons: Lesson[] = [
       es: "Las funciones financieras de Excel (VF, VA, PAGO, VNA, TIR, SLN) y unas cuantas técnicas contables permiten calcular créditos, inversiones, depreciaciones y revisar que la contabilidad cuadre.",
       en: "Excel's financial functions (FV, PV, PMT, NPV, IRR, SLN) and a few accounting techniques let you compute loans, investments and depreciation and check that the books balance.",
     },
-    minutes: 16,
+    minutes: 19,
     objectives: [
       { es: "Usar VF, VA y PAGO respetando la tasa por periodo y la convención de signos.", en: "Use FV, PV and PMT respecting the rate per period and the sign convention." },
       { es: "Calcular el valor presente neto con VNA sin cometer el error del primer flujo.", en: "Compute net present value with NPV without making the first-cash-flow mistake." },
@@ -313,7 +390,56 @@ export const lessons: Lesson[] = [
           { es: "PAGO(tasa, nper, va): pago periódico fijo.", en: "PMT(rate, nper, pv): fixed periodic payment." },
           { es: "TASA y NPER: despejan la tasa o el plazo.", en: "RATE and NPER: solve for the rate or the term." },
         ],
-        formula: "VF = VA × (1 + i)^n",
+        formulas: [
+          {
+            name: { es: "Valor futuro (función VF)", en: "Future value (FV function)" },
+            expression: "VF = VA × (1 + i)^n   ·   Excel: =VF(tasa, nper, pago, va)",
+            variables: [
+              { symbol: "VF", meaning: { es: "Lo que tendrás al final, en pesos.", en: "What you will have at the end, in pesos." } },
+              { symbol: "VA", meaning: { es: "Lo que inviertes hoy, en pesos (en Excel va con signo negativo porque sale de tu bolsillo).", en: "What you invest today, in pesos (in Excel it goes negative because it leaves your pocket)." } },
+              { symbol: "i (tasa)", meaning: { es: "Tasa por periodo, en decimal o con %.", en: "Rate per period, as a decimal or with %." } },
+              { symbol: "n (nper)", meaning: { es: "Número de periodos, en la misma unidad que la tasa.", en: "Number of periods, in the same unit as the rate." } },
+              { symbol: "pago", meaning: { es: "Aportación fija de cada periodo; 0 si no hay.", en: "Fixed contribution each period; 0 if there is none." } },
+            ],
+            steps: [
+              { es: "Asegúrate de que la tasa y los periodos estén en la misma unidad.", en: "Make sure the rate and the periods are in the same unit." },
+              { es: "Calcula (1 + i)^n.", en: "Compute (1 + i)^n." },
+              { es: "Multiplica por lo que inviertes hoy. En Excel: =VF(tasa, nper, 0, −inversión).", en: "Multiply by what you invest today. In Excel: =FV(rate, nper, 0, −investment)." },
+            ],
+            example: {
+              es: "$15,000 a 6% anual compuesto por 3 años: 1.06^3 = 1.191016. VF = 15,000 × 1.191016 = **$17,865.24**. En Excel: =VF(6%, 3, 0, −15000).",
+              en: "$15,000 at 6% per year compounded for 3 years: 1.06^3 = 1.191016. FV = 15,000 × 1.191016 = **$17,865.24**. In Excel: =FV(6%, 3, 0, −15000).",
+            },
+            mistake: {
+              es: "Usar interés simple (15,000 + 3 × 900 = $17,700): olvida que cada año ganas interés sobre los intereses.",
+              en: "Using simple interest (15,000 + 3 × 900 = $17,700): it forgets that each year you earn interest on interest.",
+            },
+          },
+          {
+            name: { es: "Mensualidad de un préstamo (función PAGO)", en: "Loan installment (PMT function)" },
+            expression: "PAGO = VA × i ÷ [1 − (1 + i)^−n]   ·   Excel: =PAGO(tasa, nper, va)",
+            variables: [
+              { symbol: "PAGO", meaning: { es: "Pago fijo de cada periodo, en pesos (Excel lo muestra negativo porque sale de tu bolsillo).", en: "Fixed payment each period, in pesos (Excel shows it negative because it leaves your pocket)." } },
+              { symbol: "VA", meaning: { es: "Monto que te prestan hoy, en pesos.", en: "Amount you borrow today, in pesos." } },
+              { symbol: "i (tasa)", meaning: { es: "Tasa por periodo de pago: si pagas cada mes, tasa anual ÷ 12.", en: "Rate per payment period: if you pay monthly, annual rate ÷ 12." } },
+              { symbol: "n (nper)", meaning: { es: "Número total de pagos: años × 12 si es mensual.", en: "Total number of payments: years × 12 if monthly." } },
+              { symbol: "(1 + i)^−n", meaning: { es: "Es lo mismo que 1 ÷ (1 + i)^n.", en: "The same as 1 ÷ (1 + i)^n." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa al periodo de pago y cuenta el total de pagos.", en: "Convert the rate to the payment period and count the total payments." },
+              { es: "Calcula el denominador: 1 − (1 + i)^−n.", en: "Compute the denominator: 1 − (1 + i)^−n." },
+              { es: "Multiplica el préstamo por la tasa y divide entre el denominador.", en: "Multiply the loan by the rate and divide by the denominator." },
+            ],
+            example: {
+              es: "Préstamo de $40,000 a 6 meses con 1.5% mensual. 1.015^−6 = 0.914542; denominador = 1 − 0.914542 = 0.085458. Numerador = 40,000 × 0.015 = 600. PAGO = 600 ÷ 0.085458 = **$7,021.01** al mes. En Excel: =PAGO(1.5%, 6, 40000) → −7,021.01.",
+              en: "A $40,000 loan over 6 months at 1.5% per month. 1.015^−6 = 0.914542; denominator = 1 − 0.914542 = 0.085458. Numerator = 40,000 × 0.015 = 600. PMT = 600 ÷ 0.085458 = **$7,021.01** per month. In Excel: =PMT(1.5%, 6, 40000) → −7,021.01.",
+            },
+            mistake: {
+              es: "Dividir el préstamo entre los meses (40,000 ÷ 6) y olvidar los intereses, o usar la tasa anual con periodos mensuales.",
+              en: "Dividing the loan by the months (40,000 ÷ 6) and forgetting interest, or using the annual rate with monthly periods.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Evaluar inversiones: VNA y TIR", en: "Evaluating investments: NPV and IRR" },
@@ -331,7 +457,35 @@ export const lessons: Lesson[] = [
             en: "Mini example: you invest $50,000 today and receive $20,000, $25,000 and $30,000 over three years, at a 10% rate. =NPV(10%, 20000, 25000, 30000) gives $61,382.42; minus $50,000, the NPV is $11,382.42: the project is worth it.",
           },
         ],
-        formula: "VPN = VNA(tasa, F1:Fn) − Inversión inicial",
+        formulas: [
+          {
+            name: { es: "Valor presente neto con VNA", en: "Net present value with NPV" },
+            expression: "VPN = VNA(tasa, F1:Fn) − Inversión inicial   ·   VNA = F1 ÷ (1 + tasa)¹ + F2 ÷ (1 + tasa)² + … + Fn ÷ (1 + tasa)ⁿ",
+            variables: [
+              { symbol: "VPN", meaning: { es: "Ganancia del proyecto en pesos de hoy, después de cobrar la tasa que exiges.", en: "The project's gain in today's pesos, after charging the rate you require." } },
+              { symbol: "tasa", meaning: { es: "Rendimiento mínimo que exiges (tasa de descuento), por periodo.", en: "Minimum return you require (discount rate), per period." } },
+              { symbol: "F1 … Fn", meaning: { es: "Flujos de efectivo de los periodos 1 a n, en pesos.", en: "Cash flows for periods 1 to n, in pesos." } },
+              { symbol: "Inversión inicial", meaning: { es: "Lo que pagas hoy (periodo 0), en pesos; se resta fuera de VNA.", en: "What you pay today (period 0), in pesos; it is subtracted outside NPV." } },
+            ],
+            steps: [
+              { es: "Escribe los flujos desde el año 1 en un rango, sin la inversión de hoy.", en: "Put the cash flows from year 1 onward in a range, without today's investment." },
+              { es: "Usa =VNA(tasa, rango): descuenta cada flujo con su año y los suma.", en: "Use =NPV(rate, range): it discounts each flow by its year and adds them up." },
+              { es: "Resta la inversión inicial fuera de la función.", en: "Subtract the initial investment outside the function." },
+            ],
+            example: {
+              es: "Inviertes $30,000 hoy y recibes $12,000, $15,000 y $10,000 en tres años, tasa 8%. A mano: 12,000 ÷ 1.08 = 11,111.11; 15,000 ÷ 1.08² = 12,860.08; 10,000 ÷ 1.08³ = 7,938.32. =VNA(8%, 12000, 15000, 10000) ≈ $31,909.52. VPN = 31,909.52 − 30,000 = **$1,909.52**.",
+              en: "You invest $30,000 today and receive $12,000, $15,000 and $10,000 over three years, rate 8%. By hand: 12,000 ÷ 1.08 = 11,111.11; 15,000 ÷ 1.08² = 12,860.08; 10,000 ÷ 1.08³ = 7,938.32. =NPV(8%, 12000, 15000, 10000) ≈ $31,909.52. NPV = 31,909.52 − 30,000 = **$1,909.52**.",
+            },
+            interpret: {
+              es: "VPN positivo: el proyecto rinde más que tu tasa y conviene. La **TIR** (=TIR del rango completo, con la inversión negativa al inicio) es la tasa donde el VPN da cero; aquí ≈ 11.6%, mayor que 8%.",
+              en: "Positive NPV: the project yields more than your rate and is worth it. The **IRR** (=IRR of the full range, with the negative investment first) is the rate at which NPV is zero; here ≈ 11.6%, above 8%.",
+            },
+            mistake: {
+              es: "Meter la inversión de hoy dentro del rango de VNA: Excel la descontaría como si ocurriera al final del año 1.",
+              en: "Putting today's investment inside the NPV range: Excel would discount it as if it happened at the end of year 1.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Excel para el trabajo contable", en: "Excel for accounting work" },
@@ -349,7 +503,37 @@ export const lessons: Lesson[] = [
             en: "Mini example: a $300,000 van with a $60,000 salvage value and a 5-year life depreciates =SLN(300000, 60000, 5) = $48,000 per year.",
           },
         ],
-        formula: "Depreciación anual = (Costo − Valor residual) ÷ Vida útil",
+        formulas: [
+          {
+            name: { es: "Depreciación en línea recta y valor en libros", en: "Straight-line depreciation and book value" },
+            expression: "Depreciación anual = (Costo − Valor residual) ÷ Vida útil  [=SLN(costo, residual, vida)];  Valor en libros = Costo − Depreciación anual × años transcurridos",
+            variables: [
+              { symbol: "Costo", meaning: { es: "Lo que pagaste por el activo, en pesos.", en: "What you paid for the asset, in pesos." } },
+              { symbol: "Valor residual", meaning: { es: "Lo que esperas recuperar al final de su vida (por ejemplo, al venderlo usado), en pesos.", en: "What you expect to recover at the end of its life (for example, by selling it used), in pesos." } },
+              { symbol: "Vida útil", meaning: { es: "Años que esperas usarlo.", en: "Years you expect to use it." } },
+              { symbol: "años transcurridos", meaning: { es: "Años que ya pasaron desde la compra.", en: "Years that have passed since the purchase." } },
+              { symbol: "Valor en libros", meaning: { es: "Lo que todavía vale el activo en tu contabilidad, en pesos.", en: "What the asset is still worth in your books, in pesos." } },
+            ],
+            steps: [
+              { es: "Resta el valor residual al costo: esa es la parte que se reparte.", en: "Subtract the salvage value from the cost: that is the part to spread." },
+              { es: "Divide entre la vida útil: depreciación de cada año.", en: "Divide by the useful life: depreciation for each year." },
+              { es: "Multiplica por los años transcurridos: depreciación acumulada.", en: "Multiply by the years elapsed: accumulated depreciation." },
+              { es: "Resta la acumulada al costo (no al valor residual): valor en libros.", en: "Subtract the accumulated amount from the cost (not from the salvage value): book value." },
+            ],
+            example: {
+              es: "Computadora de $24,000, valor residual $4,000, vida 4 años. Anual: (24,000 − 4,000) ÷ 4 = **$5,000**. Acumulada al año 3: 5,000 × 3 = $15,000. Valor en libros: 24,000 − 15,000 = **$9,000**.",
+              en: "A $24,000 computer, $4,000 salvage value, 4-year life. Annual: (24,000 − 4,000) ÷ 4 = **$5,000**. Accumulated at year 3: 5,000 × 3 = $15,000. Book value: 24,000 − 15,000 = **$9,000**.",
+            },
+            interpret: {
+              es: "Al final de la vida útil, el valor en libros debe ser igual al valor residual.",
+              en: "At the end of the useful life, book value should equal the salvage value.",
+            },
+            mistake: {
+              es: "Dividir el costo completo entre la vida útil sin restar el valor residual.",
+              en: "Dividing the full cost by the useful life without subtracting the salvage value.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -407,7 +591,7 @@ export const lessons: Lesson[] = [
       es: "Un buen modelo separa supuestos, cálculos y resultados, permite probar escenarios con herramientas de análisis de hipótesis y se automatiza con validación de datos, Power Query y macros.",
       en: "A good model separates assumptions, calculations and results, lets you test scenarios with what-if analysis tools, and is automated with data validation, Power Query and macros.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Estructurar un modelo en entradas, cálculos y salidas sin números fijos dentro de las fórmulas.", en: "Structure a model into inputs, calculations and outputs without hard-coded numbers inside formulas." },
       { es: "Usar Buscar objetivo, escenarios y tablas de datos para responder preguntas \"¿qué pasaría si...?\".", en: "Use Goal Seek, scenarios and data tables to answer \"what if...?\" questions." },
@@ -453,7 +637,63 @@ export const lessons: Lesson[] = [
             en: "Mini example: with a $350 price, $150 variable cost and $12,000 rent, each cake leaves $200. Goal Seek finds 12,000 ÷ 200 = 60 cakes to reach zero profit.",
           },
         ],
-        formula: "Punto de equilibrio (unidades) = Costos fijos ÷ (Precio − Costo variable unitario)",
+        formulas: [
+          {
+            name: { es: "Utilidad de un modelo sencillo (para escenarios)", en: "Profit in a simple model (for scenarios)" },
+            expression: "Utilidad = Unidades × (Precio − Costo variable unitario) − Costos fijos",
+            variables: [
+              { symbol: "Unidades", meaning: { es: "Cantidad que vendes en el periodo.", en: "Quantity you sell in the period." } },
+              { symbol: "Precio", meaning: { es: "Lo que cobras por unidad, en pesos.", en: "What you charge per unit, in pesos." } },
+              { symbol: "Costo variable unitario", meaning: { es: "Lo que te cuesta cada unidad extra (insumos, empaque), en pesos.", en: "What each extra unit costs you (inputs, packaging), in pesos." } },
+              { symbol: "Precio − Costo variable unitario", meaning: { es: "Margen de contribución: lo que deja cada unidad para pagar los fijos, en pesos.", en: "Contribution margin: what each unit leaves to cover fixed costs, in pesos." } },
+              { symbol: "Costos fijos", meaning: { es: "Lo que pagas en el mes aunque no vendas (renta, sueldos base), en pesos.", en: "What you pay in the month even if you sell nothing (rent, base salaries), in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula lo que deja cada unidad: precio − costo variable.", en: "Compute what each unit leaves: price − variable cost." },
+              { es: "Multiplícalo por las unidades vendidas.", en: "Multiply it by the units sold." },
+              { es: "Resta los costos fijos. Para cada escenario, cambia solo el supuesto que se prueba (por ejemplo, el precio).", en: "Subtract fixed costs. For each scenario, change only the assumption being tested (for example, the price)." },
+            ],
+            example: {
+              es: "Una cafetería vende 800 tazas al mes, costo variable $15 y fijos $18,000. Precio $40: 800 × 25 − 18,000 = **$2,000**. Precio $45: 800 × 30 − 18,000 = **$6,000**. Precio $50: 800 × 35 − 18,000 = **$10,000**.",
+              en: "A coffee shop sells 800 cups a month, $15 variable cost and $18,000 fixed costs. Price $40: 800 × 25 − 18,000 = **$2,000**. Price $45: 800 × 30 − 18,000 = **$6,000**. Price $50: 800 × 35 − 18,000 = **$10,000**.",
+            },
+            interpret: {
+              es: "Si un cambio pequeño en un supuesto mueve mucho la utilidad, el resultado es muy sensible a ese supuesto y conviene vigilarlo.",
+              en: "If a small change in one assumption moves profit a lot, the result is very sensitive to that assumption and it is worth watching.",
+            },
+            mistake: {
+              es: "Olvidar restar los costos fijos.",
+              en: "Forgetting to subtract fixed costs.",
+            },
+          },
+          {
+            name: { es: "Punto de equilibrio en unidades", en: "Break-even point in units" },
+            expression: "Punto de equilibrio (unidades) = Costos fijos ÷ (Precio − Costo variable unitario)",
+            variables: [
+              { symbol: "Punto de equilibrio", meaning: { es: "Unidades que debes vender para que la utilidad sea cero (ni ganas ni pierdes).", en: "Units you must sell for profit to be zero (you neither earn nor lose)." } },
+              { symbol: "Costos fijos", meaning: { es: "Lo que pagas al mes aunque no vendas, en pesos.", en: "What you pay each month even if you sell nothing, in pesos." } },
+              { symbol: "Precio", meaning: { es: "Lo que cobras por unidad, en pesos.", en: "What you charge per unit, in pesos." } },
+              { symbol: "Costo variable unitario", meaning: { es: "Lo que cuesta producir o atender cada unidad, en pesos.", en: "What it costs to produce or serve each unit, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula cuánto deja cada unidad: precio − costo variable.", en: "Compute what each unit leaves: price − variable cost." },
+              { es: "Divide los costos fijos entre ese margen.", en: "Divide fixed costs by that margin." },
+              { es: "Si sale con decimales, redondea hacia arriba (no se vende media unidad).", en: "If it has decimals, round up (you cannot sell half a unit)." },
+            ],
+            example: {
+              es: "Con la cafetería: cada taza deja 45 − 15 = $30. Punto de equilibrio: 18,000 ÷ 30 = **600 tazas** al mes. Buscar objetivo llega al mismo número poniendo la utilidad en 0 y cambiando la celda de tazas.",
+              en: "With the coffee shop: each cup leaves 45 − 15 = $30. Break-even: 18,000 ÷ 30 = **600 cups** a month. Goal Seek reaches the same number by setting profit to 0 and changing the cups cell.",
+            },
+            interpret: {
+              es: "Vender más que el punto de equilibrio da ganancia; vender menos, pérdida.",
+              en: "Selling above break-even gives a profit; selling below, a loss.",
+            },
+            mistake: {
+              es: "Dividir los costos fijos entre el precio completo (18,000 ÷ 45) y olvidar el costo variable.",
+              en: "Dividing fixed costs by the full price (18,000 ÷ 45) and forgetting the variable cost.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Automatizar tareas repetitivas", en: "Automating repetitive tasks" },
@@ -528,7 +768,7 @@ export const lessons: Lesson[] = [
       es: "La estadística resume muchos datos con unas cuantas medidas (media, mediana, desviación estándar) para entender qué es típico, qué tanto varía y qué relaciones existen, sin confundir correlación con causa.",
       en: "Statistics summarizes many data points with a few measures (mean, median, standard deviation) to understand what is typical, how much it varies and what relationships exist, without confusing correlation with cause.",
     },
-    minutes: 16,
+    minutes: 19,
     objectives: [
       { es: "Distinguir población de muestra y calcular media, mediana y moda.", en: "Distinguish population from sample and compute mean, median and mode." },
       { es: "Medir la dispersión con rango, desviación estándar y coeficiente de variación.", en: "Measure dispersion with range, standard deviation and coefficient of variation." },
@@ -551,7 +791,34 @@ export const lessons: Lesson[] = [
             en: "The mean is pulled by **extreme values** (outliers); the median is not. Mini example: in an office four people earn $15,000 and the director $95,000. The mean is $31,000, but the median, $15,000, better describes the typical salary.",
           },
         ],
-        formula: "Media = Σ x ÷ n",
+        formulas: [
+          {
+            name: { es: "Media, mediana y moda", en: "Mean, median and mode" },
+            expression: "Media = Σ x ÷ n;  Mediana = dato de en medio (datos ordenados);  Moda = dato que más se repite",
+            variables: [
+              { symbol: "x", meaning: { es: "Cada uno de los datos (por ejemplo, la venta de cada día).", en: "Each data point (for example, each day's sales)." } },
+              { symbol: "Σ x", meaning: { es: "\"Suma de todas las x\": el total de los datos.", en: "\"Sum of all the x values\": the total of the data." } },
+              { symbol: "n", meaning: { es: "Cuántos datos hay.", en: "How many data points there are." } },
+            ],
+            steps: [
+              { es: "Media: suma todos los datos y divide entre cuántos son.", en: "Mean: add all the data and divide by how many there are." },
+              { es: "Mediana: ordena de menor a mayor y toma el de en medio; si hay un número par de datos, promedia los dos centrales.", en: "Median: sort from smallest to largest and take the middle one; with an even number of data, average the two middle ones." },
+              { es: "Moda: busca el valor que aparece más veces.", en: "Mode: find the value that appears most often." },
+            ],
+            example: {
+              es: "Ventas de 5 días (miles): 8, 9, 9, 11 y 33. Media: (8 + 9 + 9 + 11 + 33) ÷ 5 = 70 ÷ 5 = **14**. Mediana: ya están ordenados; el 3.º es **9**. Moda: **9** (aparece dos veces).",
+              en: "Sales for 5 days (thousands): 8, 9, 9, 11 and 33. Mean: (8 + 9 + 9 + 11 + 33) ÷ 5 = 70 ÷ 5 = **14**. Median: already sorted; the 3rd is **9**. Mode: **9** (it appears twice).",
+            },
+            interpret: {
+              es: "Si la media queda muy lejos de la mediana, hay algún dato extremo; para describir lo típico, usa la mediana.",
+              en: "If the mean is far from the median, there is an extreme value; to describe what is typical, use the median.",
+            },
+            mistake: {
+              es: "Tomar el dato de en medio sin ordenar antes los datos.",
+              en: "Taking the middle value without sorting the data first.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Medidas de dispersión", en: "Measures of dispersion" },
@@ -569,7 +836,79 @@ export const lessons: Lesson[] = [
             en: "To compare the variation of things with different averages use the **coefficient of variation**: standard deviation ÷ mean. Mini example: daily sales with a $40,000 mean and a $4,000 deviation have a 10% coefficient.",
           },
         ],
-        formula: "σ = √[ Σ (x − media)² ÷ n ]   ·   CV = σ ÷ media",
+        formulas: [
+          {
+            name: { es: "Rango", en: "Range" },
+            expression: "Rango = valor máximo − valor mínimo",
+            variables: [
+              { symbol: "valor máximo", meaning: { es: "El dato más grande.", en: "The largest data point." } },
+              { symbol: "valor mínimo", meaning: { es: "El dato más pequeño.", en: "The smallest data point." } },
+            ],
+            steps: [
+              { es: "Identifica el dato más grande y el más pequeño.", en: "Find the largest and the smallest data point." },
+              { es: "Resta el mínimo al máximo.", en: "Subtract the minimum from the maximum." },
+            ],
+            example: {
+              es: "Datos: 1, 3, 5, 7 y 9. Rango = 9 − 1 = **8**.",
+              en: "Data: 1, 3, 5, 7 and 9. Range = 9 − 1 = **8**.",
+            },
+          },
+          {
+            name: { es: "Desviación estándar", en: "Standard deviation" },
+            expression: "σ = √[ Σ (x − media)² ÷ n ]  (población, DESVEST.P);  con muestra se divide entre n − 1 (DESVEST.M)",
+            variables: [
+              { symbol: "σ", meaning: { es: "Desviación estándar: qué tanto se alejan, en promedio, los datos de la media, en las mismas unidades (pesos, horas).", en: "Standard deviation: how far the data are from the mean on average, in the same units (pesos, hours)." } },
+              { symbol: "x", meaning: { es: "Cada dato.", en: "Each data point." } },
+              { symbol: "media", meaning: { es: "El promedio de los datos.", en: "The average of the data." } },
+              { symbol: "(x − media)²", meaning: { es: "Distancia de cada dato a la media, elevada al cuadrado para que no se cancelen positivos y negativos.", en: "Each data point's distance from the mean, squared so positives and negatives do not cancel out." } },
+              { symbol: "n", meaning: { es: "Número de datos (si es una muestra, usa n − 1).", en: "Number of data points (for a sample, use n − 1)." } },
+              { symbol: "√", meaning: { es: "Raíz cuadrada: regresa el resultado a las unidades originales.", en: "Square root: brings the result back to the original units." } },
+            ],
+            steps: [
+              { es: "Calcula la media.", en: "Compute the mean." },
+              { es: "Resta la media a cada dato y eleva cada resultado al cuadrado.", en: "Subtract the mean from each data point and square each result." },
+              { es: "Suma esos cuadrados y divide entre n (población) o n − 1 (muestra): esa es la varianza.", en: "Add those squares and divide by n (population) or n − 1 (sample): that is the variance." },
+              { es: "Saca la raíz cuadrada de la varianza.", en: "Take the square root of the variance." },
+            ],
+            example: {
+              es: "Población: 1, 3, 5, 7, 9. Media = 25 ÷ 5 = 5. Distancias al cuadrado: 16, 4, 0, 4, 16; suman 40. Varianza = 40 ÷ 5 = 8. σ = √8 = **2.83**.",
+              en: "Population: 1, 3, 5, 7, 9. Mean = 25 ÷ 5 = 5. Squared distances: 16, 4, 0, 4, 16; they add up to 40. Variance = 40 ÷ 5 = 8. σ = √8 = **2.83**.",
+            },
+            interpret: {
+              es: "Más grande = datos más dispersos; cercana a 0 = datos muy parecidos entre sí.",
+              en: "Larger = more spread-out data; close to 0 = data very similar to each other.",
+            },
+            mistake: {
+              es: "Usar n − 1 cuando tienes toda la población (o n con una muestra), u olvidar sacar la raíz.",
+              en: "Using n − 1 when you have the whole population (or n with a sample), or forgetting the square root.",
+            },
+          },
+          {
+            name: { es: "Coeficiente de variación (CV)", en: "Coefficient of variation (CV)" },
+            expression: "CV = σ ÷ media × 100",
+            variables: [
+              { symbol: "CV", meaning: { es: "Variación relativa al promedio, en %.", en: "Variation relative to the average, in %." } },
+              { symbol: "σ", meaning: { es: "Desviación estándar.", en: "Standard deviation." } },
+              { symbol: "media", meaning: { es: "Promedio de los datos.", en: "Average of the data." } },
+            ],
+            steps: [
+              { es: "Divide la desviación estándar entre la media.", en: "Divide the standard deviation by the mean." },
+              { es: "Multiplica por 100 para expresarlo en %.", en: "Multiply by 100 to express it in %." },
+            ],
+            example: {
+              es: "Ventas diarias con media de $30,000 y σ de $6,000: 6,000 ÷ 30,000 = 0.20 = **20%**.",
+              en: "Daily sales with a $30,000 mean and a $6,000 σ: 6,000 ÷ 30,000 = 0.20 = **20%**.",
+            },
+            interpret: {
+              es: "Menor CV = más estable en relación con su tamaño. Sirve para comparar negocios con promedios distintos.",
+              en: "Lower CV = more stable relative to its size. It lets you compare businesses with different averages.",
+            },
+            mistake: {
+              es: "Invertir la división (media ÷ σ) o comparar solo desviaciones en pesos.",
+              en: "Flipping the division (mean ÷ σ) or comparing only deviations in pesos.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Distribución normal y correlación", en: "Normal distribution and correlation" },
@@ -592,6 +931,31 @@ export const lessons: Lesson[] = [
           { es: "95% de los datos: media ± 2 desviaciones.", en: "95% of the data: mean ± 2 deviations." },
           { es: "99.7% de los datos: media ± 3 desviaciones.", en: "99.7% of the data: mean ± 3 deviations." },
           { es: "Correlación de −1 a +1; no prueba causa.", en: "Correlation from −1 to +1; it does not prove cause." },
+        ],
+        formulas: [
+          {
+            name: { es: "Regla empírica (68-95-99.7)", en: "Empirical rule (68-95-99.7)" },
+            expression: "Intervalo = media ± k × σ   (k = 1 → 68%;  k = 2 → 95%;  k = 3 → 99.7%)",
+            variables: [
+              { symbol: "media", meaning: { es: "Promedio de los datos.", en: "Average of the data." } },
+              { symbol: "σ", meaning: { es: "Desviación estándar.", en: "Standard deviation." } },
+              { symbol: "k", meaning: { es: "Cuántas desviaciones te alejas de la media: 1, 2 o 3.", en: "How many deviations you move away from the mean: 1, 2 or 3." } },
+              { symbol: "±", meaning: { es: "Se calcula dos veces: restando (límite bajo) y sumando (límite alto).", en: "It is computed twice: subtracting (lower limit) and adding (upper limit)." } },
+            ],
+            steps: [
+              { es: "Elige k según el porcentaje que te piden: 68% → 1, 95% → 2, 99.7% → 3.", en: "Pick k from the percentage asked: 68% → 1, 95% → 2, 99.7% → 3." },
+              { es: "Multiplica k × σ.", en: "Multiply k × σ." },
+              { es: "Réstalo y súmalo a la media para obtener los dos límites.", en: "Subtract it from and add it to the mean to get both limits." },
+            ],
+            example: {
+              es: "Tiempo de atención con media de 50 minutos y σ de 5 minutos. 95% → k = 2: 2 × 5 = 10; 50 − 10 = 40 y 50 + 10 = 60. Cerca del 95% de los clientes se atiende **entre 40 y 60 minutos**.",
+              en: "Service time with a 50-minute mean and a 5-minute σ. 95% → k = 2: 2 × 5 = 10; 50 − 10 = 40 and 50 + 10 = 60. About 95% of customers are served **between 40 and 60 minutes**.",
+            },
+            mistake: {
+              es: "Confundir qué porcentaje corresponde a cada número de desviaciones (por ejemplo, usar una desviación para el 95%). Solo aplica a datos con forma de campana.",
+              en: "Mixing up which percentage goes with each number of deviations (for example, using one deviation for 95%). It only applies to bell-shaped data.",
+            },
+          },
         ],
       },
     ],
@@ -650,7 +1014,7 @@ export const lessons: Lesson[] = [
       es: "Power BI conecta y limpia datos con Power Query, los organiza en un modelo de tablas de hechos y dimensiones, calcula medidas con DAX y los presenta en tableros con gráficos bien elegidos.",
       en: "Power BI connects and cleans data with Power Query, organizes it in a model of fact and dimension tables, computes measures with DAX and presents it in dashboards with well-chosen charts.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Describir el flujo de trabajo de Power BI: obtener, transformar, modelar, visualizar y compartir.", en: "Describe the Power BI workflow: get, transform, model, visualize and share." },
       { es: "Distinguir tablas de hechos y de dimensiones y explicar el esquema estrella.", en: "Distinguish fact and dimension tables and explain the star schema." },
@@ -696,7 +1060,31 @@ export const lessons: Lesson[] = [
           { es: "Dimensiones: productos, clientes, sucursales, calendario.", en: "Dimensions: products, customers, branches, calendar." },
           { es: "SUM, DIVIDE y CALCULATE son funciones DAX básicas.", en: "SUM, DIVIDE and CALCULATE are basic DAX functions." },
         ],
-        formula: "Margen % = DIVIDE( SUM(Utilidad), SUM(Ventas) )",
+        formulas: [
+          {
+            name: { es: "Margen total correcto (medida DAX)", en: "Correct total margin (DAX measure)" },
+            expression: "Margen % = DIVIDE( SUM(Utilidad), SUM(Ventas) ) = suma de utilidades ÷ suma de ventas × 100",
+            variables: [
+              { symbol: "SUM(Utilidad)", meaning: { es: "Suma de la utilidad de todas las filas que pasan los filtros, en pesos.", en: "Sum of profit across all rows that pass the filters, in pesos." } },
+              { symbol: "SUM(Ventas)", meaning: { es: "Suma de las ventas de esas mismas filas, en pesos.", en: "Sum of sales for those same rows, in pesos." } },
+              { symbol: "DIVIDE", meaning: { es: "Función DAX que divide y, si el denominador es cero, no marca error.", en: "DAX function that divides and, if the denominator is zero, does not throw an error." } },
+              { symbol: "Margen %", meaning: { es: "Qué parte de cada peso vendido es utilidad, en %.", en: "What share of each peso sold is profit, in %." } },
+            ],
+            steps: [
+              { es: "Suma las utilidades de todas las tiendas o filas.", en: "Add up the profit of all stores or rows." },
+              { es: "Suma las ventas de esas mismas tiendas.", en: "Add up the sales of those same stores." },
+              { es: "Divide utilidad total entre ventas totales y multiplica por 100.", en: "Divide total profit by total sales and multiply by 100." },
+            ],
+            example: {
+              es: "Tienda A: ventas $120,000, utilidad $18,000 (15%). Tienda B: ventas $80,000, utilidad $4,000 (5%). Utilidad total: 18,000 + 4,000 = 22,000. Ventas totales: 120,000 + 80,000 = 200,000. Margen = 22,000 ÷ 200,000 = **11%**.",
+              en: "Store A: sales $120,000, profit $18,000 (15%). Store B: sales $80,000, profit $4,000 (5%). Total profit: 18,000 + 4,000 = 22,000. Total sales: 120,000 + 80,000 = 200,000. Margin = 22,000 ÷ 200,000 = **11%**.",
+            },
+            mistake: {
+              es: "Promediar los porcentajes ((15% + 5%) ÷ 2 = 10%): ignora que una tienda vende más que la otra.",
+              en: "Averaging the percentages ((15% + 5%) ÷ 2 = 10%): it ignores that one store sells more than the other.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Elegir el gráfico y diseñar el tablero", en: "Choosing the chart and designing the dashboard" },

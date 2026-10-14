@@ -24,7 +24,7 @@ export const lessons: Lesson[] = [
       "La economía estudia cómo personas, empresas y gobiernos eligen qué hacer con recursos escasos, y cada elección tiene un costo de oportunidad.",
       "Economics studies how people, businesses and governments choose what to do with scarce resources, and every choice has an opportunity cost.",
     ),
-    minutes: 14,
+    minutes: 16,
     objectives: [
       t("Explicar qué es la escasez y por qué obliga a elegir.", "Explain what scarcity is and why it forces us to choose."),
       t("Calcular el costo de oportunidad de una decisión cotidiana.", "Compute the opportunity cost of an everyday decision."),
@@ -48,7 +48,31 @@ export const lessons: Lesson[] = [
             "Opportunity cost includes money you pay (explicit cost) and benefits you stop receiving (implicit cost). Mini example: if you take a 4-Saturday course that costs $1,500 and give up $400 each Saturday from your side job, the course costs you 1,500 + 4 × 400 = **$3,100**, not just $1,500.",
           ),
         ],
-        formula: "Costo de oportunidad = costos explícitos + beneficios a los que renuncias (mejor alternativa)",
+        formulas: [
+          {
+            name: t("Costo de oportunidad de una decisión", "Opportunity cost of a decision"),
+            expression: "Costo de oportunidad = costos explícitos + beneficios a los que renuncias",
+            variables: [
+              { symbol: "Costo de oportunidad", meaning: t("Lo que realmente te cuesta elegir una opción, en pesos.", "What choosing an option really costs you, in pesos.") },
+              { symbol: "costos explícitos", meaning: t("Dinero que pagas por la opción que eliges (colegiatura, boleto, material), en pesos.", "Money you pay for the option you choose (tuition, ticket, materials), in pesos.") },
+              { symbol: "beneficios a los que renuncias", meaning: t("Lo que dejas de ganar por no tomar tu mejor alternativa (por ejemplo, el sueldo que ya no cobras), en pesos.", "What you stop earning by not taking your best alternative (for example, the salary you no longer collect), in pesos.") },
+            ],
+            steps: [
+              t("Suma lo que pagas por la opción elegida durante todo el periodo (por ejemplo, pago mensual × meses).", "Add up what you pay for the chosen option over the whole period (for example, monthly payment × months)."),
+              t("Suma lo que dejas de ganar en ese mismo periodo por no tomar la mejor alternativa.", "Add up what you stop earning over that same period by not taking the best alternative."),
+              t("Descarta los gastos que harías de todas formas, elijas lo que elijas (comida, renta).", "Leave out expenses you would have anyway, whatever you choose (food, rent)."),
+              t("Suma los dos totales: ese es el costo de oportunidad.", "Add the two totals: that is the opportunity cost."),
+            ],
+            example: t(
+              "Ana gana $8,000 al mes y piensa dejar su trabajo 6 meses para un curso de $1,000 al mes; su transporte cuesta lo mismo en ambos casos. Costo explícito: 1,000 × 6 = $6,000. Sueldo al que renuncia: 8,000 × 6 = $48,000. El transporte no cuenta. Costo de oportunidad = 6,000 + 48,000 = **$54,000**.",
+              "Ana earns $8,000 a month and is thinking of leaving her job for 6 months for a $1,000-a-month course; her transport costs the same either way. Explicit cost: 1,000 × 6 = $6,000. Salary given up: 8,000 × 6 = $48,000. Transport does not count. Opportunity cost = 6,000 + 48,000 = **$54,000**.",
+            ),
+            mistake: t(
+              "Contar solo lo que pagas y olvidar el sueldo que dejas de ganar, o sumar gastos que harías de todos modos.",
+              "Counting only what you pay and forgetting the salary you give up, or adding expenses you would have anyway.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Factores de producción y frontera de posibilidades", "Factors of production and the possibilities frontier"),
@@ -71,6 +95,32 @@ export const lessons: Lesson[] = [
           t("Trabajo: el esfuerzo de las personas. Su pago es el salario.", "Labor: people's effort. Its payment is wages."),
           t("Capital: herramientas, máquinas y edificios hechos para producir. Su pago es el interés.", "Capital: tools, machines and buildings made to produce. Its payment is interest."),
           t("Capacidad empresarial: organizar los demás factores y asumir el riesgo. Su pago es la ganancia.", "Entrepreneurship: organizing the other factors and taking the risk. Its payment is profit."),
+        ],
+        formulas: [
+          {
+            name: t("Costo de oportunidad en la frontera de posibilidades (intercambio constante)", "Opportunity cost on the possibilities frontier (constant trade-off)"),
+            expression: "Costo de 1 A = máximo de B ÷ máximo de A;  B posible = (máximo de A − A que haces) × costo de 1 A",
+            variables: [
+              { symbol: "máximo de A", meaning: t("Unidades del bien A que harías si usaras todos los recursos solo en A.", "Units of good A you would make using all resources only on A.") },
+              { symbol: "máximo de B", meaning: t("Unidades del bien B que harías si usaras todos los recursos solo en B.", "Units of good B you would make using all resources only on B.") },
+              { symbol: "costo de 1 A", meaning: t("Unidades de B a las que renuncias por cada unidad de A.", "Units of B you give up for each unit of A.") },
+              { symbol: "A que haces", meaning: t("Unidades de A que decides producir.", "Units of A you decide to produce.") },
+              { symbol: "B posible", meaning: t("Máximo de B que todavía puedes hacer con los recursos que sobran.", "Maximum B you can still make with the remaining resources.") },
+            ],
+            steps: [
+              t("Divide el máximo de B entre el máximo de A: eso cuesta cada unidad de A, medida en B.", "Divide the maximum of B by the maximum of A: that is what each unit of A costs, measured in B."),
+              t("Para saber cuánto B puedes hacer, resta al máximo de A lo que ya haces y multiplica por ese costo.", "To know how much B you can make, subtract what you already make from the maximum of A and multiply by that cost."),
+              t("Para saber cuánto B sacrificas al hacer más A, multiplica las unidades extra de A por el costo de 1 A.", "To know how much B you give up by making more A, multiply the extra units of A by the cost of 1 A."),
+            ],
+            example: t(
+              "Un taller de costura hace al mes 30 pantalones o 60 camisas. Costo de 1 pantalón = 60 ÷ 30 = 2 camisas. Si hace 20 pantalones: (30 − 20) × 2 = **20 camisas** posibles. Si pasa de 20 a 25 pantalones: 5 × 2 = **10 camisas** sacrificadas.",
+              "A sewing shop makes 30 pants or 60 shirts a month. Cost of 1 pair of pants = 60 ÷ 30 = 2 shirts. If it makes 20 pants: (30 − 20) × 2 = **20 shirts** possible. Going from 20 to 25 pants: 5 × 2 = **10 shirts** given up.",
+            ),
+            mistake: t(
+              "Invertir la división (30 ÷ 60 = 0.5): eso es el costo de una camisa medido en pantalones, no el de un pantalón.",
+              "Flipping the division (30 ÷ 60 = 0.5): that is the cost of one shirt measured in pants, not of one pair of pants.",
+            ),
+          },
         ],
       },
       {
@@ -146,7 +196,7 @@ export const lessons: Lesson[] = [
       "Las ideas económicas evolucionaron del mercantilismo y los clásicos como Adam Smith, a los marginalistas, Keynes y las escuelas actuales, y cada una respondió a los problemas de su época.",
       "Economic ideas evolved from mercantilism and classical thinkers such as Adam Smith to the marginalists, Keynes and today's schools, and each one responded to the problems of its time.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Describir las ideas centrales del mercantilismo y de los fisiócratas.", "Describe the central ideas of mercantilism and the physiocrats."),
       t("Explicar las aportaciones de Adam Smith, David Ricardo y la crítica de Karl Marx.", "Explain the contributions of Adam Smith, David Ricardo and Karl Marx's critique."),
@@ -186,6 +236,31 @@ export const lessons: Lesson[] = [
             "Mini ejemplo de división del trabajo: en una tortería, si una persona hace todo, prepara pocas tortas por hora; si una corta, otra arma y otra cobra, el equipo produce más por persona.",
             "Mini example of division of labor: in a sandwich shop, if one person does everything, few sandwiches are made per hour; if one slices, another assembles and another charges, the team produces more per person.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Efecto de la división del trabajo", "Effect of the division of labor"),
+            expression: "Producción por trabajador = producción total ÷ trabajadores;  Aumento (%) = (nuevo − anterior) ÷ anterior × 100",
+            variables: [
+              { symbol: "producción total", meaning: t("Unidades que hace todo el equipo en un tiempo dado (por ejemplo, por hora).", "Units the whole team makes in a given time (for example, per hour).") },
+              { symbol: "trabajadores", meaning: t("Número de personas del equipo.", "Number of people on the team.") },
+              { symbol: "anterior", meaning: t("Producción por trabajador antes de especializarse.", "Output per worker before specializing.") },
+              { symbol: "nuevo", meaning: t("Producción por trabajador después de especializarse.", "Output per worker after specializing.") },
+            ],
+            steps: [
+              t("Sin especializarse: producción total = trabajadores × lo que hace cada uno.", "Without specializing: total output = workers × what each one makes."),
+              t("Especializados: divide la producción total del equipo entre el número de trabajadores.", "Specialized: divide the team's total output by the number of workers."),
+              t("Calcula el aumento: (nuevo − anterior) ÷ anterior y multiplica por 100.", "Compute the increase: (new − old) ÷ old and multiply by 100."),
+            ],
+            example: t(
+              "En un taller de huaraches, 5 artesanos hacen 10 pares por día cada uno: 5 × 10 = 50 pares. Al especializarse hacen 70 pares entre todos: 70 ÷ 5 = 14 por artesano. Aumento: (14 − 10) ÷ 10 = 0.40 = **40 %**.",
+              "In a sandal workshop, 5 artisans make 10 pairs a day each: 5 × 10 = 50 pairs. When they specialize they make 70 pairs together: 70 ÷ 5 = 14 per artisan. Increase: (14 − 10) ÷ 10 = 0.40 = **40%**.",
+            ),
+            mistake: t(
+              "Dividir entre el valor nuevo ((14 − 10) ÷ 14 ≈ 29 %): el porcentaje de cambio siempre se mide contra el valor inicial.",
+              "Dividing by the new value ((14 − 10) ÷ 14 ≈ 29%): a percentage change is always measured against the starting value.",
+            ),
+          },
         ],
       },
       {
@@ -268,7 +343,7 @@ export const lessons: Lesson[] = [
       "La microeconomía estudia cómo hogares y empresas toman decisiones en el margen, responden a incentivos e interactúan en mercados donde los precios funcionan como señales.",
       "Microeconomics studies how households and firms make decisions at the margin, respond to incentives and interact in markets where prices work as signals.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Describir a los agentes de la microeconomía y el flujo circular entre hogares y empresas.", "Describe the agents of microeconomics and the circular flow between households and firms."),
       t("Tomar decisiones comparando beneficio marginal y costo marginal, ignorando costos hundidos.", "Make decisions by comparing marginal benefit and marginal cost, ignoring sunk costs."),
@@ -308,7 +383,49 @@ export const lessons: Lesson[] = [
             "A **sunk cost** is an expense you already made and cannot recover, like a non-refundable concert ticket. Since it does not change whatever you decide, **it should not influence the decision**. Mini example: if the oven cost $40,000 two years ago, that does not matter when deciding whether to bake one more batch today; the gas and flour for that batch do.",
           ),
         ],
-        formula: "Haz una unidad más si: beneficio marginal ≥ costo marginal",
+        formulas: [
+          {
+            name: t("Ganancia marginal: ¿conviene una unidad más?", "Marginal gain: is one more unit worth it?"),
+            expression: "Ganancia marginal = beneficio marginal − costo marginal;  beneficio marginal = unidades extra × precio",
+            variables: [
+              { symbol: "beneficio marginal", meaning: t("Ingreso extra que trae la decisión (una hora, una tanda, un trabajador más), en pesos.", "Extra income the decision brings (one more hour, batch or worker), in pesos.") },
+              { symbol: "unidades extra", meaning: t("Lo que se vende o produce de más gracias a esa decisión.", "What is sold or produced in addition thanks to that decision.") },
+              { symbol: "precio", meaning: t("Precio de venta de cada unidad, en pesos.", "Selling price of each unit, in pesos.") },
+              { symbol: "costo marginal", meaning: t("Solo los costos que aparecen por tomar la decisión (insumos, sueldo extra), en pesos. Los costos hundidos y fijos no cuentan.", "Only the costs that appear because of the decision (inputs, extra wages), in pesos. Sunk and fixed costs do not count.") },
+            ],
+            steps: [
+              t("Calcula el beneficio marginal: unidades extra × precio.", "Compute marginal benefit: extra units × price."),
+              t("Suma solo los costos que cambian por la decisión: ese es el costo marginal.", "Add only the costs that change because of the decision: that is marginal cost."),
+              t("Resta: beneficio marginal − costo marginal. Si es positivo (o cero), conviene hacerlo.", "Subtract: marginal benefit − marginal cost. If it is positive (or zero), do it."),
+            ],
+            example: t(
+              "Un puesto de jugos evalúa abrir una hora más: vendería 20 jugos a $25 y gastaría $150 de ayudante y $200 de fruta. Su renta mensual no cambia. Beneficio marginal: 20 × 25 = $500. Costo marginal: 150 + 200 = $350. Ganancia marginal: 500 − 350 = **$150**: sí conviene.",
+              "A juice stand is considering opening one more hour: it would sell 20 juices at $25 and spend $150 on a helper and $200 on fruit. Its monthly rent does not change. Marginal benefit: 20 × 25 = $500. Marginal cost: 150 + 200 = $350. Marginal gain: 500 − 350 = **$150**: it is worth it.",
+            ),
+            mistake: t(
+              "Meter en la cuenta la renta o lo que costó el equipo hace años: no cambian con esta decisión.",
+              "Including rent or what the equipment cost years ago in the calculation: they do not change with this decision.",
+            ),
+          },
+          {
+            name: t("¿Contratar un trabajador más?", "Hire one more worker?"),
+            expression: "Beneficio del trabajador extra = unidades que agrega × precio;  contrata si ≥ su costo",
+            variables: [
+              { symbol: "unidades que agrega", meaning: t("Producción extra que aporta ese trabajador adicional (no el promedio del equipo).", "Extra output that additional worker brings (not the team average).") },
+              { symbol: "precio", meaning: t("Lo que cobras por unidad, en pesos.", "What you charge per unit, in pesos.") },
+              { symbol: "su costo", meaning: t("Lo que te cuesta ese trabajador (por ejemplo, su pago diario), en pesos.", "What that worker costs you (for example, daily pay), in pesos.") },
+            ],
+            steps: [
+              t("Para cada trabajador adicional, multiplica lo que agrega por el precio.", "For each additional worker, multiply what they add by the price."),
+              t("Compara con su costo: si el beneficio es mayor o igual, conviene; si es menor, no.", "Compare with their cost: if the benefit is greater or equal, hire; if it is lower, do not."),
+              t("Contrata hasta el último trabajador que todavía conviene.", "Hire up to the last worker who is still worth it."),
+            ],
+            example: t(
+              "Una estética cobra $100 por corte y paga $450 al día por estilista. El 2.º estilista agrega 6 cortes, el 3.º agrega 5 y el 4.º agregaría 2. 2.º: 6 × 100 = 600 − 450 = +$150. 3.º: 5 × 100 = 500 − 450 = +$50. 4.º: 2 × 100 = 200 < 450, perdería $250. Conviene tener **3 estilistas**.",
+              "A hair salon charges $100 per haircut and pays $450 a day per stylist. The 2nd stylist adds 6 haircuts, the 3rd adds 5 and the 4th would add 2. 2nd: 6 × 100 = 600 − 450 = +$150. 3rd: 5 × 100 = 500 − 450 = +$50. 4th: 2 × 100 = 200 < 450, would lose $250. It should have **3 stylists**.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Precios, incentivos y fallas de mercado", "Prices, incentives and market failures"),
@@ -389,7 +506,7 @@ export const lessons: Lesson[] = [
       "La macroeconomía estudia la economía de un país en conjunto: su producción total, el nivel general de precios, el empleo y los ciclos de auge y recesión, y cómo los gobiernos y bancos centrales buscan estabilizarlos.",
       "Macroeconomics studies a country's economy as a whole: its total output, the general price level, employment and boom-and-recession cycles, and how governments and central banks try to stabilize them.",
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Distinguir preguntas macroeconómicas de microeconómicas y reconocer la falacia de composición.", "Distinguish macroeconomic from microeconomic questions and recognize the fallacy of composition."),
       t("Nombrar los grandes objetivos macroeconómicos y los indicadores que los miden.", "Name the main macroeconomic goals and the indicators that measure them."),
@@ -436,7 +553,33 @@ export const lessons: Lesson[] = [
           t("Empleo: que quien quiere trabajar encuentre trabajo (se mide con la tasa de desempleo).", "Employment: whoever wants to work finds a job (measured with the unemployment rate)."),
           t("Equilibrio externo: cuentas sanas con el resto del mundo (balanza de pagos).", "External balance: healthy accounts with the rest of the world (balance of payments)."),
         ],
-        formula: "Tasa de crecimiento (%) = (valor nuevo − valor anterior) ÷ valor anterior × 100",
+        formulas: [
+          {
+            name: t("Tasa de crecimiento", "Growth rate"),
+            expression: "Tasa de crecimiento (%) = (valor nuevo − valor anterior) ÷ valor anterior × 100",
+            variables: [
+              { symbol: "valor nuevo", meaning: t("El dato del periodo que analizas (por ejemplo, la producción de este trimestre).", "The figure for the period you are analyzing (for example, this quarter\'s output).") },
+              { symbol: "valor anterior", meaning: t("El dato del periodo inmediato anterior, que sirve de base.", "The figure for the period just before, which serves as the base.") },
+            ],
+            steps: [
+              t("Resta: valor nuevo − valor anterior (puede salir negativo).", "Subtract: new value − previous value (it can be negative)."),
+              t("Divide ese cambio entre el valor anterior.", "Divide that change by the previous value."),
+              t("Multiplica por 100 para expresarlo en %.", "Multiply by 100 to express it in %."),
+            ],
+            example: t(
+              "Producción hipotética: T1 = 800, T2 = 836, T3 = 820. T2: (836 − 800) ÷ 800 = 36 ÷ 800 = 0.045 = **4.5 %**. T3: (820 − 836) ÷ 836 = −16 ÷ 836 = −0.019 = **−1.9 %** (cayó).",
+              "Hypothetical output: Q1 = 800, Q2 = 836, Q3 = 820. Q2: (836 − 800) ÷ 800 = 36 ÷ 800 = 0.045 = **4.5%**. Q3: (820 − 836) ÷ 836 = −16 ÷ 836 = −0.019 = **−1.9%** (it fell).",
+            ),
+            interpret: t(
+              "Positivo: la economía creció; negativo: se contrajo. Si salen **dos trimestres seguidos negativos**, la regla práctica dice que hay recesión.",
+              "Positive: the economy grew; negative: it contracted. If **two quarters in a row are negative**, the rule of thumb says there is a recession.",
+            ),
+            mistake: t(
+              "Comparar contra un periodo que no es el inmediato anterior (por ejemplo, T3 contra T1) o dividir entre el valor nuevo.",
+              "Comparing against a period that is not the one just before (for example, Q3 against Q1) or dividing by the new value.",
+            ),
+          },
+        ],
       },
       {
         heading: t("El ciclo económico y quién lo estabiliza", "The business cycle and who stabilizes it"),
@@ -513,7 +656,7 @@ export const lessons: Lesson[] = [
       "El precio de mercado surge donde la cantidad que los compradores quieren comprar iguala la que los vendedores quieren vender, y la elasticidad mide cuánto reacciona la cantidad cuando cambia el precio.",
       "The market price arises where the quantity buyers want to buy equals what sellers want to sell, and elasticity measures how much quantity reacts when the price changes.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Explicar la ley de la demanda y distinguir un movimiento sobre la curva de un desplazamiento.", "Explain the law of demand and distinguish a movement along the curve from a shift."),
       t("Explicar la ley de la oferta y encontrar el precio y la cantidad de equilibrio.", "Explain the law of supply and find the equilibrium price and quantity."),
@@ -560,14 +703,38 @@ export const lessons: Lesson[] = [
             "Mini example with simple equations: demand Qd = 100 − 2P and supply Qs = 20 + 2P. Set them equal: 100 − 2P = 20 + 2P, so 80 = 4P and **P = $20**; quantity is 100 − 40 = **60 units**.",
           ),
         ],
-        formula: "Equilibrio: cantidad demandada (Qd) = cantidad ofrecida (Qs)",
+        formulas: [
+          {
+            name: t("Precio y cantidad de equilibrio", "Equilibrium price and quantity"),
+            expression: "Qd = Qs  →  despeja P;  escasez o excedente = Qd − Qs a un precio dado",
+            variables: [
+              { symbol: "Qd", meaning: t("Cantidad demandada: cuántas unidades quieren comprar a cada precio.", "Quantity demanded: how many units people want to buy at each price.") },
+              { symbol: "Qs", meaning: t("Cantidad ofrecida: cuántas unidades quieren vender a cada precio.", "Quantity supplied: how many units sellers want to sell at each price.") },
+              { symbol: "P", meaning: t("Precio, en pesos.", "Price, in pesos.") },
+            ],
+            steps: [
+              t("Iguala las dos ecuaciones: lo de la demanda = lo de la oferta.", "Set the two equations equal: the demand side = the supply side."),
+              t("Pasa los números a un lado y las P al otro, y divide para despejar P.", "Move the numbers to one side and the P terms to the other, then divide to solve for P."),
+              t("Sustituye ese precio en cualquiera de las dos ecuaciones para obtener la cantidad.", "Plug that price into either equation to get the quantity."),
+              t("Con otro precio, calcula Qd y Qs por separado y réstalos: si Qd > Qs hay escasez; si Qs > Qd hay excedente.", "At another price, compute Qd and Qs separately and subtract: if Qd > Qs there is a shortage; if Qs > Qd there is a surplus."),
+            ],
+            example: t(
+              "Qd = 200 − 4P y Qs = 50 + 2P. Igualamos: 200 − 4P = 50 + 2P → 150 = 6P → **P = $25**. Cantidad: 200 − 4 × 25 = **100 unidades**. A $20: Qd = 200 − 80 = 120 y Qs = 50 + 40 = 90 → escasez de 120 − 90 = **30 unidades**.",
+              "Qd = 200 − 4P and Qs = 50 + 2P. Set equal: 200 − 4P = 50 + 2P → 150 = 6P → **P = $25**. Quantity: 200 − 4 × 25 = **100 units**. At $20: Qd = 200 − 80 = 120 and Qs = 50 + 40 = 90 → shortage of 120 − 90 = **30 units**.",
+            ),
+            mistake: t(
+              "Llamar excedente a la diferencia cuando el precio está por debajo del equilibrio: abajo del equilibrio siempre hay escasez.",
+              "Calling the gap a surplus when the price is below equilibrium: below equilibrium there is always a shortage.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Elasticidad precio de la demanda", "Price elasticity of demand"),
         body: [
           t(
-            "La **elasticidad precio de la demanda** mide **qué tanto** reacciona la cantidad demandada cuando cambia el precio. Se calcula dividiendo el cambio porcentual de la cantidad entre el cambio porcentual del precio. Como casi siempre sale negativa (precio y cantidad se mueven al revés), se suele leer su **valor absoluto**. En este tema usamos el valor inicial como base del porcentaje; existe también el método del punto medio, que da resultados un poco distintos.",
-            "**Price elasticity of demand** measures **how much** quantity demanded reacts when the price changes. It is computed by dividing the percentage change in quantity by the percentage change in price. Since it is almost always negative (price and quantity move in opposite directions), we usually read its **absolute value**. In this topic we use the initial value as the base for percentages; there is also the midpoint method, which gives slightly different results.",
+            "La **elasticidad precio de la demanda** mide **qué tanto** reacciona la cantidad demandada cuando cambia el precio. Se calcula dividiendo el cambio porcentual de la cantidad entre el cambio porcentual del precio. Como casi siempre sale negativa (precio y cantidad se mueven al revés), se suele leer su **valor absoluto** (el número sin el signo menos: −2.5 se lee 2.5). En este tema usamos el valor inicial como base del porcentaje; existe también el método del punto medio, que da resultados un poco distintos.",
+            "**Price elasticity of demand** measures **how much** quantity demanded reacts when the price changes. It is computed by dividing the percentage change in quantity by the percentage change in price. Since it is almost always negative (price and quantity move in opposite directions), we usually read its **absolute value** (the number without the minus sign: −2.5 is read as 2.5). In this topic we use the initial value as the base for percentages; there is also the midpoint method, which gives slightly different results.",
           ),
           t(
             "Si el valor absoluto es **mayor que 1**, la demanda es **elástica**: la gente reacciona mucho (hay muchos sustitutos, como una marca de papas entre muchas). Si es **menor que 1**, es **inelástica**: la gente casi no reacciona (bienes necesarios y sin sustitutos, como la insulina o la sal).",
@@ -578,7 +745,52 @@ export const lessons: Lesson[] = [
             "This matters for the seller's **total revenue** (price × quantity). With **inelastic** demand, raising the price **increases** total revenue; with **elastic** demand, raising the price **reduces** it. Mini example: if the price rises 10% and quantity falls 25%, elasticity is 25 ÷ 10 = **2.5**: elastic, so raising the price cuts revenue.",
           ),
         ],
-        formula: "Elasticidad = % cambio en cantidad demandada ÷ % cambio en precio",
+        formulas: [
+          {
+            name: t("Elasticidad precio de la demanda", "Price elasticity of demand"),
+            expression: "Ed = %Δ cantidad demandada ÷ %Δ precio;  %Δ = (nuevo − inicial) ÷ inicial × 100",
+            variables: [
+              { symbol: "Ed", meaning: t("Elasticidad: cuántas veces reacciona la cantidad frente al precio (número sin unidades; se lee sin signo).", "Elasticity: how many times quantity reacts relative to price (a unitless number; read without the sign).") },
+              { symbol: "%Δ", meaning: t("Cambio porcentual: cuánto cambió algo, en %, respecto a su valor inicial.", "Percentage change: how much something changed, in %, relative to its starting value.") },
+              { symbol: "cantidad demandada", meaning: t("Unidades que compra la gente.", "Units people buy.") },
+              { symbol: "precio", meaning: t("Precio del bien, en pesos.", "Price of the good, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el % de cambio del precio: (precio nuevo − inicial) ÷ inicial × 100.", "Compute the % change in price: (new price − starting price) ÷ starting price × 100."),
+              t("Calcula el % de cambio de la cantidad de la misma forma.", "Compute the % change in quantity the same way."),
+              t("Divide el % de la cantidad entre el % del precio (cantidad arriba, precio abajo) y quita el signo menos.", "Divide the quantity % by the price % (quantity on top, price below) and drop the minus sign."),
+            ],
+            example: t(
+              "Una tortillería sube el kilo de $40 a $50 y sus ventas bajan de 300 a 270 kg al día. Precio: (50 − 40) ÷ 40 = 25 %. Cantidad: (270 − 300) ÷ 300 = −10 %. Ed = 10 ÷ 25 = **0.4**: demanda inelástica.",
+              "A tortilla shop raises the kilo from $40 to $50 and its sales fall from 300 to 270 kg a day. Price: (50 − 40) ÷ 40 = 25%. Quantity: (270 − 300) ÷ 300 = −10%. Ed = 10 ÷ 25 = **0.4**: inelastic demand.",
+            ),
+            interpret: t(
+              "Mayor que 1: elástica (la gente reacciona mucho; subir el precio baja el ingreso). Menor que 1: inelástica (reacciona poco; subir el precio sube el ingreso). Igual a 1: unitaria.",
+              "Above 1: elastic (people react a lot; raising the price lowers revenue). Below 1: inelastic (they react little; raising the price raises revenue). Equal to 1: unit elastic.",
+            ),
+            mistake: t(
+              "Dividir al revés (% precio ÷ % cantidad): cambia por completo la conclusión.",
+              "Dividing the other way around (% price ÷ % quantity): it completely changes the conclusion.",
+            ),
+          },
+          {
+            name: t("Ingreso total del vendedor", "Seller\'s total revenue"),
+            expression: "Ingreso total = precio × cantidad vendida",
+            variables: [
+              { symbol: "precio", meaning: t("Precio por unidad, en pesos.", "Price per unit, in pesos.") },
+              { symbol: "cantidad vendida", meaning: t("Unidades vendidas en el periodo.", "Units sold in the period.") },
+            ],
+            steps: [
+              t("Calcula el ingreso antes del cambio: precio inicial × cantidad inicial.", "Compute revenue before the change: starting price × starting quantity."),
+              t("Calcula el ingreso después: precio nuevo × cantidad nueva.", "Compute revenue after: new price × new quantity."),
+              t("Compara: la diferencia te dice si el cambio de precio te convino.", "Compare: the difference tells you whether the price change paid off."),
+            ],
+            example: t(
+              "Con la tortillería anterior: antes 40 × 300 = $12,000; después 50 × 270 = $13,500. El ingreso sube **$1,500**, como se esperaba con demanda inelástica.",
+              "With the same tortilla shop: before 40 × 300 = $12,000; after 50 × 270 = $13,500. Revenue rises by **$1,500**, as expected with inelastic demand.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -637,7 +849,7 @@ export const lessons: Lesson[] = [
       "El consumidor reparte su presupuesto buscando la mayor satisfacción por cada peso, y el productor combina insumos y costos para producir hasta donde el ingreso extra cubre el costo extra.",
       "The consumer splits a budget seeking the greatest satisfaction per peso, and the producer combines inputs and costs to produce up to the point where extra revenue covers extra cost.",
     ),
-    minutes: 17,
+    minutes: 20,
     objectives: [
       t("Explicar la utilidad total y marginal y la ley de utilidad marginal decreciente.", "Explain total and marginal utility and the law of diminishing marginal utility."),
       t("Usar la restricción presupuestaria y la regla de utilidad marginal por peso para elegir.", "Use the budget constraint and the marginal-utility-per-peso rule to choose."),
@@ -661,7 +873,30 @@ export const lessons: Lesson[] = [
             "Mini example with hypothetical satisfaction points: 1 taco = 10, 2 tacos = 18, 3 tacos = 24, 4 tacos = 28. Marginal utility is 10, 8, 6 and 4: always positive, but decreasing.",
           ),
         ],
-        formula: "Utilidad marginal = cambio en utilidad total ÷ cambio en cantidad",
+        formulas: [
+          {
+            name: t("Utilidad marginal", "Marginal utility"),
+            expression: "Utilidad marginal = cambio en utilidad total ÷ cambio en cantidad",
+            variables: [
+              { symbol: "Utilidad marginal", meaning: t("Satisfacción extra que da la última unidad consumida, en puntos.", "Extra satisfaction from the last unit consumed, in points.") },
+              { symbol: "utilidad total", meaning: t("Satisfacción de todo lo consumido hasta ese momento, en puntos.", "Satisfaction from everything consumed so far, in points.") },
+              { symbol: "cambio en cantidad", meaning: t("Unidades que agregas; casi siempre es 1.", "Units you add; it is almost always 1.") },
+            ],
+            steps: [
+              t("Toma la utilidad total con la unidad que te interesa.", "Take total utility including the unit you care about."),
+              t("Réstale la utilidad total con una unidad menos.", "Subtract total utility with one unit fewer."),
+              t("Si agregaste una sola unidad, ese resultado ya es la utilidad marginal.", "If you added just one unit, that result is already the marginal utility."),
+            ],
+            example: t(
+              "Utilidad total de comer elotes: 1 = 15, 2 = 27, 3 = 35, 4 = 39. Tercer elote: 35 − 27 = **8 puntos**. La serie completa es 15, 12, 8 y 4: decreciente.",
+              "Total utility from eating corn cobs: 1 = 15, 2 = 27, 3 = 35, 4 = 39. Third cob: 35 − 27 = **8 points**. The full series is 15, 12, 8 and 4: decreasing.",
+            ),
+            mistake: t(
+              "Responder la utilidad total (35) en lugar de la satisfacción extra de la última unidad (8).",
+              "Answering total utility (35) instead of the extra satisfaction from the last unit (8).",
+            ),
+          },
+        ],
       },
       {
         heading: t("Presupuesto y la mejor elección", "Budget and the best choice"),
@@ -679,7 +914,54 @@ export const lessons: Lesson[] = [
             "Mini example: a $20 soda gives you 40 extra points (2 per peso) and a $30 ice cream gives you 45 (1.5 per peso). Per peso, the soda yields more: it pays to move money from ice cream to soda until they equalize.",
           ),
         ],
-        formula: "Mejor elección: UMg de A ÷ precio de A = UMg de B ÷ precio de B",
+        formulas: [
+          {
+            name: t("Restricción presupuestaria", "Budget constraint"),
+            expression: "precio A × cantidad A + precio B × cantidad B ≤ presupuesto;  costo de 1 A (en B) = precio A ÷ precio B",
+            variables: [
+              { symbol: "presupuesto", meaning: t("El dinero que tienes para gastar, en pesos.", "The money you have to spend, in pesos.") },
+              { symbol: "precio A, precio B", meaning: t("Lo que cuesta una unidad de cada bien, en pesos.", "What one unit of each good costs, in pesos.") },
+              { symbol: "cantidad A, cantidad B", meaning: t("Unidades que compras de cada bien.", "Units you buy of each good.") },
+              { symbol: "costo de 1 A (en B)", meaning: t("Precio relativo: cuántas unidades de B dejas por comprar una de A.", "Relative price: how many units of B you give up to buy one of A.") },
+            ],
+            steps: [
+              t("Máximo de un solo bien: presupuesto ÷ su precio.", "Maximum of one good only: budget ÷ its price."),
+              t("Si ya compraste cierta cantidad de A, resta lo gastado al presupuesto: precio A × cantidad A.", "If you already bought some A, subtract what you spent from the budget: price A × quantity A."),
+              t("Divide lo que sobra entre el precio de B para saber cuánto B alcanza.", "Divide what is left by the price of B to know how much B you can afford."),
+              t("Para el costo de oportunidad, divide precio de A entre precio de B.", "For the opportunity cost, divide the price of A by the price of B."),
+            ],
+            example: t(
+              "Tienes $500; un café cuesta $50 y un pan $25. Solo café: 500 ÷ 50 = **10 cafés**. Con 6 cafés gastas 6 × 50 = $300 y sobran $200: 200 ÷ 25 = **8 panes**. Costo de 1 café = 50 ÷ 25 = **2 panes**.",
+              "You have $500; a coffee costs $50 and a pastry $25. Coffee only: 500 ÷ 50 = **10 coffees**. With 6 coffees you spend 6 × 50 = $300 and $200 is left: 200 ÷ 25 = **8 pastries**. Cost of 1 coffee = 50 ÷ 25 = **2 pastries**.",
+            ),
+            mistake: t(
+              "Invertir el precio relativo (25 ÷ 50 = 0.5): eso es el costo de un pan medido en cafés.",
+              "Flipping the relative price (25 ÷ 50 = 0.5): that is the cost of one pastry measured in coffees.",
+            ),
+          },
+          {
+            name: t("Mejor elección: utilidad marginal por peso", "Best choice: marginal utility per peso"),
+            expression: "UMg de A ÷ precio de A = UMg de B ÷ precio de B",
+            variables: [
+              { symbol: "UMg", meaning: t("Utilidad marginal: satisfacción extra de una unidad más, en puntos.", "Marginal utility: extra satisfaction from one more unit, in points.") },
+              { symbol: "precio", meaning: t("Precio de una unidad del bien, en pesos.", "Price of one unit of the good, in pesos.") },
+              { symbol: "UMg ÷ precio", meaning: t("Puntos de satisfacción que obtienes por cada peso gastado en ese bien.", "Satisfaction points you get for each peso spent on that good.") },
+            ],
+            steps: [
+              t("Divide la utilidad marginal de cada bien entre su precio.", "Divide each good\'s marginal utility by its price."),
+              t("Compara: el bien con más puntos por peso es el que más te rinde.", "Compare: the good with more points per peso gives you more."),
+              t("Mueve dinero hacia ese bien hasta que los puntos por peso se igualen o se acabe el presupuesto.", "Move money toward that good until the points per peso are equal or the budget runs out."),
+            ],
+            example: t(
+              "Una playera de $250 te da 500 puntos extra: 500 ÷ 250 = 2 puntos por peso. Una gorra de $150 te da 150: 150 ÷ 150 = 1 punto por peso. La playera rinde el **doble por peso**: conviene pasar dinero de la gorra a la playera.",
+              "A $250 T-shirt gives you 500 extra points: 500 ÷ 250 = 2 points per peso. A $150 cap gives you 150: 150 ÷ 150 = 1 point per peso. The T-shirt yields **twice as much per peso**: move money from the cap to the T-shirt.",
+            ),
+            mistake: t(
+              "Decidir solo por el precio más bajo o solo por la utilidad más alta: hay que comparar utilidad por peso.",
+              "Deciding only by the lowest price or only by the highest utility: you must compare utility per peso.",
+            ),
+          },
+        ],
       },
       {
         heading: t("El productor: producción y costos", "The producer: production and costs"),
@@ -697,7 +979,38 @@ export const lessons: Lesson[] = [
             "The firm seeks the highest **profit** (total revenue − total cost). Its rule is the same as thinking at the margin: **produce as long as marginal revenue is greater than or equal to marginal cost**. Mini example: if each cake sells for $250 and the next one costs $180 to make, it should be baked; if the next one cost $270, it should not.",
           ),
         ],
-        formula: "Costo total = costo fijo + costo variable · Costo promedio = costo total ÷ unidades",
+        formulas: [
+          {
+            name: t("Costos y ganancia de un negocio", "Costs and profit of a business"),
+            expression: "CV = unidades × costo variable por unidad;  CT = CF + CV;  CP = CT ÷ unidades;  Ganancia = precio × unidades − CT",
+            variables: [
+              { symbol: "CF", meaning: t("Costo fijo: lo que pagas igual produzcas o no (renta, luz base), en pesos.", "Fixed cost: what you pay whether or not you produce (rent, base electricity), in pesos.") },
+              { symbol: "CV", meaning: t("Costo variable: crece con cada unidad (materiales, pago a destajo), en pesos.", "Variable cost: grows with each unit (materials, piece-rate pay), in pesos.") },
+              { symbol: "CT", meaning: t("Costo total: fijo + variable, en pesos.", "Total cost: fixed + variable, in pesos.") },
+              { symbol: "CP", meaning: t("Costo promedio: lo que cuesta en promedio cada unidad, en pesos.", "Average cost: what each unit costs on average, in pesos.") },
+              { symbol: "unidades", meaning: t("Cantidad producida y vendida en el periodo.", "Quantity produced and sold in the period.") },
+              { symbol: "Ganancia", meaning: t("Ingreso total menos costo total, en pesos.", "Total revenue minus total cost, in pesos.") },
+            ],
+            steps: [
+              t("Costo variable: unidades × costo por unidad.", "Variable cost: units × cost per unit."),
+              t("Costo total: suma el costo fijo y el variable.", "Total cost: add fixed and variable cost."),
+              t("Costo promedio: divide el costo total entre las unidades.", "Average cost: divide total cost by units."),
+              t("Ganancia: ingreso (precio × unidades) menos costo total.", "Profit: revenue (price × units) minus total cost."),
+            ],
+            example: t(
+              "Una tamalería tiene costo fijo de $3,000 al mes y gasta $8 por tamal; hace y vende 1,000 tamales a $15. CV = 1,000 × 8 = $8,000. CT = 3,000 + 8,000 = $11,000. CP = 11,000 ÷ 1,000 = $11 por tamal. Ingreso = 1,000 × 15 = $15,000. Ganancia = 15,000 − 11,000 = **$4,000**.",
+              "A tamale shop has a fixed cost of $3,000 a month and spends $8 per tamale; it makes and sells 1,000 tamales at $15. VC = 1,000 × 8 = $8,000. TC = 3,000 + 8,000 = $11,000. AC = 11,000 ÷ 1,000 = $11 per tamale. Revenue = 1,000 × 15 = $15,000. Profit = 15,000 − 11,000 = **$4,000**.",
+            ),
+            interpret: t(
+              "Si el precio es mayor que el costo promedio, hay ganancia. Al producir más, el costo fijo se reparte entre más piezas y el costo promedio baja.",
+              "If the price is above average cost, there is a profit. Producing more spreads the fixed cost over more pieces and average cost falls.",
+            ),
+            mistake: t(
+              "Usar solo el costo variable por unidad como si fuera el costo de cada pieza: olvida repartir el costo fijo.",
+              "Using only the variable cost per unit as if it were each piece\'s cost: it forgets to spread the fixed cost.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
