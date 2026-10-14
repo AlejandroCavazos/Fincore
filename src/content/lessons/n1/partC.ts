@@ -21,7 +21,7 @@ export const lessons: Lesson[] = [
       es: "La cuenta T es un dibujo sencillo para ver todos los movimientos de una cuenta y calcular su saldo.",
       en: "The T-account is a simple drawing to see all the movements of one account and work out its balance.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Describir las partes de una cuenta T: nombre, debe y haber.", en: "Describe the parts of a T-account: name, debit side and credit side." },
       { es: "Anotar cargos y abonos en la cuenta T correcta.", en: "Post debits and credits to the right T-account." },
@@ -87,7 +87,58 @@ export const lessons: Lesson[] = [
             en: "Mini example: Cash on hand has $5,000 + $800 + $1,200 = $7,000 on the debit side and $2,000 + $500 = $2,500 on the credit side. Balance = 7,000 − 2,500 = **$4,500 debit**.",
           },
         ],
-        formula: "Saldo deudor = Suma del debe − Suma del haber\nSaldo acreedor = Suma del haber − Suma del debe",
+        formulas: [
+          {
+            name: { es: "Saldo de una cuenta deudora (activo o gasto)", en: "Balance of a debit-nature account (asset or expense)" },
+            expression: "Saldo deudor = Suma del debe − Suma del haber",
+            variables: [
+              { symbol: "Saldo deudor", meaning: { es: "Lo que queda en la cuenta al final, en pesos. En Caja o Bancos es el dinero que todavía tienes.", en: "What is left in the account at the end, in pesos. In Cash on hand or Bank it is the money you still have." } },
+              { symbol: "Suma del debe", meaning: { es: "El saldo inicial más todos los cargos (lo anotado del lado izquierdo), en pesos.", en: "The opening balance plus all the debits (what is written on the left side), in pesos." } },
+              { symbol: "Suma del haber", meaning: { es: "Todos los abonos (lo anotado del lado derecho), en pesos.", en: "All the credits (what is written on the right side), in pesos." } },
+            ],
+            steps: [
+              { es: "Anota el saldo inicial en el debe, porque un activo tiene naturaleza deudora.", en: "Write the opening balance on the debit side, because an asset has a debit nature." },
+              { es: "Suma el saldo inicial y todos los cargos: esa es la suma del debe.", en: "Add the opening balance and all the debits: that is the total of the debit side." },
+              { es: "Suma todos los abonos: esa es la suma del haber.", en: "Add all the credits: that is the total of the credit side." },
+              { es: "Resta: suma del debe − suma del haber. Si da positivo, el saldo es deudor; si da cero, la cuenta está saldada.", en: "Subtract: debit total − credit total. If positive, it is a debit balance; if zero, the account is settled." },
+            ],
+            example: {
+              es: "Caja de una nevería: saldo inicial $2,000; ventas en efectivo $1,500 y $700; paga hielo $400 y servilletas $300. Suma del debe = 2,000 + 1,500 + 700 = $4,200. Suma del haber = 400 + 300 = $700. Saldo = 4,200 − 700 = **$3,500 deudor**.",
+              en: "Cash on hand of an ice-cream shop: opening balance $2,000; cash sales $1,500 and $700; pays $400 for ice and $300 for napkins. Debit total = 2,000 + 1,500 + 700 = $4,200. Credit total = 400 + 300 = $700. Balance = 4,200 − 700 = **$3,500 debit**.",
+            },
+            interpret: {
+              es: "En un activo, el saldo deudor es lo que el negocio tiene o le deben al final. Si te diera negativo en Caja, revisa: no puede salir más dinero del que hay.",
+              en: "In an asset, the debit balance is what the business has or is owed at the end. If Cash on hand came out negative, check your work: more money cannot leave than there is.",
+            },
+            mistake: {
+              es: "Olvidar sumar el saldo inicial en el debe y calcular solo con los movimientos del mes.",
+              en: "Forgetting to include the opening balance in the debit total and using only the month's movements.",
+            },
+          },
+          {
+            name: { es: "Saldo de una cuenta acreedora (pasivo, capital o ingreso)", en: "Balance of a credit-nature account (liability, equity or revenue)" },
+            expression: "Saldo acreedor = Suma del haber − Suma del debe",
+            variables: [
+              { symbol: "Saldo acreedor", meaning: { es: "Lo que queda en la cuenta al final, en pesos. En Proveedores es lo que todavía debes.", en: "What is left in the account at the end, in pesos. In Accounts payable it is what you still owe." } },
+              { symbol: "Suma del haber", meaning: { es: "El saldo inicial más todos los abonos (por ejemplo, deudas nuevas), en pesos.", en: "The opening balance plus all the credits (for example, new debts), in pesos." } },
+              { symbol: "Suma del debe", meaning: { es: "Todos los cargos (por ejemplo, los pagos que reducen la deuda), en pesos.", en: "All the debits (for example, payments that reduce the debt), in pesos." } },
+            ],
+            steps: [
+              { es: "Anota el saldo inicial en el haber, porque un pasivo tiene naturaleza acreedora.", en: "Write the opening balance on the credit side, because a liability has a credit nature." },
+              { es: "Suma el saldo inicial y todas las deudas nuevas: esa es la suma del haber.", en: "Add the opening balance and all the new debts: that is the credit total." },
+              { es: "Suma todos los pagos: esa es la suma del debe.", en: "Add all the payments: that is the debit total." },
+              { es: "Resta: suma del haber − suma del debe. El resultado es lo que todavía se debe.", en: "Subtract: credit total − debit total. The result is what is still owed." },
+            ],
+            example: {
+              es: "Proveedores de una ferretería: saldo inicial $10,000; compra a crédito $6,000; paga $3,000 y $2,500. Suma del haber = 10,000 + 6,000 = $16,000. Suma del debe = 3,000 + 2,500 = $5,500. Saldo = 16,000 − 5,500 = **$10,500 acreedor**.",
+              en: "Accounts payable of a hardware store: opening balance $10,000; buys on credit $6,000; pays $3,000 and $2,500. Credit total = 10,000 + 6,000 = $16,000. Debit total = 3,000 + 2,500 = $5,500. Balance = 16,000 − 5,500 = **$10,500 credit**.",
+            },
+            mistake: {
+              es: "Restar una deuda nueva (por ejemplo, un pagaré nuevo) como si fuera un pago. Las deudas nuevas se suman en el haber; solo los pagos van al debe.",
+              en: "Subtracting a new debt (for example, a new promissory note) as if it were a payment. New debts are added on the credit side; only payments go on the debit side.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -140,7 +191,7 @@ export const lessons: Lesson[] = [
       es: "El ciclo contable es la ruta que sigue cada operación: se identifica, se registra en el diario, se pasa al mayor, se comprueba en la balanza y al final del periodo se ajusta y se cierra.",
       en: "The accounting cycle is the path each transaction follows: it is identified, recorded in the journal, posted to the ledger, checked in the trial balance and, at period end, adjusted and closed.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Reconocer qué hechos son transacciones que se registran.", en: "Recognize which events are transactions that get recorded." },
       { es: "Distinguir el libro diario del libro mayor.", en: "Tell the journal apart from the general ledger." },
@@ -204,7 +255,37 @@ export const lessons: Lesson[] = [
             en: "Mini example: debit balances: Bank $60,000, Furniture $25,000, Rent $8,000 = $93,000. Credit balances: Accounts payable $15,000, Share capital $60,000, Sales $18,000 = $93,000. **It balances.**",
           },
         ],
-        formula: "Total de saldos deudores = Total de saldos acreedores",
+        formulas: [
+          {
+            name: { es: "Comprobar la balanza (y encontrar un saldo que falta)", en: "Checking the trial balance (and finding a missing balance)" },
+            expression: "Total de saldos deudores = Total de saldos acreedores  →  Saldo faltante = Total de la otra columna − Saldos conocidos de su columna",
+            variables: [
+              { symbol: "Total de saldos deudores", meaning: { es: "La suma, en pesos, de los saldos de activos y gastos (columna deudora).", en: "The sum, in pesos, of the asset and expense balances (debit column)." } },
+              { symbol: "Total de saldos acreedores", meaning: { es: "La suma, en pesos, de los saldos de pasivos, capital e ingresos (columna acreedora).", en: "The sum, in pesos, of the liability, equity and revenue balances (credit column)." } },
+              { symbol: "Saldo faltante", meaning: { es: "El saldo de la cuenta que no conoces, en pesos: el que hace que las dos columnas sumen lo mismo.", en: "The balance of the account you do not know, in pesos: the one that makes both columns add up to the same." } },
+              { symbol: "Total de la otra columna", meaning: { es: "La suma completa de la columna donde ya conoces todos los saldos, en pesos.", en: "The full total of the column where you already know every balance, in pesos." } },
+              { symbol: "Saldos conocidos de su columna", meaning: { es: "La suma de los saldos que sí conoces en la columna donde está el dato que falta, en pesos.", en: "The sum of the balances you do know in the column where the missing figure is, in pesos." } },
+            ],
+            steps: [
+              { es: "Pon cada cuenta en su columna: activos y gastos en la deudora; pasivos, capital e ingresos en la acreedora.", en: "Put each account in its column: assets and expenses in the debit column; liabilities, equity and revenue in the credit column." },
+              { es: "Suma cada columna.", en: "Add up each column." },
+              { es: "Compara: si los dos totales son iguales, la balanza cuadra.", en: "Compare: if both totals are equal, the trial balance balances." },
+              { es: "Si falta un saldo, réstale al total de la columna completa los saldos conocidos de la otra columna.", en: "If a balance is missing, subtract the known balances of its column from the total of the complete column." },
+            ],
+            example: {
+              es: "Un consultorio: Bancos $30,000, Mobiliario $20,000 y Renta $5,000 (deudores) = 30,000 + 20,000 + 5,000 = $55,000. Acreedores: Proveedores $8,000, Ingresos por consultas $12,000 y Capital social (falta). Conocidos = 8,000 + 12,000 = $20,000. Capital social = 55,000 − 20,000 = **$35,000**. Comprobación: 8,000 + 12,000 + 35,000 = $55,000.",
+              en: "A doctor's office: Bank $30,000, Furniture $20,000 and Rent $5,000 (debit) = 30,000 + 20,000 + 5,000 = $55,000. Credit: Accounts payable $8,000, Consultation revenue $12,000 and Share capital (missing). Known = 8,000 + 12,000 = $20,000. Share capital = 55,000 − 20,000 = **$35,000**. Check: 8,000 + 12,000 + 35,000 = $55,000.",
+            },
+            interpret: {
+              es: "Que cuadre solo prueba que las sumas son iguales. Si no cuadra, seguro hay un error: busca un importe mal copiado o anotado del lado equivocado.",
+              en: "Balancing only proves the totals are equal. If it does not balance, there is certainly an error: look for an amount copied wrong or posted on the wrong side.",
+            },
+            mistake: {
+              es: "Poner un gasto (como Sueldos o Renta) en la columna acreedora. Los gastos tienen saldo deudor, igual que los activos.",
+              en: "Putting an expense (such as Salaries or Rent) in the credit column. Expenses have a debit balance, just like assets.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Ajustes y cierre: visión general", en: "Adjustments and closing: an overview" },
@@ -275,7 +356,7 @@ export const lessons: Lesson[] = [
       es: "Los estados financieros resumen la contabilidad en cuatro reportes: situación financiera, resultado integral, flujos de efectivo y cambios en el capital contable.",
       en: "The financial statements summarize the accounting in four reports: financial position, comprehensive income, cash flows and changes in equity.",
     },
-    minutes: 18,
+    minutes: 20,
     objectives: [
       { es: "Identificar qué pregunta responde cada estado financiero.", en: "Identify which question each financial statement answers." },
       { es: "Distinguir un estado a una fecha (foto) de un estado por un periodo (película).", en: "Tell a statement at a date (snapshot) from a statement for a period (movie)." },
@@ -295,7 +376,31 @@ export const lessons: Lesson[] = [
             en: "The accounting equation always holds: total assets equal liabilities plus equity. If a shop has $150,000 of assets and owes $40,000, its owners' equity is $110,000.",
           },
         ],
-        formula: "Activo = Pasivo + Capital contable",
+        formulas: [
+          {
+            name: { es: "Ecuación contable del balance", en: "Balance sheet accounting equation" },
+            expression: "Activo = Pasivo + Capital contable  (o bien: Capital contable = Activo − Pasivo)",
+            variables: [
+              { symbol: "Activo", meaning: { es: "Todo lo que tiene el negocio, en pesos: efectivo, bancos, mercancía, equipo, lo que le deben los clientes.", en: "Everything the business has, in pesos: cash, bank, goods, equipment, what customers owe it." } },
+              { symbol: "Pasivo", meaning: { es: "Todo lo que el negocio debe, en pesos: proveedores, préstamos.", en: "Everything the business owes, in pesos: suppliers, loans." } },
+              { symbol: "Capital contable", meaning: { es: "La parte del activo que es de los dueños, en pesos: lo que quedaría si se pagaran todas las deudas.", en: "The part of the assets that belongs to the owners, in pesos: what would be left if all debts were paid." } },
+            ],
+            steps: [
+              { es: "Suma todos los activos.", en: "Add up all the assets." },
+              { es: "Suma todos los pasivos.", en: "Add up all the liabilities." },
+              { es: "Si te falta el capital, réstalo: Capital contable = Activo − Pasivo.", en: "If equity is missing, subtract: Equity = Assets − Liabilities." },
+              { es: "Comprueba: Pasivo + Capital contable debe dar el mismo total que el Activo.", en: "Check: Liabilities + Equity must give the same total as Assets." },
+            ],
+            example: {
+              es: "Una farmacia tiene Bancos $50,000, Inventarios $30,000 y Equipo $20,000: Activo = 50,000 + 30,000 + 20,000 = $100,000. Debe a proveedores $25,000 (Pasivo). Capital = 100,000 − 25,000 = **$75,000**. Comprobación: 25,000 + 75,000 = $100,000.",
+              en: "A pharmacy has Bank $50,000, Inventory $30,000 and Equipment $20,000: Assets = 50,000 + 30,000 + 20,000 = $100,000. It owes suppliers $25,000 (Liabilities). Equity = 100,000 − 25,000 = **$75,000**. Check: 25,000 + 75,000 = $100,000.",
+            },
+            mistake: {
+              es: "Sumar el pasivo al activo para sacar el capital. Las deudas no son de los dueños: se restan.",
+              en: "Adding liabilities to assets to get equity. Debts do not belong to the owners: they are subtracted.",
+            },
+          },
+        ],
         bullets: [
           { es: "¿Qué tiene el negocio? → Activo.", en: "What does the business have? → Assets." },
           { es: "¿Qué debe? → Pasivo.", en: "What does it owe? → Liabilities." },
@@ -318,7 +423,36 @@ export const lessons: Lesson[] = [
             en: "Mini example: a bakery sells $50,000 in the month, the cost of the bread sold is $20,000 and its expenses (rent, wages, electricity) add up to $18,000. Net profit = 50,000 − 20,000 − 18,000 = **$12,000**.",
           },
         ],
-        formula: "Ingresos − Costo de ventas − Gastos = Utilidad (o pérdida) neta",
+        formulas: [
+          {
+            name: { es: "Utilidad bruta y utilidad neta", en: "Gross profit and net profit" },
+            expression: "Utilidad bruta = Ventas − Costo de ventas;  Utilidad neta = Utilidad bruta − Gastos",
+            variables: [
+              { symbol: "Ventas", meaning: { es: "Los ingresos del periodo por vender o prestar servicios, en pesos (cobrados o no).", en: "The period's revenue from selling goods or services, in pesos (collected or not)." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que le costó al negocio la mercancía que vendió, en pesos.", en: "What the goods it sold cost the business, in pesos." } },
+              { symbol: "Utilidad bruta", meaning: { es: "Lo que queda de las ventas después de pagar la mercancía vendida, en pesos.", en: "What is left of sales after the cost of the goods sold, in pesos." } },
+              { symbol: "Gastos", meaning: { es: "Lo que se consumió para operar en el periodo, en pesos: renta, sueldos, luz, publicidad.", en: "What was used up to operate in the period, in pesos: rent, wages, electricity, advertising." } },
+              { symbol: "Utilidad neta", meaning: { es: "Lo que realmente ganó el negocio en el periodo, en pesos. Si es negativa, es pérdida neta.", en: "What the business really earned in the period, in pesos. If negative, it is a net loss." } },
+            ],
+            steps: [
+              { es: "Resta a las ventas el costo de ventas: es la utilidad bruta.", en: "Subtract cost of sales from sales: that is gross profit." },
+              { es: "Suma todos los gastos del periodo (renta, sueldos, luz, publicidad…).", en: "Add up all the period's expenses (rent, wages, electricity, advertising…)." },
+              { es: "Resta los gastos a la utilidad bruta: es la utilidad neta.", en: "Subtract the expenses from gross profit: that is net profit." },
+            ],
+            example: {
+              es: "Una zapatería vende $80,000; los zapatos vendidos le costaron $45,000. Utilidad bruta = 80,000 − 45,000 = $35,000. Gastos: sueldos $12,000 + renta $6,000 + luz $2,000 = $20,000. Utilidad neta = 35,000 − 20,000 = **$15,000**.",
+              en: "A shoe store sells $80,000; the shoes sold cost it $45,000. Gross profit = 80,000 − 45,000 = $35,000. Expenses: wages $12,000 + rent $6,000 + electricity $2,000 = $20,000. Net profit = 35,000 − 20,000 = **$15,000**.",
+            },
+            interpret: {
+              es: "Positiva: el negocio ganó en el periodo. Negativa: tuvo pérdida, porque gastó más de lo que le dejaron sus ventas.",
+              en: "Positive: the business made money in the period. Negative: it had a loss, because it spent more than its sales left it.",
+            },
+            mistake: {
+              es: "Quedarse en la utilidad bruta y olvidar restar los gastos de operación.",
+              en: "Stopping at gross profit and forgetting to subtract operating expenses.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Estado de flujos de efectivo", en: "Statement of cash flows" },
@@ -336,7 +470,37 @@ export const lessons: Lesson[] = [
             en: "Mini example: you start with $10,000, collect $25,000 from customers, pay $18,000 of expenses and buy a display case for $5,000. Ending cash = 10,000 + 25,000 − 18,000 − 5,000 = **$12,000**.",
           },
         ],
-        formula: "Efectivo inicial + Entradas − Salidas = Efectivo final",
+        formulas: [
+          {
+            name: { es: "Efectivo final con las tres actividades", en: "Ending cash using the three activities" },
+            expression: "Efectivo final = Efectivo inicial + Flujo de operación + Flujo de inversión + Flujo de financiamiento",
+            variables: [
+              { symbol: "Efectivo inicial", meaning: { es: "El dinero que había al empezar el periodo, en pesos.", en: "The money there was at the start of the period, in pesos." } },
+              { symbol: "Flujo de operación", meaning: { es: "Cobros a clientes menos pagos del día a día (sueldos, renta, proveedores), en pesos.", en: "Collections from customers minus day-to-day payments (wages, rent, suppliers), in pesos." } },
+              { symbol: "Flujo de inversión", meaning: { es: "Ventas de equipo, terrenos o vehículos (suman) menos compras de esos bienes (restan), en pesos.", en: "Sales of equipment, land or vehicles (add) minus purchases of those assets (subtract), in pesos." } },
+              { symbol: "Flujo de financiamiento", meaning: { es: "Préstamos recibidos y aportaciones de los dueños (suman) menos pagos de préstamos, retiros y dividendos (restan), en pesos.", en: "Loans received and owner contributions (add) minus loan repayments, withdrawals and dividends (subtract), in pesos." } },
+              { symbol: "Efectivo final", meaning: { es: "El dinero que queda al terminar el periodo, en pesos.", en: "The money left at the end of the period, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el flujo de operación: cobros − pagos del día a día.", en: "Compute operating cash flow: collections − day-to-day payments." },
+              { es: "Calcula el flujo de inversión: una compra de equipo va con signo menos.", en: "Compute investing cash flow: an equipment purchase has a minus sign." },
+              { es: "Calcula el flujo de financiamiento: un préstamo recibido va con signo más.", en: "Compute financing cash flow: a loan received has a plus sign." },
+              { es: "Suma los tres flujos (es el cambio neto) y agrégalo al efectivo inicial.", en: "Add the three flows (that is the net change) and add it to opening cash." },
+            ],
+            example: {
+              es: "Un taller empieza con $8,000. Cobra $30,000 y paga $22,000 de gastos: operación = 30,000 − 22,000 = +$8,000. Compra herramienta por $6,000: inversión = −$6,000. El dueño aporta $5,000: financiamiento = +$5,000. Cambio neto = 8,000 − 6,000 + 5,000 = $7,000. Efectivo final = 8,000 + 7,000 = **$15,000**.",
+              en: "A workshop starts with $8,000. It collects $30,000 and pays $22,000 of expenses: operating = 30,000 − 22,000 = +$8,000. It buys tools for $6,000: investing = −$6,000. The owner contributes $5,000: financing = +$5,000. Net change = 8,000 − 6,000 + 5,000 = $7,000. Ending cash = 8,000 + 7,000 = **$15,000**.",
+            },
+            interpret: {
+              es: "Un flujo de operación positivo es buena señal: el día a día genera dinero. Si el efectivo solo sube por préstamos, el negocio depende de deudas.",
+              en: "A positive operating cash flow is a good sign: day-to-day business generates money. If cash only rises because of loans, the business depends on debt.",
+            },
+            mistake: {
+              es: "Meter la compra de un equipo en operación. Comprar bienes duraderos es inversión.",
+              en: "Putting an equipment purchase in operating. Buying long-lived assets is investing.",
+            },
+          },
+        ],
         bullets: [
           { es: "Operación: cobros a clientes, pagos de sueldos, renta, proveedores.", en: "Operating: collections from customers, payments of wages, rent, suppliers." },
           { es: "Inversión: compra o venta de equipo, terrenos, vehículos.", en: "Investing: purchase or sale of equipment, land, vehicles." },
@@ -359,7 +523,31 @@ export const lessons: Lesson[] = [
             en: "Mini example: opening equity $50,000 + profit $12,000 − owner withdrawal $4,000 = ending equity **$58,000**.",
           },
         ],
-        formula: "Capital inicial + Aportaciones + Utilidad − Retiros o dividendos = Capital final",
+        formulas: [
+          {
+            name: { es: "Capital final de los dueños", en: "Owners' ending equity" },
+            expression: "Capital final = Capital inicial + Aportaciones + Utilidad neta − Retiros o dividendos",
+            variables: [
+              { symbol: "Capital inicial", meaning: { es: "El capital de los dueños al empezar el periodo, en pesos.", en: "The owners' equity at the start of the period, in pesos." } },
+              { symbol: "Aportaciones", meaning: { es: "Dinero o bienes nuevos que los dueños meten al negocio, en pesos.", en: "New money or assets the owners put into the business, in pesos." } },
+              { symbol: "Utilidad neta", meaning: { es: "Lo que ganó el negocio en el periodo, en pesos (si fue pérdida, se resta).", en: "What the business earned in the period, in pesos (if it was a loss, subtract it)." } },
+              { symbol: "Retiros o dividendos", meaning: { es: "Lo que se les entrega a los dueños, en pesos. No es un gasto, pero reduce su capital.", en: "What is paid out to the owners, in pesos. It is not an expense, but it reduces their equity." } },
+              { symbol: "Capital final", meaning: { es: "El capital de los dueños al cerrar el periodo, en pesos; es el que aparece en el balance.", en: "The owners' equity at the end of the period, in pesos; it is what appears on the balance sheet." } },
+            ],
+            steps: [
+              { es: "Calcula el aumento neto: Aportaciones + Utilidad neta − Retiros o dividendos.", en: "Compute the net increase: Contributions + Net profit − Withdrawals or dividends." },
+              { es: "Súmale ese aumento neto al capital inicial: es el capital final.", en: "Add that net increase to opening equity: that is ending equity." },
+            ],
+            example: {
+              es: "Una academia de baile empieza con capital de $60,000. Los socios aportan $10,000, la utilidad neta es $9,000 y reparten $4,000 de dividendos. Aumento neto = 10,000 + 9,000 − 4,000 = $15,000. Capital final = 60,000 + 15,000 = **$75,000**.",
+              en: "A dance school starts with equity of $60,000. The partners contribute $10,000, net profit is $9,000 and they pay out $4,000 in dividends. Net increase = 10,000 + 9,000 − 4,000 = $15,000. Ending equity = 60,000 + 15,000 = **$75,000**.",
+            },
+            mistake: {
+              es: "Sumar los dividendos o retiros en vez de restarlos. Salen del negocio hacia los dueños, así que bajan el capital.",
+              en: "Adding dividends or withdrawals instead of subtracting them. They leave the business for the owners, so they lower equity.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -413,7 +601,7 @@ export const lessons: Lesson[] = [
       es: "Ganar dinero (utilidad) y tener dinero (efectivo) no es lo mismo: un negocio puede tener utilidad y quedarse sin efectivo, o tener efectivo y estar perdiendo.",
       en: "Making money (profit) and having money (cash) are not the same: a business can be profitable and run out of cash, or have cash while losing money.",
     },
-    minutes: 15,
+    minutes: 18,
     objectives: [
       { es: "Distinguir un ingreso de un cobro.", en: "Distinguish revenue from a cash collection." },
       { es: "Distinguir un gasto de un pago.", en: "Distinguish an expense from a cash payment." },
@@ -425,8 +613,8 @@ export const lessons: Lesson[] = [
         heading: { es: "Diferencia entre ingresos y cobros", en: "Revenue vs. collections" },
         body: [
           {
-            es: "Un **ingreso** se reconoce cuando **vendes o prestas el servicio**, aunque todavía no te paguen. Un **cobro** es el momento en que **el dinero entra** a tu caja o a tu cuenta. Esta regla viene del postulado de **devengación contable** de las NIF.",
-            en: "**Revenue** is recognized when **you sell or perform the service**, even if you have not been paid yet. A **collection** is the moment **money comes into** your till or account. This rule comes from the **accrual** postulate in the NIF.",
+            es: "Un **ingreso** se reconoce cuando **vendes o prestas el servicio**, aunque todavía no te paguen. Un **cobro** es el momento en que **el dinero entra** a tu caja o a tu cuenta. Esta regla viene del postulado de **devengación contable** de las NIF, que en palabras sencillas dice: lo que ganas se anota cuando lo ganas, no cuando te pagan.",
+            en: "**Revenue** is recognized when **you sell or perform the service**, even if you have not been paid yet. A **collection** is the moment **money comes into** your till or account. This rule comes from the **accrual** postulate in the NIF, which in plain words says: what you earn is recorded when you earn it, not when you get paid.",
           },
           {
             es: "Si vendes a crédito, hoy tienes el ingreso y el cobro llega después (mientras tanto tienes un derecho: Clientes). Si un cliente te da un **anticipo** por un pastel que entregarás el próximo mes, hoy tienes el cobro, pero el ingreso será del próximo mes; mientras tanto es una deuda contigo: le debes el pastel.",
@@ -435,6 +623,33 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: una consultora termina en junio un trabajo de $30,000 que cobrará en julio. En junio cobra $12,000 de trabajos de mayo. Ingreso de junio: **$30,000**. Cobros de junio: **$12,000**.",
             en: "Mini example: a consultant finishes a $30,000 job in June that will be collected in July. In June she collects $12,000 for May jobs. June revenue: **$30,000**. June collections: **$12,000**.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Ingresos del mes y cobros del mes", en: "Revenue for the month and collections for the month" },
+            expression: "Ingresos del mes = Ventas de contado + Ventas a crédito del mes  |  Cobros del mes = Ventas de contado + Cobros de ventas anteriores + Anticipos recibidos",
+            variables: [
+              { symbol: "Ingresos del mes", meaning: { es: "Todo lo que vendiste o el servicio que entregaste en el mes, en pesos, te paguen hoy o después.", en: "Everything you sold or the services you delivered in the month, in pesos, whether paid today or later." } },
+              { symbol: "Cobros del mes", meaning: { es: "El dinero que de verdad entró en el mes, en pesos.", en: "The money that actually came in during the month, in pesos." } },
+              { symbol: "Ventas de contado", meaning: { es: "Lo vendido en el mes y pagado en el momento, en pesos. Cuenta en los dos lados.", en: "What was sold in the month and paid on the spot, in pesos. It counts on both sides." } },
+              { symbol: "Ventas a crédito del mes", meaning: { es: "Lo vendido en el mes que el cliente pagará después, en pesos.", en: "What was sold in the month that the customer will pay later, in pesos." } },
+              { symbol: "Cobros de ventas anteriores", meaning: { es: "Dinero que te pagan este mes por ventas de meses pasados, en pesos.", en: "Money paid to you this month for sales from past months, in pesos." } },
+              { symbol: "Anticipos recibidos", meaning: { es: "Dinero que te dan hoy por algo que entregarás después, en pesos.", en: "Money given to you today for something you will deliver later, in pesos." } },
+            ],
+            steps: [
+              { es: "Para los ingresos, suma solo lo vendido o entregado en este mes, de contado o a crédito.", en: "For revenue, add only what was sold or delivered this month, for cash or on credit." },
+              { es: "Para los cobros, suma solo el dinero que entró este mes, sin importar cuándo fue la venta.", en: "For collections, add only the money that came in this month, regardless of when the sale happened." },
+              { es: "Deja fuera de los ingresos los préstamos y las aportaciones del dueño: traen dinero, pero no son ventas.", en: "Leave loans and owner contributions out of revenue: they bring money, but they are not sales." },
+            ],
+            example: {
+              es: "Una estética en abril: cortes de contado $18,000; servicio para una boda a crédito $7,000; cobra $3,000 de un servicio de marzo; recibe un anticipo de $2,000 para un evento de mayo. Ingresos de abril = 18,000 + 7,000 = **$25,000**. Cobros de abril = 18,000 + 3,000 + 2,000 = **$23,000**.",
+              en: "A beauty salon in April: cash haircuts $18,000; a wedding service on credit $7,000; collects $3,000 for a March service; receives a $2,000 advance for a May event. April revenue = 18,000 + 7,000 = **$25,000**. April collections = 18,000 + 3,000 + 2,000 = **$23,000**.",
+            },
+            mistake: {
+              es: "Sumar como ingreso del mes un cobro de una venta pasada o un anticipo. Ese dinero entra hoy, pero el ingreso pertenece a otro mes.",
+              en: "Counting as this month's revenue a collection from a past sale or an advance. That money comes in today, but the revenue belongs to another month.",
+            },
           },
         ],
         bullets: [
@@ -460,6 +675,32 @@ export const lessons: Lesson[] = [
             en: "Mini example: a workshop pays $8,000 of rent for the month and $20,000 for a compressor. Expense for the month: **$8,000**. Payments for the month: **$28,000**.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Gastos del mes y pagos del mes", en: "Expenses for the month and payments for the month" },
+            expression: "Gastos del mes = Todo lo consumido en el mes (pagado o no)  |  Pagos del mes = Gastos pagados + Compras de activos de contado + Pagos de deudas y retiros",
+            variables: [
+              { symbol: "Gastos del mes", meaning: { es: "Lo que usaste para operar en el mes, en pesos: costo de lo vendido, renta, sueldos, luz del mes. Cuenta aunque no lo hayas pagado.", en: "What you used to operate in the month, in pesos: cost of goods sold, rent, wages, the month's electricity. It counts even if unpaid." } },
+              { symbol: "Pagos del mes", meaning: { es: "Todo el dinero que salió en el mes, en pesos.", en: "All the money that went out in the month, in pesos." } },
+              { symbol: "Gastos pagados", meaning: { es: "La parte de los gastos que sí pagaste en el mes, en pesos.", en: "The part of the expenses you actually paid in the month, in pesos." } },
+              { symbol: "Compras de activos de contado", meaning: { es: "Equipo, muebles, terrenos o vehículos pagados en el mes, en pesos. No son gasto del mes.", en: "Equipment, furniture, land or vehicles paid for in the month, in pesos. They are not an expense of the month." } },
+              { symbol: "Pagos de deudas y retiros", meaning: { es: "Lo que pagaste a proveedores o al banco por deudas, y lo que el dueño sacó para uso personal, en pesos. Tampoco son gasto.", en: "What you paid suppliers or the bank on debts, and what the owner took for personal use, in pesos. They are not expenses either." } },
+            ],
+            steps: [
+              { es: "Para los gastos, suma todo lo que se consumió en el mes, aunque se pague después.", en: "For expenses, add everything used up in the month, even if paid later." },
+              { es: "Para los pagos, suma todo el dinero que salió: gastos pagados, compras de equipo, pagos de deudas y retiros.", en: "For payments, add all the money that went out: expenses paid, equipment purchases, debt payments and withdrawals." },
+              { es: "Revisa que el equipo comprado y los pagos de deudas estén solo en pagos, no en gastos.", en: "Check that equipment bought and debt payments are only in payments, not in expenses." },
+            ],
+            example: {
+              es: "Una papelería en mayo: paga la renta de mayo, $5,000; consume luz por $900 que pagará en junio; compra una impresora de contado por $4,000; paga $3,000 a un proveedor por una deuda anterior. Gastos de mayo = 5,000 + 900 = **$5,900**. Pagos de mayo = 5,000 + 4,000 + 3,000 = **$12,000**.",
+              en: "A stationery shop in May: pays May rent, $5,000; uses $900 of electricity it will pay in June; buys a printer for $4,000 in cash; pays a supplier $3,000 on an old debt. May expenses = 5,000 + 900 = **$5,900**. May payments = 5,000 + 4,000 + 3,000 = **$12,000**.",
+            },
+            mistake: {
+              es: "Contar como gasto del mes la compra de un equipo. Es un activo que durará años; solo saca efectivo.",
+              en: "Counting an equipment purchase as an expense of the month. It is an asset that will last years; it only uses cash.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Ejemplos de rentabilidad y liquidez", en: "Examples of profitability and liquidity" },
@@ -477,7 +718,61 @@ export const lessons: Lesson[] = [
             en: "That is why the statement of comprehensive income (am I making money?) and the cash flow statement (can I pay?) are reviewed **together**. Neither is enough on its own.",
           },
         ],
-        formula: "Utilidad = Ingresos − Gastos  |  Cambio en efectivo = Cobros − Pagos",
+        formulas: [
+          {
+            name: { es: "Utilidad del periodo (¿gano?)", en: "Profit for the period (am I earning?)" },
+            expression: "Utilidad = Ingresos − Costo de ventas − Gastos",
+            variables: [
+              { symbol: "Utilidad", meaning: { es: "Lo que ganó el negocio en el periodo, en pesos. Si es negativa, es pérdida.", en: "What the business earned in the period, in pesos. If negative, it is a loss." } },
+              { symbol: "Ingresos", meaning: { es: "Todas las ventas del periodo, de contado y a crédito, en pesos.", en: "All the period's sales, for cash and on credit, in pesos." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que costó la mercancía vendida en el periodo, en pesos.", en: "What the goods sold in the period cost, in pesos." } },
+              { symbol: "Gastos", meaning: { es: "Todos los gastos del periodo, pagados o pendientes, en pesos. No incluye compras de equipo.", en: "All the period's expenses, paid or pending, in pesos. Equipment purchases are not included." } },
+            ],
+            steps: [
+              { es: "Toma todas las ventas del periodo, cobradas o no.", en: "Take all the period's sales, collected or not." },
+              { es: "Resta el costo de lo vendido.", en: "Subtract the cost of what was sold." },
+              { es: "Resta todos los gastos del periodo, pagados o no; deja fuera equipo, préstamos y pagos de deudas.", en: "Subtract all the period's expenses, paid or not; leave out equipment, loans and debt payments." },
+            ],
+            example: {
+              es: "Una juguetería en noviembre vende $50,000 ($35,000 de contado y $15,000 a crédito). Los juguetes vendidos costaron $20,000 y sus gastos fueron $10,000 (pagó $8,000). Además compra un estante de contado por $9,000. Utilidad = 50,000 − 20,000 − 10,000 = **$20,000**. El estante no se resta: es un activo.",
+              en: "A toy store in November sells $50,000 ($35,000 for cash and $15,000 on credit). The toys sold cost $20,000 and its expenses were $10,000 (it paid $8,000). It also buys a shelf for $9,000 in cash. Profit = 50,000 − 20,000 − 10,000 = **$20,000**. The shelf is not subtracted: it is an asset.",
+            },
+            interpret: {
+              es: "Mide la **rentabilidad**: si es positiva, el negocio gana; pero no dice si tiene efectivo para pagar.",
+              en: "It measures **profitability**: if positive, the business is earning; but it does not say whether it has cash to pay.",
+            },
+            mistake: {
+              es: "Restar la compra de un equipo o usar solo lo cobrado en lugar de todas las ventas.",
+              en: "Subtracting an equipment purchase or using only what was collected instead of all sales.",
+            },
+          },
+          {
+            name: { es: "Cambio en efectivo (¿tengo con qué pagar?)", en: "Change in cash (can I pay?)" },
+            expression: "Cambio en efectivo = Cobros − Pagos",
+            variables: [
+              { symbol: "Cambio en efectivo", meaning: { es: "Cuánto subió (positivo) o bajó (negativo) el dinero del negocio en el periodo, en pesos.", en: "How much the business's money went up (positive) or down (negative) in the period, in pesos." } },
+              { symbol: "Cobros", meaning: { es: "Todo el dinero que entró, en pesos: ventas de contado, cobros a clientes, anticipos, préstamos y aportaciones.", en: "All the money that came in, in pesos: cash sales, customer collections, advances, loans and contributions." } },
+              { symbol: "Pagos", meaning: { es: "Todo el dinero que salió, en pesos: gastos pagados, mercancía pagada, compras de equipo, pagos de deudas y retiros.", en: "All the money that went out, in pesos: expenses paid, goods paid for, equipment purchases, debt payments and withdrawals." } },
+            ],
+            steps: [
+              { es: "Suma todo el dinero que entró de verdad en el periodo.", en: "Add all the money that actually came in during the period." },
+              { es: "Suma todo el dinero que salió de verdad, incluyendo compras de equipo.", en: "Add all the money that actually went out, including equipment purchases." },
+              { es: "Resta: cobros − pagos. Si da negativo, escríbelo con signo menos: el efectivo bajó.", en: "Subtract: collections − payments. If negative, write it with a minus sign: cash went down." },
+            ],
+            example: {
+              es: "La misma juguetería: cobros = $35,000 (solo lo de contado). Pagos = juguetes 20,000 + gastos pagados 8,000 + estante 9,000 = $37,000. Cambio en efectivo = 35,000 − 37,000 = **−$2,000**. Ganó $20,000, pero su efectivo bajó $2,000.",
+              en: "The same toy store: collections = $35,000 (only the cash sales). Payments = toys 20,000 + expenses paid 8,000 + shelf 9,000 = $37,000. Change in cash = 35,000 − 37,000 = **−$2,000**. It earned $20,000, but its cash fell by $2,000.",
+            },
+            interpret: {
+              es: "Mide la **liquidez**: si es negativo varios meses seguidos, el negocio puede quedarse sin dinero para la nómina aunque tenga utilidad.",
+              en: "It measures **liquidity**: if it is negative several months in a row, the business can run out of money for payroll even if it is profitable.",
+            },
+            mistake: {
+              es: "Usar las ventas totales como cobros. Las ventas a crédito todavía no son dinero en la caja.",
+              en: "Using total sales as collections. Credit sales are not yet money in the till.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -529,7 +824,7 @@ export const lessons: Lesson[] = [
       es: "Con el caso de la cafetería «Café Aroma» aplicas todo el nivel: clasificas operaciones, usas la ecuación contable, registras con partida doble, llevas cuentas T e interpretas los resultados.",
       en: "With the case of the coffee shop «Café Aroma» you apply the whole level: you classify transactions, use the accounting equation, record with double entry, keep T-accounts and interpret the results.",
     },
-    minutes: 20,
+    minutes: 22,
     objectives: [
       { es: "Clasificar las operaciones de un negocio real por su efecto en la ecuación contable.", en: "Classify a business's transactions by their effect on the accounting equation." },
       { es: "Registrar asientos de partida doble y pasarlos a cuentas T.", en: "Record double-entry entries and post them to T-accounts." },
@@ -573,7 +868,37 @@ export const lessons: Lesson[] = [
             en: "Check: Liabilities + Equity = 4,000 + 108,000 = $112,000 = Assets. **The equation balances.**",
           },
         ],
-        formula: "112,000 = 4,000 + 108,000",
+        formulas: [
+          {
+            name: { es: "Ecuación contable al cierre del mes", en: "Accounting equation at month end" },
+            expression: "Activo total = Pasivo total + Capital contable;  Capital contable = Capital inicial + Utilidad neta",
+            variables: [
+              { symbol: "Activo total", meaning: { es: "La suma de los saldos finales de lo que tiene el negocio, en pesos: Bancos, Clientes, Inventarios, Mobiliario y equipo.", en: "The sum of the ending balances of what the business has, in pesos: Bank, Accounts receivable, Inventory, Furniture and equipment." } },
+              { symbol: "Pasivo total", meaning: { es: "La suma de lo que se debe al final, en pesos: Proveedores y préstamos.", en: "The sum of what is owed at the end, in pesos: Accounts payable and loans." } },
+              { symbol: "Capital contable", meaning: { es: "Lo que es de los dueños al final del mes, en pesos.", en: "What belongs to the owners at month end, in pesos." } },
+              { symbol: "Capital inicial", meaning: { es: "El capital al empezar el mes, en pesos. En el primer mes es la aportación del dueño.", en: "Equity at the start of the month, in pesos. In the first month it is the owner's contribution." } },
+              { symbol: "Utilidad neta", meaning: { es: "Lo que ganó el negocio en el mes, en pesos.", en: "What the business earned in the month, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el saldo final de cada activo (saldo inicial + aumentos − disminuciones) y súmalos.", en: "Compute each asset's ending balance (opening + increases − decreases) and add them up." },
+              { es: "Calcula el saldo final de cada pasivo y súmalos.", en: "Compute each liability's ending balance and add them up." },
+              { es: "Calcula el capital: capital inicial + utilidad neta del mes.", en: "Compute equity: opening equity + the month's net profit." },
+              { es: "Comprueba que Pasivo total + Capital contable dé exactamente el Activo total.", en: "Check that Total liabilities + Equity gives exactly Total assets." },
+            ],
+            example: {
+              es: "Una taquería al cierre: Bancos $40,000 + Clientes $3,000 + Inventarios $5,000 + Equipo $30,000 = Activo $78,000. Proveedores $6,000 + Préstamo $10,000 = Pasivo $16,000. Capital = 55,000 + utilidad 7,000 = $62,000. Comprobación: 16,000 + 62,000 = **$78,000**. Cuadra.",
+              en: "A taco stand at month end: Bank $40,000 + Accounts receivable $3,000 + Inventory $5,000 + Equipment $30,000 = Assets $78,000. Accounts payable $6,000 + Loan $10,000 = Liabilities $16,000. Equity = 55,000 + profit 7,000 = $62,000. Check: 16,000 + 62,000 = **$78,000**. It balances.",
+            },
+            interpret: {
+              es: "Si no cuadra, falta algo: casi siempre un saldo olvidado o una operación anotada solo en una cuenta.",
+              en: "If it does not balance, something is missing: almost always a forgotten balance or a transaction posted to only one account.",
+            },
+            mistake: {
+              es: "Olvidar el préstamo en el pasivo o lo que todavía deben los clientes en el activo.",
+              en: "Forgetting the loan in liabilities or what customers still owe in assets.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Ejercicios de partida doble y cuentas T", en: "Double-entry and T-account practice" },
@@ -585,6 +910,32 @@ export const lessons: Lesson[] = [
           {
             es: "Luego se pasan a las cuentas T. En la cuenta T de **Bancos** el debe suma 100,000 + 30,000 = $130,000 y el haber suma 45,000 + 7,000 + 8,000 + 6,000 = $66,000. Saldo = **$64,000 deudor**, igual que en la ecuación.",
             en: "Then they are posted to T-accounts. In the **Bank** T-account the debit side totals 100,000 + 30,000 = $130,000 and the credit side 45,000 + 7,000 + 8,000 + 6,000 = $66,000. Balance = **$64,000 debit**, the same as in the equation.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Saldo final de una cuenta", en: "Ending balance of an account" },
+            expression: "Saldo final = Saldo inicial + Aumentos − Disminuciones",
+            variables: [
+              { symbol: "Saldo final", meaning: { es: "Lo que queda en la cuenta al cerrar el mes, en pesos.", en: "What is left in the account at month end, in pesos." } },
+              { symbol: "Saldo inicial", meaning: { es: "Lo que había en la cuenta al empezar el mes, en pesos.", en: "What was in the account at the start of the month, in pesos." } },
+              { symbol: "Aumentos", meaning: { es: "Los movimientos que hacen crecer la cuenta, en pesos. En un activo como Bancos son los cargos (debe).", en: "The movements that make the account grow, in pesos. In an asset like Bank they are the debits." } },
+              { symbol: "Disminuciones", meaning: { es: "Los movimientos que hacen bajar la cuenta, en pesos. En un activo como Bancos son los abonos (haber).", en: "The movements that make the account go down, in pesos. In an asset like Bank they are the credits." } },
+            ],
+            steps: [
+              { es: "Revisa cada operación y quédate solo con las que tocan esta cuenta (las compras y ventas a crédito no tocan Bancos).", en: "Go through each transaction and keep only the ones that touch this account (credit purchases and sales do not touch Bank)." },
+              { es: "Suma los aumentos; en un activo, saldo inicial + aumentos es la suma del debe.", en: "Add the increases; in an asset, opening balance + increases is the debit total." },
+              { es: "Suma las disminuciones; en un activo, es la suma del haber.", en: "Add the decreases; in an asset, that is the credit total." },
+              { es: "Calcula: saldo inicial + aumentos − disminuciones.", en: "Compute: opening balance + increases − decreases." },
+            ],
+            example: {
+              es: "Bancos de una panadería: saldo inicial $20,000; entran ventas de contado $15,000 y un cobro a cliente $2,000; salen renta $5,000 y pago a proveedor $4,000. Aumentos = 15,000 + 2,000 = $17,000 (suma del debe = 20,000 + 17,000 = $37,000). Disminuciones = 5,000 + 4,000 = $9,000. Saldo = 20,000 + 17,000 − 9,000 = **$28,000 deudor**.",
+              en: "A bakery's Bank account: opening balance $20,000; cash sales of $15,000 and a $2,000 customer collection come in; rent of $5,000 and a $4,000 supplier payment go out. Increases = 15,000 + 2,000 = $17,000 (debit total = 20,000 + 17,000 = $37,000). Decreases = 5,000 + 4,000 = $9,000. Balance = 20,000 + 17,000 − 9,000 = **$28,000 debit**.",
+            },
+            mistake: {
+              es: "Meter en Bancos las ventas o compras a crédito. Si no se movió dinero del banco, no van en esa cuenta.",
+              en: "Putting credit sales or purchases into Bank. If no bank money moved, they do not belong in that account.",
+            },
           },
         ],
       },
@@ -602,6 +953,33 @@ export const lessons: Lesson[] = [
           {
             es: "Ahora te toca: el reto de este tema usa el **segundo mes** de Café Aroma. Si dudas, regresa a los temas anteriores: ecuación contable, cargos y abonos, partida doble y cuentas T.",
             en: "Now it's your turn: this topic's challenge uses Café Aroma's **second month**. If in doubt, go back to earlier topics: the accounting equation, debits and credits, double entry and T-accounts.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Utilidad del mes en el caso", en: "Profit for the month in the case" },
+            expression: "Utilidad bruta = Ventas totales − Costo de ventas;  Utilidad neta = Utilidad bruta − Gastos del mes",
+            variables: [
+              { symbol: "Ventas totales", meaning: { es: "Todas las ventas del mes, de contado y a crédito, en pesos.", en: "All of the month's sales, for cash and on credit, in pesos." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que costaron los insumos que se vendieron, en pesos.", en: "What the supplies that were sold cost, in pesos." } },
+              { symbol: "Utilidad bruta", meaning: { es: "Lo que dejan las ventas después de su costo, en pesos.", en: "What sales leave after their cost, in pesos." } },
+              { symbol: "Gastos del mes", meaning: { es: "Renta, sueldos, publicidad y otros gastos de operación del mes, en pesos.", en: "Rent, wages, advertising and other operating expenses of the month, in pesos." } },
+              { symbol: "Utilidad neta", meaning: { es: "Lo que ganó el negocio en el mes, en pesos; aumenta el capital.", en: "What the business earned in the month, in pesos; it increases equity." } },
+            ],
+            steps: [
+              { es: "Suma las ventas de contado y las de crédito: son las ventas totales.", en: "Add cash sales and credit sales: those are total sales." },
+              { es: "Resta el costo de ventas: es la utilidad bruta.", en: "Subtract cost of sales: that is gross profit." },
+              { es: "Suma los gastos del mes y réstalos: es la utilidad neta.", en: "Add the month's expenses and subtract them: that is net profit." },
+              { es: "Deja fuera las compras de equipo, los préstamos y los pagos a proveedores: no son ingresos ni gastos.", en: "Leave out equipment purchases, loans and supplier payments: they are neither revenue nor expenses." },
+            ],
+            example: {
+              es: "Una frutería vende $25,000 de contado y $5,000 a crédito: ventas = 25,000 + 5,000 = $30,000. Lo vendido costó $11,000: utilidad bruta = 30,000 − 11,000 = $19,000. Gastos: renta 6,000 + sueldos 5,000 + luz 1,000 = $12,000. Utilidad neta = 19,000 − 12,000 = **$7,000**.",
+              en: "A fruit shop sells $25,000 for cash and $5,000 on credit: sales = 25,000 + 5,000 = $30,000. What was sold cost $11,000: gross profit = 30,000 − 11,000 = $19,000. Expenses: rent 6,000 + wages 5,000 + electricity 1,000 = $12,000. Net profit = 19,000 − 12,000 = **$7,000**.",
+            },
+            mistake: {
+              es: "Restar el horno comprado o el pago al proveedor como si fueran gastos. Solo sacan efectivo.",
+              en: "Subtracting the oven bought or the supplier payment as if they were expenses. They only use cash.",
+            },
           },
         ],
       },

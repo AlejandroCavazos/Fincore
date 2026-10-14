@@ -42,7 +42,7 @@ export const lessons: Lesson[] = [
       es: "Administrar es coordinar personas y recursos para lograr metas con eficacia y eficiencia, siguiendo un ciclo de planear, organizar, dirigir y controlar.",
       en: "Managing means coordinating people and resources to reach goals effectively and efficiently, following a cycle of planning, organizing, leading and controlling.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es la administración y distinguir eficacia de eficiencia.", en: "Explain what management is and distinguish effectiveness from efficiency." },
       { es: "Describir las cuatro etapas del proceso administrativo y reconocerlas en un negocio real.", en: "Describe the four stages of the management process and recognize them in a real business." },
@@ -99,7 +99,34 @@ export const lessons: Lesson[] = [
           { es: "Dirigir: liderar, comunicar y motivar.", en: "Lead: guide, communicate and motivate." },
           { es: "Controlar: medir, comparar y corregir.", en: "Control: measure, compare and correct." },
         ],
-        formula: "Cumplimiento (%) = Resultado real ÷ Meta × 100",
+        formulas: [
+          {
+            name: { es: "Porcentaje de cumplimiento de una meta", en: "Goal achievement percentage" },
+            expression: "Cumplimiento (%) = Resultado real ÷ Meta × 100",
+            variables: [
+              { symbol: "Cumplimiento (%)", meaning: { es: "Qué parte de la meta lograste, en porcentaje.", en: "What share of the goal you reached, as a percentage." } },
+              { symbol: "Resultado real", meaning: { es: "Lo que de verdad pasó: ventas en pesos, piezas producidas, clientes atendidos.", en: "What actually happened: sales in pesos, pieces produced, customers served." } },
+              { symbol: "Meta", meaning: { es: "Lo que planeaste lograr, en la misma unidad que el resultado real.", en: "What you planned to achieve, in the same unit as the actual result." } },
+            ],
+            steps: [
+              { es: "Anota la meta y el resultado real en la misma unidad (pesos con pesos, piezas con piezas).", en: "Write down the goal and the actual result in the same unit (pesos with pesos, pieces with pieces)." },
+              { es: "Divide el resultado real entre la meta.", en: "Divide the actual result by the goal." },
+              { es: "Multiplica por 100 para expresarlo en porcentaje.", en: "Multiply by 100 to express it as a percentage." },
+            ],
+            example: {
+              es: "Una barbería se puso la meta de vender $40,000 en el mes y vendió $34,000. 34,000 ÷ 40,000 = 0.85. 0.85 × 100 = **85%**. Le faltó 100% − 85% = 15% de la meta.",
+              en: "A barbershop set a goal of selling $40,000 in the month and sold $34,000. 34,000 ÷ 40,000 = 0.85. 0.85 × 100 = **85%**. It fell short by 100% − 85% = 15% of the goal.",
+            },
+            interpret: {
+              es: "100% = cumpliste justo la meta. Más de 100% = la superaste. Menos de 100% = te faltó; busca la causa y úsala para planear mejor.",
+              en: "100% = you hit the goal exactly. Over 100% = you beat it. Under 100% = you fell short; look for the cause and use it to plan better.",
+            },
+            mistake: {
+              es: "Dividir al revés (meta ÷ resultado real). Daría más de 100% y parecería que superaste la meta cuando te faltó.",
+              en: "Dividing the other way round (goal ÷ actual). It would give over 100% and look like you beat the goal when you fell short.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Niveles y habilidades del administrador", en: "Levels and skills of a manager" },
@@ -176,7 +203,7 @@ export const lessons: Lesson[] = [
       es: "Emprender es crear algo nuevo que resuelva un problema y genere valor, asumiendo riesgos de forma calculada y aprendiendo rápido de los clientes.",
       en: "Entrepreneurship is creating something new that solves a problem and generates value, taking calculated risks and learning quickly from customers.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Explicar qué es emprender y qué distingue a un emprendimiento de un empleo o de un pasatiempo.", en: "Explain what entrepreneurship is and what sets a venture apart from a job or a hobby." },
       { es: "Distinguir tipos de emprendimiento: por necesidad, por oportunidad, de estilo de vida, startup y social.", en: "Distinguish types of entrepreneurship: by necessity, by opportunity, lifestyle, startup and social." },
@@ -240,7 +267,37 @@ export const lessons: Lesson[] = [
             en: "It also helps to separate business and personal money from day one, and to learn from each mistake. Mini example: Sofía wants to sell aguas frescas (fruit drinks); she buys a $3,000 dispenser and $800 of fruit and cups, and sets aside $2,400 to cover three months of an $800-a-month permit (hypothetical figures). Her startup investment is $3,000 + $800 + $2,400 = $6,200.",
           },
         ],
-        formula: "Inversión inicial = Equipo + Insumos iniciales + Trámites + Fondo de reserva",
+        formulas: [
+          {
+            name: { es: "Inversión inicial y cuánto te falta", en: "Startup investment and how much you are short" },
+            expression: "Inversión inicial = Equipo + Insumos iniciales + Trámites + Fondo de reserva;  Fondo de reserva = Meses × Gastos fijos al mes;  Te falta = Inversión inicial − Ahorros",
+            variables: [
+              { symbol: "Inversión inicial", meaning: { es: "Todo el dinero que necesitas antes de vender, en pesos.", en: "All the money you need before selling, in pesos." } },
+              { symbol: "Equipo", meaning: { es: "Lo que compras una vez y te dura: máquinas, muebles, herramientas, en pesos.", en: "What you buy once and lasts: machines, furniture, tools, in pesos." } },
+              { symbol: "Insumos iniciales", meaning: { es: "La primera compra de materiales o mercancía para empezar a vender, en pesos.", en: "The first purchase of materials or goods to start selling, in pesos." } },
+              { symbol: "Trámites", meaning: { es: "Permisos, licencias y registros para abrir, en pesos.", en: "Permits, licenses and registrations to open, in pesos." } },
+              { symbol: "Fondo de reserva", meaning: { es: "Un colchón de dinero para pagar los gastos fijos mientras las ventas crecen, en pesos.", en: "A cushion of money to pay fixed expenses while sales grow, in pesos." } },
+              { symbol: "Meses", meaning: { es: "Cuántos meses quieres tener cubiertos con el fondo (por ejemplo, 3).", en: "How many months you want the fund to cover (for example, 3)." } },
+              { symbol: "Gastos fijos al mes", meaning: { es: "Lo que pagas cada mes aunque no vendas: renta, permisos, luz, en pesos.", en: "What you pay each month even if you do not sell: rent, permits, electricity, in pesos." } },
+              { symbol: "Ahorros", meaning: { es: "El dinero que ya tienes para invertir, en pesos.", en: "The money you already have to invest, in pesos." } },
+              { symbol: "Te falta", meaning: { es: "Lo que tendrías que conseguir (préstamo, socio, más ahorro), en pesos.", en: "What you would need to raise (loan, partner, more savings), in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todo el equipo.", en: "Add up all the equipment." },
+              { es: "Calcula el fondo de reserva: meses × gastos fijos al mes.", en: "Compute the reserve fund: months × fixed expenses per month." },
+              { es: "Suma equipo + insumos iniciales + trámites + fondo de reserva: es la inversión inicial.", en: "Add equipment + initial supplies + paperwork + reserve fund: that is the startup investment." },
+              { es: "Resta tus ahorros: si sale positivo, eso es lo que te falta.", en: "Subtract your savings: if positive, that is what you are short." },
+            ],
+            example: {
+              es: "Un puesto de hamburguesas: carrito $12,000 + plancha $3,000 = equipo $15,000. Insumos $2,000, trámites $1,000. Reserva = 3 × $2,500 = $7,500. Inversión inicial = 15,000 + 2,000 + 1,000 + 7,500 = **$25,500**. Con $20,000 ahorrados, le falta 25,500 − 20,000 = **$5,500**.",
+              en: "A burger stand: cart $12,000 + griddle $3,000 = equipment $15,000. Supplies $2,000, paperwork $1,000. Reserve = 3 × $2,500 = $7,500. Startup investment = 15,000 + 2,000 + 1,000 + 7,500 = **$25,500**. With $20,000 saved, it is short 25,500 − 20,000 = **$5,500**.",
+            },
+            mistake: {
+              es: "Olvidar el fondo de reserva y contar solo el equipo y los insumos. Los primeros meses casi siempre se vende poco.",
+              en: "Forgetting the reserve fund and counting only equipment and supplies. Sales are almost always low in the first months.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -299,7 +356,7 @@ export const lessons: Lesson[] = [
       es: "Una oportunidad de negocio es un problema real que suficientes personas quieren resolver y están dispuestas a pagar; se encuentra observando y se elige comparando con criterios claros.",
       en: "A business opportunity is a real problem that enough people want solved and are willing to pay for; you find it by observing and choose it by comparing with clear criteria.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Distinguir entre una idea de negocio y una oportunidad de negocio.", en: "Distinguish between a business idea and a business opportunity." },
       { es: "Reconocer fuentes de oportunidades: problemas, cambios y tendencias, y habilidades propias.", en: "Recognize sources of opportunities: problems, changes and trends, and your own skills." },
@@ -362,7 +419,36 @@ export const lessons: Lesson[] = [
             en: "Mini example with weights of 50% (problem) and 50% (experience): an idea with 8 and 4 scores 0.5 × 8 + 0.5 × 4 = 6; another with 6 and 9 scores 0.5 × 6 + 0.5 × 9 = 7.5. The second goes first.",
           },
         ],
-        formula: "Puntaje = Σ (Peso del criterio × Calificación)",
+        formulas: [
+          {
+            name: { es: "Puntaje ponderado de una idea", en: "Weighted score of an idea" },
+            expression: "Puntaje = Σ (Peso del criterio × Calificación)",
+            variables: [
+              { symbol: "Puntaje", meaning: { es: "La nota final de la idea, en la misma escala de 1 a 10.", en: "The idea's final score, on the same 1-to-10 scale." } },
+              { symbol: "Σ", meaning: { es: "Letra griega sigma: significa \"suma todos los resultados\".", en: "Greek letter sigma: it means \"add up all the results\"." } },
+              { symbol: "Peso del criterio", meaning: { es: "Qué tan importante es ese criterio, en porcentaje convertido a decimal (40% = 0.40). Todos los pesos suman 100%.", en: "How important that criterion is, as a percentage turned into a decimal (40% = 0.40). All weights add up to 100%." } },
+              { symbol: "Calificación", meaning: { es: "La nota que le das a la idea en ese criterio, del 1 al 10.", en: "The score you give the idea on that criterion, from 1 to 10." } },
+            ],
+            steps: [
+              { es: "Revisa que los pesos sumen 100% y conviértelos a decimal: 40% = 0.40.", en: "Check that the weights add up to 100% and turn them into decimals: 40% = 0.40." },
+              { es: "Multiplica cada calificación por el peso de su criterio.", en: "Multiply each score by its criterion's weight." },
+              { es: "Suma todos esos productos: es el puntaje de la idea.", en: "Add all those products: that is the idea's score." },
+              { es: "Repite con cada idea y compáralas: la de mayor puntaje se investiga primero.", en: "Repeat for each idea and compare them: the highest score gets researched first." },
+            ],
+            example: {
+              es: "Pesos: problema 50%, experiencia 30%, inversión 20%. Una idea de food truck saca 7, 6 y 4. Puntaje = 0.50 × 7 + 0.30 × 6 + 0.20 × 4 = 3.5 + 1.8 + 0.8 = **6.1**.",
+              en: "Weights: problem 50%, experience 30%, investment 20%. A food truck idea scores 7, 6 and 4. Score = 0.50 × 7 + 0.30 × 6 + 0.20 × 4 = 3.5 + 1.8 + 0.8 = **6.1**.",
+            },
+            interpret: {
+              es: "Más alto = mejor candidata para investigar primero. No garantiza el éxito: solo ordena tus opciones.",
+              en: "Higher = better candidate to research first. It does not guarantee success: it only ranks your options.",
+            },
+            mistake: {
+              es: "Sacar un promedio simple de las calificaciones, como si todos los criterios pesaran igual.",
+              en: "Taking a simple average of the scores, as if every criterion weighed the same.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -421,7 +507,7 @@ export const lessons: Lesson[] = [
       es: "Un modelo de negocio explica cómo una empresa crea valor para sus clientes, cómo se lo entrega y cómo gana dinero con ello.",
       en: "A business model explains how a company creates value for its customers, how it delivers it and how it makes money from it.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es un modelo de negocio y sus tres preguntas: crear, entregar y capturar valor.", en: "Explain what a business model is and its three questions: create, deliver and capture value." },
       { es: "Reconocer modelos comunes: venta directa, suscripción, freemium, plataforma o marketplace y franquicia.", en: "Recognize common models: direct sales, subscription, freemium, platform or marketplace, and franchise." },
@@ -466,7 +552,30 @@ export const lessons: Lesson[] = [
             en: "Mini example: a nutritionist can charge per consultation (direct sales), offer a monthly plan with weekly follow-up (subscription) or an app with free recipes and paid personalized plans (freemium).",
           },
         ],
-        formula: "Ingreso por comisión = Ventas que pasan por la plataforma × % de comisión",
+        formulas: [
+          {
+            name: { es: "Ingreso de una plataforma por comisión", en: "A platform's commission revenue" },
+            expression: "Ingreso por comisión = Ventas que pasan por la plataforma × % de comisión",
+            variables: [
+              { symbol: "Ingreso por comisión", meaning: { es: "Lo que gana la plataforma, en pesos. Es solo su parte, no todo lo vendido.", en: "What the platform earns, in pesos. It is only its share, not everything sold." } },
+              { symbol: "Ventas que pasan por la plataforma", meaning: { es: "Todo lo que pagan los compradores a través de la plataforma, en pesos.", en: "Everything buyers pay through the platform, in pesos." } },
+              { symbol: "% de comisión", meaning: { es: "La parte de cada venta que se queda la plataforma, en porcentaje (conviértelo a decimal: 15% = 0.15).", en: "The share of each sale the platform keeps, as a percentage (turn it into a decimal: 15% = 0.15)." } },
+            ],
+            steps: [
+              { es: "Convierte la comisión a decimal: 18% = 0.18.", en: "Turn the commission into a decimal: 18% = 0.18." },
+              { es: "Multiplica las ventas totales por ese decimal: es el ingreso de la plataforma.", en: "Multiply total sales by that decimal: that is the platform's revenue." },
+              { es: "Si quieres saber lo que reciben los vendedores, resta: ventas − comisión.", en: "To know what sellers receive, subtract: sales − commission." },
+            ],
+            example: {
+              es: "Una plataforma de comida casera cobra 18% de comisión. En el mes se venden $50,000. Comisión = 50,000 × 0.18 = **$9,000**. Las cocineras reciben 50,000 − 9,000 = $41,000.",
+              en: "A home-cooked food platform charges an 18% commission. $50,000 is sold in the month. Commission = 50,000 × 0.18 = **$9,000**. The cooks receive 50,000 − 9,000 = $41,000.",
+            },
+            mistake: {
+              es: "Reportar todo lo vendido como ingreso de la plataforma. Ese dinero es de los vendedores; la plataforma solo gana su comisión.",
+              en: "Reporting everything sold as the platform's revenue. That money belongs to the sellers; the platform only earns its commission.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cómo elegir y probar un modelo", en: "How to choose and test a model" },
@@ -482,6 +591,37 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: una maestra de inglés tiene 40 alumnos que pagan $250 por clase suelta, 4 clases al mes en promedio: $250 × 4 × 40 = $40,000 al mes. Prueba un paquete mensual de $900 por 4 clases; si todos lo toman, recibe $36,000 pero de forma más segura y con menos faltas.",
             en: "Mini example: an English teacher has 40 students paying $250 per single class, 4 classes a month on average: $250 × 4 × 40 = $40,000 a month. She tests a monthly package of $900 for 4 classes; if everyone takes it, she receives $36,000 but more reliably and with fewer no-shows.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Ingreso de un modelo freemium o de suscripción", en: "Revenue of a freemium or subscription model" },
+            expression: "Usuarios que pagan = Usuarios gratis × % de conversión;  Ingreso mensual = Usuarios que pagan × Precio mensual;  Ingreso anual = Ingreso mensual × 12",
+            variables: [
+              { symbol: "Usuarios gratis", meaning: { es: "Cuántas personas usan la versión gratuita.", en: "How many people use the free version." } },
+              { symbol: "% de conversión", meaning: { es: "De cada 100 usuarios gratis, cuántos se pasan al plan de pago, en porcentaje (4% = 0.04).", en: "Out of every 100 free users, how many move to the paid plan, as a percentage (4% = 0.04)." } },
+              { symbol: "Usuarios que pagan", meaning: { es: "Cuántas personas pagan el plan cada mes. En una suscripción simple, son tus suscriptores.", en: "How many people pay for the plan each month. In a plain subscription, they are your subscribers." } },
+              { symbol: "Precio mensual", meaning: { es: "La cuota que paga cada usuario al mes, en pesos.", en: "The fee each user pays per month, in pesos." } },
+              { symbol: "Ingreso mensual", meaning: { es: "Lo que entra por el plan de pago en un mes, en pesos.", en: "What comes in from the paid plan in one month, in pesos." } },
+              { symbol: "Ingreso anual", meaning: { es: "Lo que entra en un año (12 meses), en pesos.", en: "What comes in over a year (12 months), in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte la conversión a decimal y multiplícala por los usuarios gratis: son los que pagan. (En una suscripción simple, salta este paso y usa el número de suscriptores.)", en: "Turn the conversion rate into a decimal and multiply it by the free users: those are the payers. (In a plain subscription, skip this step and use the number of subscribers.)" },
+              { es: "Multiplica los usuarios que pagan por el precio mensual: es el ingreso mensual.", en: "Multiply paying users by the monthly price: that is monthly revenue." },
+              { es: "Multiplica el ingreso mensual por 12 para el ingreso anual.", en: "Multiply monthly revenue by 12 for annual revenue." },
+            ],
+            example: {
+              es: "Una app de ejercicio tiene 8,000 usuarios gratis y el 3% paga el plan de $79 al mes. Usuarios que pagan = 8,000 × 0.03 = 240. Ingreso mensual = 240 × $79 = **$18,960**. Ingreso anual = 18,960 × 12 = **$227,520**.",
+              en: "A workout app has 8,000 free users and 3% pay for the $79-a-month plan. Paying users = 8,000 × 0.03 = 240. Monthly revenue = 240 × $79 = **$18,960**. Annual revenue = 18,960 × 12 = **$227,520**.",
+            },
+            interpret: {
+              es: "Si la conversión es muy baja, lo que pagan pocos no alcanza para sostener a todos los usuarios gratis.",
+              en: "If conversion is too low, what a few people pay is not enough to support all the free users.",
+            },
+            mistake: {
+              es: "Multiplicar todos los usuarios gratis por el precio, como si todos pagaran.",
+              en: "Multiplying all the free users by the price, as if everyone paid.",
+            },
           },
         ],
       },
@@ -541,7 +681,7 @@ export const lessons: Lesson[] = [
       es: "El Business Model Canvas es un lienzo de nueve bloques que te deja ver en una sola hoja cómo funciona tu negocio y probar cambios rápido.",
       en: "The Business Model Canvas is a nine-block sheet that lets you see on a single page how your business works and test changes quickly.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Nombrar los nueve bloques del Canvas y explicar qué va en cada uno.", en: "Name the nine blocks of the Canvas and explain what goes in each one." },
       { es: "Llenar un Canvas para un negocio pequeño con ejemplos concretos.", en: "Fill in a Canvas for a small business with concrete examples." },
@@ -603,7 +743,36 @@ export const lessons: Lesson[] = [
             en: "Mini example: the bike workshop expects 120 services a month at $250 = $30,000 in revenue. Its monthly costs add up to $26,000. It has $4,000 left: it works, but with a thin margin; it could add a revenue stream from selling accessories.",
           },
         ],
-        formula: "Resultado mensual = Fuentes de ingresos − Estructura de costos",
+        formulas: [
+          {
+            name: { es: "Resultado mensual del Canvas", en: "Monthly result of the Canvas" },
+            expression: "Resultado mensual = Fuentes de ingresos − Estructura de costos;  Fuentes de ingresos = Unidades vendidas × Precio",
+            variables: [
+              { symbol: "Resultado mensual", meaning: { es: "Lo que le queda al negocio en el mes, en pesos. Si es negativo, pierde.", en: "What the business has left in the month, in pesos. If negative, it loses money." } },
+              { symbol: "Fuentes de ingresos", meaning: { es: "Lo que esperas cobrar en el mes, en pesos.", en: "What you expect to bring in during the month, in pesos." } },
+              { symbol: "Unidades vendidas", meaning: { es: "Cuántos productos o servicios esperas vender en el mes.", en: "How many products or services you expect to sell in the month." } },
+              { symbol: "Precio", meaning: { es: "Lo que cobras por cada uno, en pesos.", en: "What you charge for each one, in pesos." } },
+              { symbol: "Estructura de costos", meaning: { es: "La suma de todos los costos del mes, en pesos: insumos, renta, sueldos, publicidad, empaques.", en: "The sum of all the month's costs, in pesos: supplies, rent, wages, advertising, packaging." } },
+            ],
+            steps: [
+              { es: "Calcula los ingresos: unidades vendidas × precio.", en: "Compute revenue: units sold × price." },
+              { es: "Suma todos los costos del mes, incluso los pequeños.", en: "Add up all the month's costs, even the small ones." },
+              { es: "Resta: ingresos − costos. Ese es el resultado mensual.", en: "Subtract: revenue − costs. That is the monthly result." },
+            ],
+            example: {
+              es: "Un cerrajero espera 60 servicios al mes a $350: ingresos = 60 × 350 = $21,000. Costos: ayudante $8,000 + transporte $3,000 + herramienta $1,500 + publicidad $1,000 + celular $500 = $14,000. Resultado = 21,000 − 14,000 = **$7,000**.",
+              en: "A locksmith expects 60 jobs a month at $350: revenue = 60 × 350 = $21,000. Costs: helper $8,000 + transport $3,000 + tools $1,500 + advertising $1,000 + phone $500 = $14,000. Result = 21,000 − 14,000 = **$7,000**.",
+            },
+            interpret: {
+              es: "Positivo: el modelo funciona con esos supuestos. Negativo o muy pequeño: cambia algún bloque (precio, segmento, canal o costos) y vuelve a calcular.",
+              en: "Positive: the model works under those assumptions. Negative or very small: change some block (price, segment, channel or costs) and recalculate.",
+            },
+            mistake: {
+              es: "Olvidar algún costo pequeño, como empaques o publicidad, y creer que te queda más de lo real.",
+              en: "Forgetting a small cost, such as packaging or advertising, and believing you have more left than you really do.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -662,7 +831,7 @@ export const lessons: Lesson[] = [
       es: "La investigación de mercados reúne datos sobre clientes, competencia y tamaño del mercado para decidir con evidencia en lugar de suposiciones.",
       en: "Market research gathers data on customers, competitors and market size so you decide with evidence instead of assumptions.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar para qué sirve la investigación de mercados y distinguir fuentes primarias y secundarias.", en: "Explain what market research is for and distinguish primary and secondary sources." },
       { es: "Elegir herramientas adecuadas: encuestas, entrevistas, observación y análisis de competencia.", en: "Choose suitable tools: surveys, interviews, observation and competitor analysis." },
@@ -707,13 +876,41 @@ export const lessons: Lesson[] = [
             en: "**Competitor analysis** completes the picture: visit or check your competitors online and note prices, hours, what their customers praise and what they complain about. Mini example: if reviews of three nearby gyms complain about broken machines, there is a gap where you can stand out.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Porcentaje de una respuesta en una encuesta", en: "Percentage of an answer in a survey" },
+            expression: "Porcentaje (%) = Personas que respondieron eso ÷ Total de encuestados × 100",
+            variables: [
+              { symbol: "Porcentaje (%)", meaning: { es: "De cada 100 encuestados, cuántos dieron esa respuesta.", en: "Out of every 100 people surveyed, how many gave that answer." } },
+              { symbol: "Personas que respondieron eso", meaning: { es: "Cuántas personas dieron la respuesta que te interesa.", en: "How many people gave the answer you care about." } },
+              { symbol: "Total de encuestados", meaning: { es: "Cuántas personas contestaron la encuesta (o el grupo sobre el que calculas, si es un subgrupo).", en: "How many people answered the survey (or the group you are calculating over, if it is a subgroup)." } },
+            ],
+            steps: [
+              { es: "Cuenta cuántas personas dieron la respuesta que buscas.", en: "Count how many people gave the answer you are looking for." },
+              { es: "Divide ese número entre el total de encuestados.", en: "Divide that number by the total surveyed." },
+              { es: "Multiplica por 100 para leerlo como porcentaje.", en: "Multiply by 100 to read it as a percentage." },
+            ],
+            example: {
+              es: "Encuestas a 150 vecinos y 45 dicen que el mes pasado pagaron por lavar su auto. 45 ÷ 150 = 0.30. 0.30 × 100 = **30%**.",
+              en: "You survey 150 neighbors and 45 say they paid to have their car washed last month. 45 ÷ 150 = 0.30. 0.30 × 100 = **30%**.",
+            },
+            interpret: {
+              es: "Un porcentaje sobre hechos pasados (lo que ya compraron) es más confiable que uno sobre promesas (\"sí compraría\").",
+              en: "A percentage about past facts (what they already bought) is more reliable than one about promises (\"I would buy\").",
+            },
+            mistake: {
+              es: "Dividir al revés (total ÷ respuestas) o usar un total distinto al grupo que realmente contestó.",
+              en: "Dividing the other way round (total ÷ answers) or using a total different from the group that actually answered.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Tamaño del mercado: TAM, SAM y SOM", en: "Market size: TAM, SAM and SOM" },
         body: [
           {
-            es: "Para saber si vale la pena, estima el tamaño del mercado en tres capas. **TAM** (mercado total): todo lo que se gasta en ese producto en la zona que analizas. **SAM** (mercado al que sí puedes servir): la parte del TAM que alcanzas con tu canal, zona o tipo de cliente. **SOM** (mercado que puedes ganar): la parte del SAM que de forma realista podrías captar en tus primeros años.",
-            en: "To see whether it is worth it, estimate market size in three layers. **TAM** (total addressable market): everything spent on that product in the area you analyze. **SAM** (serviceable available market): the part of the TAM you can reach with your channel, area or customer type. **SOM** (serviceable obtainable market): the part of the SAM you could realistically capture in your first years.",
+            es: "Para saber si vale la pena, estima el tamaño del mercado en tres capas. **TAM** (mercado total): todo lo que se gasta en ese producto en la zona que analizas. **SAM** (mercado al que sí puedes servir): la parte del TAM que alcanzas con tu canal, zona o tipo de cliente. **SOM** (mercado que puedes ganar): la parte del SAM que de forma realista podrías captar en tus primeros años. Piénsalo como un pastel: el TAM es el pastel entero, el SAM es la parte que alcanzas a servirte y el SOM es la rebanada que de verdad te vas a comer.",
+            en: "To see whether it is worth it, estimate market size in three layers. **TAM** (total addressable market): everything spent on that product in the area you analyze. **SAM** (serviceable available market): the part of the TAM you can reach with your channel, area or customer type. **SOM** (serviceable obtainable market): the part of the SAM you could realistically capture in your first years. Think of a cake: the TAM is the whole cake, the SAM is the part you can reach to serve yourself and the SOM is the slice you will actually eat.",
           },
           {
             es: "Cada capa se calcula multiplicando: número de clientes posibles × gasto por cliente da el TAM; el TAM por el porcentaje que alcanzas da el SAM; y el SAM por tu participación esperada da el SOM. Usa supuestos prudentes y escríbelos para revisarlos después.",
@@ -724,7 +921,38 @@ export const lessons: Lesson[] = [
             en: "Hypothetical mini example: 10,000 students in an area spend $2,000 a year on school supplies: TAM = $20,000,000. Your stationery store reaches 20% (those who live nearby): SAM = $4,000,000. If you expect to win 10% of them: SOM = $400,000 a year.",
           },
         ],
-        formula: "TAM = Clientes posibles × Gasto anual · SAM = TAM × % alcanzable · SOM = SAM × % que esperas ganar",
+        formulas: [
+          {
+            name: { es: "Tamaño del mercado en tres capas (TAM, SAM y SOM)", en: "Market size in three layers (TAM, SAM and SOM)" },
+            expression: "TAM = Clientes posibles × Gasto anual · SAM = TAM × % alcanzable · SOM = SAM × % que esperas ganar",
+            variables: [
+              { symbol: "TAM", meaning: { es: "Mercado total: todo lo que se gasta al año en ese producto en la zona, en pesos.", en: "Total market: everything spent per year on that product in the area, in pesos." } },
+              { symbol: "Clientes posibles", meaning: { es: "Cuántas personas, hogares o negocios compran ese tipo de producto en la zona.", en: "How many people, households or businesses buy that kind of product in the area." } },
+              { symbol: "Gasto anual", meaning: { es: "Lo que gasta cada cliente en un año en ese producto, en pesos.", en: "What each customer spends on that product in a year, in pesos." } },
+              { symbol: "SAM", meaning: { es: "Mercado que sí puedes atender con tu zona, canal o tipo de cliente, en pesos al año.", en: "Market you can actually serve with your area, channel or customer type, in pesos per year." } },
+              { symbol: "% alcanzable", meaning: { es: "La parte del TAM a la que de verdad llegas, en porcentaje (20% = 0.20).", en: "The share of the TAM you really reach, as a percentage (20% = 0.20)." } },
+              { symbol: "SOM", meaning: { es: "Mercado que puedes ganar de forma realista, en pesos al año. Es el que se compara con tus costos.", en: "Market you can realistically win, in pesos per year. It is the one compared with your costs." } },
+              { symbol: "% que esperas ganar", meaning: { es: "La parte del SAM que crees que te comprará a ti, en porcentaje (5% = 0.05).", en: "The share of the SAM you believe will buy from you, as a percentage (5% = 0.05)." } },
+            ],
+            steps: [
+              { es: "TAM: multiplica los clientes posibles por lo que gasta cada uno al año.", en: "TAM: multiply potential customers by what each spends per year." },
+              { es: "SAM: convierte el % alcanzable a decimal y multiplícalo por el TAM.", en: "SAM: turn the reachable % into a decimal and multiply it by the TAM." },
+              { es: "SOM: convierte el % que esperas ganar a decimal y multiplícalo por el SAM (no por el TAM).", en: "SOM: turn the % you expect to win into a decimal and multiply it by the SAM (not the TAM)." },
+            ],
+            example: {
+              es: "En una ciudad hay 30,000 autos y cada dueño gasta $1,500 al año en lavado. TAM = 30,000 × 1,500 = $45,000,000. Tu autolavado alcanza al 20%: SAM = 45,000,000 × 0.20 = $9,000,000. Esperas ganar el 5%: SOM = 9,000,000 × 0.05 = **$450,000 al año**.",
+              en: "A city has 30,000 cars and each owner spends $1,500 a year on washes. TAM = 30,000 × 1,500 = $45,000,000. Your car wash reaches 20%: SAM = 45,000,000 × 0.20 = $9,000,000. You expect to win 5%: SOM = 9,000,000 × 0.05 = **$450,000 a year**.",
+            },
+            interpret: {
+              es: "Compara el SOM con tus costos de un año: si no los cubre, el mercado que puedes ganar es muy chico para ese negocio.",
+              en: "Compare the SOM with a year of costs: if it does not cover them, the market you can win is too small for that business.",
+            },
+            mistake: {
+              es: "Aplicar el % que esperas ganar al TAM en lugar del SAM. Exagera muchísimo lo que puedes vender.",
+              en: "Applying the % you expect to win to the TAM instead of the SAM. It hugely overstates what you can sell.",
+            },
+          },
+        ],
       },
     ],
     examples: [
