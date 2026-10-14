@@ -165,7 +165,7 @@ export const lessons: Lesson[] = [
       es: "La LFT fija los mínimos de cada empleo en México: tipos de contrato, jornada y horas extra, salario, aguinaldo, vacaciones y cómo termina la relación con finiquito o liquidación.",
       en: "The LFT sets the minimums of every job in Mexico: types of contract, working hours and overtime, wages, Christmas bonus, vacation and how the relationship ends with a final settlement or severance.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Identificar los tipos de contrato individual y los límites del periodo de prueba.", en: "Identify the types of individual contract and the limits of the probation period." },
       { es: "Calcular horas extra, aguinaldo y prima vacacional con las reglas de la LFT.", en: "Compute overtime, Christmas bonus and vacation premium with the LFT rules." },
@@ -211,7 +211,55 @@ export const lessons: Lesson[] = [
             en: "Mini example: with a daily wage of $400 and an 8-hour day, one hour is worth $50. An overtime hour within the first 9 of the week is worth $100; an hour beyond those 9 is worth $150.",
           },
         ],
-        formula: "Valor hora = Salario diario ÷ Horas de la jornada · Aguinaldo proporcional = 15 × Días trabajados ÷ 365 × Salario diario",
+        formulas: [
+          {
+            name: { es: "Pago de horas extra en una semana", en: "Overtime pay for one week" },
+            expression: "Valor hora = Salario diario ÷ Horas de la jornada; Pago = (Horas hasta 9 × Valor hora × 2) + (Horas arriba de 9 × Valor hora × 3)",
+            variables: [
+              { symbol: "Salario diario", meaning: { es: "Lo que gana la persona por un día de trabajo, en pesos.", en: "What the person earns for one day of work, in pesos." } },
+              { symbol: "Horas de la jornada", meaning: { es: "Horas de su jornada normal diaria (por ejemplo, 8 en jornada diurna).", en: "Hours of their normal daily shift (for example, 8 on a day shift)." } },
+              { symbol: "Valor hora", meaning: { es: "Lo que vale una hora normal de trabajo, en pesos.", en: "What one normal hour of work is worth, in pesos." } },
+              { symbol: "Horas hasta 9", meaning: { es: "Las primeras horas extra de la semana, hasta un máximo de 9; se pagan al doble (× 2).", en: "The week's first overtime hours, up to 9; paid double (× 2)." } },
+              { symbol: "Horas arriba de 9", meaning: { es: "Las horas extra que pasan de 9 en la semana; se pagan al triple (× 3).", en: "Overtime hours beyond 9 in the week; paid triple (× 3)." } },
+            ],
+            steps: [
+              { es: "Divide el salario diario entre las horas de la jornada: valor de una hora.", en: "Divide the daily wage by the shift hours: value of one hour." },
+              { es: "Separa las horas extra de la semana: las primeras 9 y las que sobran.", en: "Split the week's overtime hours: the first 9 and the rest." },
+              { es: "Multiplica las primeras (hasta 9) por el valor hora × 2.", en: "Multiply the first ones (up to 9) by the hourly value × 2." },
+              { es: "Multiplica las que pasan de 9 por el valor hora × 3 y suma ambos resultados.", en: "Multiply those beyond 9 by the hourly value × 3 and add both results." },
+            ],
+            example: {
+              es: "Salario $360 diarios, jornada de 8 horas, 10 horas extra en la semana. Valor hora = 360 ÷ 8 = $45. Primeras 9: 9 × 45 × 2 = $810. La hora 10: 1 × 45 × 3 = $135. Total = 810 + 135 = **$945**.",
+              en: "Wage $360 a day, 8-hour shift, 10 overtime hours in the week. Hourly value = 360 ÷ 8 = $45. First 9: 9 × 45 × 2 = $810. Hour 10: 1 × 45 × 3 = $135. Total = 810 + 135 = **$945**.",
+            },
+            mistake: {
+              es: "Pagar todas las horas al doble. Lo que pasa de 9 horas extra por semana se paga al triple.",
+              en: "Paying every hour at double. Anything beyond 9 overtime hours a week is paid triple.",
+            },
+          },
+          {
+            name: { es: "Aguinaldo proporcional", en: "Proportional Christmas bonus" },
+            expression: "Días de aguinaldo = 15 × Días trabajados ÷ 365; Aguinaldo = Días de aguinaldo × Salario diario",
+            variables: [
+              { symbol: "15", meaning: { es: "Los días mínimos de aguinaldo por un año completo según la LFT.", en: "The minimum bonus days for a full year under the LFT." } },
+              { symbol: "Días trabajados", meaning: { es: "Días que la persona trabajó en el año.", en: "Days the person worked in the year." } },
+              { symbol: "365", meaning: { es: "Los días de un año completo.", en: "The days in a full year." } },
+              { symbol: "Salario diario", meaning: { es: "Lo que gana por día, en pesos.", en: "What they earn per day, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica 15 por los días trabajados y divide entre 365: días de aguinaldo que le tocan.", en: "Multiply 15 by the days worked and divide by 365: bonus days owed." },
+              { es: "Multiplica esos días por el salario diario: monto del aguinaldo en pesos.", en: "Multiply those days by the daily wage: bonus amount in pesos." },
+            ],
+            example: {
+              es: "Salario $280 diarios; trabajó 219 días. Días = 15 × 219 ÷ 365 = 3,285 ÷ 365 = 9 días. Monto = 9 × 280 = **$2,520**.",
+              en: "Wage $280 a day; worked 219 days. Days = 15 × 219 ÷ 365 = 3,285 ÷ 365 = 9 days. Amount = 9 × 280 = **$2,520**.",
+            },
+            mistake: {
+              es: "Creer que si no completó el año no hay aguinaldo: siempre se paga la parte proporcional.",
+              en: "Thinking there is no bonus if the year was not completed: the proportional part is always paid.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Vacaciones y terminación de la relación", en: "Vacation and ending the relationship" },
@@ -227,6 +275,30 @@ export const lessons: Lesson[] = [
           {
             es: "La ley sí permite **rescindir** (terminar) la relación sin responsabilidad por causas graves, como faltar más de 3 veces en 30 días sin permiso o cometer actos de deshonestidad, pero el patrón debe **avisarlo por escrito** al trabajador. Mini ejemplo: con 3 años de antigüedad corresponden 16 días de vacaciones; con salario de $500, son $8,000 y la prima de 25% suma $2,000 más.",
             en: "The law does allow **rescission** (termination) without liability for serious causes, such as more than 3 unexcused absences in 30 days or acts of dishonesty, but the employer must **give written notice** to the worker. Mini example: with 3 years of service the worker gets 16 vacation days; with a $500 wage that is $8,000 and the 25% premium adds $2,000.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Prima vacacional mínima", en: "Minimum vacation premium" },
+            expression: "Prima vacacional = Días de vacaciones × Salario diario × 25%",
+            variables: [
+              { symbol: "Días de vacaciones", meaning: { es: "Los días que le tocan según su antigüedad (12 el primer año, 14 el segundo, etc.).", en: "The days owed by seniority (12 the first year, 14 the second, etc.)." } },
+              { symbol: "Salario diario", meaning: { es: "Lo que gana por día, en pesos.", en: "What they earn per day, in pesos." } },
+              { symbol: "25%", meaning: { es: "El porcentaje mínimo de la prima según la LFT (0.25 en decimal).", en: "The minimum premium percentage under the LFT (0.25 as a decimal)." } },
+            ],
+            steps: [
+              { es: "Busca en la tabla cuántos días de vacaciones corresponden a su antigüedad.", en: "Look up in the table how many vacation days match their seniority." },
+              { es: "Multiplica esos días por el salario diario: salario de las vacaciones.", en: "Multiply those days by the daily wage: vacation pay." },
+              { es: "Multiplica ese resultado por 0.25: prima vacacional (se paga además del salario de las vacaciones).", en: "Multiply that result by 0.25: vacation premium (paid on top of the vacation pay)." },
+            ],
+            example: {
+              es: "2 años de antigüedad → 14 días; salario $420. Salario de vacaciones = 14 × 420 = $5,880. Prima = 5,880 × 0.25 = **$1,470**.",
+              en: "2 years of service → 14 days; wage $420. Vacation pay = 14 × 420 = $5,880. Premium = 5,880 × 0.25 = **$1,470**.",
+            },
+            mistake: {
+              es: "Confundir el 25% de la prima con el 10% de la PTU o con los 15 días del aguinaldo: son derechos distintos.",
+              en: "Confusing the 25% premium with the 10% PTU or the 15 bonus days: they are different rights.",
+            },
           },
         ],
         bullets: [
@@ -294,7 +366,7 @@ export const lessons: Lesson[] = [
       es: "Contratar a alguien obliga a la empresa ante varias autoridades: IMSS, INFONAVIT, SAT y gobierno estatal, además de repartir utilidades (PTU) y cuidar la seguridad y la salud en el trabajo.",
       en: "Hiring someone creates obligations for the company before several authorities: IMSS, INFONAVIT, SAT and the state government, plus sharing profits (PTU) and looking after workplace safety and health.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Identificar ante qué autoridad se cumple cada obligación patronal principal.", en: "Identify before which authority each main employer obligation is met." },
       { es: "Explicar los seguros del IMSS, la aportación al INFONAVIT y el papel del patrón como retenedor de ISR.", en: "Explain IMSS insurance branches, the INFONAVIT contribution and the employer's role as ISR withholder." },
@@ -325,7 +397,29 @@ export const lessons: Lesson[] = [
           { es: "Retiro, cesantía en edad avanzada y vejez (va a la cuenta AFORE).", en: "Retirement, old-age unemployment and old age (goes to the AFORE account)." },
           { es: "Guarderías y prestaciones sociales.", en: "Daycare and social benefits." },
         ],
-        formula: "Aportación INFONAVIT = Salario base diario × Días del periodo × 5%",
+        formulas: [
+          {
+            name: { es: "Aportación patronal al INFONAVIT", en: "Employer INFONAVIT contribution" },
+            expression: "Aportación INFONAVIT = Salario base diario × Días del periodo × 5%",
+            variables: [
+              { symbol: "Salario base diario", meaning: { es: "El salario base de cotización (SBC) del trabajador por día, en pesos.", en: "The worker's contribution base wage (SBC) per day, in pesos." } },
+              { symbol: "Días del periodo", meaning: { es: "Días que abarca el pago (por ejemplo, 30 o 60).", en: "Days the payment covers (for example, 30 or 60)." } },
+              { symbol: "5%", meaning: { es: "Porcentaje que aporta el patrón para vivienda (0.05 en decimal).", en: "Percentage the employer contributes for housing (0.05 as a decimal)." } },
+            ],
+            steps: [
+              { es: "Multiplica el salario base diario por los días del periodo: salario del periodo.", en: "Multiply the daily base wage by the days in the period: wage for the period." },
+              { es: "Multiplica ese resultado por 0.05: aportación al INFONAVIT.", en: "Multiply that result by 0.05: INFONAVIT contribution." },
+            ],
+            example: {
+              es: "SBC $450 diarios, periodo de 15 días. Salario del periodo = 450 × 15 = $6,750. Aportación = 6,750 × 0.05 = **$337.50**, a cargo solo del patrón.",
+              en: "SBC $450 a day, 15-day period. Wage for the period = 450 × 15 = $6,750. Contribution = 6,750 × 0.05 = **$337.50**, paid only by the employer.",
+            },
+            mistake: {
+              es: "Descontar parte de la aportación al trabajador. El 5% lo paga completo el patrón.",
+              en: "Withholding part of the contribution from the worker. The employer pays the full 5%.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Obligaciones fiscales: ISR, CFDI de nómina e impuesto estatal", en: "Tax obligations: ISR, payroll CFDI and state tax" },
@@ -360,7 +454,32 @@ export const lessons: Lesson[] = [
             en: "The employer must also look after **safety and health**: set up a **safety and hygiene committee**, provide protective equipment, **train** its staff and prevent **psychosocial risks** (stress, harassment, excessive hours) under the Labor Ministry's **NOM-035** standard. Mini example: a workshop that hands out gloves and goggles, trains on tool handling and runs a workplace-climate survey is meeting these obligations.",
           },
         ],
-        formula: "PTU total = Renta gravable × 10% · Mitad por días trabajados + Mitad por salarios",
+        formulas: [
+          {
+            name: { es: "PTU: total a repartir y parte por días trabajados", en: "PTU: total to distribute and share by days worked" },
+            expression: "PTU total = Renta gravable × 10%; Mitad por días = PTU total ÷ 2; Parte de cada trabajador (si todos trabajaron los mismos días) = Mitad por días ÷ Número de trabajadores",
+            variables: [
+              { symbol: "Renta gravable", meaning: { es: "La utilidad que la empresa calcula para pagar ISR, en pesos.", en: "The profit the company computes to pay income tax, in pesos." } },
+              { symbol: "10%", meaning: { es: "Porcentaje de esa utilidad que se reparte a los trabajadores (0.10 en decimal).", en: "Percentage of that profit shared with workers (0.10 as a decimal)." } },
+              { symbol: "Mitad por días", meaning: { es: "La mitad de la PTU, que se reparte según los días trabajados, en pesos.", en: "Half of the PTU, split by days worked, in pesos." } },
+              { symbol: "Número de trabajadores", meaning: { es: "Trabajadores con derecho a PTU (no cuentan directores ni gerentes generales).", en: "Workers entitled to PTU (directors and general managers do not count)." } },
+            ],
+            steps: [
+              { es: "Multiplica la renta gravable por 0.10: PTU total.", en: "Multiply taxable income by 0.10: total PTU." },
+              { es: "Divide la PTU total entre 2: una mitad va por días trabajados y la otra por salarios.", en: "Divide total PTU by 2: one half goes by days worked and the other by wages." },
+              { es: "Si todos trabajaron los mismos días, divide la mitad por días entre el número de trabajadores.", en: "If everyone worked the same days, divide the days half by the number of workers." },
+              { es: "La otra mitad se reparte en proporción al salario de cada quien (quien gana más, recibe más), respetando el tope por trabajador.", en: "The other half is split in proportion to each person's wages (whoever earns more receives more), respecting the per-worker cap." },
+            ],
+            example: {
+              es: "Renta gravable $900,000; 8 trabajadores que laboraron todo el año. PTU = 900,000 × 0.10 = $90,000. Mitad por días = 90,000 ÷ 2 = $45,000. Cada uno = 45,000 ÷ 8 = **$5,625**, más su parte de los otros $45,000 según su salario.",
+              en: "Taxable income $900,000; 8 workers who worked all year. PTU = 900,000 × 0.10 = $90,000. Days half = 90,000 ÷ 2 = $45,000. Each = 45,000 ÷ 8 = **$5,625**, plus their share of the other $45,000 by wages.",
+            },
+            mistake: {
+              es: "Dividir la PTU completa entre los trabajadores sin separar antes la mitad que va por salarios.",
+              en: "Dividing the full PTU among workers without first separating the half that goes by wages.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -540,7 +659,7 @@ export const lessons: Lesson[] = [
       es: "Cada figura protege algo distinto y por un tiempo distinto: la marca identifica y se renueva cada 10 años, la patente protege un invento 20 años y el derecho de autor dura la vida del autor más 100 años.",
       en: "Each figure protects something different for a different time: a trademark identifies and is renewed every 10 years, a patent protects an invention for 20 years and copyright lasts the author's life plus 100 years.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Describir qué es una marca, sus tipos y cómo se mantiene vigente.", en: "Describe what a trademark is, its types and how it is kept in force." },
       { es: "Explicar los requisitos de una patente y su plazo de protección.", en: "Explain the requirements for a patent and its term of protection." },
@@ -561,6 +680,30 @@ export const lessons: Lesson[] = [
           {
             es: "No se pueden registrar signos **genéricos o descriptivos** (llamar «Pan» a una panadería) ni los que confundan con una marca ya registrada. El símbolo **®** o **MR** solo debe usarse si la marca está registrada. Mini ejemplo: «Tortas La Güera» con su dibujo de una torta es una marca mixta que puede registrarse en la clase de servicios de restaurante.",
             en: "**Generic or descriptive** signs cannot be registered (calling a bakery «Bread») nor signs confusingly similar to a registered mark. The **®** or **MR** symbol should only be used if the mark is registered. Mini example: «Tortas La Güera» with its drawing of a sandwich is a combined mark that can be registered in the restaurant-services class.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Fechas clave de una marca registrada", en: "Key dates of a registered trademark" },
+            expression: "Año de declaración de uso = Año de otorgamiento + 3; Año de renovación = Año de otorgamiento + 10 (y luego cada 10 años)",
+            variables: [
+              { symbol: "Año de otorgamiento", meaning: { es: "El año en que el IMPI concedió el registro (no el año en que se pidió).", en: "The year IMPI granted the registration (not the year it was applied for)." } },
+              { symbol: "3", meaning: { es: "Años después del otorgamiento en que hay que declarar que la marca se usa.", en: "Years after grant when you must declare the mark is in use." } },
+              { symbol: "10", meaning: { es: "Años que dura cada periodo de registro; se renueva sin límite.", en: "Years each registration period lasts; it is renewed without limit." } },
+            ],
+            steps: [
+              { es: "Identifica el año de otorgamiento del registro.", en: "Identify the year the registration was granted." },
+              { es: "Súmale 3: año en que debe declararse el uso.", en: "Add 3: year in which use must be declared." },
+              { es: "Súmale 10: año de la primera renovación; para las siguientes, suma 10 cada vez.", en: "Add 10: year of the first renewal; for the next ones, add 10 each time." },
+            ],
+            example: {
+              es: "Marca otorgada en 2023. Declaración de uso: 2023 + 3 = **2026**. Primera renovación: 2023 + 10 = **2033**; la siguiente, 2033 + 10 = 2043.",
+              en: "Trademark granted in 2023. Declaration of use: 2023 + 3 = **2026**. First renewal: 2023 + 10 = **2033**; the next, 2033 + 10 = 2043.",
+            },
+            mistake: {
+              es: "Pensar que la marca vence para siempre a los 10 años: se puede renovar indefinidamente.",
+              en: "Thinking the trademark ends for good after 10 years: it can be renewed indefinitely.",
+            },
           },
         ],
         bullets: [
@@ -586,7 +729,28 @@ export const lessons: Lesson[] = [
             en: "For practical improvements to existing objects there is the **utility model** (with lighter requirements and a shorter term), and for a product's appearance, the **industrial design**. Mini example: if you file in 2026 for a patent on a self-cleaning blender, your protection ends in 2046, even if it is granted years later.",
           },
         ],
-        formula: "Año de vencimiento de la patente = Año de presentación + 20",
+        formulas: [
+          {
+            name: { es: "Año de vencimiento de una patente", en: "Patent expiry year" },
+            expression: "Año de vencimiento de la patente = Año de presentación + 20",
+            variables: [
+              { symbol: "Año de presentación", meaning: { es: "El año en que se presentó (pidió) la solicitud ante el IMPI, no el año en que se concedió.", en: "The year the application was filed with IMPI, not the year it was granted." } },
+              { symbol: "20", meaning: { es: "Años de protección; no se pueden prorrogar.", en: "Years of protection; they cannot be extended." } },
+            ],
+            steps: [
+              { es: "Busca el año de presentación de la solicitud.", en: "Find the year the application was filed." },
+              { es: "Súmale 20: a partir de ahí el invento pasa al dominio público.", en: "Add 20: from then on the invention enters the public domain." },
+            ],
+            example: {
+              es: "Solicitud presentada en 2024 y concedida en 2027. Vence en 2024 + 20 = **2044** (no en 2047).",
+              en: "Application filed in 2024 and granted in 2027. It expires in 2024 + 20 = **2044** (not 2047).",
+            },
+            mistake: {
+              es: "Contar los 20 años desde que se concede, o creer que se renueva como una marca.",
+              en: "Counting the 20 years from grant, or thinking it renews like a trademark.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Derechos de autor: morales y patrimoniales", en: "Copyright: moral and economic rights" },
@@ -604,7 +768,28 @@ export const lessons: Lesson[] = [
             en: "Registering a work with **INDAUTOR** is not mandatory, but it serves as **evidence** of authorship and date. Mini example: a composer who died in 1980 has her songs protected until 2080; meanwhile her heirs or whoever holds the rights collect for their use, and no one can take away her authorship credit.",
           },
         ],
-        formula: "Vigencia patrimonial = Vida del autor + 100 años",
+        formulas: [
+          {
+            name: { es: "Vigencia de los derechos patrimoniales de autor", en: "Term of economic copyright" },
+            expression: "Año en que terminan los derechos patrimoniales = Año de muerte del autor + 100",
+            variables: [
+              { symbol: "Año de muerte del autor", meaning: { es: "El año en que falleció la persona que creó la obra.", en: "The year the person who created the work died." } },
+              { symbol: "100", meaning: { es: "Años que, en México, siguen protegidos los derechos patrimoniales después de la muerte del autor.", en: "Years that, in Mexico, economic rights stay protected after the author's death." } },
+            ],
+            steps: [
+              { es: "Identifica el año en que murió el autor (mientras vive, la obra está protegida).", en: "Identify the year the author died (while alive, the work is protected)." },
+              { es: "Súmale 100: hasta ese año hay que pedir permiso a quien tenga los derechos; después la obra es de dominio público.", en: "Add 100: until that year you must ask permission from the rights holder; afterwards the work is in the public domain." },
+            ],
+            example: {
+              es: "Un pintor murió en 1975. Sus derechos patrimoniales duran hasta 1975 + 100 = **2075**.",
+              en: "A painter died in 1975. His economic rights last until 1975 + 100 = **2075**.",
+            },
+            mistake: {
+              es: "Usar 50 o 70 años, que son plazos de otros países. Y recuerda: los derechos morales no vencen nunca.",
+              en: "Using 50 or 70 years, which are other countries' terms. And remember: moral rights never expire.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -662,7 +847,7 @@ export const lessons: Lesson[] = [
       es: "El derecho financiero regula cómo el Estado obtiene, administra y gasta los recursos públicos, y el derecho bancario regula a los bancos, sus operaciones y los instrumentos como el cheque y el crédito.",
       en: "Financial law governs how the State obtains, manages and spends public resources, and banking law governs banks, their operations and instruments such as cheques and credit.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Distinguir el derecho financiero público del derecho bancario.", en: "Distinguish public financial law from banking law." },
       { es: "Clasificar las operaciones bancarias en pasivas, activas y de servicios.", en: "Classify banking operations into liability, asset and service operations." },
@@ -724,7 +909,58 @@ export const lessons: Lesson[] = [
             en: "Mini example (hypothetical rate): a simple loan of $50,000 at 12% annual simple interest for 6 months generates 50,000 × 12% × 6 ÷ 12 = $3,000 of interest. The CAT will be higher if there are fees.",
           },
         ],
-        formula: "Interés simple = Capital × Tasa anual × Meses ÷ 12 · Indemnización mínima por cheque sin fondos = 20% × Valor del cheque",
+        formulas: [
+          {
+            name: { es: "Interés simple y costo total de un crédito", en: "Simple interest and total cost of a loan" },
+            expression: "Interés simple = Capital × Tasa anual × Meses ÷ 12; Costo total = Interés + Comisiones",
+            variables: [
+              { symbol: "Capital", meaning: { es: "El dinero que te presta el banco, en pesos.", en: "The money the bank lends you, in pesos." } },
+              { symbol: "Tasa anual", meaning: { es: "La tasa de interés por año, en %; conviértela a decimal (15% = 0.15).", en: "The interest rate per year, in %; convert it to a decimal (15% = 0.15)." } },
+              { symbol: "Meses", meaning: { es: "Cuántos meses dura el crédito.", en: "How many months the loan lasts." } },
+              { symbol: "12", meaning: { es: "Meses de un año: sirve para tomar solo la parte del año que dura el crédito.", en: "Months in a year: used to take only the part of the year the loan lasts." } },
+              { symbol: "Comisiones", meaning: { es: "Cargos extra como la comisión por apertura, en pesos.", en: "Extra charges such as an opening fee, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal.", en: "Convert the rate to a decimal." },
+              { es: "Multiplica capital × tasa: interés de un año completo.", en: "Multiply principal × rate: interest for a full year." },
+              { es: "Multiplica por los meses y divide entre 12: interés del plazo real.", en: "Multiply by the months and divide by 12: interest for the actual term." },
+              { es: "Para comparar ofertas, suma las comisiones: costo total.", en: "To compare offers, add the fees: total cost." },
+            ],
+            example: {
+              es: "Crédito de $60,000 a 18% anual (tasa de ejemplo) por 4 meses, con comisión de $1,000. Un año: 60,000 × 0.18 = $10,800. Cuatro meses: 10,800 × 4 ÷ 12 = **$3,600** de interés. Costo total = 3,600 + 1,000 = **$4,600**.",
+              en: "A $60,000 loan at 18% per year (example rate) for 4 months, with a $1,000 fee. One year: 60,000 × 0.18 = $10,800. Four months: 10,800 × 4 ÷ 12 = **$3,600** of interest. Total cost = 3,600 + 1,000 = **$4,600**.",
+            },
+            interpret: {
+              es: "La oferta con menor costo total es la más barata, aunque su tasa sea más alta. Por eso existe el CAT.",
+              en: "The offer with the lowest total cost is the cheapest, even if its rate is higher. That is why the CAT exists.",
+            },
+            mistake: {
+              es: "Usar la tasa anual completa cuando el crédito dura menos de un año.",
+              en: "Using the full annual rate when the loan lasts less than a year.",
+            },
+          },
+          {
+            name: { es: "Indemnización mínima por cheque sin fondos", en: "Minimum compensation for a bounced cheque" },
+            expression: "Indemnización mínima = Valor del cheque × 20%",
+            variables: [
+              { symbol: "Valor del cheque", meaning: { es: "La cantidad escrita en el cheque, en pesos.", en: "The amount written on the cheque, in pesos." } },
+              { symbol: "20%", meaning: { es: "Porcentaje mínimo que fija la ley como indemnización (0.20 en decimal).", en: "Minimum percentage the law sets as compensation (0.20 as a decimal)." } },
+            ],
+            steps: [
+              { es: "Toma el valor del cheque que no se pagó por falta de fondos.", en: "Take the value of the cheque not paid for lack of funds." },
+              { es: "Multiplícalo por 0.20: indemnización mínima.", en: "Multiply it by 0.20: minimum compensation." },
+              { es: "Súmala al valor del cheque: eso es lo que se debe en total.", en: "Add it to the cheque's value: that is the total owed." },
+            ],
+            example: {
+              es: "Cheque de $8,500 sin fondos. Indemnización = 8,500 × 0.20 = **$1,700**. Total adeudado = 8,500 + 1,700 = $10,200.",
+              en: "An $8,500 cheque without funds. Compensation = 8,500 × 0.20 = **$1,700**. Total owed = 8,500 + 1,700 = $10,200.",
+            },
+            mistake: {
+              es: "Creer que la indemnización sustituye al cheque: se paga además del valor del cheque.",
+              en: "Thinking the compensation replaces the cheque: it is paid on top of the cheque's value.",
+            },
+          },
+        ],
       },
     ],
     examples: [

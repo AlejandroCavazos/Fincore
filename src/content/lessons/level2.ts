@@ -16,7 +16,7 @@ export const lessons: Lesson[] = [
       es: "Estructura, clasificación y lectura de los dos estados financieros básicos.",
       en: "Structure, classification and reading of the two basic financial statements.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Presentar un estado de situación financiera clasificado en circulante y no circulante.", en: "Present a statement of financial position classified into current and non-current." },
       { es: "Construir el estado de resultados hasta la utilidad neta.", en: "Build the income statement down to net profit." },
@@ -28,6 +28,10 @@ export const lessons: Lesson[] = [
         heading: { es: "Estado de situación financiera", en: "Statement of financial position" },
         body: [
           {
+            es: "En palabras sencillas: es una **foto** de lo que el negocio **tiene** y de lo que **debe** en un día concreto. Los **activos** son lo que tiene (dinero en el banco, lo que le deben los clientes, mercancía, maquinaria). Los **pasivos** son lo que debe a otros (proveedores, préstamos). El **capital contable** es lo que realmente pertenece a los dueños: lo que queda si con los activos se pagaran todas las deudas.",
+            en: "In plain words: it is a **snapshot** of what the business **owns** and what it **owes** on a specific day. **Assets** are what it owns (money in the bank, what customers owe it, goods, machinery). **Liabilities** are what it owes others (suppliers, loans). **Equity** is what truly belongs to the owners: what would be left if all debts were paid with the assets.",
+          },
+          {
             es: "Muestra los **activos, pasivos y capital contable a una fecha determinada** (por ejemplo, al 31 de diciembre). Es una fotografía de los recursos de la entidad y de cómo se financian. En México se rige por la NIF B-6; internacionalmente, por IAS 1 (que será sustituida por IFRS 18 para periodos que inicien a partir del 1 de enero de 2027).",
             en: "It shows **assets, liabilities and equity at a specific date** (for example, December 31). It is a snapshot of the entity's resources and how they are financed. In Mexico it is governed by NIF B-6; internationally by IAS 1 (to be replaced by IFRS 18 for periods beginning on or after 1 January 2027).",
           },
@@ -35,23 +39,124 @@ export const lessons: Lesson[] = [
             es: "Lo habitual es clasificar activos y pasivos en **circulantes / a corto plazo** (se realizan o liquidan en 12 meses o en el ciclo normal de operación) y **no circulantes / a largo plazo**. La porción de un préstamo de largo plazo que vence en los próximos 12 meses se presenta como pasivo a corto plazo.",
             en: "Assets and liabilities are usually classified as **current** (realized or settled within 12 months or the normal operating cycle) and **non-current**. The portion of a long-term loan due within the next 12 months is presented as a current liability.",
           },
+          {
+            es: "¿Para qué sirve separar corto y largo plazo? Para saber si el negocio podrá pagar lo que vence pronto con lo que tiene a la mano. Esa comparación se llama **capital de trabajo**: el \"colchón\" que queda después de cubrir las deudas del próximo año.",
+            en: "Why separate short and long term? To know whether the business can pay what falls due soon with what it has at hand. That comparison is called **working capital**: the \"cushion\" left after covering next year's debts.",
+          },
         ],
-        formula: "Capital de trabajo = Activo circulante − Pasivo a corto plazo",
+        formulas: [
+          {
+            name: { es: "Ecuación contable: cuánto pertenece a los dueños", en: "Accounting equation: how much belongs to the owners" },
+            expression: "Activo = Pasivo + Capital contable   →   Capital contable = Activo − Pasivo",
+            variables: [
+              { symbol: "Activo", meaning: { es: "Todo lo que el negocio tiene, en pesos (efectivo, clientes, inventarios, maquinaria).", en: "Everything the business owns, in pesos (cash, receivables, inventory, machinery)." } },
+              { symbol: "Pasivo", meaning: { es: "Todo lo que el negocio debe a terceros, en pesos (proveedores, préstamos, impuestos por pagar).", en: "Everything the business owes to third parties, in pesos (suppliers, loans, taxes payable)." } },
+              { symbol: "Capital contable", meaning: { es: "La parte de los activos que pertenece a los dueños, en pesos.", en: "The part of the assets that belongs to the owners, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todos los activos (circulantes y no circulantes).", en: "Add up all assets (current and non-current)." },
+              { es: "Suma todos los pasivos (a corto y a largo plazo).", en: "Add up all liabilities (current and non-current)." },
+              { es: "Resta: Activo − Pasivo = Capital contable.", en: "Subtract: Assets − Liabilities = Equity." },
+            ],
+            example: {
+              es: "Un negocio tiene activos por $400,000 y debe $150,000. Capital contable = $400,000 − $150,000 = **$250,000**. Comprobación: $150,000 + $250,000 = $400,000.",
+              en: "A business has assets of $400,000 and owes $150,000. Equity = $400,000 − $150,000 = **$250,000**. Check: $150,000 + $250,000 = $400,000.",
+            },
+            interpret: {
+              es: "Si el capital contable sale negativo, el negocio debe más de lo que tiene: es una señal de alerta.",
+              en: "If equity comes out negative, the business owes more than it owns: a warning sign.",
+            },
+          },
+          {
+            name: { es: "Capital de trabajo", en: "Working capital" },
+            expression: "Capital de trabajo = Activo circulante − Pasivo a corto plazo",
+            variables: [
+              { symbol: "Activo circulante", meaning: { es: "Lo que se convierte en dinero o se usa en los próximos 12 meses, en pesos: bancos, clientes, inventarios.", en: "What turns into cash or is used within the next 12 months, in pesos: bank, receivables, inventory." } },
+              { symbol: "Pasivo a corto plazo", meaning: { es: "Lo que hay que pagar en los próximos 12 meses, en pesos: proveedores, sueldos por pagar, la parte de préstamos que vence en el año.", en: "What must be paid within the next 12 months, in pesos: suppliers, salaries payable, the part of loans due within the year." } },
+            ],
+            steps: [
+              { es: "Suma solo los activos circulantes.", en: "Add up only the current assets." },
+              { es: "Suma solo los pasivos que vencen en 12 meses o menos; deja fuera los préstamos de largo plazo.", en: "Add up only the liabilities due within 12 months; leave long-term loans out." },
+              { es: "Resta: Activo circulante − Pasivo a corto plazo.", en: "Subtract: Current assets − Current liabilities." },
+            ],
+            example: {
+              es: "Caja $25,000, clientes $35,000 e inventarios $40,000 → activo circulante = $100,000. Proveedores $30,000 e impuestos por pagar $8,000 → pasivo a corto plazo = $38,000 (un préstamo a 5 años de $90,000 no entra). Capital de trabajo = $100,000 − $38,000 = **$62,000**.",
+              en: "Cash $25,000, receivables $35,000 and inventory $40,000 → current assets = $100,000. Payables $30,000 and taxes payable $8,000 → current liabilities = $38,000 (a $90,000 five-year loan is left out). Working capital = $100,000 − $38,000 = **$62,000**.",
+            },
+            interpret: {
+              es: "Positivo: el negocio alcanza a cubrir sus deudas del año con lo que tiene a la mano. Negativo: podría tener problemas para pagar a tiempo.",
+              en: "Positive: the business can cover the year's debts with what it has at hand. Negative: it may struggle to pay on time.",
+            },
+            mistake: {
+              es: "Incluir préstamos de largo plazo o maquinaria. Solo cuentan partidas de 12 meses o menos.",
+              en: "Including long-term loans or machinery. Only items of 12 months or less count.",
+            },
+          },
+          {
+            name: { es: "Separar un préstamo en corto y largo plazo", en: "Splitting a loan into current and non-current" },
+            expression: "Porción a largo plazo = Saldo total del préstamo − Porción que vence en los próximos 12 meses",
+            variables: [
+              { symbol: "Saldo total del préstamo", meaning: { es: "Todo lo que se debe del préstamo a la fecha del balance, en pesos.", en: "The full amount owed on the loan at the balance-sheet date, in pesos." } },
+              { symbol: "Porción que vence en los próximos 12 meses", meaning: { es: "Lo que se pagará dentro del año siguiente, en pesos; va en pasivo a corto plazo.", en: "What will be paid within the next year, in pesos; it goes in current liabilities." } },
+              { symbol: "Porción a largo plazo", meaning: { es: "Lo que se pagará después de 12 meses, en pesos; va en pasivo a largo plazo.", en: "What will be paid after 12 months, in pesos; it goes in non-current liabilities." } },
+            ],
+            steps: [
+              { es: "Identifica cuánto del préstamo se paga en los próximos 12 meses: eso es corto plazo.", en: "Identify how much of the loan is paid within the next 12 months: that is current." },
+              { es: "Réstalo del saldo total: el resto es largo plazo.", en: "Subtract it from the total balance: the rest is non-current." },
+            ],
+            example: {
+              es: "Préstamo de $500,000; en los próximos 12 meses se pagarán $80,000. Corto plazo = **$80,000**; largo plazo = $500,000 − $80,000 = **$420,000**.",
+              en: "A $500,000 loan; $80,000 will be paid within the next 12 months. Current = **$80,000**; non-current = $500,000 − $80,000 = **$420,000**.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Estado de resultados", en: "Income statement" },
         body: [
           {
+            es: "En palabras sencillas: es la **película** de un periodo (un mes, un año). Responde: ¿cuánto vendí, cuánto me costó y cuánto gané o perdí? Se lee de arriba hacia abajo, como una escalera: empiezas con las ventas y en cada escalón restas un tipo de costo o gasto hasta llegar a la **utilidad neta**, lo que de verdad quedó para los dueños.",
+            en: "In plain words: it is the **movie** of a period (a month, a year). It answers: how much did I sell, how much did it cost me and how much did I earn or lose? It reads top to bottom, like a staircase: you start with sales and at each step subtract one type of cost or expense until you reach **net profit**, what is truly left for the owners.",
+          },
+          {
             es: "Presenta los **ingresos, costos y gastos de un periodo** y su resultado: utilidad o pérdida. En México la NIF B-3 lo denomina estado de resultado integral, porque además de la utilidad neta puede incluir otros resultados integrales (ORI). Los costos y gastos se pueden clasificar por **función** (costo de ventas, gastos de venta y administración) o por **naturaleza** (sueldos, depreciación, etc.).",
             en: "It presents the **revenue, costs and expenses for a period** and the result: profit or loss. In Mexico, NIF B-3 calls it the statement of comprehensive income because, besides net profit, it may include other comprehensive income (OCI). Costs and expenses may be classified by **function** (cost of sales, selling and administrative expenses) or by **nature** (salaries, depreciation, etc.).",
           },
         ],
-        bullets: [
-          { es: "Ventas netas = Ventas − Devoluciones y descuentos", en: "Net sales = Sales − Returns and discounts" },
-          { es: "Utilidad bruta = Ventas netas − Costo de ventas", en: "Gross profit = Net sales − Cost of goods sold" },
-          { es: "Utilidad de operación = Utilidad bruta − Gastos de operación", en: "Operating profit = Gross profit − Operating expenses" },
-          { es: "Utilidad antes de impuestos = Utilidad de operación ± Resultado integral de financiamiento", en: "Profit before tax = Operating profit ± Net finance cost/income" },
-          { es: "Utilidad neta = Utilidad antes de impuestos − Impuestos a la utilidad", en: "Net profit = Profit before tax − Income taxes" },
+        formulas: [
+          {
+            name: { es: "La escalera del estado de resultados: de ventas a utilidad neta", en: "The income statement staircase: from sales to net profit" },
+            expression: "Ventas netas = Ventas − Devoluciones y descuentos; Utilidad bruta = Ventas netas − Costo de ventas; Utilidad de operación = Utilidad bruta − Gastos de operación; Utilidad antes de impuestos = Utilidad de operación ± Resultado integral de financiamiento; ISR = Utilidad antes de impuestos × Tasa; Utilidad neta = Utilidad antes de impuestos − ISR",
+            variables: [
+              { symbol: "Ventas", meaning: { es: "Todo lo facturado a clientes en el periodo, en pesos.", en: "Everything billed to customers in the period, in pesos." } },
+              { symbol: "Devoluciones y descuentos", meaning: { es: "Mercancía que los clientes regresaron y rebajas que se les dieron, en pesos.", en: "Goods customers returned and discounts given to them, in pesos." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que costó la mercancía que se vendió, en pesos.", en: "What the goods that were sold cost, in pesos." } },
+              { symbol: "Gastos de operación", meaning: { es: "Gastos para funcionar y vender: sueldos de oficina, renta, publicidad, en pesos.", en: "Expenses to operate and sell: office salaries, rent, advertising, in pesos." } },
+              { symbol: "Resultado integral de financiamiento", meaning: { es: "Intereses pagados (restan) o ganados (suman), en pesos.", en: "Interest paid (subtract) or earned (add), in pesos." } },
+              { symbol: "Tasa", meaning: { es: "Tasa de impuesto sobre la utilidad, en %; en esta lección 30 % como supuesto educativo.", en: "Income tax rate, in %; in this lesson 30% as an educational assumption." } },
+              { symbol: "ISR", meaning: { es: "Impuesto sobre la renta: el impuesto a la utilidad, en pesos.", en: "Income tax: the tax on profit, in pesos." } },
+              { symbol: "Utilidad neta", meaning: { es: "Lo que queda al final para los dueños, en pesos.", en: "What is left at the end for the owners, in pesos." } },
+            ],
+            steps: [
+              { es: "Resta devoluciones y descuentos a las ventas: obtienes ventas netas.", en: "Subtract returns and discounts from sales: you get net sales." },
+              { es: "Resta el costo de ventas: obtienes la utilidad bruta.", en: "Subtract cost of goods sold: you get gross profit." },
+              { es: "Resta los gastos de operación: obtienes la utilidad de operación.", en: "Subtract operating expenses: you get operating profit." },
+              { es: "Resta los intereses pagados (o suma los ganados): obtienes la utilidad antes de impuestos.", en: "Subtract interest paid (or add interest earned): you get profit before tax." },
+              { es: "Calcula el ISR: utilidad antes de impuestos × tasa (30 % = 0.30) y réstalo: obtienes la utilidad neta.", en: "Compute income tax: profit before tax × rate (30% = 0.30) and subtract it: you get net profit." },
+            ],
+            example: {
+              es: "Ventas $300,000; devoluciones $10,000; costo de ventas $170,000; gastos de operación $50,000; intereses pagados $6,000; tasa 30 %. Ventas netas = 300,000 − 10,000 = $290,000. Utilidad bruta = 290,000 − 170,000 = $120,000. Utilidad de operación = 120,000 − 50,000 = $70,000. Antes de impuestos = 70,000 − 6,000 = $64,000. ISR = 64,000 × 0.30 = $19,200. Utilidad neta = 64,000 − 19,200 = **$44,800**.",
+              en: "Sales $300,000; returns $10,000; COGS $170,000; operating expenses $50,000; interest paid $6,000; rate 30%. Net sales = 300,000 − 10,000 = $290,000. Gross profit = 290,000 − 170,000 = $120,000. Operating profit = 120,000 − 50,000 = $70,000. Before tax = 70,000 − 6,000 = $64,000. Tax = 64,000 × 0.30 = $19,200. Net profit = 64,000 − 19,200 = **$44,800**.",
+            },
+            interpret: {
+              es: "Cada escalón dice algo: la utilidad bruta muestra si vendes por encima de lo que te cuesta la mercancía; la de operación, si el negocio en sí es rentable; la neta, cuánto ganaron los dueños.",
+              en: "Each step says something: gross profit shows whether you sell above what the goods cost; operating profit, whether the business itself is profitable; net profit, how much the owners earned.",
+            },
+            mistake: {
+              es: "Restar el costo de ventas a las ventas brutas, olvidando primero las devoluciones; o calcular el ISR sobre la utilidad de operación en lugar de la utilidad antes de impuestos.",
+              en: "Subtracting COGS from gross sales, forgetting returns first; or computing tax on operating profit instead of profit before tax.",
+            },
+          },
         ],
       },
       {
@@ -118,7 +223,7 @@ export const lessons: Lesson[] = [
       es: "De dónde vino y a dónde fue el efectivo, y cómo se movieron las cuentas del capital contable.",
       en: "Where cash came from and went, and how equity accounts moved.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Clasificar flujos en actividades de operación, inversión y financiamiento.", en: "Classify cash flows into operating, investing and financing activities." },
       { es: "Determinar el flujo de operación por el método indirecto.", en: "Determine operating cash flow using the indirect method." },
@@ -132,8 +237,36 @@ export const lessons: Lesson[] = [
             es: "El estado de flujos de efectivo (NIF B-2 / IAS 7) explica la variación del efectivo del periodo. Las **actividades de operación** son las principales generadoras de ingresos (cobros a clientes, pagos a proveedores y empleados). Las de **inversión** se refieren a la adquisición y venta de activos de largo plazo (maquinaria, terrenos, inversiones). Las de **financiamiento** cambian el tamaño y composición del capital y la deuda (préstamos recibidos o pagados, aportaciones, dividendos pagados).",
             en: "The statement of cash flows (NIF B-2 / IAS 7) explains the change in cash for the period. **Operating activities** are the main revenue-producing activities (collections from customers, payments to suppliers and employees). **Investing** activities relate to buying and selling long-term assets (machinery, land, investments). **Financing** activities change the size and composition of equity and debt (loans received or repaid, contributions, dividends paid).",
           },
+          {
+            es: "En palabras sencillas: es como revisar el estado de cuenta de tu tarjeta de débito y agrupar los movimientos en tres cajones: lo que entra y sale **por el negocio del día a día** (operación), lo que gastas o recibes **por comprar o vender cosas grandes** (inversión) y lo que te prestan, pagas de deudas o ponen o retiran los dueños (financiamiento). Importa porque un negocio puede tener utilidad y aun así quedarse sin efectivo.",
+            en: "In plain words: it is like reviewing your debit card statement and sorting the movements into three drawers: what comes in and goes out **from day-to-day business** (operating), what you spend or receive **from buying or selling big things** (investing), and what you borrow, repay or what owners put in or take out (financing). It matters because a business can make a profit and still run out of cash.",
+          },
         ],
-        formula: "Efectivo final = Efectivo inicial + Flujo de operación + Flujo de inversión + Flujo de financiamiento",
+        formulas: [
+          {
+            name: { es: "Conciliación del efectivo", en: "Cash reconciliation" },
+            expression: "Efectivo final = Efectivo inicial + Flujo de operación + Flujo de inversión + Flujo de financiamiento",
+            variables: [
+              { symbol: "Efectivo inicial", meaning: { es: "El efectivo y bancos al inicio del periodo, en pesos.", en: "Cash and bank at the start of the period, in pesos." } },
+              { symbol: "Flujo de operación", meaning: { es: "Entradas menos salidas de efectivo del negocio principal, en pesos (puede ser negativo).", en: "Cash inflows minus outflows from the main business, in pesos (may be negative)." } },
+              { symbol: "Flujo de inversión", meaning: { es: "Entradas menos salidas por comprar o vender activos de largo plazo, en pesos (suele ser negativo cuando se compra maquinaria).", en: "Inflows minus outflows from buying or selling long-term assets, in pesos (usually negative when buying machinery)." } },
+              { symbol: "Flujo de financiamiento", meaning: { es: "Préstamos recibidos y aportaciones (suman) menos pagos de deuda y dividendos (restan), en pesos.", en: "Loans received and contributions (add) minus debt repayments and dividends (subtract), in pesos." } },
+              { symbol: "Efectivo final", meaning: { es: "El efectivo al cierre del periodo, en pesos; debe coincidir con Bancos del balance.", en: "Cash at the end of the period, in pesos; it must match Bank on the balance sheet." } },
+            ],
+            steps: [
+              { es: "Suma los tres flujos, respetando su signo (+ si entró dinero, − si salió): eso es el aumento o disminución neto de efectivo.", en: "Add the three flows, keeping their sign (+ if money came in, − if it went out): that is the net increase or decrease in cash." },
+              { es: "Súmale el efectivo inicial: el resultado es el efectivo final.", en: "Add the opening cash: the result is closing cash." },
+            ],
+            example: {
+              es: "Efectivo inicial $40,000; operación +$85,000; inversión −$60,000 (compra de un horno); financiamiento +$15,000 (préstamo). Aumento neto = 85,000 − 60,000 + 15,000 = $40,000. Efectivo final = 40,000 + 40,000 = **$80,000**.",
+              en: "Opening cash $40,000; operating +$85,000; investing −$60,000 (oven purchase); financing +$15,000 (loan). Net increase = 85,000 − 60,000 + 15,000 = $40,000. Closing cash = 40,000 + 40,000 = **$80,000**.",
+            },
+            mistake: {
+              es: "Usar la utilidad neta como si fuera el aumento de efectivo. No son lo mismo: hay ventas a crédito, depreciación y otros movimientos que no son dinero.",
+              en: "Using net profit as if it were the increase in cash. They differ: there are credit sales, depreciation and other non-cash items.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Método indirecto", en: "Indirect method" },
@@ -146,8 +279,42 @@ export const lessons: Lesson[] = [
             es: "Nota: la NIF B-2 parte de la utilidad antes de impuestos a la utilidad, mientras que en la práctica internacional es común partir de la utilidad neta. En los ejercicios de esta lección se parte de la utilidad neta para simplificar.",
             en: "Note: NIF B-2 starts from profit before income taxes, while international practice commonly starts from net profit. The exercises in this lesson start from net profit for simplicity.",
           },
+          {
+            es: "Una forma fácil de recordarlo: si un **cliente te debe más** que antes, ese dinero aún no llegó a tu bolsillo (resta). Si **tú le debes más al proveedor**, ese dinero sigue en tu bolsillo porque no lo has pagado (suma). Y la **depreciación** se suma porque fue un gasto \"en papel\": no salió ni un peso ese año.",
+            en: "An easy way to remember it: if a **customer owes you more** than before, that money has not reached your pocket yet (subtract). If **you owe the supplier more**, that money is still in your pocket because you have not paid it (add). And **depreciation** is added back because it was a \"paper\" expense: not one peso left that year.",
+          },
         ],
-        formula: "FEO = Utilidad neta + Depreciación − ↑ Activos circulantes + ↓ Activos circulantes + ↑ Pasivos circulantes − ↓ Pasivos circulantes",
+        formulas: [
+          {
+            name: { es: "Flujo de efectivo de operación (FEO), método indirecto", en: "Operating cash flow (OCF), indirect method" },
+            expression: "FEO = Utilidad neta + Depreciación − ↑ Activos circulantes + ↓ Activos circulantes + ↑ Pasivos circulantes − ↓ Pasivos circulantes",
+            variables: [
+              { symbol: "FEO", meaning: { es: "Flujo neto de efectivo de las actividades de operación, en pesos.", en: "Net cash flow from operating activities, in pesos." } },
+              { symbol: "Utilidad neta", meaning: { es: "La utilidad del estado de resultados, en pesos (punto de partida).", en: "The profit from the income statement, in pesos (starting point)." } },
+              { symbol: "Depreciación", meaning: { es: "Gasto del periodo que no movió efectivo, en pesos; se suma de regreso.", en: "Period expense that moved no cash, in pesos; it is added back." } },
+              { symbol: "↑ / ↓ Activos circulantes", meaning: { es: "Aumento (↑) o disminución (↓) en clientes o inventarios entre el inicio y el final del periodo, en pesos.", en: "Increase (↑) or decrease (↓) in receivables or inventory between the start and end of the period, in pesos." } },
+              { symbol: "↑ / ↓ Pasivos circulantes", meaning: { es: "Aumento (↑) o disminución (↓) en proveedores u otras deudas de operación, en pesos.", en: "Increase (↑) or decrease (↓) in payables or other operating debts, in pesos." } },
+            ],
+            steps: [
+              { es: "Parte de la utilidad neta.", en: "Start from net profit." },
+              { es: "Suma la depreciación (y otros gastos que no usaron efectivo).", en: "Add depreciation (and other expenses that used no cash)." },
+              { es: "Por cada activo circulante: si aumentó, resta el aumento; si disminuyó, suma la disminución.", en: "For each current asset: if it increased, subtract the increase; if it decreased, add the decrease." },
+              { es: "Por cada pasivo circulante: si aumentó, suma el aumento; si disminuyó, resta la disminución.", en: "For each current liability: if it increased, add the increase; if it decreased, subtract the decrease." },
+            ],
+            example: {
+              es: "Utilidad neta $80,000; depreciación $12,000; clientes aumentó $9,000; inventarios disminuyó $4,000; proveedores disminuyó $6,000. 80,000 + 12,000 = 92,000. 92,000 − 9,000 = 83,000. 83,000 + 4,000 = 87,000. 87,000 − 6,000 = **$81,000** de flujo de operación.",
+              en: "Net profit $80,000; depreciation $12,000; receivables increased $9,000; inventory decreased $4,000; payables decreased $6,000. 80,000 + 12,000 = 92,000. 92,000 − 9,000 = 83,000. 83,000 + 4,000 = 87,000. 87,000 − 6,000 = **$81,000** operating cash flow.",
+            },
+            interpret: {
+              es: "Si el FEO es mayor que la utilidad, el negocio convierte bien sus ventas en dinero. Si es mucho menor, revisa: quizá los clientes tardan en pagar o se acumuló inventario.",
+              en: "If OCF is higher than profit, the business turns its sales into cash well. If it is much lower, check: customers may be slow to pay or inventory may have piled up.",
+            },
+            mistake: {
+              es: "Invertir los signos: una disminución de un activo (por ejemplo, inventarios) **suma**, porque liberó efectivo.",
+              en: "Flipping the signs: a decrease in an asset (for example, inventory) is **added**, because it released cash.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Estado de cambios en el capital contable", en: "Statement of changes in equity" },
@@ -156,8 +323,54 @@ export const lessons: Lesson[] = [
             es: "Muestra, por cada componente del capital (capital social, utilidades retenidas, otros resultados integrales), el saldo inicial, los movimientos del periodo y el saldo final (NIF B-4 / IAS 1). Los movimientos típicos son: aportaciones o reembolsos de capital, utilidad o pérdida integral del periodo y dividendos decretados.",
             en: "It shows, for each equity component (share capital, retained earnings, other comprehensive income), the opening balance, the period's movements and the closing balance (NIF B-4 / IAS 1). Typical movements are: capital contributions or repayments, comprehensive income or loss for the period and dividends declared.",
           },
+          {
+            es: "Glosario rápido: el **capital social** es el dinero que los socios pusieron para arrancar o hacer crecer el negocio. Las **utilidades retenidas** son las ganancias de años anteriores que se quedaron dentro de la empresa. Los **dividendos** son la parte de esas ganancias que se reparte a los socios; por eso salen de las utilidades retenidas, no del capital social.",
+            en: "Quick glossary: **share capital** is the money partners put in to start or grow the business. **Retained earnings** are profits from prior years that stayed inside the company. **Dividends** are the part of those profits paid out to partners; that is why they come out of retained earnings, not share capital.",
+          },
         ],
-        formula: "Utilidades retenidas finales = Iniciales + Utilidad neta − Dividendos decretados",
+        formulas: [
+          {
+            name: { es: "Utilidades retenidas finales", en: "Closing retained earnings" },
+            expression: "Utilidades retenidas finales = Utilidades retenidas iniciales + Utilidad neta − Dividendos decretados",
+            variables: [
+              { symbol: "Utilidades retenidas iniciales", meaning: { es: "Ganancias acumuladas no repartidas al inicio del año, en pesos.", en: "Accumulated undistributed profits at the start of the year, in pesos." } },
+              { symbol: "Utilidad neta", meaning: { es: "La ganancia del año (si fue pérdida, se resta), en pesos.", en: "The year's profit (if a loss, it is subtracted), in pesos." } },
+              { symbol: "Dividendos decretados", meaning: { es: "Ganancias que se acordó repartir a los socios, en pesos.", en: "Profits the partners agreed to distribute, in pesos." } },
+            ],
+            steps: [
+              { es: "Toma el saldo inicial de utilidades retenidas.", en: "Take the opening retained earnings balance." },
+              { es: "Suma la utilidad neta del año.", en: "Add the year's net profit." },
+              { es: "Resta los dividendos decretados.", en: "Subtract dividends declared." },
+            ],
+            example: {
+              es: "Iniciales $60,000; utilidad neta $35,000; dividendos $15,000. 60,000 + 35,000 = 95,000; 95,000 − 15,000 = **$80,000**.",
+              en: "Opening $60,000; net profit $35,000; dividends $15,000. 60,000 + 35,000 = 95,000; 95,000 − 15,000 = **$80,000**.",
+            },
+            mistake: {
+              es: "Restar los dividendos al capital social. Los dividendos reparten ganancias, así que se restan de las utilidades retenidas.",
+              en: "Subtracting dividends from share capital. Dividends distribute profits, so they are subtracted from retained earnings.",
+            },
+          },
+          {
+            name: { es: "Capital contable total final", en: "Total closing equity" },
+            expression: "Capital social final = Capital social inicial + Aportaciones − Reembolsos; Capital contable final = Capital social final + Utilidades retenidas finales",
+            variables: [
+              { symbol: "Capital social inicial", meaning: { es: "Lo aportado por los socios al inicio del año, en pesos.", en: "What partners had contributed at the start of the year, in pesos." } },
+              { symbol: "Aportaciones", meaning: { es: "Dinero nuevo que los socios metieron en el año, en pesos.", en: "New money partners put in during the year, in pesos." } },
+              { symbol: "Reembolsos", meaning: { es: "Capital que se devolvió a los socios en el año, en pesos (si no hubo, es 0).", en: "Capital returned to partners during the year, in pesos (0 if none)." } },
+              { symbol: "Utilidades retenidas finales", meaning: { es: "El resultado de la fórmula anterior, en pesos.", en: "The result of the previous formula, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el capital social final: inicial + aportaciones − reembolsos.", en: "Compute closing share capital: opening + contributions − repayments." },
+              { es: "Calcula las utilidades retenidas finales con la fórmula anterior.", en: "Compute closing retained earnings with the previous formula." },
+              { es: "Suma ambos componentes: ése es el capital contable total.", en: "Add both components: that is total equity." },
+            ],
+            example: {
+              es: "Capital social inicial $200,000 y aportación de $30,000 → 200,000 + 30,000 = $230,000. Utilidades retenidas finales $80,000. Capital contable final = 230,000 + 80,000 = **$310,000**.",
+              en: "Opening share capital $200,000 and a $30,000 contribution → 200,000 + 30,000 = $230,000. Closing retained earnings $80,000. Closing equity = 230,000 + 80,000 = **$310,000**.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -212,7 +425,7 @@ export const lessons: Lesson[] = [
       es: "Asientos de ajuste al cierre del periodo y cálculo de la depreciación en línea recta y por unidades producidas.",
       en: "Period-end adjusting entries and depreciation using the straight-line and units-of-production methods.",
     },
-    minutes: 18,
+    minutes: 21,
     objectives: [
       { es: "Identificar los tipos de ajuste: anticipados, acumulados y estimaciones.", en: "Identify adjustment types: deferrals, accruals and estimates." },
       { es: "Registrar ajustes de pagos anticipados, sueldos devengados e ingresos cobrados por anticipado.", en: "Record adjustments for prepaid expenses, accrued salaries and unearned revenue." },
@@ -226,6 +439,37 @@ export const lessons: Lesson[] = [
           {
             es: "Por **devengación**, los ingresos y gastos deben reconocerse en el periodo en que ocurren. Al cierre, algunas cuentas no reflejan esa realidad porque el efectivo se movió antes o después. Los **asientos de ajuste** corrigen esto antes de preparar los estados financieros; casi siempre afectan una cuenta de resultados y una de balance, y nunca a Bancos.",
             en: "Under **accrual accounting**, revenue and expenses must be recognized in the period in which they occur. At period-end some accounts do not reflect that because cash moved earlier or later. **Adjusting entries** fix this before the financial statements are prepared; they almost always affect one income-statement account and one balance-sheet account, and never Bank.",
+          },
+          {
+            es: "En palabras sencillas: **devengar** significa anotar algo en el mes en que realmente se usó o se ganó, no en el mes en que se pagó o se cobró. Ejemplo: si pagas en enero la renta de todo el semestre, en enero solo \"gastaste\" un mes; los otros cinco siguen siendo un derecho a favor (un activo). El ajuste mueve cada mes la parte que ya se usó.",
+            en: "In plain words: **accrue** means recording something in the month it was actually used or earned, not the month it was paid or collected. Example: if you pay six months of rent in January, in January you only \"spent\" one month; the other five are still a right in your favour (an asset). The adjustment moves each month the part already used.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Parte devengada de un pago o cobro anticipado", en: "Earned or used portion of an advance payment or collection" },
+            expression: "Parte devengada = (Importe total ÷ Meses que cubre) × Meses transcurridos; Saldo pendiente = Importe total − Parte devengada",
+            variables: [
+              { symbol: "Importe total", meaning: { es: "Lo que se pagó (seguro, renta) o se cobró (servicio) por adelantado, en pesos.", en: "What was paid (insurance, rent) or collected (service) in advance, in pesos." } },
+              { symbol: "Meses que cubre", meaning: { es: "Cuántos meses ampara ese pago o cobro (por ejemplo, 12 para un seguro anual).", en: "How many months that payment or collection covers (e.g. 12 for a one-year policy)." } },
+              { symbol: "Meses transcurridos", meaning: { es: "Meses ya usados o ya prestados al cierre, contando el mes de inicio.", en: "Months already used or already provided at the close, counting the start month." } },
+              { symbol: "Parte devengada", meaning: { es: "Lo que pasa a gasto (si pagaste) o a ingreso (si cobraste) con el ajuste, en pesos.", en: "What moves to expense (if you paid) or to revenue (if you collected) with the adjustment, in pesos." } },
+              { symbol: "Saldo pendiente", meaning: { es: "Lo que sigue siendo activo (pagos anticipados) o pasivo (anticipos de clientes), en pesos.", en: "What remains an asset (prepaid) or a liability (customer advances), in pesos." } },
+            ],
+            steps: [
+              { es: "Divide el importe total entre los meses que cubre: obtienes el importe de un mes.", en: "Divide the total amount by the months it covers: you get one month's amount." },
+              { es: "Cuenta los meses transcurridos hasta el cierre, incluyendo el mes en que empezó.", en: "Count the months elapsed up to the close, including the start month." },
+              { es: "Multiplica el importe mensual por esos meses: ésa es la cantidad del ajuste.", en: "Multiply the monthly amount by those months: that is the adjustment amount." },
+              { es: "Lo que sobra del importe total queda como activo o pasivo para los meses siguientes.", en: "What is left of the total remains an asset or liability for the following months." },
+            ],
+            example: {
+              es: "El 1 de septiembre se pagaron $30,000 de publicidad por 12 meses. Por mes: 30,000 ÷ 12 = $2,500. Al 31 de diciembre pasaron 4 meses (sep, oct, nov, dic): 2,500 × 4 = **$10,000** de gasto. Quedan 30,000 − 10,000 = $20,000 como pago anticipado.",
+              en: "On September 1, $30,000 of advertising was paid for 12 months. Per month: 30,000 ÷ 12 = $2,500. By December 31, 4 months passed (Sep, Oct, Nov, Dec): 2,500 × 4 = **$10,000** of expense. 30,000 − 10,000 = $20,000 remains prepaid.",
+            },
+            mistake: {
+              es: "Contar mal los meses (olvidar el mes de inicio) o pasar a gasto el importe completo.",
+              en: "Miscounting the months (forgetting the start month) or expensing the full amount.",
+            },
           },
         ],
         bullets: [
@@ -242,8 +486,57 @@ export const lessons: Lesson[] = [
             es: "La **depreciación** distribuye de forma sistemática el **monto depreciable** (costo menos valor residual) de un activo de propiedades, planta y equipo a lo largo de su vida útil (NIF C-6 / IAS 16). No pretende reflejar el valor de mercado del activo. Se registra con cargo a Gasto por depreciación y abono a Depreciación acumulada, cuenta complementaria que se resta del costo para obtener el **valor en libros**.",
             en: "**Depreciation** systematically allocates the **depreciable amount** (cost minus residual value) of a property, plant and equipment item over its useful life (NIF C-6 / IAS 16). It does not aim to reflect the asset's market value. It is recorded by debiting Depreciation expense and crediting Accumulated depreciation, a contra account deducted from cost to obtain the **carrying amount**.",
           },
+          {
+            es: "En palabras sencillas: si compras un horno de $100,000 que te durará 5 años, no sería justo cargar todo el gasto al primer año. La depreciación lo **reparte** entre los años en que lo usas. **Valor residual**: lo que esperas recibir al venderlo cuando ya no te sirva. **Vida útil**: cuántos años (o piezas, horas) piensas usarlo. **Depreciación acumulada**: la suma de toda la depreciación registrada hasta hoy.",
+            en: "In plain words: if you buy a $100,000 oven that will last 5 years, it would not be fair to charge the whole cost to the first year. Depreciation **spreads** it over the years you use it. **Residual value**: what you expect to get when you sell it once it is no longer useful. **Useful life**: how many years (or pieces, hours) you plan to use it. **Accumulated depreciation**: the sum of all depreciation recorded so far.",
+          },
         ],
-        formula: "Línea recta: Depreciación anual = (Costo − Valor residual) / Vida útil",
+        formulas: [
+          {
+            name: { es: "Depreciación en línea recta (anual y mensual)", en: "Straight-line depreciation (annual and monthly)" },
+            expression: "Depreciación anual = (Costo − Valor residual) ÷ Vida útil; Depreciación mensual = Depreciación anual ÷ 12",
+            variables: [
+              { symbol: "Costo", meaning: { es: "Lo que costó el activo (precio más lo necesario para dejarlo listo para usarse), en pesos.", en: "What the asset cost (price plus what was needed to get it ready for use), in pesos." } },
+              { symbol: "Valor residual", meaning: { es: "Lo que se espera recuperar al final de su vida, en pesos (puede ser 0).", en: "What is expected to be recovered at the end of its life, in pesos (may be 0)." } },
+              { symbol: "Vida útil", meaning: { es: "Años que se usará el activo.", en: "Years the asset will be used." } },
+            ],
+            steps: [
+              { es: "Resta el valor residual al costo: obtienes el monto depreciable.", en: "Subtract the residual value from cost: you get the depreciable amount." },
+              { es: "Divide el monto depreciable entre los años de vida útil: depreciación anual.", en: "Divide the depreciable amount by the years of useful life: annual depreciation." },
+              { es: "Si te piden un mes, divide la depreciación anual entre 12.", en: "If you are asked for one month, divide annual depreciation by 12." },
+            ],
+            example: {
+              es: "Costo $240,000; valor residual $24,000; vida útil 4 años. Monto depreciable = 240,000 − 24,000 = $216,000. Anual = 216,000 ÷ 4 = **$54,000**. Mensual = 54,000 ÷ 12 = **$4,500**.",
+              en: "Cost $240,000; residual value $24,000; useful life 4 years. Depreciable amount = 240,000 − 24,000 = $216,000. Annual = 216,000 ÷ 4 = **$54,000**. Monthly = 54,000 ÷ 12 = **$4,500**.",
+            },
+            mistake: {
+              es: "Dividir el costo completo sin restar antes el valor residual.",
+              en: "Dividing the full cost without first subtracting the residual value.",
+            },
+          },
+          {
+            name: { es: "Depreciación acumulada y valor en libros", en: "Accumulated depreciation and carrying amount" },
+            expression: "Depreciación acumulada = Depreciación anual × Años transcurridos; Valor en libros = Costo − Depreciación acumulada",
+            variables: [
+              { symbol: "Depreciación anual", meaning: { es: "El resultado de la fórmula de línea recta, en pesos por año.", en: "The result of the straight-line formula, in pesos per year." } },
+              { symbol: "Años transcurridos", meaning: { es: "Años completos que lleva usándose el activo.", en: "Full years the asset has been in use." } },
+              { symbol: "Costo", meaning: { es: "El costo original del activo, en pesos.", en: "The asset's original cost, in pesos." } },
+              { symbol: "Valor en libros", meaning: { es: "Lo que todavía falta por depreciar según la contabilidad, en pesos; no es su precio de venta.", en: "What remains undepreciated according to the books, in pesos; it is not its selling price." } },
+            ],
+            steps: [
+              { es: "Multiplica la depreciación anual por los años transcurridos: depreciación acumulada.", en: "Multiply annual depreciation by the years elapsed: accumulated depreciation." },
+              { es: "Resta la depreciación acumulada al costo original: valor en libros.", en: "Subtract accumulated depreciation from the original cost: carrying amount." },
+            ],
+            example: {
+              es: "El activo anterior ($240,000; $54,000 al año) lleva 2 años. Acumulada = 54,000 × 2 = $108,000. Valor en libros = 240,000 − 108,000 = **$132,000**.",
+              en: "The previous asset ($240,000; $54,000 per year) has 2 years of use. Accumulated = 54,000 × 2 = $108,000. Carrying amount = 240,000 − 108,000 = **$132,000**.",
+            },
+            mistake: {
+              es: "Restar también el valor residual al calcular el valor en libros. El residual solo se usa para calcular la depreciación anual.",
+              en: "Also subtracting the residual value when computing the carrying amount. The residual is only used to compute annual depreciation.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Unidades producidas", en: "Units of production" },
@@ -257,7 +550,36 @@ export const lessons: Lesson[] = [
             en: "Tax depreciation (investment deductions under the Mexican Income Tax Law) uses maximum legal percentages and may differ from book depreciation; that difference is covered in the tax level.",
           },
         ],
-        formula: "Cuota por unidad = (Costo − Valor residual) / Unidades totales estimadas ; Depreciación = Cuota × Unidades del periodo",
+        formulas: [
+          {
+            name: { es: "Depreciación por unidades producidas", en: "Units-of-production depreciation" },
+            expression: "Cuota por unidad = (Costo − Valor residual) ÷ Unidades totales estimadas; Depreciación = Cuota por unidad × Unidades del periodo",
+            variables: [
+              { symbol: "Costo", meaning: { es: "Lo que costó el activo, en pesos.", en: "What the asset cost, in pesos." } },
+              { symbol: "Valor residual", meaning: { es: "Lo que se espera recuperar al final, en pesos.", en: "What is expected to be recovered at the end, in pesos." } },
+              { symbol: "Unidades totales estimadas", meaning: { es: "Todo lo que se espera que produzca o recorra en su vida: piezas, horas máquina o kilómetros.", en: "Everything it is expected to produce or run over its life: pieces, machine hours or kilometres." } },
+              { symbol: "Cuota por unidad", meaning: { es: "Pesos de depreciación por cada pieza, hora o kilómetro.", en: "Pesos of depreciation per piece, hour or kilometre." } },
+              { symbol: "Unidades del periodo", meaning: { es: "Lo que realmente produjo o recorrió en el periodo.", en: "What it actually produced or ran in the period." } },
+            ],
+            steps: [
+              { es: "Resta el valor residual al costo: monto depreciable.", en: "Subtract the residual value from cost: depreciable amount." },
+              { es: "Divide el monto depreciable entre las unidades totales estimadas: cuota por unidad.", en: "Divide the depreciable amount by total estimated units: rate per unit." },
+              { es: "Multiplica la cuota por las unidades del periodo: depreciación del periodo.", en: "Multiply the rate by the period's units: depreciation for the period." },
+            ],
+            example: {
+              es: "Un horno industrial cuesta $300,000, residual $20,000, y se estima que trabajará 70,000 horas. Cuota = (300,000 − 20,000) ÷ 70,000 = 280,000 ÷ 70,000 = $4.00 por hora. En el año trabajó 12,500 horas: 12,500 × 4.00 = **$50,000**.",
+              en: "An industrial oven costs $300,000, residual $20,000, and is expected to run 70,000 hours. Rate = (300,000 − 20,000) ÷ 70,000 = 280,000 ÷ 70,000 = $4.00 per hour. This year it ran 12,500 hours: 12,500 × 4.00 = **$50,000**.",
+            },
+            interpret: {
+              es: "Un año con mucha producción tendrá más depreciación; un año flojo, menos. Por eso se usa cuando el desgaste depende del uso.",
+              en: "A year with heavy production will have more depreciation; a slow year, less. That is why it is used when wear depends on usage.",
+            },
+            mistake: {
+              es: "Calcular la cuota con el costo completo, sin restar el valor residual.",
+              en: "Computing the rate with full cost, without subtracting the residual value.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -313,7 +635,7 @@ export const lessons: Lesson[] = [
       es: "Costeo de inventarios con PEPS y costo promedio, y estimación para cuentas incobrables.",
       en: "Inventory costing with FIFO and weighted average, and the allowance for doubtful accounts.",
     },
-    minutes: 18,
+    minutes: 21,
     objectives: [
       { es: "Determinar qué costos forman parte del costo de los inventarios.", en: "Determine which costs form part of inventory cost." },
       { es: "Calcular costo de ventas e inventario final con PEPS y costo promedio.", en: "Compute cost of goods sold and ending inventory with FIFO and weighted average." },
@@ -341,8 +663,65 @@ export const lessons: Lesson[] = [
             es: "**UEPS** (últimas entradas, primeras salidas; LIFO) **no está permitido** por la NIF C-4 ni por IAS 2, porque deja el inventario valuado a costos antiguos que no representan razonablemente su costo actual.",
             en: "**LIFO** (last in, first out) is **not permitted** by NIF C-4 or IAS 2, because it leaves inventory valued at old costs that do not fairly represent its current cost.",
           },
+          {
+            es: "En palabras sencillas: compraste la misma mercancía a precios distintos y ahora vendiste una parte. ¿A qué precio la sacas? **PEPS** es como el anaquel de leche del súper: se vende primero lo que llegó primero. **Costo promedio** mezcla todo en una sola \"olla\" y usa el precio promedio. El **costo de ventas** (lo que salió) más el **inventario final** (lo que quedó) siempre suman el costo total disponible.",
+            en: "In plain words: you bought the same goods at different prices and now you sold part of them. At what price do you take them out? **FIFO** is like the milk shelf at the supermarket: what arrived first is sold first. **Weighted average** mixes everything in one \"pot\" and uses the average price. **Cost of goods sold** (what left) plus **ending inventory** (what remained) always add up to the total cost available.",
+          },
         ],
-        formula: "Costo promedio unitario = Costo total disponible / Unidades disponibles",
+        formulas: [
+          {
+            name: { es: "PEPS: costo de ventas e inventario final", en: "FIFO: cost of goods sold and ending inventory" },
+            expression: "Costo de ventas (PEPS) = Σ (unidades vendidas tomadas de cada lote, del más antiguo al más reciente × costo de ese lote); Inventario final = Costo total disponible − Costo de ventas",
+            variables: [
+              { symbol: "Lote", meaning: { es: "Cada grupo de unidades compradas a un mismo costo (inventario inicial, compra 1, compra 2…).", en: "Each group of units bought at the same cost (opening inventory, purchase 1, purchase 2…)." } },
+              { symbol: "Σ", meaning: { es: "\"Suma de\": sumas lo que sale de cada lote.", en: "\"Sum of\": you add what leaves each lot." } },
+              { symbol: "Costo total disponible", meaning: { es: "Inventario inicial + compras, en pesos (unidades × costo de cada lote).", en: "Opening inventory + purchases, in pesos (units × cost of each lot)." } },
+              { symbol: "Inventario final", meaning: { es: "Costo de las unidades que no se vendieron, en pesos.", en: "Cost of the units not sold, in pesos." } },
+            ],
+            steps: [
+              { es: "Ordena los lotes del más antiguo al más reciente.", en: "Order the lots from oldest to newest." },
+              { es: "Saca las unidades vendidas empezando por el lote más antiguo; cuando se acabe, sigue con el siguiente.", en: "Take the units sold starting from the oldest lot; when it runs out, continue with the next." },
+              { es: "Multiplica las unidades tomadas de cada lote por su costo y suma: costo de ventas.", en: "Multiply the units taken from each lot by its cost and add: cost of goods sold." },
+              { es: "Las unidades que quedan (las más recientes) × su costo = inventario final. Comprueba que CV + IF = costo disponible.", en: "The remaining units (the newest) × their cost = ending inventory. Check that COGS + EI = cost available." },
+            ],
+            example: {
+              es: "Inicial 40 unidades a $20; compra 60 unidades a $25; se venden 70. Salen 40 × 20 = $800 y 30 × 25 = $750 → costo de ventas = **$1,550**. Quedan 30 × 25 = **$750** de inventario final. Comprobación: disponible 800 + 1,500 = 2,300 = 1,550 + 750.",
+              en: "Opening 40 units at $20; purchase 60 units at $25; 70 are sold. Out go 40 × 20 = $800 and 30 × 25 = $750 → COGS = **$1,550**. Remaining 30 × 25 = **$750** ending inventory. Check: available 800 + 1,500 = 2,300 = 1,550 + 750.",
+            },
+            mistake: {
+              es: "Tomar primero las unidades más recientes (eso sería UEPS, que no está permitido).",
+              en: "Taking the newest units first (that would be LIFO, which is not allowed).",
+            },
+          },
+          {
+            name: { es: "Costo promedio ponderado", en: "Weighted average cost" },
+            expression: "Costo promedio unitario = Costo total disponible ÷ Unidades disponibles; Costo de ventas = Unidades vendidas × Costo promedio; Inventario final = Unidades restantes × Costo promedio",
+            variables: [
+              { symbol: "Costo total disponible", meaning: { es: "Suma en pesos del inventario inicial y de todas las compras.", en: "Sum in pesos of opening inventory and all purchases." } },
+              { symbol: "Unidades disponibles", meaning: { es: "Unidades del inventario inicial más las compradas.", en: "Opening inventory units plus units purchased." } },
+              { symbol: "Costo promedio unitario", meaning: { es: "Costo de cada unidad después de mezclar todos los lotes, en pesos por unidad.", en: "Cost of each unit after mixing all lots, in pesos per unit." } },
+              { symbol: "Unidades vendidas / restantes", meaning: { es: "Las que salieron y las que quedaron en el almacén.", en: "Those that left and those still in the warehouse." } },
+            ],
+            steps: [
+              { es: "Multiplica unidades × costo de cada lote y suma todo: costo total disponible.", en: "Multiply units × cost of each lot and add it all: total cost available." },
+              { es: "Suma todas las unidades disponibles.", en: "Add up all units available." },
+              { es: "Divide costo total entre unidades: costo promedio unitario.", en: "Divide total cost by units: average unit cost." },
+              { es: "Multiplica el promedio por las unidades vendidas (costo de ventas) y por las que quedan (inventario final).", en: "Multiply the average by units sold (COGS) and by units remaining (ending inventory)." },
+            ],
+            example: {
+              es: "Mismos datos: 40 a $20 y 60 a $25. Costo disponible = 800 + 1,500 = $2,300 por 100 unidades. Promedio = 2,300 ÷ 100 = $23. Costo de ventas = 70 × 23 = **$1,610**. Inventario final = 30 × 23 = **$690**.",
+              en: "Same data: 40 at $20 and 60 at $25. Cost available = 800 + 1,500 = $2,300 for 100 units. Average = 2,300 ÷ 100 = $23. COGS = 70 × 23 = **$1,610**. Ending inventory = 30 × 23 = **$690**.",
+            },
+            interpret: {
+              es: "Con precios que suben, el promedio da un costo de ventas mayor que PEPS (aquí $1,610 contra $1,550) y, por tanto, menor utilidad bruta.",
+              en: "With rising prices, the average gives higher COGS than FIFO (here $1,610 versus $1,550) and therefore lower gross profit.",
+            },
+            mistake: {
+              es: "Promediar solo los precios ((20 + 25) ÷ 2 = 22.50) sin ponderar por cuántas unidades hay de cada lote.",
+              en: "Averaging only the prices ((20 + 25) ÷ 2 = 22.50) without weighting by how many units are in each lot.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cuentas por cobrar e incobrables", en: "Receivables and doubtful accounts" },
@@ -355,8 +734,38 @@ export const lessons: Lesson[] = [
             es: "Cuando un saldo específico se considera definitivamente incobrable, se **cancela** contra la estimación (cargo a Estimación, abono a Clientes). Esa cancelación no afecta resultados porque el gasto ya se reconoció al crear la estimación.",
             en: "When a specific balance is deemed definitely uncollectible, it is **written off** against the allowance (debit Allowance, credit Accounts receivable). The write-off does not affect profit because the expense was already recognized when the allowance was created.",
           },
+          {
+            es: "En palabras sencillas: si vendes fiado, sabes por experiencia que algunos clientes nunca pagarán, aunque todavía no sepas cuáles. La **estimación para cuentas incobrables** es un \"apartado\" para esa pérdida esperada. Es como una alcancía: al cierre solo pones lo que falta para llegar a la cantidad que debe tener, no la cantidad completa cada vez.",
+            en: "In plain words: if you sell on credit, you know from experience that some customers will never pay, even if you do not know which ones yet. The **allowance for doubtful accounts** is a \"set-aside\" for that expected loss. It is like a piggy bank: at the close you only add what is missing to reach the amount it should hold, not the full amount each time.",
+          },
         ],
-        formula: "Ajuste = Saldo requerido de la estimación − Saldo existente",
+        formulas: [
+          {
+            name: { es: "Ajuste a la estimación para cuentas incobrables", en: "Adjustment to the allowance for doubtful accounts" },
+            expression: "Saldo requerido = Saldo de Clientes × % estimado incobrable; Ajuste (gasto) = Saldo requerido − Saldo existente; Clientes neto = Saldo de Clientes − Saldo requerido",
+            variables: [
+              { symbol: "Saldo de Clientes", meaning: { es: "Lo que los clientes deben al cierre, en pesos.", en: "What customers owe at the close, in pesos." } },
+              { symbol: "% estimado incobrable", meaning: { es: "Porcentaje que se espera no cobrar, según experiencia; conviértelo a decimal (4 % = 0.04).", en: "Percentage expected not to be collected, based on experience; convert it to a decimal (4% = 0.04)." } },
+              { symbol: "Saldo requerido", meaning: { es: "Lo que la estimación debe tener al cierre, en pesos.", en: "What the allowance must hold at the close, in pesos." } },
+              { symbol: "Saldo existente", meaning: { es: "Lo que la estimación ya tiene antes del ajuste (saldo acreedor), en pesos.", en: "What the allowance already holds before the adjustment (credit balance), in pesos." } },
+              { symbol: "Ajuste (gasto)", meaning: { es: "Gasto por cuentas incobrables que se registra en el periodo, en pesos.", en: "Bad debt expense recorded in the period, in pesos." } },
+              { symbol: "Clientes neto", meaning: { es: "Lo que realmente se espera cobrar, en pesos.", en: "What is actually expected to be collected, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte el porcentaje a decimal y multiplícalo por el saldo de Clientes: saldo requerido.", en: "Convert the percentage to a decimal and multiply it by the receivables balance: required balance." },
+              { es: "Resta lo que la estimación ya tiene: ése es el ajuste (cargo a gasto, abono a la estimación).", en: "Subtract what the allowance already holds: that is the adjustment (debit expense, credit allowance)." },
+              { es: "Para presentar el balance: Clientes − saldo requerido = Clientes neto.", en: "To present the balance sheet: Receivables − required balance = net receivables." },
+            ],
+            example: {
+              es: "Clientes $120,000; se estima incobrable el 3 %; la estimación ya tiene $1,000. Requerido = 120,000 × 0.03 = $3,600. Ajuste = 3,600 − 1,000 = **$2,600** de gasto. Clientes neto = 120,000 − 3,600 = $116,400.",
+              en: "Receivables $120,000; 3% estimated uncollectible; the allowance already holds $1,000. Required = 120,000 × 0.03 = $3,600. Adjustment = 3,600 − 1,000 = **$2,600** of expense. Net receivables = 120,000 − 3,600 = $116,400.",
+            },
+            mistake: {
+              es: "Registrar como gasto el saldo requerido completo, olvidando lo que la estimación ya tenía. Y al cancelar un cliente concreto, no se vuelve a registrar gasto: se carga la estimación.",
+              en: "Recording the full required balance as expense, forgetting what the allowance already held. And when writing off a specific customer, no new expense is recorded: the allowance is debited.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -411,7 +820,7 @@ export const lessons: Lesson[] = [
       es: "Quién emite las normas contables en México y en el mundo, y cuándo reconocer una provisión o revelar un pasivo contingente.",
       en: "Who issues accounting standards in Mexico and worldwide, and when to recognize a provision or disclose a contingent liability.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Identificar al CINIF y al IASB y la estructura de las NIF.", en: "Identify CINIF and the IASB and the structure of the NIF." },
       { es: "Aplicar los tres criterios de reconocimiento de una provisión.", en: "Apply the three recognition criteria for a provision." },
@@ -450,8 +859,39 @@ export const lessons: Lesson[] = [
             es: "Se mide con la **mejor estimación** del desembolso: para poblaciones grandes (garantías) se usa el **valor esperado** ponderado por probabilidades; para una obligación única (un juicio), normalmente el resultado individual más probable. Si el efecto del tiempo es importante, se descuenta a valor presente. No se reconocen provisiones por pérdidas de operación futuras.",
             en: "It is measured at the **best estimate** of the outflow: for large populations (warranties) the probability-weighted **expected value** is used; for a single obligation (a lawsuit), normally the individual most likely outcome. If the time value of money is material, it is discounted. No provisions are recognized for future operating losses.",
           },
+          {
+            es: "En palabras sencillas: una provisión es una deuda que **seguro** tienes, pero cuyo monto o fecha aún no conoces con exactitud. Ejemplo: vendiste licuadoras con garantía; sabes que algunas regresarán a reparación, pero no cuántas. **Probable** quiere decir \"es más fácil que pase a que no pase\" (más de 50 %).",
+            en: "In plain words: a provision is a debt you **surely** have, but whose amount or date you do not know exactly yet. Example: you sold blenders with a warranty; you know some will come back for repair, but not how many. **Probable** means \"more likely to happen than not\" (over 50%).",
+          },
         ],
-        formula: "Valor esperado = Σ (Probabilidad_i × Monto_i)",
+        formulas: [
+          {
+            name: { es: "Valor esperado de una provisión (garantías)", en: "Expected value of a provision (warranties)" },
+            expression: "Valor esperado = Σ (Probabilidad_i × Monto_i) = P₁ × M₁ + P₂ × M₂ + … + Pₙ × Mₙ",
+            variables: [
+              { symbol: "Σ", meaning: { es: "\"Suma de\": sumas el resultado de todos los escenarios.", en: "\"Sum of\": you add the result of every scenario." } },
+              { symbol: "Probabilidad_i (Pᵢ)", meaning: { es: "Qué tan probable es cada escenario, en %; conviértelo a decimal. Todas deben sumar 100 %.", en: "How likely each scenario is, in %; convert it to a decimal. They must all add up to 100%." } },
+              { symbol: "Monto_i (Mᵢ)", meaning: { es: "Lo que costaría si ocurriera ese escenario, en pesos (sin defectos = 0).", en: "What it would cost if that scenario happened, in pesos (no defects = 0)." } },
+            ],
+            steps: [
+              { es: "Haz una lista de escenarios con su probabilidad y su costo.", en: "List the scenarios with their probability and cost." },
+              { es: "Multiplica cada probabilidad (en decimal) por su costo.", en: "Multiply each probability (as a decimal) by its cost." },
+              { es: "Suma todos los productos: ése es el monto de la provisión.", en: "Add all the products: that is the provision amount." },
+            ],
+            example: {
+              es: "Se espera que 90 % de lo vendido no falle, 8 % tenga fallas menores ($50,000 si todo fallara así) y 2 % fallas mayores ($300,000). 0.90 × 0 = $0; 0.08 × 50,000 = $4,000; 0.02 × 300,000 = $6,000. Valor esperado = 0 + 4,000 + 6,000 = **$10,000**.",
+              en: "90% of what was sold is expected not to fail, 8% to have minor faults ($50,000 if everything failed that way) and 2% major faults ($300,000). 0.90 × 0 = $0; 0.08 × 50,000 = $4,000; 0.02 × 300,000 = $6,000. Expected value = 0 + 4,000 + 6,000 = **$10,000**.",
+            },
+            interpret: {
+              es: "Se usa para muchas partidas parecidas (garantías). Para un solo juicio se usa el resultado más probable, no el promedio.",
+              en: "It is used for many similar items (warranties). For a single lawsuit the most likely outcome is used, not the average.",
+            },
+            mistake: {
+              es: "Tomar solo el escenario más probable (sin defectos → $0) cuando hay muchas partidas: subestima la obligación.",
+              en: "Using only the most likely scenario (no defects → $0) when there are many items: it understates the obligation.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Pasivos y activos contingentes", en: "Contingent liabilities and assets" },
@@ -516,7 +956,7 @@ export const lessons: Lesson[] = [
       es: "El modelo de activo por derecho de uso para el arrendatario y los fundamentos del control y la consolidación.",
       en: "The right-of-use model for lessees and the basics of control and consolidation.",
     },
-    minutes: 20,
+    minutes: 23,
     objectives: [
       { es: "Reconocer inicialmente un arrendamiento como activo por derecho de uso y pasivo por arrendamiento.", en: "Initially recognize a lease as a right-of-use asset and a lease liability." },
       { es: "Calcular el interés y la depreciación del primer año de un arrendamiento.", en: "Compute first-year interest and depreciation on a lease." },
@@ -535,8 +975,37 @@ export const lessons: Lesson[] = [
             es: "Existen exenciones opcionales para arrendamientos de **corto plazo** (12 meses o menos) y de **activos de bajo valor**, cuyos pagos pueden reconocerse como gasto en línea recta.",
             en: "There are optional exemptions for **short-term** leases (12 months or less) and leases of **low-value assets**, whose payments may be expensed on a straight-line basis.",
           },
+          {
+            es: "En palabras sencillas: si rentas un local por 4 años, ya te comprometiste a pagar todas esas rentas. La norma pide anotar esa **deuda** (pasivo) y, a cambio, el **derecho a usar el local** (activo). La deuda no se anota por la suma simple de las rentas, sino por su **valor presente**: lo que valen hoy pagos que harás en el futuro, porque un peso de dentro de 3 años vale menos que un peso hoy. La **tasa incremental de financiamiento** es la tasa que te cobraría un banco si pidieras prestado para algo parecido.",
+            en: "In plain words: if you rent a store for 4 years, you have already committed to paying all those rents. The standard requires recording that **debt** (liability) and, in exchange, the **right to use the store** (asset). The debt is not recorded at the simple sum of the rents but at their **present value**: what payments you will make in the future are worth today, because a peso three years from now is worth less than a peso today. The **incremental borrowing rate** is the rate a bank would charge you to borrow for something similar.",
+          },
         ],
-        formula: "Pasivo inicial = Pago × [1 − (1 + r)^−n] / r   (pagos vencidos, iguales)",
+        formulas: [
+          {
+            name: { es: "Pasivo inicial: valor presente de pagos iguales", en: "Initial liability: present value of equal payments" },
+            expression: "Pasivo inicial = Pago × [1 − (1 + r)^−n] ÷ r   (pagos iguales al final de cada periodo)",
+            variables: [
+              { symbol: "Pago", meaning: { es: "La renta que se paga en cada periodo, en pesos.", en: "The rent paid each period, in pesos." } },
+              { symbol: "r", meaning: { es: "Tasa de descuento por periodo, en decimal (8 % anual = 0.08 si los pagos son anuales).", en: "Discount rate per period, as a decimal (8% per year = 0.08 if payments are annual)." } },
+              { symbol: "n", meaning: { es: "Número de pagos que faltan.", en: "Number of payments remaining." } },
+              { symbol: "(1 + r)^−n", meaning: { es: "Significa 1 ÷ (1 + r)ⁿ: cuánto vale hoy un peso que recibirás dentro de n periodos.", en: "Means 1 ÷ (1 + r)ⁿ: what a peso received n periods from now is worth today." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal: 6 % = 0.06.", en: "Convert the rate to a decimal: 6% = 0.06." },
+              { es: "Calcula (1 + r)ⁿ y luego 1 ÷ ese resultado.", en: "Compute (1 + r)ⁿ and then 1 ÷ that result." },
+              { es: "Réstalo de 1 y divide entre r: obtienes el factor.", en: "Subtract it from 1 and divide by r: you get the factor." },
+              { es: "Multiplica el pago por el factor: pasivo inicial (y monto inicial del activo por derecho de uso).", en: "Multiply the payment by the factor: initial liability (and initial right-of-use asset)." },
+            ],
+            example: {
+              es: "Pago $20,000 al final de cada año durante 5 años; tasa 6 %. 1.06⁵ = 1.338226; 1 ÷ 1.338226 = 0.747258. Factor = (1 − 0.747258) ÷ 0.06 = 4.212364. Pasivo inicial = 20,000 × 4.212364 = **$84,247.28** (menos que la suma simple de $100,000).",
+              en: "Payment $20,000 at the end of each year for 5 years; rate 6%. 1.06⁵ = 1.338226; 1 ÷ 1.338226 = 0.747258. Factor = (1 − 0.747258) ÷ 0.06 = 4.212364. Initial liability = 20,000 × 4.212364 = **$84,247.28** (less than the simple sum of $100,000).",
+            },
+            mistake: {
+              es: "Sumar los pagos sin descontarlos, o usar una tasa anual con pagos mensuales sin convertirla.",
+              en: "Adding the payments without discounting them, or using an annual rate with monthly payments without converting it.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Medición posterior", en: "Subsequent measurement" },
@@ -546,11 +1015,56 @@ export const lessons: Lesson[] = [
             en: "The liability accrues **interest** (balance × rate) and decreases with each payment. The right-of-use asset is **depreciated**, usually straight-line over the lease term (or useful life, if shorter). Thus the income statement shows interest expense and depreciation expense instead of rent expense.",
           },
         ],
-        formula: "Pasivo final = Pasivo inicial + Interés − Pago",
+        formulas: [
+          {
+            name: { es: "Interés y saldo del pasivo por arrendamiento al final del año", en: "Interest and lease liability balance at year-end" },
+            expression: "Interés = Pasivo inicial × r; Pasivo final = Pasivo inicial + Interés − Pago",
+            variables: [
+              { symbol: "Pasivo inicial", meaning: { es: "Saldo de la deuda al inicio del año, en pesos.", en: "Debt balance at the start of the year, in pesos." } },
+              { symbol: "r", meaning: { es: "Tasa del arrendamiento por periodo, en decimal.", en: "Lease rate per period, as a decimal." } },
+              { symbol: "Interés", meaning: { es: "Gasto por intereses del año, en pesos.", en: "Interest expense for the year, in pesos." } },
+              { symbol: "Pago", meaning: { es: "La renta pagada en el año, en pesos.", en: "The rent paid during the year, in pesos." } },
+              { symbol: "Pasivo final", meaning: { es: "Lo que se sigue debiendo al cierre, en pesos.", en: "What is still owed at year-end, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica el pasivo inicial por la tasa: interés del año.", en: "Multiply the opening liability by the rate: interest for the year." },
+              { es: "Suma el interés al pasivo inicial.", en: "Add the interest to the opening liability." },
+              { es: "Resta el pago: pasivo al final del año.", en: "Subtract the payment: liability at year-end." },
+            ],
+            example: {
+              es: "Pasivo inicial $84,247.28; tasa 6 %; pago $20,000. Interés = 84,247.28 × 0.06 = **$5,054.84**. Pasivo final = 84,247.28 + 5,054.84 − 20,000 = **$69,302.12**.",
+              en: "Opening liability $84,247.28; rate 6%; payment $20,000. Interest = 84,247.28 × 0.06 = **$5,054.84**. Closing liability = 84,247.28 + 5,054.84 − 20,000 = **$69,302.12**.",
+            },
+            mistake: {
+              es: "Restar el pago completo sin sumar antes el interés: parte del pago cubre intereses y solo el resto reduce la deuda.",
+              en: "Subtracting the full payment without first adding interest: part of the payment covers interest and only the rest reduces the debt.",
+            },
+          },
+          {
+            name: { es: "Depreciación del activo por derecho de uso", en: "Right-of-use asset depreciation" },
+            expression: "Depreciación anual = Activo por derecho de uso ÷ Plazo del arrendamiento (años)",
+            variables: [
+              { symbol: "Activo por derecho de uso", meaning: { es: "El monto inicial del activo (igual al pasivo inicial si no hay otros costos), en pesos.", en: "The initial amount of the asset (equal to the initial liability if there are no other costs), in pesos." } },
+              { symbol: "Plazo del arrendamiento", meaning: { es: "Años del contrato (o la vida útil, si es menor).", en: "Years of the contract (or useful life, if shorter)." } },
+            ],
+            steps: [
+              { es: "Toma el monto inicial del activo por derecho de uso.", en: "Take the initial right-of-use asset amount." },
+              { es: "Divídelo entre los años del plazo: depreciación de cada año (línea recta, sin valor residual).", en: "Divide it by the years of the term: depreciation for each year (straight-line, no residual value)." },
+            ],
+            example: {
+              es: "Activo $84,247.28; plazo 5 años. Depreciación = 84,247.28 ÷ 5 = **$16,849.46** por año. Gasto total del año 1 = 5,054.84 de intereses + 16,849.46 de depreciación = $21,904.30.",
+              en: "Asset $84,247.28; term 5 years. Depreciation = 84,247.28 ÷ 5 = **$16,849.46** per year. Total year-1 expense = 5,054.84 interest + 16,849.46 depreciation = $21,904.30.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Control y consolidación", en: "Control and consolidation" },
         body: [
+          {
+            es: "En palabras sencillas: cuando una empresa (la **controladora**) manda sobre otra (la **subsidiaria**), presenta sus números como si fueran un solo negocio; a eso se le llama **consolidar**. La clave no es solo cuántas acciones tienes, sino si de verdad **decides** lo importante de la otra empresa y te beneficias de ello.",
+            en: "In plain words: when one company (the **parent**) is in charge of another (the **subsidiary**), it presents their numbers as if they were a single business; that is called **consolidating**. The key is not only how many shares you hold, but whether you truly **decide** what matters in the other company and benefit from it.",
+          },
           {
             es: "Una controladora consolida a sus subsidiarias (NIF B-8 / IFRS 10). Un inversionista tiene **control** cuando reúne tres elementos: (1) **poder** sobre las actividades relevantes de la participada; (2) **exposición o derecho a rendimientos variables**; y (3) **capacidad de usar su poder** para afectar esos rendimientos. Normalmente más del 50 % de los votos otorga control, pero puede haber control con menos (por acuerdos o derechos contractuales) y no haberlo con más.",
             en: "A parent consolidates its subsidiaries (NIF B-8 / IFRS 10). An investor has **control** when it has three elements: (1) **power** over the investee's relevant activities; (2) **exposure or rights to variable returns**; and (3) the **ability to use its power** to affect those returns. Usually more than 50% of the votes gives control, but control may exist with less (through agreements or contractual rights) and may be absent with more.",
@@ -569,7 +1083,34 @@ export const lessons: Lesson[] = [
             en: "Consolidated statements present the group as **a single economic entity**. The parent's and subsidiaries' statements are added line by line and the following are **eliminated**: the parent's investment against the subsidiary's equity, receivables and payables between them, sales and purchases between them and unrealized profits. The part of the subsidiary's equity not owned by the parent is presented as **non-controlling interest**.",
           },
         ],
-        formula: "Saldo consolidado = Controladora + Subsidiaria − Operaciones intercompañía",
+        formulas: [
+          {
+            name: { es: "Saldo consolidado de un renglón", en: "Consolidated balance of a line item" },
+            expression: "Saldo consolidado = Saldo de la controladora + Saldo de la subsidiaria − Operaciones intercompañía",
+            variables: [
+              { symbol: "Saldo de la controladora", meaning: { es: "El importe del renglón (ventas, clientes, proveedores) en los estados de la controladora, en pesos.", en: "The line item amount (sales, receivables, payables) in the parent's statements, in pesos." } },
+              { symbol: "Saldo de la subsidiaria", meaning: { es: "El mismo renglón en los estados de la subsidiaria, en pesos.", en: "The same line item in the subsidiary's statements, in pesos." } },
+              { symbol: "Operaciones intercompañía", meaning: { es: "La parte de ese renglón que es entre empresas del mismo grupo (una le vende o le debe a la otra), en pesos.", en: "The part of that line that is between companies of the same group (one sells to or owes the other), in pesos." } },
+            ],
+            steps: [
+              { es: "Suma el renglón de la controladora y el de la subsidiaria.", en: "Add the parent's and the subsidiary's line item." },
+              { es: "Identifica cuánto de ese renglón es con la otra empresa del grupo.", en: "Identify how much of that line is with the other group company." },
+              { es: "Réstalo. Si una empresa tiene la cuenta por cobrar, la otra tiene la misma cuenta por pagar: elimina las dos.", en: "Subtract it. If one company has the receivable, the other has the same payable: eliminate both." },
+            ],
+            example: {
+              es: "Clientes: controladora $200,000 (incluye $20,000 que le debe la subsidiaria) y subsidiaria $70,000. Clientes consolidados = 200,000 + 70,000 − 20,000 = **$250,000**. Del lado de la subsidiaria, sus proveedores también bajan esos $20,000.",
+              en: "Receivables: parent $200,000 (including $20,000 owed by the subsidiary) and subsidiary $70,000. Consolidated receivables = 200,000 + 70,000 − 20,000 = **$250,000**. On the subsidiary's side, its payables also drop by those $20,000.",
+            },
+            interpret: {
+              es: "Piénsalo como una familia: si tu hermano te debe $500, la familia en conjunto no es más rica ni más pobre. El grupo no puede venderse ni deberse a sí mismo.",
+              en: "Think of it as a family: if your brother owes you $500, the family as a whole is neither richer nor poorer. A group cannot sell to or owe itself.",
+            },
+            mistake: {
+              es: "Eliminar el saldo intercompañía de un solo lado (solo clientes y no proveedores).",
+              en: "Eliminating the intercompany balance on one side only (receivables but not payables).",
+            },
+          },
+        ],
       },
     ],
     examples: [

@@ -46,7 +46,7 @@ export const lessons: Lesson[] = [
       es: "El interés es el precio del dinero en el tiempo: el simple se calcula siempre sobre lo que prestaste o ahorraste, y el compuesto también sobre los intereses acumulados, por eso crece cada vez más rápido.",
       en: "Interest is the price of money over time: simple interest is always computed on what you lent or saved, while compound interest is also computed on accumulated interest, which is why it grows faster and faster.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar qué es el interés y calcular interés simple y monto final con la fórmula I = C × i × t.", en: "Explain what interest is and compute simple interest and final amount with the formula I = C × i × t." },
       { es: "Calcular el monto con interés compuesto y explicar por qué crece más rápido que el simple.", en: "Compute the amount with compound interest and explain why it grows faster than simple interest." },
@@ -70,12 +70,32 @@ export const lessons: Lesson[] = [
             en: "With **simple interest**, interest is **always computed on the initial principal**. Each period you earn (or pay) the same amount. Mini example: you save $10,000 at 10% simple annual interest for 3 years. Interest = 10,000 × 0.10 × 3 = $3,000; at the end you have $13,000.",
           },
         ],
-        formula: "I = C × i × t      M = C + I = C × (1 + i × t)",
-        bullets: [
-          { es: "C = capital: lo que prestas, pides o ahorras al inicio.", en: "C = principal: what you lend, borrow or save at the start." },
-          { es: "i = tasa por periodo, escrita en decimal (10% = 0.10).", en: "i = rate per period, written as a decimal (10% = 0.10)." },
-          { es: "t = número de periodos, en la misma unidad que la tasa.", en: "t = number of periods, in the same unit as the rate." },
-          { es: "M = monto: capital más intereses.", en: "M = amount: principal plus interest." },
+        formulas: [
+          {
+            name: { es: "Interés simple y monto final", en: "Simple interest and final amount" },
+            expression: "I = C × i × t      M = C + I = C × (1 + i × t)",
+            variables: [
+              { symbol: "I", meaning: { es: "Interés: los pesos que se ganan o se pagan por usar el dinero.", en: "Interest: the pesos earned or paid for using the money." } },
+              { symbol: "C", meaning: { es: "Capital: lo que prestas, pides o ahorras al inicio, en pesos.", en: "Principal: what you lend, borrow or save at the start, in pesos." } },
+              { symbol: "i", meaning: { es: "Tasa por periodo, escrita en decimal (10% = 0.10).", en: "Rate per period, written as a decimal (10% = 0.10)." } },
+              { symbol: "t", meaning: { es: "Número de periodos (años o meses), en la misma unidad que la tasa.", en: "Number of periods (years or months), in the same unit as the rate." } },
+              { symbol: "M", meaning: { es: "Monto: capital más intereses, en pesos.", en: "Amount: principal plus interest, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal: 1.5% = 0.015.", en: "Convert the rate to a decimal: 1.5% = 0.015." },
+              { es: "Revisa que tasa y tiempo estén en la misma unidad (tasa mensual con meses, tasa anual con años).", en: "Check that rate and time use the same unit (monthly rate with months, annual rate with years)." },
+              { es: "Multiplica C × i × t: interés.", en: "Multiply C × i × t: interest." },
+              { es: "Si te piden el total, suma el interés al capital: monto.", en: "If asked for the total, add the interest to the principal: amount." },
+            ],
+            example: {
+              es: "Prestas $12,000 al 1.5% mensual simple por 8 meses. I = 12,000 × 0.015 × 8 = **$1,440**. M = 12,000 + 1,440 = **$13,440**.",
+              en: "You lend $12,000 at 1.5% monthly simple interest for 8 months. I = 12,000 × 0.015 × 8 = **$1,440**. M = 12,000 + 1,440 = **$13,440**.",
+            },
+            mistake: {
+              es: "Escribir 15 en lugar de 0.15, o dar el monto total cuando solo te preguntan el interés.",
+              en: "Writing 15 instead of 0.15, or giving the total amount when you are only asked for the interest.",
+            },
+          },
         ],
       },
       {
@@ -94,7 +114,37 @@ export const lessons: Lesson[] = [
             en: "Compounding works **in your favor** when you save or invest for many years, and **against you** when you have a debt you do not pay: unpaid interest is added to the balance and generates more interest.",
           },
         ],
-        formula: "M = C × (1 + i)^n",
+        formulas: [
+          {
+            name: { es: "Monto con interés compuesto", en: "Amount with compound interest" },
+            expression: "M = C × (1 + i)^n",
+            variables: [
+              { symbol: "M", meaning: { es: "Monto final: lo que tendrás (o deberás) al terminar, en pesos.", en: "Final amount: what you will have (or owe) at the end, in pesos." } },
+              { symbol: "C", meaning: { es: "Capital inicial, en pesos.", en: "Initial principal, in pesos." } },
+              { symbol: "i", meaning: { es: "Tasa por periodo en decimal (10% = 0.10).", en: "Rate per period as a decimal (10% = 0.10)." } },
+              { symbol: "n", meaning: { es: "Número de periodos en que se capitaliza (años, meses…).", en: "Number of compounding periods (years, months…)." } },
+              { symbol: "^n", meaning: { es: "\"Elevado a n\": multiplicar (1 + i) por sí mismo n veces.", en: "\"To the power of n\": multiply (1 + i) by itself n times." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal y súmale 1: 6% → 1.06.", en: "Convert the rate to a decimal and add 1: 6% → 1.06." },
+              { es: "Eleva ese número a n (o multiplícalo por sí mismo n veces).", en: "Raise that number to n (or multiply it by itself n times)." },
+              { es: "Multiplica el resultado por el capital: monto final.", en: "Multiply the result by the principal: final amount." },
+              { es: "Si te piden saldos año por año, multiplica cada saldo anterior por (1 + i) y redondea a centavos al final de cada año.", en: "If asked for year-by-year balances, multiply each previous balance by (1 + i) and round to cents at the end of each year." },
+            ],
+            example: {
+              es: "Ahorras $5,000 al 6% anual compuesto por 3 años. Año 1: 5,000 × 1.06 = $5,300. Año 2: 5,300 × 1.06 = $5,618. Año 3: 5,618 × 1.06 = **$5,955.08**. Con la fórmula: (1.06)³ = 1.191016; 5,000 × 1.191016 = $5,955.08.",
+              en: "You save $5,000 at 6% annual compound interest for 3 years. Year 1: 5,000 × 1.06 = $5,300. Year 2: 5,300 × 1.06 = $5,618. Year 3: 5,618 × 1.06 = **$5,955.08**. With the formula: (1.06)³ = 1.191016; 5,000 × 1.191016 = $5,955.08.",
+            },
+            interpret: {
+              es: "Cada año ganas un poco más que el anterior ($300, luego $318, luego $337.08) porque los intereses también generan intereses.",
+              en: "Each year you earn a bit more than the last ($300, then $318, then $337.08) because interest also earns interest.",
+            },
+            mistake: {
+              es: "Usar la fórmula del simple, C × (1 + i × n), o sumar siempre el mismo interés cada año.",
+              en: "Using the simple formula, C × (1 + i × n), or adding the same interest every year.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Capitalización, tasa por periodo y la regla del 72", en: "Compounding frequency, rate per period and the rule of 72" },
@@ -112,7 +162,52 @@ export const lessons: Lesson[] = [
             en: "The **rule of 72** is a mental shortcut: divide 72 by the annual rate (as a number, not a decimal) and you get **approximately** how many years it takes your money to double with compound interest. At 8% a year: 72 ÷ 8 ≈ 9 years. It is an estimate, not an exact calculation.",
           },
         ],
-        formula: "i por periodo = tasa anual ÷ m      n = años × m      Años para duplicar ≈ 72 ÷ tasa anual (%)",
+        formulas: [
+          {
+            name: { es: "Tasa por periodo y número de periodos", en: "Rate per period and number of periods" },
+            expression: "i por periodo = tasa anual ÷ m      n = años × m      M = C × (1 + i)^n",
+            variables: [
+              { symbol: "tasa anual", meaning: { es: "La tasa que anuncian por año, en decimal.", en: "The rate quoted per year, as a decimal." } },
+              { symbol: "m", meaning: { es: "Cuántas veces al año se capitaliza: 12 mensual, 4 trimestral, 2 semestral, 1 anual.", en: "How many times a year it compounds: 12 monthly, 4 quarterly, 2 semiannual, 1 annual." } },
+              { symbol: "i por periodo", meaning: { es: "La tasa que se aplica en cada periodo, en decimal.", en: "The rate applied each period, as a decimal." } },
+              { symbol: "n", meaning: { es: "Número total de periodos.", en: "Total number of periods." } },
+            ],
+            steps: [
+              { es: "Identifica m según cada cuánto se capitaliza.", en: "Identify m from how often it compounds." },
+              { es: "Divide la tasa anual entre m: tasa por periodo.", en: "Divide the annual rate by m: rate per period." },
+              { es: "Multiplica los años por m: número de periodos.", en: "Multiply the years by m: number of periods." },
+              { es: "Usa esos dos datos en M = C × (1 + i)^n.", en: "Use those two figures in M = C × (1 + i)^n." },
+            ],
+            example: {
+              es: "$8,000 al 18% anual capitalizable trimestralmente por 2 años. m = 4; i = 0.18 ÷ 4 = 0.045; n = 2 × 4 = 8. (1.045)⁸ ≈ 1.4221006; M = 8,000 × 1.4221006 ≈ **$11,376.80**.",
+              en: "$8,000 at 18% annual compounded quarterly for 2 years. m = 4; i = 0.18 ÷ 4 = 0.045; n = 2 × 4 = 8. (1.045)⁸ ≈ 1.4221006; M = 8,000 × 1.4221006 ≈ **$11,376.80**.",
+            },
+            mistake: {
+              es: "Ajustar solo la tasa y dejar n en años (o al revés). Siempre se cambian las dos.",
+              en: "Adjusting only the rate and leaving n in years (or vice versa). Both always change.",
+            },
+          },
+          {
+            name: { es: "Regla del 72", en: "Rule of 72" },
+            expression: "Años para duplicar ≈ 72 ÷ tasa anual (%)",
+            variables: [
+              { symbol: "72", meaning: { es: "Un número fijo que da una buena aproximación.", en: "A fixed number that gives a good approximation." } },
+              { symbol: "tasa anual (%)", meaning: { es: "La tasa anual escrita como número entero (8, no 0.08).", en: "The annual rate written as a whole number (8, not 0.08)." } },
+            ],
+            steps: [
+              { es: "Toma la tasa anual como número (6% → 6).", en: "Take the annual rate as a number (6% → 6)." },
+              { es: "Divide 72 entre esa tasa: años aproximados para duplicar tu dinero con interés compuesto.", en: "Divide 72 by that rate: approximate years to double your money with compound interest." },
+            ],
+            example: {
+              es: "Al 6% anual: 72 ÷ 6 = **12 años** aproximadamente para que $10,000 se conviertan en unos $20,000.",
+              en: "At 6% a year: 72 ÷ 6 = **12 years** approximately for $10,000 to become about $20,000.",
+            },
+            mistake: {
+              es: "Dividir entre la tasa en decimal (72 ÷ 0.06 = 1,200), o tomarla como un resultado exacto.",
+              en: "Dividing by the decimal rate (72 ÷ 0.06 = 1,200), or treating it as an exact result.",
+            },
+          },
+        ],
         bullets: [
           { es: "Mensual: m = 12.", en: "Monthly: m = 12." },
           { es: "Trimestral: m = 4.", en: "Quarterly: m = 4." },
@@ -177,7 +272,7 @@ export const lessons: Lesson[] = [
       es: "El crédito te permite usar hoy dinero que pagarás después con un costo; la tarjeta de crédito es una herramienta útil si conoces sus fechas, su límite y pagas a tiempo el total.",
       en: "Credit lets you use money today that you will pay back later at a cost; a credit card is a useful tool if you know its dates and limit and pay the full balance on time.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es el crédito y distinguir el crédito revolvente del no revolvente.", en: "Explain what credit is and distinguish revolving from non-revolving credit." },
       { es: "Identificar los elementos de una tarjeta de crédito: límite, fecha de corte, fecha límite de pago, pago mínimo y pago para no generar intereses.", en: "Identify the elements of a credit card: limit, statement date, payment due date, minimum payment and payment to avoid interest." },
@@ -225,7 +320,30 @@ export const lessons: Lesson[] = [
           { es: "Pago mínimo: evita el atraso, pero no los intereses.", en: "Minimum payment: avoids being late, but not interest." },
           { es: "Pago para no generar intereses: liquida el periodo sin costo extra.", en: "Payment to avoid interest: settles the period at no extra cost." },
         ],
-        formula: "Crédito disponible = Límite de crédito − Saldo actual",
+        formulas: [
+          {
+            name: { es: "Crédito disponible", en: "Available credit" },
+            expression: "Crédito disponible = Límite de crédito − Saldo actual − Compras nuevas (las de MSI por su precio completo)",
+            variables: [
+              { symbol: "Límite de crédito", meaning: { es: "Lo máximo que el banco te deja deber, en pesos.", en: "The most the bank lets you owe, in pesos." } },
+              { symbol: "Saldo actual", meaning: { es: "Lo que ya debes en la tarjeta, en pesos.", en: "What you already owe on the card, in pesos." } },
+              { symbol: "Compras nuevas", meaning: { es: "Lo que acabas de comprar; una compra a meses sin intereses cuenta completa, no solo la mensualidad.", en: "What you just bought; an interest-free installment purchase counts in full, not just the installment." } },
+            ],
+            steps: [
+              { es: "Parte del límite de crédito.", en: "Start from the credit limit." },
+              { es: "Resta lo que ya debes.", en: "Subtract what you already owe." },
+              { es: "Resta el precio completo de las compras nuevas (incluidas las de MSI): lo que queda es tu crédito disponible.", en: "Subtract the full price of new purchases (including MSI ones): what remains is your available credit." },
+            ],
+            example: {
+              es: "Límite $30,000; ya debes $8,000; compras una lavadora de $10,000 a 10 MSI. Disponible = 30,000 − 8,000 − 10,000 = **$12,000**.",
+              en: "Limit $30,000; you already owe $8,000; you buy a $10,000 washer at 10 interest-free installments. Available = 30,000 − 8,000 − 10,000 = **$12,000**.",
+            },
+            mistake: {
+              es: "Restar solo la primera mensualidad de la compra a MSI ($1,000) en lugar del precio completo.",
+              en: "Subtracting only the first installment of the MSI purchase ($1,000) instead of the full price.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Meses sin intereses y uso inteligente", en: "Interest-free installments and smart use" },
@@ -241,6 +359,31 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: compras un refrigerador de $12,000 a 6 MSI. Cada mes pagas $2,000 de esa compra. Si además gastas $3,000 en el súper con la tarjeta, ese mes tu pago para no generar intereses es de $5,000.",
             en: "Mini example: you buy a $12,000 refrigerator at 6 interest-free installments. Each month you pay $2,000 for that purchase. If you also spend $3,000 at the supermarket with the card, that month your payment to avoid interest is $5,000.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Pago para no generar intereses con compras a MSI", en: "Payment to avoid interest with MSI purchases" },
+            expression: "Mensualidad MSI = Precio de la compra ÷ Número de meses; Pago para no generar intereses = Mensualidades MSI del periodo + Compras normales del periodo",
+            variables: [
+              { symbol: "Precio de la compra", meaning: { es: "Lo que costó la compra a meses sin intereses, en pesos.", en: "What the interest-free installment purchase cost, in pesos." } },
+              { symbol: "Número de meses", meaning: { es: "En cuántos meses sin intereses se dividió (3, 6, 12…).", en: "How many interest-free months it was split into (3, 6, 12…)." } },
+              { symbol: "Mensualidades MSI del periodo", meaning: { es: "La suma de las mensualidades que tocan este mes, en pesos.", en: "The sum of the installments due this month, in pesos." } },
+              { symbol: "Compras normales del periodo", meaning: { es: "Lo que compraste de contado con la tarjeta en el periodo (súper, gasolina…), en pesos.", en: "What you bought outright with the card in the period (groceries, gas…), in pesos." } },
+            ],
+            steps: [
+              { es: "Divide cada compra a MSI entre sus meses: mensualidad.", en: "Divide each MSI purchase by its months: installment." },
+              { es: "Suma todas las mensualidades que tocan este mes.", en: "Add up all installments due this month." },
+              { es: "Suma las compras normales del periodo: eso es lo que debes pagar para no generar intereses.", en: "Add the period's regular purchases: that is what you must pay to avoid interest." },
+            ],
+            example: {
+              es: "Celular de $7,200 a 6 MSI → 7,200 ÷ 6 = $1,200 al mes. Compras normales del periodo: $2,100. Pago para no generar intereses = 1,200 + 2,100 = **$3,300**.",
+              en: "A $7,200 phone at 6 MSI → 7,200 ÷ 6 = $1,200 a month. Regular purchases for the period: $2,100. Payment to avoid interest = 1,200 + 2,100 = **$3,300**.",
+            },
+            mistake: {
+              es: "Olvidar la mensualidad de MSI, o sumar el precio completo de la compra a MSI.",
+              en: "Forgetting the MSI installment, or adding the full price of the MSI purchase.",
+            },
           },
         ],
         bullets: [
@@ -307,7 +450,7 @@ export const lessons: Lesson[] = [
       es: "Para saber cuánto cuesta de verdad un crédito no basta la tasa: el CAT suma intereses y comisiones, y tu razón de endeudamiento te dice cuánta deuda puedes cargar sin ahogarte.",
       en: "To know what a loan really costs, the rate is not enough: the CAT adds up interest and fees, and your debt-to-income ratio tells you how much debt you can carry without drowning.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Distinguir tasa anual, tasa mensual, tasa fija, tasa variable, tasa ordinaria y tasa moratoria.", en: "Distinguish annual rate, monthly rate, fixed rate, variable rate, ordinary rate and default (late) rate." },
       { es: "Explicar qué es el CAT y usarlo para comparar créditos parecidos.", en: "Explain what the CAT is and use it to compare similar loans." },
@@ -330,7 +473,36 @@ export const lessons: Lesson[] = [
             en: "Other rate \"labels\": **fixed** (does not change during the loan) or **variable** (goes up or down with a reference rate); **ordinary** (the normal rate for the money lent) or **default/late** (extra interest charged if you fall behind). In many consumer loans VAT is also charged on interest; check your contract.",
           },
         ],
-        formula: "Tasa mensual ≈ Tasa anual ÷ 12      Tasa efectiva anual = (1 + tasa mensual)^12 − 1",
+        formulas: [
+          {
+            name: { es: "Tasa mensual y tasa efectiva anual", en: "Monthly rate and effective annual rate" },
+            expression: "Tasa mensual ≈ Tasa anual ÷ 12      Tasa efectiva anual = (1 + tasa mensual)^12 − 1",
+            variables: [
+              { symbol: "Tasa anual", meaning: { es: "La tasa que anuncian por año, en decimal (36% = 0.36).", en: "The rate quoted per year, as a decimal (36% = 0.36)." } },
+              { symbol: "Tasa mensual", meaning: { es: "Lo que te cobran cada mes, en decimal (3% = 0.03).", en: "What you are charged each month, as a decimal (3% = 0.03)." } },
+              { symbol: "^12", meaning: { es: "Elevar a la 12: multiplicar por sí mismo 12 veces, una por cada mes.", en: "To the 12th power: multiply by itself 12 times, once per month." } },
+              { symbol: "Tasa efectiva anual", meaning: { es: "Lo que de verdad cuesta en un año cuando los intereses se suman al saldo, en %.", en: "What it really costs over a year when interest is added to the balance, in %." } },
+            ],
+            steps: [
+              { es: "Si tienes la tasa anual, divídela entre 12 para obtener la mensual.", en: "If you have the annual rate, divide it by 12 to get the monthly one." },
+              { es: "Suma 1 a la tasa mensual en decimal: 2.5% → 1.025.", en: "Add 1 to the monthly rate as a decimal: 2.5% → 1.025." },
+              { es: "Eleva a la 12 y resta 1.", en: "Raise it to the 12th power and subtract 1." },
+              { es: "Multiplica por 100 para expresarla en porcentaje.", en: "Multiply by 100 to express it as a percentage." },
+            ],
+            example: {
+              es: "Tasa de ejemplo: 30% anual. Mensual = 30% ÷ 12 = 2.5%. (1.025)¹² = 1.344889; 1.344889 − 1 = 0.344889 → **34.49%** efectiva anual, no 30%.",
+              en: "Example rate: 30% per year. Monthly = 30% ÷ 12 = 2.5%. (1.025)¹² = 1.344889; 1.344889 − 1 = 0.344889 → **34.49%** effective annual, not 30%.",
+            },
+            interpret: {
+              es: "Mientras más alta sea la tasa mensual, más se separa la efectiva de la simple multiplicación × 12.",
+              en: "The higher the monthly rate, the further the effective rate moves from the simple × 12 multiplication.",
+            },
+            mistake: {
+              es: "Multiplicar la tasa mensual × 12 cuando los intereses se capitalizan: eso ignora el interés sobre el interés.",
+              en: "Multiplying the monthly rate × 12 when interest compounds: that ignores interest on interest.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "El CAT: el costo completo en un solo número", en: "The CAT: the full cost in a single number" },
@@ -371,7 +543,33 @@ export const lessons: Lesson[] = [
             en: "Mini example: you earn $20,000 net and pay $5,000 a month in debts. Ratio = 5,000 ÷ 20,000 = **25%**. If you are offered a loan with a $3,000 payment, you would rise to 40%: a sign you had better not take it or look for a smaller payment.",
           },
         ],
-        formula: "Razón de endeudamiento (%) = (Pagos mensuales de deudas ÷ Ingreso neto mensual) × 100",
+        formulas: [
+          {
+            name: { es: "Razón de endeudamiento", en: "Debt-to-income ratio" },
+            expression: "Razón de endeudamiento (%) = (Pagos mensuales de deudas ÷ Ingreso neto mensual) × 100",
+            variables: [
+              { symbol: "Pagos mensuales de deudas", meaning: { es: "La suma de lo que pagas cada mes de préstamos, tarjetas y compras a plazos, en pesos.", en: "The sum of what you pay each month on loans, cards and installment purchases, in pesos." } },
+              { symbol: "Ingreso neto mensual", meaning: { es: "Lo que realmente recibes al mes después de descuentos (no el sueldo bruto), en pesos.", en: "What you actually receive each month after deductions (not gross pay), in pesos." } },
+            ],
+            steps: [
+              { es: "Suma todos los pagos mensuales de deudas, incluidas las compras a plazos.", en: "Add up all monthly debt payments, including installment purchases." },
+              { es: "Divide esa suma entre tu ingreso neto mensual.", en: "Divide that sum by your net monthly income." },
+              { es: "Multiplica por 100 para tener el porcentaje.", en: "Multiply by 100 to get the percentage." },
+            ],
+            example: {
+              es: "Ingreso neto $25,000. Pagos: préstamo $3,500 + tarjeta $1,500 + muebles a plazos $1,000 = $6,000. 6,000 ÷ 25,000 = 0.24 → **24%**.",
+              en: "Net income $25,000. Payments: loan $3,500 + card $1,500 + furniture installments $1,000 = $6,000. 6,000 ÷ 25,000 = 0.24 → **24%**.",
+            },
+            interpret: {
+              es: "Como guía práctica, por debajo de 30% a 35% es manejable; arriba, cualquier imprevisto puede llevarte a atrasos.",
+              en: "As a practical guideline, below 30% to 35% is manageable; above that, any surprise can make you fall behind.",
+            },
+            mistake: {
+              es: "Dividir entre el sueldo bruto, o dejar fuera las compras a plazos.",
+              en: "Dividing by gross pay, or leaving out installment purchases.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -429,7 +627,7 @@ export const lessons: Lesson[] = [
       es: "Salir de deudas empieza con una lista honesta de lo que debes, sigue con un método claro (avalancha o bola de nieve) y se apoya en negociar, consolidar y evitar trampas.",
       en: "Getting out of debt starts with an honest list of what you owe, continues with a clear method (avalanche or snowball) and relies on negotiating, consolidating and avoiding traps.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Hacer un inventario de deudas con saldo, tasa, pago mínimo y fecha de pago.", en: "Build a debt inventory with balance, rate, minimum payment and due date." },
       { es: "Aplicar los métodos avalancha y bola de nieve para decidir qué deuda pagar primero.", en: "Apply the avalanche and snowball methods to decide which debt to pay first." },
@@ -492,7 +690,31 @@ export const lessons: Lesson[] = [
             en: "Common traps: borrowing to pay another debt without a plan (\"rolling\" debt), quick loans with very high costs and companies that promise to \"erase you from the credit bureau\" for a fee: **nobody can legally erase a true credit history**. If a collection agency threatens or harasses you, you can file a complaint with CONDUSEF.",
           },
         ],
-        formula: "Interés mensual aproximado = Saldo × (Tasa anual ÷ 12)",
+        formulas: [
+          {
+            name: { es: "Interés mensual aproximado y ahorro por consolidar", en: "Approximate monthly interest and savings from consolidating" },
+            expression: "Interés mensual aproximado = Saldo × (Tasa anual ÷ 12); Ahorro del mes = Interés con la deuda actual − Interés con el nuevo crédito",
+            variables: [
+              { symbol: "Saldo", meaning: { es: "Lo que debes hoy, en pesos.", en: "What you owe today, in pesos." } },
+              { symbol: "Tasa anual", meaning: { es: "La tasa por año de esa deuda, en decimal (60% = 0.60).", en: "The yearly rate of that debt, as a decimal (60% = 0.60)." } },
+              { symbol: "÷ 12", meaning: { es: "Convierte la tasa anual en mensual.", en: "Turns the annual rate into a monthly one." } },
+              { symbol: "Ahorro del mes", meaning: { es: "Cuánto interés dejas de pagar en un mes al pasar la deuda a un crédito más barato, en pesos.", en: "How much interest you stop paying in one month by moving the debt to a cheaper loan, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa anual a decimal y divídela entre 12: tasa mensual.", en: "Convert the annual rate to a decimal and divide it by 12: monthly rate." },
+              { es: "Multiplica el saldo por esa tasa mensual: interés del mes.", en: "Multiply the balance by that monthly rate: the month's interest." },
+              { es: "Para comparar, repite con la tasa del nuevo crédito y resta los dos intereses.", en: "To compare, repeat with the new loan's rate and subtract the two interest amounts." },
+            ],
+            example: {
+              es: "Debes $16,000 en una tarjeta al 48% anual; te ofrecen consolidar al 21%. Tarjeta: 16,000 × (0.48 ÷ 12) = 16,000 × 0.04 = $640. Préstamo: 16,000 × (0.21 ÷ 12) = 16,000 × 0.0175 = $280. Ahorro = 640 − 280 = **$360** en el primer mes.",
+              en: "You owe $16,000 on a card at 48% per year; you are offered consolidation at 21%. Card: 16,000 × (0.48 ÷ 12) = 16,000 × 0.04 = $640. Loan: 16,000 × (0.21 ÷ 12) = 16,000 × 0.0175 = $280. Savings = 640 − 280 = **$360** in the first month.",
+            },
+            mistake: {
+              es: "Restar las tasas y aplicarlas como anuales sin dividir entre 12; o creer que consolidar ahorra si vuelves a usar la tarjeta.",
+              en: "Subtracting the rates and applying them as annual without dividing by 12; or thinking consolidating saves money if you use the card again.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -550,7 +772,7 @@ export const lessons: Lesson[] = [
       es: "El fondo de emergencia es un colchón de dinero disponible, seguro y separado que cubre varios meses de tus gastos esenciales para que un imprevisto no se convierta en deuda.",
       en: "An emergency fund is a cushion of available, safe and separate money that covers several months of your essential expenses so a surprise does not turn into debt.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Explicar qué es un fondo de emergencia y qué cuenta como emergencia.", en: "Explain what an emergency fund is and what counts as an emergency." },
       { es: "Calcular la meta del fondo a partir de los gastos esenciales mensuales.", en: "Compute the fund's target from essential monthly expenses." },
@@ -595,7 +817,30 @@ export const lessons: Lesson[] = [
             en: "Mini example: if your essential expenses are $12,000 a month, your target ranges from 12,000 × 3 = **$36,000** to 12,000 × 6 = **$72,000**.",
           },
         ],
-        formula: "Meta del fondo = Gastos esenciales mensuales × Número de meses",
+        formulas: [
+          {
+            name: { es: "Meta del fondo de emergencia", en: "Emergency fund target" },
+            expression: "Gastos esenciales mensuales = Renta + Comida + Servicios + Transporte + Pagos mínimos de deudas; Meta del fondo = Gastos esenciales mensuales × Número de meses",
+            variables: [
+              { symbol: "Gastos esenciales mensuales", meaning: { es: "Lo que no puedes dejar de pagar cada mes aunque no tengas ingreso, en pesos.", en: "What you cannot stop paying each month even without income, in pesos." } },
+              { symbol: "Servicios", meaning: { es: "Luz, agua y gas, en pesos.", en: "Electricity, water and gas, in pesos." } },
+              { symbol: "Número de meses", meaning: { es: "Cuántos meses quieres cubrir; la guía práctica es de 3 a 6.", en: "How many months you want to cover; the practical guideline is 3 to 6." } },
+            ],
+            steps: [
+              { es: "Haz la lista de tus gastos del mes y quédate solo con los esenciales (deja fuera streaming, salidas y antojos).", en: "List your monthly expenses and keep only the essentials (leave out streaming, outings and treats)." },
+              { es: "Súmalos: gastos esenciales mensuales.", en: "Add them up: essential monthly expenses." },
+              { es: "Multiplica por 3 y por 6: tu meta mínima y tu meta amplia.", en: "Multiply by 3 and by 6: your minimum and your full target." },
+            ],
+            example: {
+              es: "Renta $4,500 + comida $3,500 + servicios $800 + transporte $1,200 = **$10,000** esenciales ($300 de streaming no cuentan). Meta de 3 meses = 10,000 × 3 = **$30,000**; de 6 meses = 10,000 × 6 = **$60,000**.",
+              en: "Rent $4,500 + food $3,500 + utilities $800 + transportation $1,200 = **$10,000** essentials ($300 of streaming does not count). 3-month target = 10,000 × 3 = **$30,000**; 6-month = 10,000 × 6 = **$60,000**.",
+            },
+            mistake: {
+              es: "Incluir gastos que no son esenciales: la meta queda inflada y más difícil de alcanzar.",
+              en: "Including non-essential expenses: the target gets inflated and harder to reach.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Dónde guardarlo y cómo construirlo", en: "Where to keep it and how to build it" },
@@ -613,7 +858,29 @@ export const lessons: Lesson[] = [
             en: "To build it, start with a small target (for example, one month of expenses) and **automate** a deposit every payday, as if it were one more bill. Mini example: with $1,500 per biweekly payday you save $3,000 a month; for $36,000 it would take 12 months.",
           },
         ],
-        formula: "Meses para completarlo = (Meta − Lo que ya tienes) ÷ Ahorro mensual",
+        formulas: [
+          {
+            name: { es: "Meses para completar el fondo", en: "Months to complete the fund" },
+            expression: "Meses para completarlo = (Meta − Lo que ya tienes) ÷ Ahorro mensual",
+            variables: [
+              { symbol: "Meta", meaning: { es: "El monto total que quieres juntar, en pesos.", en: "The total amount you want to gather, in pesos." } },
+              { symbol: "Lo que ya tienes", meaning: { es: "Lo que ya está apartado para el fondo, en pesos.", en: "What is already set aside for the fund, in pesos." } },
+              { symbol: "Ahorro mensual", meaning: { es: "Lo que puedes guardar cada mes, en pesos (si ahorras por quincena, multiplica por 2).", en: "What you can save each month, in pesos (if you save per biweekly payday, multiply by 2)." } },
+            ],
+            steps: [
+              { es: "Resta a la meta lo que ya tienes: lo que te falta.", en: "Subtract what you already have from the target: what you still need." },
+              { es: "Divide lo que falta entre tu ahorro mensual: meses necesarios. Si sale con decimales, redondea hacia arriba.", en: "Divide what you need by your monthly saving: months needed. If it has decimals, round up." },
+            ],
+            example: {
+              es: "Meta $30,000; ya tienes $4,000; ahorras $2,000 al mes. Falta 30,000 − 4,000 = $26,000. Meses = 26,000 ÷ 2,000 = **13 meses**.",
+              en: "Target $30,000; you already have $4,000; you save $2,000 a month. Still needed 30,000 − 4,000 = $26,000. Months = 26,000 ÷ 2,000 = **13 months**.",
+            },
+            mistake: {
+              es: "Olvidar restar lo que ya tienes y dividir la meta completa entre el ahorro.",
+              en: "Forgetting to subtract what you already have and dividing the full target by the saving.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -671,7 +938,7 @@ export const lessons: Lesson[] = [
       es: "Invertir es poner tu dinero a trabajar para que crezca más que la inflación, eligiendo instrumentos según tu meta, tu plazo y el riesgo que puedes aguantar, y repartiendo para no depender de uno solo.",
       en: "Investing is putting your money to work so it grows faster than inflation, choosing instruments according to your goal, your time horizon and the risk you can bear, and spreading it so you do not depend on just one.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Distinguir ahorrar de invertir y calcular el rendimiento de una inversión.", en: "Distinguish saving from investing and compute an investment's return." },
       { es: "Explicar la relación entre riesgo, rendimiento, liquidez y plazo.", en: "Explain the relationship between risk, return, liquidity and time horizon." },
@@ -694,7 +961,57 @@ export const lessons: Lesson[] = [
             en: "Mini example: you invest $10,000 and after a year you have $10,800. Return = 800 ÷ 10,000 = **8%**. If that year's (hypothetical) inflation was 4%, your real return was about **4%**: that is how much your purchasing power really grew.",
           },
         ],
-        formula: "Rendimiento (%) = (Valor final − Valor inicial) ÷ Valor inicial × 100      Real ≈ Nominal − Inflación",
+        formulas: [
+          {
+            name: { es: "Rendimiento de una inversión", en: "Return on an investment" },
+            expression: "Ganancia = Valor final − Valor inicial (o Valor inicial × tasa); Rendimiento (%) = Ganancia ÷ Valor inicial × 100",
+            variables: [
+              { symbol: "Valor inicial", meaning: { es: "Lo que invertiste al principio, en pesos.", en: "What you invested at the start, in pesos." } },
+              { symbol: "Valor final", meaning: { es: "Lo que vale tu inversión al final del periodo, en pesos.", en: "What your investment is worth at the end of the period, in pesos." } },
+              { symbol: "tasa", meaning: { es: "Si el instrumento paga una tasa fija, la tasa del periodo en decimal (9% = 0.09).", en: "If the instrument pays a fixed rate, the period's rate as a decimal (9% = 0.09)." } },
+              { symbol: "Ganancia", meaning: { es: "Lo que ganaste en pesos.", en: "What you earned in pesos." } },
+              { symbol: "Rendimiento (%)", meaning: { es: "La ganancia expresada como porcentaje de lo invertido.", en: "The gain expressed as a percentage of what you invested." } },
+            ],
+            steps: [
+              { es: "Calcula la ganancia: valor final − valor inicial (o valor inicial × tasa si te dan la tasa).", en: "Compute the gain: final value − initial value (or initial value × rate if you are given the rate)." },
+              { es: "Divide la ganancia entre el valor **inicial**.", en: "Divide the gain by the **initial** value." },
+              { es: "Multiplica por 100: rendimiento en %.", en: "Multiply by 100: return in %." },
+            ],
+            example: {
+              es: "Inviertes $20,000 y al año valen $21,400. Ganancia = 21,400 − 20,000 = $1,400. Rendimiento = 1,400 ÷ 20,000 × 100 = **7%**.",
+              en: "You invest $20,000 and after a year it is worth $21,400. Gain = 21,400 − 20,000 = $1,400. Return = 1,400 ÷ 20,000 × 100 = **7%**.",
+            },
+            mistake: {
+              es: "Dividir entre el valor final en lugar del inicial.",
+              en: "Dividing by the final value instead of the initial one.",
+            },
+          },
+          {
+            name: { es: "Rendimiento real aproximado", en: "Approximate real return" },
+            expression: "Rendimiento real ≈ Rendimiento nominal − Inflación",
+            variables: [
+              { symbol: "Rendimiento nominal", meaning: { es: "Lo que ganó tu inversión en %, sin tomar en cuenta la inflación.", en: "What your investment earned in %, without considering inflation." } },
+              { symbol: "Inflación", meaning: { es: "Cuánto subieron los precios en el mismo periodo, en %.", en: "How much prices rose in the same period, in %." } },
+              { symbol: "Rendimiento real", meaning: { es: "Cuánto creció de verdad tu poder de compra, en %.", en: "How much your purchasing power really grew, in %." } },
+            ],
+            steps: [
+              { es: "Calcula el rendimiento nominal con la fórmula anterior.", en: "Compute the nominal return with the previous formula." },
+              { es: "Réstale la inflación del mismo periodo.", en: "Subtract the inflation for the same period." },
+            ],
+            example: {
+              es: "Rendimiento nominal 7%; inflación de ejemplo 3%. Real ≈ 7% − 3% = **4%**.",
+              en: "Nominal return 7%; example inflation 3%. Real ≈ 7% − 3% = **4%**.",
+            },
+            interpret: {
+              es: "Si el real sale negativo, tu dinero creció menos que los precios: puedes comprar menos que antes.",
+              en: "If the real return is negative, your money grew less than prices: you can buy less than before.",
+            },
+            mistake: {
+              es: "Sumar la inflación en lugar de restarla.",
+              en: "Adding inflation instead of subtracting it.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Riesgo, rendimiento, liquidez y plazo", en: "Risk, return, liquidity and time horizon" },
@@ -733,6 +1050,34 @@ export const lessons: Lesson[] = [
           {
             es: "**Diversificar** es no poner todos los huevos en la misma canasta: repartir entre instrumentos, empresas y plazos para que una caída no te tumbe todo. **Reduce** el riesgo, pero **no lo elimina**. Mini ejemplo: si tienes todo en una sola acción y esa empresa quiebra, pierdes todo; si tienes 30 empresas, una quiebra pesa mucho menos.",
             en: "**Diversifying** means not putting all your eggs in one basket: spreading across instruments, companies and terms so one drop does not knock everything down. It **reduces** risk, but **does not eliminate** it. Mini example: if you have everything in a single stock and that company goes bankrupt, you lose it all; if you hold 30 companies, one bankruptcy weighs much less.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Rendimiento de un portafolio", en: "Portfolio return" },
+            expression: "Ganancia de cada parte = Monto invertido × Rendimiento de esa parte; Rendimiento del portafolio (%) = Suma de ganancias ÷ Total invertido × 100",
+            variables: [
+              { symbol: "Monto invertido", meaning: { es: "Lo que pusiste en cada instrumento, en pesos.", en: "What you put in each instrument, in pesos." } },
+              { symbol: "Rendimiento de esa parte", meaning: { es: "Lo que ganó o perdió ese instrumento, en decimal (una pérdida de 8% = −0.08).", en: "What that instrument gained or lost, as a decimal (an 8% loss = −0.08)." } },
+              { symbol: "Total invertido", meaning: { es: "La suma de todo lo que invertiste, en pesos.", en: "The sum of everything you invested, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica cada monto por su rendimiento (las pérdidas con signo negativo).", en: "Multiply each amount by its return (losses with a negative sign)." },
+              { es: "Suma las ganancias y pérdidas: ganancia total.", en: "Add the gains and losses: total gain." },
+              { es: "Divide entre el total invertido y multiplica por 100.", en: "Divide by the total invested and multiply by 100." },
+            ],
+            example: {
+              es: "$20,000 en deuda al 6% → 20,000 × 0.06 = $1,200; $10,000 en un fondo al 12% → $1,200; $10,000 en una acción que pierde 8% → 10,000 × (−0.08) = −$800. Ganancia = 1,200 + 1,200 − 800 = $1,600. Rendimiento = 1,600 ÷ 40,000 × 100 = **4%**.",
+              en: "$20,000 in debt at 6% → 20,000 × 0.06 = $1,200; $10,000 in a fund at 12% → $1,200; $10,000 in a stock that loses 8% → 10,000 × (−0.08) = −$800. Gain = 1,200 + 1,200 − 800 = $1,600. Return = 1,600 ÷ 40,000 × 100 = **4%**.",
+            },
+            interpret: {
+              es: "Aunque una parte perdió, el portafolio ganó: eso es lo que hace la diversificación.",
+              en: "Even though one part lost, the portfolio gained: that is what diversification does.",
+            },
+            mistake: {
+              es: "Promediar los porcentajes sin tomar en cuenta cuánto dinero hay en cada parte ((6 + 12 − 8) ÷ 3 ≈ 3.33% en lugar de 4%).",
+              en: "Averaging the percentages without weighting by how much money is in each part ((6 + 12 − 8) ÷ 3 ≈ 3.33% instead of 4%).",
+            },
           },
         ],
       },
