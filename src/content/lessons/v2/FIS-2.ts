@@ -21,7 +21,7 @@ export const lessons: Lesson[] = [
       es: "La LIVA dice qué actos pagan IVA, a qué tasa (16 %, 0 % o exento), cuándo nace la obligación y qué requisitos debe cumplir el IVA que quieres acreditar o retener.",
       en: "The VAT Law states which acts pay VAT, at what rate (16%, 0% or exempt), when the obligation arises and which requirements the VAT you want to credit or withhold must meet.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Identificar los cuatro actos que grava la LIVA y quiénes son sujetos del impuesto.", en: "Identify the four acts taxed by the VAT Law and who is subject to the tax." },
       { es: "Distinguir entre tasa general, tasa 0 % y actos exentos, y sus efectos en el acreditamiento.", en: "Distinguish between the general rate, the 0% rate and exempt acts, and their effects on crediting." },
@@ -73,10 +73,34 @@ export const lessons: Lesson[] = [
           { es: "0 %: alimentos básicos, medicinas de patente, exportaciones; sí acredita.", en: "0%: basic foods, patent medicines, exports; crediting allowed." },
           { es: "Exento: casa habitación, colegiaturas, consultas médicas; no acredita.", en: "Exempt: homes, tuition, medical visits; no crediting." },
         ],
+        formulas: [
+          {
+            name: { es: "IVA de una operación y total a cobrar", en: "VAT on a transaction and total to charge" },
+            expression: "IVA = Precio sin IVA × 16 %;  Total = Precio sin IVA + IVA = Precio sin IVA × 1.16",
+            variables: [
+              { symbol: "IVA", meaning: { es: "El impuesto que se suma al precio, en pesos.", en: "The tax added on top of the price, in pesos." } },
+              { symbol: "Precio sin IVA", meaning: { es: "El valor de la venta o del servicio antes del impuesto (también llamado base), en pesos.", en: "The value of the sale or service before tax (also called the base), in pesos." } },
+              { symbol: "16 %", meaning: { es: "La tasa general; en decimal es 0.16. Con tasa 0 % el IVA es $0, y en actos exentos no se calcula IVA.", en: "The general rate; as a decimal it is 0.16. At the 0% rate VAT is $0, and on exempt acts no VAT is computed." } },
+              { symbol: "Total", meaning: { es: "Lo que paga el cliente, en pesos.", en: "What the customer pays, in pesos." } },
+            ],
+            steps: [
+              { es: "Revisa qué tasa le toca a la operación: 16 %, 0 % o exenta.", en: "Check which rate applies to the transaction: 16%, 0% or exempt." },
+              { es: "Convierte la tasa a decimal: 16 % = 0.16.", en: "Convert the rate to a decimal: 16% = 0.16." },
+              { es: "Multiplica el precio sin IVA por 0.16: ese es el IVA.", en: "Multiply the price before VAT by 0.16: that is the VAT." },
+              { es: "Suma precio e IVA para obtener el total (o multiplica el precio por 1.16).", en: "Add price and VAT to get the total (or multiply the price by 1.16)." },
+            ],
+            example: { es: "Un electricista cobra una instalación de $5,000 sin IVA (tasa 16 %). IVA: 5,000 × 0.16 = **$800**. Total: 5,000 + 800 = **$5,800** (igual a 5,000 × 1.16). Si vendiera tortillas (tasa 0 %), el IVA sería 5,000 × 0 = $0.", en: "An electrician charges $5,000 before VAT for an installation (16% rate). VAT: 5,000 × 0.16 = **$800**. Total: 5,000 + 800 = **$5,800** (same as 5,000 × 1.16). If he sold tortillas (0% rate), VAT would be 5,000 × 0 = $0." },
+            mistake: { es: "Calcular el 16 % sobre un precio que ya incluye IVA. Si el precio ya lo trae, primero divídelo entre 1.16 para sacar la base.", en: "Computing 16% on a price that already includes VAT. If the price already includes it, first divide by 1.16 to get the base." },
+          },
+        ],
       },
       {
         heading: { es: "Cuándo se causa, acreditamiento y retención", en: "When it is due, crediting and withholding" },
         body: [
+          {
+            es: "En palabras sencillas: cada mes haces una resta. Tomas el IVA que **cobraste** a tus clientes y le quitas el IVA que **pagaste** a tus proveedores; la diferencia es lo que entregas al SAT. **Acreditar** significa justo eso: restar el IVA que pagaste.",
+            en: "In simple words: each month you do a subtraction. You take the VAT you **collected** from your customers and take away the VAT you **paid** to your suppliers; the difference is what you hand to the SAT. **Crediting** means exactly that: subtracting the VAT you paid.",
+          },
           {
             es: "El IVA se causa por **flujo de efectivo**: nace cuando **cobras** efectivamente el precio, no cuando emites la factura. Si vendes a crédito en marzo y cobras en abril, ese IVA lo declaras en abril. El pago es **mensual** y, en general, vence el día 17 del mes siguiente.",
             en: "VAT is due on a **cash basis**: it arises when you actually **collect** the price, not when you issue the invoice. If you sell on credit in March and collect in April, you report that VAT in April. Payment is **monthly** and, in general, is due on the 17th of the following month.",
@@ -90,7 +114,42 @@ export const lessons: Lesson[] = [
             en: "Some companies must **withhold** VAT: for example, when they receive professional services or rent goods from an individual, they withhold **two thirds** of the VAT and remit it themselves. Mini example: a company pays $10,000 in fees plus $1,600 of VAT; it withholds $1,066.67 (2/3 of 1,600) and gives the professional the rest.",
           },
         ],
-        formula: "IVA a cargo = IVA trasladado cobrado − IVA acreditable pagado − IVA retenido (si te retuvieron)",
+        formulas: [
+          {
+            name: { es: "IVA a cargo del mes", en: "VAT payable for the month" },
+            expression: "IVA a cargo = IVA trasladado cobrado − IVA acreditable pagado − IVA retenido (si te retuvieron)",
+            variables: [
+              { symbol: "IVA a cargo", meaning: { es: "Lo que pagas al SAT por el mes, en pesos.", en: "What you pay the SAT for the month, in pesos." } },
+              { symbol: "IVA trasladado cobrado", meaning: { es: "El IVA de las ventas que **cobraste** en el mes (no de las que solo facturaste): lo cobrado sin IVA × 16 %.", en: "The VAT on sales you **collected** in the month (not those you only invoiced): amount collected before VAT × 16%." } },
+              { symbol: "IVA acreditable pagado", meaning: { es: "El IVA de tus compras y gastos del negocio que **pagaste** en el mes, con CFDI: lo pagado sin IVA × 16 %.", en: "The VAT on business purchases and expenses you **paid** in the month, with CFDI: amount paid before VAT × 16%." } },
+              { symbol: "IVA retenido", meaning: { es: "El IVA que tus clientes personas morales te retuvieron y ya pagaron al SAT por ti, en pesos.", en: "The VAT your corporate customers withheld from you and already paid to the SAT on your behalf, in pesos." } },
+            ],
+            steps: [
+              { es: "Toma solo lo que **cobraste** en el mes (sin IVA) y multiplícalo por 0.16.", en: "Take only what you **collected** in the month (before VAT) and multiply it by 0.16." },
+              { es: "Toma lo que **pagaste** de compras con CFDI (sin IVA) y multiplícalo por 0.16.", en: "Take what you **paid** for purchases with CFDI (before VAT) and multiply it by 0.16." },
+              { es: "Resta: IVA cobrado − IVA pagado − IVA que te retuvieron.", en: "Subtract: VAT collected − VAT paid − VAT withheld from you." },
+            ],
+            example: { es: "Una tienda de bicicletas facturó $120,000 + IVA en mayo, pero solo cobró $110,000 + IVA. Pagó compras por $70,000 + IVA con CFDI. Cobrado: 110,000 × 0.16 = 17,600. Pagado: 70,000 × 0.16 = 11,200. IVA a cargo: 17,600 − 11,200 = **$6,400**. El IVA de los $10,000 no cobrados se declara cuando se cobren.", en: "A bike shop invoiced $120,000 + VAT in May but only collected $110,000 + VAT. It paid $70,000 + VAT for purchases with CFDI. Collected: 110,000 × 0.16 = 17,600. Paid: 70,000 × 0.16 = 11,200. VAT payable: 17,600 − 11,200 = **$6,400**. The VAT on the uncollected $10,000 is reported when collected." },
+            interpret: { es: "Si el resultado es positivo, lo pagas al SAT. Si es negativo, tienes **saldo a favor**: puedes usarlo en meses siguientes o pedir su devolución.", en: "If the result is positive, you pay it to the SAT. If it is negative, you have a **balance in your favor**: you can use it in later months or claim a refund." },
+            mistake: { es: "Usar lo **facturado** en vez de lo **cobrado**. El IVA nace al cobrar (flujo de efectivo).", en: "Using what was **invoiced** instead of what was **collected**. VAT arises upon collection (cash basis)." },
+          },
+          {
+            name: { es: "Retención de IVA (2/3)", en: "VAT withholding (2/3)" },
+            expression: "IVA retenido = IVA trasladado × 2/3",
+            variables: [
+              { symbol: "IVA retenido", meaning: { es: "La parte del IVA que la persona moral se queda para pagarla directamente al SAT, en pesos.", en: "The part of the VAT the company keeps to pay directly to the SAT, in pesos." } },
+              { symbol: "IVA trasladado", meaning: { es: "El IVA de la factura: honorarios o renta sin IVA × 16 %.", en: "The VAT on the invoice: fees or rent before VAT × 16%." } },
+              { symbol: "2/3", meaning: { es: "Dos terceras partes: multiplica por 2 y divide entre 3.", en: "Two thirds: multiply by 2 and divide by 3." } },
+            ],
+            steps: [
+              { es: "Calcula el IVA de la factura: honorarios sin IVA × 0.16.", en: "Compute the invoice VAT: fees before VAT × 0.16." },
+              { es: "Multiplica ese IVA por 2 y divide entre 3: eso se retiene.", en: "Multiply that VAT by 2 and divide by 3: that is withheld." },
+              { es: "Lo que queda del IVA (1/3) es lo que la persona física recibe en efectivo por IVA.", en: "What is left of the VAT (1/3) is what the individual receives in cash as VAT." },
+            ],
+            example: { es: "Una empresa paga $9,000 de honorarios a un contador persona física. IVA: 9,000 × 0.16 = 1,440. Retención: 1,440 × 2 ÷ 3 = **$960**. El contador recibe de IVA: 1,440 − 960 = $480.", en: "A company pays $9,000 in fees to an individual accountant. VAT: 9,000 × 0.16 = 1,440. Withholding: 1,440 × 2 ÷ 3 = **$960**. The accountant receives as VAT: 1,440 − 960 = $480." },
+            mistake: { es: "Retener el 16 % completo o calcular los 2/3 sobre los honorarios en lugar de sobre el IVA.", en: "Withholding the full 16% or computing 2/3 of the fees instead of 2/3 of the VAT." },
+          },
+        ],
       },
     ],
     examples: [
@@ -149,7 +208,7 @@ export const lessons: Lesson[] = [
       es: "Una persona física paga ISR según el tipo de ingreso que recibe (sueldo, negocio, honorarios, rentas, ventas de bienes, entre otros), y cada régimen tiene su forma de calcular, deducir y declarar.",
       en: "An individual pays income tax according to the type of income received (salary, business, fees, rent, sales of assets, among others), and each regime has its own way of computing, deducting and filing.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Identificar los principales regímenes de personas físicas según la fuente del ingreso.", en: "Identify the main regimes for individuals according to the source of income." },
       { es: "Comparar el régimen de actividades empresariales y profesionales con el RESICO.", en: "Compare the business and professional activities regime with RESICO." },
@@ -196,7 +255,27 @@ export const lessons: Lesson[] = [
             en: "Which is better? It mainly depends on your **margin**. If your expenses are small (for example, a consultant who buys almost nothing), RESICO usually pays less. If your expenses are very high (for example, a store reselling at a low margin), the general regime may be better because it does subtract expenses. Mini example: with income of $40,000 a month and expenses of $5,000, RESICO charges a small percentage of $40,000; with expenses of $36,000, the real profit is only $4,000 and you should compare carefully.",
           },
         ],
-        formula: "RESICO PF: ISR mensual = ingresos cobrados del mes × tasa de la tabla − ISR que te retuvieron",
+        formulas: [
+          {
+            name: { es: "ISR mensual en RESICO (personas físicas)", en: "Monthly RESICO income tax (individuals)" },
+            expression: "ISR a pagar = Ingresos cobrados del mes × Tasa de la tabla − ISR retenido;  ISR retenido = Cobrado a personas morales × 1.25 %",
+            variables: [
+              { symbol: "ISR a pagar", meaning: { es: "Lo que pagas al SAT en tu declaración del mes, en pesos.", en: "What you pay the SAT on your monthly return, in pesos." } },
+              { symbol: "Ingresos cobrados del mes", meaning: { es: "Todo lo que cobraste en el mes, sin IVA, en pesos. No se restan gastos.", en: "Everything you collected in the month, before VAT, in pesos. Expenses are not subtracted." } },
+              { symbol: "Tasa de la tabla", meaning: { es: "El porcentaje que marca la tabla del RESICO para tu nivel de ingresos (entre 1 % y 2.5 %).", en: "The percentage the RESICO table sets for your income level (between 1% and 2.5%)." } },
+              { symbol: "ISR retenido", meaning: { es: "Lo que te retuvieron las personas morales que te pagaron, en pesos; ya es un pago a cuenta.", en: "What the companies that paid you withheld, in pesos; it is already a payment on account." } },
+              { symbol: "Cobrado a personas morales", meaning: { es: "Solo la parte de tus ingresos que te pagaron empresas, sin IVA.", en: "Only the part of your income paid by companies, before VAT." } },
+            ],
+            steps: [
+              { es: "Suma todo lo que cobraste en el mes, sin IVA.", en: "Add up everything you collected in the month, before VAT." },
+              { es: "Multiplícalo por la tasa de la tabla en decimal (por ejemplo, 1 % = 0.01).", en: "Multiply it by the table rate as a decimal (for example, 1% = 0.01)." },
+              { es: "Calcula la retención: solo lo que te pagaron personas morales × 0.0125.", en: "Compute the withholding: only what companies paid you × 0.0125." },
+              { es: "Resta la retención al ISR del mes.", en: "Subtract the withholding from the month's income tax." },
+            ],
+            example: { es: "Con una tasa de ejemplo de 1 %: Luis cobró $35,000 en el mes; $12,000 se los pagó una persona moral. ISR del mes: 35,000 × 0.01 = 350. Retención: 12,000 × 0.0125 = 150. ISR a pagar: 350 − 150 = **$200**.", en: "With an example rate of 1%: Luis collected $35,000 in the month; $12,000 was paid by a company. Month's income tax: 35,000 × 0.01 = 350. Withholding: 12,000 × 0.0125 = 150. Income tax payable: 350 − 150 = **$200**." },
+            mistake: { es: "Calcular la retención sobre todos los ingresos (solo aplica a lo que pagaron personas morales) o restar gastos, que en RESICO no se restan.", en: "Computing the withholding on all income (it only applies to what companies paid) or subtracting expenses, which RESICO does not allow." },
+          },
+        ],
       },
       {
         heading: { es: "Arrendamiento y otros ingresos", en: "Rental and other income" },
@@ -214,7 +293,26 @@ export const lessons: Lesson[] = [
             en: "Mini example: Lucía rents out a store for $10,000 a month. With the blind deduction she subtracts $3,500 (35%) and her base is $6,500, without collecting expense invoices. If she actually spends more than 35% on maintenance, she is better off deducting actual expenses.",
           },
         ],
-        formula: "Base arrendamiento (opcional) = Rentas cobradas − 35 % de las rentas − predial pagado",
+        formulas: [
+          {
+            name: { es: "Base de arrendamiento con deducción ciega", en: "Rental tax base with the blind deduction" },
+            expression: "Base = Rentas cobradas − Rentas cobradas × 35 % − Predial pagado",
+            variables: [
+              { symbol: "Base", meaning: { es: "La cantidad sobre la que se calcula el ISR de tus rentas, en pesos.", en: "The amount on which your rental income tax is computed, in pesos." } },
+              { symbol: "Rentas cobradas", meaning: { es: "Lo que cobraste de renta en el periodo, sin IVA, en pesos.", en: "The rent you collected in the period, before VAT, in pesos." } },
+              { symbol: "35 %", meaning: { es: "La deducción ciega: lo que la ley te deja restar sin facturas de gastos (en decimal, 0.35).", en: "The blind deduction: what the law lets you subtract without expense invoices (as a decimal, 0.35)." } },
+              { symbol: "Predial pagado", meaning: { es: "El impuesto predial del inmueble que pagaste en el periodo, en pesos (si no pagaste, es 0).", en: "The property tax on the property you paid in the period, in pesos (if you paid none, it is 0)." } },
+            ],
+            steps: [
+              { es: "Calcula la deducción ciega: rentas cobradas × 0.35.", en: "Compute the blind deduction: rent collected × 0.35." },
+              { es: "Réstala a las rentas cobradas.", en: "Subtract it from rent collected." },
+              { es: "Resta también el predial que pagaste en el periodo.", en: "Also subtract the property tax you paid in the period." },
+            ],
+            example: { es: "Un local se renta en $12,000 al mes y ese mes se pagaron $300 de predial. Deducción: 12,000 × 0.35 = 4,200. Base: 12,000 − 4,200 − 300 = **$7,500**.", en: "A store rents for $12,000 a month and $300 of property tax was paid that month. Deduction: 12,000 × 0.35 = 4,200. Base: 12,000 − 4,200 − 300 = **$7,500**." },
+            interpret: { es: "Compárala con la base usando tus gastos reales: elige la que te deje la base más baja.", en: "Compare it with the base using your actual expenses: choose the one that leaves the lower base." },
+            mistake: { es: "Dar como resultado la deducción (4,200) en lugar de la base (lo que queda después de restarla).", en: "Giving the deduction (4,200) as the answer instead of the base (what is left after subtracting it)." },
+          },
+        ],
       },
     ],
     examples: [
@@ -272,7 +370,7 @@ export const lessons: Lesson[] = [
       es: "Las empresas (personas morales) pagan ISR en el régimen general a tasa del 30 % sobre su resultado fiscal, con pagos provisionales mensuales; existen además el RESICO de personas morales y el régimen de entidades sin fines de lucro.",
       en: "Companies (legal entities) pay income tax under the general regime at a 30% rate on their taxable result, with monthly provisional payments; there are also RESICO for legal entities and the non-profit regime.",
     },
-    minutes: 17,
+    minutes: 18,
     objectives: [
       { es: "Distinguir el régimen general, el RESICO de personas morales y el de personas morales sin fines de lucro.", en: "Distinguish the general regime, RESICO for legal entities and the non-profit regime." },
       { es: "Calcular el resultado fiscal y el ISR anual de una persona moral.", en: "Compute a legal entity's taxable result and annual income tax." },
@@ -318,7 +416,30 @@ export const lessons: Lesson[] = [
             en: "Mini example: taxable income $3,000,000, deductions $2,400,000, PTU paid $50,000, no losses. Taxable result = $550,000; income tax = 550,000 × 30% = $165,000.",
           },
         ],
-        formula: "Resultado fiscal = Ingresos acumulables − Deducciones autorizadas − PTU pagada − Pérdidas fiscales pendientes;  ISR = Resultado fiscal × 30 %",
+        formulas: [
+          {
+            name: { es: "Resultado fiscal e ISR anual de una persona moral", en: "Taxable result and annual income tax of a legal entity" },
+            expression: "Resultado fiscal = Ingresos acumulables − Deducciones autorizadas − PTU pagada − Pérdidas fiscales pendientes;  ISR = Resultado fiscal × 30 %;  ISR a pagar en la anual = ISR − Pagos provisionales",
+            variables: [
+              { symbol: "Ingresos acumulables", meaning: { es: "Los ingresos del año que la ley manda sumar, en pesos.", en: "The year's income the law says to add up, in pesos." } },
+              { symbol: "Deducciones autorizadas", meaning: { es: "Gastos del año que cumplen requisitos fiscales (CFDI, indispensables), en pesos.", en: "The year's expenses that meet tax requirements (CFDI, necessary), in pesos." } },
+              { symbol: "PTU pagada", meaning: { es: "La participación de utilidades que se pagó a los trabajadores en el año, en pesos.", en: "The profit sharing paid to workers during the year, in pesos." } },
+              { symbol: "Pérdidas fiscales pendientes", meaning: { es: "Pérdidas de años anteriores que aún no se han restado, en pesos.", en: "Losses from prior years not yet subtracted, in pesos." } },
+              { symbol: "30 %", meaning: { es: "La tasa de ISR de las personas morales (0.30 en decimal).", en: "The income tax rate for legal entities (0.30 as a decimal)." } },
+              { symbol: "Pagos provisionales", meaning: { es: "Lo que la empresa ya pagó a cuenta durante el año, en pesos.", en: "What the company already paid on account during the year, in pesos." } },
+            ],
+            steps: [
+              { es: "Resta a los ingresos acumulables las deducciones autorizadas.", en: "Subtract authorized deductions from taxable income." },
+              { es: "Resta la PTU pagada: así obtienes la utilidad fiscal.", en: "Subtract the PTU paid: that gives you taxable profit." },
+              { es: "Resta las pérdidas fiscales pendientes: eso es el resultado fiscal.", en: "Subtract pending tax losses: that is the taxable result." },
+              { es: "Multiplica el resultado fiscal por 0.30: ese es el ISR del año.", en: "Multiply the taxable result by 0.30: that is the year's income tax." },
+              { es: "Resta los pagos provisionales para saber cuánto falta pagar en la declaración anual.", en: "Subtract provisional payments to know how much is still due on the annual return." },
+            ],
+            example: { es: "Ingresos acumulables $5,000,000, deducciones $3,900,000, PTU pagada $100,000 y pérdidas pendientes $200,000. Utilidad fiscal: 5,000,000 − 3,900,000 − 100,000 = 1,000,000. Resultado fiscal: 1,000,000 − 200,000 = 800,000. ISR: 800,000 × 0.30 = **$240,000**. Con pagos provisionales de $180,000: 240,000 − 180,000 = **$60,000** a pagar en marzo.", en: "Taxable income $5,000,000, deductions $3,900,000, PTU paid $100,000 and pending losses $200,000. Taxable profit: 5,000,000 − 3,900,000 − 100,000 = 1,000,000. Taxable result: 1,000,000 − 200,000 = 800,000. Income tax: 800,000 × 0.30 = **$240,000**. With provisional payments of $180,000: 240,000 − 180,000 = **$60,000** due in March." },
+            interpret: { es: "Si los pagos provisionales superan al ISR del año, la empresa tiene saldo a favor.", en: "If provisional payments exceed the year's income tax, the company has a balance in its favor." },
+            mistake: { es: "Olvidar restar la PTU pagada o las pérdidas pendientes antes de aplicar el 30 %.", en: "Forgetting to subtract the PTU paid or pending losses before applying 30%." },
+          },
+        ],
       },
       {
         heading: { es: "Pagos provisionales y dividendos", en: "Provisional payments and dividends" },
@@ -336,7 +457,40 @@ export const lessons: Lesson[] = [
             en: "When the company pays **dividends**, it checks its **CUFIN** (Net Taxable Profit Account): a record of profits that **already paid income tax** at the company. If the dividend comes from CUFIN, the company does not pay income tax on it again; if not, it does. Also, when paying dividends to individuals there is an **additional 10% withholding**. Mini example: with a CUFIN of $1,000,000, distributing $400,000 creates no extra corporate income tax.",
           },
         ],
-        formula: "CU = Utilidad fiscal del ejercicio anterior ÷ Ingresos nominales;  Pago provisional = (Ingresos acumulados × CU × 30 %) − Pagos provisionales previos",
+        formulas: [
+          {
+            name: { es: "Coeficiente de utilidad (CU)", en: "Profit coefficient (CU)" },
+            expression: "CU = Utilidad fiscal del ejercicio anterior ÷ Ingresos nominales del ejercicio anterior",
+            variables: [
+              { symbol: "CU", meaning: { es: "Qué parte de cada peso vendido fue utilidad el año pasado, en decimal (0.12 = 12 centavos por peso).", en: "What share of each peso sold was profit last year, as a decimal (0.12 = 12 cents per peso)." } },
+              { symbol: "Utilidad fiscal del ejercicio anterior", meaning: { es: "La utilidad fiscal del año pasado, en pesos.", en: "Last year's taxable profit, in pesos." } },
+              { symbol: "Ingresos nominales", meaning: { es: "Los ingresos del año pasado tal como se cobraron o facturaron, sin ajustes por inflación, en pesos.", en: "Last year's income as collected or invoiced, without inflation adjustments, in pesos." } },
+            ],
+            steps: [
+              { es: "Toma la utilidad fiscal del año pasado.", en: "Take last year's taxable profit." },
+              { es: "Divídela entre los ingresos nominales del año pasado.", en: "Divide it by last year's nominal income." },
+            ],
+            example: { es: "El año pasado una empresa tuvo utilidad fiscal de $600,000 e ingresos nominales de $5,000,000. CU = 600,000 ÷ 5,000,000 = **0.12**.", en: "Last year a company had taxable profit of $600,000 and nominal income of $5,000,000. CU = 600,000 ÷ 5,000,000 = **0.12**." },
+          },
+          {
+            name: { es: "Pago provisional del mes", en: "Monthly provisional payment" },
+            expression: "Pago provisional = Ingresos acumulados del año × CU × 30 % − Pagos provisionales previos",
+            variables: [
+              { symbol: "Ingresos acumulados del año", meaning: { es: "Los ingresos nominales desde enero hasta el mes que calculas, en pesos.", en: "Nominal income from January through the month you are computing, in pesos." } },
+              { symbol: "CU", meaning: { es: "El coeficiente de utilidad, en decimal.", en: "The profit coefficient, as a decimal." } },
+              { symbol: "30 %", meaning: { es: "La tasa de ISR de las personas morales (0.30).", en: "The income tax rate for legal entities (0.30)." } },
+              { symbol: "Pagos provisionales previos", meaning: { es: "Lo que ya pagaste en los meses anteriores del mismo año, en pesos.", en: "What you already paid in earlier months of the same year, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma los ingresos desde enero hasta este mes.", en: "Add up income from January through this month." },
+              { es: "Multiplícalos por el CU: esa es la utilidad estimada.", en: "Multiply them by the CU: that is the estimated profit." },
+              { es: "Multiplica la utilidad estimada por 0.30: ISR acumulado.", en: "Multiply the estimated profit by 0.30: cumulative income tax." },
+              { es: "Resta lo que ya pagaste en meses anteriores del año.", en: "Subtract what you already paid in earlier months of the year." },
+            ],
+            example: { es: "Con CU 0.12, ingresos de enero a mayo por $2,000,000 y pagos previos (enero–abril) de $55,000. Utilidad estimada: 2,000,000 × 0.12 = 240,000. ISR acumulado: 240,000 × 0.30 = 72,000. Pago de mayo: 72,000 − 55,000 = **$17,000**.", en: "With CU 0.12, January–May income of $2,000,000 and previous payments (January–April) of $55,000. Estimated profit: 2,000,000 × 0.12 = 240,000. Cumulative income tax: 240,000 × 0.30 = 72,000. May payment: 72,000 − 55,000 = **$17,000**." },
+            mistake: { es: "Usar solo los ingresos del mes. El cálculo es **acumulado** desde enero, y por eso se restan los pagos anteriores.", en: "Using only the month's income. The calculation is **cumulative** from January, which is why earlier payments are subtracted." },
+          },
+        ],
       },
     ],
     examples: [
@@ -396,7 +550,7 @@ export const lessons: Lesson[] = [
       es: "El CFDI es la factura electrónica que valida el SAT: tiene datos obligatorios del emisor y receptor, un tipo de comprobante, un método de pago (PUE o PPD) y reglas claras para pagos parciales y cancelaciones.",
       en: "The CFDI is the electronic invoice validated by the SAT: it has mandatory issuer and recipient data, a voucher type, a payment method (PUE or PPD) and clear rules for partial payments and cancellations.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es un CFDI, quién lo certifica y qué datos del receptor exige.", en: "Explain what a CFDI is, who certifies it and what recipient data it requires." },
       { es: "Elegir el tipo de comprobante y el método de pago correctos para cada operación.", en: "Choose the right voucher type and payment method for each transaction." },
@@ -442,6 +596,42 @@ export const lessons: Lesson[] = [
           { es: "T Traslado: mover mercancía sin venta.", en: "T Transfer: moving goods without a sale." },
           { es: "N Nómina: pagos a trabajadores.", en: "N Payroll: payments to workers." },
           { es: "P Pago: complemento para facturas PPD.", en: "P Payment: complement for PPD invoices." },
+        ],
+        formulas: [
+          {
+            name: { es: "Saldo insoluto en una factura PPD", en: "Outstanding balance on a PPD invoice" },
+            expression: "Total de la factura = Importe sin IVA × 1.16;  Saldo insoluto = Total de la factura − Pagos recibidos",
+            variables: [
+              { symbol: "Total de la factura", meaning: { es: "Lo que el cliente debe en total, con IVA, en pesos.", en: "What the customer owes in total, with VAT, in pesos." } },
+              { symbol: "Importe sin IVA", meaning: { es: "El precio del bien o servicio antes del impuesto, en pesos.", en: "The price of the good or service before tax, in pesos." } },
+              { symbol: "Saldo insoluto", meaning: { es: "Lo que todavía falta por pagar, en pesos.", en: "What is still left to pay, in pesos." } },
+              { symbol: "Pagos recibidos", meaning: { es: "La suma de los pagos que ya te hicieron, en pesos.", en: "The sum of the payments already made to you, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el total con IVA: importe sin IVA × 1.16.", en: "Compute the total with VAT: amount before VAT × 1.16." },
+              { es: "Suma los pagos recibidos hasta ahora.", en: "Add up the payments received so far." },
+              { es: "Resta: total − pagos. Ese saldo va en el complemento de pago.", en: "Subtract: total − payments. That balance goes on the payment complement." },
+            ],
+            example: { es: "Un servicio de $30,000 + IVA facturado con PPD. Total: 30,000 × 1.16 = 34,800. Primer pago: $13,920. Saldo insoluto: 34,800 − 13,920 = **$20,880**.", en: "A $30,000 + VAT service invoiced with PPD. Total: 30,000 × 1.16 = 34,800. First payment: $13,920. Outstanding balance: 34,800 − 13,920 = **$20,880**." },
+            interpret: { es: "Cuando el saldo insoluto llega a $0, la factura quedó pagada por completo.", en: "When the outstanding balance reaches $0, the invoice is fully paid." },
+          },
+          {
+            name: { es: "IVA contenido en un pago", en: "VAT contained in a payment" },
+            expression: "Base del pago = Pago ÷ 1.16;  IVA del pago = Base del pago × 16 %",
+            variables: [
+              { symbol: "Pago", meaning: { es: "Lo que te pagó el cliente, con IVA incluido, en pesos.", en: "What the customer paid you, VAT included, in pesos." } },
+              { symbol: "Base del pago", meaning: { es: "La parte del pago que corresponde al precio sin IVA, en pesos.", en: "The part of the payment that corresponds to the price before VAT, in pesos." } },
+              { symbol: "IVA del pago", meaning: { es: "La parte del pago que es IVA, en pesos; se causa en el mes en que cobras.", en: "The part of the payment that is VAT, in pesos; it is due in the month you collect." } },
+              { symbol: "1.16", meaning: { es: "El precio más su 16 % de IVA (100 % + 16 %).", en: "The price plus its 16% VAT (100% + 16%)." } },
+            ],
+            steps: [
+              { es: "Divide el pago entre 1.16 para quitarle el IVA: esa es la base.", en: "Divide the payment by 1.16 to strip out the VAT: that is the base." },
+              { es: "Multiplica la base por 0.16: ese es el IVA que viene dentro del pago.", en: "Multiply the base by 0.16: that is the VAT contained in the payment." },
+              { es: "Comprueba: base + IVA = pago.", en: "Check: base + VAT = payment." },
+            ],
+            example: { es: "Pago de $13,920. Base: 13,920 ÷ 1.16 = 12,000. IVA: 12,000 × 0.16 = **$1,920**. Comprobación: 12,000 + 1,920 = 13,920.", en: "Payment of $13,920. Base: 13,920 ÷ 1.16 = 12,000. VAT: 12,000 × 0.16 = **$1,920**. Check: 12,000 + 1,920 = 13,920." },
+            mistake: { es: "Multiplicar el pago completo por 16 % (13,920 × 0.16). El pago ya trae IVA dentro; primero hay que quitárselo.", en: "Multiplying the whole payment by 16% (13,920 × 0.16). The payment already contains VAT; you must take it out first." },
+          },
         ],
       },
       {
@@ -517,7 +707,7 @@ export const lessons: Lesson[] = [
       es: "La contabilidad electrónica obliga a llevar tus registros en sistemas, ligar cada póliza a sus CFDI y enviar al SAT el catálogo de cuentas con código agrupador y la balanza de comprobación mensual.",
       en: "Electronic accounting requires keeping your records in systems, linking each journal entry to its CFDI, and sending the SAT the chart of accounts with the grouping code and the monthly trial balance.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es la contabilidad electrónica y qué archivos la forman.", en: "Explain what electronic accounting is and which files it consists of." },
       { es: "Asociar un catálogo de cuentas al código agrupador del SAT.", en: "Map a chart of accounts to the SAT grouping code." },
@@ -580,7 +770,44 @@ export const lessons: Lesson[] = [
             en: "Mini example: you collect a $10,000 + VAT sale by transfer. The entry debits Bank $11,600 and credits Sales $10,000 and Output VAT $1,600, and records the invoice UUID.",
           },
         ],
-        formula: "Σ saldos deudores = Σ saldos acreedores",
+        formulas: [
+          {
+            name: { es: "Montos de la póliza de una venta cobrada con IVA", en: "Amounts in the entry for a collected sale with VAT" },
+            expression: "Cargo a Bancos = Venta sin IVA × 1.16;  Abono a Ventas = Venta sin IVA;  Abono a IVA trasladado = Venta sin IVA × 16 %",
+            variables: [
+              { symbol: "Cargo", meaning: { es: "Anotación en el lado izquierdo (debe) de la póliza: aquí, el dinero que entra al banco.", en: "Entry on the left side (debit) of the journal entry: here, the money coming into the bank." } },
+              { symbol: "Abono", meaning: { es: "Anotación en el lado derecho (haber): aquí, la venta y el IVA que le debes al SAT.", en: "Entry on the right side (credit): here, the sale and the VAT you owe the SAT." } },
+              { symbol: "Venta sin IVA", meaning: { es: "El precio de la mercancía o servicio antes del impuesto, en pesos.", en: "The price of the goods or service before tax, in pesos." } },
+              { symbol: "IVA trasladado", meaning: { es: "El IVA que cobraste y debes pagar al SAT, en pesos.", en: "The VAT you collected and must pay to the SAT, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el IVA: venta sin IVA × 0.16.", en: "Compute VAT: sale before VAT × 0.16." },
+              { es: "Calcula el total cobrado: venta + IVA. Ese monto se carga a Bancos.", en: "Compute the total collected: sale + VAT. That amount is debited to Bank." },
+              { es: "Abona la venta sin IVA a Ventas y el IVA a IVA trasladado.", en: "Credit the sale before VAT to Sales and the VAT to Output VAT." },
+              { es: "Comprueba que cargos = abonos y anota el UUID del CFDI.", en: "Check that debits = credits and record the CFDI's UUID." },
+            ],
+            example: { es: "Venta de $8,000 + IVA cobrada por transferencia. IVA: 8,000 × 0.16 = 1,280. Cargo a Bancos: 8,000 + 1,280 = **$9,280**. Abonos: Ventas **$8,000** e IVA trasladado **$1,280**. Cargos 9,280 = abonos 8,000 + 1,280 = 9,280.", en: "Sale of $8,000 + VAT collected by transfer. VAT: 8,000 × 0.16 = 1,280. Debit Bank: 8,000 + 1,280 = **$9,280**. Credits: Sales **$8,000** and Output VAT **$1,280**. Debits 9,280 = credits 8,000 + 1,280 = 9,280." },
+            mistake: { es: "Abonar el IVA a IVA acreditable (ese es el de las compras) o cargar a Clientes cuando el dinero ya entró al banco.", en: "Crediting the VAT to Input VAT (that one is for purchases) or debiting Receivables when the money is already in the bank." },
+          },
+          {
+            name: { es: "Comprobar que la balanza cuadra", en: "Checking that the trial balance balances" },
+            expression: "Σ saldos deudores = Σ saldos acreedores",
+            variables: [
+              { symbol: "Σ", meaning: { es: "«Suma de»: sumas todos los saldos de ese grupo.", en: "\"Sum of\": you add up all the balances in that group." } },
+              { symbol: "Saldos deudores", meaning: { es: "Saldos del lado del cargo: en general activos (Bancos, Clientes, Equipo) y gastos (Sueldos), en pesos.", en: "Balances on the debit side: generally assets (Bank, Receivables, Equipment) and expenses (Salaries), in pesos." } },
+              { symbol: "Saldos acreedores", meaning: { es: "Saldos del lado del abono: en general pasivos (Proveedores, IVA trasladado), capital e ingresos (Ventas), en pesos.", en: "Balances on the credit side: generally liabilities (Payables, Output VAT), equity and revenue (Sales), in pesos." } },
+            ],
+            steps: [
+              { es: "Separa las cuentas en deudoras y acreedoras.", en: "Split the accounts into debit and credit balances." },
+              { es: "Suma todos los saldos deudores.", en: "Add up all debit balances." },
+              { es: "Suma todos los saldos acreedores.", en: "Add up all credit balances." },
+              { es: "Compara: deben ser iguales. Si falta un dato, despeja: saldo faltante = total del otro lado − lo que ya sumaste de su lado.", en: "Compare: they must be equal. If a figure is missing, solve for it: missing balance = total of the other side − what you already added on its side." },
+            ],
+            example: { es: "Deudores: Bancos $50,000 + Clientes $30,000 + Gasto de renta $10,000 = 90,000. Acreedores: Proveedores $25,000 + Capital social $40,000 + Ventas (falta). Ventas = 90,000 − 25,000 − 40,000 = **$25,000**.", en: "Debits: Bank $50,000 + Receivables $30,000 + Rent expense $10,000 = 90,000. Credits: Payables $25,000 + Share capital $40,000 + Sales (missing). Sales = 90,000 − 25,000 − 40,000 = **$25,000**." },
+            interpret: { es: "Si las sumas no son iguales, hay un error de captura que debes corregir antes de enviar la balanza al SAT.", en: "If the totals are not equal, there is an entry error you must fix before sending the trial balance to the SAT." },
+            mistake: { es: "Poner un gasto (como Sueldos) entre los acreedores. Los gastos tienen saldo deudor.", en: "Putting an expense (such as Salaries) among the credit balances. Expenses have debit balances." },
+          },
+        ],
       },
     ],
     examples: [
@@ -638,7 +865,7 @@ export const lessons: Lesson[] = [
       es: "Al pagar sueldos, honorarios o rentas, el pagador actúa como retenedor: calcula el ISR (y a veces el IVA) que corresponde, lo descuenta, lo entera al SAT y lo documenta con CFDI.",
       en: "When paying salaries, fees or rent, the payer acts as a withholding agent: it computes the applicable income tax (and sometimes VAT), deducts it, remits it to the SAT and documents it with CFDI.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Calcular la retención de ISR por salarios con la tarifa progresiva.", en: "Compute income tax withholding on salaries with the progressive tariff." },
       { es: "Distinguir retenciones al trabajador de las cargas que paga el patrón.", en: "Distinguish worker withholdings from charges paid by the employer." },
@@ -649,6 +876,10 @@ export const lessons: Lesson[] = [
       {
         heading: { es: "ISR por salarios: el patrón como retenedor", en: "Income tax on salaries: the employer as withholding agent" },
         body: [
+          {
+            es: "En palabras sencillas: tu patrón te descuenta una parte del sueldo para pagar tu ISR y la entrega al SAT por ti. Mientras más ganas, más alto es el porcentaje, pero ese porcentaje mayor solo se aplica a la parte del sueldo que rebasa cada escalón de la tabla.",
+            en: "In simple words: your employer deducts part of your salary to pay your income tax and hands it to the SAT for you. The more you earn, the higher the percentage, but that higher percentage only applies to the part of the salary above each step of the table.",
+          },
           {
             es: "Un **retenedor** es quien, por ley, descuenta un impuesto de un pago que hace a otra persona y lo entrega al SAT. En la nómina, el **patrón** retiene el ISR de cada trabajador. Ese dinero **no es del patrón**: es del trabajador y el patrón solo lo cobra y lo entera; si no lo entera, responde por él.",
             en: "A **withholding agent** is whoever, by law, deducts a tax from a payment made to someone else and hands it to the SAT. In payroll, the **employer** withholds each worker's income tax. That money **does not belong to the employer**: it belongs to the worker, and the employer only collects and remits it; if it does not remit it, it is liable for it.",
@@ -662,7 +893,27 @@ export const lessons: Lesson[] = [
             en: "Not everything the worker receives is taxable: some benefits have **exempt portions** with limits tied to the **UMA** (Unit of Measure and Update), such as the **Christmas bonus**, the **vacation premium** or **PTU**. Mini example with a hypothetical tariff: salary $12,000, lower limit $10,000, fixed fee $900 and 20% on the excess → (12,000 − 10,000) × 20% + 900 = $1,300 of income tax.",
           },
         ],
-        formula: "ISR = (Ingreso gravado − Límite inferior) × % sobre excedente + Cuota fija",
+        formulas: [
+          {
+            name: { es: "ISR a retener por salarios (tarifa progresiva)", en: "Income tax to withhold on salaries (progressive tariff)" },
+            expression: "ISR = (Ingreso gravado − Límite inferior) × % sobre excedente + Cuota fija",
+            variables: [
+              { symbol: "Ingreso gravado", meaning: { es: "La parte del sueldo del periodo que paga ISR (sin las partes exentas), en pesos.", en: "The part of the period's salary that pays income tax (excluding exempt portions), in pesos." } },
+              { symbol: "Límite inferior", meaning: { es: "El número con el que empieza el renglón de la tarifa donde cae tu sueldo, en pesos.", en: "The number where the tariff row containing your salary begins, in pesos." } },
+              { symbol: "Excedente", meaning: { es: "Ingreso gravado − Límite inferior: la parte del sueldo que pasa de ese límite.", en: "Taxable income − Lower limit: the part of the salary above that limit." } },
+              { symbol: "% sobre excedente", meaning: { es: "El porcentaje del renglón, que solo se aplica al excedente.", en: "The row's percentage, applied only to the excess." } },
+              { symbol: "Cuota fija", meaning: { es: "Una cantidad en pesos que el renglón ya trae calculada por los tramos de abajo.", en: "An amount in pesos the row already carries, computed for the brackets below." } },
+            ],
+            steps: [
+              { es: "Busca en la tarifa el renglón donde cae el ingreso gravado.", en: "Find the tariff row where the taxable income falls." },
+              { es: "Calcula el excedente: ingreso gravado − límite inferior.", en: "Compute the excess: taxable income − lower limit." },
+              { es: "Multiplica el excedente por el porcentaje del renglón (en decimal).", en: "Multiply the excess by the row's percentage (as a decimal)." },
+              { es: "Suma la cuota fija: ese es el ISR a retener.", en: "Add the fixed fee: that is the income tax to withhold." },
+            ],
+            example: { es: "Con un renglón hipotético (límite inferior $12,000, cuota fija $1,100, 18 % sobre el excedente) y sueldo de $14,000: excedente 14,000 − 12,000 = 2,000. Marginal: 2,000 × 0.18 = 360. ISR: 360 + 1,100 = **$1,460**. Recibe: 14,000 − 1,460 = $12,540 (sin contar IMSS).", en: "With a hypothetical row (lower limit $12,000, fixed fee $1,100, 18% on the excess) and a $14,000 salary: excess 14,000 − 12,000 = 2,000. Marginal: 2,000 × 0.18 = 360. Income tax: 360 + 1,100 = **$1,460**. Receives: 14,000 − 1,460 = $12,540 (excluding IMSS)." },
+            mistake: { es: "Aplicar el porcentaje a todo el sueldo (14,000 × 18 %). El porcentaje solo se aplica al excedente, y luego se suma la cuota fija.", en: "Applying the percentage to the whole salary (14,000 × 18%). The percentage applies only to the excess, and then the fixed fee is added." },
+          },
+        ],
       },
       {
         heading: { es: "Retenciones fuera de la nómina", en: "Withholdings outside payroll" },
@@ -680,7 +931,28 @@ export const lessons: Lesson[] = [
             en: "Mini example: a company pays $20,000 in fees plus VAT to a lawyer (general regime). VAT $3,200; it withholds $2,000 income tax and $2,133.33 VAT; it transfers 20,000 + 3,200 − 2,000 − 2,133.33 = $19,066.67.",
           },
         ],
-        formula: "Neto a pagar = Honorarios + IVA − ISR retenido − IVA retenido",
+        formulas: [
+          {
+            name: { es: "Retenciones y neto a pagar en honorarios o rentas", en: "Withholdings and net payment on fees or rent" },
+            expression: "IVA = Honorarios × 16 %;  ISR retenido = Honorarios × 10 %;  IVA retenido = IVA × 2/3;  Neto a pagar = Honorarios + IVA − ISR retenido − IVA retenido",
+            variables: [
+              { symbol: "Honorarios", meaning: { es: "El monto del servicio o de la renta sin IVA, en pesos.", en: "The amount of the service or rent before VAT, in pesos." } },
+              { symbol: "IVA", meaning: { es: "El 16 % de los honorarios, en pesos.", en: "16% of the fees, in pesos." } },
+              { symbol: "ISR retenido", meaning: { es: "El 10 % de los honorarios sin IVA (1.25 % si la persona física está en RESICO), en pesos.", en: "10% of the fees before VAT (1.25% if the individual is in RESICO), in pesos." } },
+              { symbol: "IVA retenido", meaning: { es: "Dos terceras partes del IVA, en pesos.", en: "Two thirds of the VAT, in pesos." } },
+              { symbol: "Neto a pagar", meaning: { es: "Lo que la persona moral transfiere a la persona física, en pesos.", en: "What the company transfers to the individual, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el IVA: honorarios × 0.16.", en: "Compute VAT: fees × 0.16." },
+              { es: "Calcula el ISR retenido: honorarios **sin IVA** × 0.10.", en: "Compute income tax withheld: fees **before VAT** × 0.10." },
+              { es: "Calcula el IVA retenido: IVA × 2 ÷ 3.", en: "Compute VAT withheld: VAT × 2 ÷ 3." },
+              { es: "Neto: honorarios + IVA − ISR retenido − IVA retenido.", en: "Net: fees + VAT − income tax withheld − VAT withheld." },
+            ],
+            example: { es: "Una empresa paga $9,000 de honorarios a un diseñador (régimen general). IVA: 9,000 × 0.16 = 1,440. ISR retenido: 9,000 × 0.10 = 900. IVA retenido: 1,440 × 2 ÷ 3 = 960. Neto: 9,000 + 1,440 − 900 − 960 = **$8,580**.", en: "A company pays $9,000 in fees to a designer (general regime). VAT: 9,000 × 0.16 = 1,440. Income tax withheld: 9,000 × 0.10 = 900. VAT withheld: 1,440 × 2 ÷ 3 = 960. Net: 9,000 + 1,440 − 900 − 960 = **$8,580**." },
+            interpret: { es: "Las retenciones no son dinero perdido para quien cobra: las resta como pagos a cuenta en sus declaraciones.", en: "Withholdings are not money lost for whoever gets paid: they subtract them as payments on account on their returns." },
+            mistake: { es: "Calcular el 10 % de ISR sobre el total con IVA. El ISR se retiene sobre el monto **sin** IVA.", en: "Computing the 10% income tax on the total with VAT. Income tax is withheld on the amount **before** VAT." },
+          },
+        ],
       },
       {
         heading: { es: "Obligaciones del patrón y póliza de nómina", en: "Employer obligations and payroll entry" },
@@ -703,6 +975,25 @@ export const lessons: Lesson[] = [
           { es: "Paga el patrón: cuota patronal IMSS, aportación INFONAVIT, Impuesto sobre Nóminas.", en: "Paid by the employer: employer IMSS contribution, INFONAVIT contribution, Payroll Tax." },
           { es: "Un CFDI de nómina por cada pago a cada trabajador.", en: "One payroll CFDI per payment to each worker." },
           { es: "Enterar retenciones a más tardar el día 17 del mes siguiente.", en: "Remit withholdings by the 17th of the following month." },
+        ],
+        formulas: [
+          {
+            name: { es: "Montos de la póliza de nómina", en: "Amounts in the payroll entry" },
+            expression: "Neto pagado = Sueldos brutos − ISR retenido;  Cargo: Sueldos y salarios = Sueldos brutos;  Abonos: Impuestos por pagar = ISR retenido y Bancos = Neto pagado",
+            variables: [
+              { symbol: "Sueldos brutos", meaning: { es: "Lo que gana el trabajador antes de descuentos; es el gasto de la empresa, en pesos.", en: "What the worker earns before deductions; it is the company's expense, in pesos." } },
+              { symbol: "ISR retenido", meaning: { es: "Lo que se descontó a los trabajadores y se debe al SAT (un pasivo), en pesos.", en: "What was deducted from workers and is owed to the SAT (a liability), in pesos." } },
+              { symbol: "Neto pagado", meaning: { es: "Lo que de verdad sale del banco hacia los trabajadores, en pesos.", en: "What actually leaves the bank to the workers, in pesos." } },
+            ],
+            steps: [
+              { es: "Carga a Sueldos y salarios el sueldo bruto completo.", en: "Debit Salaries and wages for the full gross salary." },
+              { es: "Abona a Impuestos por pagar el ISR retenido.", en: "Credit Taxes payable for the income tax withheld." },
+              { es: "Calcula el neto (bruto − ISR retenido) y abónalo a Bancos.", en: "Compute the net (gross − income tax withheld) and credit it to Bank." },
+              { es: "Comprueba: cargos = abonos.", en: "Check: debits = credits." },
+            ],
+            example: { es: "Sueldos brutos $45,000 e ISR retenido $4,200 (sin seguridad social). Neto: 45,000 − 4,200 = **$40,800**. Cargo Sueldos y salarios $45,000; abonos Impuestos por pagar $4,200 y Bancos $40,800. Cargos 45,000 = abonos 4,200 + 40,800 = 45,000.", en: "Gross salaries $45,000 and income tax withheld $4,200 (no social security). Net: 45,000 − 4,200 = **$40,800**. Debit Salaries and wages $45,000; credit Taxes payable $4,200 and Bank $40,800. Debits 45,000 = credits 4,200 + 40,800 = 45,000." },
+            mistake: { es: "Registrar el ISR retenido como un gasto extra de la empresa. Es dinero del trabajador que la empresa debe entregar al SAT: va como pasivo.", en: "Recording withheld income tax as an extra company expense. It is the worker's money that the company must hand to the SAT: it goes as a liability." },
+          },
         ],
       },
     ],

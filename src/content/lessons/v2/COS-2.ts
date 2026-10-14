@@ -24,7 +24,7 @@ export const lessons: Lesson[] = [
       "Separar los costos en fijos y variables te permite escribir una ecuación sencilla del costo total y usarla para proyectar cuánto gastarás con distintos volúmenes.",
       "Splitting costs into fixed and variable lets you write a simple total-cost equation and use it to project how much you will spend at different volumes.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar cómo se comportan los costos fijos y variables en total y por unidad dentro del rango relevante.", "Explain how fixed and variable costs behave in total and per unit within the relevant range."),
       t("Separar un costo mixto en su parte fija y su parte variable con el método de punto alto y punto bajo.", "Split a mixed cost into its fixed and variable parts using the high-low method."),
@@ -57,6 +57,24 @@ export const lessons: Lesson[] = [
           t("Fijo en total: constante dentro del rango relevante.", "Fixed in total: constant within the relevant range."),
           t("Fijo por unidad: baja cuando el volumen sube.", "Fixed per unit: falls when volume rises."),
         ],
+        formulas: [
+          {
+            name: t("Costo fijo por unidad", "Fixed cost per unit"),
+            expression: "CF por unidad = CF ÷ Q",
+            variables: [
+              { symbol: "CF por unidad", meaning: t("La parte de los costos fijos que le toca a cada unidad, en pesos.", "The share of fixed costs that falls on each unit, in pesos.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+              { symbol: "Q", meaning: t("Cantidad de unidades producidas o vendidas en el periodo (piezas, kilos, servicios).", "Number of units produced or sold in the period (pieces, kilos, services).") },
+            ],
+            steps: [
+              t("Suma todos los costos fijos del mes (renta, sueldos fijos, etc.).", "Add up all the month's fixed costs (rent, fixed salaries, etc.)."),
+              t("Divide ese total entre las unidades que hiciste o vendiste en el mes.", "Divide that total by the units you made or sold in the month."),
+            ],
+            example: t("Una lavandería paga $18,000 al mes de renta y sueldo fijo. Si lava 1,500 cargas: 18,000 ÷ 1,500 = **$12 por carga**. Si lava 3,000 cargas: 18,000 ÷ 3,000 = **$6 por carga**. El total sigue en $18,000; lo que cambia es cuánto le toca a cada carga.", "A laundromat pays $18,000 a month in rent and fixed salary. If it washes 1,500 loads: 18,000 ÷ 1,500 = **$12 per load**. If it washes 3,000 loads: 18,000 ÷ 3,000 = **$6 per load**. The total stays at $18,000; what changes is how much falls on each load."),
+            interpret: t("Mientras más unidades produces, menor es el fijo por unidad: por eso producir más suele abaratar cada pieza.", "The more units you produce, the lower the fixed cost per unit: that is why producing more usually makes each piece cheaper."),
+            mistake: t("Creer que el costo fijo por unidad no cambia. Lo que no cambia es el **total**; por unidad baja al producir más y sube al producir menos.", "Believing fixed cost per unit does not change. What does not change is the **total**; per unit it falls when you produce more and rises when you produce less."),
+          },
+        ],
       },
       {
         heading: t("Costos mixtos y el método de punto alto y punto bajo", "Mixed costs and the high-low method"),
@@ -78,7 +96,29 @@ export const lessons: Lesson[] = [
             "Mini example: a bakery spent $38,000 with 5,000 pieces and $20,000 with 2,000 pieces. Variable: 18,000 ÷ 3,000 = $6 per piece. Fixed: 38,000 − 5,000 × 6 = $8,000.",
           ),
         ],
-        formula: "cv = (Costo alto − Costo bajo) ÷ (Actividad alta − Actividad baja);  CF = Costo alto − cv × Actividad alta",
+        formulas: [
+          {
+            name: t("Separar un costo mixto (punto alto y punto bajo)", "Splitting a mixed cost (high-low method)"),
+            expression: "cv = (Costo alto − Costo bajo) ÷ (Actividad alta − Actividad baja);  CF = Costo alto − cv × Actividad alta",
+            variables: [
+              { symbol: "cv", meaning: t("Parte variable: cuántos pesos sube el costo por cada unidad extra de actividad (por hora, por pieza).", "Variable part: how many pesos the cost rises for each extra unit of activity (per hour, per piece).") },
+              { symbol: "CF", meaning: t("Parte fija del costo, en pesos al mes: lo que se paga aunque la actividad sea baja.", "Fixed part of the cost, in pesos per month: what is paid even when activity is low.") },
+              { symbol: "Costo alto / Costo bajo", meaning: t("El costo total, en pesos, del mes con más actividad y del mes con menos actividad.", "Total cost, in pesos, of the month with the most activity and of the month with the least.") },
+              { symbol: "Actividad alta / Actividad baja", meaning: t("La actividad de esos dos meses (horas-máquina, piezas, kWh).", "Activity in those two months (machine hours, pieces, kWh).") },
+            ],
+            steps: [
+              t("Elige el mes de mayor actividad y el de menor actividad (por actividad, no por costo).", "Pick the month with the highest activity and the one with the lowest (by activity, not by cost)."),
+              t("Resta los costos: Costo alto − Costo bajo.", "Subtract the costs: High cost − Low cost."),
+              t("Resta las actividades: Actividad alta − Actividad baja.", "Subtract the activities: High activity − Low activity."),
+              t("Divide la diferencia de costo entre la diferencia de actividad: ese es cv.", "Divide the cost difference by the activity difference: that is vc."),
+              t("Calcula la parte fija: al costo alto réstale cv × actividad alta.", "Compute the fixed part: from the high cost subtract vc × high activity."),
+              t("Comprueba con el mes bajo: CF + cv × actividad baja debe dar el costo bajo.", "Check with the low month: FC + vc × low activity must equal the low cost."),
+            ],
+            example: t("Una lavandería gastó $26,000 en un mes con 1,200 cargas y $18,500 en un mes con 700 cargas. Diferencia de costo: 26,000 − 18,500 = 7,500. Diferencia de actividad: 1,200 − 700 = 500. cv = 7,500 ÷ 500 = **$15 por carga**. CF = 26,000 − 1,200 × 15 = 26,000 − 18,000 = **$8,000**. Comprobación: 8,000 + 700 × 15 = 8,000 + 10,500 = 18,500.", "A laundromat spent $26,000 in a month with 1,200 loads and $18,500 in a month with 700 loads. Cost difference: 26,000 − 18,500 = 7,500. Activity difference: 1,200 − 700 = 500. vc = 7,500 ÷ 500 = **$15 per load**. FC = 26,000 − 1,200 × 15 = 26,000 − 18,000 = **$8,000**. Check: 8,000 + 700 × 15 = 8,000 + 10,500 = 18,500."),
+            interpret: t("cv te dice cuánto sube el costo por cada unidad más de actividad; CF es lo que pagarías cada mes aunque la actividad fuera mínima (dentro del rango relevante).", "vc tells you how much the cost rises for each additional unit of activity; FC is what you would pay each month even with minimal activity (within the relevant range)."),
+            mistake: t("Dividir el costo total de un mes entre su actividad (26,000 ÷ 1,200). Eso mezcla la parte fija con la variable y no da cv.", "Dividing a month's total cost by its activity (26,000 ÷ 1,200). That mixes the fixed and variable parts and does not give vc."),
+          },
+        ],
       },
       {
         heading: t("La ecuación del costo total y la estructura de costos", "The total-cost equation and cost structure"),
@@ -96,7 +136,41 @@ export const lessons: Lesson[] = [
             "Mini example: with FC = $8,000 and vc = $6, if the bakery expects 4,000 pieces, its total cost will be 8,000 + 6 × 4,000 = $32,000, that is, $8 per piece.",
           ),
         ],
-        formula: "Costo total = CF + cv × Q;  Costo unitario = CF ÷ Q + cv",
+        formulas: [
+          {
+            name: t("Costo total proyectado", "Projected total cost"),
+            expression: "Costo total = CF + cv × Q",
+            variables: [
+              { symbol: "Costo total", meaning: t("Lo que gastarás en total en el periodo, en pesos.", "What you will spend in total in the period, in pesos.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+              { symbol: "cv", meaning: t("Costo variable por unidad, en pesos: lo que gastas en cada pieza que haces o vendes (material, comisión).", "Variable cost per unit, in pesos: what you spend on each piece you make or sell (material, commission).") },
+              { symbol: "Q", meaning: t("Cantidad de unidades producidas o vendidas en el periodo (piezas, kilos, servicios).", "Number of units produced or sold in the period (pieces, kilos, services).") },
+            ],
+            steps: [
+              t("Multiplica el costo variable por unidad por las unidades que esperas: cv × Q.", "Multiply the variable cost per unit by the units you expect: vc × Q."),
+              t("Súmale los costos fijos del periodo.", "Add the period's fixed costs."),
+            ],
+            example: t("Con CF = $8,000 y cv = $15 por carga, si la lavandería espera 1,000 cargas: 15 × 1,000 = 15,000; 8,000 + 15,000 = **$23,000** en el mes.", "With FC = $8,000 and vc = $15 per load, if the laundromat expects 1,000 loads: 15 × 1,000 = 15,000; 8,000 + 15,000 = **$23,000** for the month."),
+            mistake: t("Multiplicar también los fijos por las unidades (8,000 × 1,000). Los fijos se suman una sola vez por periodo.", "Also multiplying fixed costs by units (8,000 × 1,000). Fixed costs are added only once per period."),
+          },
+          {
+            name: t("Costo por unidad a un volumen dado", "Cost per unit at a given volume"),
+            expression: "Costo unitario = CF ÷ Q + cv",
+            variables: [
+              { symbol: "Costo unitario", meaning: t("Lo que cuesta en promedio cada unidad, en pesos.", "What each unit costs on average, in pesos.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+              { symbol: "Q", meaning: t("Cantidad de unidades producidas o vendidas en el periodo (piezas, kilos, servicios).", "Number of units produced or sold in the period (pieces, kilos, services).") },
+              { symbol: "cv", meaning: t("Costo variable por unidad, en pesos: lo que gastas en cada pieza que haces o vendes (material, comisión).", "Variable cost per unit, in pesos: what you spend on each piece you make or sell (material, commission).") },
+            ],
+            steps: [
+              t("Reparte los fijos: CF ÷ Q.", "Spread the fixed costs: FC ÷ Q."),
+              t("Súmale el costo variable por unidad (cv).", "Add the variable cost per unit (vc)."),
+            ],
+            example: t("Lavandería con CF = $8,000 y cv = $15. Con 1,000 cargas: 8,000 ÷ 1,000 = 8; 8 + 15 = **$23 por carga**. Con 2,000 cargas: 8,000 ÷ 2,000 = 4; 4 + 15 = **$19 por carga**.", "Laundromat with FC = $8,000 and vc = $15. With 1,000 loads: 8,000 ÷ 1,000 = 8; 8 + 15 = **$23 per load**. With 2,000 loads: 8,000 ÷ 2,000 = 4; 4 + 15 = **$19 per load**."),
+            interpret: t("Si el volumen sube, el costo unitario baja, porque los fijos se reparten entre más unidades; el cv se queda igual.", "If volume rises, unit cost falls, because fixed costs are spread over more units; vc stays the same."),
+            mistake: t("Responder solo cv (que es solo la parte variable) o sumar CF + cv sin dividir antes los fijos entre las unidades.", "Answering only vc (just the variable part) or adding FC + vc without first dividing fixed costs by the units."),
+          },
+        ],
       },
     ],
     examples: [
@@ -155,7 +229,7 @@ export const lessons: Lesson[] = [
       "El análisis costo-volumen-utilidad (CVU) muestra cómo cambian las utilidades cuando cambian el precio, el volumen o los costos, usando el margen de contribución como pieza central.",
       "Cost-volume-profit (CVP) analysis shows how profit changes when price, volume or costs change, using the contribution margin as its central piece.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Calcular el margen de contribución unitario, total y como porcentaje de las ventas.", "Compute the contribution margin per unit, in total and as a percentage of sales."),
       t("Usar la ecuación CVU para calcular la utilidad y el volumen necesario para una utilidad meta.", "Use the CVP equation to compute profit and the volume needed for a target profit."),
@@ -178,7 +252,42 @@ export const lessons: Lesson[] = [
             "Mini example: a stand sells tortas at $60; bread, filling and packaging cost $25. Each torta leaves a $35 margin, and the ratio is 35 ÷ 60 ≈ 58.3%: of every peso sold, about 58 cents go to covering fixed costs and generating profit.",
           ),
         ],
-        formula: "MC unitario = Precio − cv;  Razón MC = MC unitario ÷ Precio",
+        formulas: [
+          {
+            name: t("Margen de contribución por unidad y total", "Contribution margin per unit and in total"),
+            expression: "MC unitario = Precio − cv;  MC total = MC unitario × Q",
+            variables: [
+              { symbol: "MC unitario", meaning: t("Margen de contribución por unidad, en pesos: Precio − cv.", "Contribution margin per unit, in pesos: Price − vc.") },
+              { symbol: "Precio", meaning: t("Lo que cobras por cada unidad, en pesos.", "What you charge for each unit, in pesos.") },
+              { symbol: "cv", meaning: t("Costo variable por unidad, en pesos: lo que gastas en cada pieza que haces o vendes (material, comisión).", "Variable cost per unit, in pesos: what you spend on each piece you make or sell (material, commission).") },
+              { symbol: "MC total", meaning: t("Lo que dejan todas las unidades vendidas para cubrir fijos y ganar, en pesos.", "What all units sold leave to cover fixed costs and earn, in pesos.") },
+              { symbol: "Q", meaning: t("Unidades vendidas en el periodo.", "Units sold in the period.") },
+            ],
+            steps: [
+              t("Resta al precio el costo variable de una unidad: eso es el MC unitario.", "Subtract one unit's variable cost from the price: that is the unit CM."),
+              t("Multiplica el MC unitario por las unidades vendidas: eso es el MC total.", "Multiply the unit CM by units sold: that is the total CM."),
+            ],
+            example: t("Una nevería vende cada cono a $40; el helado, el cono y la servilleta cuestan $16. MC unitario = 40 − 16 = **$24**. Si vende 800 conos: MC total = 24 × 800 = **$19,200**.", "An ice cream shop sells each cone at $40; ice cream, cone and napkin cost $16. Unit CM = 40 − 16 = **$24**. If it sells 800 cones: total CM = 24 × 800 = **$19,200**."),
+            mistake: t("Restar también los costos fijos al precio. El margen de contribución solo resta los **variables**; los fijos se restan después, del total.", "Also subtracting fixed costs from the price. The contribution margin subtracts only **variable** costs; fixed costs are subtracted later, from the total."),
+          },
+          {
+            name: t("Razón de margen de contribución", "Contribution margin ratio"),
+            expression: "Razón MC = MC unitario ÷ Precio × 100",
+            variables: [
+              { symbol: "Razón MC", meaning: t("Qué porcentaje de cada peso vendido queda para cubrir fijos y ganar, en %.", "What percentage of each peso sold is left to cover fixed costs and earn, in %.") },
+              { symbol: "MC unitario", meaning: t("Margen de contribución por unidad, en pesos: Precio − cv.", "Contribution margin per unit, in pesos: Price − vc.") },
+              { symbol: "Precio", meaning: t("Lo que cobras por cada unidad, en pesos.", "What you charge for each unit, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el MC unitario: Precio − cv.", "Compute the unit CM: Price − vc."),
+              t("Divide el MC unitario entre el precio.", "Divide the unit CM by the price."),
+              t("Multiplica por 100 para leerlo en porcentaje (0.60 = 60 %).", "Multiply by 100 to read it as a percentage (0.60 = 60%)."),
+            ],
+            example: t("Nevería: MC unitario $24 y precio $40. 24 ÷ 40 = 0.60; 0.60 × 100 = **60 %**. De cada $100 vendidos, $60 van a cubrir fijos y generar utilidad.", "Ice cream shop: unit CM $24 and price $40. 24 ÷ 40 = 0.60; 0.60 × 100 = **60%**. Of every $100 sold, $60 goes to covering fixed costs and generating profit."),
+            interpret: t("Mientras más alta, más deja cada peso vendido. Sirve cuando vendes muchos productos distintos y no puedes trabajar por unidad.", "The higher it is, the more each peso sold leaves. It is useful when you sell many different products and cannot work per unit."),
+            mistake: t("Dividir entre el costo variable en lugar del precio (24 ÷ 16). La razón siempre se calcula sobre el **precio** de venta.", "Dividing by the variable cost instead of the price (24 ÷ 16). The ratio is always computed on the selling **price**."),
+          },
+        ],
       },
       {
         heading: t("La ecuación CVU y la utilidad meta", "The CVP equation and target profit"),
@@ -200,11 +309,71 @@ export const lessons: Lesson[] = [
             "Mini example: with a $35 margin per torta and fixed costs of $42,000 per month, earning $28,000 requires selling (42,000 + 28,000) ÷ 35 = 2,000 tortas.",
           ),
         ],
-        formula: "Utilidad = (Precio − cv) × Q − CF;  Q meta = (CF + Utilidad meta) ÷ MC unitario",
+        formulas: [
+          {
+            name: t("Utilidad de operación (ecuación CVU)", "Operating profit (CVP equation)"),
+            expression: "Utilidad = (Precio − cv) × Q − CF",
+            variables: [
+              { symbol: "Utilidad", meaning: t("Lo que ganas en el periodo después de pagar costos variables y fijos, en pesos.", "What you earn in the period after paying variable and fixed costs, in pesos.") },
+              { symbol: "Precio", meaning: t("Lo que cobras por cada unidad, en pesos.", "What you charge for each unit, in pesos.") },
+              { symbol: "cv", meaning: t("Costo variable por unidad, en pesos: lo que gastas en cada pieza que haces o vendes (material, comisión).", "Variable cost per unit, in pesos: what you spend on each piece you make or sell (material, commission).") },
+              { symbol: "Q", meaning: t("Unidades vendidas en el periodo.", "Units sold in the period.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+            ],
+            steps: [
+              t("Calcula el MC unitario: Precio − cv.", "Compute the unit CM: Price − vc."),
+              t("Multiplícalo por las unidades vendidas para obtener el MC total.", "Multiply it by units sold to get the total CM."),
+              t("Resta los costos fijos del periodo.", "Subtract the period's fixed costs."),
+            ],
+            example: t("Nevería: precio $40, cv $16, vende 800 conos y tiene fijos de $12,000. MC unitario = 40 − 16 = 24. MC total = 24 × 800 = 19,200. Utilidad = 19,200 − 12,000 = **$7,200**.", "Ice cream shop: price $40, vc $16, sells 800 cones and has fixed costs of $12,000. Unit CM = 40 − 16 = 24. Total CM = 24 × 800 = 19,200. Profit = 19,200 − 12,000 = **$7,200**."),
+            interpret: t("Si el resultado es positivo, ganas; si es cero, estás en el punto de equilibrio; si es negativo, pierdes.", "If the result is positive, you earn; if it is zero, you are at break-even; if it is negative, you lose."),
+            mistake: t("Hacer ventas − fijos (40 × 800 − 12,000) y olvidar restar los costos variables.", "Doing sales − fixed costs (40 × 800 − 12,000) and forgetting to subtract variable costs."),
+          },
+          {
+            name: t("Unidades para una utilidad meta", "Units for a target profit"),
+            expression: "Q meta = (CF + Utilidad meta) ÷ MC unitario",
+            variables: [
+              { symbol: "Q meta", meaning: t("Unidades que debes vender para ganar lo que quieres.", "Units you must sell to earn what you want.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+              { symbol: "Utilidad meta", meaning: t("Lo que quieres ganar en el periodo, en pesos.", "What you want to earn in the period, in pesos.") },
+              { symbol: "MC unitario", meaning: t("Margen de contribución por unidad, en pesos: Precio − cv.", "Contribution margin per unit, in pesos: Price − vc.") },
+            ],
+            steps: [
+              t("Suma los costos fijos y la utilidad que quieres ganar.", "Add fixed costs and the profit you want to earn."),
+              t("Divide ese total entre el MC unitario.", "Divide that total by the unit CM."),
+              t("Si sale con decimales, redondea hacia arriba (no se venden medias unidades).", "If it has decimals, round up (you cannot sell half units)."),
+              t("Comprueba: Q meta × MC unitario − CF debe dar la utilidad meta.", "Check: Target Q × unit CM − FC must equal the target profit."),
+            ],
+            example: t("Nevería con fijos de $12,000 y MC de $24 quiere ganar $6,000. 12,000 + 6,000 = 18,000; 18,000 ÷ 24 = **750 conos**. Comprobación: 750 × 24 − 12,000 = 18,000 − 12,000 = 6,000.", "Ice cream shop with fixed costs of $12,000 and a $24 CM wants to earn $6,000. 12,000 + 6,000 = 18,000; 18,000 ÷ 24 = **750 cones**. Check: 750 × 24 − 12,000 = 18,000 − 12,000 = 6,000."),
+            mistake: t("Dividir solo los fijos entre el margen: eso da el punto de equilibrio (utilidad cero), no la utilidad meta.", "Dividing only fixed costs by the margin: that gives the break-even point (zero profit), not the target profit."),
+          },
+          {
+            name: t("Ventas en pesos para una utilidad meta", "Sales in pesos for a target profit"),
+            expression: "Ventas meta = (CF + Utilidad meta) ÷ Razón MC",
+            variables: [
+              { symbol: "Ventas meta", meaning: t("Pesos de venta que necesitas para ganar lo que quieres.", "Sales pesos you need to earn what you want.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+              { symbol: "Utilidad meta", meaning: t("Lo que quieres ganar en el periodo, en pesos.", "What you want to earn in the period, in pesos.") },
+              { symbol: "Razón MC", meaning: t("Margen de contribución como fracción del precio, en decimal (60 % = 0.60).", "Contribution margin as a fraction of price, in decimal form (60% = 0.60).") },
+            ],
+            steps: [
+              t("Calcula la razón MC y escríbela en decimal (60 % = 0.60).", "Compute the CM ratio and write it as a decimal (60% = 0.60)."),
+              t("Suma los costos fijos y la utilidad meta.", "Add fixed costs and the target profit."),
+              t("Divide ese total entre la razón en decimal.", "Divide that total by the ratio in decimal form."),
+              t("Si quieres unidades, divide las ventas meta entre el precio.", "If you want units, divide target sales by the price."),
+            ],
+            example: t("Nevería: razón 60 % = 0.60, fijos $12,000 y meta $6,000. 12,000 + 6,000 = 18,000; 18,000 ÷ 0.60 = **$30,000** de ventas. En conos: 30,000 ÷ 40 = 750.", "Ice cream shop: ratio 60% = 0.60, fixed costs $12,000 and target $6,000. 12,000 + 6,000 = 18,000; 18,000 ÷ 0.60 = **$30,000** in sales. In cones: 30,000 ÷ 40 = 750."),
+            mistake: t("Dividir entre 60 en lugar de 0.60, o dividir solo los fijos y olvidar sumar la utilidad meta.", "Dividing by 60 instead of 0.60, or dividing only fixed costs and forgetting to add the target profit."),
+          },
+        ],
       },
       {
         heading: t("Escenarios de qué pasa si y apalancamiento operativo", "What-if scenarios and operating leverage"),
         body: [
+          t(
+            "En palabras sencillas: antes de bajar un precio o pagar un anuncio, puedes hacer la cuenta en papel y ver si te conviene. Y el **apalancamiento operativo** es como una lupa: como los costos fijos no cambian, cualquier subida o bajada de las ventas se nota más grande en la utilidad.",
+            "In simple words: before lowering a price or paying for an ad, you can do the math on paper and see whether it pays off. And **operating leverage** works like a magnifying glass: since fixed costs do not change, any rise or fall in sales shows up larger in profit.",
+          ),
           t(
             "El CVU brilla para probar decisiones antes de tomarlas: bajar el precio para vender más, cambiar un proveedor que abarata el costo variable o pagar una campaña fija. Recalculas la utilidad con los nuevos datos y comparas.",
             "CVP shines at testing decisions before making them: lowering the price to sell more, switching to a supplier that lowers the variable cost, or paying for a fixed campaign. You recompute profit with the new data and compare.",
@@ -222,7 +391,44 @@ export const lessons: Lesson[] = [
             "Mini example: a business with a total margin of $84,000 and profit of $42,000 has DOL = 2.",
           ),
         ],
-        formula: "GAO = MC total ÷ Utilidad de operación;  % cambio en utilidad ≈ GAO × % cambio en ventas",
+        formulas: [
+          {
+            name: t("Comparar un escenario de qué pasa si", "Comparing a what-if scenario"),
+            expression: "Cambio en utilidad = Utilidad del escenario − Utilidad actual",
+            variables: [
+              { symbol: "Utilidad del escenario", meaning: t("La utilidad recalculada con los datos nuevos (precio, cv, unidades o fijos), en pesos: MC unitario nuevo × Q nuevo − CF nuevo.", "Profit recomputed with the new data (price, vc, units or fixed costs), in pesos: new unit CM × new Q − new FC.") },
+              { symbol: "Utilidad actual", meaning: t("La utilidad con los datos de hoy, en pesos: MC unitario × Q − CF.", "Profit with today's data, in pesos: unit CM × Q − FC.") },
+            ],
+            steps: [
+              t("Calcula la utilidad actual con los datos de hoy.", "Compute current profit with today's data."),
+              t("Cambia solo lo que cambia la propuesta y recalcula el MC unitario si cambió el precio o el cv.", "Change only what the proposal changes and recompute the unit CM if price or vc changed."),
+              t("Calcula la utilidad del escenario con el MC nuevo, las unidades nuevas y los fijos nuevos.", "Compute the scenario's profit with the new CM, new units and new fixed costs."),
+              t("Resta: utilidad del escenario − utilidad actual.", "Subtract: scenario profit − current profit."),
+            ],
+            example: t("Nevería: hoy 800 conos × $24 − 12,000 = $7,200. Propuesta: pagar un anuncio fijo de $3,000 y vender 1,000 conos. Fijos nuevos: 12,000 + 3,000 = 15,000. Escenario: 1,000 × 24 − 15,000 = 24,000 − 15,000 = $9,000. Cambio: 9,000 − 7,200 = **+$1,800**: conviene.", "Ice cream shop: today 800 cones × $24 − 12,000 = $7,200. Proposal: pay a fixed $3,000 ad and sell 1,000 cones. New fixed costs: 12,000 + 3,000 = 15,000. Scenario: 1,000 × 24 − 15,000 = 24,000 − 15,000 = $9,000. Change: 9,000 − 7,200 = **+$1,800**: it pays off."),
+            interpret: t("Si el cambio es positivo, la propuesta conviene; si es negativo, te hace ganar menos.", "If the change is positive, the proposal pays off; if it is negative, it makes you earn less."),
+            mistake: t("Mezclar datos: aplicar el margen nuevo a las unidades de hoy, o el margen de hoy a las unidades nuevas. Todo el escenario se calcula con los datos nuevos juntos.", "Mixing data: applying the new margin to today's units, or today's margin to the new units. The whole scenario is computed with the new data together."),
+          },
+          {
+            name: t("Grado de apalancamiento operativo (GAO)", "Degree of operating leverage (DOL)"),
+            expression: "GAO = MC total ÷ Utilidad de operación;  % cambio en utilidad ≈ GAO × % cambio en ventas",
+            variables: [
+              { symbol: "GAO", meaning: t("Cuántas veces se multiplica en la utilidad un cambio en las ventas (un número, sin pesos).", "How many times a change in sales is multiplied in profit (a number, no pesos).") },
+              { symbol: "MC total", meaning: t("Margen de contribución total: MC unitario × unidades vendidas, en pesos.", "Total contribution margin: unit CM × units sold, in pesos.") },
+              { symbol: "Utilidad de operación", meaning: t("MC total − costos fijos, en pesos.", "Total CM − fixed costs, in pesos.") },
+              { symbol: "% cambio en ventas", meaning: t("Cuánto suben o bajan las ventas, en %.", "How much sales rise or fall, in %.") },
+            ],
+            steps: [
+              t("Calcula el MC total: (Precio − cv) × unidades.", "Compute the total CM: (Price − vc) × units."),
+              t("Calcula la utilidad: MC total − CF.", "Compute profit: total CM − FC."),
+              t("Divide el MC total entre la utilidad: ese es el GAO.", "Divide the total CM by profit: that is the DOL."),
+              t("Para estimar el efecto de un cambio en ventas, multiplica el GAO por ese porcentaje.", "To estimate the effect of a change in sales, multiply the DOL by that percentage."),
+            ],
+            example: t("Nevería: MC total $19,200 y utilidad $7,200. GAO = 19,200 ÷ 7,200 ≈ **2.67**. Si las ventas suben 10 %: 2.67 × 10 % ≈ 26.7 % más utilidad. Comprobación: 880 conos × 24 = 21,120; 21,120 − 12,000 = 9,120; 9,120 ÷ 7,200 ≈ 1.267, es decir, +26.7 %.", "Ice cream shop: total CM $19,200 and profit $7,200. DOL = 19,200 ÷ 7,200 ≈ **2.67**. If sales rise 10%: 2.67 × 10% ≈ 26.7% more profit. Check: 880 cones × 24 = 21,120; 21,120 − 12,000 = 9,120; 9,120 ÷ 7,200 ≈ 1.267, that is, +26.7%."),
+            interpret: t("Un GAO alto significa más riesgo y más oportunidad: la utilidad sube rápido si vendes más, pero también cae rápido si vendes menos.", "A high DOL means more risk and more opportunity: profit rises fast if you sell more, but also falls fast if you sell less."),
+            mistake: t("Dividir las **ventas** entre la utilidad. El GAO usa el **margen de contribución** total, no las ventas.", "Dividing **sales** by profit. DOL uses the total **contribution margin**, not sales."),
+          },
+        ],
       },
     ],
     examples: [
@@ -282,7 +488,7 @@ export const lessons: Lesson[] = [
       "El punto de equilibrio es el nivel de ventas en el que no ganas ni pierdes; saber dónde está te dice cuánto debes vender como mínimo y qué tan lejos estás del riesgo de pérdida.",
       "The break-even point is the sales level at which you neither earn nor lose; knowing where it is tells you the minimum you must sell and how far you are from the risk of loss.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Calcular el punto de equilibrio en unidades y en pesos de venta.", "Compute the break-even point in units and in sales pesos."),
       t("Calcular e interpretar el margen de seguridad en unidades, pesos y porcentaje.", "Compute and interpret the margin of safety in units, pesos and percentage."),
@@ -309,7 +515,42 @@ export const lessons: Lesson[] = [
             "Mini example: a coffee shop sells each cup at $45, with a variable cost of $18 and fixed costs of $54,000 per month. BEP = 54,000 ÷ 27 = 2,000 cups, or 2,000 × 45 = $90,000.",
           ),
         ],
-        formula: "PE unidades = CF ÷ (Precio − cv);  PE pesos = CF ÷ Razón MC",
+        formulas: [
+          {
+            name: t("Punto de equilibrio en unidades", "Break-even point in units"),
+            expression: "PE unidades = CF ÷ (Precio − cv)",
+            variables: [
+              { symbol: "PE unidades", meaning: t("Unidades que debes vender para no ganar ni perder.", "Units you must sell to neither earn nor lose.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+              { symbol: "Precio", meaning: t("Lo que cobras por cada unidad, en pesos.", "What you charge for each unit, in pesos.") },
+              { symbol: "cv", meaning: t("Costo variable por unidad, en pesos: lo que gastas en cada pieza que haces o vendes (material, comisión).", "Variable cost per unit, in pesos: what you spend on each piece you make or sell (material, commission).") },
+            ],
+            steps: [
+              t("Calcula el margen por unidad: Precio − cv.", "Compute the margin per unit: Price − vc."),
+              t("Divide los costos fijos entre ese margen.", "Divide fixed costs by that margin."),
+              t("Si sale con decimales, redondea hacia arriba.", "If it has decimals, round up."),
+            ],
+            example: t("Un salón de uñas cobra $300 por servicio, con cv de $120 y fijos de $28,000 al mes. Margen: 300 − 120 = 180. PE = 28,000 ÷ 180 = 155.56 → **156 servicios**. Con 156: 156 × 180 = 28,080, ya cubre los fijos.", "A nail salon charges $300 per service, with a vc of $120 and fixed costs of $28,000 per month. Margin: 300 − 120 = 180. BEP = 28,000 ÷ 180 = 155.56 → **156 services**. With 156: 156 × 180 = 28,080, which already covers fixed costs."),
+            interpret: t("Por debajo del PE pierdes; por arriba ganas. Mientras más bajo el PE, más fácil es empezar a ganar.", "Below the BEP you lose; above it you earn. The lower the BEP, the easier it is to start earning."),
+            mistake: t("Dividir los fijos entre el **precio** en lugar del margen: olvida que cada unidad también tiene costo variable.", "Dividing fixed costs by the **price** instead of the margin: it forgets that each unit also has a variable cost."),
+          },
+          {
+            name: t("Punto de equilibrio en pesos", "Break-even point in pesos"),
+            expression: "PE pesos = CF ÷ Razón MC",
+            variables: [
+              { symbol: "PE pesos", meaning: t("Pesos de venta que necesitas para no ganar ni perder.", "Sales pesos you need to neither earn nor lose.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+              { symbol: "Razón MC", meaning: t("Margen de contribución como fracción del precio, en decimal (60 % = 0.60).", "Contribution margin as a fraction of price, in decimal form (60% = 0.60).") },
+            ],
+            steps: [
+              t("Calcula la razón MC en decimal: (Precio − cv) ÷ Precio, o usa la razón promedio del negocio.", "Compute the CM ratio as a decimal: (Price − vc) ÷ Price, or use the business's average ratio."),
+              t("Divide los costos fijos entre esa razón.", "Divide fixed costs by that ratio."),
+            ],
+            example: t("Una papelería vende cientos de artículos con una razón MC promedio de 40 % = 0.40 y fijos de $30,000 al mes. PE = 30,000 ÷ 0.40 = **$75,000** de ventas. Comprobación: 75,000 × 0.40 = 30,000, justo los fijos.", "A stationery store sells hundreds of items with an average CM ratio of 40% = 0.40 and fixed costs of $30,000 per month. BEP = 30,000 ÷ 0.40 = **$75,000** in sales. Check: 75,000 × 0.40 = 30,000, exactly the fixed costs."),
+            interpret: t("Úsalo cuando vendes muchos productos distintos y es más fácil pensar en pesos que en piezas.", "Use it when you sell many different products and it is easier to think in pesos than in pieces."),
+            mistake: t("Multiplicar los fijos por 1.40, como si el margen fuera un recargo. Se **divide** entre la razón en decimal.", "Multiplying fixed costs by 1.40, as if the margin were a markup. You **divide** by the ratio as a decimal."),
+          },
+        ],
       },
       {
         heading: t("Margen de seguridad y qué mueve el punto de equilibrio", "Margin of safety and what moves the break-even point"),
@@ -327,7 +568,26 @@ export const lessons: Lesson[] = [
             "Mini example: if the coffee shop sells 2,600 cups and its BEP is 2,000, its margin of safety is 600 cups, that is, 600 ÷ 2,600 ≈ 23.1% of its sales.",
           ),
         ],
-        formula: "Margen de seguridad = Ventas − Ventas en PE;  MS % = Margen de seguridad ÷ Ventas",
+        formulas: [
+          {
+            name: t("Margen de seguridad", "Margin of safety"),
+            expression: "MS unidades = Ventas − Ventas en PE;  MS pesos = MS unidades × Precio;  MS % = MS unidades ÷ Ventas × 100",
+            variables: [
+              { symbol: "MS", meaning: t("Margen de seguridad: cuánto pueden caer las ventas antes de perder.", "Margin of safety: how much sales can fall before losing money.") },
+              { symbol: "Ventas", meaning: t("Unidades que vendes o planeas vender (reales o presupuestadas).", "Units you sell or plan to sell (actual or budgeted).") },
+              { symbol: "Ventas en PE", meaning: t("Unidades del punto de equilibrio.", "Break-even units.") },
+              { symbol: "Precio", meaning: t("Lo que cobras por cada unidad, en pesos.", "What you charge for each unit, in pesos.") },
+            ],
+            steps: [
+              t("Resta: ventas − ventas en el punto de equilibrio. Eso es el MS en unidades.", "Subtract: sales − break-even sales. That is the MS in units."),
+              t("Para pesos, multiplica el MS en unidades por el precio.", "For pesos, multiply the MS in units by the price."),
+              t("Para porcentaje, divide el MS en unidades entre las **ventas** y multiplica por 100.", "For a percentage, divide the MS in units by **sales** and multiply by 100."),
+            ],
+            example: t("Un salón de uñas planea 240 servicios a $300 y su PE es 160. MS = 240 − 160 = **80 servicios**. En pesos: 80 × 300 = **$24,000**. En porcentaje: 80 ÷ 240 = 0.333 → **33.3 %**.", "A nail salon plans 240 services at $300 and its BEP is 160. MS = 240 − 160 = **80 services**. In pesos: 80 × 300 = **$24,000**. As a percentage: 80 ÷ 240 = 0.333 → **33.3%**."),
+            interpret: t("Un 33 % quiere decir que las ventas pueden caer una tercera parte antes de entrar en pérdidas. Mientras más alto, más tranquilo; si es negativo, ya estás perdiendo.", "33% means sales can drop by a third before turning into losses. The higher it is, the safer; if it is negative, you are already losing."),
+            mistake: t("Dividir entre el punto de equilibrio (80 ÷ 160) en lugar de entre las ventas. El porcentaje siempre se mide sobre las ventas.", "Dividing by the break-even point (80 ÷ 160) instead of by sales. The percentage is always measured on sales."),
+          },
+        ],
       },
       {
         heading: t("Punto de equilibrio con varios productos", "Break-even with several products"),
@@ -349,7 +609,28 @@ export const lessons: Lesson[] = [
             "Mini example: sweet bread with a $7 margin and cake with a $120 margin; the 3:1 bundle leaves 3 × 7 + 120 = $141.",
           ),
         ],
-        formula: "PE paquetes = CF ÷ MC del paquete",
+        formulas: [
+          {
+            name: t("Punto de equilibrio con mezcla de ventas (paquetes)", "Break-even with a sales mix (bundles)"),
+            expression: "MC del paquete = Σ (unidades en la mezcla × MC unitario);  PE paquetes = CF ÷ MC del paquete;  Unidades de cada producto = PE paquetes × unidades en la mezcla",
+            variables: [
+              { symbol: "MC del paquete", meaning: t("Lo que deja, en pesos, un paquete armado con la mezcla habitual de productos.", "What one bundle built with the usual product mix leaves, in pesos.") },
+              { symbol: "Σ", meaning: t("«Suma de»: sumas el resultado de cada producto.", "\"Sum of\": you add up the result for each product.") },
+              { symbol: "Unidades en la mezcla", meaning: t("Cuántas unidades de cada producto lleva el paquete (por ejemplo, 3 panes y 1 pastel).", "How many units of each product the bundle has (for example, 3 breads and 1 cake).") },
+              { symbol: "MC unitario", meaning: t("Margen de contribución de una unidad de cada producto, en pesos.", "Contribution margin of one unit of each product, in pesos.") },
+              { symbol: "PE paquetes", meaning: t("Cuántos paquetes completos hay que vender para no ganar ni perder.", "How many complete bundles must be sold to neither earn nor lose.") },
+              { symbol: "CF", meaning: t("Costos fijos totales del periodo, en pesos: lo que pagas igual aunque produzcas más o menos (renta, sueldos fijos).", "Total fixed costs for the period, in pesos: what you pay the same whether you produce more or less (rent, fixed salaries).") },
+            ],
+            steps: [
+              t("Arma el paquete con la mezcla: cuántas unidades de cada producto.", "Build the bundle with the mix: how many units of each product."),
+              t("Multiplica cada MC unitario por sus unidades en el paquete y súmalos.", "Multiply each unit CM by its units in the bundle and add them up."),
+              t("Divide los costos fijos entre el MC del paquete.", "Divide fixed costs by the bundle's CM."),
+              t("Multiplica los paquetes por las unidades de cada producto en la mezcla.", "Multiply the bundles by each product's units in the mix."),
+            ],
+            example: t("Una taquería vende 4 tacos (MC $10 cada uno) por cada refresco (MC $8); fijos de $24,000. Paquete: 4 × 10 + 1 × 8 = **$48**. PE = 24,000 ÷ 48 = **500 paquetes**. Tacos: 500 × 4 = 2,000; refrescos: 500 × 1 = 500. Comprobación: 2,000 × 10 + 500 × 8 = 20,000 + 4,000 = 24,000.", "A taquería sells 4 tacos (CM $10 each) for every soda (CM $8); fixed costs of $24,000. Bundle: 4 × 10 + 1 × 8 = **$48**. BEP = 24,000 ÷ 48 = **500 bundles**. Tacos: 500 × 4 = 2,000; sodas: 500 × 1 = 500. Check: 2,000 × 10 + 500 × 8 = 20,000 + 4,000 = 24,000."),
+            mistake: t("Invertir la mezcla (4 refrescos por taco) o repartir las unidades en partes iguales. Usa exactamente la proporción en que se venden.", "Reversing the mix (4 sodas per taco) or splitting units evenly. Use exactly the proportion in which they sell."),
+          },
+        ],
       },
     ],
     examples: [
@@ -410,7 +691,7 @@ export const lessons: Lesson[] = [
       "Los presupuestos operativos traducen el plan de ventas en cuánto producir, cuánto material comprar, cuánta mano de obra contratar y cuánto gastar, en una cadena donde cada presupuesto alimenta al siguiente.",
       "Operating budgets translate the sales plan into how much to produce, how much material to buy, how much labor to hire and how much to spend, in a chain where each budget feeds the next.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Describir el presupuesto maestro y el orden en que se elaboran los presupuestos operativos.", "Describe the master budget and the order in which operating budgets are prepared."),
       t("Elaborar el presupuesto de producción a partir de las ventas y los inventarios deseados.", "Prepare the production budget from sales and desired inventories."),
@@ -461,7 +742,25 @@ export const lessons: Lesson[] = [
             "Mini example: sales of 5,000 chairs, desired ending inventory of 800 and beginning of 600: production = 5,000 + 800 − 600 = 5,200 chairs.",
           ),
         ],
-        formula: "Producción = Ventas + Inventario final deseado − Inventario inicial",
+        formulas: [
+          {
+            name: t("Unidades a producir", "Units to produce"),
+            expression: "Producción = Ventas + Inventario final deseado − Inventario inicial",
+            variables: [
+              { symbol: "Producción", meaning: t("Unidades que debes fabricar en el periodo.", "Units you must make in the period.") },
+              { symbol: "Ventas", meaning: t("Unidades que esperas vender en el periodo.", "Units you expect to sell in the period.") },
+              { symbol: "Inventario final deseado", meaning: t("Unidades que quieres tener en bodega al terminar el periodo, como reserva.", "Units you want in the warehouse at the end of the period, as a buffer.") },
+              { symbol: "Inventario inicial", meaning: t("Unidades que ya tienes en bodega al empezar.", "Units you already have in the warehouse at the start.") },
+            ],
+            steps: [
+              t("Suma las ventas esperadas y el inventario final que quieres: eso es lo que necesitas en total.", "Add expected sales and the ending inventory you want: that is what you need in total."),
+              t("Réstale lo que ya tienes en bodega (inventario inicial).", "Subtract what you already have in the warehouse (beginning inventory)."),
+            ],
+            example: t("Una fábrica de piñatas espera vender 3,000; tiene 400 en bodega y quiere terminar con 250. Necesidades: 3,000 + 250 = 3,250. Producción: 3,250 − 400 = **2,850 piñatas**.", "A piñata factory expects to sell 3,000; it has 400 in the warehouse and wants to end with 250. Needs: 3,000 + 250 = 3,250. Production: 3,250 − 400 = **2,850 piñatas**."),
+            interpret: t("Si produce menos de lo que vende, está bajando su inventario; si produce más, lo está aumentando.", "If it produces less than it sells, it is lowering its inventory; if it produces more, it is raising it."),
+            mistake: t("Invertir los inventarios: sumar el inicial y restar el final.", "Reversing the inventories: adding the beginning one and subtracting the ending one."),
+          },
+        ],
       },
       {
         heading: t("Materiales, mano de obra y gastos", "Materials, labor and expenses"),
@@ -483,7 +782,45 @@ export const lessons: Lesson[] = [
             "Mini example: 5,200 chairs × 1.5 hours × $100 per hour = $780,000 of direct labor.",
           ),
         ],
-        formula: "Compras de material = Material requerido + Inv. final deseado de material − Inv. inicial de material;  MOD = Unidades × Horas por unidad × Tarifa",
+        formulas: [
+          {
+            name: t("Compras de materia prima", "Raw material purchases"),
+            expression: "Material requerido = Unidades a producir × Material por unidad;  Compras = Material requerido + Inv. final deseado de material − Inv. inicial de material;  Costo de compras = Compras × Costo por unidad de material",
+            variables: [
+              { symbol: "Material requerido", meaning: t("Cantidad de material que consume la producción (kilos, metros).", "Amount of material production uses (kilos, meters).") },
+              { symbol: "Unidades a producir", meaning: t("Lo que salió del presupuesto de producción.", "What came out of the production budget.") },
+              { symbol: "Material por unidad", meaning: t("Cuánto material lleva cada producto (por ejemplo, 2 metros de tela).", "How much material each product uses (for example, 2 meters of fabric).") },
+              { symbol: "Inv. final deseado de material", meaning: t("Material que quieres que sobre en bodega al final, como reserva.", "Material you want left in the warehouse at the end, as a buffer.") },
+              { symbol: "Inv. inicial de material", meaning: t("Material que ya tienes en bodega al empezar.", "Material you already have in the warehouse at the start.") },
+              { symbol: "Costo por unidad de material", meaning: t("Precio de cada kilo o metro, en pesos.", "Price of each kilo or meter, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el material requerido: unidades a producir × material por unidad.", "Compute the material required: units to produce × material per unit."),
+              t("Súmale el inventario final deseado de material.", "Add the desired ending material inventory."),
+              t("Réstale el material que ya tienes: esa es la cantidad a comprar.", "Subtract the material you already have: that is the quantity to buy."),
+              t("Multiplica la cantidad a comprar por el precio del material.", "Multiply the quantity to buy by the material's price."),
+            ],
+            example: t("Las 2,850 piñatas llevan 0.5 kg de papel cada una, a $40 el kilo; hay 300 kg en bodega y se quiere terminar con 200 kg. Requerido: 2,850 × 0.5 = 1,425 kg. Compras: 1,425 + 200 − 300 = **1,325 kg**. Costo: 1,325 × 40 = **$53,000**.", "The 2,850 piñatas use 0.5 kg of paper each, at $40 per kilo; there are 300 kg in stock and the goal is to end with 200 kg. Required: 2,850 × 0.5 = 1,425 kg. Purchases: 1,425 + 200 − 300 = **1,325 kg**. Cost: 1,325 × 40 = **$53,000**."),
+            mistake: t("Comprar solo el material requerido, sin descontar lo que ya hay en bodega ni dejar la reserva final.", "Buying only the material required, without subtracting what is already in stock or leaving the ending buffer."),
+          },
+          {
+            name: t("Presupuesto de mano de obra directa (MOD)", "Direct labor budget"),
+            expression: "MOD = Unidades a producir × Horas por unidad × Tarifa por hora",
+            variables: [
+              { symbol: "MOD", meaning: t("Lo que costará pagar a quienes fabrican el producto, en pesos.", "What it will cost to pay the people who make the product, in pesos.") },
+              { symbol: "Unidades a producir", meaning: t("Lo que salió del presupuesto de producción.", "What came out of the production budget.") },
+              { symbol: "Horas por unidad", meaning: t("Tiempo de trabajo que lleva cada producto, en horas (0.5 = media hora).", "Work time each product takes, in hours (0.5 = half an hour).") },
+              { symbol: "Tarifa por hora", meaning: t("Lo que se paga por cada hora de trabajo, en pesos.", "What is paid for each hour of work, in pesos.") },
+            ],
+            steps: [
+              t("Multiplica las unidades a producir por las horas que lleva cada una: ese es el total de horas.", "Multiply units to produce by the hours each one takes: that is total hours."),
+              t("Multiplica el total de horas por la tarifa por hora.", "Multiply total hours by the hourly rate."),
+            ],
+            example: t("Las 2,850 piñatas llevan 0.4 horas cada una y la hora se paga a $80. Horas: 2,850 × 0.4 = 1,140. Costo: 1,140 × 80 = **$91,200**.", "The 2,850 piñatas take 0.4 hours each and the hour is paid at $80. Hours: 2,850 × 0.4 = 1,140. Cost: 1,140 × 80 = **$91,200**."),
+            interpret: t("El total de horas también te dice cuánta gente necesitas: 1,140 horas ÷ 160 horas al mes por persona ≈ 7 personas.", "Total hours also tells you how many people you need: 1,140 hours ÷ 160 hours a month per person ≈ 7 people."),
+            mistake: t("Multiplicar las unidades por la tarifa y olvidar las horas por unidad.", "Multiplying units by the rate and forgetting the hours per unit."),
+          },
+        ],
       },
     ],
     examples: [
@@ -540,7 +877,7 @@ export const lessons: Lesson[] = [
       "La contabilidad administrativa prepara información a la medida para que quienes dirigen el negocio planeen, controlen y decidan; una de sus herramientas clave es el costeo directo con enfoque de contribución.",
       "Managerial accounting prepares tailored information so those who run the business can plan, control and decide; one of its key tools is direct (variable) costing with a contribution approach.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Distinguir la contabilidad administrativa de la financiera por usuarios, reglas, enfoque y detalle.", "Distinguish managerial from financial accounting by users, rules, focus and detail."),
       t("Explicar las funciones de planeación, control y toma de decisiones que apoya la información administrativa.", "Explain the planning, control and decision-making functions that managerial information supports."),
@@ -591,6 +928,10 @@ export const lessons: Lesson[] = [
         heading: t("Costeo directo frente a costeo absorbente", "Direct costing versus absorption costing"),
         body: [
           t(
+            "En palabras sencillas: son dos formas de calcular cuánto cuesta cada producto. La diferencia está en los costos fijos de la fábrica (la renta de la nave, el sueldo del supervisor): ¿se reparten entre los productos o se restan completos en el mes?",
+            "In simple words: these are two ways to compute what each product costs. The difference lies in the factory's fixed costs (the plant's rent, the supervisor's salary): are they spread over the products, or subtracted in full in the month?",
+          ),
+          t(
             "En el **costeo absorbente**, el costo de cada unidad incluye los materiales, la mano de obra y **todos** los gastos de fabricación, también los fijos. Es el enfoque que exigen los estados financieros para terceros.",
             "Under **absorption costing**, each unit's cost includes materials, labor and **all** manufacturing overhead, including fixed overhead. It is the approach required for financial statements for third parties.",
           ),
@@ -607,7 +948,73 @@ export const lessons: Lesson[] = [
             "Mini example: if 2,000 units remain in inventory and fixed manufacturing overhead per unit is $15, absorption profit exceeds direct-costing profit by 2,000 × 15 = $30,000.",
           ),
         ],
-        formula: "Diferencia de utilidad = (Unidades producidas − Unidades vendidas) × CF de fabricación por unidad",
+        formulas: [
+          {
+            name: t("Utilidad con costeo directo", "Profit under direct costing"),
+            expression: "Utilidad (directo) = Ventas − Costos variables de lo vendido − Costos fijos totales",
+            variables: [
+              { symbol: "Ventas", meaning: t("Unidades vendidas × precio, en pesos.", "Units sold × price, in pesos.") },
+              { symbol: "Costos variables de lo vendido", meaning: t("Unidades vendidas × (cv de fabricación + gasto variable de venta por unidad), en pesos.", "Units sold × (variable manufacturing cost + variable selling expense per unit), in pesos.") },
+              { symbol: "Costos fijos totales", meaning: t("Todos los fijos del periodo, en pesos: los de fabricación y los de operación (administración, venta).", "All fixed costs of the period, in pesos: manufacturing and operating (administration, selling).") },
+            ],
+            steps: [
+              t("Calcula las ventas: unidades vendidas × precio.", "Compute sales: units sold × price."),
+              t("Calcula los costos variables de lo **vendido** y réstalos: eso es el margen de contribución.", "Compute variable costs of what was **sold** and subtract them: that is the contribution margin."),
+              t("Suma **todos** los fijos (fabricación + operación) y réstalos completos.", "Add **all** fixed costs (manufacturing + operating) and subtract them in full."),
+            ],
+            example: t("Una fábrica de sillas produce 2,000 y vende 1,600 a $500. cv de fabricación $200; fijos de fabricación $120,000; fijos de operación $40,000. Ventas: 1,600 × 500 = 800,000. Variables: 1,600 × 200 = 320,000. MC: 800,000 − 320,000 = 480,000. Fijos: 120,000 + 40,000 = 160,000. Utilidad: 480,000 − 160,000 = **$320,000**.", "A chair factory produces 2,000 and sells 1,600 at $500. Variable manufacturing cost $200; fixed manufacturing overhead $120,000; fixed operating expenses $40,000. Sales: 1,600 × 500 = 800,000. Variable: 1,600 × 200 = 320,000. CM: 800,000 − 320,000 = 480,000. Fixed: 120,000 + 40,000 = 160,000. Profit: 480,000 − 160,000 = **$320,000**."),
+            mistake: t("Calcular los variables con las unidades producidas en lugar de las vendidas.", "Computing variable costs with units produced instead of units sold."),
+          },
+          {
+            name: t("Costo unitario con costeo absorbente", "Unit cost under absorption costing"),
+            expression: "Costo unitario (absorbente) = cv de fabricación + CF de fabricación ÷ Unidades producidas",
+            variables: [
+              { symbol: "cv de fabricación", meaning: t("Costo variable de fabricar una unidad (material, mano de obra, indirectos variables), en pesos.", "Variable cost of making one unit (materials, labor, variable overhead), in pesos.") },
+              { symbol: "CF de fabricación", meaning: t("Gastos fijos de la fábrica en el periodo, en pesos (no incluye administración ni ventas).", "The factory's fixed overhead for the period, in pesos (excludes administration and selling).") },
+              { symbol: "Unidades producidas", meaning: t("Las que fabricaste en el periodo.", "The units you made in the period.") },
+            ],
+            steps: [
+              t("Reparte los fijos de fabricación entre las unidades **producidas**.", "Spread fixed manufacturing overhead over the units **produced**."),
+              t("Súmale el costo variable de fabricación por unidad.", "Add the variable manufacturing cost per unit."),
+            ],
+            example: t("Fábrica de sillas: 120,000 ÷ 2,000 = 60 de fijo por silla; 200 + 60 = **$260 por silla**.", "Chair factory: 120,000 ÷ 2,000 = 60 of fixed overhead per chair; 200 + 60 = **$260 per chair**."),
+            mistake: t("Dividir los fijos entre las unidades **vendidas**. Se reparten entre todo lo que se fabricó.", "Dividing fixed overhead by units **sold**. It is spread over everything that was made."),
+          },
+          {
+            name: t("Utilidad con costeo absorbente", "Profit under absorption costing"),
+            expression: "Utilidad (absorbente) = Ventas − Unidades vendidas × Costo unitario absorbente − Gastos de operación",
+            variables: [
+              { symbol: "Ventas", meaning: t("Unidades vendidas × precio, en pesos.", "Units sold × price, in pesos.") },
+              { symbol: "Unidades vendidas", meaning: t("Las que vendiste en el periodo.", "The units you sold in the period.") },
+              { symbol: "Costo unitario absorbente", meaning: t("cv de fabricación + fijo de fabricación por unidad, en pesos.", "Variable manufacturing cost + fixed overhead per unit, in pesos.") },
+              { symbol: "Gastos de operación", meaning: t("Gastos de venta y administración, fijos y variables, en pesos.", "Selling and administrative expenses, fixed and variable, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el costo de ventas: unidades vendidas × costo unitario absorbente.", "Compute cost of sales: units sold × absorption unit cost."),
+              t("Resta el costo de ventas a las ventas: eso es la utilidad bruta.", "Subtract cost of sales from sales: that is gross profit."),
+              t("Resta los gastos de operación (los de fabricación ya van dentro del costo).", "Subtract operating expenses (manufacturing costs are already in the cost)."),
+            ],
+            example: t("Fábrica de sillas: costo de ventas 1,600 × 260 = 416,000. Utilidad bruta: 800,000 − 416,000 = 384,000. Menos operación: 384,000 − 40,000 = **$344,000**.", "Chair factory: cost of sales 1,600 × 260 = 416,000. Gross profit: 800,000 − 416,000 = 384,000. Less operating expenses: 384,000 − 40,000 = **$344,000**."),
+            mistake: t("Restar otra vez los fijos de fabricación completos: ya están dentro del costo unitario y se contarían dos veces.", "Subtracting the full fixed manufacturing overhead again: it is already inside the unit cost and would be counted twice."),
+          },
+          {
+            name: t("Diferencia entre las dos utilidades", "Difference between the two profits"),
+            expression: "Diferencia de utilidad = (Unidades producidas − Unidades vendidas) × CF de fabricación por unidad",
+            variables: [
+              { symbol: "Unidades producidas", meaning: t("Las que fabricaste en el periodo.", "The units you made in the period.") },
+              { symbol: "Unidades vendidas", meaning: t("Las que vendiste en el periodo.", "The units you sold in the period.") },
+              { symbol: "CF de fabricación por unidad", meaning: t("Gastos fijos de fabricación ÷ unidades producidas, en pesos.", "Fixed manufacturing overhead ÷ units produced, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el fijo de fabricación por unidad: CF de fabricación ÷ unidades producidas.", "Compute fixed overhead per unit: fixed manufacturing overhead ÷ units produced."),
+              t("Calcula cuántas unidades quedaron en inventario: producidas − vendidas.", "Compute how many units remained in inventory: produced − sold."),
+              t("Multiplica esas unidades por el fijo por unidad.", "Multiply those units by the fixed cost per unit."),
+            ],
+            example: t("Fábrica de sillas: fijo por silla 120,000 ÷ 2,000 = 60. Quedaron 2,000 − 1,600 = 400 sillas. Diferencia: 400 × 60 = **$24,000**, igual a 344,000 − 320,000.", "Chair factory: fixed cost per chair 120,000 ÷ 2,000 = 60. 400 chairs remained (2,000 − 1,600). Difference: 400 × 60 = **$24,000**, equal to 344,000 − 320,000."),
+            interpret: t("Si el resultado es positivo (se produjo más de lo vendido), el absorbente muestra más utilidad; si es negativo, el directo muestra más; si es cero, son iguales.", "If the result is positive (more was produced than sold), absorption shows more profit; if negative, direct costing shows more; if zero, they are equal."),
+            mistake: t("Repartir los fijos entre las unidades vendidas en lugar de las producidas.", "Spreading fixed overhead over units sold instead of units produced."),
+          },
+        ],
       },
     ],
     examples: [
@@ -667,7 +1074,7 @@ export const lessons: Lesson[] = [
       "El control presupuestal compara lo real con lo planeado, usa presupuestos flexibles para que la comparación sea justa y asigna cada resultado al responsable que lo puede controlar.",
       "Budgetary control compares actual with plan, uses flexible budgets so the comparison is fair, and assigns each result to the manager who can control it.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Describir el ciclo de control y clasificar variaciones como favorables o desfavorables.", "Describe the control cycle and classify variances as favorable or unfavorable."),
       t("Preparar un presupuesto flexible y separar la variación por volumen de la variación de gestión.", "Prepare a flexible budget and separate the volume variance from the management (flexible-budget) variance."),
@@ -694,11 +1101,33 @@ export const lessons: Lesson[] = [
             "Mini example: an office's stationery budget was $8,000 and $9,200 was spent: an unfavorable variance of $1,200.",
           ),
         ],
-        formula: "Variación = Real − Presupuesto",
+        formulas: [
+          {
+            name: t("Variación contra el presupuesto", "Variance against budget"),
+            expression: "Variación = Real − Presupuesto",
+            variables: [
+              { symbol: "Variación", meaning: t("La diferencia entre lo que pasó y lo planeado, en pesos.", "The difference between what happened and what was planned, in pesos.") },
+              { symbol: "Real", meaning: t("Lo que de verdad se gastó o se vendió, en pesos.", "What was actually spent or sold, in pesos.") },
+              { symbol: "Presupuesto", meaning: t("Lo que se había planeado, en pesos.", "What had been planned, in pesos.") },
+            ],
+            steps: [
+              t("Resta: real − presupuesto.", "Subtract: actual − budget."),
+              t("Fíjate si es un **costo** o un **ingreso**.", "Check whether it is a **cost** or a **revenue** item."),
+              t("Clasifícala: en costos, positiva es desfavorable y negativa favorable; en ingresos, positiva es favorable y negativa desfavorable.", "Classify it: for costs, positive is unfavorable and negative favorable; for revenue, positive is favorable and negative unfavorable."),
+            ],
+            example: t("Luz: presupuesto $5,000, real $5,600. 5,600 − 5,000 = +600 en un costo → **$600 desfavorable**. Ventas: presupuesto $80,000, real $86,000. 86,000 − 80,000 = +6,000 en un ingreso → **$6,000 favorable**.", "Electricity: budget $5,000, actual $5,600. 5,600 − 5,000 = +600 on a cost → **$600 unfavorable**. Sales: budget $80,000, actual $86,000. 86,000 − 80,000 = +6,000 on revenue → **$6,000 favorable**."),
+            interpret: t("La pregunta clave es: ¿esto mejora o empeora la utilidad? Si la mejora, es favorable.", "The key question is: does this improve or worsen profit? If it improves it, it is favorable."),
+            mistake: t("Creer que una variación positiva siempre es buena. En un costo, positiva significa que gastaste de más.", "Believing a positive variance is always good. On a cost, positive means you overspent."),
+          },
+        ],
       },
       {
         heading: t("Presupuesto estático y presupuesto flexible", "Static budget and flexible budget"),
         body: [
+          t(
+            "En palabras sencillas: el presupuesto flexible responde a la pregunta «¿cuánto **debí** gastar para lo que **de verdad** hice?». Así evalúas a cada quien con la vara correcta.",
+            "In simple words: the flexible budget answers the question \"how much **should** I have spent for what I **actually** did?\". That way you judge everyone with the right yardstick.",
+          ),
           t(
             "El **presupuesto estático** se hace para un solo nivel de actividad, el planeado. Si al final se vendió o produjo más, comparar los costos reales contra él es injusto: claro que gastaste más materiales, ¡hiciste más unidades!",
             "The **static budget** is prepared for a single activity level, the planned one. If you ended up selling or producing more, comparing actual costs against it is unfair: of course you used more materials, you made more units!",
@@ -712,7 +1141,60 @@ export const lessons: Lesson[] = [
             "Mini example: if the plan was to spend $12 of material per unit and 3,500 units were made, the flexible material budget is 12 × 3,500 = $42,000, even if the static budget said something else.",
           ),
         ],
-        formula: "Presupuesto flexible = CF presupuestados + cv presupuestado × Volumen real",
+        formulas: [
+          {
+            name: t("Presupuesto flexible de costos", "Flexible cost budget"),
+            expression: "Presupuesto flexible = CF presupuestados + cv presupuestado × Volumen real",
+            variables: [
+              { symbol: "CF presupuestados", meaning: t("Los costos fijos del plan, en pesos.", "The plan's fixed costs, in pesos.") },
+              { symbol: "cv presupuestado", meaning: t("El costo variable por unidad del plan, en pesos.", "The plan's variable cost per unit, in pesos.") },
+              { symbol: "Volumen real", meaning: t("Las unidades que de verdad se produjeron o vendieron.", "The units actually produced or sold.") },
+            ],
+            steps: [
+              t("Toma el cv y los fijos del plan original.", "Take the vc and fixed costs from the original plan."),
+              t("Multiplica el cv por el volumen **real**.", "Multiply vc by the **actual** volume."),
+              t("Súmale los fijos presupuestados.", "Add the budgeted fixed costs."),
+            ],
+            example: t("Un autolavado presupuestó $15,000 fijos más $20 por auto, para 900 autos. Lavó 1,000. Flexible: 20 × 1,000 = 20,000; 15,000 + 20,000 = **$35,000**. (El estático era 15,000 + 20 × 900 = $33,000.)", "A car wash budgeted $15,000 fixed plus $20 per car, for 900 cars. It washed 1,000. Flexible: 20 × 1,000 = 20,000; 15,000 + 20,000 = **$35,000**. (The static one was 15,000 + 20 × 900 = $33,000.)"),
+            interpret: t("Contra esta cifra se comparan los costos reales: si se gastó más de $35,000, hubo ineficiencia; no por haber lavado más autos.", "Actual costs are compared against this figure: if more than $35,000 was spent, there was inefficiency, not just because more cars were washed."),
+            mistake: t("Usar el volumen planeado: eso es el presupuesto estático, no el flexible.", "Using the planned volume: that is the static budget, not the flexible one."),
+          },
+          {
+            name: t("Utilidad del presupuesto flexible", "Flexible-budget profit"),
+            expression: "Utilidad flexible = Volumen real × (Precio presupuestado − cv presupuestado) − CF presupuestados",
+            variables: [
+              { symbol: "Volumen real", meaning: t("Unidades que de verdad se vendieron.", "Units actually sold.") },
+              { symbol: "Precio presupuestado", meaning: t("El precio de venta del plan, en pesos.", "The plan's selling price, in pesos.") },
+              { symbol: "cv presupuestado", meaning: t("El costo variable por unidad del plan, en pesos.", "The plan's variable cost per unit, in pesos.") },
+              { symbol: "CF presupuestados", meaning: t("Los costos fijos del plan, en pesos.", "The plan's fixed costs, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el margen del plan: precio presupuestado − cv presupuestado.", "Compute the plan's margin: budgeted price − budgeted vc."),
+              t("Multiplícalo por el volumen real.", "Multiply it by actual volume."),
+              t("Resta los fijos presupuestados.", "Subtract budgeted fixed costs."),
+            ],
+            example: t("Autolavado: precio del plan $80, cv $20, fijos $15,000; lavó 1,000 autos. Margen: 80 − 20 = 60. Flexible: 60 × 1,000 − 15,000 = 60,000 − 15,000 = **$45,000**. (Estática con 900 autos: 60 × 900 − 15,000 = $39,000.)", "Car wash: plan price $80, vc $20, fixed $15,000; it washed 1,000 cars. Margin: 80 − 20 = 60. Flexible: 60 × 1,000 − 15,000 = 60,000 − 15,000 = **$45,000**. (Static with 900 cars: 60 × 900 − 15,000 = $39,000.)"),
+            mistake: t("Usar el precio o el cv reales. El flexible usa los datos del **plan**; solo cambia el volumen.", "Using actual price or vc. The flexible budget uses the **plan's** data; only volume changes."),
+          },
+          {
+            name: t("Variación por volumen y variación de presupuesto flexible", "Volume variance and flexible-budget variance"),
+            expression: "Variación por volumen = Utilidad flexible − Utilidad estática;  Variación de presupuesto flexible = Utilidad real − Utilidad flexible",
+            variables: [
+              { symbol: "Utilidad estática", meaning: t("La utilidad del plan original, con el volumen planeado, en pesos.", "The original plan's profit, at the planned volume, in pesos.") },
+              { symbol: "Utilidad flexible", meaning: t("La utilidad que el plan daría con el volumen real, en pesos.", "The profit the plan would give at the actual volume, in pesos.") },
+              { symbol: "Utilidad real", meaning: t("La utilidad que de verdad se obtuvo, en pesos.", "The profit actually obtained, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la utilidad flexible con el volumen real y los datos del plan.", "Compute flexible profit with actual volume and the plan's data."),
+              t("Variación por volumen: flexible − estática (efecto de vender más o menos).", "Volume variance: flexible − static (effect of selling more or less)."),
+              t("Variación de presupuesto flexible: real − flexible (efecto de precios y costos).", "Flexible-budget variance: actual − flexible (effect of prices and costs)."),
+              t("En utilidades, positiva es favorable (F) y negativa desfavorable (D). Comprueba: las dos juntas dan real − estática.", "For profit, positive is favorable (F) and negative unfavorable (U). Check: together they equal actual − static."),
+            ],
+            example: t("Autolavado: estática $39,000, flexible $45,000, real $41,000. Volumen: 45,000 − 39,000 = **$6,000 F**. Flexible: 41,000 − 45,000 = −4,000 → **$4,000 D**. Comprobación: 6,000 − 4,000 = 2,000 = 41,000 − 39,000.", "Car wash: static $39,000, flexible $45,000, actual $41,000. Volume: 45,000 − 39,000 = **$6,000 F**. Flexible: 41,000 − 45,000 = −4,000 → **$4,000 U**. Check: 6,000 − 4,000 = 2,000 = 41,000 − 39,000."),
+            interpret: t("Vender más ayudó $6,000, pero precios o costos peores restaron $4,000. Comparar solo real contra estático (+$2,000) escondería el problema.", "Selling more helped by $6,000, but worse prices or costs took away $4,000. Comparing only actual against static (+$2,000) would hide the problem."),
+            mistake: t("Comparar solo real contra estático y concluir que todo salió bien.", "Comparing only actual against static and concluding everything went well."),
+          },
+        ],
       },
       {
         heading: t("Centros de responsabilidad y gestión por excepción", "Responsibility centers and management by exception"),
@@ -735,6 +1217,24 @@ export const lessons: Lesson[] = [
           t("Centro de ingresos: responde por ventas (el departamento comercial).", "Revenue center: answers for sales (the sales department)."),
           t("Centro de utilidades: responde por ingresos y costos (una sucursal).", "Profit center: answers for revenue and costs (a branch)."),
           t("Centro de inversión: además decide en qué invertir (una división).", "Investment center: also decides what to invest in (a division)."),
+        ],
+        formulas: [
+          {
+            name: t("Variación en porcentaje (gestión por excepción)", "Percentage variance (management by exception)"),
+            expression: "Variación % = (Real − Presupuesto) ÷ Presupuesto × 100",
+            variables: [
+              { symbol: "Variación %", meaning: t("Qué tan grande es la diferencia comparada con lo planeado, en %.", "How large the difference is compared with the plan, in %.") },
+              { symbol: "Real", meaning: t("Lo que de verdad se gastó o se vendió, en pesos.", "What was actually spent or sold, in pesos.") },
+              { symbol: "Presupuesto", meaning: t("Lo planeado, en pesos.", "What was planned, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la variación en pesos: real − presupuesto.", "Compute the variance in pesos: actual − budget."),
+              t("Divídela entre el **presupuesto** y multiplica por 100.", "Divide it by the **budget** and multiply by 100."),
+              t("Compara el porcentaje (sin signo) con el umbral: si lo rebasa, se investiga, sea favorable o desfavorable.", "Compare the percentage (ignoring the sign) with the threshold: if it exceeds it, it is investigated, whether favorable or unfavorable."),
+            ],
+            example: t("Umbral de 5 %. Gasolina: presupuesto $40,000, real $43,000. 3,000 ÷ 40,000 = 0.075 → **7.5 %** desfavorable: se investiga. Papelería: presupuesto $8,000, real $7,800. −200 ÷ 8,000 = −0.025 → **2.5 %** favorable: no se investiga.", "5% threshold. Fuel: budget $40,000, actual $43,000. 3,000 ÷ 40,000 = 0.075 → **7.5%** unfavorable: investigated. Stationery: budget $8,000, actual $7,800. −200 ÷ 8,000 = −0.025 → **2.5%** favorable: not investigated."),
+            mistake: t("Fijarse solo en el monto en pesos (una partida grande puede variar mucho dinero y poco porcentaje) u omitir las favorables, que también se investigan.", "Looking only at the peso amount (a large item can vary a lot of money but a small percentage) or skipping favorable ones, which are also investigated."),
+          },
         ],
       },
     ],
