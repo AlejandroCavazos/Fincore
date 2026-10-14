@@ -974,7 +974,7 @@ export const lessons: Lesson[] = [
           en: "A company buys $100,000 of machinery from a foreign supplier. They agree on an escrow smart contract: the buyer deposits the money; if the courier confirms delivery, the supplier is paid; if there is no confirmation within 30 days, the money returns. Describe what happens in each scenario.",
         },
         steps: [
-          { es: "el comprador deposita $100,000; el contrato los retiene y nadie puede tomarlos a mano.", en: "the buyer deposits $100,000; the contract holds it and no one can take it manually." },
+          { es: "Paso 1: el comprador deposita $100,000; el contrato los retiene y nadie puede tomarlos a mano.", en: "Step 1: the buyer deposits $100,000; the contract holds it and no one can take it manually." },
           { es: "Escenario A: el oráculo de la paquetería confirma la entrega el día 12 → el contrato paga $100,000 al proveedor.", en: "Scenario A: the courier's oracle confirms delivery on day 12 → the contract pays $100,000 to the supplier." },
           { es: "Escenario B: pasan 30 días sin confirmación → el contrato devuelve $100,000 al comprador.", en: "Scenario B: 30 days pass with no confirmation → the contract returns $100,000 to the buyer." },
           { es: "Riesgo: si el oráculo reporta mal (dice entregado cuando no lo fue), el contrato paga igual.", en: "Risk: if the oracle reports wrongly (says delivered when it was not), the contract pays anyway." },
