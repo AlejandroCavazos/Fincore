@@ -12,7 +12,7 @@ export function FormulaCard({ f }: { f: FormulaGuide }) {
       <h3 className="flex items-center gap-2 font-semibold text-navy-900 dark:text-white">
         <Calculator className="h-5 w-5 text-electric-500" /> {t(f.name)}
       </h3>
-      <div className="overflow-x-auto whitespace-pre rounded-xl bg-navy-900 px-4 py-3 font-mono text-sm text-electric-300 dark:bg-navy-950">{f.expression}</div>
+      <div className="overflow-x-auto whitespace-pre-wrap break-words rounded-xl bg-navy-900 px-4 py-3 font-mono text-sm text-electric-300 dark:bg-navy-950">{f.expression}</div>
       <div>
         <p className={label}>{tx('Qué significa cada parte', 'What each part means')}</p>
         <ul className="space-y-1 text-[15px] text-navy-700 dark:text-navy-200">
