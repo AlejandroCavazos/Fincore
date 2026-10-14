@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
       "Valuar una empresa es estimar cuánto vale hoy por el efectivo que generará en el futuro, con flujos descontados o comparándola con empresas parecidas.",
       "Valuing a business means estimating what it is worth today based on the cash it will generate in the future, using discounted cash flows or comparing it with similar companies.",
     ),
-    minutes: 17,
+    minutes: 19,
     objectives: [
       t("Distinguir valor contable, valor de mercado y valor intrínseco, y el valor de la empresa (EV) del valor del capital.", "Distinguish book value, market value and intrinsic value, and enterprise value (EV) from equity value."),
       t("Calcular el flujo libre de efectivo de la empresa y el valor terminal con el modelo de crecimiento perpetuo.", "Compute free cash flow to the firm and terminal value with the perpetual growth model."),
@@ -67,7 +67,56 @@ export const lessons: Lesson[] = [
             "Mini example: if a company is worth $1,000 million as a whole business, owes the bank $300 million and has $50 million in cash, net debt is $250 million and $750 million belongs to the shareholders.",
           ),
         ],
-        formula: "Valor del capital / Equity value = EV − Deuda neta / Net debt;  Deuda neta = Deuda con costo − Efectivo",
+        formulas: [
+          {
+            name: t("Del valor de la empresa (EV) al valor del capital", "From enterprise value (EV) to equity value"),
+            expression: "Valor del capital = EV − Deuda neta;  Deuda neta = Deuda con costo − Efectivo",
+            variables: [
+              { symbol: "Valor del capital", meaning: t("Lo que vale la parte de los accionistas (dueños), en pesos.", "What the shareholders' (owners') part is worth, in pesos.") },
+              { symbol: "EV", meaning: t("Valor de la empresa: lo que vale el negocio completo para dueños y acreedores, en pesos.", "Enterprise value: what the whole business is worth to owners and lenders, in pesos.") },
+              { symbol: "Deuda neta", meaning: t("Lo que se debe a bancos y bonistas menos el efectivo que ya se tiene, en pesos.", "What is owed to banks and bondholders minus the cash already on hand, in pesos.") },
+              { symbol: "Deuda con costo", meaning: t("Préstamos y bonos que cobran intereses (no incluye proveedores), en pesos.", "Loans and bonds that charge interest (suppliers not included), in pesos.") },
+              { symbol: "Efectivo", meaning: t("Dinero en caja y bancos, en pesos.", "Cash on hand and in banks, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la deuda neta: deuda con costo − efectivo.", "Compute net debt: interest-bearing debt − cash."),
+              t("Resta la deuda neta al EV: lo que queda es para los accionistas.", "Subtract net debt from EV: what is left belongs to the shareholders."),
+            ],
+            example: t(
+              "EV $600 millones, deuda bancaria $200 millones y efectivo $50 millones. Deuda neta: 200 − 50 = $150 millones. Valor del capital: 600 − 150 = **$450 millones**.",
+              "EV $600 million, bank debt $200 million and cash $50 million. Net debt: 200 − 50 = $150 million. Equity value: 600 − 150 = **$450 million**.",
+            ),
+            interpret: t(
+              "Es como vender una casa con hipoteca: el precio de la casa es el EV, pero a ti te queda el precio menos lo que debes al banco.",
+              "It is like selling a house with a mortgage: the house price is the EV, but you keep the price minus what you owe the bank.",
+            ),
+            mistake: t(
+              "Restar la deuda bruta (sin quitar el efectivo) o tomar el EV como si fuera el valor de los accionistas.",
+              "Subtracting gross debt (without taking out cash) or treating EV as if it were the shareholders' value.",
+            ),
+          },
+          {
+            name: t("Valor por acción", "Value per share"),
+            expression: "Valor por acción = Valor del capital ÷ Número de acciones",
+            variables: [
+              { symbol: "Valor por acción", meaning: t("Lo que vale cada acción, en pesos.", "What each share is worth, in pesos.") },
+              { symbol: "Valor del capital", meaning: t("Lo que vale la parte de los accionistas (EV − deuda neta), en pesos.", "What the shareholders' part is worth (EV − net debt), in pesos.") },
+              { symbol: "Número de acciones", meaning: t("Cuántas acciones existen; usa las mismas unidades que el valor (millones con millones).", "How many shares exist; use the same units as the value (millions with millions).") },
+            ],
+            steps: [
+              t("Obtén primero el valor del capital (ya sin deuda neta).", "First get equity value (net debt already removed)."),
+              t("Divide entre el número de acciones, cuidando que ambos estén en millones.", "Divide by the number of shares, making sure both are in millions."),
+            ],
+            example: t(
+              "Valor del capital $450 millones y 30 millones de acciones: 450 ÷ 30 = **$15 por acción**.",
+              "Equity value $450 million and 30 million shares: 450 ÷ 30 = **$15 per share**.",
+            ),
+            mistake: t(
+              "Dividir el EV entre las acciones sin restar antes la deuda neta; sobrevalúa la acción.",
+              "Dividing EV by the shares without first subtracting net debt; it overvalues the share.",
+            ),
+          },
+        ],
         bullets: [
           t("Valor contable: activos menos pasivos según los libros.", "Book value: assets minus liabilities per the books."),
           t("Valor de mercado: precio por acción × número de acciones.", "Market value: share price × number of shares."),
@@ -78,6 +127,10 @@ export const lessons: Lesson[] = [
       {
         heading: t("Flujos descontados (DCF) y valor terminal", "Discounted cash flows (DCF) and terminal value"),
         body: [
+          t(
+            "En palabras sencillas: un DCF suma todo el dinero que el negocio te dará en el futuro, pero antes \"lo encoge\" a valor de hoy, porque un peso que recibirás en 5 años vale menos que un peso en tu mano hoy (no lo puedes usar ni invertir mientras tanto, y hay riesgo de que no llegue). A ese \"encoger\" se le llama **descontar**.",
+            "In plain words: a DCF adds up all the money the business will give you in the future, but first \"shrinks\" it to today's value, because a peso you will receive in 5 years is worth less than a peso in your hand today (you cannot use or invest it meanwhile, and it might not arrive). That \"shrinking\" is called **discounting**.",
+          ),
           t(
             "El método de **flujos de efectivo descontados** (DCF) proyecta el efectivo que generará la empresa y lo trae a valor de hoy con el **WACC** (el costo promedio de financiarse, que viste en su propia materia). El flujo que se usa es el **flujo libre de efectivo de la empresa** (FCFF): lo que queda después de pagar impuestos operativos e invertir en activos y capital de trabajo, disponible para accionistas y acreedores.",
             "The **discounted cash flow** (DCF) method projects the cash the company will generate and brings it to today's value with the **WACC** (the average cost of financing, which you saw in its own subject). The flow used is **free cash flow to the firm** (FCFF): what is left after paying operating taxes and investing in assets and working capital, available to shareholders and lenders.",
@@ -95,7 +148,86 @@ export const lessons: Lesson[] = [
             "Mini example: if the last projected year's flow is $100, g = 3 % and WACC = 10 %, terminal value is 100 × 1.03 / (0.10 − 0.03) = $1,471.43, valued at the end of that last year.",
           ),
         ],
-        formula: "FCFF = EBIT × (1 − t) + Depreciación/D&A − CapEx − ΔCapital de trabajo/ΔWC;  VT/TV = FCF(n) × (1 + g) / (WACC − g)",
+        formulas: [
+          {
+            name: t("Flujo libre de efectivo de la empresa (FCFF)", "Free cash flow to the firm (FCFF)"),
+            expression: "FCFF = EBIT × (1 − t) + D&A − CapEx − ΔCT",
+            variables: [
+              { symbol: "FCFF", meaning: t("El efectivo que sobra en el año para dueños y acreedores, en pesos.", "The cash left over in the year for owners and lenders, in pesos.") },
+              { symbol: "EBIT", meaning: t("Utilidad de operación: ventas menos costos y gastos de operación, antes de intereses e impuestos, en pesos.", "Operating profit: sales minus operating costs and expenses, before interest and taxes, in pesos.") },
+              { symbol: "t", meaning: t("Tasa de impuestos, en decimal (30 % = 0.30; tasa ilustrativa).", "Tax rate, as a decimal (30% = 0.30; illustrative rate).") },
+              { symbol: "D&A", meaning: t("Depreciación y amortización: gasto contable que no saca dinero de la caja, en pesos.", "Depreciation and amortization: an accounting expense that takes no money out of the till, in pesos.") },
+              { symbol: "CapEx", meaning: t("Inversión en activos fijos (maquinaria, locales, equipo), en pesos.", "Investment in fixed assets (machinery, premises, equipment), in pesos.") },
+              { symbol: "ΔCT", meaning: t("Aumento del capital de trabajo (más clientes por cobrar o más inventario), en pesos; si aumenta, consume efectivo.", "Increase in working capital (more receivables or more inventory), in pesos; if it rises, it uses up cash.") },
+            ],
+            steps: [
+              t("Quita impuestos al EBIT: EBIT × (1 − t). Con 30 %: EBIT × 0.70.", "Take taxes off EBIT: EBIT × (1 − t). With 30%: EBIT × 0.70."),
+              t("Suma la depreciación y amortización (no es salida de dinero).", "Add back depreciation and amortization (it is not a cash outflow)."),
+              t("Resta el CapEx y el aumento de capital de trabajo.", "Subtract CapEx and the increase in working capital."),
+            ],
+            example: t(
+              "EBIT 300, impuesto 30 %, D&A 50, CapEx 80 y aumento de capital de trabajo 20 (millones). 300 × 0.70 = 210; 210 + 50 = 260; 260 − 80 − 20 = **160 millones de FCFF**.",
+              "EBIT 300, tax 30%, D&A 50, CapEx 80 and working capital increase 20 (millions). 300 × 0.70 = 210; 210 + 50 = 260; 260 − 80 − 20 = **160 million of FCFF**.",
+            ),
+            mistake: t(
+              "Restar la depreciación en lugar de sumarla, o usar el EBIT sin quitarle impuestos.",
+              "Subtracting depreciation instead of adding it back, or using EBIT without taking taxes off.",
+            ),
+          },
+          {
+            name: t("Valor terminal (modelo de Gordon)", "Terminal value (Gordon model)"),
+            expression: "VT = FCF(n) × (1 + g) ÷ (WACC − g)",
+            variables: [
+              { symbol: "VT", meaning: t("Lo que valen, juntos, todos los años después del último año proyectado, medido al final de ese año, en pesos.", "What all the years after the last projected year are worth together, measured at the end of that year, in pesos.") },
+              { symbol: "FCF(n)", meaning: t("El flujo libre del último año proyectado (año n), en pesos.", "The free cash flow of the last projected year (year n), in pesos.") },
+              { symbol: "g", meaning: t("Crecimiento anual perpetuo del flujo, en decimal (3 % = 0.03); debe ser modesto.", "Perpetual annual growth of the flow, as a decimal (3% = 0.03); it must be modest.") },
+              { symbol: "WACC", meaning: t("Costo promedio de financiarse, en decimal (10 % = 0.10); es la tasa de descuento.", "Average cost of financing, as a decimal (10% = 0.10); it is the discount rate.") },
+            ],
+            steps: [
+              t("Convierte g y el WACC a decimales y revisa que g sea menor que el WACC.", "Convert g and WACC to decimals and check that g is lower than WACC."),
+              t("Haz crecer un año el último flujo: FCF(n) × (1 + g).", "Grow the last flow by one year: FCF(n) × (1 + g)."),
+              t("Calcula el denominador: WACC − g.", "Compute the denominator: WACC − g."),
+              t("Divide el flujo crecido entre ese denominador.", "Divide the grown flow by that denominator."),
+            ],
+            example: t(
+              "Último flujo $80 millones, g = 2 % y WACC = 9 %. 80 × 1.02 = 81.6; 0.09 − 0.02 = 0.07; 81.6 ÷ 0.07 = **$1,165.71 millones** al final del último año.",
+              "Last flow $80 million, g = 2% and WACC = 9%. 80 × 1.02 = 81.6; 0.09 − 0.02 = 0.07; 81.6 ÷ 0.07 = **$1,165.71 million** at the end of the last year.",
+            ),
+            interpret: t(
+              "El VT suele ser la mayor parte del valor, así que un pequeño cambio en g o en el WACC lo mueve mucho. Si g fuera igual o mayor que el WACC, el resultado no tendría sentido.",
+              "TV is usually the largest part of value, so a small change in g or WACC moves it a lot. If g were equal to or higher than WACC, the result would make no sense.",
+            ),
+            mistake: t(
+              "Olvidar multiplicar por (1 + g), o dividir entre el WACC completo en lugar de WACC − g.",
+              "Forgetting to multiply by (1 + g), or dividing by the full WACC instead of WACC − g.",
+            ),
+          },
+          {
+            name: t("Valor de la empresa con DCF", "Enterprise value with a DCF"),
+            expression: "EV = FCF₁ ÷ (1 + WACC)¹ + FCF₂ ÷ (1 + WACC)² + … + (FCFₙ + VT) ÷ (1 + WACC)ⁿ",
+            variables: [
+              { symbol: "EV", meaning: t("Valor de la empresa hoy, en pesos.", "Enterprise value today, in pesos.") },
+              { symbol: "FCF₁, FCF₂ … FCFₙ", meaning: t("El flujo libre proyectado de cada año, en pesos.", "The projected free cash flow of each year, in pesos.") },
+              { symbol: "VT", meaning: t("Valor terminal, que está medido al final del año n, en pesos.", "Terminal value, measured at the end of year n, in pesos.") },
+              { symbol: "WACC", meaning: t("Tasa de descuento en decimal.", "Discount rate as a decimal.") },
+              { symbol: "¹, ², ⁿ", meaning: t("El número de años que faltan para recibir ese flujo (exponente).", "The number of years until that flow is received (exponent).") },
+            ],
+            steps: [
+              t("Divide cada flujo entre (1 + WACC) elevado al número de su año.", "Divide each flow by (1 + WACC) raised to its year number."),
+              t("Divide también el valor terminal entre (1 + WACC) elevado al último año.", "Also divide the terminal value by (1 + WACC) raised to the last year."),
+              t("Suma todos esos valores presentes: ese es el EV.", "Add up all those present values: that is the EV."),
+              t("Si te piden el valor del capital, resta la deuda neta.", "If asked for equity value, subtract net debt."),
+            ],
+            example: t(
+              "Flujos de $50 y $60 millones en los años 1 y 2, VT de $700 millones al final del año 2 y WACC 10 %. 50 ÷ 1.10 = 45.45; 60 ÷ 1.10² = 60 ÷ 1.21 = 49.59; 700 ÷ 1.21 = 578.51. EV = 45.45 + 49.59 + 578.51 = **$673.55 millones**.",
+              "Flows of $50 and $60 million in years 1 and 2, TV of $700 million at the end of year 2 and WACC 10%. 50 ÷ 1.10 = 45.45; 60 ÷ 1.10² = 60 ÷ 1.21 = 49.59; 700 ÷ 1.21 = 578.51. EV = 45.45 + 49.59 + 578.51 = **$673.55 million**.",
+            ),
+            mistake: t(
+              "Sumar el valor terminal sin descontarlo; está medido en el futuro y también hay que traerlo a hoy.",
+              "Adding the terminal value without discounting it; it is measured in the future and must also be brought to today.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Valuación por múltiplos (comparables)", "Valuation by multiples (comparables)"),
@@ -116,6 +248,30 @@ export const lessons: Lesson[] = [
             "Mini ejemplo: una cadena de farmacias tiene EBITDA de $40 millones y sus comparables cotizan a 8 veces EV/EBITDA. Su EV estimado es 40 × 8 = $320 millones.",
             "Mini example: a pharmacy chain has EBITDA of $40 million and its comparables trade at 8 times EV/EBITDA. Its estimated EV is 40 × 8 = $320 million.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Valor de la empresa con el múltiplo EV/EBITDA", "Enterprise value with the EV/EBITDA multiple"),
+            expression: "EV = EBITDA × Múltiplo EV/EBITDA de comparables",
+            variables: [
+              { symbol: "EV", meaning: t("Valor estimado del negocio completo, en pesos.", "Estimated value of the whole business, in pesos.") },
+              { symbol: "EBITDA", meaning: t("Utilidad antes de intereses, impuestos, depreciación y amortización de la empresa que valúas, en pesos.", "Earnings before interest, taxes, depreciation and amortization of the company being valued, in pesos.") },
+              { symbol: "Múltiplo EV/EBITDA", meaning: t("Cuántas veces su EBITDA valen las empresas parecidas (por ejemplo, 8 veces).", "How many times their EBITDA similar companies are worth (for example, 8 times).") },
+            ],
+            steps: [
+              t("Busca el múltiplo EV/EBITDA de empresas comparables.", "Find the EV/EBITDA multiple of comparable companies."),
+              t("Multiplica el EBITDA de tu empresa por ese múltiplo: obtienes el EV.", "Multiply your company's EBITDA by that multiple: you get the EV."),
+              t("Para llegar al capital, resta la deuda neta; para el valor por acción, divide entre las acciones.", "To reach equity, subtract net debt; for value per share, divide by the shares."),
+            ],
+            example: t(
+              "EBITDA de $25 millones y comparables a 9 veces: 25 × 9 = **$225 millones de EV**. Si la deuda neta fuera $45 millones, el capital valdría 225 − 45 = $180 millones.",
+              "EBITDA of $25 million and comparables at 9 times: 25 × 9 = **$225 million of EV**. If net debt were $45 million, equity would be worth 225 − 45 = $180 million.",
+            ),
+            mistake: t(
+              "Tomar el resultado de EV/EBITDA como valor de los accionistas sin restar la deuda neta.",
+              "Taking the EV/EBITDA result as the shareholders' value without subtracting net debt.",
+            ),
+          },
         ],
         bullets: [
           t("EV/EBITDA → valor de la empresa; resta deuda neta para llegar al capital.", "EV/EBITDA → enterprise value; subtract net debt to reach equity."),
@@ -182,7 +338,7 @@ export const lessons: Lesson[] = [
       "Un modelo financiero es una hoja de cálculo ordenada que, a partir de supuestos claros, proyecta los tres estados financieros conectados y permite probar escenarios.",
       "A financial model is an organized spreadsheet that, starting from clear assumptions, projects the three linked financial statements and lets you test scenarios.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Organizar un modelo en supuestos, cálculos y resultados siguiendo buenas prácticas.", "Organize a model into assumptions, calculations and outputs following good practices."),
       t("Proyectar estado de resultados y partidas de balance con generadores (drivers) como crecimiento, márgenes y días.", "Project the income statement and balance sheet items with drivers such as growth, margins and days."),
@@ -222,15 +378,96 @@ export const lessons: Lesson[] = [
             "A complete model projects the **income statement**, the **balance sheet** and the **cash flow statement**, and links them like gears. First you project with **drivers**: sales with a growth rate, costs as a **percentage of sales** and working capital accounts with **days** (for example, how many days customers take to pay you).",
           ),
           t(
-            "Las conexiones clave: la **utilidad neta** del estado de resultados arranca el flujo de efectivo y se suma a las **utilidades retenidas** del balance (menos los dividendos). La **depreciación** se resta en resultados, se vuelve a sumar en el flujo (no es salida de dinero) y reduce el activo fijo. El **efectivo final** del flujo es el efectivo del balance.",
-            "The key links: **net income** from the income statement starts the cash flow and is added to **retained earnings** on the balance sheet (minus dividends). **Depreciation** is subtracted in the income statement, added back in the cash flow (it is not a cash outflow) and reduces fixed assets. The cash flow's **ending cash** is the balance sheet's cash.",
+            "Las conexiones clave: la **utilidad neta** del estado de resultados arranca el flujo de efectivo y se suma a las **utilidades retenidas** del balance (las ganancias que el negocio ha guardado en lugar de repartirlas), menos los **dividendos** (la parte de la utilidad que se reparte a los dueños). La **depreciación** se resta en resultados, se vuelve a sumar en el flujo (no es salida de dinero) y reduce el activo fijo. El **efectivo final** del flujo es el efectivo del balance.",
+            "The key links: **net income** from the income statement starts the cash flow and is added to **retained earnings** on the balance sheet (the profits the business has kept instead of distributing them), minus **dividends** (the part of profit paid out to the owners). **Depreciation** is subtracted in the income statement, added back in the cash flow (it is not a cash outflow) and reduces fixed assets. The cash flow's **ending cash** is the balance sheet's cash.",
           ),
           t(
             "Al final, un **check** confirma que activos = pasivos + capital en cada año. Si da diferente de cero, hay un error de conexión. Mini ejemplo: si las ventas proyectadas son $3,650 y los clientes pagan a 30 días, las cuentas por cobrar serán 3,650 × 30 / 365 = $300.",
             "Finally, a **check** confirms that assets = liabilities + equity every year. If it is not zero, there is a linking error. Mini example: if projected sales are $3,650 and customers pay in 30 days, accounts receivable will be 3,650 × 30 / 365 = $300.",
           ),
         ],
-        formula: "Cuentas por cobrar / AR = Ventas × Días de cobro / 365;  Utilidades retenidas(fin) = inicio + Utilidad neta − Dividendos",
+        formulas: [
+          {
+            name: t("Proyectar ventas, utilidad de operación y utilidad neta", "Projecting sales, operating profit and net income"),
+            expression: "Ventas proyectadas = Ventas actuales × (1 + Crecimiento);  EBIT = Ventas proyectadas × Margen bruto − Gastos de operación;  Utilidad neta = (EBIT − Intereses) × (1 − t)",
+            variables: [
+              { symbol: "Ventas actuales", meaning: t("Lo vendido en el año actual, en pesos.", "What was sold in the current year, in pesos.") },
+              { symbol: "Crecimiento", meaning: t("Cuánto se espera que crezcan las ventas, en decimal (8 % = 0.08).", "How much sales are expected to grow, as a decimal (8% = 0.08).") },
+              { symbol: "Margen bruto", meaning: t("Porcentaje de las ventas que queda después del costo de ventas, en decimal (40 % = 0.40).", "Percentage of sales left after cost of sales, as a decimal (40% = 0.40).") },
+              { symbol: "Gastos de operación", meaning: t("Renta, sueldos de oficina, publicidad, etc., en pesos.", "Rent, office salaries, advertising, etc., in pesos.") },
+              { symbol: "EBIT", meaning: t("Utilidad de operación, antes de intereses e impuestos, en pesos.", "Operating profit, before interest and taxes, in pesos.") },
+              { symbol: "Intereses", meaning: t("Lo que se paga por la deuda en el año, en pesos (0 si no hay deuda).", "What is paid on debt in the year, in pesos (0 if there is no debt).") },
+              { symbol: "t", meaning: t("Tasa de impuestos, en decimal (30 % = 0.30; tasa ilustrativa).", "Tax rate, as a decimal (30% = 0.30; illustrative rate).") },
+            ],
+            steps: [
+              t("Proyecta las ventas: ventas actuales × (1 + crecimiento).", "Project sales: current sales × (1 + growth)."),
+              t("Calcula la utilidad bruta: ventas proyectadas × margen bruto.", "Compute gross profit: projected sales × gross margin."),
+              t("Resta los gastos de operación: obtienes el EBIT.", "Subtract operating expenses: you get EBIT."),
+              t("Resta los intereses y quita impuestos: × (1 − t). El resultado es la utilidad neta.", "Subtract interest and take off taxes: × (1 − t). The result is net income."),
+            ],
+            example: t(
+              "Ventas actuales 5,000, crecimiento 6 %, margen bruto 35 %, gastos de operación 1,000, intereses 55, impuesto 30 % (miles). Ventas: 5,000 × 1.06 = 5,300. Utilidad bruta: 5,300 × 0.35 = 1,855. EBIT: 1,855 − 1,000 = 855. Antes de impuestos: 855 − 55 = 800. Utilidad neta: 800 × 0.70 = **560 mil**.",
+              "Current sales 5,000, growth 6%, gross margin 35%, operating expenses 1,000, interest 55, tax 30% (thousands). Sales: 5,000 × 1.06 = 5,300. Gross profit: 5,300 × 0.35 = 1,855. EBIT: 1,855 − 1,000 = 855. Before taxes: 855 − 55 = 800. Net income: 800 × 0.70 = **560 thousand**.",
+            ),
+            mistake: t(
+              "Aplicar el margen a las ventas del año actual en lugar de a las proyectadas.",
+              "Applying the margin to current-year sales instead of projected sales.",
+            ),
+          },
+          {
+            name: t("Cuentas por cobrar e inventario con días", "Receivables and inventory with days"),
+            expression: "Cuentas por cobrar = Ventas × Días de cobro ÷ 365;  Inventario = Costo de ventas × Días de inventario ÷ 365",
+            variables: [
+              { symbol: "Cuentas por cobrar", meaning: t("Lo que los clientes te deben al cierre del año, en pesos.", "What customers owe you at year-end, in pesos.") },
+              { symbol: "Ventas", meaning: t("Ventas (a crédito) proyectadas del año, en pesos.", "Projected (credit) sales for the year, in pesos.") },
+              { symbol: "Días de cobro", meaning: t("Cuántos días tardan en promedio los clientes en pagarte.", "How many days customers take on average to pay you.") },
+              { symbol: "Inventario", meaning: t("La mercancía en bodega al cierre, en pesos.", "The goods in the warehouse at year-end, in pesos.") },
+              { symbol: "Costo de ventas", meaning: t("Lo que te costó la mercancía vendida en el año, en pesos.", "What the goods sold in the year cost you, in pesos.") },
+              { symbol: "Días de inventario", meaning: t("Cuántos días dura la mercancía en bodega antes de venderse.", "How many days goods stay in the warehouse before being sold.") },
+              { symbol: "365", meaning: t("Los días del año.", "The days in a year.") },
+            ],
+            steps: [
+              t("Divide las ventas entre 365 para saber cuánto vendes en un día.", "Divide sales by 365 to know how much you sell in a day."),
+              t("Multiplica por los días de cobro: eso es lo que los clientes todavía te deben.", "Multiply by the collection days: that is what customers still owe you."),
+              t("Para inventario, haz lo mismo pero con el costo de ventas y los días de inventario.", "For inventory, do the same but with cost of sales and inventory days."),
+            ],
+            example: t(
+              "Ventas 7,300 y cobras a 25 días: 7,300 ÷ 365 = 20 por día; 20 × 25 = **500 de cuentas por cobrar**. Costo de ventas 4,380 y 50 días de inventario: 4,380 ÷ 365 = 12; 12 × 50 = **600 de inventario**.",
+              "Sales 7,300 and you collect in 25 days: 7,300 ÷ 365 = 20 per day; 20 × 25 = **500 of receivables**. Cost of sales 4,380 and 50 inventory days: 4,380 ÷ 365 = 12; 12 × 50 = **600 of inventory**.",
+            ),
+            interpret: t(
+              "Más días = más dinero atorado en clientes o en bodega y menos efectivo disponible.",
+              "More days = more money tied up in customers or in the warehouse and less cash available.",
+            ),
+            mistake: t(
+              "Dividir entre 12 (meses) en lugar de 365, o calcular el inventario sobre las ventas en vez del costo de ventas.",
+              "Dividing by 12 (months) instead of 365, or computing inventory on sales instead of cost of sales.",
+            ),
+          },
+          {
+            name: t("Utilidades retenidas al final del año", "Retained earnings at year-end"),
+            expression: "Utilidades retenidas finales = Utilidades retenidas iniciales + Utilidad neta − Dividendos;  Dividendos = Utilidad neta × % de reparto",
+            variables: [
+              { symbol: "Utilidades retenidas iniciales", meaning: t("Las ganancias acumuladas que había al inicio del año, en pesos.", "The accumulated profits at the start of the year, in pesos.") },
+              { symbol: "Utilidad neta", meaning: t("La ganancia del año, en pesos.", "The year's profit, in pesos.") },
+              { symbol: "Dividendos", meaning: t("La parte de la utilidad que se reparte a los dueños, en pesos.", "The part of profit paid out to owners, in pesos.") },
+              { symbol: "% de reparto", meaning: t("Qué porcentaje de la utilidad se reparte, en decimal (40 % = 0.40).", "What percentage of profit is paid out, as a decimal (40% = 0.40).") },
+            ],
+            steps: [
+              t("Si te dan un porcentaje, calcula los dividendos: utilidad neta × % de reparto.", "If you are given a percentage, compute dividends: net income × payout %."),
+              t("Suma la utilidad neta a las utilidades retenidas iniciales.", "Add net income to opening retained earnings."),
+              t("Resta los dividendos.", "Subtract dividends."),
+            ],
+            example: t(
+              "Iniciales 900, utilidad neta 250 y se reparte 30 % (miles). Dividendos: 250 × 0.30 = 75. Finales: 900 + 250 − 75 = **1,075 mil**.",
+              "Opening 900, net income 250 and 30% is paid out (thousands). Dividends: 250 × 0.30 = 75. Ending: 900 + 250 − 75 = **1,075 thousand**.",
+            ),
+            mistake: t(
+              "Aplicar el porcentaje de reparto a las utilidades retenidas totales en lugar de a la utilidad del año, o tratar los dividendos como un gasto.",
+              "Applying the payout percentage to total retained earnings instead of the year's profit, or treating dividends as an expense.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Escenarios y sensibilidad", "Scenarios and sensitivity"),
@@ -311,7 +548,7 @@ export const lessons: Lesson[] = [
       "Una fusión o adquisición crea valor solo si las sinergias superan la prima pagada; el tipo de operación, el precio y la forma de pago deciden quién se queda con ese valor.",
       "A merger or acquisition creates value only if synergies exceed the premium paid; the type of deal, the price and the form of payment decide who keeps that value.",
     ),
-    minutes: 17,
+    minutes: 18,
     objectives: [
       t("Distinguir fusión de adquisición y clasificar operaciones en horizontales, verticales y de conglomerado.", "Distinguish a merger from an acquisition and classify deals as horizontal, vertical and conglomerate."),
       t("Calcular la prima de control y el valor neto que obtiene el comprador considerando sinergias.", "Compute the control premium and the net value the buyer obtains considering synergies."),
@@ -358,7 +595,58 @@ export const lessons: Lesson[] = [
             "Mini example: the target is worth $500 million on its own, synergies are worth $120 million and the acquirer pays $580 million. The premium is $80 million and the net value for the acquirer is 500 + 120 − 580 = $40 million. If it paid $650 million, it would lose $30 million even though the deal \"has synergies\": this is called the **winner's curse**.",
           ),
         ],
-        formula: "Prima/Premium = Precio pagado − Valor de la objetivo;  VPN comprador/Acquirer NPV = Valor objetivo + Sinergias − Precio pagado",
+        formulas: [
+          {
+            name: t("Prima de control (en pesos y en porcentaje)", "Control premium (in pesos and as a percentage)"),
+            expression: "Prima = Precio pagado − Valor de mercado;  Prima % = (Precio pagado − Valor de mercado) ÷ Valor de mercado × 100",
+            variables: [
+              { symbol: "Prima", meaning: t("Lo que el comprador paga de más sobre el valor de mercado, en pesos.", "What the acquirer pays above market value, in pesos.") },
+              { symbol: "Precio pagado", meaning: t("El precio ofrecido o acordado (total o por acción), en pesos.", "The price offered or agreed (total or per share), in pesos.") },
+              { symbol: "Valor de mercado", meaning: t("Lo que valía la objetivo (o su acción) antes de la oferta, en pesos.", "What the target (or its share) was worth before the offer, in pesos.") },
+              { symbol: "Prima %", meaning: t("La prima expresada como porcentaje del valor de mercado.", "The premium expressed as a percentage of market value.") },
+            ],
+            steps: [
+              t("Resta: precio pagado − valor de mercado. Esa es la prima en pesos.", "Subtract: price paid − market value. That is the premium in pesos."),
+              t("Para el porcentaje, divide la prima entre el valor de mercado (no entre el precio pagado).", "For the percentage, divide the premium by market value (not by the price paid)."),
+              t("Multiplica por 100.", "Multiply by 100."),
+            ],
+            example: t(
+              "La acción cotiza a $80 y el comprador ofrece $96. Prima: 96 − 80 = $16 por acción. Prima %: 16 ÷ 80 = 0.20; 0.20 × 100 = **20 %**.",
+              "The share trades at $80 and the acquirer offers $96. Premium: 96 − 80 = $16 per share. Premium %: 16 ÷ 80 = 0.20; 0.20 × 100 = **20%**.",
+            ),
+            mistake: t(
+              "Dividir entre el precio ofrecido; la base siempre es el precio de mercado antes de la oferta.",
+              "Dividing by the offered price; the base is always the market price before the offer.",
+            ),
+          },
+          {
+            name: t("VPN de la compra para el comprador", "NPV of the deal for the acquirer"),
+            expression: "VPN del comprador = Valor de la objetivo + Sinergias − Precio pagado  (= Sinergias − Prima)",
+            variables: [
+              { symbol: "VPN del comprador", meaning: t("Lo que ganan (o pierden) los accionistas del comprador con la operación, en pesos.", "What the acquirer's shareholders gain (or lose) from the deal, in pesos.") },
+              { symbol: "Valor de la objetivo", meaning: t("Lo que vale la empresa comprada por sí sola, en pesos.", "What the target is worth on its own, in pesos.") },
+              { symbol: "Sinergias", meaning: t("Valor presente del valor extra por juntar las empresas (ahorros o más ventas), en pesos.", "Present value of the extra value from combining the companies (savings or more sales), in pesos.") },
+              { symbol: "Precio pagado", meaning: t("Lo que paga el comprador, en pesos.", "What the acquirer pays, in pesos.") },
+            ],
+            steps: [
+              t("Suma el valor de la objetivo y las sinergias: es lo que realmente obtienes.", "Add the target's value and the synergies: that is what you really get."),
+              t("Resta el precio pagado: el resultado es el VPN del comprador.", "Subtract the price paid: the result is the acquirer's NPV."),
+              t("Comprueba: la prima (para el vendedor) + el VPN del comprador = sinergias, el valor total creado.", "Check: the premium (to the seller) + the acquirer's NPV = synergies, the total value created."),
+            ],
+            example: t(
+              "Objetivo vale $1,000 millones, sinergias $200 millones y se paga $1,150 millones. Prima: 1,150 − 1,000 = 150. VPN: 1,000 + 200 − 1,150 = **$50 millones**. Comprobación: 150 + 50 = 200 = sinergias.",
+              "Target worth $1,000 million, synergies $200 million and $1,150 million paid. Premium: 1,150 − 1,000 = 150. NPV: 1,000 + 200 − 1,150 = **$50 million**. Check: 150 + 50 = 200 = synergies.",
+            ),
+            interpret: t(
+              "VPN positivo: el comprador crea valor. Negativo: pagó una prima mayor que las sinergias y el vendedor se llevó todo (la maldición del ganador).",
+              "Positive NPV: the acquirer creates value. Negative: it paid a premium larger than the synergies and the seller took everything (the winner's curse).",
+            ),
+            mistake: t(
+              "Pensar que el comprador se queda con todas las sinergias; la prima es la parte que se lleva el vendedor.",
+              "Thinking the acquirer keeps all the synergies; the premium is the part the seller takes.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Proceso, forma de pago y efecto en la UPA", "Process, form of payment and EPS effect"),
@@ -376,7 +664,39 @@ export const lessons: Lesson[] = [
             "Quick rule without synergies: if you pay with shares and the P/E you pay for the target is **lower** than the P/E of your own shares, EPS goes up; if it is higher, it goes down. Mini example: your stock trades at 15 times earnings and you buy a company paying 12 times its earnings: the deal is accretive. Careful: accretive does not mean it creates value; synergies and premium decide that.",
           ),
         ],
-        formula: "UPA combinada / Combined EPS = (Utilidad comprador + Utilidad objetivo + Sinergias después de impuestos) / (Acciones comprador + Acciones nuevas)",
+        formulas: [
+          {
+            name: t("Utilidad por acción (UPA) después de pagar con acciones", "Earnings per share (EPS) after paying with shares"),
+            expression: "UPA combinada = (Utilidad comprador + Utilidad objetivo + Sinergias después de impuestos) ÷ (Acciones comprador + Acciones nuevas);  Acciones nuevas = Monto pagado en acciones ÷ Precio de la acción del comprador",
+            variables: [
+              { symbol: "UPA combinada", meaning: t("Cuánta utilidad le toca a cada acción después de la compra, en pesos.", "How much profit each share gets after the deal, in pesos.") },
+              { symbol: "Utilidad comprador", meaning: t("Utilidad neta anual de la compradora, en pesos.", "The acquirer's annual net income, in pesos.") },
+              { symbol: "Utilidad objetivo", meaning: t("Utilidad neta anual de la empresa comprada, en pesos.", "The target's annual net income, in pesos.") },
+              { symbol: "Sinergias después de impuestos", meaning: t("Utilidad extra anual por juntar las empresas, ya sin impuestos, en pesos (0 si no hay).", "Extra annual profit from combining, after taxes, in pesos (0 if none).") },
+              { symbol: "Acciones comprador", meaning: t("Las acciones que ya existían antes de la compra.", "The shares that existed before the deal.") },
+              { symbol: "Acciones nuevas", meaning: t("Las acciones que se emiten para pagar a los vendedores.", "The shares issued to pay the sellers.") },
+              { symbol: "Precio de la acción del comprador", meaning: t("A cuánto se entregan las acciones nuevas, en pesos por acción.", "The price at which new shares are delivered, in pesos per share.") },
+            ],
+            steps: [
+              t("Calcula la UPA de antes: utilidad comprador ÷ acciones comprador.", "Compute EPS before: acquirer earnings ÷ acquirer shares."),
+              t("Calcula las acciones nuevas: monto pagado ÷ precio por acción.", "Compute new shares: amount paid ÷ price per share."),
+              t("Suma las utilidades (comprador + objetivo + sinergias).", "Add the earnings (acquirer + target + synergies)."),
+              t("Divide entre el total de acciones (viejas + nuevas) y compara con la UPA de antes.", "Divide by total shares (old + new) and compare with EPS before."),
+            ],
+            example: t(
+              "Compradora: utilidad $120 millones, 60 millones de acciones a $25. Objetivo: utilidad $40 millones; se paga $300 millones en acciones. Sinergias $6 millones. UPA antes: 120 ÷ 60 = $2.00. Acciones nuevas: 300 ÷ 25 = 12 millones; total 60 + 12 = 72. Utilidad: 120 + 40 + 6 = 166. UPA: 166 ÷ 72 = **$2.31**: sube, es acretiva.",
+              "Acquirer: earnings $120 million, 60 million shares at $25. Target: earnings $40 million; $300 million is paid in shares. Synergies $6 million. EPS before: 120 ÷ 60 = $2.00. New shares: 300 ÷ 25 = 12 million; total 60 + 12 = 72. Earnings: 120 + 40 + 6 = 166. EPS: 166 ÷ 72 = **$2.31**: it rises, it is accretive.",
+            ),
+            interpret: t(
+              "Si la UPA sube es acretiva; si baja, dilutiva. Atajo sin sinergias: compara el P/U que pagas (precio ÷ utilidad de la objetivo, aquí 300 ÷ 40 = 7.5) con el P/U de tu acción (25 ÷ 2 = 12.5); si pagas menos, la UPA sube.",
+              "If EPS rises it is accretive; if it falls, dilutive. Shortcut without synergies: compare the P/E you pay (price ÷ target earnings, here 300 ÷ 40 = 7.5) with your own share's P/E (25 ÷ 2 = 12.5); if you pay less, EPS rises.",
+            ),
+            mistake: t(
+              "Olvidar sumar las acciones nuevas y dividir solo entre las acciones viejas.",
+              "Forgetting to add the new shares and dividing only by the old shares.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -437,7 +757,7 @@ export const lessons: Lesson[] = [
       "Las empresas que compran, venden o invierten en otras monedas deben entender el tipo de cambio, sus paridades y cómo cubrirse del riesgo cambiario.",
       "Companies that buy, sell or invest in other currencies must understand the exchange rate, its parity relationships and how to hedge currency risk.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Leer cotizaciones de tipo de cambio e identificar apreciación y depreciación del peso.", "Read exchange-rate quotes and identify appreciation and depreciation of the peso."),
       t("Calcular un tipo de cambio a plazo con la paridad de tasas de interés y uno esperado con la paridad del poder de compra relativa.", "Compute a forward exchange rate with interest rate parity and an expected one with relative purchasing power parity."),
@@ -471,6 +791,10 @@ export const lessons: Lesson[] = [
         heading: t("Paridades: tasas de interés y poder de compra", "Parities: interest rates and purchasing power"),
         body: [
           t(
+            "En palabras sencillas: una **paridad** es una regla que conecta el tipo de cambio con otra cosa. La de tasas dice que el dólar \"a plazo\" se ajusta para que dé igual ahorrar en pesos o en dólares. La del poder de compra dice que, con los años, la moneda del país con más inflación pierde valor, porque con ella compras menos.",
+            "In plain words: a **parity** is a rule linking the exchange rate to something else. The interest rate one says the forward dollar adjusts so that saving in pesos or in dollars ends up the same. The purchasing power one says that, over the years, the currency of the country with more inflation loses value, because it buys less.",
+          ),
+          t(
             "La **paridad de tasas de interés cubierta** dice que no puedes ganar dinero gratis invirtiendo en el país con tasa más alta y cubriéndote con un forward. Por eso el forward refleja la diferencia de tasas: si la tasa en pesos es mayor que en dólares, el forward en pesos por dólar es **mayor** que el spot.",
             "**Covered interest rate parity** says you cannot make free money by investing in the higher-rate country and hedging with a forward. That is why the forward reflects the rate difference: if the peso rate is higher than the dollar rate, the forward in pesos per dollar is **higher** than the spot.",
           ),
@@ -483,7 +807,62 @@ export const lessons: Lesson[] = [
             "Mini example (hypothetical): spot 18.00, one-year peso rate 9 % and dollar rate 4 %. The one-year forward is 18 × 1.09 / 1.04 = 18.87. That \"more expensive\" forward dollar is not a forecast: it is the result of the rate difference.",
           ),
         ],
-        formula: "Forward F = S × (1 + i_MXN) / (1 + i_USD);  PPC/PPP: S₁ = S₀ × (1 + π_MXN) / (1 + π_USD)",
+        formulas: [
+          {
+            name: t("Tipo de cambio forward (paridad de tasas de interés cubierta)", "Forward exchange rate (covered interest rate parity)"),
+            expression: "F = S × (1 + i_MXN) ÷ (1 + i_USD)",
+            variables: [
+              { symbol: "F", meaning: t("Tipo de cambio forward: pesos por dólar pactados hoy para una fecha futura.", "Forward rate: pesos per dollar agreed today for a future date.") },
+              { symbol: "S", meaning: t("Tipo de cambio spot (de hoy), en pesos por dólar.", "Spot (today's) rate, in pesos per dollar.") },
+              { symbol: "i_MXN", meaning: t("Tasa de interés en pesos para ese plazo, en decimal (9 % = 0.09).", "Peso interest rate for that term, as a decimal (9% = 0.09).") },
+              { symbol: "i_USD", meaning: t("Tasa de interés en dólares para ese plazo, en decimal (4 % = 0.04).", "Dollar interest rate for that term, as a decimal (4% = 0.04).") },
+            ],
+            steps: [
+              t("Convierte las dos tasas a decimales.", "Convert both rates to decimals."),
+              t("Multiplica el spot por (1 + tasa en pesos): arriba va la moneda en que está la cotización (pesos).", "Multiply the spot by (1 + peso rate): the quoting currency (pesos) goes on top."),
+              t("Divide entre (1 + tasa en dólares).", "Divide by (1 + dollar rate)."),
+            ],
+            example: t(
+              "Spot 19.00, tasa en pesos 8 % y en dólares 3 % (hipotéticas). 19 × 1.08 = 20.52; 20.52 ÷ 1.03 = **19.92 pesos por dólar** a un año.",
+              "Spot 19.00, peso rate 8% and dollar rate 3% (hypothetical). 19 × 1.08 = 20.52; 20.52 ÷ 1.03 = **19.92 pesos per dollar** in one year.",
+            ),
+            interpret: t(
+              "Si la tasa en pesos es mayor, el forward sale mayor que el spot. No es un pronóstico: solo refleja la diferencia de tasas.",
+              "If the peso rate is higher, the forward comes out higher than the spot. It is not a forecast: it only reflects the rate difference.",
+            ),
+            mistake: t(
+              "Invertir la fracción (tasa en dólares arriba), lo que daría un forward menor que el spot.",
+              "Flipping the fraction (dollar rate on top), which would give a forward lower than the spot.",
+            ),
+          },
+          {
+            name: t("Tipo de cambio esperado (paridad del poder de compra relativa)", "Expected exchange rate (relative purchasing power parity)"),
+            expression: "S₁ = S₀ × (1 + π_MXN) ÷ (1 + π_USD)",
+            variables: [
+              { symbol: "S₁", meaning: t("Tipo de cambio esperado dentro de un año, en pesos por dólar.", "Expected exchange rate in one year, in pesos per dollar.") },
+              { symbol: "S₀", meaning: t("Tipo de cambio de hoy, en pesos por dólar.", "Today's exchange rate, in pesos per dollar.") },
+              { symbol: "π_MXN", meaning: t("Inflación esperada en México (cuánto suben los precios), en decimal (5 % = 0.05).", "Expected inflation in Mexico (how much prices rise), as a decimal (5% = 0.05).") },
+              { symbol: "π_USD", meaning: t("Inflación esperada en Estados Unidos, en decimal (3 % = 0.03).", "Expected inflation in the United States, as a decimal (3% = 0.03).") },
+            ],
+            steps: [
+              t("Convierte las inflaciones a decimales.", "Convert the inflation rates to decimals."),
+              t("Multiplica el tipo de cambio de hoy por (1 + inflación de México).", "Multiply today's rate by (1 + Mexico's inflation)."),
+              t("Divide entre (1 + inflación de Estados Unidos).", "Divide by (1 + US inflation)."),
+            ],
+            example: t(
+              "Hoy 18.50, inflación en México 5 % y en Estados Unidos 3 % (hipotéticas). 18.50 × 1.05 = 19.425; 19.425 ÷ 1.03 = **18.86 pesos por dólar** esperados en un año.",
+              "Today 18.50, inflation in Mexico 5% and in the US 3% (hypothetical). 18.50 × 1.05 = 19.425; 19.425 ÷ 1.03 = **18.86 pesos per dollar** expected in one year.",
+            ),
+            interpret: t(
+              "Si México tiene más inflación, S₁ sale mayor: el peso tiende a depreciarse. Funciona mejor a largo plazo que a corto.",
+              "If Mexico has more inflation, S₁ comes out higher: the peso tends to depreciate. It works better in the long run than in the short run.",
+            ),
+            mistake: t(
+              "Restar las inflaciones y aplicar la diferencia (solo es una aproximación) o invertir la fracción.",
+              "Subtracting the inflation rates and applying the difference (only an approximation) or flipping the fraction.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Riesgo cambiario y coberturas", "Currency risk and hedging"),
@@ -500,6 +879,35 @@ export const lessons: Lesson[] = [
             "Cubrirse no es para ganar más, sino para **quitar incertidumbre**. Mini ejemplo: un importador debe USD 100,000 en 90 días y pacta un forward a 18.50: pagará $1,850,000 seguro. Si el spot termina en 19.20 se ahorró $70,000; si termina en 17.80, habría pagado $70,000 menos sin cobertura, pero durmió tranquilo.",
             "Hedging is not about earning more but about **removing uncertainty**. Mini example: an importer owes USD 100,000 in 90 days and agrees a forward at 18.50: it will surely pay $1,850,000. If the spot ends at 19.20 it saved $70,000; if it ends at 17.80, it would have paid $70,000 less without a hedge, but it slept soundly.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Resultado de cubrirse con un forward", "Result of hedging with a forward"),
+            expression: "Pesos con forward = USD × F;  Pesos sin cobertura = USD × Spot al vencimiento;  Diferencia = Pesos con forward − Pesos sin cobertura",
+            variables: [
+              { symbol: "USD", meaning: t("Los dólares que vas a cobrar o a pagar en la fecha futura.", "The dollars you will collect or pay on the future date.") },
+              { symbol: "F", meaning: t("Tipo de cambio forward pactado hoy, en pesos por dólar.", "Forward rate agreed today, in pesos per dollar.") },
+              { symbol: "Spot al vencimiento", meaning: t("El tipo de cambio que realmente hay ese día, en pesos por dólar.", "The exchange rate actually prevailing that day, in pesos per dollar.") },
+              { symbol: "Diferencia", meaning: t("Cuántos pesos de más o de menos te dejó la cobertura frente a no cubrirte.", "How many more or fewer pesos the hedge left you compared with not hedging.") },
+            ],
+            steps: [
+              t("Multiplica los dólares por el forward: son los pesos fijos que recibes o pagas con cobertura.", "Multiply the dollars by the forward: those are the fixed pesos you receive or pay with the hedge."),
+              t("Multiplica los dólares por el spot del vencimiento: lo que habría pasado sin cobertura.", "Multiply the dollars by the spot at maturity: what would have happened without a hedge."),
+              t("Resta y lee el resultado según tu caso: si **cobras** dólares (exportador), te conviene recibir más pesos; si **pagas** dólares (importador), te conviene pagar menos pesos.", "Subtract and read the result for your case: if you **collect** dollars (exporter), you want to receive more pesos; if you **pay** dollars (importer), you want to pay fewer pesos."),
+            ],
+            example: t(
+              "Un exportador cobrará USD 50,000 y pacta un forward a 19.10. Al vencimiento el spot es 19.40. Con forward: 50,000 × 19.10 = $955,000. Sin cobertura: 50,000 × 19.40 = $970,000. Diferencia: 955,000 − 970,000 = −$15,000: esta vez la cobertura **dejó de ganar $15,000**, pero le dio un ingreso seguro.",
+              "An exporter will collect USD 50,000 and agrees a forward at 19.10. At maturity the spot is 19.40. With forward: 50,000 × 19.10 = $955,000. Without hedge: 50,000 × 19.40 = $970,000. Difference: 955,000 − 970,000 = −$15,000: this time the hedge **missed out on $15,000**, but it gave a certain income.",
+            ),
+            interpret: t(
+              "La cobertura no busca ganar: a veces ahorra y a veces deja de ganar. Lo que compras es certeza para presupuestar.",
+              "Hedging does not aim to win: sometimes it saves and sometimes it misses out. What you buy is certainty for budgeting.",
+            ),
+            mistake: t(
+              "Decir que el forward \"perdió\" sin fijarte si cobras o pagas dólares; el mismo movimiento del spot es bueno para uno y malo para el otro.",
+              "Saying the forward \"lost\" without checking whether you collect or pay dollars; the same spot move is good for one and bad for the other.",
+            ),
+          },
         ],
         bullets: [
           t("Transacción: operaciones pendientes en otra moneda.", "Transaction: pending deals in another currency."),
@@ -564,7 +972,7 @@ export const lessons: Lesson[] = [
       "Cuando una empresa ya no puede con su deuda, la reestructuración ajusta plazos, montos y dueños para salvar el negocio viable, por acuerdo privado o por un proceso judicial.",
       "When a company can no longer carry its debt, restructuring adjusts maturities, amounts and owners to save the viable business, through a private agreement or a court process.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Distinguir un problema de liquidez de uno de solvencia y reconocer señales de alerta.", "Distinguish a liquidity problem from a solvency problem and recognize warning signs."),
       t("Calcular razones de apalancamiento y cobertura que usan acreedores y covenants.", "Compute leverage and coverage ratios used by lenders and covenants."),
@@ -588,7 +996,56 @@ export const lessons: Lesson[] = [
             "Other signs: late payments to suppliers, a credit line constantly maxed out, recurring losses and large debt maturities with no refinancing plan. Mini example: with EBIT of $90 and interest of $60, coverage is 1.5 times; a one-third drop in EBIT would leave the company with no margin to pay.",
           ),
         ],
-        formula: "Apalancamiento/Leverage = Deuda neta / EBITDA;  Cobertura/Coverage = EBIT / Intereses",
+        formulas: [
+          {
+            name: t("Apalancamiento: deuda neta / EBITDA", "Leverage: net debt / EBITDA"),
+            expression: "Apalancamiento = Deuda neta ÷ EBITDA",
+            variables: [
+              { symbol: "Apalancamiento", meaning: t("Cuántos años de EBITDA harían falta para pagar la deuda, en \"veces\".", "How many years of EBITDA it would take to repay the debt, in \"times\".") },
+              { symbol: "Deuda neta", meaning: t("Deuda con costo menos efectivo, en pesos.", "Interest-bearing debt minus cash, in pesos.") },
+              { symbol: "EBITDA", meaning: t("Utilidad de operación antes de depreciación y amortización: una medida del efectivo que genera la operación en un año, en pesos.", "Operating profit before depreciation and amortization: a measure of the cash the operation generates in a year, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la deuda neta: deuda con costo − efectivo.", "Compute net debt: interest-bearing debt − cash."),
+              t("Divídela entre el EBITDA del año.", "Divide it by the year's EBITDA."),
+              t("Compara con el límite del covenant: si lo supera, lo incumple.", "Compare with the covenant limit: if it is above it, it is in breach."),
+            ],
+            example: t(
+              "Deuda neta $750 millones y EBITDA $250 millones: 750 ÷ 250 = **3.0 veces**. Con un covenant de máximo 3.5 veces, cumple.",
+              "Net debt $750 million and EBITDA $250 million: 750 ÷ 250 = **3.0 times**. With a covenant of at most 3.5 times, it complies.",
+            ),
+            interpret: t(
+              "Entre más alto, más endeudada está la empresa. Aquí lo malo es pasarse del máximo.",
+              "The higher it is, the more indebted the company. Here the problem is going above the maximum.",
+            ),
+          },
+          {
+            name: t("Cobertura de intereses", "Interest coverage"),
+            expression: "Cobertura = EBIT ÷ Intereses",
+            variables: [
+              { symbol: "Cobertura", meaning: t("Cuántas veces alcanza la utilidad de operación para pagar los intereses, en \"veces\".", "How many times operating profit covers interest, in \"times\".") },
+              { symbol: "EBIT", meaning: t("Utilidad de operación, antes de intereses e impuestos, en pesos.", "Operating profit, before interest and taxes, in pesos.") },
+              { symbol: "Intereses", meaning: t("Gasto por intereses de la deuda en el año, en pesos.", "Interest expense on debt for the year, in pesos.") },
+            ],
+            steps: [
+              t("Toma el EBIT (no la utilidad neta).", "Take EBIT (not net income)."),
+              t("Divídelo entre los intereses del año.", "Divide it by the year's interest."),
+              t("Compara con el mínimo del covenant: si queda abajo, lo incumple.", "Compare with the covenant minimum: if it is below, it is in breach."),
+            ],
+            example: t(
+              "EBIT $150 millones e intereses $60 millones: 150 ÷ 60 = **2.5 veces**. Si el contrato pide mínimo 3.0, incumple.",
+              "EBIT $150 million and interest $60 million: 150 ÷ 60 = **2.5 times**. If the contract requires at least 3.0, it is in breach.",
+            ),
+            interpret: t(
+              "Entre más alta, más holgura para pagar. Cerca de 1 vez significa que casi toda la utilidad se va en intereses.",
+              "The higher it is, the more room to pay. Close to 1 time means almost all profit goes to interest.",
+            ),
+            mistake: t(
+              "Dividir al revés (intereses ÷ EBIT) o usar la utilidad neta en lugar del EBIT.",
+              "Dividing the other way around (interest ÷ EBIT) or using net income instead of EBIT.",
+            ),
+          },
+        ],
         bullets: [
           t("Liquidez: falta efectivo a corto plazo, pero el negocio es viable.", "Liquidity: short-term cash shortage, but the business is viable."),
           t("Solvencia: la deuda supera lo que el negocio vale o puede generar.", "Solvency: debt exceeds what the business is worth or can generate."),
@@ -610,6 +1067,54 @@ export const lessons: Lesson[] = [
             "Mini ejemplo: una empresa con deuda neta de $900 y EBITDA de $150 está en 6 veces, pero su covenant pide máximo 4 veces. Para cumplir necesita bajar la deuda a 4 × 150 = $600: puede vender activos, capitalizar $300 de deuda o combinar ambas.",
             "Mini example: a company with net debt of $900 and EBITDA of $150 is at 6 times, but its covenant requires at most 4 times. To comply it must cut debt to 4 × 150 = $600: it can sell assets, swap $300 of debt for equity or combine both.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Apalancamiento después de vender un activo", "Leverage after selling an asset"),
+            expression: "Nueva razón = (Deuda neta − Dinero de la venta) ÷ (EBITDA − EBITDA del activo vendido)",
+            variables: [
+              { symbol: "Nueva razón", meaning: t("Deuda neta/EBITDA después de la venta, en \"veces\".", "Net debt/EBITDA after the sale, in \"times\".") },
+              { symbol: "Deuda neta", meaning: t("La deuda neta antes de la venta, en pesos.", "Net debt before the sale, in pesos.") },
+              { symbol: "Dinero de la venta", meaning: t("Lo que se recibe por el activo y se usa para pagar deuda, en pesos.", "What is received for the asset and used to repay debt, in pesos.") },
+              { symbol: "EBITDA del activo vendido", meaning: t("El EBITDA que aportaba el activo y que se pierde al venderlo, en pesos.", "The EBITDA the asset contributed, which is lost when it is sold, in pesos.") },
+            ],
+            steps: [
+              t("Resta a la deuda neta el dinero de la venta.", "Subtract the sale proceeds from net debt."),
+              t("Resta al EBITDA lo que aportaba el activo vendido.", "Subtract the sold asset's contribution from EBITDA."),
+              t("Divide la nueva deuda entre el nuevo EBITDA y compara con el covenant.", "Divide the new debt by the new EBITDA and compare with the covenant."),
+            ],
+            example: t(
+              "Deuda neta $1,200 y EBITDA $240 (5.0 veces). Se vende un activo en $400 que aportaba $40 de EBITDA. Deuda: 1,200 − 400 = 800. EBITDA: 240 − 40 = 200. Razón: 800 ÷ 200 = **4.0 veces**.",
+              "Net debt $1,200 and EBITDA $240 (5.0 times). An asset is sold for $400 that contributed $40 of EBITDA. Debt: 1,200 − 400 = 800. EBITDA: 240 − 40 = 200. Ratio: 800 ÷ 200 = **4.0 times**.",
+            ),
+            mistake: t(
+              "Olvidar restar el EBITDA del activo vendido; exagera la mejora.",
+              "Forgetting to subtract the sold asset's EBITDA; it exaggerates the improvement.",
+            ),
+          },
+          {
+            name: t("Capitalización de deuda: cuánto de la empresa reciben los acreedores", "Debt-for-equity swap: how much of the company creditors receive"),
+            expression: "Acciones nuevas = Deuda convertida ÷ Precio por acción;  % acreedores = Acciones nuevas ÷ (Acciones existentes + Acciones nuevas) × 100",
+            variables: [
+              { symbol: "Deuda convertida", meaning: t("La deuda que los acreedores cambian por acciones, en pesos.", "The debt creditors exchange for shares, in pesos.") },
+              { symbol: "Precio por acción", meaning: t("A cuánto se valúa cada acción nueva en el canje, en pesos.", "The value given to each new share in the swap, in pesos.") },
+              { symbol: "Acciones existentes", meaning: t("Las acciones que ya tenían los dueños actuales.", "The shares the current owners already had.") },
+              { symbol: "% acreedores", meaning: t("El porcentaje de la empresa que pasa a manos de los acreedores.", "The percentage of the company that passes to the creditors.") },
+            ],
+            steps: [
+              t("Si no te dan las acciones nuevas, calcúlalas: deuda convertida ÷ precio por acción.", "If you are not given the new shares, compute them: debt converted ÷ price per share."),
+              t("Suma acciones existentes + nuevas para obtener el total.", "Add existing + new shares to get the total."),
+              t("Divide las acciones nuevas entre el total y multiplica por 100.", "Divide the new shares by the total and multiply by 100."),
+            ],
+            example: t(
+              "Hay 40 millones de acciones; los acreedores convierten $300 millones a $10 por acción. Nuevas: 300 ÷ 10 = 30 millones. Total: 40 + 30 = 70 millones. Acreedores: 30 ÷ 70 = 0.4286 → **42.86 %**. Si esa deuda pagaba 10 % anual, se ahorran 300 × 0.10 = $30 millones de intereses al año.",
+              "There are 40 million shares; creditors convert $300 million at $10 per share. New: 300 ÷ 10 = 30 million. Total: 40 + 30 = 70 million. Creditors: 30 ÷ 70 = 0.4286 → **42.86%**. If that debt paid 10% a year, $30 million of interest a year is saved.",
+            ),
+            mistake: t(
+              "Dividir las acciones nuevas solo entre las acciones viejas en lugar del total.",
+              "Dividing the new shares by the old shares only instead of the total.",
+            ),
+          },
         ],
         bullets: [
           t("Refinanciar: más plazo, periodo de gracia o menor tasa.", "Refinance: longer term, grace period or lower rate."),
@@ -634,7 +1139,32 @@ export const lessons: Lesson[] = [
             "Mini example: the assets are sold for $500; secured debt is $300 and unsecured debt $400. Secured creditors collect the full $300; $200 is left for $400 of unsecured claims, which recover 50 %; shareholders get $0.",
           ),
         ],
-        formula: "% Recuperación quirografarios / Unsecured recovery % = (Valor disponible − Deuda garantizada pagada) / Deuda quirografaria × 100",
+        formulas: [
+          {
+            name: t("Reparto por orden de prelación (simplificado)", "Distribution by priority order (simplified)"),
+            expression: "% Recuperación quirografarios = (Valor disponible − Deuda garantizada pagada) ÷ Deuda quirografaria × 100",
+            variables: [
+              { symbol: "Valor disponible", meaning: t("Lo que se obtiene al vender los bienes, en pesos.", "What is obtained from selling the assets, in pesos.") },
+              { symbol: "Deuda garantizada pagada", meaning: t("Lo que cobran primero los acreedores con garantía (hasta lo que se les debe), en pesos.", "What secured creditors collect first (up to what they are owed), in pesos.") },
+              { symbol: "Deuda quirografaria", meaning: t("Deuda sin garantía, como la de muchos proveedores, en pesos.", "Unsecured debt, such as many suppliers', in pesos.") },
+              { symbol: "% Recuperación quirografarios", meaning: t("Qué porcentaje de lo que se les debe cobran los acreedores sin garantía (máximo 100 %).", "What percentage of what they are owed unsecured creditors collect (100% at most).") },
+            ],
+            steps: [
+              t("Paga primero a los garantizados: lo que se les debe, si alcanza el valor disponible.", "First pay secured creditors: what they are owed, if the available value is enough."),
+              t("Calcula lo que sobra: valor disponible − deuda garantizada pagada.", "Compute what is left: available value − secured debt paid."),
+              t("Divide lo que sobra entre la deuda quirografaria y multiplica por 100 (si sobra más de lo que se debe, cobran 100 %).", "Divide what is left by the unsecured debt and multiply by 100 (if more is left than owed, they collect 100%)."),
+              t("Lo que quede después de pagar todas las deudas es para los accionistas; casi siempre es $0.", "Whatever remains after paying all debts goes to shareholders; it is almost always $0."),
+            ],
+            example: t(
+              "Los bienes se venden en $900; deuda garantizada $500 y quirografaria $1,000. Garantizados cobran $500. Sobran 900 − 500 = $400. Quirografarios: 400 ÷ 1,000 = 0.40 → **40 %**. Accionistas: $0.",
+              "Assets are sold for $900; secured debt $500 and unsecured debt $1,000. Secured creditors collect $500. Left: 900 − 500 = $400. Unsecured: 400 ÷ 1,000 = 0.40 → **40%**. Shareholders: $0.",
+            ),
+            mistake: t(
+              "Repartir todo a prorrata entre todas las deudas, ignorando que los garantizados cobran primero.",
+              "Splitting everything pro rata across all debts, ignoring that secured creditors are paid first.",
+            ),
+          },
+        ],
       },
     ],
     examples: [

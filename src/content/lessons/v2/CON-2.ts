@@ -20,7 +20,7 @@ export const lessons: Lesson[] = [
       "La contabilidad internacional te enseña a registrar operaciones en otras monedas, a convertir los estados de una filial extranjera a pesos y a entender por qué no todos los países usan las mismas reglas.",
       "International accounting teaches you to record transactions in other currencies, to translate a foreign subsidiary's statements into pesos and to understand why not every country uses the same rules.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Distinguir la moneda de registro, la moneda funcional y la moneda de informe de una empresa.", "Distinguish a company's recording currency, functional currency and reporting currency."),
       t("Registrar operaciones en moneda extranjera y calcular la diferencia cambiaria al pagar o al cierre.", "Record foreign-currency transactions and compute the exchange difference on payment or at closing."),
@@ -66,24 +66,111 @@ export const lessons: Lesson[] = [
             "Las **partidas no monetarias** (inventarios, maquinaria, anticipos que no se devolverán en efectivo) se quedan al **tipo de cambio histórico**, el del día en que se compraron. Mini ejemplo: compras una máquina por USD 1,000 a $18.00: queda en $18,000 aunque el dólar suba después.",
             "**Non-monetary items** (inventory, machinery, advances that will not be refunded in cash) stay at the **historical rate**, the one on the day they were bought. Mini example: you buy a machine for USD 1,000 at $18.00: it stays at $18,000 even if the dollar rises later.",
           ),
+          t(
+            "¿Por qué cambia una deuda en dólares? Piensa en tu tarjeta de crédito: si debes 100 dólares y el dólar pasa de $17 a $18, ahora necesitas $1,800 en lugar de $1,700 para pagar lo mismo. Debes los mismos dólares, pero más pesos: eso es una **pérdida cambiaria**. Si el dólar baja, necesitas menos pesos: **ganancia cambiaria**. Con algo que te deben a ti (un cliente en dólares) pasa al revés.",
+            "Why does a dollar debt change? Think of your credit card: if you owe 100 dollars and the dollar goes from $17 to $18, you now need $1,800 instead of $1,700 to pay the same thing. You owe the same dollars but more pesos: that is an **exchange loss**. If the dollar falls, you need fewer pesos: an **exchange gain**. With something owed to you (a customer in dollars) it works the other way around.",
+          ),
         ],
-        formula: "Diferencia cambiaria = Monto en moneda extranjera × (TC nuevo − TC anterior)",
+        formulas: [
+          {
+            name: t("Pasar una operación en moneda extranjera a pesos", "Converting a foreign-currency transaction into pesos"),
+            expression: "Monto en pesos = Monto en moneda extranjera × TC del día",
+            variables: [
+              { symbol: "Monto en pesos", meaning: t("Lo que anotas en tus libros, en pesos.", "What you write in your books, in pesos.") },
+              { symbol: "Monto en moneda extranjera", meaning: t("La cantidad de la factura en dólares, euros, etc. (por ejemplo, USD 1,500).", "The invoice amount in dollars, euros, etc. (for example, USD 1,500).") },
+              { symbol: "TC del día", meaning: t("Tipo de cambio: cuántos pesos vale 1 dólar (o 1 euro) el día de la operación o el día en que pagas.", "Exchange rate: how many pesos 1 dollar (or 1 euro) is worth on the transaction date or the day you pay.") },
+            ],
+            steps: [
+              t("Ubica el monto en moneda extranjera de la factura.", "Find the foreign-currency amount on the invoice."),
+              t("Usa el tipo de cambio del día que te interesa: el de la compra para registrarla, o el del pago para saber cuántos pesos salen al liquidar.", "Use the exchange rate of the day you care about: the purchase date to record it, or the payment date to know how many pesos go out on settlement."),
+              t("Multiplica: monto en moneda extranjera × tipo de cambio = pesos.", "Multiply: foreign-currency amount × exchange rate = pesos."),
+            ],
+            example: t(
+              "Compras mercancía por USD 1,500 cuando el dólar está en $18.40: 1,500 × 18.40 = **$27,600**. Ese es el pasivo con el proveedor que anotas en pesos.",
+              "You buy goods for USD 1,500 when the dollar is at $18.40: 1,500 × 18.40 = **$27,600**. That is the payable you record in pesos.",
+            ),
+            mistake: t(
+              "Usar el tipo de cambio de hoy para registrar una compra de hace días. El registro inicial siempre va al tipo de cambio del día de la operación.",
+              "Using today's rate to record a purchase made days ago. The initial entry always uses the rate of the transaction date.",
+            ),
+          },
+          {
+            name: t("Diferencia cambiaria (ganancia o pérdida)", "Exchange difference (gain or loss)"),
+            expression: "Diferencia cambiaria = Monto en moneda extranjera × (TC nuevo − TC anterior)",
+            variables: [
+              { symbol: "Diferencia cambiaria", meaning: t("Cuántos pesos cambió el saldo solo porque se movió el tipo de cambio.", "How many pesos the balance changed just because the exchange rate moved.") },
+              { symbol: "Monto en moneda extranjera", meaning: t("Los dólares (o euros) que todavía te deben o que debes; es una partida monetaria.", "The dollars (or euros) still owed to you or that you owe; it is a monetary item.") },
+              { symbol: "TC nuevo", meaning: t("El tipo de cambio del día del pago o del cierre de mes, en pesos por dólar.", "The exchange rate on the payment date or at month-end, in pesos per dollar.") },
+              { symbol: "TC anterior", meaning: t("El tipo de cambio con el que estaba registrado el saldo, en pesos por dólar.", "The exchange rate the balance was recorded at, in pesos per dollar.") },
+            ],
+            steps: [
+              t("Confirma que la partida es monetaria (banco, cliente, proveedor o préstamo en moneda extranjera); las no monetarias no se actualizan.", "Confirm the item is monetary (bank, receivable, payable or loan in foreign currency); non-monetary items are not remeasured."),
+              t("Resta los tipos de cambio: TC nuevo − TC anterior.", "Subtract the exchange rates: new rate − previous rate."),
+              t("Multiplica esa diferencia por el monto en moneda extranjera.", "Multiply that difference by the foreign-currency amount."),
+              t("Decide si es ganancia o pérdida: si es algo que te deben (cliente, banco), que el dólar suba es ganancia; si es algo que debes (proveedor, préstamo), que el dólar suba es pérdida. Si el dólar baja, todo se invierte.", "Decide whether it is a gain or a loss: for something owed to you (receivable, bank), a rising dollar is a gain; for something you owe (payable, loan), a rising dollar is a loss. If the dollar falls, everything flips."),
+            ],
+            example: t(
+              "Un cliente te debe USD 4,000 registrados a $18.00 y al cierre el dólar está en $17.70. Diferencia de tipos: 17.70 − 18.00 = −0.30. Multiplica: 4,000 × (−0.30) = −$1,200. Tu derecho de cobro ahora vale $1,200 menos: **pérdida cambiaria de $1,200**.",
+              "A customer owes you USD 4,000 recorded at $18.00 and at closing the dollar is at $17.70. Rate difference: 17.70 − 18.00 = −0.30. Multiply: 4,000 × (−0.30) = −$1,200. Your receivable is now worth $1,200 less: **an exchange loss of $1,200**.",
+            ),
+            interpret: t(
+              "La ganancia o pérdida cambiaria va al estado de resultados del periodo. Pregúntate siempre: ¿ahora recibo (o pago) más pesos o menos pesos que antes?",
+              "The exchange gain or loss goes to the period's income statement. Always ask yourself: do I now receive (or pay) more pesos or fewer pesos than before?",
+            ),
+            mistake: t(
+              "Multiplicar los dólares por el tipo de cambio nuevo completo en lugar de solo por la diferencia, o pensar que \"el dólar bajó\" siempre es pérdida: con una deuda en dólares, que baje te favorece.",
+              "Multiplying the dollars by the full new rate instead of only by the difference, or thinking that \"the dollar fell\" is always a loss: with a dollar debt, a falling dollar helps you.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Conversión de una subsidiaria extranjera y armonización", "Translating a foreign subsidiary and harmonization"),
         body: [
           t(
-            "Si tu empresa mexicana tiene una filial en Texas cuya moneda funcional es el dólar, antes de juntar sus números con los tuyos debes **convertir** sus estados a pesos. La regla general: **activos y pasivos** al tipo de cambio de **cierre**; **ingresos y gastos** al tipo de cambio de cada operación (se acepta un **promedio** si se parece); y el **capital aportado** a tipo de cambio **histórico**.",
-            "If your Mexican company has a subsidiary in Texas whose functional currency is the dollar, before combining its numbers with yours you must **translate** its statements into pesos. The general rule: **assets and liabilities** at the **closing** rate; **revenue and expenses** at each transaction's rate (an **average** is accepted if it is close); and **contributed capital** at the **historical** rate.",
+            "En palabras sencillas: convertir es \"traducir\" a pesos los números de una filial que lleva sus cuentas en otra moneda. Si tu empresa mexicana tiene una filial en Texas cuya moneda funcional es el dólar, antes de juntar sus números con los tuyos debes **convertir** sus estados a pesos. La regla general: **activos y pasivos** al tipo de cambio de **cierre**; **ingresos y gastos** al tipo de cambio de cada operación (se acepta un **promedio** si se parece); y el **capital aportado** a tipo de cambio **histórico**.",
+            "In plain words: translating means \"converting\" into pesos the numbers of a subsidiary that keeps its books in another currency. If your Mexican company has a subsidiary in Texas whose functional currency is the dollar, before combining its numbers with yours you must **translate** its statements into pesos. The general rule: **assets and liabilities** at the **closing** rate; **revenue and expenses** at each transaction's rate (an **average** is accepted if it is close); and **contributed capital** at the **historical** rate.",
           ),
           t(
-            "Como cada partida usa un tipo de cambio distinto, aparece una diferencia: el **efecto por conversión**. No va al estado de resultados del año, sino a **otros resultados integrales (ORI)**, dentro del capital, hasta que se vende la filial.",
-            "Because each item uses a different rate, a difference appears: the **translation effect**. It does not go to the year's income statement but to **other comprehensive income (OCI)**, within equity, until the subsidiary is sold.",
+            "Como cada partida usa un tipo de cambio distinto, aparece una diferencia: el **efecto por conversión**. No va al estado de resultados del año, sino a **otros resultados integrales (ORI)**, dentro del capital, hasta que se vende la filial. ORI es un apartado del capital donde se guardan ganancias o pérdidas que todavía no se han hecho realidad en efectivo.",
+            "Because each item uses a different rate, a difference appears: the **translation effect**. It does not go to the year's income statement but to **other comprehensive income (OCI)**, within equity, until the subsidiary is sold. OCI is a section of equity that holds gains or losses that have not yet turned into real cash.",
           ),
           t(
             "¿Por qué no hay una sola contabilidad mundial? Cada país desarrolló sus reglas. Hoy muchos países usan las **NIIF (IFRS)**, Estados Unidos usa **US GAAP** y México tiene sus **NIF**, muy cercanas a las NIIF. Mini ejemplo: una empresa mexicana que cotiza en bolsa reporta en NIIF, mientras su proveedor pequeño usa NIF.",
             "Why is there no single world accounting? Each country developed its own rules. Today many countries use **IFRS**, the United States uses **US GAAP** and Mexico has its **NIF**, very close to IFRS. Mini example: a listed Mexican company reports under IFRS, while its small supplier uses NIF.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Efecto por conversión de una filial nueva (sin utilidades)", "Translation effect of a new subsidiary (no profits yet)"),
+            expression: "Efecto por conversión = (Activos − Pasivos) × TC de cierre − Capital aportado × TC histórico",
+            variables: [
+              { symbol: "Efecto por conversión", meaning: t("La diferencia en pesos que aparece solo por usar tipos de cambio distintos; va a ORI.", "The difference in pesos that appears only because different rates are used; it goes to OCI.") },
+              { symbol: "Activos", meaning: t("Todo lo que tiene la filial, en dólares.", "Everything the subsidiary owns, in dollars.") },
+              { symbol: "Pasivos", meaning: t("Todo lo que debe la filial, en dólares.", "Everything the subsidiary owes, in dollars.") },
+              { symbol: "TC de cierre", meaning: t("Pesos por dólar el último día del periodo.", "Pesos per dollar on the last day of the period.") },
+              { symbol: "Capital aportado", meaning: t("Los dólares que pusieron los dueños para crear la filial.", "The dollars the owners put in to create the subsidiary.") },
+              { symbol: "TC histórico", meaning: t("Pesos por dólar el día en que se aportó ese capital.", "Pesos per dollar on the day that capital was contributed.") },
+            ],
+            steps: [
+              t("Calcula los activos netos en dólares: Activos − Pasivos.", "Compute net assets in dollars: Assets − Liabilities."),
+              t("Conviértelos a pesos con el tipo de cambio de cierre.", "Translate them into pesos at the closing rate."),
+              t("Convierte el capital aportado con el tipo de cambio histórico.", "Translate contributed capital at the historical rate."),
+              t("Resta: activos netos en pesos − capital en pesos. Esa diferencia es el efecto por conversión.", "Subtract: net assets in pesos − capital in pesos. That difference is the translation effect."),
+            ],
+            example: t(
+              "Una filial se creó con USD 10,000 cuando el dólar valía $17.50. Al cierre tiene activos por USD 25,000 y pasivos por USD 15,000, y el dólar está en $18.20. Activos netos: 25,000 − 15,000 = USD 10,000. En pesos: 10,000 × 18.20 = $182,000. Capital: 10,000 × 17.50 = $175,000. Efecto: 182,000 − 175,000 = **$7,000 favorable**.",
+              "A subsidiary was set up with USD 10,000 when the dollar was worth $17.50. At closing it has assets of USD 25,000 and liabilities of USD 15,000, and the dollar is at $18.20. Net assets: 25,000 − 15,000 = USD 10,000. In pesos: 10,000 × 18.20 = $182,000. Capital: 10,000 × 17.50 = $175,000. Effect: 182,000 − 175,000 = **$7,000 favorable**.",
+            ),
+            interpret: t(
+              "Positivo: efecto favorable (el dólar subió frente a cuando invertiste). Negativo: efecto desfavorable. En ambos casos se presenta en ORI, no en la utilidad del año.",
+              "Positive: favorable effect (the dollar rose compared with when you invested). Negative: unfavorable effect. Either way it is presented in OCI, not in the year's profit.",
+            ),
+            mistake: t(
+              "Mandar el efecto por conversión al estado de resultados como si fuera la diferencia cambiaria de un proveedor en dólares.",
+              "Sending the translation effect to the income statement as if it were the exchange difference on a dollar payable.",
+            ),
+          },
         ],
         bullets: [
           t("NIIF prohíben el método UEPS (LIFO) para inventarios; US GAAP lo permite.", "IFRS prohibits the LIFO inventory method; US GAAP allows it."),
@@ -154,7 +241,7 @@ export const lessons: Lesson[] = [
       "La contabilidad gubernamental registra al mismo tiempo el presupuesto y el patrimonio de los entes públicos, siguiendo los momentos contables del ingreso y del egreso, para rendir cuentas a la ciudadanía.",
       "Government accounting records public entities' budget and net worth at the same time, following the accounting moments of revenue and expenditure, so they are accountable to citizens.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar en qué se diferencia la contabilidad gubernamental de la de una empresa privada.", "Explain how government accounting differs from that of a private company."),
       t("Ordenar y aplicar los momentos contables del egreso y del ingreso.", "Order and apply the accounting moments of expenditure and revenue."),
@@ -194,8 +281,78 @@ export const lessons: Lesson[] = [
             "Mini ejemplo: un municipio firma en marzo un contrato por 5 patrullas (comprometido), las recibe en mayo (devengado), autoriza la orden de pago (ejercido) y transfiere en junio (pagado).",
             "Mini example: a municipality signs a contract for 5 patrol cars in March (committed), receives them in May (accrued), authorizes the payment order (exercised) and transfers the money in June (paid).",
           ),
+          t(
+            "Los dos primeros momentos son el \"techo\" de gasto. **Aprobado** es lo que autorizó el Congreso o el cabildo al inicio del año. **Modificado** es ese mismo monto después de los cambios autorizados: **ampliaciones** (le dan más dinero a la partida) y **reducciones** (le quitan). Piensa en tu quincena: lo aprobado es tu sueldo; si te dan un bono es una ampliación, y si te descuentan algo es una reducción.",
+            "The first two moments are the spending \"ceiling\". **Approved** is what Congress or the town council authorized at the start of the year. **Modified** is that same amount after authorized changes: **increases** (the line gets more money) and **reductions** (money is taken away). Think of your paycheck: the approved amount is your salary; a bonus is an increase and a deduction is a reduction.",
+          ),
         ],
-        formula: "Presupuesto modificado = Aprobado + Ampliaciones − Reducciones",
+        formulas: [
+          {
+            name: t("Presupuesto modificado", "Modified budget"),
+            expression: "Presupuesto modificado = Aprobado + Ampliaciones − Reducciones",
+            variables: [
+              { symbol: "Presupuesto modificado", meaning: t("El techo real de gasto de la partida después de los ajustes, en pesos.", "The line's real spending ceiling after adjustments, in pesos.") },
+              { symbol: "Aprobado", meaning: t("Lo autorizado al inicio del año, en pesos.", "What was authorized at the start of the year, in pesos.") },
+              { symbol: "Ampliaciones", meaning: t("Aumentos autorizados durante el año, en pesos.", "Authorized increases during the year, in pesos.") },
+              { symbol: "Reducciones", meaning: t("Recortes autorizados durante el año, en pesos.", "Authorized cuts during the year, in pesos.") },
+            ],
+            steps: [
+              t("Parte del presupuesto aprobado.", "Start from the approved budget."),
+              t("Súmale las ampliaciones.", "Add the increases."),
+              t("Réstale las reducciones: el resultado es el modificado.", "Subtract the reductions: the result is the modified budget."),
+            ],
+            example: t(
+              "Aprobado $800,000, ampliación $150,000 y reducción $30,000. 800,000 + 150,000 = 950,000; 950,000 − 30,000 = **$920,000** de presupuesto modificado.",
+              "Approved $800,000, increase $150,000 and reduction $30,000. 800,000 + 150,000 = 950,000; 950,000 − 30,000 = **$920,000** modified budget.",
+            ),
+            mistake: t(
+              "Restar el comprometido o el pagado. Esos son avances del gasto, no cambios al presupuesto.",
+              "Subtracting the committed or paid amounts. Those are spending progress, not budget changes.",
+            ),
+          },
+          {
+            name: t("Disponible por comprometer", "Available to commit"),
+            expression: "Disponible por comprometer = Presupuesto modificado − Comprometido",
+            variables: [
+              { symbol: "Disponible por comprometer", meaning: t("Lo que todavía se puede apartar con nuevos contratos o pedidos, en pesos.", "What can still be set aside with new contracts or orders, in pesos.") },
+              { symbol: "Presupuesto modificado", meaning: t("El techo de gasto ya ajustado, en pesos.", "The adjusted spending ceiling, in pesos.") },
+              { symbol: "Comprometido", meaning: t("Lo ya apartado con contratos o pedidos firmados, en pesos.", "What has already been set aside with signed contracts or orders, in pesos.") },
+            ],
+            steps: [
+              t("Calcula primero el presupuesto modificado.", "First compute the modified budget."),
+              t("Réstale todo lo comprometido.", "Subtract everything committed."),
+            ],
+            example: t(
+              "Con un modificado de $920,000 y $610,000 comprometidos: 920,000 − 610,000 = **$310,000** disponibles para nuevos contratos.",
+              "With a modified budget of $920,000 and $610,000 committed: 920,000 − 610,000 = **$310,000** available for new contracts.",
+            ),
+            mistake: t(
+              "Restar contra el aprobado original en lugar del modificado.",
+              "Subtracting from the original approved budget instead of the modified one.",
+            ),
+          },
+          {
+            name: t("Devengado no pagado (lo que se debe a proveedores)", "Accrued but unpaid (what is owed to suppliers)"),
+            expression: "Devengado no pagado = Devengado − Pagado",
+            variables: [
+              { symbol: "Devengado no pagado", meaning: t("Bienes o servicios ya recibidos que aún no se pagan; es una cuenta por pagar, en pesos.", "Goods or services already received but not yet paid; it is a payable, in pesos.") },
+              { symbol: "Devengado", meaning: t("Lo que los proveedores ya entregaron, en pesos.", "What suppliers have already delivered, in pesos.") },
+              { symbol: "Pagado", meaning: t("Lo que ya salió del banco, en pesos.", "What has already left the bank, in pesos.") },
+            ],
+            steps: [
+              t("Toma el total devengado (lo ya recibido).", "Take the total accrued (what has been received)."),
+              t("Réstale lo pagado: el resultado es la deuda con proveedores.", "Subtract what was paid: the result is the debt to suppliers."),
+            ],
+            example: t(
+              "Se han devengado $480,000 y pagado $350,000: 480,000 − 350,000 = **$130,000** pendientes de pago.",
+              "$480,000 has been accrued and $350,000 paid: 480,000 − 350,000 = **$130,000** still to be paid.",
+            ),
+            mistake: t(
+              "Restar el pagado del comprometido. Lo comprometido aún no se recibe, así que todavía no es una deuda.",
+              "Subtracting paid from committed. Committed amounts have not been received yet, so they are not a debt yet.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Clasificadores, estados e información pública", "Classifications, statements and public information"),
@@ -281,7 +438,7 @@ export const lessons: Lesson[] = [
       "Un sistema de información contable convierte documentos en reportes confiables gracias a personas, procesos, software y controles, y el cierre contable asegura que cada periodo quede completo, conciliado y bloqueado.",
       "An accounting information system turns documents into reliable reports through people, processes, software and controls, and the period-end close ensures each period is complete, reconciled and locked.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Identificar los componentes de un sistema de información contable y su flujo de entrada, proceso y salida.", "Identify the components of an accounting information system and its input, processing and output flow."),
       t("Explicar los controles básicos de un sistema contable y la idea de la contabilidad electrónica en México.", "Explain the basic controls of an accounting system and the idea of electronic accounting in Mexico."),
@@ -344,8 +501,83 @@ export const lessons: Lesson[] = [
             "En el **cierre anual** además se cancelan las **cuentas de resultados** (ingresos, costos y gastos) contra la cuenta de **utilidad del ejercicio**, para que el año siguiente empiecen en cero. Las cuentas de balance (bancos, clientes, proveedores) **no** se cancelan: sus saldos pasan al siguiente año. Mini ejemplo: si al 31 de diciembre las ventas suman $500,000, se cargan por $500,000 para dejarlas en cero.",
             "At **year-end** the **income statement accounts** (revenue, costs and expenses) are also closed against the **profit for the year** account, so they start at zero the next year. Balance sheet accounts (bank, receivables, payables) are **not** closed: their balances carry over to the next year. Mini example: if sales total $500,000 at December 31, they are debited for $500,000 to bring them to zero.",
           ),
+          t(
+            "¿Por qué casi nunca coinciden tu saldo y el del banco? Por los tiempos. Un **depósito en tránsito** es dinero que tú ya anotaste pero el banco todavía no refleja (lo depositaste el último día en la tarde). Un **cheque en tránsito** es un cheque que ya diste y anotaste, pero el proveedor aún no lo cobra. Y hay cargos que el banco ya hizo y tú no has anotado, como una **comisión**. La conciliación corrige cada lado hasta que los dos saldos sean iguales.",
+            "Why do your balance and the bank's almost never match? Timing. A **deposit in transit** is money you already recorded but the bank does not show yet (you deposited it late on the last day). An **outstanding check** is a check you already issued and recorded, but the supplier has not cashed yet. And there are charges the bank already made that you have not recorded, such as a **fee**. The reconciliation corrects each side until both balances are equal.",
+          ),
         ],
-        formula: "Saldo conciliado = Saldo banco + Depósitos en tránsito − Cheques en tránsito",
+        formulas: [
+          {
+            name: t("Saldo ajustado según el banco", "Adjusted balance per bank"),
+            expression: "Saldo ajustado banco = Saldo del estado de cuenta + Depósitos en tránsito − Cheques en tránsito",
+            variables: [
+              { symbol: "Saldo ajustado banco", meaning: t("Lo que de verdad tienes en el banco, ya corregido, en pesos.", "What you really have in the bank, once corrected, in pesos.") },
+              { symbol: "Saldo del estado de cuenta", meaning: t("El saldo que muestra el banco al cierre, en pesos.", "The balance the bank shows at closing, in pesos.") },
+              { symbol: "Depósitos en tránsito", meaning: t("Depósitos que ya anotaste pero el banco aún no registra, en pesos.", "Deposits you already recorded but the bank has not yet, in pesos.") },
+              { symbol: "Cheques en tránsito", meaning: t("Cheques que ya emitiste pero nadie ha cobrado, en pesos.", "Checks you already issued that no one has cashed yet, in pesos.") },
+            ],
+            steps: [
+              t("Parte del saldo del estado de cuenta del banco.", "Start from the bank statement balance."),
+              t("Suma los depósitos en tránsito: ese dinero ya es tuyo.", "Add the deposits in transit: that money is already yours."),
+              t("Resta los cheques en tránsito: ese dinero ya no es tuyo aunque el banco no lo haya descontado.", "Subtract the outstanding checks: that money is no longer yours even if the bank has not deducted it."),
+            ],
+            example: t(
+              "El banco muestra $38,000, hay un depósito en tránsito de $4,000 y un cheque no cobrado de $6,500. 38,000 + 4,000 = 42,000; 42,000 − 6,500 = **$35,500**.",
+              "The bank shows $38,000, there is a deposit in transit of $4,000 and an uncashed check of $6,500. 38,000 + 4,000 = 42,000; 42,000 − 6,500 = **$35,500**.",
+            ),
+            mistake: t(
+              "Sumar el cheque en tránsito en lugar de restarlo.",
+              "Adding the outstanding check instead of subtracting it.",
+            ),
+          },
+          {
+            name: t("Saldo ajustado según libros", "Adjusted balance per books"),
+            expression: "Saldo ajustado libros = Saldo en libros − Cargos del banco no registrados + Abonos del banco no registrados",
+            variables: [
+              { symbol: "Saldo ajustado libros", meaning: t("Tu saldo contable ya corregido, en pesos; debe ser igual al saldo ajustado del banco.", "Your corrected book balance, in pesos; it must equal the adjusted bank balance.") },
+              { symbol: "Saldo en libros", meaning: t("El saldo de Bancos en tu contabilidad, en pesos.", "The Bank balance in your accounting, in pesos.") },
+              { symbol: "Cargos del banco no registrados", meaning: t("Lo que el banco ya te cobró y tú no has anotado: comisiones, intereses cobrados, en pesos.", "What the bank already charged you that you have not recorded: fees, interest charged, in pesos.") },
+              { symbol: "Abonos del banco no registrados", meaning: t("Dinero que el banco ya te depositó y tú no has anotado: intereses ganados, transferencias de clientes, en pesos.", "Money the bank already credited to you that you have not recorded: interest earned, customer transfers, in pesos.") },
+            ],
+            steps: [
+              t("Parte del saldo de Bancos en tus libros.", "Start from the Bank balance in your books."),
+              t("Resta las comisiones y otros cargos que el banco hizo y no anotaste.", "Subtract fees and other charges the bank made that you did not record."),
+              t("Suma los abonos del banco que no anotaste (si hay).", "Add any bank credits you did not record (if any)."),
+              t("Compara con el saldo ajustado del banco: si son iguales, la conciliación cuadra.", "Compare with the adjusted bank balance: if they are equal, the reconciliation balances."),
+            ],
+            example: t(
+              "En libros tienes $35,800 y el banco cobró una comisión de $300 que no anotaste. 35,800 − 300 = **$35,500**. Es igual al saldo ajustado del banco del ejemplo anterior: cuadra.",
+              "Your books show $35,800 and the bank charged a $300 fee you did not record. 35,800 − 300 = **$35,500**. It equals the adjusted bank balance of the previous example: it reconciles.",
+            ),
+            interpret: t(
+              "Si los dos saldos ajustados no coinciden, falta encontrar algo: un error de captura, un movimiento no registrado o un faltante.",
+              "If the two adjusted balances do not match, something is still missing: a typing error, an unrecorded movement or a shortage.",
+            ),
+          },
+          {
+            name: t("Utilidad del ejercicio en el cierre anual", "Profit for the year in the year-end close"),
+            expression: "Utilidad del ejercicio = Ingresos − (Costos + Gastos)",
+            variables: [
+              { symbol: "Utilidad del ejercicio", meaning: t("Lo que ganó el negocio en el año, en pesos; es el abono que cuadra la póliza de cierre.", "What the business earned in the year, in pesos; it is the credit that balances the closing entry.") },
+              { symbol: "Ingresos", meaning: t("Ventas y otros ingresos del año (saldo acreedor), en pesos.", "Sales and other revenue for the year (credit balance), in pesos.") },
+              { symbol: "Costos + Gastos", meaning: t("Costo de ventas, sueldos, renta, luz, etc. (saldo deudor), en pesos.", "Cost of goods sold, salaries, rent, utilities, etc. (debit balance), in pesos.") },
+            ],
+            steps: [
+              t("Carga cada cuenta de ingresos por su saldo para dejarla en cero.", "Debit each revenue account for its balance to bring it to zero."),
+              t("Abona cada cuenta de costos y gastos por su saldo para dejarla en cero.", "Credit each cost and expense account for its balance to bring it to zero."),
+              t("Suma costos y gastos y réstalos a los ingresos.", "Add up costs and expenses and subtract them from revenue."),
+              t("Si el resultado es positivo, abónalo a Utilidad del ejercicio (si es negativo, es pérdida y va como cargo). Revisa que cargos = abonos.", "If the result is positive, credit it to Profit for the year (if negative, it is a loss and goes as a debit). Check that debits = credits."),
+            ],
+            example: t(
+              "Ventas $150,000; Costo de ventas $90,000; Sueldos $30,000; Renta $12,000. Costos y gastos: 90,000 + 30,000 + 12,000 = 132,000. Utilidad: 150,000 − 132,000 = **$18,000**. Póliza: cargo a Ventas 150,000; abonos 90,000 + 30,000 + 12,000 + 18,000 = 150,000.",
+              "Sales $150,000; COGS $90,000; Salaries $30,000; Rent $12,000. Costs and expenses: 90,000 + 30,000 + 12,000 = 132,000. Profit: 150,000 − 132,000 = **$18,000**. Entry: debit Sales 150,000; credits 90,000 + 30,000 + 12,000 + 18,000 = 150,000.",
+            ),
+            mistake: t(
+              "Cancelar también cuentas de balance como Bancos o Clientes; esas conservan su saldo para el año siguiente.",
+              "Also closing balance sheet accounts such as Bank or Receivables; those keep their balance for the next year.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -406,7 +638,7 @@ export const lessons: Lesson[] = [
       "Los reportes ESG muestran cómo una empresa afecta y es afectada por temas ambientales, sociales y de gobierno corporativo, usando marcos como GRI y las normas del ISSB, y métricas verificables como las emisiones de gases de efecto invernadero.",
       "ESG reports show how a company affects and is affected by environmental, social and governance matters, using frameworks such as GRI and ISSB standards, and verifiable metrics such as greenhouse gas emissions.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué es un reporte ESG y cómo se relaciona con los estados financieros.", "Explain what an ESG report is and how it relates to financial statements."),
       t("Distinguir los principales marcos: GRI, normas del ISSB (IFRS S1 y S2) y la idea de doble materialidad.", "Distinguish the main frameworks: GRI, ISSB standards (IFRS S1 and S2) and the idea of double materiality."),
@@ -456,8 +688,8 @@ export const lessons: Lesson[] = [
         heading: t("Métricas: emisiones de gases de efecto invernadero", "Metrics: greenhouse gas emissions"),
         body: [
           t(
-            "La métrica ambiental más usada son las **emisiones de gases de efecto invernadero (GEI)**, medidas en toneladas de CO₂ equivalente (tCO₂e). Según el GHG Protocol se dividen en **alcances**. **Alcance 1**: emisiones directas de fuentes propias (gas de tu caldera, gasolina de tus camiones). **Alcance 2**: emisiones por la **electricidad** que compras. **Alcance 3**: todas las demás de tu cadena (viajes de negocio, traslado de empleados, uso de tus productos por los clientes).",
-            "The most used environmental metric is **greenhouse gas (GHG) emissions**, measured in tonnes of CO₂ equivalent (tCO₂e). Under the GHG Protocol they are split into **scopes**. **Scope 1**: direct emissions from your own sources (your boiler's gas, your trucks' fuel). **Scope 2**: emissions from the **electricity** you buy. **Scope 3**: all others in your value chain (business travel, employee commuting, customers' use of your products).",
+            "La métrica ambiental más usada son las **emisiones de gases de efecto invernadero (GEI)**, medidas en toneladas de CO₂ equivalente (tCO₂e): una sola unidad que permite sumar todos los gases como si todos fueran CO₂. Según el GHG Protocol se dividen en **alcances**. **Alcance 1**: emisiones directas de fuentes propias (gas de tu caldera, gasolina de tus camiones). **Alcance 2**: emisiones por la **electricidad** que compras. **Alcance 3**: todas las demás de tu cadena (viajes de negocio, traslado de empleados, uso de tus productos por los clientes).",
+            "The most used environmental metric is **greenhouse gas (GHG) emissions**, measured in tonnes of CO₂ equivalent (tCO₂e): a single unit that lets you add up all gases as if they were all CO₂. Under the GHG Protocol they are split into **scopes**. **Scope 1**: direct emissions from your own sources (your boiler's gas, your trucks' fuel). **Scope 2**: emissions from the **electricity** you buy. **Scope 3**: all others in your value chain (business travel, employee commuting, customers' use of your products).",
           ),
           t(
             "Se calculan multiplicando el **dato de actividad** (litros, kWh) por un **factor de emisión** que publica una fuente oficial. Para comparar empresas de distinto tamaño se usa la **intensidad**: emisiones divididas entre ventas o unidades producidas. Lo ideal es que un tercero independiente **verifique** los datos, como un auditor revisa los estados financieros.",
@@ -468,7 +700,58 @@ export const lessons: Lesson[] = [
             "Mini example: a bakery uses 10,000 kWh a year; with an illustrative factor of 0.5 kg CO₂e per kWh, its scope 2 emissions are 5,000 kg, that is, 5 tCO₂e.",
           ),
         ],
-        formula: "Emisiones = Dato de actividad × Factor de emisión · Intensidad = Emisiones ÷ Ventas",
+        formulas: [
+          {
+            name: t("Emisiones de una fuente (en toneladas)", "Emissions from one source (in tonnes)"),
+            expression: "Emisiones (t) = Dato de actividad × Factor de emisión ÷ 1,000",
+            variables: [
+              { symbol: "Emisiones (t)", meaning: t("Las toneladas de CO₂ equivalente (tCO₂e) que genera esa fuente.", "The tonnes of CO₂ equivalent (tCO₂e) that source produces.") },
+              { symbol: "Dato de actividad", meaning: t("Cuánto usaste: litros de combustible o kWh de electricidad.", "How much you used: liters of fuel or kWh of electricity.") },
+              { symbol: "Factor de emisión", meaning: t("Kilos de CO₂e que produce cada litro o cada kWh; lo publica una fuente oficial (aquí se usan factores ilustrativos).", "Kilograms of CO₂e produced by each liter or kWh; published by an official source (illustrative factors are used here).") },
+              { symbol: "÷ 1,000", meaning: t("Pasa de kilogramos a toneladas (1 tonelada = 1,000 kg).", "Converts kilograms to tonnes (1 tonne = 1,000 kg).") },
+            ],
+            steps: [
+              t("Clasifica la fuente: combustible propio es alcance 1; electricidad comprada es alcance 2.", "Classify the source: own fuel is scope 1; purchased electricity is scope 2."),
+              t("Multiplica el dato de actividad por su factor: el resultado sale en kilogramos.", "Multiply the activity data by its factor: the result is in kilograms."),
+              t("Divide entre 1,000 para obtener toneladas.", "Divide by 1,000 to get tonnes."),
+              t("Si te piden el total, suma las toneladas de cada alcance.", "If asked for the total, add up the tonnes of each scope."),
+            ],
+            example: t(
+              "Un taller usó 1,200 litros de diésel (factor ilustrativo 2.7 kg por litro) y 20,000 kWh (factor 0.5 kg por kWh). Alcance 1: 1,200 × 2.7 = 3,240 kg ÷ 1,000 = 3.24 t. Alcance 2: 20,000 × 0.5 = 10,000 kg ÷ 1,000 = 10 t. Total: 3.24 + 10 = **13.24 tCO₂e**.",
+              "A workshop used 1,200 liters of diesel (illustrative factor 2.7 kg per liter) and 20,000 kWh (factor 0.5 kg per kWh). Scope 1: 1,200 × 2.7 = 3,240 kg ÷ 1,000 = 3.24 t. Scope 2: 20,000 × 0.5 = 10,000 kg ÷ 1,000 = 10 t. Total: 3.24 + 10 = **13.24 tCO₂e**.",
+            ),
+            mistake: t(
+              "Olvidar dividir entre 1,000 y reportar kilogramos como si fueran toneladas.",
+              "Forgetting to divide by 1,000 and reporting kilograms as if they were tonnes.",
+            ),
+          },
+          {
+            name: t("Intensidad de emisiones", "Emissions intensity"),
+            expression: "Intensidad = Emisiones (tCO₂e) ÷ Ventas (en millones de pesos)",
+            variables: [
+              { symbol: "Intensidad", meaning: t("Toneladas de CO₂e por cada millón de pesos vendido.", "Tonnes of CO₂e per million pesos sold.") },
+              { symbol: "Emisiones (tCO₂e)", meaning: t("Las toneladas totales emitidas en el periodo.", "Total tonnes emitted in the period.") },
+              { symbol: "Ventas (en millones de pesos)", meaning: t("Las ventas escritas en millones: $40,000,000 se escribe 40.", "Sales written in millions: $40,000,000 is written as 40.") },
+            ],
+            steps: [
+              t("Escribe las ventas en millones de pesos.", "Write sales in millions of pesos."),
+              t("Divide las emisiones entre esas ventas.", "Divide emissions by those sales."),
+              t("Compara: la empresa con menor intensidad es más eficiente.", "Compare: the company with the lower intensity is more efficient."),
+            ],
+            example: t(
+              "Una tienda emitió 84 tCO₂e y vendió $35 millones. 84 ÷ 35 = **2.4 tCO₂e por millón de pesos**.",
+              "A store emitted 84 tCO₂e and sold $35 million. 84 ÷ 35 = **2.4 tCO₂e per million pesos**.",
+            ),
+            interpret: t(
+              "Una empresa grande puede emitir más en total y aun así ser más eficiente si su intensidad es menor. Menor intensidad = menos contaminación por cada peso vendido.",
+              "A large company can emit more in total and still be more efficient if its intensity is lower. Lower intensity = less pollution per peso sold.",
+            ),
+            mistake: t(
+              "Dividir entre las ventas en pesos completos (40,000,000) en lugar de millones (40); da un número minúsculo difícil de leer.",
+              "Dividing by sales in full pesos (40,000,000) instead of millions (40); it gives a tiny number that is hard to read.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -530,7 +813,7 @@ export const lessons: Lesson[] = [
       "Una certificación profesional demuestra con un examen que dominas la contaduría; prepararla bien exige elegir la adecuada, planear horas según el peso de cada área y practicar con estrategia de tiempo.",
       "A professional certification proves through an exam that you master accounting; preparing well requires choosing the right one, planning hours by each area's weight and practicing with a time strategy.",
     ),
-    minutes: 13,
+    minutes: 15,
     objectives: [
       t("Reconocer las principales certificaciones contables en México y en el mundo y su enfoque.", "Recognize the main accounting certifications in Mexico and worldwide and their focus."),
       t("Diseñar un plan de estudio con horas por semana y por área según su peso en el examen.", "Design a study plan with hours per week and per area according to its weight in the exam."),
@@ -577,7 +860,48 @@ export const lessons: Lesson[] = [
             "Mini example: if you estimate you need 240 hours and have 16 weeks, you must study 240 ÷ 16 = 15 hours per week, about 2 hours a day.",
           ),
         ],
-        formula: "Horas por semana = Horas totales ÷ Semanas disponibles · Horas de un área = Horas totales × Peso del área",
+        formulas: [
+          {
+            name: t("Horas de estudio por semana", "Study hours per week"),
+            expression: "Horas por semana = Horas totales ÷ Semanas disponibles",
+            variables: [
+              { symbol: "Horas por semana", meaning: t("Cuántas horas debes estudiar cada semana.", "How many hours you must study each week.") },
+              { symbol: "Horas totales", meaning: t("Las horas que calculas que necesitas para todo el examen.", "The hours you estimate you need for the whole exam.") },
+              { symbol: "Semanas disponibles", meaning: t("Las semanas que faltan para el examen.", "The weeks left until the exam.") },
+            ],
+            steps: [
+              t("Estima las horas totales que necesitas.", "Estimate the total hours you need."),
+              t("Cuenta las semanas que faltan para el examen.", "Count the weeks left until the exam."),
+              t("Divide horas totales entre semanas.", "Divide total hours by weeks."),
+            ],
+            example: t(
+              "Necesitas 200 horas y tienes 10 semanas: 200 ÷ 10 = **20 horas por semana**, unas 3 horas diarias.",
+              "You need 200 hours and have 10 weeks: 200 ÷ 10 = **20 hours per week**, about 3 hours a day.",
+            ),
+          },
+          {
+            name: t("Horas para un área del temario", "Hours for one syllabus area"),
+            expression: "Horas de un área = Horas totales × Peso del área",
+            variables: [
+              { symbol: "Horas de un área", meaning: t("Las horas que le tocan a esa área.", "The hours assigned to that area.") },
+              { symbol: "Horas totales", meaning: t("Todas las horas de tu plan.", "All the hours in your plan.") },
+              { symbol: "Peso del área", meaning: t("El porcentaje de preguntas que tiene esa área en el examen, en decimal (40 % = 0.40).", "The percentage of exam questions in that area, as a decimal (40% = 0.40).") },
+            ],
+            steps: [
+              t("Convierte el peso a decimal: 30 % = 0.30.", "Convert the weight to a decimal: 30% = 0.30."),
+              t("Multiplica las horas totales por ese decimal.", "Multiply total hours by that decimal."),
+              t("Repite con cada área y revisa que todas sumen las horas totales.", "Repeat for each area and check that they all add up to the total hours."),
+            ],
+            example: t(
+              "Plan de 200 horas; un área pesa 30 %: 200 × 0.30 = **60 horas** para esa área.",
+              "A 200-hour plan; one area weighs 30%: 200 × 0.30 = **60 hours** for that area.",
+            ),
+            mistake: t(
+              "Repartir las horas en partes iguales sin considerar el peso de cada área.",
+              "Splitting hours equally without considering each area's weight.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Estrategia para el día del examen", "Exam-day strategy"),
@@ -595,7 +919,53 @@ export const lessons: Lesson[] = [
             "To decide what to review in the final stretch, look at **how many points you lose** in each area: weight × (100% − your score). Mini example: an area with a 30% weight where you score 50% costs you 15 points; another with a 20% weight where you score 75% costs you 5. Prioritize the first.",
           ),
         ],
-        formula: "Minutos por pregunta = (Tiempo total − Margen de revisión) ÷ Número de preguntas",
+        formulas: [
+          {
+            name: t("Ritmo: minutos por pregunta", "Pace: minutes per question"),
+            expression: "Minutos por pregunta = (Tiempo total − Margen de revisión) ÷ Número de preguntas",
+            variables: [
+              { symbol: "Minutos por pregunta", meaning: t("El tiempo promedio que puedes dedicar a cada pregunta.", "The average time you can spend on each question.") },
+              { symbol: "Tiempo total", meaning: t("Lo que dura el examen, en minutos (4 horas = 4 × 60 = 240 minutos).", "How long the exam lasts, in minutes (4 hours = 4 × 60 = 240 minutes).") },
+              { symbol: "Margen de revisión", meaning: t("Minutos que guardas al final para revisar preguntas marcadas.", "Minutes you save at the end to review flagged questions.") },
+              { symbol: "Número de preguntas", meaning: t("Cuántas preguntas tiene el examen.", "How many questions the exam has.") },
+            ],
+            steps: [
+              t("Pasa el tiempo total a minutos si viene en horas.", "Convert total time to minutes if it is given in hours."),
+              t("Réstale el margen de revisión.", "Subtract the review margin."),
+              t("Divide el resultado entre el número de preguntas.", "Divide the result by the number of questions."),
+            ],
+            example: t(
+              "Examen de 150 minutos con 70 preguntas y 10 minutos de margen. 150 − 10 = 140 minutos; 140 ÷ 70 = **2 minutos por pregunta**.",
+              "A 150-minute exam with 70 questions and a 10-minute margin. 150 − 10 = 140 minutes; 140 ÷ 70 = **2 minutes per question**.",
+            ),
+            mistake: t(
+              "Dividir el tiempo total sin restar el margen; te quedas sin tiempo para revisar al final.",
+              "Dividing the total time without subtracting the margin; you run out of time to review at the end.",
+            ),
+          },
+          {
+            name: t("Puntos que pierdes en un área", "Points you lose in an area"),
+            expression: "Puntos perdidos = Peso del área × (100 % − Aciertos)",
+            variables: [
+              { symbol: "Puntos perdidos", meaning: t("Cuántos puntos del examen se te escapan en esa área.", "How many exam points slip away in that area.") },
+              { symbol: "Peso del área", meaning: t("El porcentaje del examen que vale esa área (por ejemplo, 30).", "The percentage of the exam that area is worth (for example, 30).") },
+              { symbol: "Aciertos", meaning: t("Tu porcentaje de respuestas correctas en esa área, según tu diagnóstico.", "Your percentage of correct answers in that area, from your diagnostic.") },
+            ],
+            steps: [
+              t("Calcula lo que fallas: 100 % − aciertos, y pásalo a decimal (70 % de aciertos → 30 % = 0.30).", "Work out what you miss: 100% − score, and convert it to a decimal (70% score → 30% = 0.30)."),
+              t("Multiplica el peso del área por ese decimal.", "Multiply the area's weight by that decimal."),
+              t("Repite con cada área y prioriza la que más puntos pierde.", "Repeat for each area and prioritize the one that loses the most points."),
+            ],
+            example: t(
+              "Área X pesa 45 % y aciertas 70 %: 45 × 0.30 = 13.5 puntos perdidos. Área Y pesa 30 % y aciertas 50 %: 30 × 0.50 = 15 puntos perdidos. **Prioriza Y**, aunque pese menos.",
+              "Area X weighs 45% and you score 70%: 45 × 0.30 = 13.5 points lost. Area Y weighs 30% and you score 50%: 30 × 0.50 = 15 points lost. **Prioritize Y**, even though it weighs less.",
+            ),
+            mistake: t(
+              "Elegir solo el área de más peso aunque ya la domines.",
+              "Choosing only the highest-weight area even if you already master it.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
