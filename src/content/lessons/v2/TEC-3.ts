@@ -36,7 +36,7 @@ export const lessons: Lesson[] = [
       es: "La IA ayuda a un negocio a predecir, clasificar, generar y automatizar tareas, pero solo crea valor cuando resuelve un problema concreto, con buenos datos, supervisión humana y un beneficio medible.",
       en: "AI helps a business predict, classify, generate and automate tasks, but it only creates value when it solves a concrete problem, with good data, human oversight and a measurable benefit.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es la inteligencia artificial y distinguir la IA predictiva de la IA generativa.", en: "Explain what artificial intelligence is and distinguish predictive AI from generative AI." },
       { es: "Identificar casos de uso de IA en finanzas, contabilidad, ventas y atención a clientes.", en: "Identify AI use cases in finance, accounting, sales and customer service." },
@@ -82,7 +82,30 @@ export const lessons: Lesson[] = [
             en: "To choose where to start, many companies use a **value-versus-ease matrix**: they score each idea from 1 to 5 on how much benefit it brings and how easy it is (available data, cost, time) and start with the highest score. Mini example: reading invoices (value 4, ease 5 = 20) beats an investment robot (value 5, ease 1 = 5).",
           },
         ],
-        formula: "Prioridad = Valor (1–5) × Facilidad (1–5)",
+        formulas: [
+          {
+            name: { es: "Prioridad en la matriz de valor contra facilidad", en: "Priority in the value-versus-ease matrix" },
+            expression: "Prioridad = Valor (1–5) × Facilidad (1–5)",
+            variables: [
+              { symbol: "Valor", meaning: { es: "Calificación de 1 a 5 de cuánto beneficio da la idea (1 = poco, 5 = mucho).", en: "Score from 1 to 5 of how much benefit the idea brings (1 = little, 5 = a lot)." } },
+              { symbol: "Facilidad", meaning: { es: "Calificación de 1 a 5 de qué tan fácil es hacerla: datos disponibles, costo y tiempo (5 = muy fácil).", en: "Score from 1 to 5 of how easy it is to do: available data, cost and time (5 = very easy)." } },
+              { symbol: "Prioridad", meaning: { es: "Puntaje de 1 a 25; el más alto va primero.", en: "Score from 1 to 25; the highest goes first." } },
+            ],
+            steps: [
+              { es: "Califica cada idea en valor y en facilidad.", en: "Score each idea on value and on ease." },
+              { es: "Multiplica las dos calificaciones de cada idea.", en: "Multiply the two scores of each idea." },
+              { es: "Ordena de mayor a menor y empieza por la de mayor puntaje.", en: "Rank from highest to lowest and start with the top score." },
+            ],
+            example: {
+              es: "Idea 1: conciliar estados de cuenta (valor 3, facilidad 4) → 3 × 4 = 12. Idea 2: modelo de riesgo de crédito (valor 5, facilidad 2) → 5 × 2 = 10. Empieza por la idea 1 (**12 > 10**), aunque la 2 tenga más valor.",
+              en: "Idea 1: reconciling bank statements (value 3, ease 4) → 3 × 4 = 12. Idea 2: credit-risk model (value 5, ease 2) → 5 × 2 = 10. Start with idea 1 (**12 > 10**), even though idea 2 has more value.",
+            },
+            mistake: {
+              es: "Mirar solo el valor o solo la facilidad: la matriz combina las dos.",
+              en: "Looking only at value or only at ease: the matrix combines both.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Evaluar un proyecto de IA: beneficio, costo y riesgos", en: "Evaluating an AI project: benefit, cost and risks" },
@@ -100,7 +123,55 @@ export const lessons: Lesson[] = [
             en: "Mini example: an accounting firm spends $100,000 on a system that saves it $150,000 a year in data-entry hours. ROI = (150,000 − 100,000) ÷ 100,000 = 50%. Even so, an accountant reviews each suggested entry before recording it.",
           },
         ],
-        formula: "ROI = (Beneficio − Costo) ÷ Costo × 100",
+        formulas: [
+          {
+            name: { es: "Retorno sobre la inversión (ROI)", en: "Return on investment (ROI)" },
+            expression: "ROI = (Beneficio − Costo) ÷ Costo × 100",
+            variables: [
+              { symbol: "Beneficio", meaning: { es: "Ahorro o utilidad adicional que genera el proyecto en el periodo, en pesos.", en: "Savings or extra profit the project generates in the period, in pesos." } },
+              { symbol: "Costo", meaning: { es: "Todo lo que cuesta el proyecto en ese periodo (licencias, implementación, capacitación), en pesos.", en: "Everything the project costs in that period (licenses, implementation, training), in pesos." } },
+            ],
+            steps: [
+              { es: "Resta el costo al beneficio: es la ganancia neta.", en: "Subtract the cost from the benefit: that is the net gain." },
+              { es: "Divide la ganancia neta entre el costo.", en: "Divide the net gain by the cost." },
+              { es: "Multiplica por 100 para expresarlo en %.", en: "Multiply by 100 to express it in %." },
+            ],
+            example: {
+              es: "Un sistema cuesta $80,000 y genera $116,000 de ahorro en el año. Ganancia neta = 116,000 − 80,000 = $36,000. ROI = 36,000 ÷ 80,000 = 0.45 → **45 %**.",
+              en: "A system costs $80,000 and generates $116,000 in savings over the year. Net gain = 116,000 − 80,000 = $36,000. ROI = 36,000 ÷ 80,000 = 0.45 → **45 %**.",
+            },
+            interpret: {
+              es: "45 % significa que por cada $1 invertido recuperas el peso y ganas 45 centavos extra. Un ROI negativo indica que el proyecto cuesta más de lo que deja.",
+              en: "45 % means that for every $1 invested you get the peso back plus 45 extra cents. A negative ROI means the project costs more than it brings.",
+            },
+            mistake: {
+              es: "Dividir el beneficio total entre el costo sin restar primero el costo: eso dice cuánto regresa, no cuánto ganas.",
+              en: "Dividing the total benefit by the cost without first subtracting the cost: that tells how much comes back, not how much you gain.",
+            },
+          },
+          {
+            name: { es: "Tiempo de recuperación de la inversión", en: "Payback time of the investment" },
+            expression: "Ahorro neto mensual = Ahorro bruto mensual − Costo mensual;   Meses de recuperación = Inversión inicial ÷ Ahorro neto mensual",
+            variables: [
+              { symbol: "Ahorro bruto mensual", meaning: { es: "Lo que dejas de gastar cada mes gracias al sistema, en pesos.", en: "What you stop spending each month thanks to the system, in pesos." } },
+              { symbol: "Costo mensual", meaning: { es: "Lo que cuesta operar el sistema cada mes (suscripción, soporte), en pesos.", en: "What it costs to run the system each month (subscription, support), in pesos." } },
+              { symbol: "Inversión inicial", meaning: { es: "Pago único para implementarlo, en pesos.", en: "One-off payment to implement it, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el ahorro bruto del mes (por ejemplo, casos resueltos × costo por caso).", en: "Compute the month's gross saving (for example, cases resolved × cost per case)." },
+              { es: "Réstale el costo mensual del sistema: ahorro neto.", en: "Subtract the system's monthly cost: net saving." },
+              { es: "Divide la inversión inicial entre el ahorro neto mensual.", en: "Divide the initial investment by the net monthly saving." },
+            ],
+            example: {
+              es: "Un lector de facturas ahorra $22,000 al mes, su suscripción cuesta $4,000 al mes y la implementación $90,000. Ahorro neto = 22,000 − 4,000 = $18,000. Recuperación = 90,000 ÷ 18,000 = **5 meses**.",
+              en: "An invoice reader saves $22,000 a month, its subscription costs $4,000 a month and implementation $90,000. Net saving = 22,000 − 4,000 = $18,000. Payback = 90,000 ÷ 18,000 = **5 months**.",
+            },
+            mistake: {
+              es: "Olvidar restar el costo mensual del sistema: el plazo de recuperación sale más corto de lo real.",
+              en: "Forgetting to subtract the system's monthly cost: the payback period comes out shorter than it really is.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -160,7 +231,7 @@ export const lessons: Lesson[] = [
       es: "El machine learning entrena modelos con ejemplos para que aprendan reglas por sí solos, y se evalúa con datos que el modelo nunca vio para saber si de verdad funciona.",
       en: "Machine learning trains models with examples so they learn rules on their own, and it is evaluated with data the model has never seen to know whether it really works.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es un modelo de machine learning y sus partes: variables, etiqueta y entrenamiento.", en: "Explain what a machine learning model is and its parts: features, label and training." },
       { es: "Distinguir aprendizaje supervisado, no supervisado y por refuerzo, y regresión de clasificación.", en: "Distinguish supervised, unsupervised and reinforcement learning, and regression from classification." },
@@ -224,7 +295,90 @@ export const lessons: Lesson[] = [
             en: "**Accuracy** measures total hits, but it misleads when a case is rare: if only 1% of purchases are fraud, a model that always says \"normal\" has 99% accuracy and is useless. **Precision** tells how reliable its alerts are and **recall** how many real frauds it catches. Mini example: TP 30 and FN 10 → recall = 30 ÷ 40 = 75%.",
           },
         ],
-        formula: "Exactitud = (VP + VN) ÷ Total · Precisión = VP ÷ (VP + FP) · Sensibilidad = VP ÷ (VP + FN)",
+        formulas: [
+          {
+            name: { es: "División de datos en entrenamiento y prueba", en: "Splitting data into training and testing" },
+            expression: "Registros de entrenamiento = Total × % entrenamiento;   Registros de prueba = Total × % prueba",
+            variables: [
+              { symbol: "Total", meaning: { es: "Número de ejemplos históricos disponibles.", en: "Number of historical examples available." } },
+              { symbol: "% entrenamiento, % prueba", meaning: { es: "Proporciones de la división, en decimal (80 % = 0.80); suman 1.", en: "Split proportions, as decimals (80 % = 0.80); they add up to 1." } },
+            ],
+            steps: [
+              { es: "Convierte los porcentajes a decimal.", en: "Convert the percentages to decimals." },
+              { es: "Multiplica el total por cada proporción.", en: "Multiply the total by each proportion." },
+              { es: "Comprueba que ambos grupos sumen el total.", en: "Check that both groups add up to the total." },
+            ],
+            example: {
+              es: "3,000 registros con división 75/25: entrenamiento = 3,000 × 0.75 = **2,250**; prueba = 3,000 × 0.25 = **750**; 2,250 + 750 = 3,000.",
+              en: "3,000 records with a 75/25 split: training = 3,000 × 0.75 = **2,250**; testing = 3,000 × 0.25 = **750**; 2,250 + 750 = 3,000.",
+            },
+            interpret: {
+              es: "Compara el acierto en ambos grupos: una brecha pequeña indica que el modelo generaliza; una grande, sobreajuste.",
+              en: "Compare the hit rate in both groups: a small gap shows the model generalizes; a large one, overfitting.",
+            },
+          },
+          {
+            name: { es: "Exactitud", en: "Accuracy" },
+            expression: "Exactitud = (VP + VN) ÷ Total × 100",
+            variables: [
+              { symbol: "VP", meaning: { es: "Verdaderos positivos: dijo «sí» (por ejemplo, fraude) y era cierto.", en: "True positives: it said «yes» (for example, fraud) and it was true." } },
+              { symbol: "VN", meaning: { es: "Verdaderos negativos: dijo «no» y era cierto.", en: "True negatives: it said «no» and it was true." } },
+              { symbol: "Total", meaning: { es: "Todos los casos revisados: VP + FP + FN + VN.", en: "All cases reviewed: TP + FP + FN + TN." } },
+            ],
+            steps: [
+              { es: "Suma los aciertos: VP + VN.", en: "Add the hits: TP + TN." },
+              { es: "Divide entre el total de casos y multiplica por 100.", en: "Divide by the total cases and multiply by 100." },
+            ],
+            example: {
+              es: "Un modelo revisó 500 casos: VP 45, FP 15, FN 5, VN 435. Exactitud = (45 + 435) ÷ 500 = 480 ÷ 500 = **96 %**.",
+              en: "A model reviewed 500 cases: TP 45, FP 15, FN 5, TN 435. Accuracy = (45 + 435) ÷ 500 = 480 ÷ 500 = **96 %**.",
+            },
+            mistake: {
+              es: "Confiar solo en la exactitud cuando el caso es raro: puede ser alta aunque el modelo no detecte casi nada.",
+              en: "Relying only on accuracy when the case is rare: it can be high even if the model detects almost nothing.",
+            },
+          },
+          {
+            name: { es: "Precisión", en: "Precision" },
+            expression: "Precisión = VP ÷ (VP + FP) × 100",
+            variables: [
+              { symbol: "VP", meaning: { es: "Alertas correctas: dijo «sí» y era cierto.", en: "Correct alerts: it said «yes» and it was true." } },
+              { symbol: "FP", meaning: { es: "Falsos positivos: falsas alarmas (dijo «sí» y no lo era).", en: "False positives: false alarms (it said «yes» and it was not)." } },
+            ],
+            steps: [
+              { es: "Suma todas las alertas que dio el modelo: VP + FP.", en: "Add up all the alerts the model gave: TP + FP." },
+              { es: "Divide los VP entre esa suma y multiplica por 100.", en: "Divide TP by that sum and multiply by 100." },
+            ],
+            example: {
+              es: "Con VP 45 y FP 15: 45 ÷ (45 + 15) = 45 ÷ 60 = **75 %**. De cada 4 alertas, 3 son reales.",
+              en: "With TP 45 and FP 15: 45 ÷ (45 + 15) = 45 ÷ 60 = **75 %**. Out of every 4 alerts, 3 are real.",
+            },
+            mistake: {
+              es: "Poner FN en el denominador: eso es la sensibilidad.",
+              en: "Putting FN in the denominator: that is recall.",
+            },
+          },
+          {
+            name: { es: "Sensibilidad (recall)", en: "Recall (sensitivity)" },
+            expression: "Sensibilidad = VP ÷ (VP + FN) × 100",
+            variables: [
+              { symbol: "VP", meaning: { es: "Casos reales que el modelo sí detectó.", en: "Real cases the model did detect." } },
+              { symbol: "FN", meaning: { es: "Falsos negativos: casos reales que se le escaparon (dijo «no» y sí lo era).", en: "False negatives: real cases it missed (it said «no» and it was)." } },
+            ],
+            steps: [
+              { es: "Suma todos los casos reales: VP + FN.", en: "Add up all real cases: TP + FN." },
+              { es: "Divide los VP entre esa suma y multiplica por 100.", en: "Divide TP by that sum and multiply by 100." },
+            ],
+            example: {
+              es: "Con VP 45 y FN 5: 45 ÷ (45 + 5) = 45 ÷ 50 = **90 %**. Atrapa 9 de cada 10 casos reales.",
+              en: "With TP 45 and FN 5: 45 ÷ (45 + 5) = 45 ÷ 50 = **90 %**. It catches 9 out of 10 real cases.",
+            },
+            mistake: {
+              es: "Intercambiar FP y FN: la sensibilidad usa los casos que se escaparon (FN), no las falsas alarmas.",
+              en: "Swapping FP and FN: recall uses the cases that slipped through (FN), not the false alarms.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -283,7 +437,7 @@ export const lessons: Lesson[] = [
       es: "La analítica predictiva usa datos históricos para pronosticar qué pasará, mide qué tanto se equivoca el pronóstico y lo convierte en decisiones concretas del negocio.",
       en: "Predictive analytics uses historical data to forecast what will happen, measures how wrong the forecast is and turns it into concrete business decisions.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Ubicar la analítica predictiva frente a la descriptiva, la diagnóstica y la prescriptiva.", en: "Place predictive analytics alongside descriptive, diagnostic and prescriptive analytics." },
       { es: "Elaborar pronósticos sencillos con promedio móvil y con una recta de regresión.", en: "Build simple forecasts with a moving average and with a regression line." },
@@ -329,7 +483,56 @@ export const lessons: Lesson[] = [
             en: "Careful: two things moving together (**correlation**) does not prove that one causes the other. Ice cream and sunscreen sales rise together, but neither causes the other: both depend on the heat.",
           },
         ],
-        formula: "Promedio móvil = (V₁ + V₂ + … + Vₙ) ÷ n · Recta: y = a + b·x",
+        formulas: [
+          {
+            name: { es: "Pronóstico con promedio móvil", en: "Moving-average forecast" },
+            expression: "Promedio móvil = (V₁ + V₂ + … + Vₙ) ÷ n",
+            variables: [
+              { symbol: "V₁ … Vₙ", meaning: { es: "Valores reales de los últimos n periodos (por ejemplo, ventas de cada mes en pesos).", en: "Actual values of the last n periods (for example, each month's sales in pesos)." } },
+              { symbol: "n", meaning: { es: "Cuántos periodos promedias (por ejemplo, 3 meses).", en: "How many periods you average (for example, 3 months)." } },
+            ],
+            steps: [
+              { es: "Toma los últimos n periodos, los más recientes.", en: "Take the last n periods, the most recent ones." },
+              { es: "Súmalos.", en: "Add them up." },
+              { es: "Divide la suma entre n: ese es el pronóstico del siguiente periodo.", en: "Divide the sum by n: that is the forecast for the next period." },
+            ],
+            example: {
+              es: "Ventas de $52,000, $55,000 y $61,000 en tres meses. Suma = 168,000. Pronóstico del cuarto mes = 168,000 ÷ 3 = **$56,000**.",
+              en: "Sales of $52,000, $55,000 and $61,000 over three months. Sum = 168,000. Fourth-month forecast = 168,000 ÷ 3 = **$56,000**.",
+            },
+            interpret: {
+              es: "Si las ventas vienen subiendo, el promedio queda por debajo del último mes: reacciona tarde a la tendencia.",
+              en: "If sales have been rising, the average ends up below the last month: it reacts late to the trend.",
+            },
+            mistake: {
+              es: "Dividir entre un número distinto de los periodos sumados, o usar solo el último mes.",
+              en: "Dividing by a number other than the periods added, or using only the last month.",
+            },
+          },
+          {
+            name: { es: "Pronóstico con una recta de regresión", en: "Forecast with a regression line" },
+            expression: "y = a + b·x",
+            variables: [
+              { symbol: "y", meaning: { es: "Lo que quieres pronosticar (por ejemplo, ventas en pesos).", en: "What you want to forecast (for example, sales in pesos)." } },
+              { symbol: "a", meaning: { es: "Ordenada al origen: el valor de y cuando x es cero.", en: "Intercept: the value of y when x is zero." } },
+              { symbol: "b", meaning: { es: "Pendiente: cuánto cambia y por cada unidad extra de x.", en: "Slope: how much y changes for each extra unit of x." } },
+              { symbol: "x", meaning: { es: "La variable que explica (por ejemplo, pesos gastados en publicidad).", en: "The explanatory variable (for example, pesos spent on advertising)." } },
+            ],
+            steps: [
+              { es: "Identifica a y b en la recta que te dan.", en: "Identify a and b in the line you are given." },
+              { es: "Multiplica la pendiente b por el valor de x.", en: "Multiply the slope b by the value of x." },
+              { es: "Súmale la ordenada al origen a.", en: "Add the intercept a." },
+            ],
+            example: {
+              es: "Recta: Ventas = 20,000 + 3 × (gasto en volantes). Con un gasto de $15,000: 3 × 15,000 = 45,000; 20,000 + 45,000 = **$65,000** de ventas pronosticadas.",
+              en: "Line: Sales = 20,000 + 3 × (flyer spending). With $15,000 spent: 3 × 15,000 = 45,000; 20,000 + 45,000 = **$65,000** in forecast sales.",
+            },
+            mistake: {
+              es: "Olvidar sumar la ordenada al origen y responder solo b × x.",
+              en: "Forgetting to add the intercept and answering only b × x.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Medir el error y decidir", en: "Measuring error and deciding" },
@@ -347,7 +550,76 @@ export const lessons: Lesson[] = [
             en: "Mini example: if you forecast 100 units and sold 80, the absolute error is 20 and the percentage error is 20 ÷ 80 = 25%.",
           },
         ],
-        formula: "MAE = promedio de |Real − Pronóstico| · MAPE = promedio de |Real − Pronóstico| ÷ Real × 100",
+        formulas: [
+          {
+            name: { es: "Error absoluto medio (MAE)", en: "Mean absolute error (MAE)" },
+            expression: "MAE = promedio de |Real − Pronóstico|",
+            variables: [
+              { symbol: "Real", meaning: { es: "Lo que realmente pasó en cada periodo (pesos o unidades).", en: "What actually happened in each period (pesos or units)." } },
+              { symbol: "Pronóstico", meaning: { es: "Lo que habías estimado para ese periodo.", en: "What you had estimated for that period." } },
+              { symbol: "| |", meaning: { es: "Valor absoluto: se quita el signo, así los errores hacia arriba y hacia abajo no se cancelan.", en: "Absolute value: the sign is dropped, so errors up and down do not cancel out." } },
+            ],
+            steps: [
+              { es: "Para cada periodo resta real − pronóstico y quítale el signo.", en: "For each period subtract actual − forecast and drop the sign." },
+              { es: "Suma esos errores absolutos.", en: "Add up those absolute errors." },
+              { es: "Divide entre el número de periodos.", en: "Divide by the number of periods." },
+            ],
+            example: {
+              es: "Mes 1: real 200, pronóstico 180 → |200 − 180| = 20. Mes 2: real 250, pronóstico 270 → |250 − 270| = 20. MAE = (20 + 20) ÷ 2 = **20 unidades**.",
+              en: "Month 1: actual 200, forecast 180 → |200 − 180| = 20. Month 2: actual 250, forecast 270 → |250 − 270| = 20. MAE = (20 + 20) ÷ 2 = **20 units**.",
+            },
+            mistake: {
+              es: "Sumar los errores con signo: +20 y −20 darían 0, como si no te hubieras equivocado.",
+              en: "Adding errors with their sign: +20 and −20 would give 0, as if you had not been wrong at all.",
+            },
+          },
+          {
+            name: { es: "Error porcentual absoluto medio (MAPE)", en: "Mean absolute percentage error (MAPE)" },
+            expression: "MAPE = promedio de |Real − Pronóstico| ÷ Real × 100",
+            variables: [
+              { symbol: "Real", meaning: { es: "Valor real de cada periodo; es la base de cada porcentaje.", en: "Actual value of each period; it is the base of each percentage." } },
+              { symbol: "Pronóstico", meaning: { es: "Valor estimado de ese periodo.", en: "Estimated value for that period." } },
+            ],
+            steps: [
+              { es: "Calcula el error absoluto de cada periodo.", en: "Compute each period's absolute error." },
+              { es: "Divídelo entre el valor real de ese periodo y multiplica por 100.", en: "Divide it by that period's actual value and multiply by 100." },
+              { es: "Promedia esos porcentajes.", en: "Average those percentages." },
+            ],
+            example: {
+              es: "Con los mismos datos: mes 1: 20 ÷ 200 = 10 %; mes 2: 20 ÷ 250 = 8 %. MAPE = (10 % + 8 %) ÷ 2 = **9 %**.",
+              en: "With the same data: month 1: 20 ÷ 200 = 10 %; month 2: 20 ÷ 250 = 8 %. MAPE = (10 % + 8 %) ÷ 2 = **9 %**.",
+            },
+            interpret: {
+              es: "Un MAPE de 9 % dice que, en promedio, el pronóstico se equivoca 9 % del valor real. Menor es mejor.",
+              en: "A 9 % MAPE says that, on average, the forecast is off by 9 % of the actual value. Lower is better.",
+            },
+            mistake: {
+              es: "Dividir entre el pronóstico en lugar del valor real.",
+              en: "Dividing by the forecast instead of the actual value.",
+            },
+          },
+          {
+            name: { es: "Ingreso esperado en riesgo (para priorizar clientes)", en: "Expected revenue at risk (to prioritize customers)" },
+            expression: "Ingreso en riesgo = Probabilidad de abandono × Pago anual del cliente",
+            variables: [
+              { symbol: "Probabilidad de abandono", meaning: { es: "Probabilidad de que el cliente se vaya, según el modelo, en decimal (70 % = 0.70).", en: "Probability that the customer leaves, according to the model, as a decimal (70 % = 0.70)." } },
+              { symbol: "Pago anual del cliente", meaning: { es: "Lo que ese cliente paga al año, en pesos.", en: "What that customer pays per year, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte cada probabilidad a decimal.", en: "Convert each probability to a decimal." },
+              { es: "Multiplícala por el pago anual de ese cliente.", en: "Multiply it by that customer's annual payment." },
+              { es: "Llama primero al cliente con el resultado más alto.", en: "Call the customer with the highest result first." },
+            ],
+            example: {
+              es: "Cliente 1: 60 % y $8,000 → 0.60 × 8,000 = $4,800. Cliente 2: 25 % y $20,000 → 0.25 × 20,000 = $5,000. Va primero el **cliente 2** ($5,000 > $4,800), aunque tenga menor probabilidad de irse.",
+              en: "Customer 1: 60 % and $8,000 → 0.60 × 8,000 = $4,800. Customer 2: 25 % and $20,000 → 0.25 × 20,000 = $5,000. **Customer 2** goes first ($5,000 > $4,800), even with a lower probability of leaving.",
+            },
+            mistake: {
+              es: "Ordenar solo por probabilidad o solo por pago: la decisión combina ambos.",
+              en: "Ranking only by probability or only by payment: the decision combines both.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -405,7 +677,7 @@ export const lessons: Lesson[] = [
       es: "Las fintech usan tecnología para ofrecer pagos, créditos e inversiones de forma más rápida y barata, y la transformación digital obliga a cualquier empresa a rediseñar sus procesos financieros, no solo a digitalizarlos.",
       en: "Fintechs use technology to offer payments, loans and investments faster and more cheaply, and digital transformation forces any company to redesign its financial processes, not just digitize them.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es una fintech y reconocer sus principales segmentos.", en: "Explain what a fintech is and recognize its main segments." },
       { es: "Describir el marco general de las fintech en México: Ley Fintech, IFC, IFPE y supervisión.", en: "Describe the general framework for fintechs in Mexico: Fintech Law, IFC, IFPE and supervision." },
@@ -452,6 +724,31 @@ export const lessons: Lesson[] = [
             en: "Practical mini example: before using an app to invest or lend, check that the company appears in the official registries of authorized entities. An unauthorized app lacks the supervision the law requires.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Ganancia neta esperada en financiamiento colectivo", en: "Expected net gain in crowdfunding" },
+            expression: "Rendimiento neto = Tasa anual − Comisión − Pérdida esperada por impago;   Ganancia neta = Monto invertido × Rendimiento neto",
+            variables: [
+              { symbol: "Tasa anual", meaning: { es: "Interés que pagan quienes reciben los préstamos, en % anual.", en: "Interest paid by borrowers, in % per year." } },
+              { symbol: "Comisión", meaning: { es: "Lo que cobra la plataforma sobre lo invertido, en % anual.", en: "What the platform charges on the amount invested, in % per year." } },
+              { symbol: "Pérdida esperada por impago", meaning: { es: "Parte de la inversión que se estima perder porque algunos no pagan, en %.", en: "Share of the investment expected to be lost because some borrowers do not pay, in %." } },
+              { symbol: "Monto invertido", meaning: { es: "Pesos que pones en la plataforma.", en: "Pesos you put into the platform." } },
+            ],
+            steps: [
+              { es: "Resta a la tasa anual la comisión y la pérdida esperada.", en: "Subtract the fee and the expected loss from the annual rate." },
+              { es: "Convierte el resultado a decimal.", en: "Convert the result to a decimal." },
+              { es: "Multiplícalo por el monto invertido.", en: "Multiply it by the amount invested." },
+            ],
+            example: {
+              es: "Hipotético: inviertes $20,000; tasa 15 %, comisión 1.5 %, pérdida esperada 3.5 %. Rendimiento neto = 15 − 1.5 − 3.5 = 10 %. Ganancia = 20,000 × 0.10 = **$2,000**.",
+              en: "Hypothetical: you invest $20,000; rate 15 %, fee 1.5 %, expected loss 3.5 %. Net return = 15 − 1.5 − 3.5 = 10 %. Gain = 20,000 × 0.10 = **$2,000**.",
+            },
+            mistake: {
+              es: "Quedarte con la tasa bruta y olvidar comisiones y préstamos que no se pagan.",
+              en: "Sticking with the gross rate and forgetting fees and loans that are not repaid.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Transformación digital del área financiera", en: "Digital transformation of the finance function" },
@@ -467,6 +764,30 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: una empresa cerraba su mes en 10 días; tras conectar banco, facturación y contabilidad lo cierra en 4. Ganó 6 días para analizar en lugar de capturar.",
             en: "Mini example: a company used to close its month in 10 days; after connecting bank, invoicing and accounting it closes in 4. It gained 6 days to analyze instead of keying in data.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Ahorro por automatizar y meses de recuperación", en: "Savings from automation and payback months" },
+            expression: "Ahorro mensual = Transacciones al mes × (Costo antes − Costo después);   Meses de recuperación = Inversión ÷ Ahorro mensual",
+            variables: [
+              { symbol: "Transacciones al mes", meaning: { es: "Cuántas operaciones procesa el área cada mes (facturas, movimientos).", en: "How many transactions the team processes each month (invoices, bank movements)." } },
+              { symbol: "Costo antes / Costo después", meaning: { es: "Costo por transacción sin y con la automatización, en pesos.", en: "Cost per transaction without and with automation, in pesos." } },
+              { symbol: "Inversión", meaning: { es: "Lo que cuesta implementar la solución, en pesos.", en: "What it costs to implement the solution, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el ahorro por transacción: costo antes − costo después.", en: "Compute the saving per transaction: cost before − cost after." },
+              { es: "Multiplícalo por las transacciones del mes: ahorro mensual.", en: "Multiply it by the month's transactions: monthly saving." },
+              { es: "Divide la inversión entre el ahorro mensual.", en: "Divide the investment by the monthly saving." },
+            ],
+            example: {
+              es: "3,000 movimientos al mes; costo de $20 a mano y $5 automatizado; inversión $180,000. Ahorro por movimiento = 20 − 5 = $15. Ahorro mensual = 3,000 × 15 = **$45,000**. Recuperación = 180,000 ÷ 45,000 = **4 meses**.",
+              en: "3,000 movements a month; cost of $20 by hand and $5 automated; investment $180,000. Saving per movement = 20 − 5 = $15. Monthly saving = 3,000 × 15 = **$45,000**. Payback = 180,000 ÷ 45,000 = **4 months**.",
+            },
+            mistake: {
+              es: "Tomar el costo nuevo completo (3,000 × 5) como si fuera el ahorro.",
+              en: "Taking the full new cost (3,000 × 5) as if it were the saving.",
+            },
           },
         ],
       },
@@ -527,7 +848,7 @@ export const lessons: Lesson[] = [
       es: "Una blockchain es un registro compartido que casi no se puede alterar, y los contratos inteligentes son programas que se ejecutan solos en ella cuando se cumplen condiciones; sirven en algunos casos, pero no son la solución para todo.",
       en: "A blockchain is a shared record that is almost impossible to alter, and smart contracts are programs that run on it by themselves when conditions are met; they are useful in some cases, but they are not the answer to everything.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es una blockchain, qué es un hash y por qué el registro es difícil de alterar.", en: "Explain what a blockchain is, what a hash is and why the record is hard to alter." },
       { es: "Describir cómo funciona un contrato inteligente y sus límites.", en: "Describe how a smart contract works and its limits." },
@@ -573,6 +894,29 @@ export const lessons: Lesson[] = [
             en: "Mini example: a contract automatically splits each sale of a digital song: 70% to the artist, 20% to the producer and 10% to the platform, without waiting for quarterly settlements.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Reparto automático de un pago por porcentajes", en: "Automatic split of a payment by percentages" },
+            expression: "Monto para cada parte = Pago total × % de esa parte",
+            variables: [
+              { symbol: "Pago total", meaning: { es: "Lo que pagó el cliente, en pesos.", en: "What the customer paid, in pesos." } },
+              { symbol: "% de esa parte", meaning: { es: "Porcentaje pactado en el contrato para cada participante, en decimal; todos suman 100 %.", en: "Percentage agreed in the contract for each participant, as a decimal; they all add up to 100 %." } },
+            ],
+            steps: [
+              { es: "Convierte cada porcentaje a decimal.", en: "Convert each percentage to a decimal." },
+              { es: "Multiplica el pago total por el porcentaje de cada parte.", en: "Multiply the total payment by each party's percentage." },
+              { es: "Comprueba que la suma de todas las partes dé el pago total.", en: "Check that the sum of all parts equals the total payment." },
+            ],
+            example: {
+              es: "Venta de $4,000 con reparto 60 / 30 / 10. Autor: 4,000 × 0.60 = **$2,400**; editorial: 4,000 × 0.30 = **$1,200**; plataforma: 4,000 × 0.10 = **$400**. Suma: 2,400 + 1,200 + 400 = $4,000.",
+              en: "A $4,000 sale split 60 / 30 / 10. Author: 4,000 × 0.60 = **$2,400**; publisher: 4,000 × 0.30 = **$1,200**; platform: 4,000 × 0.10 = **$400**. Sum: 2,400 + 1,200 + 400 = $4,000.",
+            },
+            mistake: {
+              es: "Calcular un porcentaje sobre lo que queda tras pagar al primero: cada porcentaje se aplica al pago total.",
+              en: "Computing a percentage on what is left after paying the first party: each percentage applies to the total payment.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Aplicaciones en negocios y cuándo no usarla", en: "Business applications and when not to use it" },
@@ -588,6 +932,30 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: un inmueble de $5,000,000 tokenizado en 10,000 tokens da $500 por token; quien compra 30 tokens invierte $15,000 y posee 0.3% del inmueble.",
             en: "Mini example: a $5,000,000 property tokenized into 10,000 tokens gives $500 per token; whoever buys 30 tokens invests $15,000 and owns 0.3% of the property.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Porcentaje de un activo tokenizado", en: "Percentage of a tokenized asset" },
+            expression: "Precio por token = Valor del activo ÷ Número de tokens;   Tokens comprados = Monto invertido ÷ Precio por token;   % del activo = Tokens comprados ÷ Número de tokens × 100",
+            variables: [
+              { symbol: "Valor del activo", meaning: { es: "Valor total del inmueble o activo, en pesos.", en: "Total value of the property or asset, in pesos." } },
+              { symbol: "Número de tokens", meaning: { es: "En cuántas partes iguales se dividió el activo.", en: "Into how many equal parts the asset was divided." } },
+              { symbol: "Monto invertido", meaning: { es: "Pesos que pagaste por tus tokens.", en: "Pesos you paid for your tokens." } },
+            ],
+            steps: [
+              { es: "Calcula el precio por token: valor del activo ÷ número de tokens.", en: "Compute the price per token: asset value ÷ number of tokens." },
+              { es: "Calcula tus tokens: monto invertido ÷ precio por token.", en: "Compute your tokens: amount invested ÷ price per token." },
+              { es: "Divide tus tokens entre el total y multiplica por 100 (atajo: monto invertido ÷ valor del activo × 100).", en: "Divide your tokens by the total and multiply by 100 (shortcut: amount invested ÷ asset value × 100)." },
+            ],
+            example: {
+              es: "Un local de $3,000,000 dividido en 20,000 tokens: precio = 3,000,000 ÷ 20,000 = $150. Inviertes $45,000: 45,000 ÷ 150 = 300 tokens. Porcentaje = 300 ÷ 20,000 × 100 = **1.5 %** del local.",
+              en: "A $3,000,000 store divided into 20,000 tokens: price = 3,000,000 ÷ 20,000 = $150. You invest $45,000: 45,000 ÷ 150 = 300 tokens. Percentage = 300 ÷ 20,000 × 100 = **1.5 %** of the store.",
+            },
+            mistake: {
+              es: "Olvidar multiplicar por 100 y responder en decimal (0.015 en lugar de 1.5 %).",
+              en: "Forgetting to multiply by 100 and answering as a decimal (0.015 instead of 1.5 %).",
+            },
           },
         ],
         bullets: [
@@ -606,7 +974,7 @@ export const lessons: Lesson[] = [
           en: "A company buys $100,000 of machinery from a foreign supplier. They agree on an escrow smart contract: the buyer deposits the money; if the courier confirms delivery, the supplier is paid; if there is no confirmation within 30 days, the money returns. Describe what happens in each scenario.",
         },
         steps: [
-          { es: "Paso 1: el comprador deposita $100,000; el contrato los retiene y nadie puede tomarlos a mano.", en: "Step 1: the buyer deposits $100,000; the contract holds it and no one can take it manually." },
+          { es: "el comprador deposita $100,000; el contrato los retiene y nadie puede tomarlos a mano.", en: "the buyer deposits $100,000; the contract holds it and no one can take it manually." },
           { es: "Escenario A: el oráculo de la paquetería confirma la entrega el día 12 → el contrato paga $100,000 al proveedor.", en: "Scenario A: the courier's oracle confirms delivery on day 12 → the contract pays $100,000 to the supplier." },
           { es: "Escenario B: pasan 30 días sin confirmación → el contrato devuelve $100,000 al comprador.", en: "Scenario B: 30 days pass with no confirmation → the contract returns $100,000 to the buyer." },
           { es: "Riesgo: si el oráculo reporta mal (dice entregado cuando no lo fue), el contrato paga igual.", en: "Risk: if the oracle reports wrongly (says delivered when it was not), the contract pays anyway." },
@@ -654,7 +1022,7 @@ export const lessons: Lesson[] = [
       es: "Gobernar los datos es definir quién responde por ellos y cómo se cuidan; la privacidad protege los datos personales de las personas, y la seguridad los defiende contra pérdidas, robos y ataques.",
       en: "Governing data means defining who is responsible for it and how it is cared for; privacy protects people's personal data, and security defends it against loss, theft and attacks.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es la gobernanza de datos, sus roles y sus dimensiones de calidad.", en: "Explain what data governance is, its roles and its quality dimensions." },
       { es: "Distinguir datos personales y sensibles, y describir el aviso de privacidad y los derechos ARCO.", en: "Distinguish personal and sensitive data, and describe the privacy notice and ARCO rights." },
@@ -675,6 +1043,28 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: si 300 de 2,000 clientes no tienen RFC capturado, la **completitud** del campo RFC es 1,700 ÷ 2,000 = 85%. El custodio fija una meta de 98% y corrige la captura.",
             en: "Mini example: if 300 out of 2,000 customers have no RFC recorded, the **completeness** of the RFC field is 1,700 ÷ 2,000 = 85%. The steward sets a 98% target and fixes data entry.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Completitud de un campo", en: "Completeness of a field" },
+            expression: "Completitud (%) = Registros con el dato ÷ Total de registros × 100",
+            variables: [
+              { symbol: "Registros con el dato", meaning: { es: "Registros donde el campo sí está capturado (total − vacíos).", en: "Records where the field is filled in (total − blanks)." } },
+              { symbol: "Total de registros", meaning: { es: "Todos los registros revisados.", en: "All records reviewed." } },
+            ],
+            steps: [
+              { es: "Resta los registros vacíos al total.", en: "Subtract the blank records from the total." },
+              { es: "Divide entre el total y multiplica por 100.", en: "Divide by the total and multiply by 100." },
+            ],
+            example: {
+              es: "De 4,000 proveedores, 200 no tienen correo. Con dato: 4,000 − 200 = 3,800. Completitud = 3,800 ÷ 4,000 × 100 = **95 %**.",
+              en: "Out of 4,000 suppliers, 200 have no email. With data: 4,000 − 200 = 3,800. Completeness = 3,800 ÷ 4,000 × 100 = **95 %**.",
+            },
+            mistake: {
+              es: "Dividir los vacíos entre el total: eso da el porcentaje que falta (5 %), no la completitud.",
+              en: "Dividing the blanks by the total: that gives the missing percentage (5 %), not completeness.",
+            },
           },
         ],
         bullets: [
@@ -718,7 +1108,29 @@ export const lessons: Lesson[] = [
             en: "To prioritize, **risk** is estimated. One quantitative way is the **expected annual loss**: cost of an incident × times it is expected per year. Mini example: a $200,000 incident expected once every 4 years (0.25 per year) equals $50,000 a year; a control that prevents it and costs $20,000 a year is worth it.",
           },
         ],
-        formula: "Pérdida anual esperada = Costo por incidente × Frecuencia anual",
+        formulas: [
+          {
+            name: { es: "Pérdida anual esperada de un riesgo", en: "Expected annual loss of a risk" },
+            expression: "Pérdida anual esperada = Costo por incidente × Frecuencia anual",
+            variables: [
+              { symbol: "Costo por incidente", meaning: { es: "Cuánto costaría cada vez que ocurre el problema, en pesos.", en: "How much each occurrence of the problem would cost, in pesos." } },
+              { symbol: "Frecuencia anual", meaning: { es: "Veces que se espera al año. Si ocurre una vez cada N años, es 1 ÷ N (cada 4 años = 0.25).", en: "Times it is expected per year. If it happens once every N years, it is 1 ÷ N (every 4 years = 0.25)." } },
+            ],
+            steps: [
+              { es: "Convierte la frecuencia a «veces por año»: una vez cada 2 años = 1 ÷ 2 = 0.5.", en: "Convert the frequency to «times per year»: once every 2 years = 1 ÷ 2 = 0.5." },
+              { es: "Multiplica el costo por incidente por esa frecuencia.", en: "Multiply the cost per incident by that frequency." },
+              { es: "Compara con el costo anual del control: si el control cuesta menos, conviene.", en: "Compare with the control's annual cost: if the control costs less, it is worth it." },
+            ],
+            example: {
+              es: "Un ransomware costaría $150,000 y se espera una vez cada 2 años. Frecuencia = 1 ÷ 2 = 0.5. Pérdida anual esperada = 150,000 × 0.5 = **$75,000**. Un respaldo que cuesta $30,000 al año y lo evita sí conviene.",
+              en: "A ransomware attack would cost $150,000 and is expected once every 2 years. Frequency = 1 ÷ 2 = 0.5. Expected annual loss = 150,000 × 0.5 = **$75,000**. A backup that costs $30,000 a year and prevents it is worth it.",
+            },
+            mistake: {
+              es: "Multiplicar por el número de años (2) en lugar de por la frecuencia anual (0.5).",
+              en: "Multiplying by the number of years (2) instead of by the annual frequency (0.5).",
+            },
+          },
+        ],
       },
     ],
     examples: [

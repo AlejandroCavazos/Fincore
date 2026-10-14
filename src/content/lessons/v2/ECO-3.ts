@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
       "Los países comercian porque cada uno produce mejor ciertas cosas (ventaja comparativa); ese intercambio se registra en la balanza de pagos y se regula con aranceles, cuotas y tratados comerciales.",
       "Countries trade because each one is better at producing certain things (comparative advantage); that exchange is recorded in the balance of payments and regulated with tariffs, quotas and trade agreements.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Explicar la ventaja comparativa usando el costo de oportunidad.", "Explain comparative advantage using opportunity cost."),
       t("Distinguir las partes principales de la balanza de pagos y calcular una balanza comercial.", "Distinguish the main parts of the balance of payments and compute a trade balance."),
@@ -42,7 +42,31 @@ export const lessons: Lesson[] = [
             "Even if one country is better at everything, both gain if each specializes according to its comparative advantage and then they trade. Mini example: in one hour, Mexico produces 6 kg of tomatoes or 2 tools; Canada, 2 kg of tomatoes or 4 tools. In Mexico one tool costs 3 kg of tomatoes; in Canada, only 0.5 kg. Canada specializes in tools and Mexico in tomatoes.",
           ),
         ],
-        formula: "Costo de oportunidad de X = Lo que dejas de producir de Y ÷ Lo que produces de X",
+        formulas: [
+          {
+            name: t("Costo de oportunidad de producir un bien", "Opportunity cost of producing a good"),
+            expression: "Costo de oportunidad de X = Lo que dejas de producir de Y ÷ Lo que produces de X",
+            variables: [
+              { symbol: "X", meaning: t("El bien cuyo costo quieres conocer (por ejemplo, computadoras).", "The good whose cost you want to know (for example, computers).") },
+              { symbol: "Y", meaning: t("El otro bien que podrías producir con el mismo tiempo y recursos.", "The other good you could produce with the same time and resources.") },
+              { symbol: "Lo que dejas de producir de Y", meaning: t("Unidades de Y que harías si dedicaras todo el tiempo a Y.", "Units of Y you would make if you spent all the time on Y.") },
+              { symbol: "Lo que produces de X", meaning: t("Unidades de X que harías con ese mismo tiempo.", "Units of X you would make in that same time.") },
+            ],
+            steps: [
+              t("Anota cuánto produce el país de cada bien en el mismo tiempo (por ejemplo, un día).", "Write down how much of each good the country produces in the same time (for example, one day)."),
+              t("Divide lo que produce del otro bien entre lo que produce del bien que analizas: el resultado está en unidades del otro bien.", "Divide what it produces of the other good by what it produces of the good you are analyzing: the result is in units of the other good."),
+              t("Repite para el otro país y compara: quien tenga el costo más bajo tiene la ventaja comparativa en ese bien.", "Repeat for the other country and compare: whoever has the lower cost has the comparative advantage in that good."),
+            ],
+            example: t(
+              "En un día, un país produce 20 kg de café o 5 radios. Costo de 1 radio = 20 ÷ 5 = **4 kg de café**. Costo de 1 kg de café = 5 ÷ 20 = **0.25 radios**. Si otro país sacrifica solo 2 kg de café por radio, a ese otro país le conviene hacer los radios.",
+              "In one day, a country produces 20 kg of coffee or 5 radios. Cost of 1 radio = 20 ÷ 5 = **4 kg of coffee**. Cost of 1 kg of coffee = 5 ÷ 20 = **0.25 radios**. If another country gives up only 2 kg of coffee per radio, that other country should make the radios."
+            ),
+            mistake: t(
+              "Dividir al revés: el bien que analizas siempre va abajo (en el denominador).",
+              "Dividing the other way round: the good you are analyzing always goes on the bottom (in the denominator)."
+            ),
+          },
+        ],
       },
       {
         heading: t("La balanza de pagos: el estado de cuenta del país con el mundo", "The balance of payments: the country's statement with the world"),
@@ -60,7 +84,29 @@ export const lessons: Lesson[] = [
             "The **trade balance** is only one piece: merchandise exports minus imports. If it is positive there is a **surplus**; if negative, a **deficit**. Hypothetical mini example: a country exports 520 billion dollars and imports 535 billion; its trade balance is −15 billion (deficit).",
           ),
         ],
-        formula: "Balanza comercial = Exportaciones − Importaciones",
+        formulas: [
+          {
+            name: t("Balanza comercial", "Trade balance"),
+            expression: "Balanza comercial = Exportaciones − Importaciones",
+            variables: [
+              { symbol: "Exportaciones", meaning: t("Valor de las mercancías que el país vende al extranjero en el periodo (por ejemplo, en miles de millones de dólares).", "Value of the goods the country sells abroad in the period (for example, in billions of dollars).") },
+              { symbol: "Importaciones", meaning: t("Valor de las mercancías que el país compra al extranjero en el mismo periodo.", "Value of the goods the country buys from abroad in the same period.") },
+            ],
+            steps: [
+              t("Verifica que ambas cifras sean del mismo periodo y la misma moneda.", "Check that both figures are for the same period and currency."),
+              t("Resta las importaciones a las exportaciones.", "Subtract imports from exports."),
+              t("Lee el signo: positivo es superávit; negativo, déficit.", "Read the sign: positive is a surplus; negative, a deficit."),
+            ],
+            example: t(
+              "Un país exporta 48 mil millones de dólares e importa 41 mil millones: 48 − 41 = **+7 mil millones** (superávit).",
+              "A country exports 48 billion dollars and imports 41 billion: 48 − 41 = **+7 billion** (surplus)."
+            ),
+            mistake: t(
+              "Restar al revés (importaciones − exportaciones) y confundir déficit con superávit.",
+              "Subtracting the other way round (imports − exports) and mixing up deficit and surplus."
+            ),
+          },
+        ],
         bullets: [
           t("Cuenta corriente: bienes, servicios, ingresos por inversión y remesas.", "Current account: goods, services, investment income and remittances."),
           t("Cuenta financiera: inversión directa, inversión en bonos y acciones, préstamos.", "Financial account: direct investment, investment in bonds and shares, loans."),
@@ -83,7 +129,30 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: an imported backpack is worth $1,000 at customs. With a 10% tariff, the importer pays $100 more and the backpack already costs $1,100 before selling it.",
           ),
         ],
-        formula: "Costo con arancel = Valor en aduana × (1 + tasa del arancel)",
+        formulas: [
+          {
+            name: t("Costo de un producto importado con arancel", "Cost of an imported product with a tariff"),
+            expression: "Arancel = Valor en aduana × tasa del arancel;   Costo con arancel = Valor en aduana × (1 + tasa del arancel)",
+            variables: [
+              { symbol: "Valor en aduana", meaning: t("Lo que vale la mercancía al llegar a la aduana, en pesos.", "What the goods are worth on arrival at customs, in pesos.") },
+              { symbol: "tasa del arancel", meaning: t("Porcentaje del impuesto a la importación, en decimal (15 % = 0.15).", "Import tax percentage, as a decimal (15 % = 0.15).") },
+              { symbol: "Arancel", meaning: t("Pesos de impuesto que se pagan por cada unidad.", "Pesos of tax paid per unit.") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal: 12 % = 0.12.", "Convert the rate to a decimal: 12 % = 0.12."),
+              t("Calcula el arancel: valor en aduana × tasa.", "Compute the tariff: customs value × rate."),
+              t("Súmalo al valor en aduana para obtener el costo total (o multiplica directo por 1 + tasa).", "Add it to the customs value to get the total cost (or multiply directly by 1 + rate)."),
+            ],
+            example: t(
+              "Una licuadora con valor en aduana de $2,400 y arancel hipotético de 12 %. Arancel = $2,400 × 0.12 = $288. Costo con arancel = $2,400 + $288 = **$2,688** (igual a $2,400 × 1.12).",
+              "A blender with a customs value of $2,400 and a hypothetical 12 % tariff. Tariff = $2,400 × 0.12 = $288. Cost with tariff = $2,400 + $288 = **$2,688** (same as $2,400 × 1.12)."
+            ),
+            mistake: t(
+              "Reportar solo el arancel como si fuera el costo total, u olvidar sumarlo al valor de la mercancía.",
+              "Reporting only the tariff as if it were the total cost, or forgetting to add it to the value of the goods."
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -146,7 +215,7 @@ export const lessons: Lesson[] = [
       "El tipo de cambio es el precio de una moneda en términos de otra; en México flota según la oferta y la demanda, y sus movimientos benefician a unos (exportadores) y perjudican a otros (importadores y deudores en dólares).",
       "The exchange rate is the price of one currency in terms of another; in Mexico it floats with supply and demand, and its moves benefit some (exporters) and hurt others (importers and dollar debtors).",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Leer un tipo de cambio y distinguir apreciación de depreciación.", "Read an exchange rate and distinguish appreciation from depreciation."),
       t("Calcular conversiones con precio de compra y de venta, variaciones porcentuales y tipos cruzados.", "Compute conversions with buy and sell prices, percentage changes and cross rates."),
@@ -170,7 +239,51 @@ export const lessons: Lesson[] = [
             "At banks and exchange houses you will see two prices: the **buy** price (what they pay you for your dollar) and the **sell** price (what they charge you to give you a dollar). The sell price is always higher; the difference, called the **spread**, is the intermediary's profit. Mini example: if they buy at 17.40 and sell at 18.10, the spread is 0.70 pesos per dollar.",
           ),
         ],
-        formula: "Variación % = (Tipo nuevo − Tipo anterior) ÷ Tipo anterior × 100",
+        formulas: [
+          {
+            name: t("Variación porcentual del tipo de cambio", "Percentage change in the exchange rate"),
+            expression: "Variación % = (Tipo nuevo − Tipo anterior) ÷ Tipo anterior × 100",
+            variables: [
+              { symbol: "Tipo nuevo", meaning: t("Pesos por dólar al final del periodo.", "Pesos per dollar at the end of the period.") },
+              { symbol: "Tipo anterior", meaning: t("Pesos por dólar al inicio del periodo (el punto de partida).", "Pesos per dollar at the start of the period (the starting point).") },
+            ],
+            steps: [
+              t("Resta: tipo nuevo − tipo anterior.", "Subtract: new rate − previous rate."),
+              t("Divide esa diferencia entre el tipo anterior.", "Divide that difference by the previous rate."),
+              t("Multiplica por 100. Positivo: el dólar subió (el peso se depreció); negativo: el peso se apreció.", "Multiply by 100. Positive: the dollar rose (the peso depreciated); negative: the peso appreciated."),
+            ],
+            example: t(
+              "El dólar pasa de 18.50 a 19.98 pesos. Diferencia: 19.98 − 18.50 = 1.48. División: 1.48 ÷ 18.50 = 0.08. Variación = 0.08 × 100 = **8 %**: el dólar cuesta 8 % más.",
+              "The dollar moves from 18.50 to 19.98 pesos. Difference: 19.98 − 18.50 = 1.48. Division: 1.48 ÷ 18.50 = 0.08. Change = 0.08 × 100 = **8 %**: the dollar costs 8 % more."
+            ),
+            mistake: t(
+              "Dividir entre el tipo nuevo: la variación siempre se calcula sobre el valor inicial.",
+              "Dividing by the new rate: the change is always computed on the starting value."
+            ),
+          },
+          {
+            name: t("Cambiar dinero con precio de compra y de venta", "Exchanging money with buy and sell prices"),
+            expression: "Pesos que recibes = Dólares que vendes × Precio de compra;   Pesos que pagas = Dólares que compras × Precio de venta;   Diferencial = Venta − Compra",
+            variables: [
+              { symbol: "Precio de compra", meaning: t("Pesos que la casa de cambio te paga por cada dólar que tú le vendes (el más bajo).", "Pesos the exchange house pays you for each dollar you sell it (the lower one).") },
+              { symbol: "Precio de venta", meaning: t("Pesos que la casa de cambio te cobra por cada dólar que tú le compras (el más alto).", "Pesos the exchange house charges you for each dollar you buy from it (the higher one).") },
+              { symbol: "Diferencial", meaning: t("Ganancia de la casa de cambio por dólar, en pesos.", "The exchange house's profit per dollar, in pesos.") },
+            ],
+            steps: [
+              t("Pregúntate qué haces tú: si vendes dólares, usa el precio de compra; si compras dólares, usa el de venta.", "Ask yourself what you are doing: if you sell dollars, use the buy price; if you buy dollars, use the sell price."),
+              t("Multiplica los dólares por ese precio para obtener pesos.", "Multiply the dollars by that price to get pesos."),
+              t("Para el diferencial, resta venta − compra.", "For the spread, subtract sell − buy."),
+            ],
+            example: t(
+              "Una casa compra a $17.80 y vende a $18.50. Si vendes 400 dólares: 400 × 17.80 = **$7,120**. Si compras 250 dólares: 250 × 18.50 = **$4,625**. Diferencial: 18.50 − 17.80 = **$0.70** por dólar.",
+              "A house buys at $17.80 and sells at $18.50. If you sell 400 dollars: 400 × 17.80 = **$7,120**. If you buy 250 dollars: 250 × 18.50 = **$4,625**. Spread: 18.50 − 17.80 = **$0.70** per dollar."
+            ),
+            mistake: t(
+              "Leer el letrero desde tu punto de vista: «compra» y «venta» se refieren a lo que hace la casa de cambio, no tú.",
+              "Reading the sign from your point of view: «buy» and «sell» refer to what the exchange house does, not you."
+            ),
+          },
+        ],
       },
       {
         heading: t("Regímenes cambiarios y tipos cruzados", "Exchange rate regimes and cross rates"),
@@ -188,7 +301,30 @@ export const lessons: Lesson[] = [
             "A **cross rate** is obtained by combining two quotes that share a currency. Hypothetical mini example: if 1 euro = 1.10 dollars and 1 dollar = 18 pesos, then 1 euro = 1.10 × 18 = 19.80 pesos.",
           ),
         ],
-        formula: "MXN por EUR = (USD por EUR) × (MXN por USD)",
+        formulas: [
+          {
+            name: t("Tipo de cambio cruzado", "Cross exchange rate"),
+            expression: "MXN por EUR = (USD por EUR) × (MXN por USD)",
+            variables: [
+              { symbol: "USD por EUR", meaning: t("Cuántos dólares vale 1 euro (o la otra moneda extranjera).", "How many dollars 1 euro (or the other foreign currency) is worth.") },
+              { symbol: "MXN por USD", meaning: t("Cuántos pesos vale 1 dólar.", "How many pesos 1 dollar is worth.") },
+              { symbol: "MXN por EUR", meaning: t("Cuántos pesos vale 1 euro: el resultado.", "How many pesos 1 euro is worth: the result.") },
+            ],
+            steps: [
+              t("Identifica la moneda en común entre las dos cotizaciones (normalmente el dólar).", "Identify the currency the two quotes share (usually the dollar)."),
+              t("Multiplica: unidades de dólar por cada moneda extranjera × pesos por cada dólar.", "Multiply: dollars per unit of foreign currency × pesos per dollar."),
+              t("Revisa con sentido común: si la moneda vale más que el dólar, debe costar más pesos que el dólar.", "Check with common sense: if the currency is worth more than the dollar, it must cost more pesos than the dollar."),
+            ],
+            example: t(
+              "Hipotético: 1 libra esterlina = 1.25 dólares y 1 dólar = 17.60 pesos. 1 libra = 1.25 × 17.60 = **22.00 pesos**.",
+              "Hypothetical: 1 pound sterling = 1.25 dollars and 1 dollar = 17.60 pesos. 1 pound = 1.25 × 17.60 = **22.00 pesos**."
+            ),
+            mistake: t(
+              "Dividir en lugar de multiplicar: daría menos pesos por una moneda que vale más que el dólar.",
+              "Dividing instead of multiplying: it would give fewer pesos for a currency worth more than the dollar."
+            ),
+          },
+        ],
       },
       {
         heading: t("Qué mueve el tipo de cambio y a quién afecta", "What moves the exchange rate and whom it affects"),
@@ -273,7 +409,7 @@ export const lessons: Lesson[] = [
       "La economía empresarial aplica las herramientas de la economía a las decisiones de un negocio: medir la ganancia real con el costo de oportunidad, decidir con costos marginales y fijar precios según cómo reaccionan los clientes.",
       "Managerial economics applies the tools of economics to business decisions: measuring real profit with opportunity cost, deciding with marginal costs and setting prices based on how customers react.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Distinguir la utilidad contable de la utilidad económica.", "Distinguish accounting profit from economic profit."),
       t("Usar costos fijos, variables, marginales y hundidos para tomar decisiones.", "Use fixed, variable, marginal and sunk costs to make decisions."),
@@ -297,7 +433,34 @@ export const lessons: Lesson[] = [
             "Mini example: Lucía has a bakery that brings in $600,000 a year and pays $420,000 in costs: accounting profit of $180,000. But she left a job paying $240,000 a year. Her economic profit is 180,000 − 240,000 = −$60,000: she would be better off in her old job.",
           ),
         ],
-        formula: "Utilidad económica = Ingresos − Costos explícitos − Costos implícitos",
+        formulas: [
+          {
+            name: t("Utilidad contable y utilidad económica", "Accounting profit and economic profit"),
+            expression: "Utilidad contable = Ingresos − Costos explícitos;   Utilidad económica = Ingresos − Costos explícitos − Costos implícitos",
+            variables: [
+              { symbol: "Ingresos", meaning: t("Dinero que entra por ventas en el periodo, en pesos.", "Money coming in from sales in the period, in pesos.") },
+              { symbol: "Costos explícitos", meaning: t("Gastos que sí se pagan: renta, sueldos, insumos, en pesos.", "Costs actually paid: rent, wages, supplies, in pesos.") },
+              { symbol: "Costos implícitos", meaning: t("Lo que el dueño deja de ganar en su mejor alternativa: el sueldo de otro empleo o el rendimiento de su ahorro, en pesos.", "What the owner gives up in the best alternative: the salary from another job or the return on savings, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la utilidad contable: ingresos − costos explícitos.", "Compute accounting profit: revenue − explicit costs."),
+              t("Suma los costos implícitos (sueldo al que renunció, rendimiento perdido del ahorro).", "Add up implicit costs (salary given up, lost return on savings)."),
+              t("Resta los costos implícitos a la utilidad contable: eso es la utilidad económica.", "Subtract implicit costs from accounting profit: that is economic profit."),
+            ],
+            example: t(
+              "Una estética ingresa $750,000 al año y paga $520,000. Utilidad contable = 750,000 − 520,000 = $230,000. La dueña dejó un empleo de $200,000. Utilidad económica = 230,000 − 200,000 = **$30,000**.",
+              "A hair salon brings in $750,000 a year and pays $520,000. Accounting profit = 750,000 − 520,000 = $230,000. The owner left a $200,000 job. Economic profit = 230,000 − 200,000 = **$30,000**."
+            ),
+            interpret: t(
+              "Positiva: el negocio deja más que tu mejor alternativa. Negativa: aunque haya utilidad contable, te iría mejor en la otra opción.",
+              "Positive: the business earns more than your best alternative. Negative: even with an accounting profit, you would do better in the other option."
+            ),
+            mistake: t(
+              "Olvidar los costos implícitos y creer que cualquier utilidad contable significa que el negocio conviene.",
+              "Forgetting implicit costs and believing any accounting profit means the business is worthwhile."
+            ),
+          },
+        ],
       },
       {
         heading: t("Costos para decidir: fijos, variables, marginales y hundidos", "Costs for deciding: fixed, variable, marginal and sunk"),
@@ -315,7 +478,35 @@ export const lessons: Lesson[] = [
             "The **break-even point** is the quantity at which you neither gain nor lose. Each unit contributes its **contribution margin** (price minus variable cost) to cover fixed costs. Mini example: a food truck with fixed costs of $45,000 a month sells tacos at $75 with a variable cost of $45: it needs 45,000 ÷ 30 = 1,500 orders a month.",
           ),
         ],
-        formula: "Punto de equilibrio (unidades) = Costos fijos ÷ (Precio − Costo variable unitario)",
+        formulas: [
+          {
+            name: t("Punto de equilibrio en unidades", "Break-even point in units"),
+            expression: "Punto de equilibrio (unidades) = Costos fijos ÷ (Precio − Costo variable unitario)",
+            variables: [
+              { symbol: "Costos fijos", meaning: t("Gastos que no cambian con lo que vendes (renta, sueldos fijos), en pesos por periodo.", "Costs that do not change with what you sell (rent, fixed salaries), in pesos per period.") },
+              { symbol: "Precio", meaning: t("Precio de venta de cada unidad, en pesos.", "Selling price of each unit, in pesos.") },
+              { symbol: "Costo variable unitario", meaning: t("Lo que cuesta producir cada unidad (insumos, empaque), en pesos.", "What it costs to produce each unit (supplies, packaging), in pesos.") },
+              { symbol: "Precio − Costo variable unitario", meaning: t("Margen de contribución: lo que deja cada unidad para pagar los costos fijos.", "Contribution margin: what each unit leaves to pay fixed costs.") },
+            ],
+            steps: [
+              t("Calcula el margen de contribución: precio − costo variable unitario.", "Compute the contribution margin: price − unit variable cost."),
+              t("Divide los costos fijos entre ese margen.", "Divide fixed costs by that margin."),
+              t("Si sale con decimales, redondea hacia arriba: no se venden fracciones de unidad.", "If it has decimals, round up: you cannot sell a fraction of a unit."),
+            ],
+            example: t(
+              "Una paletería tiene costos fijos de $36,000 al mes, vende cada paleta en $120 y su costo variable es $75. Margen = 120 − 75 = $45. Equilibrio = 36,000 ÷ 45 = **800 paletas al mes**.",
+              "An ice-pop shop has fixed costs of $36,000 a month, sells each pop at $120 and its variable cost is $75. Margin = 120 − 75 = $45. Break-even = 36,000 ÷ 45 = **800 pops a month**."
+            ),
+            interpret: t(
+              "Por debajo de esa cantidad hay pérdida; cada unidad vendida por encima aporta su margen como ganancia.",
+              "Below that quantity there is a loss; each unit sold above it adds its margin as profit."
+            ),
+            mistake: t(
+              "Dividir los costos fijos entre el precio, olvidando que cada unidad también tiene su costo variable.",
+              "Dividing fixed costs by the price, forgetting that each unit also has its own variable cost."
+            ),
+          },
+        ],
       },
       {
         heading: t("Precios y entorno: usar la elasticidad", "Prices and environment: using elasticity"),
@@ -333,7 +524,32 @@ export const lessons: Lesson[] = [
             "The business also watches its **environment**: interest rates (make loans more expensive), the exchange rate (makes imported inputs more expensive), inflation (raises costs) and competition. Mini example: if rates rise, a furniture store that sells in installments may see its sales fall even though nothing changed inside the store.",
           ),
         ],
-        formula: "Elasticidad = |% cambio en cantidad| ÷ |% cambio en precio|",
+        formulas: [
+          {
+            name: t("Elasticidad precio de la demanda e ingreso total", "Price elasticity of demand and total revenue"),
+            expression: "Elasticidad = |% cambio en cantidad| ÷ |% cambio en precio|;   Ingreso total = Precio × Cantidad",
+            variables: [
+              { symbol: "% cambio en cantidad", meaning: t("(Cantidad nueva − cantidad anterior) ÷ cantidad anterior × 100.", "(New quantity − previous quantity) ÷ previous quantity × 100.") },
+              { symbol: "% cambio en precio", meaning: t("(Precio nuevo − precio anterior) ÷ precio anterior × 100.", "(New price − previous price) ÷ previous price × 100.") },
+              { symbol: "| |", meaning: t("Valor absoluto: se ignora el signo menos.", "Absolute value: ignore the minus sign.") },
+              { symbol: "Ingreso total", meaning: t("Pesos que entran por ventas: precio × unidades vendidas.", "Pesos coming in from sales: price × units sold.") },
+            ],
+            steps: [
+              t("Calcula el % de cambio en el precio sobre el precio anterior.", "Compute the % change in price over the previous price."),
+              t("Calcula el % de cambio en la cantidad sobre la cantidad anterior.", "Compute the % change in quantity over the previous quantity."),
+              t("Divide ambos sin signo: mayor que 1 = elástica; menor que 1 = inelástica.", "Divide both without sign: greater than 1 = elastic; less than 1 = inelastic."),
+              t("Confirma calculando el ingreso total antes y después (precio × cantidad).", "Confirm by computing total revenue before and after (price × quantity)."),
+            ],
+            example: t(
+              "Un gimnasio sube su mensualidad de $200 a $220 y sus socios bajan de 500 a 475. Precio: (220 − 200) ÷ 200 = +10 %. Cantidad: (475 − 500) ÷ 500 = −5 %. Elasticidad = 5 ÷ 10 = **0.5** (inelástica). Ingreso: 200 × 500 = $100,000 contra 220 × 475 = **$104,500**: subir el precio convino.",
+              "A gym raises its monthly fee from $200 to $220 and members drop from 500 to 475. Price: (220 − 200) ÷ 200 = +10 %. Quantity: (475 − 500) ÷ 500 = −5 %. Elasticity = 5 ÷ 10 = **0.5** (inelastic). Revenue: 200 × 500 = $100,000 versus 220 × 475 = **$104,500**: raising the price paid off."
+            ),
+            mistake: t(
+              "Calcular los porcentajes sobre el valor nuevo, o confundir elástica con inelástica: si fuera inelástica, bajar el precio reduciría el ingreso.",
+              "Computing the percentages on the new value, or mixing up elastic and inelastic: if demand were inelastic, lowering the price would reduce revenue."
+            ),
+          },
+        ],
         bullets: [
           t("Elástica (> 1): bajar el precio sube el ingreso.", "Elastic (> 1): lowering the price raises revenue."),
           t("Inelástica (< 1): subir el precio sube el ingreso.", "Inelastic (< 1): raising the price raises revenue."),
@@ -397,7 +613,7 @@ export const lessons: Lesson[] = [
       "La teoría de juegos estudia decisiones en las que tu resultado depende de lo que hagan otros; con matrices de pagos y árboles se encuentran estrategias dominantes, equilibrios de Nash y amenazas creíbles.",
       "Game theory studies decisions in which your outcome depends on what others do; payoff matrices and trees reveal dominant strategies, Nash equilibria and credible threats.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Identificar jugadores, estrategias y pagos, y distinguir juegos simultáneos de secuenciales.", "Identify players, strategies and payoffs, and distinguish simultaneous from sequential games."),
       t("Encontrar estrategias dominantes y equilibrios de Nash en una matriz de pagos.", "Find dominant strategies and Nash equilibria in a payoff matrix."),
@@ -437,6 +653,31 @@ export const lessons: Lesson[] = [
             "El **dilema del prisionero** lo muestra: dos empresas ganarían más si ambas mantuvieran precios altos, pero cada una tiene incentivo a bajar el suyo. Ambas bajan y terminan peor. Mini ejemplo: con precios altos ganan 10 y 10; si ambas bajan, 5 y 5. La desconfianza destruye ganancia para las dos.",
             "The **prisoner's dilemma** shows it: two firms would earn more if both kept high prices, but each has an incentive to lower its own. Both lower and end up worse. Mini example: with high prices they earn 10 and 10; if both lower, 5 and 5. Distrust destroys profit for both.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Ganancia conjunta que se pierde en el equilibrio", "Joint profit lost in the equilibrium"),
+            expression: "Pérdida conjunta = (Pago 1 + Pago 2 en la casilla cooperativa) − (Pago 1 + Pago 2 en el equilibrio de Nash)",
+            variables: [
+              { symbol: "Pago 1, Pago 2", meaning: t("Lo que gana cada jugador en una casilla de la matriz (por ejemplo, en miles de pesos).", "What each player earns in a cell of the matrix (for example, in thousands of pesos).") },
+              { symbol: "Casilla cooperativa", meaning: t("La combinación en la que ambos estarían mejor si confiaran uno en el otro.", "The combination in which both would be better off if they trusted each other.") },
+              { symbol: "Equilibrio de Nash", meaning: t("La casilla donde nadie gana cambiando solo.", "The cell where no one gains by changing alone.") },
+            ],
+            steps: [
+              t("Encuentra el equilibrio de Nash con las mejores respuestas (ver la lista de abajo).", "Find the Nash equilibrium with best responses (see the list below)."),
+              t("Suma los dos pagos de la casilla del equilibrio.", "Add the two payoffs of the equilibrium cell."),
+              t("Suma los dos pagos de la casilla cooperativa.", "Add the two payoffs of the cooperative cell."),
+              t("Resta: cooperativa − equilibrio.", "Subtract: cooperative − equilibrium."),
+            ],
+            example: t(
+              "Dos panaderías: si ambas hacen descuento ganan (20, 20), que es el equilibrio; si ambas mantienen precio ganarían (32, 32). Equilibrio: 20 + 20 = 40. Cooperativa: 32 + 32 = 64. Pérdida conjunta = 64 − 40 = **24 mil pesos**.",
+              "Two bakeries: if both discount they earn (20, 20), which is the equilibrium; if both keep prices they would earn (32, 32). Equilibrium: 20 + 20 = 40. Cooperative: 32 + 32 = 64. Joint loss = 64 − 40 = **24 thousand pesos**."
+            ),
+            mistake: t(
+              "Comparar la ganancia de un solo jugador cuando te piden la conjunta (la de ambos sumada).",
+              "Comparing one player's profit when you are asked for the joint one (both added together)."
+            ),
+          },
         ],
         bullets: [
           t("Paso 1: fija la jugada del rival y subraya tu mejor respuesta.", "Step 1: fix the rival's move and underline your best response."),
@@ -521,7 +762,7 @@ export const lessons: Lesson[] = [
       "La economía del sector público estudia cuándo y cómo debe intervenir el gobierno: corregir fallas de mercado como bienes públicos y externalidades, redistribuir, y evaluar si cada intervención vale lo que cuesta.",
       "Public sector economics studies when and how government should intervene: correcting market failures such as public goods and externalities, redistributing, and assessing whether each intervention is worth its cost.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Reconocer las fallas de mercado que justifican la intervención del gobierno.", "Recognize the market failures that justify government intervention."),
       t("Clasificar bienes en públicos, privados, comunes y de club según rivalidad y exclusión.", "Classify goods as public, private, common or club goods by rivalry and excludability."),
@@ -568,7 +809,31 @@ export const lessons: Lesson[] = [
             "A **negative externality** is a cost that falls on third parties: a factory that pollutes the river does not pay for the damage, so it produces **more** than is socially efficient. It is corrected with a **Pigouvian tax** equal to the damage per unit. A **positive externality** (getting vaccinated protects others) leads to producing **less** than ideal and is corrected with subsidies. Mini example: if each ton causes $250 of damage, the corrective tax is $250 per ton.",
           ),
         ],
-        formula: "Costo social = Costo privado + Costo externo",
+        formulas: [
+          {
+            name: t("Costo social e impuesto pigouviano", "Social cost and Pigouvian tax"),
+            expression: "Costo social = Costo privado + Costo externo;   Impuesto pigouviano = Costo externo por unidad",
+            variables: [
+              { symbol: "Costo privado", meaning: t("Lo que le cuesta a la empresa producir una unidad, en pesos.", "What it costs the company to produce one unit, in pesos.") },
+              { symbol: "Costo externo", meaning: t("Daño por unidad que pagan otros (vecinos, salud, limpieza), en pesos.", "Damage per unit paid by others (neighbors, health, cleaning), in pesos.") },
+              { symbol: "Costo social", meaning: t("Costo total para la sociedad por unidad, en pesos.", "Total cost to society per unit, in pesos.") },
+              { symbol: "Impuesto pigouviano", meaning: t("Impuesto por unidad que hace que la empresa pague el daño que causa.", "Per-unit tax that makes the company pay for the damage it causes.") },
+            ],
+            steps: [
+              t("Identifica el costo privado y el daño externo, ambos por unidad.", "Identify the private cost and the external damage, both per unit."),
+              t("Súmalos para obtener el costo social.", "Add them to get the social cost."),
+              t("El impuesto correctivo es igual solo al daño externo, no al costo social completo.", "The corrective tax equals only the external damage, not the full social cost."),
+            ],
+            example: t(
+              "Una curtiduría gasta $800 por lote y contamina el agua con un daño de $150 por lote (hipotético). Costo social = 800 + 150 = **$950**. Impuesto pigouviano = **$150 por lote**.",
+              "A tannery spends $800 per batch and pollutes the water with $150 of damage per batch (hypothetical). Social cost = 800 + 150 = **$950**. Pigouvian tax = **$150 per batch**."
+            ),
+            mistake: t(
+              "Poner como impuesto el costo social completo: cobrarías dos veces el costo privado.",
+              "Setting the tax equal to the full social cost: you would charge the private cost twice."
+            ),
+          },
+        ],
       },
       {
         heading: t("Fallas de gobierno y evaluación de proyectos", "Government failures and project evaluation"),
@@ -586,7 +851,29 @@ export const lessons: Lesson[] = [
             "Two goals that sometimes clash are also considered: **efficiency** (making the most of resources) and **equity** (distributing fairly). Hypothetical mini example: a pedestrian bridge costs $4 million and generates $6 million in benefits; the ratio is 1.5 and it is worthwhile.",
           ),
         ],
-        formula: "Relación B/C = Valor presente de beneficios ÷ Valor presente de costos",
+        formulas: [
+          {
+            name: t("Relación beneficio-costo (B/C)", "Benefit-cost ratio (B/C)"),
+            expression: "Relación B/C = Valor presente de beneficios ÷ Valor presente de costos",
+            variables: [
+              { symbol: "Valor presente de beneficios", meaning: t("Todos los beneficios para la sociedad expresados en pesos de hoy.", "All benefits to society expressed in today's pesos.") },
+              { symbol: "Valor presente de costos", meaning: t("Todos los costos del proyecto (construcción y operación) en pesos de hoy.", "All project costs (construction and operation) in today's pesos.") },
+            ],
+            steps: [
+              t("Suma los beneficios y los costos, ya en valor de hoy.", "Add up benefits and costs, already in today's value."),
+              t("Divide beneficios entre costos (los beneficios van arriba).", "Divide benefits by costs (benefits go on top)."),
+              t("Compara con 1: mayor que 1 conviene; menor que 1 no.", "Compare with 1: greater than 1 is worthwhile; less than 1 is not."),
+            ],
+            example: t(
+              "Un parque cuesta $50 millones y da beneficios por $45 millones (valor presente, hipotético). B/C = 45 ÷ 50 = **0.90**: por cada peso invertido se recuperan 90 centavos de beneficio social, así que no conviene.",
+              "A park costs $50 million and yields $45 million in benefits (present value, hypothetical). B/C = 45 ÷ 50 = **0.90**: each peso invested returns 90 cents of social benefit, so it is not worthwhile."
+            ),
+            mistake: t(
+              "Dividir al revés (costos ÷ beneficios) y llegar a la conclusión contraria.",
+              "Dividing the other way round (costs ÷ benefits) and reaching the opposite conclusion."
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -644,7 +931,7 @@ export const lessons: Lesson[] = [
       "Las finanzas públicas estudian de dónde obtiene dinero el gobierno, en qué lo gasta y cómo se aprueba y vigila el presupuesto; con los balances se mide si gasta más de lo que ingresa.",
       "Public finance studies where government gets money, what it spends it on and how the budget is approved and overseen; balances measure whether it spends more than it takes in.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Distinguir ingresos tributarios y no tributarios, y gasto programable y no programable.", "Distinguish tax and non-tax revenue, and programmable and non-programmable spending."),
       t("Describir el ciclo del presupuesto federal en México y quién aprueba cada parte.", "Describe Mexico's federal budget cycle and who approves each part."),
@@ -690,7 +977,29 @@ export const lessons: Lesson[] = [
             "During the year, agencies **execute** the budget and the Finance Ministry reports progress periodically. At year-end the **Public Account** is presented and reviewed by the **Superior Audit Office of the Federation (ASF)**. Hypothetical mini example: if a program was approved $2,000 million and spent $1,700 million, its execution was 85%.",
           ),
         ],
-        formula: "Avance del ejercicio (%) = Gasto ejercido ÷ Presupuesto aprobado × 100",
+        formulas: [
+          {
+            name: t("Avance del ejercicio del presupuesto", "Budget execution rate"),
+            expression: "Avance del ejercicio (%) = Gasto ejercido ÷ Presupuesto aprobado × 100",
+            variables: [
+              { symbol: "Gasto ejercido", meaning: t("Lo que realmente se gastó, en pesos.", "What was actually spent, in pesos.") },
+              { symbol: "Presupuesto aprobado", meaning: t("Lo que se autorizó gastar para el año, en pesos.", "What was authorized to be spent for the year, in pesos.") },
+            ],
+            steps: [
+              t("Divide el gasto ejercido entre el presupuesto aprobado.", "Divide spending executed by the approved budget."),
+              t("Multiplica por 100 para obtener el %.", "Multiply by 100 to get the %."),
+              t("Si quieres el subejercicio (lo no gastado), resta el resultado a 100 %.", "If you want the underspending (what was not spent), subtract the result from 100 %."),
+            ],
+            example: t(
+              "A un programa de vivienda le aprobaron $900 millones y ejerció $774 millones (hipotético). 774 ÷ 900 = 0.86; × 100 = **86 %**. Subejercicio = 100 % − 86 % = 14 %.",
+              "A housing program was approved $900 million and executed $774 million (hypothetical). 774 ÷ 900 = 0.86; × 100 = **86 %**. Underspending = 100 % − 86 % = 14 %."
+            ),
+            mistake: t(
+              "Responder el porcentaje no gastado cuando piden el ejercido, o dividir al revés (aprobado ÷ ejercido).",
+              "Giving the unspent percentage when asked for the executed one, or dividing the other way round (approved ÷ executed)."
+            ),
+          },
+        ],
       },
       {
         heading: t("Balances: ¿gasta el gobierno más de lo que ingresa?", "Balances: does government spend more than it takes in?"),
@@ -708,7 +1017,34 @@ export const lessons: Lesson[] = [
             "Mexico also publishes the **Public Sector Borrowing Requirements (RFSP)**, the broadest measure of the deficit because it includes activities the traditional balance leaves out. Hypothetical mini example: revenue 6,500, spending 7,100 with 700 of interest (billions): balance −600, primary balance +100.",
           ),
         ],
-        formula: "Balance primario = Ingresos − (Gasto total − Costo financiero)",
+        formulas: [
+          {
+            name: t("Balance presupuestario y balance primario", "Budget balance and primary balance"),
+            expression: "Balance presupuestario = Ingresos − Gasto total;   Balance primario = Ingresos − (Gasto total − Costo financiero)",
+            variables: [
+              { symbol: "Ingresos", meaning: t("Todo lo que recauda el gobierno en el año (impuestos y otros), en pesos.", "Everything government collects in the year (taxes and others), in pesos.") },
+              { symbol: "Gasto total", meaning: t("Todo lo que gasta, incluidos los intereses de la deuda, en pesos.", "Everything it spends, including interest on debt, in pesos.") },
+              { symbol: "Costo financiero", meaning: t("Intereses que se pagan por deudas pasadas, en pesos.", "Interest paid on past debts, in pesos.") },
+            ],
+            steps: [
+              t("Balance presupuestario: resta el gasto total a los ingresos.", "Budget balance: subtract total spending from revenue."),
+              t("Quita los intereses al gasto total: gasto sin costo financiero.", "Remove interest from total spending: spending without financial cost."),
+              t("Balance primario: resta ese gasto sin intereses a los ingresos. Negativo = déficit; positivo = superávit.", "Primary balance: subtract that spending without interest from revenue. Negative = deficit; positive = surplus."),
+            ],
+            example: t(
+              "Hipotético (miles de millones): ingresos 5,200; gasto total 5,900, con 600 de intereses. Balance = 5,200 − 5,900 = **−700**. Gasto sin intereses = 5,900 − 600 = 5,300. Balance primario = 5,200 − 5,300 = **−100**.",
+              "Hypothetical (billions): revenue 5,200; total spending 5,900, with 600 of interest. Balance = 5,200 − 5,900 = **−700**. Spending without interest = 5,900 − 600 = 5,300. Primary balance = 5,200 − 5,300 = **−100**."
+            ),
+            interpret: t(
+              "Aquí hasta el balance primario es negativo: ni sin contar intereses alcanza el ingreso para el gasto de hoy, y la deuda tenderá a crecer.",
+              "Here even the primary balance is negative: even without counting interest, revenue does not cover today's spending, and debt will tend to grow."
+            ),
+            mistake: t(
+              "Sumar los intereses al gasto en lugar de restarlos al calcular el balance primario.",
+              "Adding interest to spending instead of subtracting it when computing the primary balance."
+            ),
+          },
+        ],
       },
     ],
     examples: [
