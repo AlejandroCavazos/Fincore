@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
       "Según cuántas empresas venden, qué tan parecidos son sus productos y qué tan fácil es entrar, un mercado puede ser de competencia perfecta, competencia monopolística, oligopolio o monopolio, y eso cambia precios y opciones para ti.",
       "Depending on how many firms sell, how similar their products are and how easy it is to enter, a market can be perfect competition, monopolistic competition, oligopoly or monopoly, and that changes prices and choices for you.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Distinguir las cuatro estructuras de mercado básicas con ejemplos de la vida diaria en México.", "Distinguish the four basic market structures with everyday examples from Mexico."),
       t("Explicar qué son las barreras a la entrada y por qué permiten a una empresa cobrar más.", "Explain what barriers to entry are and why they let a firm charge more."),
@@ -103,7 +103,35 @@ export const lessons: Lesson[] = [
             "Competition benefits consumers: lower prices, better quality and more choices. That is why Mexico has an **economic competition law** and an authority that investigates and penalizes **monopolistic practices**, such as competitors **agreeing** on prices or splitting up customers. Mini example: two firms with 50% each give HHI = 50² + 50² = 5,000, a very concentrated market.",
           ),
         ],
-        formula: 'IHH / HHI = s1² + s2² + … + sn²   (s = participación de mercado en % / market share in %)',
+        formulas: [
+          {
+            name: t("Índice Herfindahl-Hirschman (IHH): qué tan concentrado está un mercado", "Herfindahl-Hirschman Index (HHI): how concentrated a market is"),
+            expression: "IHH = s1² + s2² + … + sn²",
+            variables: [
+              { symbol: "s1, s2, … sn", meaning: t("La participación de mercado de cada empresa, en % escrito como número entero (40 % se escribe 40, no 0.40).", "Each firm's market share, in % written as a whole number (40% is written 40, not 0.40).") },
+              { symbol: "²", meaning: t("Elevar al cuadrado: multiplicar el número por sí mismo (40² = 40 × 40 = 1,600).", "Squaring: multiplying the number by itself (40² = 40 × 40 = 1,600).") },
+              { symbol: "n", meaning: t("El número de empresas del mercado.", "The number of firms in the market.") },
+              { symbol: "IHH", meaning: t("El índice resultante, sin unidades: de casi 0 a 10,000.", "The resulting index, with no units: from almost 0 to 10,000.") },
+            ],
+            steps: [
+              t("Anota la participación de cada empresa en % (deben sumar 100).", "Write down each firm's share in % (they should add up to 100)."),
+              t("Eleva al cuadrado cada participación por separado.", "Square each share separately."),
+              t("Suma todos los cuadrados: ese es el IHH.", "Add up all the squares: that is the HHI."),
+            ],
+            example: t(
+              "Cuatro empresas de refrescos con 45 %, 25 %, 20 % y 10 %. Cuadrados: 45² = 2,025; 25² = 625; 20² = 400; 10² = 100. Suma: 2,025 + 625 + 400 + 100 = **3,150**.",
+              "Four soft-drink firms with 45%, 25%, 20% and 10%. Squares: 45² = 2,025; 25² = 625; 20² = 400; 10² = 100. Sum: 2,025 + 625 + 400 + 100 = **3,150**.",
+            ),
+            interpret: t(
+              "Mientras más alto, más concentrado: 10,000 es un monopolio (100²) y un número cercano a 0 indica muchísimas empresas pequeñas. Un IHH de varios miles indica pocas empresas con mucho poder, como en un oligopolio.",
+              "The higher, the more concentrated: 10,000 is a monopoly (100²) and a number close to 0 means a huge number of small firms. An HHI of several thousand means a few firms with a lot of power, as in an oligopoly.",
+            ),
+            mistake: t(
+              "Sumar las participaciones (siempre da 100) o sumar primero y luego elevar al cuadrado. Primero se eleva cada una y después se suma.",
+              "Adding the shares (always gives 100) or adding first and then squaring. First square each one, then add.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -162,7 +190,7 @@ export const lessons: Lesson[] = [
       "El PIB es el valor de todos los bienes y servicios finales producidos dentro de un país en un periodo; se puede medir por producción, gasto o ingreso, y conviene verlo en términos reales y por persona.",
       "GDP is the value of all final goods and services produced within a country in a period; it can be measured by production, spending or income, and it is best viewed in real terms and per person.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Definir el PIB e identificar qué se cuenta y qué no.", "Define GDP and identify what is counted and what is not."),
       t("Calcular el PIB con el método del gasto y con el valor agregado.", "Compute GDP with the expenditure method and with value added."),
@@ -208,7 +236,55 @@ export const lessons: Lesson[] = [
             "Imports are **subtracted** because they were produced in another country: if you buy a phone made in Asia, that spending is inside C, but it is not Mexican production. Mini example: a farmer sells corn for $10 to a mill; the mill sells dough for $18 to a tortilla shop, which sells tortillas for $30. Value added: 10 + 8 + 12 = $30, equal to the final price.",
           ),
         ],
-        formula: 'PIB / GDP = C + I + G + (X − M)',
+        formulas: [
+          {
+            name: t("PIB por el método del gasto", "GDP by the expenditure method"),
+            expression: "PIB = C + I + G + (X − M)",
+            variables: [
+              { symbol: "PIB", meaning: t("Producto Interno Bruto: el valor de todo lo producido en el país, en pesos.", "Gross Domestic Product: the value of everything produced in the country, in pesos.") },
+              { symbol: "C", meaning: t("Consumo: lo que gastan los hogares en bienes y servicios, en pesos.", "Consumption: what households spend on goods and services, in pesos.") },
+              { symbol: "I", meaning: t("Inversión: lo que gastan las empresas en maquinaria, equipo y construcción, en pesos.", "Investment: what firms spend on machinery, equipment and construction, in pesos.") },
+              { symbol: "G", meaning: t("Gasto del gobierno en bienes y servicios, en pesos.", "Government spending on goods and services, in pesos.") },
+              { symbol: "X", meaning: t("Exportaciones: lo que el país vende al extranjero, en pesos.", "Exports: what the country sells abroad, in pesos.") },
+              { symbol: "M", meaning: t("Importaciones: lo que el país compra al extranjero, en pesos.", "Imports: what the country buys from abroad, in pesos.") },
+            ],
+            steps: [
+              t("Calcula las exportaciones netas: X − M (puede salir negativo).", "Compute net exports: X − M (it can be negative)."),
+              t("Suma C + I + G.", "Add C + I + G."),
+              t("Agrega las exportaciones netas a esa suma.", "Add net exports to that sum."),
+            ],
+            example: t(
+              "C = 500, I = 120, G = 100, X = 180, M = 150 (miles de millones). Exportaciones netas: 180 − 150 = 30. C + I + G: 500 + 120 + 100 = 720. PIB: 720 + 30 = **750 miles de millones**.",
+              "C = 500, I = 120, G = 100, X = 180, M = 150 (billions). Net exports: 180 − 150 = 30. C + I + G: 500 + 120 + 100 = 720. GDP: 720 + 30 = **750 billion**.",
+            ),
+            mistake: t(
+              "Sumar las importaciones en lugar de restarlas. Lo importado se produjo en otro país, así que no es PIB de México.",
+              "Adding imports instead of subtracting them. What is imported was produced in another country, so it is not Mexico's GDP.",
+            ),
+          },
+          {
+            name: t("Valor agregado de cada etapa (método de la producción)", "Value added at each stage (production method)"),
+            expression: "Valor agregado = Precio de venta − Compras a otros productores;  PIB de la cadena = suma de los valores agregados",
+            variables: [
+              { symbol: "Precio de venta", meaning: t("Lo que cobra esa etapa por lo que vende, en pesos.", "What that stage charges for what it sells, in pesos.") },
+              { symbol: "Compras a otros productores", meaning: t("Lo que esa etapa pagó por los insumos que compró (bienes intermedios), en pesos.", "What that stage paid for the inputs it bought (intermediate goods), in pesos.") },
+              { symbol: "Valor agregado", meaning: t("Lo que esa etapa le sumó al producto con su trabajo, en pesos.", "What that stage added to the product with its work, in pesos.") },
+            ],
+            steps: [
+              t("Para cada etapa, resta lo que compró al precio al que vendió.", "For each stage, subtract what it bought from the price it sold at."),
+              t("La primera etapa, si no compró insumos, agrega todo su precio de venta.", "The first stage, if it bought no inputs, adds its whole selling price."),
+              t("Suma los valores agregados de todas las etapas; debe dar el precio del bien final.", "Add the value added of all stages; it should equal the final good's price."),
+            ],
+            example: t(
+              "Un agricultor vende algodón en $15 a una hilandería; la hilandería vende hilo en $28 a un taller; el taller vende una playera en $50. Agricultor: $15. Hilandería: 28 − 15 = $13. Taller: 50 − 28 = $22. Total: 15 + 13 + 22 = **$50**, igual al precio de la playera.",
+              "A farmer sells cotton for $15 to a spinning mill; the mill sells yarn for $28 to a workshop; the workshop sells a T-shirt for $50. Farmer: $15. Mill: 28 − 15 = $13. Workshop: 50 − 28 = $22. Total: 15 + 13 + 22 = **$50**, equal to the T-shirt's price.",
+            ),
+            mistake: t(
+              "Sumar todas las ventas (15 + 28 + 50 = $93). Así cuentas el algodón y el hilo varias veces (doble conteo).",
+              "Adding up all the sales (15 + 28 + 50 = $93). That way you count the cotton and the yarn several times (double counting).",
+            ),
+          },
+        ],
       },
       {
         heading: t("PIB nominal, real y per cápita", "Nominal, real and per capita GDP"),
@@ -226,7 +302,56 @@ export const lessons: Lesson[] = [
             "Mini example: a country produces 100 cakes at $10 (GDP $1,000). The next year it produces the same 100, but at $12. Nominal GDP rises to $1,200 (+20%), but real GDP did not change: only prices went up.",
           ),
         ],
-        formula: 'PIB real = PIB nominal ÷ (deflactor ÷ 100)  ·  PIB per cápita = PIB ÷ población',
+        formulas: [
+          {
+            name: t("PIB real y crecimiento real", "Real GDP and real growth"),
+            expression: "PIB real = PIB nominal ÷ (Deflactor ÷ 100);  Crecimiento real % = (PIB real final ÷ PIB real inicial − 1) × 100",
+            variables: [
+              { symbol: "PIB nominal", meaning: t("El PIB medido con los precios de ese mismo año, en pesos.", "GDP measured at that same year's prices, in pesos.") },
+              { symbol: "Deflactor", meaning: t("Índice de precios del PIB; vale 100 en el año base. Un deflactor de 110 significa que los precios están 10 % arriba del año base.", "GDP price index; it equals 100 in the base year. A deflator of 110 means prices are 10% above the base year.") },
+              { symbol: "PIB real", meaning: t("El PIB a precios del año base, en pesos: muestra cuánto se produjo de verdad.", "GDP at base-year prices, in pesos: shows how much was really produced.") },
+              { symbol: "Crecimiento real %", meaning: t("Cuánto cambió la producción real de un año a otro, en %.", "How much real production changed from one year to the next, in %.") },
+            ],
+            steps: [
+              t("Divide el deflactor entre 100: 120 → 1.20.", "Divide the deflator by 100: 120 → 1.20."),
+              t("Divide el PIB nominal entre ese número: obtienes el PIB real.", "Divide nominal GDP by that number: you get real GDP."),
+              t("Divide el PIB real nuevo entre el PIB real anterior, resta 1 y multiplica por 100.", "Divide the new real GDP by the previous real GDP, subtract 1 and multiply by 100."),
+            ],
+            example: t(
+              "PIB nominal del año 2: $3,300 millones; deflactor 120; PIB real del año 1: $2,500 millones. Deflactor ÷ 100 = 1.20. PIB real: 3,300 ÷ 1.20 = $2,750 millones. Crecimiento: (2,750 ÷ 2,500 − 1) × 100 = (1.10 − 1) × 100 = **10 %**.",
+              "Year-2 nominal GDP: $3,300 million; deflator 120; year-1 real GDP: $2,500 million. Deflator ÷ 100 = 1.20. Real GDP: 3,300 ÷ 1.20 = $2,750 million. Growth: (2,750 ÷ 2,500 − 1) × 100 = (1.10 − 1) × 100 = **10%**.",
+            ),
+            interpret: t(
+              "Si el crecimiento real es positivo, se produjo más; si es negativo, la economía se contrajo. La diferencia entre crecimiento nominal y real es el efecto de los precios.",
+              "If real growth is positive, more was produced; if negative, the economy shrank. The gap between nominal and real growth is the price effect.",
+            ),
+            mistake: t(
+              "Comparar el PIB nominal de un año con el real de otro: mezclas aumento de precios con aumento de producción.",
+              "Comparing one year's nominal GDP with another year's real GDP: you mix price increases with production increases.",
+            ),
+          },
+          {
+            name: t("PIB per cápita", "GDP per capita"),
+            expression: "PIB per cápita = PIB ÷ Población",
+            variables: [
+              { symbol: "PIB", meaning: t("El PIB del país en el periodo, en pesos.", "The country's GDP for the period, in pesos.") },
+              { symbol: "Población", meaning: t("El número de habitantes del país.", "The number of people living in the country.") },
+              { symbol: "PIB per cápita", meaning: t("Pesos de PIB por persona: un promedio, no lo que gana cada quien.", "Pesos of GDP per person: an average, not what each person earns.") },
+            ],
+            steps: [
+              t("Expresa el PIB y la población en las mismas unidades (por ejemplo, ambos en millones).", "Express GDP and population in the same units (e.g. both in millions)."),
+              t("Divide el PIB entre la población.", "Divide GDP by the population."),
+            ],
+            example: t(
+              "PIB de $1,800,000 millones y 120 millones de habitantes: 1,800,000 ÷ 120 = **$15,000 por persona**.",
+              "GDP of $1,800,000 million and 120 million people: 1,800,000 ÷ 120 = **$15,000 per person**.",
+            ),
+            mistake: t(
+              "Creer que es el ingreso de cada persona. Es un promedio: no dice cómo se reparte.",
+              "Thinking it is each person's income. It is an average: it does not say how it is distributed.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -285,7 +410,7 @@ export const lessons: Lesson[] = [
       "La inflación mide qué tan rápido suben los precios, el desempleo cuántas personas buscan trabajo sin encontrarlo y el crecimiento cuánto aumenta la producción real: juntos dicen cómo le va a la economía y a tu bolsillo.",
       "Inflation measures how fast prices rise, unemployment how many people look for work without finding it, and growth how much real production increases: together they tell how the economy and your wallet are doing.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Calcular la inflación con un índice de precios y explicar su efecto en el poder adquisitivo.", "Compute inflation with a price index and explain its effect on purchasing power."),
       t("Clasificar a las personas como ocupadas, desocupadas o fuera de la fuerza laboral y calcular la tasa de desempleo.", "Classify people as employed, unemployed or outside the labor force and compute the unemployment rate."),
@@ -308,7 +433,62 @@ export const lessons: Lesson[] = [
             "The opposite is **deflation** (prices fall in general), which is also problematic because people postpone purchases. Mini example: if the INPC goes from 100 to 104, the period's inflation is (104 ÷ 100 − 1) × 100 = 4%.",
           ),
         ],
-        formula: 'Inflación % = (INPC final ÷ INPC inicial − 1) × 100  ·  Salario real = salario nominal ÷ (INPC ÷ 100)',
+        formulas: [
+          {
+            name: t("Inflación con un índice de precios", "Inflation from a price index"),
+            expression: "Inflación % = (INPC final ÷ INPC inicial − 1) × 100",
+            variables: [
+              { symbol: "INPC inicial", meaning: t("El valor del índice de precios al inicio del periodo (sin unidades).", "The price index value at the start of the period (no units).") },
+              { symbol: "INPC final", meaning: t("El valor del índice al final del periodo.", "The index value at the end of the period.") },
+              { symbol: "Inflación %", meaning: t("Cuánto subieron los precios en promedio durante el periodo, en %.", "How much prices rose on average during the period, in %.") },
+            ],
+            steps: [
+              t("Divide el índice final entre el inicial.", "Divide the final index by the initial one."),
+              t("Resta 1 al resultado.", "Subtract 1 from the result."),
+              t("Multiplica por 100 para tenerlo en %.", "Multiply by 100 to express it in %."),
+            ],
+            example: t(
+              "El índice pasa de 80 a 86. División: 86 ÷ 80 = 1.075. Menos 1: 0.075. Por 100: **7.5 %** de inflación.",
+              "The index goes from 80 to 86. Division: 86 ÷ 80 = 1.075. Minus 1: 0.075. Times 100: **7.5%** inflation.",
+            ),
+            interpret: t(
+              "Positiva = los precios subieron (inflación); negativa = bajaron (deflación).",
+              "Positive = prices rose (inflation); negative = they fell (deflation).",
+            ),
+            mistake: t(
+              "Restar los índices (86 − 80 = 6) y decir 6 %. Eso solo funciona si el índice inicial es exactamente 100.",
+              "Subtracting the indices (86 − 80 = 6) and saying 6%. That only works if the initial index is exactly 100.",
+            ),
+          },
+          {
+            name: t("Salario real y cambio real del sueldo", "Real wage and real change in pay"),
+            expression: "Salario real = Salario nominal ÷ (INPC ÷ 100);  Cambio real % = (Salario real ÷ Salario inicial − 1) × 100",
+            variables: [
+              { symbol: "Salario nominal", meaning: t("Los pesos que recibes hoy.", "The pesos you receive today.") },
+              { symbol: "INPC", meaning: t("El índice de precios de hoy, tomando 100 como el inicio del periodo.", "Today's price index, taking 100 as the start of the period.") },
+              { symbol: "Salario real", meaning: t("Lo que vale tu sueldo de hoy en pesos del inicio del periodo (lo que realmente puedes comprar).", "What today's pay is worth in start-of-period pesos (what you can really buy).") },
+              { symbol: "Salario inicial", meaning: t("Tu sueldo al inicio del periodo, en pesos.", "Your pay at the start of the period, in pesos.") },
+              { symbol: "Cambio real %", meaning: t("Cuánto ganaste o perdiste de poder de compra, en %.", "How much purchasing power you gained or lost, in %.") },
+            ],
+            steps: [
+              t("Divide el INPC entre 100: 105 → 1.05.", "Divide the INPC by 100: 105 → 1.05."),
+              t("Divide tu sueldo nuevo entre ese número: es tu salario real.", "Divide your new pay by that number: that is your real wage."),
+              t("Compáralo con tu sueldo inicial: (salario real ÷ salario inicial − 1) × 100.", "Compare it with your initial pay: (real wage ÷ initial pay − 1) × 100."),
+            ],
+            example: t(
+              "Ganabas $15,000 y ahora $15,450 (+3 % nominal); el índice pasó de 100 a 105. Salario real: 15,450 ÷ 1.05 ≈ $14,714.29. Cambio real: (14,714.29 ÷ 15,000 − 1) × 100 ≈ **−1.90 %**: perdiste poder de compra.",
+              "You earned $15,000 and now $15,450 (+3% nominal); the index went from 100 to 105. Real wage: 15,450 ÷ 1.05 ≈ $14,714.29. Real change: (14,714.29 ÷ 15,000 − 1) × 100 ≈ **−1.90%**: you lost purchasing power.",
+            ),
+            interpret: t(
+              "Si el cambio real es positivo, tu sueldo subió más que los precios; si es negativo, aunque te den más pesos, compras menos.",
+              "If the real change is positive, your pay rose more than prices; if negative, even though you get more pesos, you buy less.",
+            ),
+            mistake: t(
+              "Restar aumento − inflación (3 − 5 = −2 %) y darlo como exacto. Es solo una aproximación; el cálculo exacto se hace dividiendo.",
+              "Subtracting raise − inflation (3 − 5 = −2%) and giving it as exact. It is only an approximation; the exact calculation is done by dividing.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Empleo y desempleo", "Employment and unemployment"),
@@ -326,7 +506,31 @@ export const lessons: Lesson[] = [
             "Mini example: a town has 2,000 people in the PEA and 100 are looking for work without finding it. Unemployment rate = 100 ÷ 2,000 × 100 = 5%.",
           ),
         ],
-        formula: 'Tasa de desempleo % = desocupados ÷ PEA × 100   (PEA = ocupados + desocupados)',
+        formulas: [
+          {
+            name: t("Tasa de desempleo", "Unemployment rate"),
+            expression: "PEA = Ocupados + Desocupados;  Tasa de desempleo % = Desocupados ÷ PEA × 100",
+            variables: [
+              { symbol: "Ocupados", meaning: t("Personas que tienen trabajo.", "People who have a job.") },
+              { symbol: "Desocupados", meaning: t("Personas sin trabajo que lo buscan activamente.", "People without a job who are actively looking for one.") },
+              { symbol: "PEA", meaning: t("Población Económicamente Activa: ocupados más desocupados. No incluye a quien ni trabaja ni busca.", "Economically Active Population: employed plus unemployed. It excludes those who neither work nor look for work.") },
+              { symbol: "Tasa de desempleo %", meaning: t("Qué parte de la PEA no encuentra trabajo, en %.", "What share of the PEA cannot find work, in %.") },
+            ],
+            steps: [
+              t("Calcula la PEA: suma ocupados + desocupados (deja fuera estudiantes, jubilados y quien no busca).", "Compute the PEA: add employed + unemployed (leave out students, retirees and anyone not looking)."),
+              t("Divide los desocupados entre la PEA.", "Divide the unemployed by the PEA."),
+              t("Multiplica por 100.", "Multiply by 100."),
+            ],
+            example: t(
+              "Hay 2,880,000 ocupados, 120,000 desocupados y 900,000 que no buscan trabajo. PEA: 2,880,000 + 120,000 = 3,000,000. Tasa: 120,000 ÷ 3,000,000 = 0.04 × 100 = **4 %**.",
+              "There are 2,880,000 employed, 120,000 unemployed and 900,000 not looking for work. PEA: 2,880,000 + 120,000 = 3,000,000. Rate: 120,000 ÷ 3,000,000 = 0.04 × 100 = **4%**.",
+            ),
+            mistake: t(
+              "Dividir entre toda la población (o sumar a quienes no buscan trabajo). Solo se divide entre la PEA.",
+              "Dividing by the whole population (or adding those not looking for work). You only divide by the PEA.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Crecimiento económico", "Economic growth"),
@@ -348,6 +552,31 @@ export const lessons: Lesson[] = [
           t("Crecimiento % = (PIB real final ÷ PIB real inicial − 1) × 100.", "Growth % = (final real GDP ÷ initial real GDP − 1) × 100."),
           t("Años para duplicarse ≈ 70 ÷ tasa de crecimiento anual (%).", "Years to double ≈ 70 ÷ annual growth rate (%)."),
           t("Fuentes de crecimiento: trabajo, capital, capital humano y tecnología.", "Sources of growth: labor, capital, human capital and technology."),
+        ],
+        formulas: [
+          {
+            name: t("Tasa de crecimiento y regla del 70", "Growth rate and the rule of 70"),
+            expression: "Crecimiento % = (PIB real final ÷ PIB real inicial − 1) × 100;  Años para duplicarse ≈ 70 ÷ Crecimiento anual %",
+            variables: [
+              { symbol: "PIB real inicial", meaning: t("El PIB real del primer año, en pesos.", "Real GDP in the first year, in pesos.") },
+              { symbol: "PIB real final", meaning: t("El PIB real del año siguiente, en pesos.", "Real GDP in the following year, in pesos.") },
+              { symbol: "Crecimiento %", meaning: t("Cuánto aumentó la producción real, en % anual.", "How much real production increased, in % per year.") },
+              { symbol: "70", meaning: t("Número fijo de la regla; se divide entre la tasa escrita como número entero (3 %, no 0.03).", "Fixed number of the rule; it is divided by the rate written as a whole number (3%, not 0.03).") },
+              { symbol: "Años para duplicarse", meaning: t("Cuántos años, aproximadamente, tarda algo en valer el doble si crece a esa tasa cada año.", "About how many years something takes to double if it grows at that rate every year.") },
+            ],
+            steps: [
+              t("Divide el PIB real final entre el inicial, resta 1 y multiplica por 100: es la tasa de crecimiento.", "Divide the final real GDP by the initial one, subtract 1 and multiply by 100: that is the growth rate."),
+              t("Para estimar cuándo se duplica, divide 70 entre esa tasa en %.", "To estimate when it doubles, divide 70 by that rate in %."),
+            ],
+            example: t(
+              "El PIB real pasa de 800 a 828. Crecimiento: (828 ÷ 800 − 1) × 100 = (1.035 − 1) × 100 = **3.5 %**. Si sigue así: 70 ÷ 3.5 = **20 años** para duplicarse.",
+              "Real GDP goes from 800 to 828. Growth: (828 ÷ 800 − 1) × 100 = (1.035 − 1) × 100 = **3.5%**. If it continues: 70 ÷ 3.5 = **20 years** to double.",
+            ),
+            mistake: t(
+              "Dividir 100 entre la tasa, como si el crecimiento no fuera compuesto. La regla usa 70.",
+              "Dividing 100 by the rate, as if growth were not compounded. The rule uses 70.",
+            ),
+          },
         ],
       },
     ],
@@ -407,7 +636,7 @@ export const lessons: Lesson[] = [
       "La política monetaria es lo que hace el banco central con la tasa de interés y la liquidez para mantener la inflación baja y estable; sube la tasa para frenar precios y la baja para estimular la economía.",
       "Monetary policy is what the central bank does with the interest rate and liquidity to keep inflation low and stable; it raises the rate to slow prices and lowers it to stimulate the economy.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué es la política monetaria y cuál es su herramienta principal en México.", "Explain what monetary policy is and what its main tool is in Mexico."),
       t("Distinguir una política monetaria expansiva de una restrictiva y sus efectos esperados.", "Distinguish expansionary from contractionary monetary policy and their expected effects."),
@@ -470,7 +699,34 @@ export const lessons: Lesson[] = [
             "To know whether a rate really makes you money, compare it with inflation. The **real rate** is, approximately, the nominal rate minus inflation. Mini example: if your savings pay 9% and inflation is 4%, your real gain is about 5%.",
           ),
         ],
-        formula: 'Tasa real ≈ tasa nominal − inflación',
+        formulas: [
+          {
+            name: t("Tasa de interés real (aproximada)", "Real interest rate (approximate)"),
+            expression: "Tasa real ≈ Tasa nominal − Inflación",
+            variables: [
+              { symbol: "Tasa nominal", meaning: t("La tasa que te anuncia el banco o la inversión, en % anual.", "The rate announced by the bank or investment, in % per year.") },
+              { symbol: "Inflación", meaning: t("Cuánto suben los precios en el año, en %.", "How much prices rise during the year, in %.") },
+              { symbol: "Tasa real", meaning: t("Cuánto crece de verdad tu poder de compra, en % anual.", "How much your purchasing power really grows, in % per year.") },
+            ],
+            steps: [
+              t("Identifica la tasa nominal y la inflación del mismo periodo, ambas en %.", "Identify the nominal rate and inflation for the same period, both in %."),
+              t("Resta: tasa nominal − inflación.", "Subtract: nominal rate − inflation."),
+              t("Si quieres el monto, multiplica lo invertido por la tasa real en decimal.", "If you want the amount, multiply what you invested by the real rate as a decimal."),
+            ],
+            example: t(
+              "Ahorras $15,000 en un pagaré a 8 % con inflación de 5 %. Tasa real: 8 % − 5 % = **3 %**. Ganancia real aproximada: 15,000 × 0.03 = $450 en poder de compra.",
+              "You save $15,000 in a bank note at 8% with 5% inflation. Real rate: 8% − 5% = **3%**. Approximate real gain: 15,000 × 0.03 = $450 in purchasing power.",
+            ),
+            interpret: t(
+              "Positiva: tu dinero gana poder de compra. Negativa: aunque recibas intereses, compras menos que antes.",
+              "Positive: your money gains purchasing power. Negative: even though you receive interest, you buy less than before.",
+            ),
+            mistake: t(
+              "Sumar la inflación a la tasa, o creer que toda la tasa nominal es ganancia real.",
+              "Adding inflation to the rate, or believing the whole nominal rate is real gain.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -529,7 +785,7 @@ export const lessons: Lesson[] = [
       "La política fiscal es el uso que hace el gobierno de los impuestos y del gasto público para influir en la economía: puede estimularla (expansiva) o enfriarla (contractiva), y su resultado se ve en el balance de ingresos y gastos.",
       "Fiscal policy is the government's use of taxes and public spending to influence the economy: it can stimulate it (expansionary) or cool it (contractionary), and its result shows in the balance of revenue and spending.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué es la política fiscal, quién la diseña y quién la aprueba en México.", "Explain what fiscal policy is, who designs it and who approves it in Mexico."),
       t("Distinguir una política fiscal expansiva de una contractiva.", "Distinguish expansionary from contractionary fiscal policy."),
@@ -570,7 +826,36 @@ export const lessons: Lesson[] = [
             "Mini example: with MPC = 0.8, the multiplier is 1 ÷ 0.2 = 5; an extra $10 million in spending could raise GDP by up to $50 million in this simplified model. In reality the effect is smaller because of taxes, imports and saving.",
           ),
         ],
-        formula: 'Multiplicador = 1 ÷ (1 − PMC)  ·  ΔPIB ≈ multiplicador × Δgasto',
+        formulas: [
+          {
+            name: t("Multiplicador del gasto (modelo simple)", "Spending multiplier (simple model)"),
+            expression: "Multiplicador = 1 ÷ (1 − PMC);  ΔPIB ≈ Multiplicador × ΔGasto",
+            variables: [
+              { symbol: "PMC", meaning: t("Propensión marginal a consumir: de cada peso extra que recibe la gente, qué parte gasta (un decimal entre 0 y 1; 0.8 = gasta 80 centavos de cada peso).", "Marginal propensity to consume: of each extra peso people receive, what share they spend (a decimal between 0 and 1; 0.8 = they spend 80 cents of each peso).") },
+              { symbol: "1 − PMC", meaning: t("La parte de cada peso extra que no se gasta (se ahorra).", "The share of each extra peso that is not spent (it is saved).") },
+              { symbol: "Multiplicador", meaning: t("Cuántas veces se multiplica el gasto inicial en la economía (sin unidades).", "How many times the initial spending is multiplied in the economy (no units).") },
+              { symbol: "ΔGasto", meaning: t("El aumento del gasto del gobierno, en pesos (Δ significa \"cambio\").", "The increase in government spending, in pesos (Δ means \"change\").") },
+              { symbol: "ΔPIB", meaning: t("El aumento estimado del PIB, en pesos.", "The estimated increase in GDP, in pesos.") },
+            ],
+            steps: [
+              t("Calcula 1 − PMC.", "Compute 1 − MPC."),
+              t("Divide 1 entre ese resultado: es el multiplicador.", "Divide 1 by that result: that is the multiplier."),
+              t("Multiplica el multiplicador por el aumento del gasto: es el aumento estimado del PIB.", "Multiply the multiplier by the increase in spending: that is the estimated GDP increase."),
+            ],
+            example: t(
+              "PMC = 0.7 y el gobierno gasta $30 millones más. 1 − 0.7 = 0.3. Multiplicador: 1 ÷ 0.3 ≈ 3.33. ΔPIB ≈ 3.33 × 30 = **$100 millones** (exacto: 30 ÷ 0.3 = 100).",
+              "MPC = 0.7 and the government spends $30 million more. 1 − 0.7 = 0.3. Multiplier: 1 ÷ 0.3 ≈ 3.33. ΔGDP ≈ 3.33 × 30 = **$100 million** (exact: 30 ÷ 0.3 = 100).",
+            ),
+            interpret: t(
+              "Mientras más gaste la gente de cada peso extra (PMC alta), mayor es el multiplicador. En la realidad el efecto es menor por impuestos, importaciones y ahorro.",
+              "The more people spend of each extra peso (high MPC), the bigger the multiplier. In reality the effect is smaller because of taxes, imports and saving.",
+            ),
+            mistake: t(
+              "Dividir 1 ÷ PMC (1 ÷ 0.7 ≈ 1.43). El denominador es la parte que **no** se gasta: 1 − PMC.",
+              "Dividing 1 ÷ MPC (1 ÷ 0.7 ≈ 1.43). The denominator is the share that is **not** spent: 1 − MPC.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Balance fiscal y estabilizadores automáticos", "Fiscal balance and automatic stabilizers"),
@@ -588,7 +873,31 @@ export const lessons: Lesson[] = [
             "Mini example: a government collects $900 and spends $1,000: a $100 deficit. If the next year it collects $1,000 and spends $950, it has a $50 surplus.",
           ),
         ],
-        formula: 'Balance fiscal = ingresos − gastos   (+ superávit / − déficit)',
+        formulas: [
+          {
+            name: t("Balance fiscal: superávit o déficit", "Fiscal balance: surplus or deficit"),
+            expression: "Balance fiscal = Ingresos − Gastos;  % del gasto financiado con deuda = Déficit ÷ Gastos × 100",
+            variables: [
+              { symbol: "Ingresos", meaning: t("Lo que el gobierno recaudó en el año (impuestos y otros), en pesos.", "What the government collected in the year (taxes and other), in pesos.") },
+              { symbol: "Gastos", meaning: t("Lo que el gobierno gastó en el año, en pesos.", "What the government spent in the year, in pesos.") },
+              { symbol: "Balance fiscal", meaning: t("Positivo = superávit (sobró dinero); negativo = déficit (faltó y se pidió prestado), en pesos.", "Positive = surplus (money left over); negative = deficit (money was short and was borrowed), in pesos.") },
+              { symbol: "Déficit", meaning: t("El faltante expresado como número positivo, en pesos.", "The shortfall expressed as a positive number, in pesos.") },
+            ],
+            steps: [
+              t("Resta ingresos − gastos.", "Subtract revenue − spending."),
+              t("Mira el signo: positivo es superávit; negativo es déficit (y el déficit se reporta como número positivo).", "Look at the sign: positive is a surplus; negative is a deficit (and the deficit is reported as a positive number)."),
+              t("Si te lo piden, divide el déficit entre el gasto y multiplica por 100.", "If asked, divide the deficit by spending and multiply by 100."),
+            ],
+            example: t(
+              "Ingresos $4,200 millones; gastos $4,500 millones. Balance: 4,200 − 4,500 = −300 → **déficit de $300 millones**. Parte del gasto con deuda: 300 ÷ 4,500 × 100 ≈ 6.67 %.",
+              "Revenue $4,200 million; spending $4,500 million. Balance: 4,200 − 4,500 = −300 → **deficit of $300 million**. Share of spending financed with debt: 300 ÷ 4,500 × 100 ≈ 6.67%.",
+            ),
+            mistake: t(
+              "Restar al revés (gastos − ingresos) y confundir déficit con superávit. Siempre es ingresos menos gastos.",
+              "Subtracting the other way (spending − revenue) and confusing deficit with surplus. It is always revenue minus spending.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -646,7 +955,7 @@ export const lessons: Lesson[] = [
       "Un banco central es el \"banco de los bancos\": emite la moneda, cuida los sistemas de pago y la estabilidad financiera; en México, Banxico es autónomo y su mandato prioritario es la estabilidad del poder adquisitivo del peso.",
       "A central bank is the \"bankers' bank\": it issues currency and safeguards payment systems and financial stability; in Mexico, Banxico is autonomous and its priority mandate is the stability of the peso's purchasing power.",
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Explicar qué es un banco central y en qué se diferencia de un banco comercial.", "Explain what a central bank is and how it differs from a commercial bank."),
       t("Identificar el mandato, las funciones principales y la autonomía del Banco de México.", "Identify Banco de México's mandate, main functions and autonomy."),
@@ -693,6 +1002,35 @@ export const lessons: Lesson[] = [
           t("Administrar las reservas internacionales del país.", "Manage the country's international reserves."),
           t("Actuar como prestamista de última instancia de los bancos.", "Act as lender of last resort to banks."),
           t("Ser agente financiero y banquero del gobierno federal.", "Be the federal government's financial agent and banker."),
+        ],
+        formulas: [
+          {
+            name: t("¿Dentro o fuera del intervalo de la meta de inflación?", "Inside or outside the inflation target range?"),
+            expression: "Límite inferior = Meta − 1;  Límite superior = Meta + 1;  Exceso = Inflación − Límite superior",
+            variables: [
+              { symbol: "Meta", meaning: t("La meta puntual de inflación anual, en % (para Banxico, 3 %).", "The point annual inflation target, in % (for Banxico, 3%).") },
+              { symbol: "1", meaning: t("El intervalo de variación: ± 1 punto porcentual alrededor de la meta.", "The variability range: ± 1 percentage point around the target.") },
+              { symbol: "Inflación", meaning: t("La inflación anual observada, en %.", "The observed annual inflation, in %.") },
+              { symbol: "Exceso", meaning: t("Cuántos puntos porcentuales rebasa la inflación el límite superior.", "How many percentage points inflation exceeds the upper limit by.") },
+            ],
+            steps: [
+              t("Calcula los límites: meta − 1 y meta + 1.", "Compute the limits: target − 1 and target + 1."),
+              t("Ubica la inflación: si está entre los dos límites, está dentro del intervalo.", "Place the inflation figure: if it is between both limits, it is inside the range."),
+              t("Si está arriba, resta inflación − límite superior para saber por cuántos puntos lo rebasa.", "If it is above, subtract inflation − upper limit to know by how many points it exceeds it."),
+            ],
+            example: t(
+              "Meta 3 %, inflación observada 4.3 %. Límites: 3 − 1 = 2 % y 3 + 1 = 4 %. 4.3 % está arriba de 4 %. Exceso: 4.3 − 4 = **0.3 puntos** (respecto a la meta puntual serían 4.3 − 3 = 1.3 puntos).",
+              "Target 3%, observed inflation 4.3%. Limits: 3 − 1 = 2% and 3 + 1 = 4%. 4.3% is above 4%. Excess: 4.3 − 4 = **0.3 points** (relative to the point target it would be 4.3 − 3 = 1.3 points).",
+            ),
+            interpret: t(
+              "Fuera del intervalo por arriba, lo esperable es una política más restrictiva (subir la tasa).",
+              "Outside the range on the high side, a tighter policy (raising the rate) would be expected.",
+            ),
+            mistake: t(
+              "Comparar contra la meta de 3 % cuando la pregunta pide el exceso sobre el límite superior (4 %).",
+              "Comparing against the 3% target when the question asks for the excess over the upper limit (4%).",
+            ),
+          },
         ],
       },
       {

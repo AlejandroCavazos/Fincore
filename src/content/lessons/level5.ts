@@ -34,7 +34,7 @@ export const lessons: Lesson[] = [
       "Conoce quién recauda los impuestos federales en México, qué leyes los regulan y cuáles son las obligaciones básicas de un contribuyente: RFC, e.firma, declaraciones y contabilidad electrónica.",
       "Learn who collects federal taxes in Mexico, which laws govern them and the basic obligations of a taxpayer: RFC, e.firma, tax returns and electronic accounting."
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Identificar a las autoridades y ordenamientos del sistema fiscal federal mexicano.", "Identify the authorities and legal instruments of Mexico's federal tax system."),
       t("Distinguir obligaciones sustantivas (pagar) de obligaciones formales (hacer o informar).", "Distinguish substantive obligations (paying) from formal obligations (doing or reporting)."),
@@ -46,12 +46,16 @@ export const lessons: Lesson[] = [
         heading: t("Fundamento y autoridades", "Legal basis and authorities"),
         body: [
           t(
+            "En palabras sencillas: los **impuestos** son la parte de tus ingresos que la ley te pide entregar al gobierno para pagar escuelas, hospitales, carreteras y demás gastos públicos. Aquí verás de dónde sale esa obligación y quién cobra.",
+            "In plain words: **taxes** are the part of your income that the law asks you to hand over to the government to pay for schools, hospitals, roads and other public spending. Here you will see where that obligation comes from and who collects it."
+          ),
+          t(
             "La obligación de contribuir al gasto público nace de la **Constitución** (art. 31, fracción IV), que exige que las contribuciones sean proporcionales y equitativas y que estén establecidas en ley. Cada año la **Ley de Ingresos de la Federación** enumera los ingresos que el gobierno federal espera recaudar.",
             "The obligation to contribute to public spending comes from the **Constitution** (art. 31, section IV), which requires taxes to be proportional, equitable and established by law. Each year the **Federal Revenue Law** (Ley de Ingresos de la Federación) lists the revenue the federal government expects to collect."
           ),
           t(
-            "La Secretaría de Hacienda y Crédito Público (SHCP) diseña la política fiscal y el **Servicio de Administración Tributaria (SAT)**, órgano desconcentrado de la SHCP, recauda los impuestos federales, fiscaliza a los contribuyentes y emite reglas operativas.",
-            "The Ministry of Finance (SHCP) designs tax policy, and the **Tax Administration Service (SAT)**, a decentralized body of the SHCP, collects federal taxes, audits taxpayers and issues operating rules."
+            "La Secretaría de Hacienda y Crédito Público (SHCP) diseña la política fiscal (decide qué impuestos conviene cobrar y cómo) y el **Servicio de Administración Tributaria (SAT)**, órgano desconcentrado de la SHCP (una oficina que depende de ella pero opera por su cuenta), recauda los impuestos federales, **fiscaliza** a los contribuyentes (revisa que paguen bien) y emite reglas operativas. Piensa en la SHCP como quien escribe las reglas del juego y en el SAT como el árbitro que cobra y vigila.",
+            "The Ministry of Finance (SHCP) designs tax policy (decides which taxes to charge and how), and the **Tax Administration Service (SAT)**, a decentralized body of the SHCP (an office that reports to it but runs on its own), collects federal taxes, **audits** taxpayers (checks that they pay correctly) and issues operating rules. Think of the SHCP as the one who writes the rules of the game and the SAT as the referee who collects and watches."
           ),
         ],
       },
@@ -59,8 +63,8 @@ export const lessons: Lesson[] = [
         heading: t("Las leyes que debes ubicar", "The laws you need to know"),
         body: [
           t(
-            "Las leyes de cada impuesto definen sujeto, objeto, base, tasa y época de pago. El **Código Fiscal de la Federación (CFF)** contiene las reglas comunes a todos los impuestos federales: inscripción en el RFC, contabilidad, comprobantes fiscales, facultades de comprobación de la autoridad, infracciones y medios de defensa.",
-            "Each tax law defines the taxpayer, the taxable event, the base, the rate and the payment timing. The **Federal Tax Code (CFF)** contains rules common to all federal taxes: RFC registration, accounting records, tax receipts, the authority's audit powers, penalties and appeals."
+            "Las leyes de cada impuesto definen cinco cosas: **sujeto** (quién paga), **objeto** (por qué paga: vender, ganar dinero…), **base** (la cantidad sobre la que se calcula), **tasa** (el porcentaje que se aplica) y **época de pago** (cuándo se paga). El **Código Fiscal de la Federación (CFF)** contiene las reglas comunes a todos los impuestos federales: inscripción en el RFC, contabilidad, comprobantes fiscales, facultades de comprobación de la autoridad, infracciones y medios de defensa.",
+            "Each tax law defines five things: the **taxpayer** (who pays), the **taxable event** (why they pay: selling, earning money…), the **base** (the amount the tax is calculated on), the **rate** (the percentage applied) and the **payment timing** (when it is paid). The **Federal Tax Code (CFF)** contains rules common to all federal taxes: RFC registration, accounting records, tax receipts, the authority's audit powers, penalties and appeals."
           ),
         ],
         bullets: [
@@ -74,8 +78,8 @@ export const lessons: Lesson[] = [
         heading: t("Obligaciones sustantivas y formales", "Substantive and formal obligations"),
         body: [
           t(
-            "La **obligación sustantiva** es la de pagar el impuesto (dar). Las **obligaciones formales** son de hacer, no hacer o tolerar: inscribirse en el RFC, expedir comprobantes, llevar contabilidad, presentar declaraciones (incluso informativas o en ceros) y atender requerimientos.",
-            "The **substantive obligation** is to pay the tax (to give). **Formal obligations** require doing, refraining or allowing: registering with the RFC, issuing receipts, keeping accounting records, filing returns (including informational or nil returns) and responding to requests from the authority."
+            "En palabras sencillas: con el SAT tienes dos tipos de deberes, **pagar** y **cumplir trámites**. La **obligación sustantiva** es la de pagar el impuesto (dar). Las **obligaciones formales** son de hacer, no hacer o tolerar: inscribirse en el RFC, expedir comprobantes, llevar contabilidad, presentar declaraciones (incluso informativas o en ceros) y atender requerimientos.",
+            "In plain words: with the SAT you have two kinds of duties, **paying** and **doing paperwork**. The **substantive obligation** is to pay the tax (to give). **Formal obligations** require doing, refraining or allowing: registering with the RFC, issuing receipts, keeping accounting records, filing returns (including informational or nil returns) and responding to requests from the authority."
           ),
           t(
             "Incumplir una obligación formal puede generar multas aunque no exista impuesto por pagar. Por eso el contador lleva un calendario de obligaciones: pagos provisionales mensuales de ISR, declaración mensual de IVA, declaración anual y declaraciones informativas.",
@@ -87,12 +91,12 @@ export const lessons: Lesson[] = [
         heading: t("RFC, e.firma, CSD y contabilidad electrónica", "RFC, e.firma, CSD and electronic accounting"),
         body: [
           t(
-            "El **RFC** (Registro Federal de Contribuyentes) es la clave que identifica al contribuyente: 12 caracteres para personas morales y 13 para personas físicas. La **e.firma** es un certificado digital con validez de firma autógrafa para trámites y declaraciones; el **certificado de sello digital (CSD)** es distinto y se usa para sellar los CFDI que la empresa emite.",
-            "The **RFC** (Federal Taxpayer Registry) is the code that identifies a taxpayer: 12 characters for legal entities and 13 for individuals. The **e.firma** is a digital certificate equivalent to a handwritten signature for filings and procedures; the **digital seal certificate (CSD)** is different and is used to seal the CFDI the company issues."
+            "El **RFC** (Registro Federal de Contribuyentes) es la clave que identifica al contribuyente: 12 caracteres para **personas morales** (empresas y sociedades) y 13 para **personas físicas** (individuos). La **e.firma** es un certificado digital con validez de firma autógrafa para trámites y declaraciones; el **certificado de sello digital (CSD)** es distinto y se usa para sellar los CFDI (las facturas electrónicas) que la empresa emite. Dicho fácil: el RFC es tu \"CURP fiscal\", la e.firma es tu firma para trámites y el CSD es el \"sello\" que va en cada factura.",
+            "The **RFC** (Federal Taxpayer Registry) is the code that identifies a taxpayer: 12 characters for **legal entities** (personas morales: companies) and 13 for **individuals** (personas físicas). The **e.firma** is a digital certificate equivalent to a handwritten signature for filings and procedures; the **digital seal certificate (CSD)** is different and is used to seal the CFDI (electronic invoices) the company issues. Put simply: the RFC is your \"tax ID\", the e.firma is your signature for procedures and the CSD is the \"stamp\" that goes on every invoice."
           ),
           t(
-            "La **contabilidad electrónica** obliga, por regla general, a enviar al SAT por medios electrónicos el catálogo de cuentas (con código agrupador) y la balanza de comprobación, y a tener las pólizas disponibles cuando la autoridad las solicite. El **buzón tributario** es el canal oficial de notificaciones electrónicas.",
-            "**Electronic accounting** generally requires sending the SAT the chart of accounts (mapped to the SAT grouping code) and the trial balance electronically, and keeping journal entries available when the authority requests them. The **buzón tributario** (tax mailbox) is the official channel for electronic notices."
+            "La **contabilidad electrónica** obliga, por regla general, a enviar al SAT por medios electrónicos el catálogo de cuentas (la lista de cuentas que usa la empresa, con el código agrupador del SAT) y la balanza de comprobación (un resumen de los saldos de todas las cuentas), y a tener las pólizas disponibles cuando la autoridad las solicite. El **buzón tributario** es el canal oficial de notificaciones electrónicas.",
+            "**Electronic accounting** generally requires sending the SAT the chart of accounts (the list of accounts the company uses, mapped to the SAT grouping code) and the trial balance (a summary of every account's balance) electronically, and keeping journal entries available when the authority requests them. The **buzón tributario** (tax mailbox) is the official channel for electronic notices."
           ),
         ],
       },
@@ -144,7 +148,7 @@ export const lessons: Lesson[] = [
       "Calcula de forma simplificada el IVA a cargo y el ISR de una persona moral, entiende el papel del CFDI y distingue diferencias temporales de permanentes entre la utilidad contable y la fiscal.",
       "Compute, in simplified form, the IVA payable and the income tax of a legal entity, understand the role of the CFDI and distinguish temporary from permanent differences between book and taxable income."
     ),
-    minutes: 18,
+    minutes: 20,
     objectives: [
       t("Calcular el IVA a cargo como IVA trasladado menos IVA acreditable.", "Compute IVA payable as output VAT minus creditable input VAT."),
       t("Registrar contablemente una operación con IVA.", "Record a transaction that includes IVA."),
@@ -157,6 +161,10 @@ export const lessons: Lesson[] = [
         heading: t("IVA: un impuesto al consumo que la empresa traslada", "IVA: a consumption tax the business passes on"),
         body: [
           t(
+            "En palabras sencillas: el IVA lo paga quien **consume**. La empresa solo funciona como intermediaria: le **cobra** el IVA a sus clientes, **resta** el IVA que ella misma pagó a sus proveedores y entrega la diferencia al SAT. Por eso, en un ticket de la tienda, verás \"subtotal\", \"IVA\" y \"total\".",
+            "In plain words: IVA is paid by whoever **consumes**. The business only acts as a middleman: it **charges** IVA to its customers, **subtracts** the IVA it paid to its own suppliers and hands the difference to the SAT. That is why a store receipt shows \"subtotal\", \"IVA\" and \"total\"."
+          ),
+          t(
             "El IVA grava la enajenación de bienes, la prestación de servicios, el uso o goce temporal de bienes y la importación. La tasa general es **16 %**; ciertos bienes (por ejemplo, la mayoría de los alimentos) tributan a **0 %**, y existe un estímulo por decreto de 8 % en la región fronteriza. La empresa **traslada** el IVA a sus clientes y **acredita** el IVA que le trasladaron sus proveedores, siempre que cumpla requisitos (entre ellos, contar con CFDI y que el gasto sea deducible para ISR).",
             "IVA taxes sales of goods, services, temporary use of goods and imports. The general rate is **16 %**; certain goods (e.g. most food) are taxed at **0 %**, and an 8 % stimulus by decree applies in the border region. The business **charges** IVA to its customers and **credits** the IVA charged by its suppliers, provided it meets requirements (among them, holding a CFDI and the expense being deductible for income tax)."
           ),
@@ -165,7 +173,58 @@ export const lessons: Lesson[] = [
             "For accounting purposes IVA is neither revenue nor expense: output VAT is a **liability** (2104) and creditable input VAT an **asset** (1109). At month-end they are offset; a credit balance means IVA payable, a debit balance means a VAT credit (saldo a favor)."
           ),
         ],
-        formula: "IVA a cargo = IVA trasladado − IVA acreditable",
+        formulas: [
+          {
+            name: t("IVA de una operación y total de la factura", "IVA on a transaction and invoice total"),
+            expression: "IVA = Base × 16 %;  Total = Base + IVA",
+            variables: [
+              { symbol: "Base", meaning: t("El precio de la venta o compra sin IVA, en pesos (el \"subtotal\").", "The price of the sale or purchase before IVA, in pesos (the \"subtotal\").") },
+              { symbol: "16 %", meaning: t("La tasa general de IVA; en decimal es 0.16.", "The general IVA rate; as a decimal it is 0.16.") },
+              { symbol: "IVA", meaning: t("Los pesos de impuesto que se agregan al precio. En una venta es IVA trasladado; en una compra, IVA acreditable.", "The pesos of tax added to the price. On a sale it is output VAT; on a purchase, input (creditable) VAT.") },
+              { symbol: "Total", meaning: t("Lo que realmente se cobra o se paga, en pesos: base más IVA.", "What is actually collected or paid, in pesos: base plus IVA.") },
+            ],
+            steps: [
+              t("Identifica la base: el importe sin IVA.", "Identify the base: the amount before IVA."),
+              t("Multiplica la base por 0.16 para obtener el IVA.", "Multiply the base by 0.16 to get the IVA."),
+              t("Suma base + IVA para obtener el total de la factura.", "Add base + IVA to get the invoice total."),
+              t("Al registrar una venta: cargo a Bancos o Clientes por el total; abono a Ventas por la base; abono a IVA trasladado por el IVA.", "When recording a sale: debit Bank or Accounts receivable for the total; credit Sales for the base; credit Output VAT for the IVA."),
+            ],
+            example: t(
+              "Vendes mercancía por $40,000 + IVA y te pagan por transferencia. IVA: $40,000 × 0.16 = $6,400. Total: $40,000 + $6,400 = **$46,400**. Póliza: cargo Bancos $46,400; abono Ventas $40,000; abono IVA trasladado $6,400 (cargos $46,400 = abonos $46,400).",
+              "You sell goods for $40,000 + IVA and are paid by transfer. IVA: $40,000 × 0.16 = $6,400. Total: $40,000 + $6,400 = **$46,400**. Entry: debit Bank $46,400; credit Sales $40,000; credit Output VAT $6,400 (debits $46,400 = credits $46,400)."
+            ),
+            mistake: t(
+              "Registrar la venta por el total con IVA. La venta (ingreso) es solo la base; el IVA es dinero que le debes al SAT.",
+              "Recording the sale at the total including IVA. The sale (revenue) is only the base; the IVA is money you owe the SAT."
+            ),
+          },
+          {
+            name: t("IVA a cargo del mes", "Monthly IVA payable"),
+            expression: "IVA a cargo = IVA trasladado − IVA acreditable",
+            variables: [
+              { symbol: "IVA a cargo", meaning: t("Los pesos de IVA que debes pagar al SAT por el mes.", "The pesos of IVA you must pay the SAT for the month.") },
+              { symbol: "IVA trasladado", meaning: t("El IVA que cobraste a tus clientes en el mes: ventas sin IVA × 16 %.", "The IVA you charged your customers during the month: sales before IVA × 16 %.") },
+              { symbol: "IVA acreditable", meaning: t("El IVA que pagaste a tus proveedores en el mes (con CFDI y gasto deducible): compras sin IVA × 16 %.", "The IVA you paid your suppliers during the month (with CFDI and a deductible expense): purchases before IVA × 16 %.") },
+            ],
+            steps: [
+              t("Calcula el IVA trasladado: ventas del mes sin IVA × 0.16.", "Compute output VAT: the month's sales before IVA × 0.16."),
+              t("Calcula el IVA acreditable: compras y gastos del mes sin IVA × 0.16.", "Compute input VAT: the month's purchases and expenses before IVA × 0.16."),
+              t("Resta: IVA trasladado − IVA acreditable.", "Subtract: output VAT − input VAT."),
+            ],
+            example: t(
+              "En un mes vendes $250,000 y compras $170,000 (ambos sin IVA). IVA trasladado: $250,000 × 0.16 = $40,000. IVA acreditable: $170,000 × 0.16 = $27,200. IVA a cargo: $40,000 − $27,200 = **$12,800**.",
+              "In a month you sell $250,000 and buy $170,000 (both before IVA). Output VAT: $250,000 × 0.16 = $40,000. Input VAT: $170,000 × 0.16 = $27,200. IVA payable: $40,000 − $27,200 = **$12,800**."
+            ),
+            interpret: t(
+              "Si el resultado es positivo, pagas esa cantidad al SAT. Si es negativo, tienes un **saldo a favor**: no pagas IVA ese mes y puedes usar ese saldo en meses siguientes o pedir su devolución.",
+              "If the result is positive, you pay that amount to the SAT. If it is negative, you have a **VAT credit** (saldo a favor): you pay no IVA that month and can use the credit in later months or request a refund."
+            ),
+            mistake: t(
+              "Restar ventas menos compras y luego aplicar 16 % sin calcular cada IVA por separado. A veces coincide, pero falla cuando hay operaciones a tasa 0 % o compras sin CFDI.",
+              "Subtracting sales minus purchases and then applying 16 % without computing each IVA separately. Sometimes it matches, but it fails when there are 0 % transactions or purchases without CFDI."
+            ),
+          },
+        ],
       },
       {
         heading: t("ISR de personas morales (simplificado)", "Corporate income tax (simplified)"),
@@ -179,7 +238,36 @@ export const lessons: Lesson[] = [
             "During the year the company makes monthly **prepayments** that are credited against the annual tax. In this lesson we use a simplified educational model that excludes the annual inflation adjustment, profit sharing and other items."
           ),
         ],
-        formula: "Resultado fiscal = (Ingresos acumulables − Deducciones autorizadas) − Pérdidas fiscales por amortizar;  ISR = 30 % × Resultado fiscal",
+        formulas: [
+          {
+            name: t("ISR anual simplificado de una persona moral", "Simplified annual income tax of a legal entity"),
+            expression: "Utilidad fiscal = Ingresos acumulables − Deducciones autorizadas;  Resultado fiscal = Utilidad fiscal − Pérdidas fiscales por amortizar;  ISR = 30 % × Resultado fiscal;  ISR a cargo = ISR − Pagos provisionales",
+            variables: [
+              { symbol: "Ingresos acumulables", meaning: t("Todo lo que la empresa ganó en el año y que la ley dice que paga impuesto, en pesos (sin IVA).", "Everything the company earned in the year that the law says is taxable, in pesos (without IVA).") },
+              { symbol: "Deducciones autorizadas", meaning: t("Los gastos que la ley permite restar (con CFDI y requisitos), en pesos.", "The expenses the law allows you to subtract (with CFDI and requirements), in pesos.") },
+              { symbol: "Utilidad fiscal", meaning: t("La ganancia del año según las reglas fiscales, en pesos.", "The year's profit under tax rules, in pesos.") },
+              { symbol: "Pérdidas fiscales por amortizar", meaning: t("Pérdidas de años anteriores que todavía no se han restado, en pesos. \"Amortizar\" aquí significa irlas restando a las utilidades futuras.", "Losses from prior years not yet used, in pesos. \"Amortizing\" here means subtracting them from future profits.") },
+              { symbol: "Resultado fiscal", meaning: t("La base sobre la que se calcula el impuesto, en pesos.", "The base the tax is calculated on, in pesos.") },
+              { symbol: "30 %", meaning: t("La tasa de ISR de personas morales; en decimal 0.30.", "The corporate income tax rate; as a decimal 0.30.") },
+              { symbol: "Pagos provisionales", meaning: t("Los anticipos de ISR que la empresa ya pagó mes a mes durante el año, en pesos.", "The income tax advances the company already paid month by month during the year, in pesos.") },
+              { symbol: "ISR a cargo", meaning: t("Lo que falta pagar en la declaración anual, en pesos.", "What is still due on the annual return, in pesos.") },
+            ],
+            steps: [
+              t("Resta las deducciones autorizadas a los ingresos acumulables: obtienes la utilidad fiscal.", "Subtract authorized deductions from taxable income: you get taxable profit."),
+              t("Resta las pérdidas fiscales pendientes: obtienes el resultado fiscal.", "Subtract the unused tax losses: you get the taxable result."),
+              t("Multiplica el resultado fiscal por 0.30: es el ISR del ejercicio.", "Multiply the taxable result by 0.30: that is the annual income tax."),
+              t("Resta los pagos provisionales al ISR: es lo que queda a cargo (si sale negativo, es saldo a favor).", "Subtract the prepayments from the tax: that is the balance due (if negative, it is a credit in your favor)."),
+            ],
+            example: t(
+              "Ingresos $3,000,000; deducciones $2,200,000; pérdida pendiente $150,000; pagos provisionales $160,000. Utilidad fiscal: $3,000,000 − $2,200,000 = $800,000. Resultado fiscal: $800,000 − $150,000 = $650,000. ISR: $650,000 × 0.30 = $195,000. A cargo: $195,000 − $160,000 = **$35,000**.",
+              "Income $3,000,000; deductions $2,200,000; unused loss $150,000; prepayments $160,000. Taxable profit: $3,000,000 − $2,200,000 = $800,000. Taxable result: $800,000 − $150,000 = $650,000. Tax: $650,000 × 0.30 = $195,000. Due: $195,000 − $160,000 = **$35,000**."
+            ),
+            mistake: t(
+              "Restar los pagos provisionales antes de aplicar el 30 %. Los pagos provisionales se restan al impuesto ya calculado, no a la base. Tampoco confundas el 30 % (ISR) con el 16 % (IVA).",
+              "Subtracting prepayments before applying 30 %. Prepayments are subtracted from the computed tax, not from the base. Also do not confuse 30 % (income tax) with 16 % (IVA)."
+            ),
+          },
+        ],
       },
       {
         heading: t("CFDI: el comprobante fiscal", "CFDI: the electronic tax receipt"),
@@ -198,6 +286,10 @@ export const lessons: Lesson[] = [
         heading: t("Diferencias entre utilidad contable y fiscal", "Differences between book and taxable income"),
         body: [
           t(
+            "En palabras sencillas: la empresa calcula su ganancia **dos veces**, una con las reglas contables (para saber cómo le fue de verdad) y otra con las reglas fiscales (para saber cuánto impuesto paga). Casi nunca salen iguales, y aquí aprendes a clasificar por qué.",
+            "In plain words: the company computes its profit **twice**, once under accounting rules (to know how it really did) and once under tax rules (to know how much tax it pays). They almost never match, and here you learn to classify why."
+          ),
+          t(
             "La contabilidad (NIF) busca reflejar la realidad económica; la ley fiscal busca recaudar con reglas propias. Por eso la utilidad contable y la fiscal difieren. Las **diferencias permanentes** nunca se revierten (por ejemplo, multas no deducibles). Las **diferencias temporales** se revierten con el tiempo: la partida se reconoce en ambos lados, pero en periodos distintos (por ejemplo, depreciación a tasas diferentes o estimaciones de incobrables).",
             "Accounting (NIF) aims to reflect economic reality; tax law aims to collect revenue under its own rules. That is why book and taxable income differ. **Permanent differences** never reverse (e.g. non-deductible fines). **Temporary differences** reverse over time: the item is recognized on both sides but in different periods (e.g. depreciation at different rates or bad-debt allowances)."
           ),
@@ -206,7 +298,37 @@ export const lessons: Lesson[] = [
             "Temporary differences give rise to **deferred taxes** (NIF D-4; IAS 12): temporary difference × rate. If today you deduct more than the book expense, more tax will be paid later: a **deferred tax liability**. If today you deduct less, a **deferred tax asset** arises."
           ),
         ],
-        formula: "Impuesto diferido = Diferencia temporal × Tasa (30 %)",
+        formulas: [
+          {
+            name: t("Impuesto diferido de una diferencia temporal", "Deferred tax on a temporary difference"),
+            expression: "Diferencia temporal = Deducción fiscal − Gasto contable;  Impuesto diferido = Diferencia temporal × 30 %",
+            variables: [
+              { symbol: "Deducción fiscal", meaning: t("Lo que la ley te deja restar este año por la partida (por ejemplo, depreciación fiscal), en pesos.", "What the law lets you subtract this year for the item (e.g. tax depreciation), in pesos.") },
+              { symbol: "Gasto contable", meaning: t("Lo que la contabilidad (NIF) registra como gasto este año por la misma partida, en pesos.", "What the books (NIF) record as expense this year for the same item, in pesos.") },
+              { symbol: "Diferencia temporal", meaning: t("La diferencia entre ambos importes, en pesos; se revertirá en años futuros.", "The difference between both amounts, in pesos; it will reverse in future years.") },
+              { symbol: "30 %", meaning: t("La tasa de ISR; en decimal 0.30.", "The income tax rate; as a decimal 0.30.") },
+              { symbol: "Impuesto diferido", meaning: t("El impuesto que se pagará de más (pasivo) o de menos (activo) en el futuro, en pesos.", "The tax that will be paid more (liability) or less (asset) in the future, in pesos.") },
+            ],
+            steps: [
+              t("Confirma que la partida es temporal (se reconoce en ambos lados, en años distintos). Si es permanente, no hay impuesto diferido.", "Confirm the item is temporary (recognized on both sides, in different years). If it is permanent, there is no deferred tax."),
+              t("Resta: deducción fiscal − gasto contable.", "Subtract: tax deduction − book expense."),
+              t("Multiplica la diferencia por 0.30.", "Multiply the difference by 0.30."),
+              t("Si hoy deduces más que el gasto contable, es pasivo por impuesto diferido; si deduces menos, es activo.", "If today you deduct more than the book expense, it is a deferred tax liability; if you deduct less, it is an asset."),
+            ],
+            example: t(
+              "La depreciación contable de una camioneta es $80,000 y la fiscal $120,000. Diferencia: $120,000 − $80,000 = $40,000. Impuesto diferido: $40,000 × 0.30 = **$12,000**. Como hoy se deduce más, es un pasivo por impuesto diferido.",
+              "Book depreciation on a van is $80,000 and tax depreciation $120,000. Difference: $120,000 − $80,000 = $40,000. Deferred tax: $40,000 × 0.30 = **$12,000**. Since more is deducted today, it is a deferred tax liability."
+            ),
+            interpret: t(
+              "Un pasivo diferido es como un impuesto \"pospuesto\": hoy pagas menos, pero en años futuros la deducción será menor y pagarás más.",
+              "A deferred liability is like a \"postponed\" tax: today you pay less, but in future years the deduction will be smaller and you will pay more."
+            ),
+            mistake: t(
+              "Multiplicar toda la depreciación por la tasa. Solo la **diferencia** entre lo fiscal y lo contable genera impuesto diferido.",
+              "Multiplying the whole depreciation by the rate. Only the **difference** between tax and book amounts creates deferred tax."
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -259,7 +381,7 @@ export const lessons: Lesson[] = [
       "Entiende el objetivo de una auditoría de estados financieros bajo NIA, los tipos de opinión y cómo el marco COSO 2013 y la segregación de funciones sostienen un control interno eficaz.",
       "Understand the objective of a financial statement audit under ISA, the types of opinion, and how the COSO 2013 framework and segregation of duties support effective internal control."
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar el objetivo de la auditoría financiera y la responsabilidad de la administración.", "Explain the objective of a financial audit and management's responsibility."),
       t("Distinguir los tipos de opinión del auditor.", "Distinguish the types of auditor's opinion."),
@@ -270,6 +392,10 @@ export const lessons: Lesson[] = [
       {
         heading: t("¿Qué es una auditoría financiera?", "What is a financial audit?"),
         body: [
+          t(
+            "En palabras sencillas: una auditoría es una **revisión de un experto externo** que dice si puedes creerle a los números de una empresa. Es como cuando un mecánico independiente revisa un auto usado antes de que lo compres: no garantiza que nunca fallará, pero te dice si lo importante está bien. **Material** significa \"lo bastante grande o importante como para cambiar la decisión de quien lee los números\".",
+            "In plain words: an audit is a **review by an outside expert** that says whether you can trust a company's numbers. It is like an independent mechanic checking a used car before you buy it: it does not guarantee it will never fail, but it tells you whether the important parts are fine. **Material** means \"large or important enough to change the decision of whoever reads the numbers\"."
+          ),
           t(
             "Es un examen independiente cuyo objetivo es obtener **seguridad razonable** (alta, pero no absoluta) de que los estados financieros en su conjunto están libres de **errores materiales**, debidos a fraude o error, y emitir una **opinión** sobre si están preparados, en todos sus aspectos materiales, conforme al marco aplicable (NIF o IFRS). Se rige por las **Normas Internacionales de Auditoría (NIA)**, por ejemplo la NIA 200 (objetivos globales).",
             "It is an independent examination whose objective is to obtain **reasonable assurance** (high, but not absolute) that the financial statements as a whole are free from **material misstatement**, whether due to fraud or error, and to issue an **opinion** on whether they are prepared, in all material respects, in accordance with the applicable framework (NIF or IFRS). It is governed by the **International Standards on Auditing (ISA/NIA)**, e.g. ISA 200 (overall objectives)."
@@ -284,8 +410,8 @@ export const lessons: Lesson[] = [
         heading: t("Tipos de opinión", "Types of opinion"),
         body: [
           t(
-            "La opinión **no modificada (limpia)** se emite cuando los estados financieros están razonablemente presentados (NIA 700). Las opiniones modificadas (NIA 705) dependen de si el problema es material y de si es **generalizado** (pervasive):",
-            "An **unmodified (clean)** opinion is issued when the financial statements are fairly presented (ISA 700). Modified opinions (ISA 705) depend on whether the issue is material and whether it is **pervasive**:"
+            "La opinión **no modificada (limpia)** se emite cuando los estados financieros están razonablemente presentados (NIA 700). Las opiniones modificadas (NIA 705) dependen de si el problema es material y de si es **generalizado** (pervasive), es decir, si afecta a muchas partes de los estados financieros y no solo a una cuenta:",
+            "An **unmodified (clean)** opinion is issued when the financial statements are fairly presented (ISA 700). Modified opinions (ISA 705) depend on whether the issue is material and whether it is **pervasive**, meaning it affects many parts of the financial statements rather than a single account:"
           ),
         ],
         bullets: [
@@ -321,6 +447,53 @@ export const lessons: Lesson[] = [
             "Los controles **preventivos** evitan que el problema ocurra (límites de autorización, contraseñas, segregación). Los **detectivos** lo descubren después (conciliaciones bancarias, arqueos, conteos físicos, revisión de reportes de excepción). Un buen sistema combina ambos.",
             "**Preventive** controls stop the problem from happening (approval limits, passwords, segregation). **Detective** controls find it afterwards (bank reconciliations, cash counts, physical counts, exception report reviews). A good system combines both."
           ),
+        ],
+        formulas: [
+          {
+            name: t("Arqueo de un fondo fijo de caja chica", "Count of an imprest petty cash fund"),
+            expression: "Diferencia = Fondo fijo − (Comprobantes + Efectivo)",
+            variables: [
+              { symbol: "Fondo fijo", meaning: t("El monto autorizado de la caja chica, en pesos; siempre debe estar completo entre papeles y dinero.", "The authorized petty cash amount, in pesos; it must always be complete between receipts and cash.") },
+              { symbol: "Comprobantes", meaning: t("La suma de los recibos o facturas autorizados de lo que ya se gastó, en pesos.", "The sum of approved receipts or invoices for what was already spent, in pesos.") },
+              { symbol: "Efectivo", meaning: t("El dinero que se cuenta físicamente en la caja, en pesos.", "The money physically counted in the box, in pesos.") },
+              { symbol: "Diferencia", meaning: t("Positiva = faltante; negativa = sobrante; cero = la caja cuadra.", "Positive = shortage; negative = overage; zero = the fund balances.") },
+            ],
+            steps: [
+              t("Suma los comprobantes autorizados.", "Add up the approved receipts."),
+              t("Cuenta el efectivo y súmalo a los comprobantes.", "Count the cash and add it to the receipts."),
+              t("Resta ese total al fondo fijo.", "Subtract that total from the imprest amount."),
+            ],
+            example: t(
+              "Fondo de $3,000; comprobantes $1,900; efectivo contado $1,040. Total: $1,900 + $1,040 = $2,940. Diferencia: $3,000 − $2,940 = **$60 de faltante**.",
+              "Fund of $3,000; receipts $1,900; cash counted $1,040. Total: $1,900 + $1,040 = $2,940. Difference: $3,000 − $2,940 = **$60 short**."
+            ),
+            interpret: t(
+              "Cualquier diferencia se investiga y se documenta; el arqueo es un control detectivo.",
+              "Any difference is investigated and documented; the count is a detective control."
+            ),
+          },
+          {
+            name: t("Tasa de desviación al probar un control", "Deviation rate when testing a control"),
+            expression: "Tasa de desviación = Casos con falla ÷ Tamaño de la muestra × 100",
+            variables: [
+              { symbol: "Casos con falla", meaning: t("Cuántos documentos de la muestra no cumplieron el control (por ejemplo, sin firma de autorización).", "How many documents in the sample failed the control (e.g. missing approval signature).") },
+              { symbol: "Tamaño de la muestra", meaning: t("Cuántos documentos revisó el auditor.", "How many documents the auditor reviewed.") },
+              { symbol: "Tasa de desviación", meaning: t("El porcentaje de fallas, en %. Se compara con la tasa tolerable que fijó el auditor.", "The percentage of failures, in %. It is compared with the tolerable rate the auditor set.") },
+            ],
+            steps: [
+              t("Cuenta los casos con falla en la muestra.", "Count the failures in the sample."),
+              t("Divide entre el tamaño de la muestra y multiplica por 100.", "Divide by the sample size and multiply by 100."),
+              t("Compara con la tasa tolerable: si es mayor, el control no es eficaz.", "Compare with the tolerable rate: if higher, the control is not effective."),
+            ],
+            example: t(
+              "Se revisan 40 pagos y 3 no tienen autorización; tasa tolerable 6 %. Tasa: 3 ÷ 40 = 0.075 × 100 = **7.5 %**. Como 7.5 % > 6 %, el control no opera eficazmente.",
+              "40 payments are reviewed and 3 lack approval; tolerable rate 6 %. Rate: 3 ÷ 40 = 0.075 × 100 = **7.5 %**. Since 7.5 % > 6 %, the control is not operating effectively."
+            ),
+            interpret: t(
+              "Si la tasa supera la tolerable, el auditor no confía en el control y hace más pruebas sustantivas.",
+              "If the rate exceeds the tolerable rate, the auditor does not rely on the control and does more substantive testing."
+            ),
+          },
         ],
       },
     ],
@@ -373,7 +546,7 @@ export const lessons: Lesson[] = [
       "Aplica el modelo de riesgo de auditoría, determina una materialidad ilustrativa y evalúa si la evidencia obtenida es suficiente y adecuada.",
       "Apply the audit risk model, determine an illustrative materiality and evaluate whether the evidence obtained is sufficient and appropriate."
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Usar el modelo RA = RI × RC × RD para despejar el riesgo de detección.", "Use the model AR = IR × CR × DR to solve for detection risk."),
       t("Calcular materialidad global y de ejecución con referencias ilustrativas.", "Compute overall and performance materiality using illustrative benchmarks."),
@@ -385,6 +558,10 @@ export const lessons: Lesson[] = [
         heading: t("El modelo de riesgo de auditoría", "The audit risk model"),
         body: [
           t(
+            "En palabras sencillas: un error puede \"colarse\" hasta los estados financieros solo si pasa tres filtros: que ocurra (**riesgo inherente**), que los controles de la empresa no lo atrapen (**riesgo de control**) y que el auditor tampoco lo encuentre (**riesgo de detección**). El auditor no puede cambiar los dos primeros, pero sí decide cuánto revisar para que el tercero sea lo bastante bajo.",
+            "In plain words: an error can \"slip\" into the financial statements only if it passes three filters: it happens (**inherent risk**), the company's controls do not catch it (**control risk**) and the auditor does not find it either (**detection risk**). The auditor cannot change the first two, but does decide how much to test so that the third is low enough."
+          ),
+          t(
             "El **riesgo de auditoría (RA)** es el riesgo de emitir una opinión inapropiada cuando los estados financieros contienen errores materiales. Se descompone en el **riesgo de error material** (riesgo inherente × riesgo de control), que pertenece a la entidad, y el **riesgo de detección**, que controla el auditor con la naturaleza, oportunidad y alcance de sus pruebas.",
             "**Audit risk (AR)** is the risk of issuing an inappropriate opinion when the financial statements are materially misstated. It breaks down into the **risk of material misstatement** (inherent risk × control risk), which belongs to the entity, and **detection risk**, which the auditor controls through the nature, timing and extent of procedures."
           ),
@@ -393,14 +570,43 @@ export const lessons: Lesson[] = [
             "If the auditor sets a low acceptable AR and assesses IR and CR as high, planned DR must be **low**: more substantive testing, closer to year-end and with larger samples (ISA 315 and ISA 330)."
           ),
         ],
-        formula: "RA = RI × RC × RD   →   RD = RA ÷ (RI × RC)",
+        formulas: [
+          {
+            name: t("Riesgo de detección planeado (modelo de riesgo de auditoría)", "Planned detection risk (audit risk model)"),
+            expression: "RA = RI × RC × RD   →   RD = RA ÷ (RI × RC)",
+            variables: [
+              { symbol: "RA", meaning: t("Riesgo de auditoría: la probabilidad máxima que el auditor acepta de dar una opinión equivocada, en %.", "Audit risk: the maximum chance the auditor accepts of giving a wrong opinion, in %.") },
+              { symbol: "RI", meaning: t("Riesgo inherente: qué tan propensa a errores es la cuenta por sí misma, antes de cualquier control, en %.", "Inherent risk: how error-prone the account is by itself, before any control, in %.") },
+              { symbol: "RC", meaning: t("Riesgo de control: la probabilidad de que los controles de la empresa no detecten o eviten el error, en %.", "Control risk: the chance that the company's controls fail to prevent or catch the error, in %.") },
+              { symbol: "RD", meaning: t("Riesgo de detección: la probabilidad de que las pruebas del auditor no encuentren el error, en %.", "Detection risk: the chance that the auditor's tests miss the error, in %.") },
+            ],
+            steps: [
+              t("Convierte cada porcentaje a decimal: 5 % = 0.05, 80 % = 0.80.", "Convert each percentage to a decimal: 5 % = 0.05, 80 % = 0.80."),
+              t("Multiplica RI × RC: es el riesgo de error material.", "Multiply IR × CR: that is the risk of material misstatement."),
+              t("Divide RA entre ese producto: el resultado es el RD.", "Divide AR by that product: the result is DR."),
+              t("Multiplica por 100 para expresarlo en %.", "Multiply by 100 to express it in %."),
+            ],
+            example: t(
+              "RA = 6 %, RI = 60 %, RC = 50 %. RI × RC: 0.60 × 0.50 = 0.30. RD: 0.06 ÷ 0.30 = 0.20 → **20 %**.",
+              "AR = 6 %, IR = 60 %, CR = 50 %. IR × CR: 0.60 × 0.50 = 0.30. DR: 0.06 ÷ 0.30 = 0.20 → **20 %**."
+            ),
+            interpret: t(
+              "Un RD bajo significa que el auditor casi no puede permitirse fallar: debe hacer más pruebas sustantivas, con muestras más grandes y más cerca del cierre. Un RD alto permite menos pruebas.",
+              "A low DR means the auditor can barely afford to miss anything: more substantive tests, larger samples and closer to year-end. A high DR allows fewer tests."
+            ),
+            mistake: t(
+              "Multiplicar los tres riesgos o restar en lugar de dividir. Para despejar el RD siempre se divide RA entre (RI × RC).",
+              "Multiplying all three risks or subtracting instead of dividing. To solve for DR you always divide AR by (IR × CR)."
+            ),
+          },
+        ],
       },
       {
         heading: t("Materialidad", "Materiality"),
         body: [
           t(
-            "Un error es **material** si, individualmente o en conjunto, podría influir en las decisiones económicas de los usuarios (NIA 320). La materialidad es un juicio profesional; en la práctica se parte de una **referencia (benchmark)** y un porcentaje. Los rangos siguientes son **ilustrativos**, no reglas de la norma:",
-            "A misstatement is **material** if, individually or in aggregate, it could influence users' economic decisions (ISA 320). Materiality is a matter of professional judgment; in practice it starts from a **benchmark** and a percentage. The ranges below are **illustrative**, not rules from the standard:"
+            "Un error es **material** si, individualmente o en conjunto, podría influir en las decisiones económicas de los usuarios (NIA 320). La materialidad es un juicio profesional; en la práctica se parte de una **referencia (benchmark)** y un porcentaje. Ejemplo cotidiano: si tu recibo de nómina trae $5 de error no te importa, pero si trae $5,000 sí; lo \"material\" depende del tamaño de las cifras. Los rangos siguientes son **ilustrativos**, no reglas de la norma:",
+            "A misstatement is **material** if, individually or in aggregate, it could influence users' economic decisions (ISA 320). Materiality is a matter of professional judgment; in practice it starts from a **benchmark** and a percentage. Everyday example: a $5 error on your payslip does not matter to you, but a $5,000 one does; what is \"material\" depends on the size of the figures. The ranges below are **illustrative**, not rules from the standard:"
           ),
           t(
             "La **materialidad de ejecución** es menor que la global (por ejemplo 50 %–75 % de ella) para reducir el riesgo de que errores no detectados sumen más que la materialidad. También se fija un umbral de errores **claramente insignificantes** (por ejemplo, 5 % de la materialidad).",
@@ -411,6 +617,38 @@ export const lessons: Lesson[] = [
           t("Utilidad antes de impuestos: alrededor de 5 %.", "Profit before tax: around 5 %."),
           t("Ingresos: alrededor de 0.5 %–1 %.", "Revenue: around 0.5 %–1 %."),
           t("Activos totales: alrededor de 1 %–2 %.", "Total assets: around 1 %–2 %."),
+        ],
+        formulas: [
+          {
+            name: t("Materialidad global, de ejecución y umbral insignificante", "Overall materiality, performance materiality and clearly trivial threshold"),
+            expression: "Materialidad global = Referencia × % de referencia;  Materialidad de ejecución = Materialidad global × % de ejecución;  Umbral insignificante = Materialidad global × % de umbral",
+            variables: [
+              { symbol: "Referencia", meaning: t("La cifra base elegida (por ejemplo, utilidad antes de impuestos), en pesos.", "The chosen base figure (e.g. profit before tax), in pesos.") },
+              { symbol: "% de referencia", meaning: t("El porcentaje que se aplica a la referencia (ilustrativo, por ejemplo 5 % de la utilidad).", "The percentage applied to the benchmark (illustrative, e.g. 5 % of profit).") },
+              { symbol: "Materialidad global", meaning: t("El monto a partir del cual un error se considera importante para los estados financieros en conjunto, en pesos.", "The amount above which a misstatement is considered important for the financial statements as a whole, in pesos.") },
+              { symbol: "% de ejecución", meaning: t("Qué parte de la materialidad global se usa para trabajar (por ejemplo 50 %–75 %).", "What share of overall materiality is used to do the work (e.g. 50 %–75 %).") },
+              { symbol: "Materialidad de ejecución", meaning: t("Un límite más bajo que la global, para dejar un margen de seguridad, en pesos.", "A limit lower than overall materiality, to leave a safety margin, in pesos.") },
+              { symbol: "% de umbral", meaning: t("Porcentaje de la materialidad global debajo del cual un error es claramente insignificante (por ejemplo 5 %).", "Percentage of overall materiality below which a misstatement is clearly trivial (e.g. 5 %).") },
+              { symbol: "Umbral insignificante", meaning: t("Errores menores a este monto no se acumulan, en pesos.", "Misstatements below this amount are not accumulated, in pesos.") },
+            ],
+            steps: [
+              t("Multiplica la referencia por su porcentaje: es la materialidad global.", "Multiply the benchmark by its percentage: that is overall materiality."),
+              t("Multiplica la materialidad **global** por el % de ejecución.", "Multiply **overall** materiality by the performance %."),
+              t("Multiplica la materialidad **global** por el % del umbral.", "Multiply **overall** materiality by the threshold %."),
+            ],
+            example: t(
+              "Utilidad antes de impuestos $4,000,000; referencia 5 %; ejecución 60 %; umbral 5 %. Global: $4,000,000 × 0.05 = $200,000. Ejecución: $200,000 × 0.60 = **$120,000**. Umbral: $200,000 × 0.05 = **$10,000**.",
+              "Profit before tax $4,000,000; benchmark 5 %; performance 60 %; threshold 5 %. Overall: $4,000,000 × 0.05 = $200,000. Performance: $200,000 × 0.60 = **$120,000**. Threshold: $200,000 × 0.05 = **$10,000**."
+            ),
+            interpret: t(
+              "Siempre debe cumplirse: umbral insignificante < materialidad de ejecución < materialidad global.",
+              "It must always hold: clearly trivial threshold < performance materiality < overall materiality."
+            ),
+            mistake: t(
+              "Calcular la de ejecución o el umbral sobre la utilidad en lugar de sobre la materialidad global.",
+              "Computing performance materiality or the threshold on profit instead of on overall materiality."
+            ),
+          },
         ],
       },
       {
@@ -485,7 +723,7 @@ export const lessons: Lesson[] = [
       "Analiza por qué ocurre el fraude, cómo distinguir una señal de alerta de un fraude probado y qué técnicas forenses básicas (cadena de custodia, ley de Benford, pagos duplicados) se usan para investigarlo.",
       "Analyze why fraud happens, how to tell a red flag from proven fraud, and which basic forensic techniques (chain of custody, Benford's law, duplicate payments) are used to investigate it."
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Explicar los tres elementos del triángulo del fraude.", "Explain the three elements of the fraud triangle."),
       t("Clasificar esquemas en apropiación indebida, información financiera fraudulenta y corrupción.", "Classify schemes as asset misappropriation, fraudulent financial reporting and corruption."),
@@ -540,7 +778,59 @@ export const lessons: Lesson[] = [
             "The **duplicate payments** test looks for payments with the same supplier, amount and invoice number (or near-identical variants). The same amount with a **different invoice** is not necessarily a duplicate."
           ),
         ],
-        formula: "P(primer dígito = d) = log10(1 + 1/d)",
+        formulas: [
+          {
+            name: t("Cantidad esperada según la ley de Benford", "Expected count under Benford's law"),
+            expression: "P(d) = log10(1 + 1/d);  Esperados = N × P(d)",
+            variables: [
+              { symbol: "d", meaning: t("El primer dígito que analizas (del 1 al 9).", "The first digit you analyze (1 to 9).") },
+              { symbol: "log10", meaning: t("Logaritmo base 10; en la calculadora es la tecla \"log\".", "Base-10 logarithm; on a calculator it is the \"log\" key.") },
+              { symbol: "P(d)", meaning: t("La proporción esperada de montos que empiezan con d (en decimal; × 100 para %).", "The expected share of amounts starting with d (as a decimal; × 100 for %).") },
+              { symbol: "N", meaning: t("El número total de montos analizados (facturas, pagos).", "The total number of amounts analyzed (invoices, payments).") },
+              { symbol: "Esperados", meaning: t("Cuántos montos deberían empezar con d, redondeado al entero.", "How many amounts should start with d, rounded to a whole number.") },
+            ],
+            steps: [
+              t("Calcula 1 + 1/d. Para d = 2: 1 + 0.5 = 1.5.", "Compute 1 + 1/d. For d = 2: 1 + 0.5 = 1.5."),
+              t("Saca el logaritmo base 10 de ese número: es P(d).", "Take the base-10 logarithm of that number: that is P(d)."),
+              t("Multiplica P(d) por el total N y redondea.", "Multiply P(d) by the total N and round."),
+              t("Compara con los observados: una diferencia grande es una señal para investigar, no una prueba.", "Compare with the observed count: a large gap is a signal to investigate, not proof."),
+            ],
+            example: t(
+              "¿Cuántos de 3,000 pagos deberían empezar con 2? 1 + 1/2 = 1.5. P(2) = log10(1.5) = 0.17609 (≈ 17.6 %). Esperados: 3,000 × 0.17609 = 528.27 ≈ **528 pagos**.",
+              "How many of 3,000 payments should start with 2? 1 + 1/2 = 1.5. P(2) = log10(1.5) = 0.17609 (≈ 17.6 %). Expected: 3,000 × 0.17609 = 528.27 ≈ **528 payments**."
+            ),
+            interpret: t(
+              "Muchos más o muchos menos montos de los esperados con algún dígito sugieren revisar esas transacciones (por ejemplo, montos justo debajo de un límite de autorización).",
+              "Many more or far fewer amounts than expected for a digit suggest reviewing those transactions (e.g. amounts just below an approval limit)."
+            ),
+            mistake: t(
+              "Suponer que cada dígito aparece igual (1/9 ≈ 11.1 %). Con Benford, el 1 aparece cerca de 30 % y el 9 cerca de 4.6 %.",
+              "Assuming every digit appears equally often (1/9 ≈ 11.1 %). Under Benford, 1 appears about 30 % of the time and 9 about 4.6 %."
+            ),
+          },
+          {
+            name: t("Pagos duplicados e importe por recuperar", "Duplicate payments and amount to recover"),
+            expression: "Importe por recuperar = Suma de los pagos repetidos (sin contar el pago original)",
+            variables: [
+              { symbol: "Pago repetido", meaning: t("Un pago que repite proveedor, monto y número de factura de un pago anterior.", "A payment that repeats the supplier, amount and invoice number of an earlier payment.") },
+              { symbol: "Pago original", meaning: t("El primer pago de cada grupo; es legítimo y no se recupera.", "The first payment in each group; it is legitimate and is not recovered.") },
+              { symbol: "Importe por recuperar", meaning: t("Los pesos pagados de más que hay que reclamar al proveedor.", "The pesos overpaid that must be claimed back from the supplier.") },
+            ],
+            steps: [
+              t("Agrupa los pagos por proveedor + monto + número de factura.", "Group payments by supplier + amount + invoice number."),
+              t("En cada grupo con más de un pago, el primero es el original; los demás son duplicados.", "In each group with more than one payment, the first is the original; the rest are duplicates."),
+              t("Cuenta los duplicados y suma sus montos.", "Count the duplicates and add up their amounts."),
+            ],
+            example: t(
+              "Pagos: #1 A $6,300 F-7; #2 B $2,100 F-3; #3 A $6,300 F-7; #4 B $2,100 F-4; #5 B $2,100 F-3. Duplicados: #3 (repite a #1) y #5 (repite a #2) = 2. #4 tiene otra factura, no cuenta. Importe: $6,300 + $2,100 = **$8,400**.",
+              "Payments: #1 A $6,300 F-7; #2 B $2,100 F-3; #3 A $6,300 F-7; #4 B $2,100 F-4; #5 B $2,100 F-3. Duplicates: #3 (repeats #1) and #5 (repeats #2) = 2. #4 has another invoice, it does not count. Amount: $6,300 + $2,100 = **$8,400**."
+            ),
+            mistake: t(
+              "Contar los dos pagos de cada par (el original también) o incluir pagos del mismo monto pero con otra factura.",
+              "Counting both payments of each pair (including the original) or including payments with the same amount but a different invoice."
+            ),
+          },
+        ],
       },
     ],
     examples: [

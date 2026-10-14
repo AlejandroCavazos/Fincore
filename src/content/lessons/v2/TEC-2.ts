@@ -32,7 +32,7 @@ export const lessons: Lesson[] = [
       es: "Una base de datos guarda la información del negocio en tablas ordenadas, y SQL es el lenguaje para preguntarle cosas como cuánto vendimos o quién nos debe.",
       en: "A database stores a business's information in orderly tables, and SQL is the language for asking it things like how much we sold or who owes us money.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es una base de datos relacional y reconocer tablas, filas, columnas y llaves.", en: "Explain what a relational database is and recognize tables, rows, columns and keys." },
       { es: "Escribir consultas SQL básicas con SELECT, FROM, WHERE y ORDER BY.", en: "Write basic SQL queries with SELECT, FROM, WHERE and ORDER BY." },
@@ -83,7 +83,26 @@ export const lessons: Lesson[] = [
             en: "Mini example: to see invoices over $10,000, from largest to smallest, you write: SELECT folio, cliente, importe FROM facturas WHERE importe > 10000 ORDER BY importe DESC.",
           },
         ],
-        formula: "SELECT columnas FROM tabla WHERE condición ORDER BY columna DESC",
+        formulas: [
+          {
+            name: { es: "Estructura de una consulta SQL básica", en: "Structure of a basic SQL query" },
+            expression: "SELECT columnas FROM tabla WHERE condición ORDER BY columna DESC",
+            variables: [
+              { symbol: "SELECT columnas", meaning: { es: "Qué columnas quieres ver, separadas por comas.", en: "Which columns you want to see, separated by commas." } },
+              { symbol: "FROM tabla", meaning: { es: "De qué tabla salen los datos.", en: "Which table the data comes from." } },
+              { symbol: "WHERE condición", meaning: { es: "Qué filas se quedan: solo las que cumplen la condición (por ejemplo, importe > 5000). Es opcional.", en: "Which rows stay: only those that meet the condition (e.g. importe > 5000). It is optional." } },
+              { symbol: "ORDER BY columna DESC", meaning: { es: "En qué orden se muestran: DESC de mayor a menor, ASC de menor a mayor. Es opcional.", en: "The order they are shown in: DESC from high to low, ASC from low to high. It is optional." } },
+            ],
+            steps: [
+              { es: "Revisa todas las filas de la tabla indicada en FROM.", en: "Look at all the rows of the table named in FROM." },
+              { es: "Quédate solo con las filas que cumplen el WHERE; las demás se descartan.", en: "Keep only the rows that meet the WHERE; the rest are dropped." },
+              { es: "Ordena esas filas según el ORDER BY.", en: "Sort those rows according to the ORDER BY." },
+              { es: "Muestra solo las columnas del SELECT.", en: "Show only the columns in the SELECT." },
+            ],
+            example: { es: "Tabla gastos: G1 $3,200; G2 $7,500; G3 $5,100; G4 $900. Consulta: SELECT folio FROM gastos WHERE importe > 5000 ORDER BY importe DESC. WHERE deja G2 ($7,500) y G3 ($5,100). DESC pone primero el mayor. Resultado: **G2, G3**.", en: "Table gastos: G1 $3,200; G2 $7,500; G3 $5,100; G4 $900. Query: SELECT folio FROM gastos WHERE importe > 5000 ORDER BY importe DESC. WHERE keeps G2 ($7,500) and G3 ($5,100). DESC puts the largest first. Result: **G2, G3**." },
+            mistake: { es: "Pensar que la consulta borra o reordena la tabla. SELECT solo muestra un resultado; los datos guardados no cambian.", en: "Thinking the query deletes or reorders the table. SELECT only shows a result; the stored data does not change." },
+          },
+        ],
       },
       {
         heading: { es: "Resumir y relacionar: SUM, COUNT, GROUP BY y JOIN", en: "Summarize and relate: SUM, COUNT, GROUP BY and JOIN" },
@@ -107,6 +126,25 @@ export const lessons: Lesson[] = [
           { es: "GROUP BY cliente: un renglón por cliente.", en: "GROUP BY customer: one line per customer." },
           { es: "HAVING: filtra grupos después de sumar.", en: "HAVING: filters groups after summing." },
           { es: "JOIN ... ON: une tablas por su llave común.", en: "JOIN ... ON: joins tables by their common key." },
+        ],
+        formulas: [
+          {
+            name: { es: "Totales por grupo con WHERE, COUNT, SUM y GROUP BY", en: "Group totals with WHERE, COUNT, SUM and GROUP BY" },
+            expression: "SELECT grupo, COUNT(*), SUM(importe) FROM tabla WHERE condición GROUP BY grupo",
+            variables: [
+              { symbol: "grupo", meaning: { es: "La columna por la que se agrupa (por ejemplo, cliente): sale un renglón por cada valor distinto.", en: "The column used to group (e.g. cliente): you get one line per distinct value." } },
+              { symbol: "COUNT(*)", meaning: { es: "Cuántas filas hay en cada grupo (número de operaciones, no pesos).", en: "How many rows are in each group (number of transactions, not pesos)." } },
+              { symbol: "SUM(importe)", meaning: { es: "La suma de los importes de cada grupo, en pesos.", en: "The sum of the amounts in each group, in pesos." } },
+              { symbol: "WHERE condición", meaning: { es: "Filtro que se aplica a las filas antes de agrupar y sumar.", en: "Filter applied to rows before grouping and summing." } },
+            ],
+            steps: [
+              { es: "Aplica el WHERE: tacha las filas que no cumplen la condición.", en: "Apply the WHERE: cross out the rows that do not meet the condition." },
+              { es: "Junta las filas que quedan por el valor de la columna del GROUP BY.", en: "Gather the remaining rows by the value of the GROUP BY column." },
+              { es: "En cada grupo, cuenta las filas (COUNT) y suma los importes (SUM).", en: "In each group, count the rows (COUNT) and add the amounts (SUM)." },
+            ],
+            example: { es: "Tabla ventas: Dulcería Paz $1,200 'pagada'; Dulcería Paz $800 'pendiente'; Óptica Real $2,500 'pagada'; Dulcería Paz $600 'pagada'. Consulta: SELECT cliente, COUNT(*), SUM(importe) FROM ventas WHERE estatus = 'pagada' GROUP BY cliente. WHERE quita la de $800. Dulcería Paz: 2 filas; 1,200 + 600 = $1,800. Óptica Real: 1 fila; $2,500. Resultado: **Dulcería Paz | 2 | 1,800** y **Óptica Real | 1 | 2,500**.", en: "Table ventas: Dulcería Paz $1,200 'pagada'; Dulcería Paz $800 'pendiente'; Óptica Real $2,500 'pagada'; Dulcería Paz $600 'pagada'. Query: SELECT cliente, COUNT(*), SUM(importe) FROM ventas WHERE estatus = 'pagada' GROUP BY cliente. WHERE removes the $800 one. Dulcería Paz: 2 rows; 1,200 + 600 = $1,800. Óptica Real: 1 row; $2,500. Result: **Dulcería Paz | 2 | 1,800** and **Óptica Real | 1 | 2,500**." },
+            mistake: { es: "Confundir COUNT con SUM (COUNT cuenta filas, SUM suma pesos) u olvidar que el WHERE filtra antes de sumar.", en: "Confusing COUNT with SUM (COUNT counts rows, SUM adds pesos) or forgetting that WHERE filters before summing." },
+          },
         ],
       },
     ],
@@ -165,7 +203,7 @@ export const lessons: Lesson[] = [
       es: "Python es un lenguaje de programación sencillo de leer que te permite automatizar cálculos financieros con variables, listas, ciclos, condiciones y funciones.",
       en: "Python is an easy-to-read programming language that lets you automate financial calculations with variables, lists, loops, conditions and functions.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Reconocer variables y los tipos de datos básicos de Python: números enteros, decimales, texto y booleanos.", en: "Recognize variables and Python's basic data types: integers, decimals, text and booleans." },
       { es: "Leer y predecir el resultado de ciclos for y condiciones if sobre listas de datos.", en: "Read and predict the result of for loops and if conditions over lists of data." },
@@ -219,6 +257,27 @@ export const lessons: Lesson[] = [
             en: "Mini example: total = 0, then for g in gastos: total = total + g. When it finishes, total is 450 + 1200 + 380 = 2030.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Acumulador y contador dentro de un ciclo for", en: "Accumulator and counter inside a for loop" },
+            expression: "total = 0;  for x in lista: total = total + x   ·   contador = 0;  for x in lista: if condición: contador = contador + 1",
+            variables: [
+              { symbol: "lista", meaning: { es: "Los valores que el ciclo recorre uno por uno, entre corchetes.", en: "The values the loop goes through one by one, inside square brackets." } },
+              { symbol: "x", meaning: { es: "El elemento de la lista en la vuelta actual del ciclo.", en: "The list element in the current pass of the loop." } },
+              { symbol: "total", meaning: { es: "Acumulador: empieza en 0 y en cada vuelta se le suma algo.", en: "Accumulator: starts at 0 and something is added to it on every pass." } },
+              { symbol: "contador", meaning: { es: "Empieza en 0 y sube de 1 en 1 solo cuando se cumple la condición del if.", en: "Starts at 0 and goes up by 1 only when the if condition holds." } },
+              { symbol: "condición", meaning: { es: "Una comparación (>, <, ==, >=, <=) que da True o False.", en: "A comparison (>, <, ==, >=, <=) that gives True or False." } },
+            ],
+            steps: [
+              { es: "Anota el valor inicial (total = 0 o contador = 0); se ejecuta una sola vez, antes del ciclo.", en: "Write down the starting value (total = 0 or contador = 0); it runs only once, before the loop." },
+              { es: "Recorre la lista elemento por elemento y haz la operación de dentro del ciclo, vuelta por vuelta.", en: "Go through the list element by element and do the operation inside the loop, pass by pass." },
+              { es: "En cada vuelta resuelve primero multiplicaciones y luego sumas (como en matemáticas).", en: "On each pass do multiplications first and then additions (as in math)." },
+              { es: "Al terminar la lista, el último valor es lo que muestra print.", en: "When the list ends, the last value is what print shows." },
+            ],
+            example: { es: "montos = [300, 450, 250]; total = 0; for m in montos: total = total + m. Vueltas: 0 + 300 = 300; 300 + 450 = 750; 750 + 250 = **1000**. Contador: saldos = [500, -80, 0, 1200]; cuenta los s > 0: 500 sí (1), -80 no, 0 no (0 no es mayor que 0), 1200 sí (2). Resultado: **2**.", en: "montos = [300, 450, 250]; total = 0; for m in montos: total = total + m. Passes: 0 + 300 = 300; 300 + 450 = 750; 750 + 250 = **1000**. Counter: saldos = [500, -80, 0, 1200]; count s > 0: 500 yes (1), -80 no, 0 no (0 is not greater than 0), 1200 yes (2). Result: **2**." },
+            mistake: { es: "Pensar que total vuelve a 0 en cada vuelta (total = 0 está fuera del ciclo) o sumar los valores cuando el programa solo los cuenta.", en: "Thinking total goes back to 0 on every pass (total = 0 is outside the loop) or adding the values when the program only counts them." },
+          },
+        ],
       },
       {
         heading: { es: "Funciones y bibliotecas", en: "Functions and libraries" },
@@ -240,7 +299,26 @@ export const lessons: Lesson[] = [
             en: "Mini example: def total_con_iva(subtotal): return round(subtotal * 1.16, 2). Calling total_con_iva(2500) gives you 2900.0.",
           },
         ],
-        formula: "def nombre(parámetro): return resultado",
+        formulas: [
+          {
+            name: { es: "Función que hace un cálculo y lo devuelve", en: "Function that does a calculation and returns it" },
+            expression: "def nombre(parámetro): return cálculo",
+            variables: [
+              { symbol: "def", meaning: { es: "Palabra que crea (define) la función.", en: "Keyword that creates (defines) the function." } },
+              { symbol: "nombre", meaning: { es: "Cómo se llama la función; con ese nombre la usas después.", en: "What the function is called; you use it later by that name." } },
+              { symbol: "parámetro", meaning: { es: "El dato que recibe la función entre paréntesis (por ejemplo, un subtotal en pesos).", en: "The data the function receives in parentheses (e.g. a subtotal in pesos)." } },
+              { symbol: "return", meaning: { es: "Entrega el resultado para que el programa lo use. No es lo mismo que print, que solo lo muestra.", en: "Hands back the result so the program can use it. It is not the same as print, which only shows it." } },
+              { symbol: "cálculo", meaning: { es: "La operación con el parámetro: * multiplica, + suma, - resta, / divide.", en: "The operation on the parameter: * multiplies, + adds, - subtracts, / divides." } },
+            ],
+            steps: [
+              { es: "Escribe def, el nombre y el parámetro entre paréntesis, y termina con dos puntos.", en: "Write def, the name and the parameter in parentheses, and end with a colon." },
+              { es: "En la línea de dentro (con sangría) escribe return y la operación.", en: "On the inside line (indented) write return and the operation." },
+              { es: "Para usarla, llámala con un valor: Python pone ese valor en lugar del parámetro y hace la cuenta.", en: "To use it, call it with a value: Python puts that value in place of the parameter and does the math." },
+            ],
+            example: { es: "def descuento(precio): return precio * 0.10. Al llamar descuento(850), Python calcula 850 × 0.10 = **85.0**. Para el total con IVA del cuerpo de la lección: total_con_iva(2500) = round(2500 × 1.16, 2) = 2900.0.", en: "def descuento(precio): return precio * 0.10. Calling descuento(850), Python computes 850 × 0.10 = **85.0**. For the total-with-VAT in the lesson body: total_con_iva(2500) = round(2500 × 1.16, 2) = 2900.0." },
+            mistake: { es: "Usar print en lugar de return: la función mostraría el número pero devolvería None. También, usar + 0.16 (suma 16 centavos) cuando el IVA es × 0.16.", en: "Using print instead of return: the function would show the number but return None. Also, using + 0.16 (adds 16 cents) when VAT is × 0.16." },
+          },
+        ],
       },
     ],
     examples: [
@@ -300,7 +378,7 @@ export const lessons: Lesson[] = [
       es: "Analizar datos financieros es limpiar los números, compararlos contra periodos, proporciones y presupuestos, y convertirlos en conclusiones claras para decidir.",
       en: "Analyzing financial data means cleaning the numbers, comparing them against periods, proportions and budgets, and turning them into clear conclusions for decision-making.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Describir el proceso de análisis: pregunta, datos, limpieza, cálculo y comunicación.", en: "Describe the analysis process: question, data, cleaning, calculation and communication." },
       { es: "Calcular variaciones porcentuales y análisis horizontal y vertical.", en: "Compute percentage changes and horizontal and vertical analysis." },
@@ -351,7 +429,42 @@ export const lessons: Lesson[] = [
             en: "Mini example: sales of $200,000 that become $230,000 grow (230,000 − 200,000) / 200,000 × 100 = 15%.",
           },
         ],
-        formula: "Variación % = (Valor actual − Valor anterior) / Valor anterior × 100   ·   % vertical = Partida / Ventas × 100",
+        formulas: [
+          {
+            name: { es: "Variación porcentual (análisis horizontal)", en: "Percentage change (horizontal analysis)" },
+            expression: "Variación % = (Valor actual − Valor anterior) / Valor anterior × 100",
+            variables: [
+              { symbol: "Valor actual", meaning: { es: "La cifra del periodo más reciente, en pesos.", en: "The figure for the most recent period, in pesos." } },
+              { symbol: "Valor anterior", meaning: { es: "La cifra del periodo con el que comparas; es la base, en pesos.", en: "The figure for the period you compare against; it is the base, in pesos." } },
+              { symbol: "Variación %", meaning: { es: "Cuánto creció (positivo) o bajó (negativo), en %.", en: "How much it grew (positive) or fell (negative), in %." } },
+            ],
+            steps: [
+              { es: "Resta: valor actual − valor anterior.", en: "Subtract: current value − previous value." },
+              { es: "Divide esa diferencia entre el valor **anterior**.", en: "Divide that difference by the **previous** value." },
+              { es: "Multiplica por 100.", en: "Multiply by 100." },
+            ],
+            example: { es: "Ventas de $250,000 que pasan a $280,000. Diferencia: 280,000 − 250,000 = 30,000. División: 30,000 / 250,000 = 0.12. Por 100: **12 %** de crecimiento.", en: "Sales of $250,000 that become $280,000. Difference: 280,000 − 250,000 = 30,000. Division: 30,000 / 250,000 = 0.12. Times 100: **12%** growth." },
+            interpret: { es: "Positivo = creció; negativo = bajó. Ojo: subir 20 % y luego bajar 20 % no te regresa al inicio (100 → 120 → 96), porque la segunda vez la base es distinta.", en: "Positive = it grew; negative = it fell. Note: rising 20% and then falling 20% does not bring you back (100 → 120 → 96), because the second time the base is different." },
+            mistake: { es: "Dividir entre el valor actual en lugar del anterior.", en: "Dividing by the current value instead of the previous one." },
+          },
+          {
+            name: { es: "Porcentaje vertical de cada partida", en: "Vertical percentage of each line item" },
+            expression: "% vertical = Partida / Ventas × 100;  Utilidad de operación = Ventas − Costo de ventas − Gastos de operación",
+            variables: [
+              { symbol: "Partida", meaning: { es: "El renglón que analizas (costo de ventas, gastos, utilidad), en pesos.", en: "The line you are analyzing (cost of sales, expenses, profit), in pesos." } },
+              { symbol: "Ventas", meaning: { es: "La base: las ventas del mismo periodo, en pesos.", en: "The base: sales for the same period, in pesos." } },
+              { symbol: "% vertical", meaning: { es: "Qué parte de cada peso vendido representa la partida, en %.", en: "What share of every peso sold the line represents, in %." } },
+            ],
+            steps: [
+              { es: "Si no te la dan, calcula la utilidad de operación: ventas − costo − gastos.", en: "If it is not given, compute operating profit: sales − cost − expenses." },
+              { es: "Divide cada partida entre las ventas y multiplica por 100.", en: "Divide each line by sales and multiply by 100." },
+              { es: "Comprueba: costo % + gastos % + utilidad % debe dar 100 %.", en: "Check: cost % + expenses % + profit % should add up to 100%." },
+            ],
+            example: { es: "Ventas $400,000; costo $260,000; gastos $100,000. Costo: 260,000 / 400,000 × 100 = 65 %. Gastos: 100,000 / 400,000 × 100 = 25 %. Utilidad: 400,000 − 260,000 − 100,000 = 40,000; 40,000 / 400,000 × 100 = **10 %**. Comprobación: 65 + 25 + 10 = 100.", en: "Sales $400,000; cost $260,000; expenses $100,000. Cost: 260,000 / 400,000 × 100 = 65%. Expenses: 100,000 / 400,000 × 100 = 25%. Profit: 400,000 − 260,000 − 100,000 = 40,000; 40,000 / 400,000 × 100 = **10%**. Check: 65 + 25 + 10 = 100." },
+            interpret: { es: "Se lee como \"de cada $100 vendidos\": aquí $65 son costo, $25 gastos y quedan $10 de utilidad.", en: "Read it as \"out of every $100 sold\": here $65 is cost, $25 expenses and $10 remains as profit." },
+            mistake: { es: "Dividir entre la utilidad bruta u otra cifra; en el análisis vertical la base siempre son las ventas.", en: "Dividing by gross profit or another figure; in vertical analysis the base is always sales." },
+          },
+        ],
       },
       {
         heading: { es: "Real contra presupuesto y datos atípicos", en: "Actual vs budget and outliers" },
@@ -373,6 +486,25 @@ export const lessons: Lesson[] = [
           { es: "Ingreso real mayor al presupuesto: desviación favorable.", en: "Actual revenue above budget: favorable variance." },
           { es: "Gasto real mayor al presupuesto: desviación desfavorable.", en: "Actual expense above budget: unfavorable variance." },
           { es: "Dato atípico: investígalo antes de corregirlo o quitarlo.", en: "Outlier: investigate it before fixing or removing it." },
+        ],
+        formulas: [
+          {
+            name: { es: "Desviación contra presupuesto", en: "Variance against budget" },
+            expression: "Desviación % = (Real − Presupuesto) / Presupuesto × 100",
+            variables: [
+              { symbol: "Real", meaning: { es: "Lo que de verdad se vendió o se gastó, en pesos.", en: "What was actually sold or spent, in pesos." } },
+              { symbol: "Presupuesto", meaning: { es: "Lo que se había planeado, en pesos; es la base.", en: "What had been planned, in pesos; it is the base." } },
+              { symbol: "Desviación %", meaning: { es: "Qué tanto se alejó lo real del plan, en %.", en: "How far actual was from the plan, in %." } },
+            ],
+            steps: [
+              { es: "Resta: real − presupuesto.", en: "Subtract: actual − budget." },
+              { es: "Divide entre el presupuesto y multiplica por 100.", en: "Divide by the budget and multiply by 100." },
+              { es: "Decide si es favorable o desfavorable según sea ingreso o gasto.", en: "Decide whether it is favorable or unfavorable depending on whether it is revenue or expense." },
+            ],
+            example: { es: "Se presupuestaron $50,000 de mantenimiento y se gastaron $56,000. Diferencia: 56,000 − 50,000 = 6,000. Desviación: 6,000 / 50,000 × 100 = **12 %**. Como es un gasto por encima del plan, es desfavorable.", en: "$50,000 was budgeted for maintenance and $56,000 was spent. Difference: 56,000 − 50,000 = 6,000. Variance: 6,000 / 50,000 × 100 = **12%**. Since it is an expense above plan, it is unfavorable." },
+            interpret: { es: "En ingresos, real arriba del presupuesto es favorable; en gastos, real arriba del presupuesto es desfavorable.", en: "For revenue, actual above budget is favorable; for expenses, actual above budget is unfavorable." },
+            mistake: { es: "Dividir entre el real en lugar del presupuesto.", en: "Dividing by actual instead of the budget." },
+          },
         ],
       },
     ],
@@ -431,7 +563,7 @@ export const lessons: Lesson[] = [
       es: "Un ERP es un sistema que integra en una sola base de datos las compras, ventas, inventarios, nómina y contabilidad de una empresa, para que cada operación se capture una vez y llegue a todas las áreas.",
       en: "An ERP is a system that integrates a company's purchasing, sales, inventory, payroll and accounting in a single database, so each transaction is entered once and reaches every area.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Explicar qué es un ERP y qué problemas resuelve frente a hojas de cálculo y sistemas aislados.", en: "Explain what an ERP is and what problems it solves compared with spreadsheets and isolated systems." },
       { es: "Identificar los módulos principales y cómo fluye una operación entre ellos.", en: "Identify the main modules and how a transaction flows among them." },
@@ -502,7 +634,27 @@ export const lessons: Lesson[] = [
             en: "Mini example: a $5,000 monthly subscription for 3 years adds up to 5,000 × 36 = $180,000; if implementation costs $70,000, the total cost over those 3 years is $250,000 (hypothetical figures).",
           },
         ],
-        formula: "Costo total de propiedad = Licencias o suscripción + Implementación + Capacitación + Soporte y equipo (en el mismo horizonte de años)",
+        formulas: [
+          {
+            name: { es: "Costo total de propiedad (CTP) de un ERP", en: "Total cost of ownership (TCO) of an ERP" },
+            expression: "Costo total de propiedad = Costos mensuales × Número de meses + Costos únicos",
+            variables: [
+              { symbol: "Costos mensuales", meaning: { es: "Lo que se paga cada mes: suscripción, mantenimiento o soporte, en pesos.", en: "What is paid every month: subscription, maintenance or support, in pesos." } },
+              { symbol: "Número de meses", meaning: { es: "El horizonte que comparas en meses (3 años = 36 meses).", en: "The horizon you compare, in months (3 years = 36 months)." } },
+              { symbol: "Costos únicos", meaning: { es: "Lo que se paga una sola vez: licencias, servidor, implementación, capacitación, en pesos.", en: "What is paid only once: licenses, server, implementation, training, in pesos." } },
+              { symbol: "Costo total de propiedad", meaning: { es: "Todo lo que cuesta el sistema en ese horizonte, en pesos.", en: "Everything the system costs over that horizon, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte el horizonte a meses: años × 12.", en: "Convert the horizon to months: years × 12." },
+              { es: "Multiplica cada costo mensual por el número de meses.", en: "Multiply each monthly cost by the number of months." },
+              { es: "Suma todos los costos únicos.", en: "Add up all the one-time costs." },
+              { es: "Suma ambos resultados. Para comparar opciones, usa el mismo horizonte en todas.", en: "Add both results. To compare options, use the same horizon for all of them." },
+            ],
+            example: { es: "Suscripción de $3,800 al mes, implementación de $50,000 y capacitación de $12,000, a 3 años. Meses: 3 × 12 = 36. Suscripción: 3,800 × 36 = 136,800. Únicos: 50,000 + 12,000 = 62,000. Total: 136,800 + 62,000 = **$198,800**.", en: "Subscription of $3,800 a month, implementation of $50,000 and training of $12,000, over 3 years. Months: 3 × 12 = 36. Subscription: 3,800 × 36 = 136,800. One-time: 50,000 + 12,000 = 62,000. Total: 136,800 + 62,000 = **$198,800**." },
+            interpret: { es: "La opción con menor costo total en el mismo horizonte es la más barata, aunque su licencia o mensualidad parezca más cara.", en: "The option with the lowest total cost over the same horizon is the cheapest, even if its license or monthly fee looks more expensive." },
+            mistake: { es: "Multiplicar la mensualidad por 3 (años) en lugar de por 36 (meses), u olvidar los costos únicos.", en: "Multiplying the monthly fee by 3 (years) instead of 36 (months), or forgetting the one-time costs." },
+          },
+        ],
       },
     ],
     examples: [
@@ -562,7 +714,7 @@ export const lessons: Lesson[] = [
       es: "En un ERP las operaciones generan pólizas automáticas, el inventario se valúa y actualiza en cada movimiento, y las cuentas por cobrar, por pagar y bancos se controlan y concilian en el mismo sistema.",
       en: "In an ERP, transactions generate automatic journal entries, inventory is valued and updated with every movement, and receivables, payables and bank accounts are controlled and reconciled in the same system.",
     },
-    minutes: 17,
+    minutes: 18,
     objectives: [
       { es: "Explicar cómo un ERP genera pólizas automáticas a partir de las operaciones.", en: "Explain how an ERP generates automatic journal entries from transactions." },
       { es: "Calcular el costo promedio y el costo de ventas con inventario perpetuo.", en: "Compute average cost and cost of goods sold under a perpetual inventory system." },
@@ -589,6 +741,27 @@ export const lessons: Lesson[] = [
             en: "Mini example: when a credit purchase of goods for $20,000 + 16% VAT is recorded, the ERP creates: debit Inventory $20,000, debit Input VAT $3,200 and credit Accounts payable $23,200.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Importes de una póliza con IVA", en: "Amounts in a journal entry with VAT" },
+            expression: "IVA = Subtotal × 0.16;  Total = Subtotal + IVA;  Cargos = Abonos",
+            variables: [
+              { symbol: "Subtotal", meaning: { es: "El importe de la operación sin IVA, en pesos.", en: "The transaction amount before VAT, in pesos." } },
+              { symbol: "0.16", meaning: { es: "La tasa general de IVA de 16 % en decimal (tasa ilustrativa).", en: "The 16% general VAT rate as a decimal (illustrative rate)." } },
+              { symbol: "IVA", meaning: { es: "En una venta es IVA trasladado (lo debes al SAT); en una compra es IVA acreditable (lo podrás restar).", en: "On a sale it is output VAT (you owe it to the SAT); on a purchase it is input VAT (you can deduct it)." } },
+              { symbol: "Total", meaning: { es: "Lo que se cobra o se paga en realidad, en pesos.", en: "What is actually collected or paid, in pesos." } },
+              { symbol: "Cargos = Abonos", meaning: { es: "Regla de toda póliza: la suma de cargos debe ser igual a la de abonos.", en: "Rule of every entry: total debits must equal total credits." } },
+            ],
+            steps: [
+              { es: "Calcula el IVA: subtotal × 0.16, y el total: subtotal + IVA.", en: "Compute VAT: subtotal × 0.16, and the total: subtotal + VAT." },
+              { es: "Venta a crédito: cargo a Clientes por el total; abono a Ventas por el subtotal y abono a IVA trasladado por el IVA.", en: "Credit sale: debit Accounts receivable for the total; credit Sales for the subtotal and credit Output VAT for the VAT." },
+              { es: "Compra o gasto: cargo a Inventarios o al gasto por el subtotal y cargo a IVA acreditable por el IVA; abono a Proveedores (si es a crédito) o a Bancos (si ya se pagó) por el total.", en: "Purchase or expense: debit Inventory or the expense for the subtotal and debit Input VAT for the VAT; credit Accounts payable (if on credit) or Bank (if already paid) for the total." },
+              { es: "Comprueba que cargos = abonos.", en: "Check that debits = credits." },
+            ],
+            example: { es: "Venta a crédito de $25,000 + IVA. IVA: 25,000 × 0.16 = 4,000. Total: 25,000 + 4,000 = 29,000. Póliza: cargo Clientes **$29,000**; abono Ventas **$25,000**; abono IVA trasladado **$4,000**. Cargos 29,000 = abonos 25,000 + 4,000.", en: "Credit sale of $25,000 + VAT. VAT: 25,000 × 0.16 = 4,000. Total: 25,000 + 4,000 = 29,000. Entry: debit Accounts receivable **$29,000**; credit Sales **$25,000**; credit Output VAT **$4,000**. Debits 29,000 = credits 25,000 + 4,000." },
+            mistake: { es: "Usar IVA acreditable en una venta (ese es de compras), o cargar Bancos cuando la venta es a crédito y aún no se cobra.", en: "Using Input VAT on a sale (that one is for purchases), or debiting Bank when the sale is on credit and not yet collected." },
+          },
+        ],
       },
       {
         heading: { es: "Inventarios: existencias y costo promedio", en: "Inventory: stock and average cost" },
@@ -606,7 +779,29 @@ export const lessons: Lesson[] = [
             en: "Even with an ERP, periodic **physical counts** are done: differences from shrinkage, theft or entry errors are recorded as an adjustment. Mini example: you have 100 units at $50 ($5,000) and buy 300 at $54 ($16,200). Average: 21,200 / 400 = $53 per unit.",
           },
         ],
-        formula: "Costo promedio = (Valor del inventario + Valor de la compra) / (Unidades en inventario + Unidades compradas)   ·   Costo de ventas = Unidades vendidas × Costo promedio",
+        formulas: [
+          {
+            name: { es: "Costo promedio, costo de ventas e inventario final", en: "Average cost, cost of goods sold and ending inventory" },
+            expression: "Costo promedio = (Valor del inventario + Valor de la compra) / (Unidades en inventario + Unidades compradas);  Costo de ventas = Unidades vendidas × Costo promedio;  Inventario final = Unidades que quedan × Costo promedio",
+            variables: [
+              { symbol: "Valor del inventario", meaning: { es: "Unidades que ya tenías × su costo, en pesos.", en: "Units you already had × their cost, in pesos." } },
+              { symbol: "Valor de la compra", meaning: { es: "Unidades compradas × su costo unitario, en pesos.", en: "Units bought × their unit cost, in pesos." } },
+              { symbol: "Costo promedio", meaning: { es: "Lo que cuesta, en promedio, cada unidad en existencia, en pesos por unidad.", en: "What each unit in stock costs on average, in pesos per unit." } },
+              { symbol: "Unidades vendidas", meaning: { es: "Piezas que salen del almacén por la venta.", en: "Units leaving the warehouse for the sale." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que te costó la mercancía vendida (no su precio de venta), en pesos.", en: "What the goods sold cost you (not their selling price), in pesos." } },
+              { symbol: "Inventario final", meaning: { es: "Lo que valen las piezas que quedan, en pesos.", en: "What the remaining units are worth, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el valor de lo que tenías y el de la compra, y súmalos.", en: "Compute the value of what you had and of the purchase, and add them." },
+              { es: "Suma las unidades que tenías + las compradas.", en: "Add the units you had + the ones bought." },
+              { es: "Divide valor total entre unidades totales: es el costo promedio.", en: "Divide total value by total units: that is the average cost." },
+              { es: "Costo de ventas: unidades vendidas × costo promedio.", en: "Cost of goods sold: units sold × average cost." },
+              { es: "Inventario final: unidades que quedan × costo promedio (o valor total − costo de ventas).", en: "Ending inventory: remaining units × average cost (or total value − cost of goods sold)." },
+            ],
+            example: { es: "Tienes 150 piezas a $20 y compras 250 a $24; luego vendes 180. Valores: 150 × 20 = 3,000 y 250 × 24 = 6,000; total 9,000. Unidades: 150 + 250 = 400. Promedio: 9,000 / 400 = **$22.50**. Costo de ventas: 180 × 22.50 = **$4,050**. Quedan 400 − 180 = 220 piezas; inventario final: 220 × 22.50 = **$4,950** (comprobación: 9,000 − 4,050 = 4,950).", en: "You have 150 units at $20 and buy 250 at $24; then you sell 180. Values: 150 × 20 = 3,000 and 250 × 24 = 6,000; total 9,000. Units: 150 + 250 = 400. Average: 9,000 / 400 = **$22.50**. Cost of goods sold: 180 × 22.50 = **$4,050**. 400 − 180 = 220 units remain; ending inventory: 220 × 22.50 = **$4,950** (check: 9,000 − 4,050 = 4,950)." },
+            mistake: { es: "Promediar solo los precios ((20 + 24) / 2 = 22) sin tomar en cuenta cuántas piezas hay a cada precio, o usar el precio de venta para el costo de ventas.", en: "Averaging only the prices ((20 + 24) / 2 = 22) without considering how many units there are at each price, or using the selling price for cost of goods sold." },
+          },
+        ],
       },
       {
         heading: { es: "Finanzas: cobrar, pagar y conciliar bancos", en: "Finance: collect, pay and reconcile bank accounts" },
@@ -689,7 +884,7 @@ export const lessons: Lesson[] = [
       es: "Automatizar procesos contables es dejar que el sistema haga las tareas repetitivas y basadas en reglas, con controles y revisión humana, y medir el ahorro antes de invertir.",
       en: "Automating accounting processes means letting the system handle repetitive, rule-based tasks, with controls and human review, and measuring the savings before investing.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Identificar qué tareas contables conviene automatizar y cuáles requieren juicio humano.", en: "Identify which accounting tasks are worth automating and which require human judgment." },
       { es: "Distinguir herramientas de automatización: reglas del ERP, macros y scripts, RPA e integraciones.", en: "Distinguish automation tools: ERP rules, macros and scripts, RPA and integrations." },
@@ -736,6 +931,27 @@ export const lessons: Lesson[] = [
             en: "**API integrations** connect systems directly: an **API** is an orderly door through which one system requests data from another, for example the bank to the ERP. They are usually more stable than RPA. Mini example: a script reads 500 received CFDI XML files and builds a file with tax ID, subtotal, VAT and total ready to load into the ERP.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Póliza que propone un bot a partir de un CFDI recibido", en: "Entry a bot proposes from a received CFDI" },
+            expression: "IVA acreditable = Subtotal × 0.16;  Total = Subtotal + IVA;  Cargo gasto (Subtotal) + Cargo IVA acreditable (IVA) = Abono Bancos o Proveedores (Total)",
+            variables: [
+              { symbol: "Subtotal", meaning: { es: "El importe del gasto sin IVA que trae el XML del CFDI, en pesos.", en: "The expense amount before VAT shown in the CFDI's XML, in pesos." } },
+              { symbol: "0.16", meaning: { es: "Tasa general de IVA de 16 % en decimal (tasa ilustrativa).", en: "16% general VAT rate as a decimal (illustrative rate)." } },
+              { symbol: "IVA acreditable", meaning: { es: "El IVA que pagaste en una compra o gasto y que podrás restar al IVA que cobres, en pesos.", en: "The VAT you paid on a purchase or expense that you can subtract from the VAT you charge, in pesos." } },
+              { symbol: "Total", meaning: { es: "Lo que se paga al proveedor, en pesos.", en: "What is paid to the supplier, in pesos." } },
+              { symbol: "Bancos o Proveedores", meaning: { es: "Bancos si ya se pagó (por ejemplo, por transferencia); Proveedores si se pagará después.", en: "Bank if already paid (e.g. by transfer); Accounts payable if it will be paid later." } },
+            ],
+            steps: [
+              { es: "Lee el subtotal del CFDI y calcula el IVA: subtotal × 0.16.", en: "Read the subtotal from the CFDI and compute the VAT: subtotal × 0.16." },
+              { es: "Calcula el total: subtotal + IVA.", en: "Compute the total: subtotal + VAT." },
+              { es: "Carga la cuenta del gasto por el subtotal y IVA acreditable por el IVA.", en: "Debit the expense account for the subtotal and Input VAT for the VAT." },
+              { es: "Abona Bancos (si ya se pagó) o Proveedores (si no) por el total, y verifica que cargos = abonos.", en: "Credit Bank (if paid) or Accounts payable (if not) for the total, and check that debits = credits." },
+            ],
+            example: { es: "CFDI de mantenimiento por $5,000 + IVA, pagado por transferencia. IVA: 5,000 × 0.16 = 800. Total: 5,000 + 800 = 5,800. Póliza: cargo Mantenimiento **$5,000**; cargo IVA acreditable **$800**; abono Bancos **$5,800**. Cargos 5,800 = abonos 5,800.", en: "Maintenance CFDI for $5,000 + VAT, paid by transfer. VAT: 5,000 × 0.16 = 800. Total: 5,000 + 800 = 5,800. Entry: debit Maintenance **$5,000**; debit Input VAT **$800**; credit Bank **$5,800**. Debits 5,800 = credits 5,800." },
+            mistake: { es: "Usar IVA trasladado (es el de las ventas) o abonar Proveedores cuando el gasto ya se pagó.", en: "Using Output VAT (that is for sales) or crediting Accounts payable when the expense was already paid." },
+          },
+        ],
       },
       {
         heading: { es: "Controles y medición del beneficio", en: "Controls and measuring the benefit" },
@@ -753,7 +969,45 @@ export const lessons: Lesson[] = [
             en: "Mini example: an automation saves 70 hours a month; each hour costs $150, so it saves $10,500. The tool costs $3,000 a month: net savings $7,500. If the initial investment was $45,000, it pays back in 45,000 / 7,500 = 6 months (hypothetical figures).",
           },
         ],
-        formula: "Ahorro neto mensual = Horas ahorradas × Costo por hora − Costo mensual de la herramienta   ·   Recuperación (meses) = Inversión inicial / Ahorro neto mensual",
+        formulas: [
+          {
+            name: { es: "Horas ahorradas al mes con una automatización", en: "Hours saved per month with an automation" },
+            expression: "Horas ahorradas = (Operaciones × Minutos a mano − Minutos con la automatización) ÷ 60",
+            variables: [
+              { symbol: "Operaciones", meaning: { es: "Cuántas veces al mes se hace la tarea (por ejemplo, facturas registradas).", en: "How many times a month the task is done (e.g. invoices recorded)." } },
+              { symbol: "Minutos a mano", meaning: { es: "Minutos por operación sin automatizar.", en: "Minutes per transaction without automation." } },
+              { symbol: "Minutos con la automatización", meaning: { es: "Total de minutos al mes con la herramienta: operaciones × minutos automáticos, más el tiempo de las excepciones que se revisan a mano.", en: "Total minutes per month with the tool: transactions × automated minutes, plus the time for exceptions reviewed by hand." } },
+              { symbol: "÷ 60", meaning: { es: "Convierte minutos a horas (1 hora = 60 minutos).", en: "Converts minutes to hours (1 hour = 60 minutes)." } },
+              { symbol: "Horas ahorradas", meaning: { es: "El tiempo que se libera cada mes, en horas.", en: "The time freed up each month, in hours." } },
+            ],
+            steps: [
+              { es: "Tiempo manual: operaciones × minutos a mano.", en: "Manual time: transactions × minutes by hand." },
+              { es: "Tiempo automatizado: operaciones × minutos con la herramienta (y suma las excepciones si las hay).", en: "Automated time: transactions × minutes with the tool (and add the exceptions if any)." },
+              { es: "Resta ambos tiempos y divide entre 60 para tenerlo en horas.", en: "Subtract both times and divide by 60 to get hours." },
+            ],
+            example: { es: "600 facturas al mes; a mano 5 minutos cada una; con script 1.5 minutos. Manual: 600 × 5 = 3,000 min = 50 h. Script: 600 × 1.5 = 900 min = 15 h. Ahorro: 50 − 15 = **35 horas al mes**.", en: "600 invoices a month; by hand 5 minutes each; with a script 1.5 minutes. Manual: 600 × 5 = 3,000 min = 50 h. Script: 600 × 1.5 = 900 min = 15 h. Savings: 50 − 15 = **35 hours a month**." },
+            mistake: { es: "Dar el resultado en minutos cuando te piden horas, u olvidar el tiempo de revisar las excepciones.", en: "Giving the result in minutes when hours are asked for, or forgetting the time to review exceptions." },
+          },
+          {
+            name: { es: "Ahorro neto mensual y periodo de recuperación", en: "Net monthly savings and payback period" },
+            expression: "Ahorro bruto = Horas ahorradas × Costo por hora;  Ahorro neto mensual = Ahorro bruto − Costo mensual de la herramienta;  Recuperación (meses) = Inversión inicial / Ahorro neto mensual",
+            variables: [
+              { symbol: "Horas ahorradas", meaning: { es: "Horas que la automatización libera cada mes.", en: "Hours the automation frees up each month." } },
+              { symbol: "Costo por hora", meaning: { es: "Lo que le cuesta a la empresa cada hora de trabajo del personal, en pesos.", en: "What each hour of staff work costs the company, in pesos." } },
+              { symbol: "Costo mensual de la herramienta", meaning: { es: "Lo que se paga cada mes por usar la herramienta, en pesos.", en: "What is paid each month to use the tool, in pesos." } },
+              { symbol: "Inversión inicial", meaning: { es: "Lo que se paga una sola vez al arrancar (desarrollo, configuración), en pesos.", en: "What is paid only once at the start (development, setup), in pesos." } },
+              { symbol: "Recuperación", meaning: { es: "En cuántos meses el ahorro neto paga la inversión inicial.", en: "In how many months the net savings pay back the initial investment." } },
+            ],
+            steps: [
+              { es: "Ahorro bruto: horas ahorradas × costo por hora.", en: "Gross savings: hours saved × cost per hour." },
+              { es: "Ahorro neto: resta el costo mensual de la herramienta.", en: "Net savings: subtract the tool's monthly cost." },
+              { es: "Recuperación: divide la inversión inicial entre el ahorro neto.", en: "Payback: divide the initial investment by net savings." },
+            ],
+            example: { es: "Ahorra 35 horas al mes, cada hora cuesta $180, la herramienta cuesta $1,800 al mes y la inversión inicial es $27,000. Bruto: 35 × 180 = $6,300. Neto: 6,300 − 1,800 = **$4,500**. Recuperación: 27,000 / 4,500 = **6 meses**.", en: "It saves 35 hours a month, each hour costs $180, the tool costs $1,800 a month and the initial investment is $27,000. Gross: 35 × 180 = $6,300. Net: 6,300 − 1,800 = **$4,500**. Payback: 27,000 / 4,500 = **6 months**." },
+            interpret: { es: "Mientras menos meses de recuperación, mejor inversión. Si el ahorro neto sale negativo, la herramienta cuesta más de lo que ahorra.", en: "The fewer months to pay back, the better the investment. If net savings come out negative, the tool costs more than it saves." },
+            mistake: { es: "Calcular la recuperación con el ahorro bruto y olvidar que la herramienta también cuesta cada mes.", en: "Computing payback with gross savings and forgetting that the tool also costs money every month." },
+          },
+        ],
       },
     ],
     examples: [
