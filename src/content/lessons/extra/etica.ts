@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
       es: "Los números solo sirven si la gente puede confiar en ellos: la ética le da al contador principios, señales de alerta y un método para decidir bien cuando lo presionan.",
       en: "Numbers are only useful if people can trust them: ethics gives accountants principles, warning signs and a method to decide well when they are under pressure.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar por qué la confianza pública depende de la ética del contador y qué pasa cuando los estados financieros son falsos.", en: "Explain why public trust depends on the accountant's ethics and what happens when financial statements are false." },
       { es: "Nombrar y describir los cinco principios fundamentales: integridad, objetividad, competencia y diligencia profesional, confidencialidad y comportamiento profesional.", en: "Name and describe the five fundamental principles: integrity, objectivity, professional competence and due care, confidentiality and professional behavior." },
@@ -112,6 +112,62 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: tu jefe te pide no registrar una factura de luz de $8,000 de marzo \"para que el mes cierre bonito\". Hechos: el gasto ocurrió en marzo. Principio: integridad (la utilidad saldría $8,000 más alta de lo real). Opción correcta: explicarle que el gasto debe registrarse en marzo; si insiste, escalarlo y documentarlo. Si la presión no para, el código contempla incluso dejar de participar en el trabajo.",
             en: "Mini example: your boss asks you not to record an $8,000 March electricity bill \"so the month closes nicely\". Facts: the expense happened in March. Principle: integrity (profit would be $8,000 higher than reality). Right option: explain that the expense must be recorded in March; if they insist, escalate and document it. If the pressure does not stop, the code even contemplates withdrawing from the work.",
+          },
+          {
+            es: "En el paso 1 (hechos) conviene **poner en números** lo que te piden: cuánto se inflaría una cifra y en qué porcentaje. Así ves con claridad el tamaño del engaño y puedes explicarlo con datos, no con opiniones.",
+            en: "In step 1 (facts) it helps to **put into numbers** what you are being asked: how much a figure would be inflated and by what percentage. That way you clearly see the size of the deception and can explain it with data, not opinions.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Cuánto se infla una cifra (en pesos y en porcentaje)", en: "How much a figure is inflated (in pesos and as a percentage)" },
+            expression: "Diferencia = Cifra pedida − Cifra real;  % inflado = Diferencia ÷ Cifra real × 100",
+            variables: [
+              { symbol: "Cifra pedida", meaning: { es: "La cantidad, en pesos, que te piden reportar (por ejemplo, las ventas que el cliente quiere mostrar al banco).", en: "The amount, in pesos, you are asked to report (for example, the sales the client wants to show the bank)." } },
+              { symbol: "Cifra real", meaning: { es: "La cantidad verdadera, en pesos, según los registros y comprobantes.", en: "The true amount, in pesos, according to the records and supporting documents." } },
+              { symbol: "Diferencia", meaning: { es: "Los pesos que se agregarían de más: el tamaño del engaño.", en: "The extra pesos that would be added: the size of the deception." } },
+              { symbol: "% inflado", meaning: { es: "Qué tanto, en porcentaje, la cifra pedida es mayor que la real.", en: "How much, as a percentage, the requested figure is above the real one." } },
+            ],
+            steps: [
+              { es: "Resta la cifra real a la cifra pedida: eso es la diferencia en pesos.", en: "Subtract the real figure from the requested figure: that is the difference in pesos." },
+              { es: "Divide la diferencia entre la cifra real (no entre la pedida).", en: "Divide the difference by the real figure (not by the requested one)." },
+              { es: "Multiplica por 100 para expresarlo en porcentaje.", en: "Multiply by 100 to express it as a percentage." },
+            ],
+            example: {
+              es: "Una papelería vendió $250,000 y el dueño quiere reportar $300,000. Diferencia: $300,000 − $250,000 = $50,000. Divide: $50,000 ÷ $250,000 = 0.20. Porcentaje: 0.20 × 100 = **20%** más de lo real.",
+              en: "A stationery store sold $250,000 and the owner wants to report $300,000. Difference: $300,000 − $250,000 = $50,000. Divide: $50,000 ÷ $250,000 = 0.20. Percentage: 0.20 × 100 = **20%** above reality.",
+            },
+            interpret: {
+              es: "El número te ayuda a dimensionar el engaño, pero no lo vuelve aceptable: inflar 5% o 50% rompe igual la integridad.",
+              en: "The number helps you size the deception, but it does not make it acceptable: inflating by 5% or 50% breaks integrity all the same.",
+            },
+            mistake: {
+              es: "Dividir entre la cifra pedida. Con el ejemplo daría $50,000 ÷ $300,000 ≈ 16.7%, que subestima el engaño; la base siempre es la cifra real.",
+              en: "Dividing by the requested figure. In the example it would give $50,000 ÷ $300,000 ≈ 16.7%, which understates the deception; the base is always the real figure.",
+            },
+          },
+          {
+            name: { es: "Utilidad real cuando alguien quiere esconder un gasto", en: "Real profit when someone wants to hide an expense" },
+            expression: "Utilidad real = Ingresos − Gastos registrados − Gasto omitido",
+            variables: [
+              { symbol: "Utilidad real", meaning: { es: "Lo que de verdad ganó el negocio en el periodo, en pesos.", en: "What the business really earned in the period, in pesos." } },
+              { symbol: "Ingresos", meaning: { es: "Lo que vendió o cobró por su actividad en el periodo, en pesos.", en: "What it sold or earned from its activity in the period, in pesos." } },
+              { symbol: "Gastos registrados", meaning: { es: "Los gastos del periodo que ya están anotados, en pesos.", en: "The period's expenses that are already recorded, in pesos." } },
+              { symbol: "Gasto omitido", meaning: { es: "El gasto que ya ocurrió en el periodo pero que te piden no anotar, en pesos.", en: "The expense that already happened in the period but that you are asked not to record, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula la utilidad que se vería sin el gasto: Ingresos − Gastos registrados.", en: "Compute the profit that would show without the expense: Revenue − Recorded expenses." },
+              { es: "Réstale el gasto omitido: eso es la utilidad real.", en: "Subtract the omitted expense: that is the real profit." },
+              { es: "La utilidad se inflaría exactamente en el monto del gasto omitido.", en: "Profit would be inflated by exactly the amount of the omitted expense." },
+            ],
+            example: {
+              es: "Un taller tiene ingresos de $200,000 y gastos registrados de $150,000; falta una compra de refacciones de $12,000 ya usada. Sin el gasto: $200,000 − $150,000 = $50,000. Utilidad real: $50,000 − $12,000 = **$38,000**. Esconderlo la inflaría $12,000.",
+              en: "A repair shop has $200,000 in revenue and $150,000 in recorded expenses; a $12,000 purchase of spare parts already used is missing. Without the expense: $200,000 − $150,000 = $50,000. Real profit: $50,000 − $12,000 = **$38,000**. Hiding it would inflate profit by $12,000.",
+            },
+            mistake: {
+              es: "Pensar que el gasto \"se compensa\" si se registra el mes siguiente. El gasto pertenece al mes en que ocurrió, no al mes en que se paga.",
+              en: "Thinking the expense \"evens out\" if recorded next month. The expense belongs to the month it happened, not the month it is paid.",
+            },
           },
         ],
         bullets: [

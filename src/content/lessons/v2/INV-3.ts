@@ -42,7 +42,7 @@ export const lessons: Lesson[] = [
       es: "Un derivado es un contrato cuyo valor depende de otro activo; forwards, futuros, opciones y swaps sirven para cubrirse de riesgos o para especular con apalancamiento.",
       en: "A derivative is a contract whose value depends on another asset; forwards, futures, options and swaps are used to hedge risks or to speculate with leverage.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Explicar qué es un derivado y qué es su activo subyacente.", en: "Explain what a derivative is and what its underlying asset is." },
       { es: "Distinguir forwards, futuros, opciones y swaps.", en: "Distinguish forwards, futures, options and swaps." },
@@ -70,7 +70,35 @@ export const lessons: Lesson[] = [
             en: "Mini example: an importer in Monterrey will pay USD 50,000 in three months. He signs a forward with his bank at $18.00 per dollar (hypothetical rate). If the dollar rises to $19.00, he still pays $18.00: he saved $50,000.",
           },
         ],
-        formula: "Resultado del futuro (posición larga) = (Precio final − Precio pactado) × Tamaño del contrato",
+        formulas: [
+          {
+            name: { es: "Resultado de un futuro o forward al vencimiento", en: "Result of a future or forward at expiration" },
+            expression: "Larga: (Precio final − Precio pactado) × Tamaño del contrato   ·   Corta: (Precio pactado − Precio final) × Tamaño del contrato",
+            variables: [
+              { symbol: "Precio final", meaning: { es: "Precio del subyacente al vencimiento o al cerrar la posición (por ejemplo, pesos por dólar).", en: "Price of the underlying at expiration or when closing the position (for example, pesos per dollar)." } },
+              { symbol: "Precio pactado", meaning: { es: "Precio fijado hoy en el contrato, en pesos por unidad.", en: "Price set today in the contract, in pesos per unit." } },
+              { symbol: "Tamaño del contrato", meaning: { es: "Cuántas unidades cubre el contrato (por ejemplo, USD 10,000); si son varios contratos, multiplica por el número de contratos.", en: "How many units the contract covers (for example, USD 10,000); if there are several contracts, multiply by the number of contracts." } },
+              { symbol: "Larga / Corta", meaning: { es: "Larga: te comprometes a comprar (ganas si sube). Corta: te comprometes a vender (ganas si baja).", en: "Long: you commit to buy (gain if it rises). Short: you commit to sell (gain if it falls)." } },
+            ],
+            steps: [
+              { es: "Identifica si tu posición es larga (compras) o corta (vendes).", en: "Identify whether your position is long (you buy) or short (you sell)." },
+              { es: "Calcula la diferencia de precio por unidad según tu posición.", en: "Compute the price difference per unit according to your position." },
+              { es: "Multiplica por el tamaño total (unidades por contrato × número de contratos). Positivo es ganancia; negativo, pérdida.", en: "Multiply by the total size (units per contract × number of contracts). Positive is a gain; negative, a loss." },
+            ],
+            example: {
+              es: "Compras (larga) un futuro de USD 20,000 a $19.00 por dólar y al vencer el dólar vale $18.60. Diferencia: 18.60 − 19.00 = −0.40. Resultado: −0.40 × 20,000 = **−$8,000** (pérdida). Quien estaba en la posición corta gana +$8,000.",
+              en: "You buy (long) a USD 20,000 future at $19.00 per dollar and at expiration the dollar is worth $18.60. Difference: 18.60 − 19.00 = −0.40. Result: −0.40 × 20,000 = **−$8,000** (loss). The short side gains +$8,000.",
+            },
+            interpret: {
+              es: "Lo que gana una parte lo pierde la otra. Si te estás cubriendo, una pérdida en el futuro suele compensarse con un mejor precio en el mercado.",
+              en: "What one side gains, the other loses. If you are hedging, a loss on the future is usually offset by a better price in the market.",
+            },
+            mistake: {
+              es: "Usar el signo de la posición contraria, u olvidar multiplicar por el número de contratos.",
+              en: "Using the sign of the opposite position, or forgetting to multiply by the number of contracts.",
+            },
+          },
+        ],
         bullets: [
           { es: "Posición larga: te comprometes a comprar; ganas si el precio sube.", en: "Long position: you commit to buy; you gain if the price rises." },
           { es: "Posición corta: te comprometes a vender; ganas si el precio baja.", en: "Short position: you commit to sell; you gain if the price falls." },
@@ -98,7 +126,60 @@ export const lessons: Lesson[] = [
             en: "Mini example: you buy a call on a stock with a $100 strike and a $5 premium. At expiration the stock is worth $112. You exercise: you gain 112 − 100 = $12, minus the $5 premium = $7 per share.",
           },
         ],
-        formula: "Ganancia call = máx(Precio final − Strike, 0) − Prima  |  Ganancia put = máx(Strike − Precio final, 0) − Prima",
+        formulas: [
+          {
+            name: { es: "Ganancia neta de comprar una opción call", en: "Net gain from buying a call option" },
+            expression: "Ganancia call = máx(Precio final − Strike, 0) − Prima",
+            variables: [
+              { symbol: "máx( , 0)", meaning: { es: "Toma el mayor de los dos números: si la resta sale negativa, vale 0 porque no ejerces.", en: "Take the larger of the two numbers: if the subtraction is negative, it is 0 because you do not exercise." } },
+              { symbol: "Precio final", meaning: { es: "Precio de la acción al vencimiento, en pesos.", en: "Stock price at expiration, in pesos." } },
+              { symbol: "Strike", meaning: { es: "Precio de ejercicio: al que tienes derecho a comprar, en pesos.", en: "Strike price: the price at which you have the right to buy, in pesos." } },
+              { symbol: "Prima", meaning: { es: "Lo que pagaste por la opción, en pesos por acción.", en: "What you paid for the option, in pesos per share." } },
+            ],
+            steps: [
+              { es: "Resta el strike al precio final; si sale negativo, usa 0.", en: "Subtract the strike from the final price; if it is negative, use 0." },
+              { es: "Resta la prima: es tu ganancia (o pérdida) por acción.", en: "Subtract the premium: that is your gain (or loss) per share." },
+              { es: "Multiplica por el número de acciones que cubren tus opciones.", en: "Multiply by the number of shares your options cover." },
+            ],
+            example: {
+              es: "Call con strike $50 y prima $3; al vencer la acción vale $58. máx(58 − 50, 0) = 8. Ganancia: 8 − 3 = $5 por acción. Con 200 acciones: 5 × 200 = **$1,000**. Si la acción terminara en $47: máx(−3, 0) = 0; 0 − 3 = −$3 por acción (solo pierdes la prima).",
+              en: "Call with a $50 strike and $3 premium; at expiration the stock is worth $58. max(58 − 50, 0) = 8. Gain: 8 − 3 = $5 per share. With 200 shares: 5 × 200 = **$1,000**. If the stock ended at $47: max(−3, 0) = 0; 0 − 3 = −$3 per share (you only lose the premium).",
+            },
+            interpret: {
+              es: "Punto de equilibrio: strike + prima (aquí $53). Por encima ganas; por debajo pierdes como máximo la prima.",
+              en: "Break-even: strike + premium (here $53). Above it you gain; below it you lose at most the premium.",
+            },
+            mistake: {
+              es: "Olvidar restar la prima y reportar solo la diferencia entre precio final y strike.",
+              en: "Forgetting to subtract the premium and reporting only the difference between final price and strike.",
+            },
+          },
+          {
+            name: { es: "Ganancia neta de comprar una opción put", en: "Net gain from buying a put option" },
+            expression: "Ganancia put = máx(Strike − Precio final, 0) − Prima",
+            variables: [
+              { symbol: "Strike", meaning: { es: "Precio de ejercicio: al que tienes derecho a vender, en pesos.", en: "Strike price: the price at which you have the right to sell, in pesos." } },
+              { symbol: "Precio final", meaning: { es: "Precio de la acción al vencimiento, en pesos.", en: "Stock price at expiration, in pesos." } },
+              { symbol: "Prima", meaning: { es: "Lo que pagaste por la opción, en pesos por acción.", en: "What you paid for the option, in pesos per share." } },
+            ],
+            steps: [
+              { es: "Resta el precio final al strike; si sale negativo, usa 0.", en: "Subtract the final price from the strike; if it is negative, use 0." },
+              { es: "Resta la prima y multiplica por el número de acciones.", en: "Subtract the premium and multiply by the number of shares." },
+            ],
+            example: {
+              es: "Put con strike $80 y prima $4; al vencer la acción vale $70. máx(80 − 70, 0) = 10. Ganancia: 10 − 4 = **$6 por acción**. Si terminara en $85: máx(−5, 0) = 0; 0 − 4 = −$4 por acción.",
+              en: "Put with an $80 strike and $4 premium; at expiration the stock is worth $70. max(80 − 70, 0) = 10. Gain: 10 − 4 = **$6 per share**. If it ended at $85: max(−5, 0) = 0; 0 − 4 = −$4 per share.",
+            },
+            interpret: {
+              es: "Si ya tienes las acciones, el put funciona como seguro: fija un piso de venta en el strike a cambio de la prima.",
+              en: "If you already own the shares, the put works as insurance: it sets a sale floor at the strike in exchange for the premium.",
+            },
+            mistake: {
+              es: "Invertir la resta (precio final − strike) como si fuera un call.",
+              en: "Reversing the subtraction (final price − strike) as if it were a call.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cobertura, especulación, apalancamiento y swaps", en: "Hedging, speculation, leverage and swaps" },
@@ -120,7 +201,37 @@ export const lessons: Lesson[] = [
             en: "Mini example: with $20,000 of margin you control a $200,000 future (10%). If the underlying rises 5%, you gain $10,000: 50% on your margin. If it falls 5%, you lose half your margin.",
           },
         ],
-        formula: "Rendimiento sobre margen = Ganancia o pérdida ÷ Margen depositado",
+        formulas: [
+          {
+            name: { es: "Nocional, margen y rendimiento sobre el margen", en: "Notional, margin and return on margin" },
+            expression: "Nocional = Unidades × Precio pactado   ·   Margen = Nocional × % de margen   ·   Rendimiento sobre margen = Ganancia o pérdida ÷ Margen × 100",
+            variables: [
+              { symbol: "Nocional", meaning: { es: "Valor total que controlas con el contrato, en pesos.", en: "Total value you control with the contract, in pesos." } },
+              { symbol: "Unidades", meaning: { es: "Tamaño del contrato (por ejemplo, USD 10,000).", en: "Contract size (for example, USD 10,000)." } },
+              { symbol: "Precio pactado", meaning: { es: "Precio por unidad fijado al abrir la posición, en pesos.", en: "Price per unit set when opening the position, in pesos." } },
+              { symbol: "% de margen", meaning: { es: "Porcentaje del nocional que debes depositar como garantía, en decimal (10% = 0.10).", en: "Percentage of the notional you must post as a guarantee, as a decimal (10% = 0.10)." } },
+              { symbol: "Ganancia o pérdida", meaning: { es: "Resultado del futuro en pesos: (Precio final − Precio pactado) × Unidades, si es larga.", en: "Result of the future in pesos: (Final price − Agreed price) × Units, if long." } },
+            ],
+            steps: [
+              { es: "Calcula el nocional: unidades × precio pactado.", en: "Compute the notional: units × agreed price." },
+              { es: "Calcula el margen: nocional × % de margen.", en: "Compute the margin: notional × margin %." },
+              { es: "Calcula la ganancia o pérdida con el cambio de precio.", en: "Compute the gain or loss from the price change." },
+              { es: "Divide la ganancia entre el margen (no entre el nocional) y multiplica por 100.", en: "Divide the gain by the margin (not by the notional) and multiply by 100." },
+            ],
+            example: {
+              es: "Futuro de USD 5,000 a $19.00, margen 8%. Nocional: 5,000 × 19.00 = $95,000. Margen: 95,000 × 0.08 = $7,600. El dólar sube a $19.19: ganancia (19.19 − 19.00) × 5,000 = $950. Rendimiento: 950 ÷ 7,600 = 0.125 → **12.5%**, aunque el dólar solo subió 1%.",
+              en: "USD 5,000 future at $19.00, 8% margin. Notional: 5,000 × 19.00 = $95,000. Margin: 95,000 × 0.08 = $7,600. The dollar rises to $19.19: gain (19.19 − 19.00) × 5,000 = $950. Return: 950 ÷ 7,600 = 0.125 → **12.5%**, even though the dollar only rose 1%.",
+            },
+            interpret: {
+              es: "El apalancamiento es nocional ÷ margen (aquí 1 ÷ 0.08 = 12.5 veces): multiplica igual las pérdidas. Una baja de 1% te costaría 12.5% de tu margen.",
+              en: "Leverage is notional ÷ margin (here 1 ÷ 0.08 = 12.5 times): it multiplies losses equally. A 1% drop would cost you 12.5% of your margin.",
+            },
+            mistake: {
+              es: "Medir el rendimiento contra el nocional en lugar del margen que realmente pusiste.",
+              en: "Measuring the return against the notional instead of the margin you actually put up.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -180,7 +291,7 @@ export const lessons: Lesson[] = [
       es: "Los criptoactivos son registros digitales que se transfieren sin intermediarios gracias a la criptografía; pueden ser útiles, pero son muy volátiles y exigen cuidar la custodia, el tamaño de la posición y las estafas.",
       en: "Crypto-assets are digital records transferred without intermediaries thanks to cryptography; they can be useful, but they are very volatile and demand care with custody, position size and scams.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es un criptoactivo, una billetera y una clave privada.", en: "Explain what a crypto-asset, a wallet and a private key are." },
       { es: "Distinguir criptomonedas, tokens, stablecoins, NFT y monedas digitales de bancos centrales.", en: "Distinguish cryptocurrencies, tokens, stablecoins, NFTs and central bank digital currencies." },
@@ -253,7 +364,35 @@ export const lessons: Lesson[] = [
             en: "Mini example: with $100,000 invested, you put 5% ($5,000) in crypto. If it falls 70%, you lose $3,500: your portfolio drops 3.5%, not 70%.",
           },
         ],
-        formula: "Efecto en el portafolio = Peso de la posición × Cambio de precio",
+        formulas: [
+          {
+            name: { es: "Efecto de una posición en todo el portafolio", en: "Effect of a position on the whole portfolio" },
+            expression: "Monto en cripto = Portafolio × Peso   ·   Pérdida = Monto en cripto × Caída   ·   Efecto en el portafolio = Peso × Cambio de precio",
+            variables: [
+              { symbol: "Portafolio", meaning: { es: "Todo el dinero que tienes invertido, en pesos.", en: "All the money you have invested, in pesos." } },
+              { symbol: "Peso", meaning: { es: "Qué parte del portafolio está en esa posición, en % (5% = 0.05).", en: "What share of the portfolio is in that position, in % (5% = 0.05)." } },
+              { symbol: "Caída / Cambio de precio", meaning: { es: "Cuánto sube o baja el precio de la posición, en % (cae 60% = −0.60).", en: "How much the position's price rises or falls, in % (falls 60% = −0.60)." } },
+              { symbol: "Efecto en el portafolio", meaning: { es: "Cuánto cambia el portafolio completo, en %.", en: "How much the whole portfolio changes, in %." } },
+            ],
+            steps: [
+              { es: "Calcula cuánto dinero hay en la posición: portafolio × peso.", en: "Compute how much money is in the position: portfolio × weight." },
+              { es: "Calcula la pérdida en pesos: monto × caída.", en: "Compute the loss in pesos: amount × drop." },
+              { es: "Para el efecto total, divide la pérdida entre el portafolio, o multiplica directamente peso × caída.", en: "For the total effect, divide the loss by the portfolio, or directly multiply weight × drop." },
+            ],
+            example: {
+              es: "Portafolio $150,000 con 8% en cripto: 150,000 × 0.08 = $12,000. El cripto cae 40%: 12,000 × 0.40 = $4,800 de pérdida. Efecto: 4,800 ÷ 150,000 = 0.032 → **3.2%** (igual a 8% × 40%).",
+              en: "A $150,000 portfolio with 8% in crypto: 150,000 × 0.08 = $12,000. Crypto falls 40%: 12,000 × 0.40 = $4,800 loss. Effect: 4,800 ÷ 150,000 = 0.032 → **3.2%** (same as 8% × 40%).",
+            },
+            interpret: {
+              es: "Usa la fórmula al revés para decidir el tamaño: si no quieres perder más de 2% del total aunque el cripto caiga 50%, el peso máximo es 2% ÷ 50% = 4%.",
+              en: "Use the formula backwards to decide the size: if you do not want to lose more than 2% of the total even if crypto falls 50%, the maximum weight is 2% ÷ 50% = 4%.",
+            },
+            mistake: {
+              es: "Decir que el portafolio cayó lo mismo que el cripto, olvidando multiplicar por el peso.",
+              en: "Saying the portfolio fell as much as crypto did, forgetting to multiply by the weight.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -313,7 +452,7 @@ export const lessons: Lesson[] = [
       es: "Bitcoin es dinero digital escaso, Ethereum es una plataforma de contratos inteligentes y las stablecoins buscan un precio estable; cada uno tiene un diseño, un uso y riesgos distintos.",
       en: "Bitcoin is scarce digital money, Ethereum is a smart-contract platform and stablecoins seek a stable price; each has a different design, use and set of risks.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Describir el suministro limitado, la minería y la unidad mínima de Bitcoin.", en: "Describe Bitcoin's limited supply, mining and smallest unit." },
       { es: "Explicar qué son los contratos inteligentes y las comisiones de gas en Ethereum.", en: "Explain what smart contracts and gas fees on Ethereum are." },
@@ -341,7 +480,31 @@ export const lessons: Lesson[] = [
             en: "Mini example: you do not need to buy a whole bitcoin. The smallest unit is the **satoshi**: 1 BTC = 100,000,000 satoshis. With $500 at a hypothetical price of $1,000,000 per BTC you buy 0.0005 BTC = 50,000 satoshis.",
           },
         ],
-        formula: "BTC comprados = Monto ÷ Precio por BTC  |  Satoshis = BTC × 100,000,000",
+        formulas: [
+          {
+            name: { es: "Cuántos bitcoins y satoshis compras", en: "How many bitcoins and satoshis you buy" },
+            expression: "BTC comprados = Monto ÷ Precio por BTC   ·   Satoshis = BTC × 100,000,000",
+            variables: [
+              { symbol: "Monto", meaning: { es: "Pesos que inviertes (si la plataforma cobra comisión sobre el monto, usa lo que queda después de restarla).", en: "Pesos you invest (if the platform charges a fee on the amount, use what is left after subtracting it)." } },
+              { symbol: "Precio por BTC", meaning: { es: "Lo que cuesta un bitcoin entero, en pesos.", en: "The cost of one whole bitcoin, in pesos." } },
+              { symbol: "BTC comprados", meaning: { es: "La fracción de bitcoin que recibes (por ejemplo, 0.0004).", en: "The fraction of bitcoin you receive (for example, 0.0004)." } },
+              { symbol: "Satoshis", meaning: { es: "La unidad mínima de bitcoin: 1 BTC = 100,000,000 (cien millones) de satoshis.", en: "Bitcoin's smallest unit: 1 BTC = 100,000,000 (one hundred million) satoshis." } },
+            ],
+            steps: [
+              { es: "Si hay comisión sobre el monto, réstala primero: Monto neto = Monto × (1 − comisión).", en: "If there is a fee on the amount, subtract it first: Net amount = Amount × (1 − fee)." },
+              { es: "Divide el monto entre el precio de un BTC.", en: "Divide the amount by the price of one BTC." },
+              { es: "Multiplica los BTC por 100,000,000 para pasarlos a satoshis.", en: "Multiply the BTC by 100,000,000 to convert them to satoshis." },
+            ],
+            example: {
+              es: "Inviertes $800 a un precio hipotético de $2,000,000 por BTC, sin comisión. BTC: 800 ÷ 2,000,000 = 0.0004. Satoshis: 0.0004 × 100,000,000 = **40,000 satoshis**.",
+              en: "You invest $800 at a hypothetical price of $2,000,000 per BTC, with no fee. BTC: 800 ÷ 2,000,000 = 0.0004. Satoshis: 0.0004 × 100,000,000 = **40,000 satoshis**.",
+            },
+            mistake: {
+              es: "Multiplicar por un millón en lugar de cien millones (te faltarían dos ceros).",
+              en: "Multiplying by one million instead of one hundred million (you would be missing two zeros).",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Ethereum: una computadora mundial", en: "Ethereum: a world computer" },
@@ -363,7 +526,31 @@ export const lessons: Lesson[] = [
             en: "Mini example: a simple transfer uses 21,000 gas units. If the gas price is 10 gwei (1 gwei = 0.000000001 ETH), you pay 210,000 gwei = 0.00021 ETH in fees.",
           },
         ],
-        formula: "Comisión (ETH) = Unidades de gas × Precio del gas (gwei) × 0.000000001",
+        formulas: [
+          {
+            name: { es: "Comisión de gas en Ethereum (en ETH y en pesos)", en: "Ethereum gas fee (in ETH and in pesos)" },
+            expression: "Comisión (ETH) = Unidades de gas × Precio del gas (gwei) × 0.000000001   ·   Comisión (pesos) = Comisión (ETH) × Precio del ETH",
+            variables: [
+              { symbol: "Unidades de gas", meaning: { es: "Cuánto trabajo de cómputo consume la operación (una transferencia simple usa 21,000).", en: "How much computing work the operation uses (a simple transfer uses 21,000)." } },
+              { symbol: "Precio del gas (gwei)", meaning: { es: "Lo que pagas por cada unidad de gas, en gwei; sube cuando la red está congestionada.", en: "What you pay per unit of gas, in gwei; it rises when the network is congested." } },
+              { symbol: "0.000000001", meaning: { es: "Factor para pasar de gwei a ETH: 1 gwei = 0.000000001 ETH (una milmillonésima).", en: "Factor to convert gwei to ETH: 1 gwei = 0.000000001 ETH (one billionth)." } },
+              { symbol: "Precio del ETH", meaning: { es: "Lo que cuesta un ether, en pesos.", en: "The cost of one ether, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica las unidades de gas por el precio del gas: obtienes la comisión en gwei.", en: "Multiply the gas units by the gas price: you get the fee in gwei." },
+              { es: "Multiplica por 0.000000001 para pasarla a ETH.", en: "Multiply by 0.000000001 to convert it to ETH." },
+              { es: "Si la quieres en pesos, multiplica los ETH por el precio del ETH.", en: "If you want it in pesos, multiply the ETH by the ETH price." },
+            ],
+            example: {
+              es: "Una operación usa 50,000 unidades de gas a 8 gwei. 50,000 × 8 = 400,000 gwei. En ETH: 400,000 × 0.000000001 = 0.0004 ETH. Con el ETH a $40,000 (hipotético): 0.0004 × 40,000 = **$16**.",
+              en: "An operation uses 50,000 gas units at 8 gwei. 50,000 × 8 = 400,000 gwei. In ETH: 400,000 × 0.000000001 = 0.0004 ETH. With ETH at $40,000 (hypothetical): 0.0004 × 40,000 = **$16**.",
+            },
+            mistake: {
+              es: "Olvidar convertir los gwei a ETH y obtener una comisión absurdamente grande.",
+              en: "Forgetting to convert gwei to ETH and getting an absurdly large fee.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Stablecoins: estables… mientras funcione el respaldo", en: "Stablecoins: stable… as long as the backing holds" },
@@ -385,7 +572,34 @@ export const lessons: Lesson[] = [
             en: "Mini example: a protocol requires 150% collateral. You deposit $15,000 of ETH and can receive up to 10,000 stablecoins. If ETH drops 20%, your collateral is worth $12,000: the ratio falls to 120%, close to liquidation.",
           },
         ],
-        formula: "Razón de colateral = Valor del colateral ÷ Deuda en stablecoins × 100",
+        formulas: [
+          {
+            name: { es: "Razón de colateral de una stablecoin respaldada por cripto", en: "Collateral ratio of a crypto-backed stablecoin" },
+            expression: "Razón de colateral = Valor del colateral ÷ Deuda en stablecoins × 100   ·   Máximo de stablecoins = Colateral ÷ Razón mínima",
+            variables: [
+              { symbol: "Valor del colateral", meaning: { es: "Lo que vale hoy la cripto que depositaste como garantía, en pesos (o dólares).", en: "What the crypto you deposited as a guarantee is worth today, in pesos (or dollars)." } },
+              { symbol: "Deuda en stablecoins", meaning: { es: "Cuántas stablecoins recibiste; cada una vale 1 unidad de moneda.", en: "How many stablecoins you received; each is worth 1 unit of currency." } },
+              { symbol: "Razón mínima", meaning: { es: "El mínimo que exige el protocolo, en decimal (150% = 1.5). Si tu razón baja de ahí, liquidan tu colateral.", en: "The minimum the protocol requires, as a decimal (150% = 1.5). If your ratio falls below it, your collateral is liquidated." } },
+            ],
+            steps: [
+              { es: "Para saber cuánto puedes recibir, divide el colateral entre la razón mínima en decimal.", en: "To know how much you can receive, divide the collateral by the minimum ratio as a decimal." },
+              { es: "Si la cripto cae, calcula el nuevo colateral: Colateral × (1 − caída).", en: "If the crypto falls, compute the new collateral: Collateral × (1 − drop)." },
+              { es: "Divide el colateral entre la deuda y multiplica por 100; compáralo con el mínimo.", en: "Divide the collateral by the debt and multiply by 100; compare it with the minimum." },
+            ],
+            example: {
+              es: "Mínimo 200%. Depositas ETH por $24,000: máximo 24,000 ÷ 2 = 12,000 stablecoins. El ETH cae 30%: 24,000 × 0.70 = $16,800. Razón: 16,800 ÷ 12,000 = 1.40 → **140%**, por debajo de 200%: se liquidaría.",
+              en: "Minimum 200%. You deposit $24,000 of ETH: maximum 24,000 ÷ 2 = 12,000 stablecoins. ETH falls 30%: 24,000 × 0.70 = $16,800. Ratio: 16,800 ÷ 12,000 = 1.40 → **140%**, below 200%: it would be liquidated.",
+            },
+            interpret: {
+              es: "Mientras más arriba del mínimo estés, más caída aguantas. Pedir el máximo permitido te deja sin margen de seguridad.",
+              en: "The further above the minimum you are, the larger the drop you can withstand. Taking the maximum allowed leaves you no safety margin.",
+            },
+            mistake: {
+              es: "Multiplicar el colateral por la razón mínima en vez de dividir, o seguir usando el valor del colateral de antes de la caída.",
+              en: "Multiplying the collateral by the minimum ratio instead of dividing, or still using the collateral value from before the drop.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -444,7 +658,7 @@ export const lessons: Lesson[] = [
       es: "Blockchain es un registro compartido e inalterable que puede tokenizar activos, acelerar la liquidación y automatizar contratos, aunque enfrenta límites técnicos, legales y de confianza en los datos.",
       en: "Blockchain is a shared, tamper-resistant ledger that can tokenize assets, speed up settlement and automate contracts, although it faces technical, legal and data-trust limits.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar cómo funciona una blockchain: bloques, hash y consenso.", en: "Explain how a blockchain works: blocks, hash and consensus." },
       { es: "Distinguir blockchains públicas y permisionadas.", en: "Distinguish public and permissioned blockchains." },
@@ -491,6 +705,31 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: un bono tokenizado de $1,000 paga 8 % anual en cupones semestrales. El contrato inteligente envía $40 a cada dueño cada seis meses, sin que nadie tenga que calcular ni transferir a mano.",
             en: "Mini example: a $1,000 tokenized bond pays 8% a year in semiannual coupons. The smart contract sends $40 to each holder every six months, with no one calculating or transferring by hand.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Precio por token, tokens comprados y renta que te toca", en: "Price per token, tokens bought and your share of rent" },
+            expression: "Precio por token = Valor del activo ÷ Total de tokens   ·   Tokens = Inversión ÷ Precio por token   ·   Tu renta = Tokens × (Renta total ÷ Total de tokens)",
+            variables: [
+              { symbol: "Valor del activo", meaning: { es: "Lo que vale el inmueble o activo completo, en pesos.", en: "What the whole building or asset is worth, in pesos." } },
+              { symbol: "Total de tokens", meaning: { es: "En cuántos tokens se dividió el activo.", en: "How many tokens the asset was split into." } },
+              { symbol: "Inversión", meaning: { es: "Los pesos que tú pones.", en: "The pesos you put in." } },
+              { symbol: "Renta total", meaning: { es: "Rentas netas anuales que genera el activo y se reparten entre todos los tokens, en pesos.", en: "Net annual rent the asset generates, shared among all tokens, in pesos." } },
+            ],
+            steps: [
+              { es: "Divide el valor del activo entre el total de tokens: es el precio de cada token.", en: "Divide the asset's value by the total tokens: that is the price of each token." },
+              { es: "Divide tu inversión entre ese precio: son tus tokens.", en: "Divide your investment by that price: those are your tokens." },
+              { es: "Divide la renta total entre el total de tokens (renta por token) y multiplícala por tus tokens.", en: "Divide the total rent by the total tokens (rent per token) and multiply it by your tokens." },
+            ],
+            example: {
+              es: "Un local de $8,000,000 se divide en 400,000 tokens y renta $560,000 netos al año. Precio: 8,000,000 ÷ 400,000 = $20. Con $6,000: 6,000 ÷ 20 = 300 tokens. Renta por token: 560,000 ÷ 400,000 = $1.40. Tu renta: 300 × 1.40 = **$420 al año** (420 ÷ 6,000 = 7%).",
+              en: "A $8,000,000 retail space is split into 400,000 tokens and earns $560,000 net rent a year. Price: 8,000,000 ÷ 400,000 = $20. With $6,000: 6,000 ÷ 20 = 300 tokens. Rent per token: 560,000 ÷ 400,000 = $1.40. Your rent: 300 × 1.40 = **$420 a year** (420 ÷ 6,000 = 7%).",
+            },
+            mistake: {
+              es: "Dividir la renta total entre tus tokens en lugar de entre el total de tokens.",
+              en: "Dividing the total rent by your tokens instead of by the total tokens.",
+            },
           },
         ],
         bullets: [
@@ -578,7 +817,7 @@ export const lessons: Lesson[] = [
       es: "Gestionar el riesgo es identificar qué puede salir mal, medirlo con herramientas como la volatilidad, la caída máxima y el valor en riesgo, y controlarlo con el tamaño de posición, límites y coberturas.",
       en: "Managing risk means identifying what can go wrong, measuring it with tools such as volatility, maximum drawdown and value at risk, and controlling it with position sizing, limits and hedges.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Clasificar los principales tipos de riesgo de una inversión.", en: "Classify the main types of investment risk." },
       { es: "Calcular la caída máxima (drawdown) y la ganancia necesaria para recuperarse.", en: "Compute maximum drawdown and the gain needed to recover." },
@@ -631,7 +870,79 @@ export const lessons: Lesson[] = [
             en: "Mini example: a $500,000 portfolio has 1.2% daily volatility. Daily 95% VaR = 500,000 × 1.65 × 0.012 = $9,900. On 95 out of 100 normal days the loss should not exceed that amount.",
           },
         ],
-        formula: "Drawdown = (Mínimo − Máximo) ÷ Máximo  |  Ganancia para recuperar = 1 ÷ (1 − Pérdida) − 1  |  VaR = Valor × z × σ",
+        formulas: [
+          {
+            name: { es: "Caída máxima (drawdown)", en: "Maximum drawdown" },
+            expression: "Drawdown = (Mínimo − Máximo) ÷ Máximo × 100",
+            variables: [
+              { symbol: "Máximo", meaning: { es: "El valor más alto que alcanzó el portafolio antes de caer, en pesos.", en: "The highest value the portfolio reached before falling, in pesos." } },
+              { symbol: "Mínimo", meaning: { es: "El valor más bajo después de ese máximo, en pesos.", en: "The lowest value after that peak, in pesos." } },
+            ],
+            steps: [
+              { es: "Resta el máximo al mínimo (sale negativo).", en: "Subtract the peak from the trough (the result is negative)." },
+              { es: "Divide entre el máximo y multiplica por 100.", en: "Divide by the peak and multiply by 100." },
+            ],
+            example: {
+              es: "Máximo $150,000 y mínimo $90,000. (90,000 − 150,000) ÷ 150,000 = −60,000 ÷ 150,000 = −0.40 → caída de **40%**.",
+              en: "Peak $150,000 and trough $90,000. (90,000 − 150,000) ÷ 150,000 = −60,000 ÷ 150,000 = −0.40 → a **40%** drawdown.",
+            },
+            mistake: {
+              es: "Dividir entre el mínimo; eso da la subida necesaria para recuperarse, no la caída.",
+              en: "Dividing by the trough; that gives the rise needed to recover, not the drop.",
+            },
+          },
+          {
+            name: { es: "Ganancia necesaria para recuperar una pérdida", en: "Gain needed to recover a loss" },
+            expression: "Ganancia para recuperar = 1 ÷ (1 − Pérdida) − 1",
+            variables: [
+              { symbol: "Pérdida", meaning: { es: "La caída sufrida, en decimal (40% = 0.40).", en: "The drop suffered, as a decimal (40% = 0.40)." } },
+              { symbol: "Ganancia para recuperar", meaning: { es: "Lo que debe subir la inversión desde el mínimo para volver a su valor original, en decimal.", en: "How much the investment must rise from the trough to return to its original value, as a decimal." } },
+            ],
+            steps: [
+              { es: "Convierte la pérdida a decimal y réstala de 1: es lo que te quedó por cada peso.", en: "Convert the loss to a decimal and subtract it from 1: that is what you kept per peso." },
+              { es: "Divide 1 entre ese resultado.", en: "Divide 1 by that result." },
+              { es: "Resta 1 y multiplica por 100 para expresarlo en %.", en: "Subtract 1 and multiply by 100 to express it in %." },
+            ],
+            example: {
+              es: "Pérdida de 40%: 1 − 0.40 = 0.60. 1 ÷ 0.60 ≈ 1.6667. 1.6667 − 1 = 0.6667 → **66.67%**. Comprobación: $60 × 1.6667 ≈ $100.",
+              en: "A 40% loss: 1 − 0.40 = 0.60. 1 ÷ 0.60 ≈ 1.6667. 1.6667 − 1 = 0.6667 → **66.67%**. Check: $60 × 1.6667 ≈ $100.",
+            },
+            interpret: {
+              es: "Mientras más grande la caída, más desproporcionada es la subida que necesitas: −50% exige +100%.",
+              en: "The larger the drop, the more disproportionate the rise you need: −50% requires +100%.",
+            },
+            mistake: {
+              es: "Creer que basta con ganar el mismo porcentaje que se perdió.",
+              en: "Believing it is enough to gain the same percentage that was lost.",
+            },
+          },
+          {
+            name: { es: "Valor en riesgo (VaR) paramétrico", en: "Parametric value at risk (VaR)" },
+            expression: "VaR = Valor × z × σ",
+            variables: [
+              { symbol: "Valor", meaning: { es: "Valor actual del portafolio o posición, en pesos.", en: "Current value of the portfolio or position, in pesos." } },
+              { symbol: "z", meaning: { es: "Factor de confianza de la distribución normal: ≈ 1.65 para 95%.", en: "Normal distribution confidence factor: ≈ 1.65 for 95%." } },
+              { symbol: "σ", meaning: { es: "Volatilidad del periodo (diaria si quieres un VaR diario), en decimal (1.2% = 0.012).", en: "Volatility for the period (daily if you want a daily VaR), as a decimal (1.2% = 0.012)." } },
+            ],
+            steps: [
+              { es: "Convierte la volatilidad a decimal.", en: "Convert the volatility to a decimal." },
+              { es: "Multiplica el valor por la volatilidad: es el movimiento típico en pesos.", en: "Multiply the value by the volatility: that is the typical move in pesos." },
+              { es: "Multiplica por z para el nivel de confianza que quieres.", en: "Multiply by z for the confidence level you want." },
+            ],
+            example: {
+              es: "Portafolio de $300,000 con volatilidad diaria de 1.8% y 95% de confianza. 300,000 × 0.018 = 5,400. 5,400 × 1.65 = **$8,910** de VaR diario.",
+              en: "A $300,000 portfolio with 1.8% daily volatility at 95% confidence. 300,000 × 0.018 = 5,400. 5,400 × 1.65 = **$8,910** daily VaR.",
+            },
+            interpret: {
+              es: "En condiciones normales, 95 de cada 100 días la pérdida no debería pasar de $8,910; cerca de 1 día de cada 20 sí puede, y en crisis mucho más.",
+              en: "Under normal conditions, on 95 of every 100 days the loss should not exceed $8,910; about 1 day in 20 it can, and in a crisis by much more.",
+            },
+            mistake: {
+              es: "Usar solo la volatilidad (Valor × σ) y olvidar el factor z.",
+              en: "Using only volatility (Value × σ) and forgetting the z factor.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Controlar el riesgo: tamaño, límites y coberturas", en: "Controlling risk: size, limits and hedges" },
@@ -653,7 +964,36 @@ export const lessons: Lesson[] = [
             en: "Mini example: $100,000 capital and 1% maximum risk ($1,000). You buy at $80 with an exit at $76: you risk $4 per share, so you buy 1,000 ÷ 4 = 250 shares ($20,000).",
           },
         ],
-        formula: "Acciones = (Capital × % de riesgo) ÷ (Precio de compra − Precio de salida)",
+        formulas: [
+          {
+            name: { es: "Tamaño de la posición según tu riesgo máximo", en: "Position size based on your maximum risk" },
+            expression: "Acciones = (Capital × % de riesgo) ÷ (Precio de compra − Precio de salida)   ·   Valor de la posición = Acciones × Precio de compra",
+            variables: [
+              { symbol: "Capital", meaning: { es: "Todo el dinero de tu cuenta de inversión, en pesos.", en: "All the money in your investment account, in pesos." } },
+              { symbol: "% de riesgo", meaning: { es: "Lo máximo que aceptas perder en una operación, en decimal (1% = 0.01).", en: "The most you accept losing on one trade, as a decimal (1% = 0.01)." } },
+              { symbol: "Precio de compra", meaning: { es: "Precio al que compras cada acción, en pesos.", en: "Price at which you buy each share, in pesos." } },
+              { symbol: "Precio de salida", meaning: { es: "Precio en el que venderías si baja (tu stop-loss), en pesos.", en: "Price at which you would sell if it falls (your stop-loss), in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el riesgo máximo en pesos: capital × % de riesgo.", en: "Compute the maximum risk in pesos: capital × risk %." },
+              { es: "Calcula el riesgo por acción: precio de compra − precio de salida.", en: "Compute the risk per share: purchase price − exit price." },
+              { es: "Divide el riesgo máximo entre el riesgo por acción: son las acciones a comprar.", en: "Divide the maximum risk by the risk per share: those are the shares to buy." },
+              { es: "Multiplica las acciones por el precio de compra para saber el valor de la posición.", en: "Multiply the shares by the purchase price to know the position value." },
+            ],
+            example: {
+              es: "Capital $150,000 y riesgo de 2%: 150,000 × 0.02 = $3,000. Compras a $60 y saldrías en $54: 60 − 54 = $6 por acción. Acciones: 3,000 ÷ 6 = **500**. Posición: 500 × 60 = $30,000.",
+              en: "Capital $150,000 and 2% risk: 150,000 × 0.02 = $3,000. You buy at $60 and would exit at $54: 60 − 54 = $6 per share. Shares: 3,000 ÷ 6 = **500**. Position: 500 × 60 = $30,000.",
+            },
+            interpret: {
+              es: "La posición ($30,000) puede ser mucho mayor que el riesgo ($3,000): lo que limitas es cuánto pierdes si se activa la salida, no cuánto inviertes.",
+              en: "The position ($30,000) can be much larger than the risk ($3,000): what you limit is how much you lose if the exit triggers, not how much you invest.",
+            },
+            mistake: {
+              es: "Confundir el riesgo con el monto invertido y comprar solo el riesgo máximo en acciones.",
+              en: "Confusing the risk with the amount invested and buying only the maximum risk worth of shares.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -712,7 +1052,7 @@ export const lessons: Lesson[] = [
       es: "Invertir a largo plazo funciona mejor con un plan sencillo: aportar con disciplina, mantener costos bajos, ajustar el riesgo a la etapa de vida y no intentar adivinar el mercado.",
       en: "Long-term investing works best with a simple plan: contribute with discipline, keep costs low, match risk to your life stage and do not try to time the market.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Comparar la inversión pasiva (indexada) con la gestión activa.", en: "Compare passive (index) investing with active management." },
       { es: "Calcular el costo promedio con aportaciones periódicas.", en: "Compute the average cost with periodic contributions." },
@@ -740,7 +1080,36 @@ export const lessons: Lesson[] = [
             en: "Mini example: $100,000 for 20 years. At 8% a year it grows to $466,096; if fees cut your return to 6%, you reach $320,714. The difference is almost $145,000.",
           },
         ],
-        formula: "Valor final = Monto inicial × (1 + rendimiento neto de comisiones)^años",
+        formulas: [
+          {
+            name: { es: "Valor final con interés compuesto y costo de las comisiones", en: "Final value with compound interest and the cost of fees" },
+            expression: "Valor final = Monto inicial × (1 + rendimiento neto de comisiones)^años",
+            variables: [
+              { symbol: "Monto inicial", meaning: { es: "Lo que inviertes hoy, en pesos.", en: "What you invest today, in pesos." } },
+              { symbol: "rendimiento neto de comisiones", meaning: { es: "Lo que rinde el fondo al año ya descontadas sus comisiones, en decimal (7% = 0.07).", en: "What the fund earns per year after its fees, as a decimal (7% = 0.07)." } },
+              { symbol: "años", meaning: { es: "Cuántos años dejas el dinero invertido sin retirarlo.", en: "How many years you leave the money invested without withdrawing it." } },
+              { symbol: "^", meaning: { es: "Elevar a una potencia: multiplicar el factor por sí mismo tantas veces como años.", en: "Raise to a power: multiply the factor by itself as many times as there are years." } },
+            ],
+            steps: [
+              { es: "Convierte el rendimiento neto a decimal y súmale 1 (8% → 1.08).", en: "Convert the net return to a decimal and add 1 (8% → 1.08)." },
+              { es: "Eleva ese factor al número de años (en Excel: =1.08^15).", en: "Raise that factor to the number of years (in Excel: =1.08^15)." },
+              { es: "Multiplica por el monto inicial.", en: "Multiply by the initial amount." },
+              { es: "Para medir el costo de una comisión, repite con el rendimiento más bajo y resta los dos valores finales.", en: "To measure the cost of a fee, repeat with the lower return and subtract the two final values." },
+            ],
+            example: {
+              es: "$50,000 por 15 años. Fondo barato al 8%: 1.08¹⁵ ≈ 3.1722; 50,000 × 3.1722 ≈ $158,608. Fondo caro al 6%: 1.06¹⁵ ≈ 2.3966; 50,000 × 2.3966 ≈ $119,828. Diferencia: 158,608 − 119,828 ≈ **$38,780**.",
+              en: "$50,000 for 15 years. Cheap fund at 8%: 1.08¹⁵ ≈ 3.1722; 50,000 × 3.1722 ≈ $158,608. Expensive fund at 6%: 1.06¹⁵ ≈ 2.3966; 50,000 × 2.3966 ≈ $119,828. Difference: 158,608 − 119,828 ≈ **$38,780**.",
+            },
+            interpret: {
+              es: "La diferencia crece con los años porque la comisión también se compone: no solo pierdes el 2%, pierdes lo que ese 2% habría ganado.",
+              en: "The difference grows over the years because the fee compounds too: you lose not only the 2%, but what that 2% would have earned.",
+            },
+            mistake: {
+              es: "Calcular el costo como comisión × años × monto (2% × 15 × 50,000 = $15,000), que lo subestima por no componerlo.",
+              en: "Computing the cost as fee × years × amount (2% × 15 × 50,000 = $15,000), which understates it because it ignores compounding.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Aportaciones periódicas y costo promedio", en: "Periodic contributions and dollar-cost averaging" },
@@ -762,7 +1131,37 @@ export const lessons: Lesson[] = [
             en: "Mini example: you invest $3,000 a month at prices of $100, $75 and $120. You buy 30 + 40 + 25 = 95 units for $9,000: average cost $94.74, lower than the average price of $98.33.",
           },
         ],
-        formula: "Costo promedio = Total invertido ÷ Unidades acumuladas",
+        formulas: [
+          {
+            name: { es: "Costo promedio por unidad frente a precio promedio", en: "Average cost per unit versus average price" },
+            expression: "Unidades del mes = Aportación ÷ Precio   ·   Costo promedio = Total invertido ÷ Unidades acumuladas   ·   Precio promedio = Suma de precios ÷ Número de compras",
+            variables: [
+              { symbol: "Aportación", meaning: { es: "Lo que inviertes cada vez, siempre la misma cantidad, en pesos.", en: "What you invest each time, always the same amount, in pesos." } },
+              { symbol: "Precio", meaning: { es: "Precio de una unidad (por ejemplo, del ETF) el día de la compra, en pesos.", en: "Price of one unit (for example, of the ETF) on the purchase date, in pesos." } },
+              { symbol: "Total invertido", meaning: { es: "Suma de todas tus aportaciones, en pesos.", en: "Sum of all your contributions, in pesos." } },
+              { symbol: "Unidades acumuladas", meaning: { es: "Suma de las unidades compradas en todas las fechas.", en: "Sum of the units bought on all dates." } },
+              { symbol: "Precio promedio", meaning: { es: "Promedio simple de los precios de compra, en pesos.", en: "Simple average of the purchase prices, in pesos." } },
+            ],
+            steps: [
+              { es: "En cada fecha divide la aportación entre el precio: son las unidades de ese mes.", en: "On each date divide the contribution by the price: those are that month's units." },
+              { es: "Suma las unidades de todos los meses.", en: "Add up the units from all months." },
+              { es: "Divide el total invertido entre las unidades acumuladas: es tu costo promedio.", en: "Divide the total invested by the units accumulated: that is your average cost." },
+              { es: "Para comparar, suma los precios y divide entre el número de compras: es el precio promedio.", en: "To compare, add the prices and divide by the number of purchases: that is the average price." },
+            ],
+            example: {
+              es: "$1,200 al mes a precios de $60, $40 y $48. Unidades: 1,200 ÷ 60 = 20; 1,200 ÷ 40 = 30; 1,200 ÷ 48 = 25; total 75. Costo promedio: 3,600 ÷ 75 = **$48**. Precio promedio: (60 + 40 + 48) ÷ 3 ≈ **$49.33**.",
+              en: "$1,200 a month at prices of $60, $40 and $48. Units: 1,200 ÷ 60 = 20; 1,200 ÷ 40 = 30; 1,200 ÷ 48 = 25; total 75. Average cost: 3,600 ÷ 75 = **$48**. Average price: (60 + 40 + 48) ÷ 3 ≈ **$49.33**.",
+            },
+            interpret: {
+              es: "El costo promedio queda debajo del precio promedio porque compraste más unidades cuando estaban baratas.",
+              en: "The average cost ends up below the average price because you bought more units when they were cheap.",
+            },
+            mistake: {
+              es: "Creer que el costo promedio es el promedio simple de los precios.",
+              en: "Believing the average cost is the simple average of the prices.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Un plan para toda la vida", en: "A plan for life" },

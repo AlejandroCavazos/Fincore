@@ -45,7 +45,7 @@ export const lessons: Lesson[] = [
       "Un derivado se valúa por no arbitraje: se replica con el activo subyacente y dinero prestado, y eso lleva al forward, al árbol binomial y a Black-Scholes.",
       "A derivative is priced by no-arbitrage: it is replicated with the underlying asset and borrowed money, which leads to the forward price, the binomial tree and Black-Scholes.",
     ),
-    minutes: 18,
+    minutes: 20,
     objectives: [
       t("Calcular el precio justo de un forward con el argumento de no arbitraje.", "Compute the fair price of a forward using the no-arbitrage argument."),
       t("Valuar una opción con un árbol binomial de un paso y la probabilidad neutral al riesgo.", "Price an option with a one-step binomial tree and the risk-neutral probability."),
@@ -68,7 +68,62 @@ export const lessons: Lesson[] = [
             "Mini example: a stock is worth $100, pays no dividends and the rate is 10% simple per year. A one-year forward must be worth 100 × 1.10 = $110. If the market quotes it at $115, you sell the forward, borrow $100, buy the stock and in a year earn $5 risk-free.",
           ),
         ],
-        formula: "F = S₀ × (1 + r × T)   ·   continua / continuous: F = S₀ × e^((r − q) × T)",
+        formulas: [
+          {
+            name: t("Precio forward justo (tasa simple) y ganancia de arbitraje", "Fair forward price (simple rate) and arbitrage profit"),
+            expression: "F = S₀ × (1 + r × T)   ·   Ganancia de arbitraje = |F de mercado − F justo|",
+            variables: [
+              { symbol: "F", meaning: t("Precio forward justo: lo que debería costar hoy pactar la compra futura, en pesos.", "Fair forward price: what agreeing today on the future purchase should cost, in pesos.") },
+              { symbol: "S₀", meaning: t("Precio de hoy del subyacente (la acción, el dólar…), en pesos.", "Today's price of the underlying (the stock, the dollar…), in pesos.") },
+              { symbol: "r", meaning: t("Tasa libre de riesgo anual simple, en decimal (8% = 0.08).", "Annual simple risk-free rate, as a decimal (8% = 0.08).") },
+              { symbol: "T", meaning: t("Plazo hasta la entrega, en años (6 meses = 0.5; 3 meses = 0.25).", "Time to delivery, in years (6 months = 0.5; 3 months = 0.25).") },
+              { symbol: "F de mercado", meaning: t("El precio forward que alguien cotiza en el mercado, en pesos.", "The forward price someone quotes in the market, in pesos.") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal y el plazo a años: 6% = 0.06; 3 meses = 3 ÷ 12 = 0.25.", "Convert the rate to a decimal and the time to years: 6% = 0.06; 3 months = 3 ÷ 12 = 0.25."),
+              t("Calcula el factor de financiamiento: 1 + r × T.", "Compute the financing factor: 1 + r × T."),
+              t("Multiplica el precio de hoy por ese factor: eso es F justo.", "Multiply today's price by that factor: that is the fair F."),
+              t("Compara con el F de mercado: si está más caro, vendes el forward y compras el activo con dinero prestado; si está más barato, haces lo contrario. La diferencia es tu ganancia sin riesgo por unidad.", "Compare with the market F: if it is more expensive, sell the forward and buy the asset with borrowed money; if cheaper, do the opposite. The difference is your risk-free profit per unit."),
+            ],
+            example: t(
+              "Una acción vale $300, no paga dividendos, la tasa es 6% anual simple y el plazo es 3 meses. T = 3 ÷ 12 = 0.25. Factor: 1 + 0.06 × 0.25 = 1.015. F = 300 × 1.015 = **$304.50**. Si el mercado cotiza $308: 308 − 304.50 = **$3.50** de ganancia sin riesgo por acción.",
+              "A stock is worth $300, pays no dividends, the rate is 6% simple per year and the term is 3 months. T = 3 ÷ 12 = 0.25. Factor: 1 + 0.06 × 0.25 = 1.015. F = 300 × 1.015 = **$304.50**. If the market quotes $308: 308 − 304.50 = **$3.50** of risk-free profit per share.",
+            ),
+            interpret: t(
+              "F mayor que S₀ no es una predicción de que el precio subirá: solo refleja el costo de pedir prestado para comprar hoy y guardar el activo.",
+              "F above S₀ is not a prediction that the price will rise: it only reflects the cost of borrowing to buy today and hold the asset.",
+            ),
+            mistake: t(
+              "Usar el plazo en meses (T = 6) en lugar de años (T = 0.5), o capitalizar un año completo cuando el plazo es menor.",
+              "Using the term in months (T = 6) instead of years (T = 0.5), or compounding a full year when the term is shorter.",
+            ),
+          },
+          {
+            name: t("Precio forward con capitalización continua y dividendos", "Forward price with continuous compounding and dividends"),
+            expression: "F = S₀ × e^((r − q) × T)",
+            variables: [
+              { symbol: "F", meaning: t("Precio forward justo, en pesos.", "Fair forward price, in pesos.") },
+              { symbol: "S₀", meaning: t("Precio de hoy del subyacente, en pesos.", "Today's price of the underlying, in pesos.") },
+              { symbol: "e", meaning: t("Número fijo ≈ 2.71828 que se usa cuando el interés se capitaliza de forma continua; en calculadora o Excel es la función EXP.", "Fixed number ≈ 2.71828 used when interest compounds continuously; on a calculator or in Excel it is the EXP function.") },
+              { symbol: "r", meaning: t("Tasa libre de riesgo anual continua, en decimal.", "Annual continuous risk-free rate, as a decimal.") },
+              { symbol: "q", meaning: t("Rendimiento anual por dividendos del subyacente, en decimal (0 si no paga).", "Annual dividend yield of the underlying, as a decimal (0 if it pays none).") },
+              { symbol: "T", meaning: t("Plazo en años.", "Time in years.") },
+            ],
+            steps: [
+              t("Resta los dividendos a la tasa: r − q.", "Subtract the dividends from the rate: r − q."),
+              t("Multiplica por el plazo en años: (r − q) × T.", "Multiply by the time in years: (r − q) × T."),
+              t("Saca la exponencial de ese número (EXP en Excel) y multiplícala por S₀.", "Take the exponential of that number (EXP in Excel) and multiply it by S₀."),
+            ],
+            example: t(
+              "S₀ = $100, r = 6%, q = 2%, T = 0.5 años. r − q = 0.06 − 0.02 = 0.04. × 0.5 = 0.02. e^0.02 ≈ 1.0202. F = 100 × 1.0202 ≈ **$102.02**.",
+              "S₀ = $100, r = 6%, q = 2%, T = 0.5 years. r − q = 0.06 − 0.02 = 0.04. × 0.5 = 0.02. e^0.02 ≈ 1.0202. F = 100 × 1.0202 ≈ **$102.02**.",
+            ),
+            mistake: t(
+              "Sumar los dividendos en lugar de restarlos. Quien tiene el forward no cobra dividendos, por eso el forward vale menos.",
+              "Adding the dividends instead of subtracting them. The forward holder does not receive dividends, so the forward is worth less.",
+            ),
+          },
+        ],
         bullets: [
           t("S₀: precio de hoy del subyacente.", "S₀: today's price of the underlying."),
           t("r: tasa libre de riesgo; T: plazo en años.", "r: risk-free rate; T: time in years."),
@@ -92,11 +147,49 @@ export const lessons: Lesson[] = [
             "Mini example: S = 100, u = 1.2, d = 0.9 and a 5% rate per period. Then p = (1.05 − 0.9) / (1.2 − 0.9) = 0.5. A call with K = 100 pays 20 if it goes up and 0 if it goes down, so it is worth 0.5 × 20 / 1.05 = $9.52.",
           ),
         ],
-        formula: "p = (1 + r − d) / (u − d)   ·   V₀ = [p × Vᵤ + (1 − p) × V_d] / (1 + r)",
+        formulas: [
+          {
+            name: t("Valor de una opción con árbol binomial de un paso", "Option value with a one-step binomial tree"),
+            expression: "p = (1 + r − d) ÷ (u − d)   ·   V₀ = [p × Vᵤ + (1 − p) × V_d] ÷ (1 + r)",
+            variables: [
+              { symbol: "p", meaning: t("Probabilidad neutral al riesgo: un peso entre 0 y 1 para el escenario de subida (no es la probabilidad real).", "Risk-neutral probability: a weight between 0 and 1 for the up scenario (not the real probability).") },
+              { symbol: "r", meaning: t("Tasa libre de riesgo del periodo, en decimal (2% = 0.02).", "Risk-free rate for the period, as a decimal (2% = 0.02).") },
+              { symbol: "u", meaning: t("Factor de subida: por cuánto se multiplica el precio si sube (sube 10% → u = 1.10).", "Up factor: what the price is multiplied by if it rises (rises 10% → u = 1.10).") },
+              { symbol: "d", meaning: t("Factor de bajada: por cuánto se multiplica si baja (baja 5% → d = 0.95).", "Down factor: what the price is multiplied by if it falls (falls 5% → d = 0.95).") },
+              { symbol: "Vᵤ", meaning: t("Pago de la opción si el precio sube, en pesos. Call: máx(S × u − K, 0). Put: máx(K − S × u, 0).", "Option payoff if the price goes up, in pesos. Call: max(S × u − K, 0). Put: max(K − S × u, 0).") },
+              { symbol: "V_d", meaning: t("Pago de la opción si el precio baja, en pesos. Call: máx(S × d − K, 0).", "Option payoff if the price goes down, in pesos. Call: max(S × d − K, 0).") },
+              { symbol: "V₀", meaning: t("Valor justo de la opción hoy, en pesos.", "Fair value of the option today, in pesos.") },
+              { symbol: "K", meaning: t("Precio de ejercicio de la opción, en pesos.", "Strike price of the option, in pesos.") },
+            ],
+            steps: [
+              t("Calcula los dos precios futuros: S × u y S × d.", "Compute the two future prices: S × u and S × d."),
+              t("Calcula el pago de la opción en cada uno (para una call, máx(precio − K, 0)): Vᵤ y V_d.", "Compute the option payoff in each (for a call, max(price − K, 0)): Vᵤ and V_d."),
+              t("Calcula p = (1 + r − d) ÷ (u − d).", "Compute p = (1 + r − d) ÷ (u − d)."),
+              t("Promedia los pagos con esos pesos: p × Vᵤ + (1 − p) × V_d.", "Average the payoffs with those weights: p × Vᵤ + (1 − p) × V_d."),
+              t("Trae ese promedio a hoy dividiendo entre (1 + r).", "Bring that average to today by dividing by (1 + r)."),
+            ],
+            example: t(
+              "S = $80, u = 1.25, d = 0.90, r = 3% por periodo, call con K = $80. Precios: 80 × 1.25 = $100 y 80 × 0.90 = $72. Pagos: máx(100 − 80, 0) = 20 y máx(72 − 80, 0) = 0. p = (1.03 − 0.90) ÷ (1.25 − 0.90) = 0.13 ÷ 0.35 ≈ 0.3714. Promedio: 0.3714 × 20 + 0.6286 × 0 ≈ 7.43. Valor hoy: 7.43 ÷ 1.03 ≈ **$7.21**.",
+              "S = $80, u = 1.25, d = 0.90, r = 3% per period, call with K = $80. Prices: 80 × 1.25 = $100 and 80 × 0.90 = $72. Payoffs: max(100 − 80, 0) = 20 and max(72 − 80, 0) = 0. p = (1.03 − 0.90) ÷ (1.25 − 0.90) = 0.13 ÷ 0.35 ≈ 0.3714. Average: 0.3714 × 20 + 0.6286 × 0 ≈ 7.43. Value today: 7.43 ÷ 1.03 ≈ **$7.21**.",
+            ),
+            interpret: t(
+              "p siempre debe quedar entre 0 y 1 (eso pasa si d < 1 + r < u). Si sale fuera de ese rango, los datos permiten arbitraje o hay un error de captura.",
+              "p must always fall between 0 and 1 (this happens if d < 1 + r < u). If it falls outside that range, the data allow arbitrage or there is an input error.",
+            ),
+            mistake: t(
+              "Olvidar dividir entre (1 + r) al final, o suponer que p = 0.5 sin calcularla.",
+              "Forgetting to divide by (1 + r) at the end, or assuming p = 0.5 without computing it.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Black-Scholes-Merton y paridad put-call", "Black-Scholes-Merton and put-call parity"),
         body: [
+          t(
+            "En palabras sencillas: Black-Scholes es una 'calculadora' que da el precio justo de una opción a partir de cinco datos que puedes observar o estimar. Es el mismo razonamiento del árbol binomial, pero con el tiempo dividido en pasos tan pequeños que el precio se mueve de forma continua.",
+            "In simple words: Black-Scholes is a 'calculator' that gives the fair price of an option from five inputs you can observe or estimate. It is the same reasoning as the binomial tree, but with time split into steps so small that the price moves continuously.",
+          ),
           t(
             "Si el árbol tiene muchísimos pasos muy cortos, se llega al modelo de **Black-Scholes-Merton** para opciones europeas (solo se ejercen al vencimiento). Usa cinco insumos: precio S, ejercicio K, plazo T, tasa r y **volatilidad** σ (qué tanto se mueve el precio). Curiosamente, **no** necesita el rendimiento esperado de la acción: el no arbitraje lo elimina.",
             "If the tree has a huge number of very short steps, you reach the **Black-Scholes-Merton** model for European options (exercised only at expiry). It uses five inputs: price S, strike K, time T, rate r and **volatility** σ (how much the price moves). Interestingly, it does **not** need the stock's expected return: no-arbitrage removes it.",
@@ -110,7 +203,66 @@ export const lessons: Lesson[] = [
             "**Put-call parity** links European calls and puts with the same K and T: C − P = S − PV(K). Mini example: C = $8, S = $50 and the present value of K = $48. Then P = 8 − 50 + 48 = $6. If the put traded at $7, there would be arbitrage.",
           ),
         ],
-        formula: "C = S·N(d₁) − K·e^(−rT)·N(d₂);  d₁ = [ln(S/K) + (r + σ²/2)T] / (σ√T);  d₂ = d₁ − σ√T",
+        formulas: [
+          {
+            name: t("Precio de una call europea con Black-Scholes-Merton", "European call price with Black-Scholes-Merton"),
+            expression: "C = S·N(d₁) − K·e^(−rT)·N(d₂);  d₁ = [ln(S/K) + (r + σ²/2)T] ÷ (σ√T);  d₂ = d₁ − σ√T",
+            variables: [
+              { symbol: "C", meaning: t("Precio justo de la call hoy, en pesos.", "Fair price of the call today, in pesos.") },
+              { symbol: "S", meaning: t("Precio actual de la acción, en pesos.", "Current stock price, in pesos.") },
+              { symbol: "K", meaning: t("Precio de ejercicio, en pesos.", "Strike price, in pesos.") },
+              { symbol: "T", meaning: t("Tiempo al vencimiento, en años.", "Time to expiry, in years.") },
+              { symbol: "r", meaning: t("Tasa libre de riesgo anual continua, en decimal.", "Annual continuous risk-free rate, as a decimal.") },
+              { symbol: "σ", meaning: t("Volatilidad anual de la acción, en decimal (20% = 0.20): qué tanto se mueve su precio.", "Annual volatility of the stock, as a decimal (20% = 0.20): how much its price moves.") },
+              { symbol: "ln", meaning: t("Logaritmo natural (LN en Excel). ln(S/K) mide qué tan arriba o abajo está S respecto de K.", "Natural logarithm (LN in Excel). ln(S/K) measures how far above or below K the price S is.") },
+              { symbol: "N( )", meaning: t("Probabilidad acumulada de la normal estándar: un número entre 0 y 1 que se busca en tabla o con DISTR.NORM.ESTAND.N(x; VERDADERO) en Excel.", "Cumulative standard normal probability: a number between 0 and 1 looked up in a table or with NORM.S.DIST(x, TRUE) in Excel.") },
+              { symbol: "e^(−rT)", meaning: t("Factor de descuento continuo: convierte K, que se paga al vencimiento, a valor de hoy.", "Continuous discount factor: converts K, paid at expiry, into today's value.") },
+              { symbol: "d₁, d₂", meaning: t("Números auxiliares; N(d₂) ≈ probabilidad neutral al riesgo de ejercer y N(d₁) es la delta.", "Helper numbers; N(d₂) ≈ risk-neutral probability of exercise and N(d₁) is the delta.") },
+            ],
+            steps: [
+              t("Convierte tasa y volatilidad a decimales y el plazo a años.", "Convert rate and volatility to decimals and the time to years."),
+              t("Calcula σ√T y ln(S/K).", "Compute σ√T and ln(S/K)."),
+              t("Calcula d₁ = [ln(S/K) + (r + σ²/2) × T] ÷ (σ√T) y luego d₂ = d₁ − σ√T.", "Compute d₁ = [ln(S/K) + (r + σ²/2) × T] ÷ (σ√T) and then d₂ = d₁ − σ√T."),
+              t("Busca N(d₁) y N(d₂) en tabla o Excel.", "Look up N(d₁) and N(d₂) in a table or Excel."),
+              t("Calcula C = S × N(d₁) − K × e^(−rT) × N(d₂).", "Compute C = S × N(d₁) − K × e^(−rT) × N(d₂)."),
+            ],
+            example: t(
+              "S = $100, K = $100, T = 1 año, r = 5%, σ = 20%. σ√T = 0.20 × 1 = 0.20; ln(100/100) = 0. d₁ = [0 + (0.05 + 0.02) × 1] ÷ 0.20 = 0.35; d₂ = 0.35 − 0.20 = 0.15. N(0.35) ≈ 0.6368; N(0.15) ≈ 0.5596. K × e^(−0.05) ≈ 95.12. C = 100 × 0.6368 − 95.12 × 0.5596 ≈ 63.68 − 53.23 ≈ **$10.45**.",
+              "S = $100, K = $100, T = 1 year, r = 5%, σ = 20%. σ√T = 0.20 × 1 = 0.20; ln(100/100) = 0. d₁ = [0 + (0.05 + 0.02) × 1] ÷ 0.20 = 0.35; d₂ = 0.35 − 0.20 = 0.15. N(0.35) ≈ 0.6368; N(0.15) ≈ 0.5596. K × e^(−0.05) ≈ 95.12. C = 100 × 0.6368 − 95.12 × 0.5596 ≈ 63.68 − 53.23 ≈ **$10.45**.",
+            ),
+            interpret: t(
+              "Fíjate que el rendimiento esperado de la acción no aparece en ningún lado: solo S, K, T, r y σ.",
+              "Notice that the stock's expected return does not appear anywhere: only S, K, T, r and σ.",
+            ),
+            mistake: t(
+              "Usar σ² en lugar de σ²/2 en d₁, o poner la volatilidad en porcentaje (20) en lugar de decimal (0.20).",
+              "Using σ² instead of σ²/2 in d₁, or entering volatility as a percentage (20) instead of a decimal (0.20).",
+            ),
+          },
+          {
+            name: t("Paridad put-call (opciones europeas sin dividendos)", "Put-call parity (European options, no dividends)"),
+            expression: "C − P = S − K·e^(−rT)   →   P = C − S + K·e^(−rT)",
+            variables: [
+              { symbol: "C", meaning: t("Precio de la call, en pesos.", "Call price, in pesos.") },
+              { symbol: "P", meaning: t("Precio de la put con el mismo K y T, en pesos.", "Price of the put with the same K and T, in pesos.") },
+              { symbol: "S", meaning: t("Precio actual de la acción, en pesos.", "Current stock price, in pesos.") },
+              { symbol: "K·e^(−rT)", meaning: t("Valor presente del precio de ejercicio, VP(K): lo que vale hoy pagar K al vencimiento.", "Present value of the strike, PV(K): what paying K at expiry is worth today.") },
+            ],
+            steps: [
+              t("Trae K a valor presente: K × e^(−rT) (o usa el VP(K) que te den).", "Bring K to present value: K × e^(−rT) (or use the PV(K) you are given)."),
+              t("Despeja la opción que buscas; para la put: P = C − S + VP(K).", "Solve for the option you need; for the put: P = C − S + PV(K)."),
+              t("Compara con el precio de mercado: si difiere, hay arbitraje por la diferencia.", "Compare with the market price: if they differ, there is arbitrage for the difference."),
+            ],
+            example: t(
+              "C = $12, S = $100, K = $105, r = 5%, T = 1 año. VP(K) = 105 × e^(−0.05) ≈ 99.88. P = 12 − 100 + 99.88 ≈ **$11.88**. Si la put cotiza en $13, está cara por 13 − 11.88 = $1.12.",
+              "C = $12, S = $100, K = $105, r = 5%, T = 1 year. PV(K) = 105 × e^(−0.05) ≈ 99.88. P = 12 − 100 + 99.88 ≈ **$11.88**. If the put trades at $13, it is $1.12 too expensive (13 − 11.88).",
+            ),
+            mistake: t(
+              "Usar K sin descontar o capitalizarlo (K × e^(rT)). K se paga en el futuro, así que se trae a hoy.",
+              "Using K undiscounted or compounding it (K × e^(rT)). K is paid in the future, so it is brought to today.",
+            ),
+          },
+        ],
         bullets: [
           t("Sube S → la call vale más y la put menos.", "S rises → the call is worth more and the put less."),
           t("Sube σ → calls y puts valen más (más chance de terminar muy dentro del dinero).", "σ rises → calls and puts are worth more (more chance of ending deep in the money)."),
@@ -175,7 +327,7 @@ export const lessons: Lesson[] = [
       "La simulación Monte Carlo genera miles de escenarios aleatorios con un modelo y promedia sus resultados para estimar precios, riesgos y probabilidades difíciles de calcular a mano.",
       "Monte Carlo simulation generates thousands of random scenarios with a model and averages their results to estimate prices, risks and probabilities that are hard to compute by hand.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Describir los pasos de una simulación Monte Carlo y por qué funciona.", "Describe the steps of a Monte Carlo simulation and why it works."),
       t("Simular un paso del precio de una acción con movimiento browniano geométrico.", "Simulate one step of a stock price with geometric Brownian motion."),
@@ -197,6 +349,37 @@ export const lessons: Lesson[] = [
             "Mini ejemplo: quieres saber la probabilidad de que tu ahorro para el retiro no alcance. Simulas 10,000 trayectorias de rendimientos; si en 1,200 se agota el dinero antes de tiempo, estimas un 12% de probabilidad de quedarte corto (con esos supuestos).",
             "Mini example: you want the probability that your retirement savings fall short. You simulate 10,000 return paths; if the money runs out early in 1,200 of them, you estimate a 12% probability of falling short (under those assumptions).",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Precio de una opción por Monte Carlo", "Option price by Monte Carlo"),
+            expression: "Precio ≈ [Σ máx(Sᵢ − K, 0) ÷ N] × Factor de descuento",
+            variables: [
+              { symbol: "Sᵢ", meaning: t("Precio final simulado en el escenario i, en pesos.", "Simulated final price in scenario i, in pesos.") },
+              { symbol: "K", meaning: t("Precio de ejercicio de la call, en pesos.", "Strike price of the call, in pesos.") },
+              { symbol: "máx(Sᵢ − K, 0)", meaning: t("Pago de la call en ese escenario: lo que sobra sobre K, o cero si no conviene ejercer.", "Call payoff in that scenario: the excess over K, or zero if exercising does not pay.") },
+              { symbol: "Σ", meaning: t("Suma de los pagos de todos los escenarios.", "Sum of the payoffs of all scenarios.") },
+              { symbol: "N", meaning: t("Número de escenarios simulados.", "Number of simulated scenarios.") },
+              { symbol: "Factor de descuento", meaning: t("Número menor que 1 que trae un peso del vencimiento a hoy (por ejemplo, 0.95).", "Number below 1 that brings one peso from expiry to today (for example, 0.95).") },
+            ],
+            steps: [
+              t("Calcula el pago de la opción en cada escenario, uno por uno.", "Compute the option payoff in each scenario, one by one."),
+              t("Suma los pagos y divide entre N: es el pago promedio al vencimiento.", "Add the payoffs and divide by N: that is the average payoff at expiry."),
+              t("Multiplica el promedio por el factor de descuento para tenerlo en pesos de hoy.", "Multiply the average by the discount factor to get it in today's pesos."),
+            ],
+            example: t(
+              "Precios simulados: $70, $85, $96 y $110; call con K = $80; factor de descuento 0.95. Pagos: 0, 5, 16 y 30. Suma: 51. Promedio: 51 ÷ 4 = 12.75. Precio: 12.75 × 0.95 ≈ **$12.11**.",
+              "Simulated prices: $70, $85, $96 and $110; call with K = $80; discount factor 0.95. Payoffs: 0, 5, 16 and 30. Sum: 51. Average: 51 ÷ 4 = 12.75. Price: 12.75 × 0.95 ≈ **$12.11**.",
+            ),
+            interpret: t(
+              "La misma lógica sirve para probabilidades: escenarios donde pasa el evento ÷ N (1,200 ÷ 10,000 = 12%).",
+              "The same logic works for probabilities: scenarios where the event happens ÷ N (1,200 ÷ 10,000 = 12%).",
+            ),
+            mistake: t(
+              "Promediar primero los precios y luego restar K. El pago no es lineal (nunca es negativo), así que se calcula escenario por escenario.",
+              "Averaging the prices first and then subtracting K. The payoff is not linear (it is never negative), so it is computed scenario by scenario.",
+            ),
+          },
         ],
         bullets: [
           t("1. Define el modelo y sus supuestos (distribución, parámetros).", "1. Define the model and its assumptions (distribution, parameters)."),
@@ -222,7 +405,39 @@ export const lessons: Lesson[] = [
             "Mini example: S₀ = $100, μ = 8%, σ = 20%, Δt = 1 year and Z = 0.5 is drawn. The exponent is (0.08 − 0.02) × 1 + 0.20 × 0.5 = 0.16, so S₁ = 100 × e^0.16 ≈ $117.35.",
           ),
         ],
-        formula: "S(t+Δt) = S(t) × exp[(μ − σ²/2)·Δt + σ·√Δt·Z],  Z ~ N(0, 1)",
+        formulas: [
+          {
+            name: t("Un paso de precio con movimiento browniano geométrico", "One price step with geometric Brownian motion"),
+            expression: "S(t+Δt) = S(t) × exp[(μ − σ²/2)·Δt + σ·√Δt·Z],  Z ~ N(0, 1)",
+            variables: [
+              { symbol: "S(t)", meaning: t("Precio de partida, en pesos.", "Starting price, in pesos.") },
+              { symbol: "S(t+Δt)", meaning: t("Precio simulado al final del paso, en pesos.", "Simulated price at the end of the step, in pesos.") },
+              { symbol: "μ", meaning: t("Deriva: rendimiento promedio anual esperado, en decimal (para valuar derivados se usa r).", "Drift: expected average annual return, as a decimal (to price derivatives use r).") },
+              { symbol: "σ", meaning: t("Volatilidad anual, en decimal.", "Annual volatility, as a decimal.") },
+              { symbol: "Δt", meaning: t("Tamaño del paso, en años (un mes = 1/12).", "Step size, in years (one month = 1/12).") },
+              { symbol: "Z", meaning: t("Número al azar de una normal estándar (promedio 0, desviación 1); es el 'choque' del escenario.", "Random number from a standard normal (mean 0, deviation 1); it is the scenario's 'shock'.") },
+              { symbol: "exp[ ]", meaning: t("Función exponencial, e elevado a lo que está entre corchetes (EXP en Excel).", "Exponential function, e raised to what is in the brackets (EXP in Excel).") },
+            ],
+            steps: [
+              t("Calcula la parte fija: (μ − σ²/2) × Δt.", "Compute the fixed part: (μ − σ²/2) × Δt."),
+              t("Calcula la parte aleatoria: σ × √Δt × Z.", "Compute the random part: σ × √Δt × Z."),
+              t("Suma ambas partes para obtener el exponente.", "Add both parts to get the exponent."),
+              t("Saca la exponencial del exponente y multiplícala por el precio de partida.", "Take the exponential of the exponent and multiply it by the starting price."),
+            ],
+            example: t(
+              "S(t) = $40, μ = 12%, σ = 25%, Δt = 0.5 años, Z = 1.2. Parte fija: σ²/2 = 0.0625 ÷ 2 = 0.03125; (0.12 − 0.03125) × 0.5 ≈ 0.0444. Parte aleatoria: 0.25 × √0.5 × 1.2 ≈ 0.25 × 0.7071 × 1.2 ≈ 0.2121. Exponente ≈ 0.2565. e^0.2565 ≈ 1.2924. Precio: 40 × 1.2924 ≈ **$51.70**.",
+              "S(t) = $40, μ = 12%, σ = 25%, Δt = 0.5 years, Z = 1.2. Fixed part: σ²/2 = 0.0625 ÷ 2 = 0.03125; (0.12 − 0.03125) × 0.5 ≈ 0.0444. Random part: 0.25 × √0.5 × 1.2 ≈ 0.25 × 0.7071 × 1.2 ≈ 0.2121. Exponent ≈ 0.2565. e^0.2565 ≈ 1.2924. Price: 40 × 1.2924 ≈ **$51.70**.",
+            ),
+            interpret: t(
+              "Z positivo empuja el precio hacia arriba y Z negativo hacia abajo; como se usa la exponencial, el precio nunca queda negativo.",
+              "A positive Z pushes the price up and a negative Z pushes it down; because the exponential is used, the price never goes negative.",
+            ),
+            mistake: t(
+              "Omitir la corrección −σ²/2, u olvidar sacar la raíz de Δt en la parte aleatoria.",
+              "Omitting the −σ²/2 correction, or forgetting to take the square root of Δt in the random part.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Precisión, semillas y reducción de varianza", "Precision, seeds and variance reduction"),
@@ -240,7 +455,36 @@ export const lessons: Lesson[] = [
             "Mini example: with 10,000 simulations, an option's payoffs have a standard deviation of $30. The standard error is 30 / 100 = $0.30, and a 95% interval is the estimate ± 1.96 × 0.30 = ± $0.59.",
           ),
         ],
-        formula: "Error estándar / Standard error = s / √N",
+        formulas: [
+          {
+            name: t("Error estándar de Monte Carlo y simulaciones necesarias", "Monte Carlo standard error and simulations needed"),
+            expression: "Error estándar = s ÷ √N   ·   N necesario = (s ÷ Error objetivo)²",
+            variables: [
+              { symbol: "s", meaning: t("Desviación estándar de los resultados simulados (por ejemplo, de los pagos descontados), en pesos.", "Standard deviation of the simulated results (for example, of the discounted payoffs), in pesos.") },
+              { symbol: "N", meaning: t("Número de simulaciones.", "Number of simulations.") },
+              { symbol: "√N", meaning: t("Raíz cuadrada de N.", "Square root of N.") },
+              { symbol: "Error objetivo", meaning: t("El error estándar máximo que quieres aceptar, en pesos.", "The maximum standard error you want to accept, in pesos.") },
+            ],
+            steps: [
+              t("Saca la raíz cuadrada del número de simulaciones.", "Take the square root of the number of simulations."),
+              t("Divide la desviación estándar entre esa raíz: es el error estándar.", "Divide the standard deviation by that root: that is the standard error."),
+              t("Si quieres un intervalo de 95%, usa estimación ± 1.96 × error estándar.", "If you want a 95% interval, use estimate ± 1.96 × standard error."),
+              t("Para saber cuántas simulaciones necesitas, divide s entre el error que quieres y eleva al cuadrado.", "To know how many simulations you need, divide s by the error you want and square it."),
+            ],
+            example: t(
+              "s = $18 y N = 3,600. √3,600 = 60. Error estándar = 18 ÷ 60 = **$0.30**. Intervalo de 95%: ± 1.96 × 0.30 ≈ ± $0.59. Para bajar a $0.10: (18 ÷ 0.10)² = 180² = 32,400 simulaciones.",
+              "s = $18 and N = 3,600. √3,600 = 60. Standard error = 18 ÷ 60 = **$0.30**. 95% interval: ± 1.96 × 0.30 ≈ ± $0.59. To get down to $0.10: (18 ÷ 0.10)² = 180² = 32,400 simulations.",
+            ),
+            interpret: t(
+              "Por la raíz, dividir el error entre 2 exige 4 veces más simulaciones, y entre 3 exige 9 veces más.",
+              "Because of the square root, dividing the error by 2 requires 4 times more simulations, and by 3 requires 9 times more.",
+            ),
+            mistake: t(
+              "Dividir entre N en lugar de entre √N, o creer que duplicar simulaciones parte el error a la mitad.",
+              "Dividing by N instead of by √N, or believing that doubling simulations halves the error.",
+            ),
+          },
+        ],
         bullets: [
           t("Ventaja: maneja problemas con muchas variables o pagos complicados.", "Advantage: handles problems with many variables or complicated payoffs."),
           t("Limitación: es lento si necesitas mucha precisión.", "Limitation: it is slow if you need high precision."),
@@ -303,7 +547,7 @@ export const lessons: Lesson[] = [
       "Python, con NumPy y pandas, permite cargar datos financieros, calcular rendimientos e indicadores de forma vectorizada y hacer análisis reproducibles.",
       "Python, with NumPy and pandas, lets you load financial data, compute returns and indicators in a vectorized way and run reproducible analyses.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Identificar para qué sirven NumPy, pandas, matplotlib y SciPy en finanzas.", "Identify what NumPy, pandas, matplotlib and SciPy are used for in finance."),
       t("Calcular rendimientos y promedios móviles con pandas (pct_change, rolling, shift).", "Compute returns and moving averages with pandas (pct_change, rolling, shift)."),
@@ -349,7 +593,56 @@ export const lessons: Lesson[] = [
             "Mini example: prices 100, 102 and 99.96. `pct_change()` returns NaN, 0.02 and −0.02: it rose 2% and then fell 2% (102 × 0.98 = 99.96).",
           ),
         ],
-        formula: "ret = precios.pct_change()   ·   mm20 = precios.rolling(20).mean()   ·   senal_ayer = senal.shift(1)",
+        formulas: [
+          {
+            name: t("Rendimiento simple diario (lo que hace pct_change)", "Simple daily return (what pct_change does)"),
+            expression: "ret = Precio de hoy ÷ Precio de ayer − 1   ·   en pandas: ret = precios.pct_change()",
+            variables: [
+              { symbol: "ret", meaning: t("Rendimiento del día, en decimal (0.05 = subió 5%; −0.10 = bajó 10%).", "The day's return, as a decimal (0.05 = rose 5%; −0.10 = fell 10%).") },
+              { symbol: "Precio de hoy", meaning: t("Cierre del día que estás calculando, en pesos.", "Close of the day you are computing, in pesos.") },
+              { symbol: "Precio de ayer", meaning: t("Cierre del día inmediato anterior (no el primero de la serie), en pesos.", "Close of the immediately previous day (not the first of the series), in pesos.") },
+            ],
+            steps: [
+              t("Divide cada precio entre el precio del día anterior.", "Divide each price by the previous day's price."),
+              t("Resta 1 al resultado: queda el rendimiento en decimal.", "Subtract 1 from the result: you get the return as a decimal."),
+              t("El primer día no tiene precio anterior, por eso pandas pone NaN (vacío).", "The first day has no previous price, so pandas puts NaN (empty)."),
+            ],
+            example: t(
+              "Precios: 40, 44 y 41.8. Día 2: 44 ÷ 40 = 1.10; 1.10 − 1 = **0.10**. Día 3: 41.8 ÷ 44 = 0.95; 0.95 − 1 = **−0.05**. pandas devuelve NaN, 0.10, −0.05.",
+              "Prices: 40, 44 and 41.8. Day 2: 44 ÷ 40 = 1.10; 1.10 − 1 = **0.10**. Day 3: 41.8 ÷ 44 = 0.95; 0.95 − 1 = **−0.05**. pandas returns NaN, 0.10, −0.05.",
+            ),
+            mistake: t(
+              "Comparar contra el primer precio de la serie en lugar del día anterior, o escribir 10 en lugar de 0.10 (pandas da decimales, no porcentajes).",
+              "Comparing against the first price of the series instead of the previous day, or writing 10 instead of 0.10 (pandas gives decimals, not percentages).",
+            ),
+          },
+          {
+            name: t("Promedio móvil de n días (lo que hace rolling(n).mean())", "n-day moving average (what rolling(n).mean() does)"),
+            expression: "mm_n = (suma de los últimos n precios) ÷ n   ·   en pandas: precios.rolling(n).mean()",
+            variables: [
+              { symbol: "mm_n", meaning: t("Promedio móvil de n días en cada fecha, en pesos.", "n-day moving average on each date, in pesos.") },
+              { symbol: "n", meaning: t("Tamaño de la ventana: cuántos días recientes se promedian (por ejemplo, 3 o 20).", "Window size: how many recent days are averaged (for example, 3 or 20).") },
+              { symbol: "últimos n precios", meaning: t("El precio de ese día y los n − 1 anteriores.", "That day's price and the n − 1 before it.") },
+            ],
+            steps: [
+              t("Ubica la fila que quieres calcular y toma ese precio junto con los n − 1 anteriores.", "Find the row you want and take that price together with the n − 1 before it."),
+              t("Súmalos y divide entre n.", "Add them and divide by n."),
+              t("Las primeras n − 1 filas salen NaN porque todavía no hay n datos.", "The first n − 1 rows come out NaN because there are not yet n data points."),
+            ],
+            example: t(
+              "Precios 20, 23, 26 y 29 con n = 3. Fila 3: (20 + 23 + 26) ÷ 3 = 69 ÷ 3 = **23**. Fila 4: (23 + 26 + 29) ÷ 3 = 78 ÷ 3 = **26**. Resultado: NaN, NaN, 23, 26.",
+              "Prices 20, 23, 26 and 29 with n = 3. Row 3: (20 + 23 + 26) ÷ 3 = 69 ÷ 3 = **23**. Row 4: (23 + 26 + 29) ÷ 3 = 78 ÷ 3 = **26**. Result: NaN, NaN, 23, 26.",
+            ),
+            interpret: t(
+              "Si quieres usar una señal (por ejemplo, precio > promedio móvil) para operar, recórrela un día con `senal.shift(1)`: así cada día usa solo lo que sabías ayer.",
+              "If you want to use a signal (for example, price > moving average) to trade, shift it one day with `signal.shift(1)`: that way each day uses only what you knew yesterday.",
+            ),
+            mistake: t(
+              "Promediar toda la serie o los primeros n precios en lugar de los n más recientes de cada fila.",
+              "Averaging the whole series or the first n prices instead of the n most recent ones for each row.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Vectorizar y trabajar de forma reproducible", "Vectorize and work reproducibly"),
@@ -431,7 +724,7 @@ export const lessons: Lesson[] = [
       "El machine learning aprende patrones de datos para predecir o agrupar; en finanzas sirve para crédito, fraude y señales, siempre que se valide bien y se cuide el sobreajuste y el sesgo.",
       "Machine learning learns patterns from data to predict or group; in finance it is used for credit, fraud and signals, as long as it is properly validated and overfitting and bias are controlled.",
     ),
-    minutes: 17,
+    minutes: 18,
     objectives: [
       t("Distinguir aprendizaje supervisado (regresión, clasificación) y no supervisado (agrupamiento).", "Distinguish supervised learning (regression, classification) from unsupervised learning (clustering)."),
       t("Reconocer el sobreajuste y separar datos de entrenamiento y prueba respetando el tiempo.", "Recognize overfitting and split training and test data respecting time order."),
@@ -493,7 +786,37 @@ export const lessons: Lesson[] = [
             "Mini example: out of 1,000 purchases, 20 are fraud. The model flags 30, and 15 of them are real fraud. Precision = 15/30 = 50% and recall = 15/20 = 75%.",
           ),
         ],
-        formula: "Exactitud = (VP + VN)/Total · Precisión = VP/(VP + FP) · Sensibilidad = VP/(VP + FN)",
+        formulas: [
+          {
+            name: t("Exactitud, precisión y sensibilidad de un clasificador", "Accuracy, precision and recall of a classifier"),
+            expression: "Exactitud = (VP + VN) ÷ Total × 100   ·   Precisión = VP ÷ (VP + FP) × 100   ·   Sensibilidad = VP ÷ (VP + FN) × 100",
+            variables: [
+              { symbol: "VP", meaning: t("Verdaderos positivos: casos que el modelo marcó y sí eran (fraude o impago real).", "True positives: cases the model flagged that really were (actual fraud or default).") },
+              { symbol: "FP", meaning: t("Falsos positivos: alarmas en casos que no eran (cliente bueno marcado como malo).", "False positives: alarms on cases that were not (a good customer flagged as bad).") },
+              { symbol: "FN", meaning: t("Falsos negativos: casos reales que el modelo dejó escapar.", "False negatives: real cases the model let slip through.") },
+              { symbol: "VN", meaning: t("Verdaderos negativos: casos normales que el modelo dejó pasar correctamente.", "True negatives: normal cases the model correctly let through.") },
+              { symbol: "Total", meaning: t("Todos los casos evaluados: VP + FP + FN + VN.", "All cases evaluated: TP + FP + FN + TN.") },
+            ],
+            steps: [
+              t("Arma la matriz: si te dan alertas y casos reales, FP = alertas − VP y FN = casos reales − VP; VN = Total − VP − FP − FN.", "Build the matrix: if you are given alerts and real cases, FP = alerts − TP and FN = real cases − TP; TN = Total − TP − FP − FN."),
+              t("Exactitud: suma los aciertos (VP + VN), divide entre el total y multiplica por 100.", "Accuracy: add the hits (TP + TN), divide by the total and multiply by 100."),
+              t("Precisión: divide VP entre todas las alertas (VP + FP) y multiplica por 100.", "Precision: divide TP by all the alerts (TP + FP) and multiply by 100."),
+              t("Sensibilidad: divide VP entre todos los casos reales (VP + FN) y multiplica por 100.", "Recall: divide TP by all the real cases (TP + FN) and multiply by 100."),
+            ],
+            example: t(
+              "2,000 clientes: VP = 30, FP = 20, FN = 10, VN = 1,940. Exactitud = (30 + 1,940) ÷ 2,000 = 0.985 → **98.5%**. Precisión = 30 ÷ (30 + 20) = 30 ÷ 50 = 0.60 → **60%**. Sensibilidad = 30 ÷ (30 + 10) = 30 ÷ 40 = 0.75 → **75%**.",
+              "2,000 customers: TP = 30, FP = 20, FN = 10, TN = 1,940. Accuracy = (30 + 1,940) ÷ 2,000 = 0.985 → **98.5%**. Precision = 30 ÷ (30 + 20) = 30 ÷ 50 = 0.60 → **60%**. Recall = 30 ÷ (30 + 10) = 30 ÷ 40 = 0.75 → **75%**.",
+            ),
+            interpret: t(
+              "Precisión alta: pocas falsas alarmas. Sensibilidad alta: se escapan pocos casos. Si los casos reales son pocos, un modelo que 'nunca alerta' tiene exactitud = casos normales ÷ total, alta pero inútil (su sensibilidad es 0%).",
+              "High precision: few false alarms. High recall: few cases slip through. If real cases are rare, a model that 'never alerts' has accuracy = normal cases ÷ total, high but useless (its recall is 0%).",
+            ),
+            mistake: t(
+              "Intercambiar precisión y sensibilidad: la precisión se divide entre las alertas; la sensibilidad, entre los casos reales.",
+              "Swapping precision and recall: precision is divided by the alerts; recall, by the real cases.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -552,7 +875,7 @@ export const lessons: Lesson[] = [
       "El backtesting prueba una estrategia o un modelo con datos históricos, y solo es útil si evita sesgos, incluye costos y se valida fuera de muestra.",
       "Backtesting tests a strategy or model on historical data, and it is only useful if it avoids biases, includes costs and is validated out of sample.",
     ),
-    minutes: 17,
+    minutes: 19,
     objectives: [
       t("Explicar qué es un backtest y calcular métricas como la caída máxima (drawdown).", "Explain what a backtest is and compute metrics such as maximum drawdown."),
       t("Identificar sesgos de anticipación, supervivencia y sobreoptimización, y el efecto de los costos.", "Identify look-ahead, survivorship and over-optimization biases, and the effect of costs."),
@@ -575,7 +898,59 @@ export const lessons: Lesson[] = [
             "Mini example: a portfolio's value was 100, 120, 90, 110, 130 and 104. Drops: from 120 to 90 = −25%; from 130 to 104 = −20%. The maximum drawdown is 25%.",
           ),
         ],
-        formula: "Drawdown = (Valor − Pico previo) / Pico previo   ·   Sharpe = (Rp − Rf) / σp",
+        formulas: [
+          {
+            name: t("Caída máxima (max drawdown)", "Maximum drawdown"),
+            expression: "Drawdown = (Valor − Pico previo) ÷ Pico previo × 100   ·   Caída máxima = el drawdown más negativo",
+            variables: [
+              { symbol: "Valor", meaning: t("Valor de la cartera en esa fecha, en pesos.", "Portfolio value on that date, in pesos.") },
+              { symbol: "Pico previo", meaning: t("El valor más alto que había alcanzado la cartera hasta esa fecha (incluida), en pesos.", "The highest value the portfolio had reached up to that date (inclusive), in pesos.") },
+              { symbol: "Drawdown", meaning: t("Qué tan abajo del pico está la cartera en esa fecha, en %; es 0 si está en un pico nuevo.", "How far below the peak the portfolio is on that date, in %; it is 0 at a new peak.") },
+            ],
+            steps: [
+              t("Recorre los valores y anota el pico acumulado: el máximo visto hasta cada fecha.", "Go through the values and write down the running peak: the maximum seen up to each date."),
+              t("En cada fecha calcula (Valor − Pico previo) ÷ Pico previo × 100.", "On each date compute (Value − Previous peak) ÷ Previous peak × 100."),
+              t("La caída máxima es el resultado más negativo; se suele reportar como número positivo.", "The maximum drawdown is the most negative result; it is usually reported as a positive number."),
+            ],
+            example: t(
+              "Valores: 80, 100, 85, 120, 96 y 110. Picos: 80, 100, 100, 120, 120, 120. Drawdowns: 0%, 0%, (85 − 100) ÷ 100 = −15%, 0%, (96 − 120) ÷ 120 = −20%, (110 − 120) ÷ 120 ≈ −8.3%. Caída máxima: **20%**.",
+              "Values: 80, 100, 85, 120, 96 and 110. Peaks: 80, 100, 100, 120, 120, 120. Drawdowns: 0%, 0%, (85 − 100) ÷ 100 = −15%, 0%, (96 − 120) ÷ 120 = −20%, (110 − 120) ÷ 120 ≈ −8.3%. Maximum drawdown: **20%**.",
+            ),
+            interpret: t(
+              "Es la peor racha que habrías aguantado. Una caída máxima de 20% significa que en algún momento viste desaparecer una quinta parte de lo que llevabas ganado.",
+              "It is the worst stretch you would have endured. A 20% maximum drawdown means that at some point you saw a fifth of your accumulated value disappear.",
+            ),
+            mistake: t(
+              "Medir contra el primer valor o contra el último, en lugar de contra el pico más alto alcanzado antes de la caída.",
+              "Measuring against the first or last value instead of against the highest peak reached before the drop.",
+            ),
+          },
+          {
+            name: t("Índice de Sharpe", "Sharpe ratio"),
+            expression: "Sharpe = (Rp − Rf) ÷ σp",
+            variables: [
+              { symbol: "Rp", meaning: t("Rendimiento anual de la estrategia o cartera, en %.", "Annual return of the strategy or portfolio, in %.") },
+              { symbol: "Rf", meaning: t("Tasa libre de riesgo anual (por ejemplo, la de un bono gubernamental de corto plazo), en %.", "Annual risk-free rate (for example, a short-term government bond), in %.") },
+              { symbol: "σp", meaning: t("Volatilidad anual de la estrategia (desviación estándar de sus rendimientos), en %.", "Annual volatility of the strategy (standard deviation of its returns), in %.") },
+            ],
+            steps: [
+              t("Resta la tasa libre de riesgo al rendimiento: es el rendimiento extra por tomar riesgo.", "Subtract the risk-free rate from the return: that is the extra return for taking risk."),
+              t("Divide ese rendimiento extra entre la volatilidad.", "Divide that extra return by the volatility."),
+            ],
+            example: t(
+              "Rp = 11%, Rf = 5% (tasa de ejemplo), σp = 15%. Rendimiento extra: 11% − 5% = 6%. Sharpe = 6 ÷ 15 = **0.4**.",
+              "Rp = 11%, Rf = 5% (example rate), σp = 15%. Extra return: 11% − 5% = 6%. Sharpe = 6 ÷ 15 = **0.4**.",
+            ),
+            interpret: t(
+              "Más alto es mejor: más premio por cada unidad de riesgo. Un Sharpe negativo significa que la estrategia rindió menos que la inversión sin riesgo.",
+              "Higher is better: more reward per unit of risk. A negative Sharpe means the strategy earned less than the risk-free investment.",
+            ),
+            mistake: t(
+              "Olvidar restar Rf, o mezclar rendimientos mensuales con volatilidad anual.",
+              "Forgetting to subtract Rf, or mixing monthly returns with annual volatility.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Sesgos y costos que inflan los resultados", "Biases and costs that inflate results"),
@@ -592,6 +967,31 @@ export const lessons: Lesson[] = [
             "Mini ejemplo: una estrategia rinde 12% anual bruto, pero hace 50 operaciones al año con un costo de 0.1% cada una. Los costos suman 5%, y el rendimiento neto baja a 7%.",
             "Mini example: a strategy earns 12% per year gross, but makes 50 trades a year at a cost of 0.1% each. Costs add up to 5%, and the net return drops to 7%.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Rendimiento neto después de costos de operación", "Net return after trading costs"),
+            expression: "Costo anual = Número de operaciones × Costo por operación   ·   Rendimiento neto = Rendimiento bruto − Costo anual",
+            variables: [
+              { symbol: "Número de operaciones", meaning: t("Cuántas compras o ventas hace la estrategia en un año.", "How many buys or sells the strategy makes in a year.") },
+              { symbol: "Costo por operación", meaning: t("Lo que cuesta cada operación como % del capital (comisión + diferencial compra-venta).", "What each trade costs as a % of capital (commission + bid-ask spread).") },
+              { symbol: "Costo anual", meaning: t("Total de costos del año, en % del capital.", "Total costs for the year, in % of capital.") },
+              { symbol: "Rendimiento bruto", meaning: t("Lo que rinde la estrategia en el backtest antes de costos, en % anual.", "What the strategy earns in the backtest before costs, in % per year.") },
+              { symbol: "Rendimiento neto", meaning: t("Lo que de verdad te quedaría después de costos, en % anual.", "What you would really keep after costs, in % per year.") },
+            ],
+            steps: [
+              t("Multiplica el número de operaciones al año por el costo de cada una.", "Multiply the number of trades per year by the cost of each one."),
+              t("Resta ese costo anual al rendimiento bruto.", "Subtract that annual cost from the gross return."),
+            ],
+            example: t(
+              "Rendimiento bruto 14% anual; 60 operaciones al año a 0.05% cada una. Costo anual: 60 × 0.05% = **3%**. Neto: 14% − 3% = **11%**.",
+              "Gross return 14% per year; 60 trades a year at 0.05% each. Annual cost: 60 × 0.05% = **3%**. Net: 14% − 3% = **11%**.",
+            ),
+            mistake: t(
+              "Pensar que un costo pequeño por operación no importa: lo que pesa es cuántas veces lo pagas. Además, el slippage puede hacer el costo real aún mayor.",
+              "Thinking a small cost per trade does not matter: what counts is how many times you pay it. Also, slippage can make the real cost even higher.",
+            ),
+          },
         ],
         bullets: [
           t("Anticipación: usar datos del futuro.", "Look-ahead: using data from the future."),
@@ -616,7 +1016,34 @@ export const lessons: Lesson[] = [
             "Mini example: a bank has 7 exceptions of its 99% VaR in 250 days. It expected 2.5, so it falls in the yellow zone: it must review the model.",
           ),
         ],
-        formula: "Excepciones esperadas / Expected exceptions = (1 − nivel de confianza / confidence level) × N días / days",
+        formulas: [
+          {
+            name: t("Excepciones esperadas en un backtest del VaR", "Expected exceptions in a VaR backtest"),
+            expression: "Excepciones esperadas = (1 − nivel de confianza) × N días",
+            variables: [
+              { symbol: "Excepciones esperadas", meaning: t("Cuántos días se espera que la pérdida real supere el VaR si el modelo es correcto.", "How many days the actual loss is expected to exceed VaR if the model is correct.") },
+              { symbol: "nivel de confianza", meaning: t("El nivel del VaR, en decimal (99% = 0.99; 95% = 0.95).", "The VaR level, as a decimal (99% = 0.99; 95% = 0.95).") },
+              { symbol: "N días", meaning: t("Número de días hábiles revisados (por ejemplo, 250 ≈ un año).", "Number of business days reviewed (for example, 250 ≈ one year).") },
+            ],
+            steps: [
+              t("Calcula la probabilidad de excepción: 1 − nivel de confianza (99% → 0.01).", "Compute the exception probability: 1 − confidence level (99% → 0.01)."),
+              t("Multiplícala por el número de días.", "Multiply it by the number of days."),
+              t("Compara con las excepciones reales: muchas más indican que el modelo subestima el riesgo; muchas menos, que es demasiado conservador.", "Compare with the actual exceptions: many more mean the model underestimates risk; many fewer, that it is too conservative."),
+            ],
+            example: t(
+              "VaR de 97.5% revisado en 400 días. Probabilidad de excepción: 1 − 0.975 = 0.025. Esperadas: 0.025 × 400 = **10 excepciones**.",
+              "97.5% VaR reviewed over 400 days. Exception probability: 1 − 0.975 = 0.025. Expected: 0.025 × 400 = **10 exceptions**.",
+            ),
+            interpret: t(
+              "Para un VaR de 99% con 250 días, el esquema de Basilea usa zonas: 0 a 4 excepciones verde, 5 a 9 amarilla y 10 o más roja.",
+              "For a 99% VaR over 250 days, the Basel scheme uses zones: 0 to 4 exceptions green, 5 to 9 yellow and 10 or more red.",
+            ),
+            mistake: t(
+              "Multiplicar por el nivel de confianza (0.975 × 400 = 390) en lugar de por su complemento (0.025 × 400).",
+              "Multiplying by the confidence level (0.975 × 400 = 390) instead of by its complement (0.025 × 400).",
+            ),
+          },
+        ],
       },
     ],
     examples: [
