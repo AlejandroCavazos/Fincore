@@ -40,7 +40,7 @@ export const lessons: Lesson[] = [
       es: "Invertir es poner tu dinero a trabajar para que crezca más que la inflación, entendiendo siempre la relación entre rendimiento, riesgo, liquidez y plazo.",
       en: "Investing is putting your money to work so it grows faster than inflation, always understanding the relationship between return, risk, liquidity and time horizon.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Distinguir entre ahorrar e invertir y explicar por qué el dinero guardado pierde valor con la inflación.", en: "Distinguish saving from investing and explain why idle money loses value to inflation." },
       { es: "Describir las cuatro características de toda inversión: rendimiento, riesgo, liquidez y plazo.", en: "Describe the four features of every investment: return, risk, liquidity and time horizon." },
@@ -108,7 +108,63 @@ export const lessons: Lesson[] = [
             en: "On top of that, time multiplies: with **compound interest** you also earn a return on what you already earned. Mini example: $10,000 at 10% a year becomes $11,000 in the first year and $12,100 in the second, because in year two the 10% is computed on $11,000.",
           },
         ],
-        formula: "Rendimiento = (Valor final − Valor inicial + Ingresos recibidos) ÷ Valor inicial · Real = (1 + nominal) ÷ (1 + inflación) − 1",
+        formulas: [
+          {
+            name: { es: "Rendimiento total (nominal) de una inversión", en: "Total (nominal) return of an investment" },
+            expression: "Rendimiento = (Valor final − Valor inicial + Ingresos recibidos) ÷ Valor inicial",
+            variables: [
+              { symbol: "Rendimiento", meaning: { es: "Lo que ganaste en proporción a lo que pusiste; × 100 para verlo en %.", en: "What you earned in proportion to what you put in; × 100 to see it in %." } },
+              { symbol: "Valor final", meaning: { es: "Lo que vale tu inversión al terminar el periodo, en pesos.", en: "What your investment is worth at the end of the period, in pesos." } },
+              { symbol: "Valor inicial", meaning: { es: "Lo que pagaste o invertiste al empezar, en pesos.", en: "What you paid or invested at the start, in pesos." } },
+              { symbol: "Ingresos recibidos", meaning: { es: "Lo que te pagaron en el camino (intereses o dividendos), en pesos.", en: "What you were paid along the way (interest or dividends), in pesos." } },
+            ],
+            steps: [
+              { es: "Resta: valor final − valor inicial (cuánto subió o bajó).", en: "Subtract: ending value − starting value (how much it rose or fell)." },
+              { es: "Súmale los intereses o dividendos que cobraste.", en: "Add the interest or dividends you collected." },
+              { es: "Divide entre el valor inicial y multiplica por 100.", en: "Divide by the starting value and multiply by 100." },
+            ],
+            example: { es: "Compras acciones por $8,000; al año valen $8,500 y cobraste $140 de dividendos. $8,500 − $8,000 = $500; $500 + $140 = $640; $640 ÷ $8,000 = 0.08 → **8%**.", en: "You buy shares for $8,000; a year later they are worth $8,500 and you collected $140 in dividends. $8,500 − $8,000 = $500; $500 + $140 = $640; $640 ÷ $8,000 = 0.08 → **8%**." },
+            interpret: { es: "Es el rendimiento nominal: el que ves en tu estado de cuenta, antes de descontar la inflación.", en: "It is the nominal return: the one you see on your statement, before removing inflation." },
+            mistake: { es: "Olvidar los dividendos o intereses cobrados: también son parte de lo que ganaste.", en: "Forgetting the dividends or interest collected: they are also part of what you earned." },
+          },
+          {
+            name: { es: "Rendimiento real (después de inflación)", en: "Real return (after inflation)" },
+            expression: "Aproximado: Real ≈ Nominal − Inflación     Exacto: Real = (1 + Nominal) ÷ (1 + Inflación) − 1",
+            variables: [
+              { symbol: "Real", meaning: { es: "Cuánto creció de verdad tu poder de compra, en %.", en: "How much your purchasing power truly grew, in %." } },
+              { symbol: "Nominal", meaning: { es: "Rendimiento que te pagó la inversión, en decimal (8% = 0.08).", en: "Return the investment paid you, as a decimal (8% = 0.08)." } },
+              { symbol: "Inflación", meaning: { es: "Cuánto subieron los precios en el mismo periodo, en decimal.", en: "How much prices rose in the same period, as a decimal." } },
+            ],
+            steps: [
+              { es: "Para la aproximación, resta: nominal − inflación.", en: "For the approximation, subtract: nominal − inflation." },
+              { es: "Para el exacto, convierte ambos a decimal y súmales 1 (12% → 1.12).", en: "For the exact one, convert both to decimals and add 1 (12% → 1.12)." },
+              { es: "Divide (1 + nominal) entre (1 + inflación) y réstale 1.", en: "Divide (1 + nominal) by (1 + inflation) and subtract 1." },
+              { es: "Multiplica por 100 para leerlo en %.", en: "Multiply by 100 to read it in %." },
+            ],
+            example: { es: "Nominal 12% e inflación 4% (cifras hipotéticas). Aproximado: 12% − 4% = 8%. Exacto: 1.12 ÷ 1.04 = 1.076923; 1.076923 − 1 = 0.076923 → **7.69%**.", en: "Nominal 12% and inflation 4% (hypothetical figures). Approximate: 12% − 4% = 8%. Exact: 1.12 ÷ 1.04 = 1.076923; 1.076923 − 1 = 0.076923 → **7.69%**." },
+            interpret: { es: "Positivo: puedes comprar más que antes. Negativo: aunque tengas más pesos, compras menos cosas.", en: "Positive: you can buy more than before. Negative: even with more pesos, you buy fewer things." },
+            mistake: { es: "Creer que el rendimiento nominal es lo que creció tu poder de compra. La resta rápida exagera un poco el resultado.", en: "Believing the nominal return is how much your purchasing power grew. The quick subtraction slightly overstates the result." },
+          },
+          {
+            name: { es: "Interés compuesto", en: "Compound interest" },
+            expression: "Monto final = Capital × (1 + Tasa)^Años",
+            variables: [
+              { symbol: "Monto final", meaning: { es: "Lo que tendrás al terminar, en pesos.", en: "What you will have at the end, in pesos." } },
+              { symbol: "Capital", meaning: { es: "Lo que inviertes al inicio, en pesos.", en: "What you invest at the start, in pesos." } },
+              { symbol: "Tasa", meaning: { es: "Tasa anual en decimal (8% = 0.08).", en: "Annual rate as a decimal (8% = 0.08)." } },
+              { symbol: "Años", meaning: { es: "Cuántos años reinviertes todo lo que ganas.", en: "How many years you reinvest everything you earn." } },
+              { symbol: "^", meaning: { es: "\"Elevado a\": multiplicar (1 + Tasa) por sí mismo tantas veces como años.", en: "\"Raised to\": multiply (1 + Rate) by itself as many times as there are years." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal y súmale 1: 8% → 1.08.", en: "Convert the rate to a decimal and add 1: 8% → 1.08." },
+              { es: "Multiplica el capital por 1.08 una vez por cada año (o usa la potencia).", en: "Multiply the principal by 1.08 once per year (or use the power)." },
+              { es: "Para saber lo ganado, resta el capital al monto final.", en: "To know what you earned, subtract the principal from the final amount." },
+            ],
+            example: { es: "$20,000 al 8% anual (tasa de ejemplo) por 3 años: año 1: 20,000 × 1.08 = $21,600; año 2: 21,600 × 1.08 = $23,328; año 3: 23,328 × 1.08 = **$25,194.24**. Ganaste $5,194.24.", en: "$20,000 at 8% a year (example rate) for 3 years: year 1: 20,000 × 1.08 = $21,600; year 2: 21,600 × 1.08 = $23,328; year 3: 23,328 × 1.08 = **$25,194.24**. You earned $5,194.24." },
+            interpret: { es: "Con interés simple ganarías $1,600 × 3 = $4,800; lo extra viene de ganar intereses sobre intereses.", en: "With simple interest you would earn $1,600 × 3 = $4,800; the extra comes from earning interest on interest." },
+            mistake: { es: "Multiplicar tasa × años (8% × 3 = 24%) en lugar de multiplicar el factor 1.08 tres veces.", en: "Multiplying rate × years (8% × 3 = 24%) instead of multiplying the 1.08 factor three times." },
+          },
+        ],
       },
     ],
     examples: [
@@ -168,7 +224,7 @@ export const lessons: Lesson[] = [
       es: "El sistema financiero mexicano conecta a quienes tienen dinero con quienes lo necesitan, a través de intermediarios vigilados por autoridades que regulan, supervisan y protegen al usuario.",
       en: "The Mexican financial system connects those who have money with those who need it, through intermediaries overseen by authorities that regulate, supervise and protect users.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar la función del sistema financiero: canalizar el ahorro hacia la inversión.", en: "Explain the role of the financial system: channeling savings into investment." },
       { es: "Identificar a las principales autoridades financieras de México y qué vigila cada una.", en: "Identify Mexico's main financial authorities and what each one oversees." },
@@ -237,6 +293,24 @@ export const lessons: Lesson[] = [
             en: "The practical rule: **before handing over your money, check that the entity is authorized and supervised**. Authorities publish the lists of authorized entities. Mini example: an \"investment club\" on social media that appears in no registry and promises 10% a month is not part of the regulated financial system.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Depósitos protegidos por el IPAB", en: "Deposits protected by IPAB" },
+            expression: "Protegido en cada banco = el menor entre (tus depósitos en ese banco) y (400,000 UDIS)     Total protegido = suma de todos los bancos",
+            variables: [
+              { symbol: "Depósitos en ese banco", meaning: { es: "Lo que tienes en un solo banco, medido en UDIS.", en: "What you have at a single bank, measured in UDIS." } },
+              { symbol: "400,000 UDIS", meaning: { es: "Límite de protección por persona y por banco que usa esta lección.", en: "Protection limit per person per bank used in this lesson." } },
+              { symbol: "Sin cobertura", meaning: { es: "Lo que pasa del límite en cada banco: depósitos − 400,000 (si es positivo).", en: "What exceeds the limit at each bank: deposits − 400,000 (if positive)." } },
+            ],
+            steps: [
+              { es: "Revisa cada banco por separado: el límite aplica por banco, no a la suma.", en: "Check each bank separately: the limit applies per bank, not to the sum." },
+              { es: "Si tus depósitos en ese banco pasan de 400,000 UDIS, protegido = 400,000 y el resto queda sin cobertura; si no, todo está protegido.", en: "If your deposits at that bank exceed 400,000 UDIS, protected = 400,000 and the rest is uncovered; if not, everything is protected." },
+              { es: "Suma lo protegido de todos los bancos y, aparte, lo que quedó sin cobertura.", en: "Add the protected amounts of all banks and, separately, what was left uncovered." },
+            ],
+            example: { es: "450,000 UDIS en el banco A y 300,000 en el banco B. A: protegidas 400,000; sin cobertura 450,000 − 400,000 = 50,000. B: 300,000 protegidas (bajo el límite). Total protegido: 400,000 + 300,000 = **700,000 UDIS**; sin cobertura: 50,000.", en: "450,000 UDIS at bank A and 300,000 at bank B. A: 400,000 protected; uncovered 450,000 − 400,000 = 50,000. B: 300,000 protected (under the limit). Total protected: 400,000 + 300,000 = **700,000 UDIS**; uncovered: 50,000." },
+            mistake: { es: "Aplicar un solo límite de 400,000 UDIS a la suma de todos los bancos.", en: "Applying a single 400,000 UDIS limit to the sum of all banks." },
+          },
+        ],
       },
     ],
     examples: [
@@ -295,7 +369,7 @@ export const lessons: Lesson[] = [
       es: "Los mercados financieros son los lugares donde se compran y venden instrumentos financieros; en la bolsa, los precios se forman por oferta y demanda a través de órdenes de compra y venta.",
       en: "Financial markets are the places where financial instruments are bought and sold; on the stock exchange, prices are set by supply and demand through buy and sell orders.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es un mercado financiero y qué funciones cumple.", en: "Explain what a financial market is and what functions it serves." },
       { es: "Distinguir el mercado primario del secundario y el bursátil del extrabursátil.", en: "Distinguish the primary from the secondary market and exchange-traded from over-the-counter." },
@@ -357,7 +431,39 @@ export const lessons: Lesson[] = [
             en: "To see how the market is doing overall, **indices** are used, summarizing the behavior of a group of stocks. In Mexico the best known is the **S&P/BMV IPC**. Mini example: if the best bid is $50.20 and the best ask $50.35, the spread is $0.15.",
           },
         ],
-        formula: "Spread = Mejor precio de venta (ask) − Mejor precio de compra (bid)",
+        formulas: [
+          {
+            name: { es: "Diferencial (spread)", en: "Spread" },
+            expression: "Spread = Mejor precio de venta (ask) − Mejor precio de compra (bid)",
+            variables: [
+              { symbol: "Mejor precio de venta (ask)", meaning: { es: "El precio más bajo que algún vendedor acepta, en pesos.", en: "The lowest price some seller accepts, in pesos." } },
+              { symbol: "Mejor precio de compra (bid)", meaning: { es: "El precio más alto que algún comprador ofrece, en pesos.", en: "The highest price some buyer offers, in pesos." } },
+              { symbol: "Spread", meaning: { es: "La diferencia entre ambos, en pesos por acción.", en: "The difference between them, in pesos per share." } },
+            ],
+            steps: [
+              { es: "Busca en la pantalla la mejor postura de venta y la mejor de compra.", en: "Find the best ask and the best bid on the screen." },
+              { es: "Resta: venta − compra.", en: "Subtract: ask − bid." },
+            ],
+            example: { es: "Mejor compra $30.40 y mejor venta $30.50: 30.50 − 30.40 = **$0.10** por acción.", en: "Best bid $30.40 and best ask $30.50: 30.50 − 30.40 = **$0.10** per share." },
+            interpret: { es: "Spread pequeño = la acción es muy líquida y entrar y salir cuesta poco. Spread grande = costo mayor.", en: "Narrow spread = the share is very liquid and getting in and out is cheap. Wide spread = higher cost." },
+          },
+          {
+            name: { es: "Costo de una compra con orden de mercado", en: "Cost of a purchase with a market order" },
+            expression: "Monto = Número de acciones × Mejor precio de venta     Total = Monto + Monto × Comisión",
+            variables: [
+              { symbol: "Número de acciones", meaning: { es: "Cuántos títulos compras.", en: "How many shares you buy." } },
+              { symbol: "Mejor precio de venta", meaning: { es: "El ask: al comprar con orden de mercado pagas lo que piden los vendedores, en pesos.", en: "The ask: buying with a market order you pay what sellers ask, in pesos." } },
+              { symbol: "Comisión", meaning: { es: "Porcentaje que cobra la casa de bolsa, en decimal (0.25% = 0.0025).", en: "Percentage the brokerage charges, as a decimal (0.25% = 0.0025)." } },
+            ],
+            steps: [
+              { es: "Toma el mejor precio de venta (no el de compra).", en: "Take the best ask (not the bid)." },
+              { es: "Multiplícalo por el número de acciones: ese es el monto.", en: "Multiply it by the number of shares: that is the amount." },
+              { es: "Si hay comisión, calcula monto × comisión y súmala.", en: "If there is a fee, compute amount × fee and add it." },
+            ],
+            example: { es: "Compras 300 acciones con bid $30.40 y ask $30.50, comisión de ejemplo 0.25%. Monto: 300 × 30.50 = $9,150. Comisión: 9,150 × 0.0025 = $22.875 ≈ $22.88. Total: 9,150 + 22.88 = **$9,172.88**.", en: "You buy 300 shares with bid $30.40 and ask $30.50, example fee 0.25%. Amount: 300 × 30.50 = $9,150. Fee: 9,150 × 0.0025 = $22.875 ≈ $22.88. Total: 9,150 + 22.88 = **$9,172.88**." },
+            mistake: { es: "Usar el precio de compra (bid). Como comprador, tomas el precio que piden los vendedores.", en: "Using the bid. As a buyer, you take the price sellers ask." },
+          },
+        ],
       },
     ],
     examples: [
@@ -416,7 +522,7 @@ export const lessons: Lesson[] = [
       es: "El mercado de dinero negocia deuda de corto plazo, líquida y de bajo riesgo; el mercado de capitales financia proyectos de largo plazo con acciones y deuda a varios años.",
       en: "The money market trades short-term, liquid, low-risk debt; the capital market funds long-term projects with stocks and multi-year debt.",
     },
-    minutes: 14,
+    minutes: 15,
     objectives: [
       { es: "Distinguir el mercado de dinero del de capitales por plazo, riesgo y propósito.", en: "Distinguish the money market from the capital market by term, risk and purpose." },
       { es: "Reconocer instrumentos típicos de cada mercado.", en: "Recognize typical instruments of each market." },
@@ -456,11 +562,31 @@ export const lessons: Lesson[] = [
             en: "Another common transaction is the **repo** (reporto): you buy debt securities today under an agreement that they will be bought back from you on a near date at a higher price; the difference is your gain. It is widely used to invest for very few days.",
           },
           {
-            es: "En el mercado de dinero el interés suele calcularse como **interés simple** con años de **360 días**. Mini ejemplo: $5,000 en un pagaré a 91 días con tasa anual hipotética de 10% ganan $5,000 × 0.10 × 91 ÷ 360 = $126.39.",
-            en: "In the money market interest is usually computed as **simple interest** on a **360-day** year. Mini example: $5,000 in a 91-day note at a hypothetical 10% annual rate earns $5,000 × 0.10 × 91 ÷ 360 = $126.39.",
+            es: "En el mercado de dinero el interés suele calcularse como **interés simple** (se calcula solo sobre el dinero que pusiste, sin sumar los intereses ya ganados) con años de **360 días**. Mini ejemplo: $5,000 en un pagaré a 91 días con tasa anual hipotética de 10% ganan $5,000 × 0.10 × 91 ÷ 360 = $126.39.",
+            en: "In the money market interest is usually computed as **simple interest** (computed only on the money you put in, without adding interest already earned) on a **360-day** year. Mini example: $5,000 in a 91-day note at a hypothetical 10% annual rate earns $5,000 × 0.10 × 91 ÷ 360 = $126.39.",
           },
         ],
-        formula: "Interés = Capital × Tasa anual × Días ÷ 360",
+        formulas: [
+          {
+            name: { es: "Interés simple del mercado de dinero (año de 360 días)", en: "Money-market simple interest (360-day year)" },
+            expression: "Interés = Capital × Tasa anual × Días ÷ 360     Monto al vencimiento = Capital + Interés",
+            variables: [
+              { symbol: "Interés", meaning: { es: "Lo que ganas en el plazo, en pesos.", en: "What you earn over the term, in pesos." } },
+              { symbol: "Capital", meaning: { es: "Lo que inviertes, en pesos.", en: "What you invest, in pesos." } },
+              { symbol: "Tasa anual", meaning: { es: "Tasa por un año completo, en decimal (8% = 0.08).", en: "Rate for a full year, as a decimal (8% = 0.08)." } },
+              { symbol: "Días", meaning: { es: "Plazo de la inversión en días (por ejemplo, 28, 91 o 182).", en: "Investment term in days (for example, 28, 91 or 182)." } },
+              { symbol: "360", meaning: { es: "Días del año según la convención del mercado de dinero.", en: "Days in the year under the money-market convention." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal: 8% = 0.08.", en: "Convert the rate to a decimal: 8% = 0.08." },
+              { es: "Calcula la fracción del año: días ÷ 360.", en: "Compute the fraction of the year: days ÷ 360." },
+              { es: "Multiplica capital × tasa × esa fracción: ese es el interés.", en: "Multiply principal × rate × that fraction: that is the interest." },
+              { es: "Súmale el capital para saber cuánto recibes al vencimiento.", en: "Add the principal to know how much you receive at maturity." },
+            ],
+            example: { es: "$30,000 a 182 días con tasa anual de ejemplo de 8%: 182 ÷ 360 = 0.505556; 30,000 × 0.08 = 2,400; 2,400 × 0.505556 ≈ **$1,213.33** de interés. Al vencimiento: 30,000 + 1,213.33 = $31,213.33.", en: "$30,000 for 182 days at an example 8% annual rate: 182 ÷ 360 = 0.505556; 30,000 × 0.08 = 2,400; 2,400 × 0.505556 ≈ **$1,213.33** interest. At maturity: 30,000 + 1,213.33 = $31,213.33." },
+            mistake: { es: "Aplicar la tasa anual completa como si el plazo fuera un año, o dividir entre 12 cuando el plazo está en días.", en: "Applying the full annual rate as if the term were a year, or dividing by 12 when the term is in days." },
+          },
+        ],
       },
       {
         heading: { es: "Mercado de capitales y cómo elegir", en: "Capital market and how to choose" },
@@ -535,7 +661,7 @@ export const lessons: Lesson[] = [
       es: "Los CETES son préstamos de corto plazo que le haces al Gobierno Federal: los compras con descuento y al vencimiento recibes $10 por título; junto con Bonos M, Udibonos y Bondes forman la deuda gubernamental.",
       en: "CETES are short-term loans you make to the Federal Government: you buy them at a discount and at maturity you receive $10 per security; together with Bonos M, Udibonos and Bondes they make up government debt.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar qué son los CETES, quién los emite y cómo funcionan a descuento.", en: "Explain what CETES are, who issues them and how they work at a discount." },
       { es: "Calcular el precio de un CETE a partir de su tasa y su ganancia al vencimiento.", en: "Compute a CETE's price from its rate and its gain at maturity." },
@@ -569,8 +695,8 @@ export const lessons: Lesson[] = [
         heading: { es: "Precio y rendimiento de un CETE", en: "Price and return of a CETE" },
         body: [
           {
-            es: "La **tasa de rendimiento** de un CETE es anual y se calcula con año de 360 días. Para saber cuánto pagas hoy, divides los $10 que recibirás entre uno más la parte de la tasa que corresponde al plazo. Entre **más alta la tasa** o **más largo el plazo**, **más bajo** es el precio de hoy.",
-            en: "A CETE's **yield** is annual and computed on a 360-day year. To know what you pay today, divide the $10 you will receive by one plus the part of the rate that corresponds to the term. The **higher the rate** or the **longer the term**, the **lower** today's price.",
+            es: "En palabras sencillas: el precio de hoy es la cantidad que, sumándole los intereses del plazo, se convierte justo en $10 al vencimiento. La **tasa de rendimiento** de un CETE es anual y se calcula con año de 360 días. Para saber cuánto pagas hoy, divides los $10 que recibirás entre uno más la parte de la tasa que corresponde al plazo. Entre **más alta la tasa** o **más largo el plazo**, **más bajo** es el precio de hoy.",
+            en: "In plain words: today's price is the amount that, after adding the interest for the term, turns into exactly $10 at maturity. A CETE's **yield** is annual and computed on a 360-day year. To know what you pay today, divide the $10 you will receive by one plus the part of the rate that corresponds to the term. The **higher the rate** or the **longer the term**, the **lower** today's price.",
           },
           {
             es: "Al revés, si conoces el precio, puedes obtener la tasa: cuánto ganas por cada peso invertido, llevado a un año. La ganancia de un CETE se considera interés y está sujeta a impuestos; las reglas fiscales cambian, así que revisa la retención vigente.",
@@ -581,7 +707,62 @@ export const lessons: Lesson[] = [
             en: "Mini example with a hypothetical 10% rate for 91 days: price = 10 ÷ (1 + 0.10 × 91 ÷ 360) = $9.7535. You earn $10 − $9.7535 = $0.2465 per security in 91 days.",
           },
         ],
-        formula: "Precio = 10 ÷ (1 + Tasa × Días ÷ 360) · Tasa = (10 ÷ Precio − 1) × 360 ÷ Días",
+        formulas: [
+          {
+            name: { es: "Precio de un CETE", en: "Price of a CETE" },
+            expression: "Precio = 10 ÷ (1 + Tasa × Días ÷ 360)",
+            variables: [
+              { symbol: "Precio", meaning: { es: "Lo que pagas hoy por cada CETE, en pesos.", en: "What you pay today for each CETE, in pesos." } },
+              { symbol: "10", meaning: { es: "Valor nominal: los $10 que recibes por título al vencimiento.", en: "Face value: the $10 you receive per security at maturity." } },
+              { symbol: "Tasa", meaning: { es: "Tasa de rendimiento anual, en decimal (9% = 0.09).", en: "Annual yield, as a decimal (9% = 0.09)." } },
+              { symbol: "Días", meaning: { es: "Plazo del CETE (28, 91, 182 o 364).", en: "CETE term (28, 91, 182 or 364)." } },
+            ],
+            steps: [
+              { es: "Calcula la parte de la tasa del plazo: tasa × días ÷ 360.", en: "Compute the rate for the term: rate × days ÷ 360." },
+              { es: "Súmale 1.", en: "Add 1." },
+              { es: "Divide 10 entre ese número.", en: "Divide 10 by that number." },
+            ],
+            example: { es: "Tasa de ejemplo 9% a 182 días: 0.09 × 182 ÷ 360 = 0.0455; 1 + 0.0455 = 1.0455; 10 ÷ 1.0455 ≈ **$9.5648** por CETE.", en: "Example rate 9% for 182 days: 0.09 × 182 ÷ 360 = 0.0455; 1 + 0.0455 = 1.0455; 10 ÷ 1.0455 ≈ **$9.5648** per CETE." },
+            interpret: { es: "A mayor tasa o mayor plazo, el divisor crece y el precio de hoy baja.", en: "The higher the rate or the longer the term, the bigger the divisor and the lower today's price." },
+            mistake: { es: "Restar la tasa completa a los $10 (10 − 0.9 = $9.10) como si fuera un descuento directo de un año.", en: "Subtracting the full rate from the $10 (10 − 0.9 = $9.10) as if it were a direct one-year discount." },
+          },
+          {
+            name: { es: "Inversión, ganancia y rendimiento del periodo", en: "Investment, gain and period return" },
+            expression: "Inversión = Títulos × Precio     Ganancia = Títulos × 10 − Inversión     Rendimiento del periodo = Ganancia ÷ Inversión",
+            variables: [
+              { symbol: "Títulos", meaning: { es: "Número de CETES que compras.", en: "Number of CETES you buy." } },
+              { symbol: "Precio", meaning: { es: "Lo que pagas por cada CETE, en pesos.", en: "What you pay for each CETE, in pesos." } },
+              { symbol: "Inversión", meaning: { es: "Lo que pagas en total hoy, en pesos.", en: "What you pay in total today, in pesos." } },
+              { symbol: "Ganancia", meaning: { es: "Lo que recibes de más al vencimiento, en pesos (antes de impuestos).", en: "What you receive on top at maturity, in pesos (before taxes)." } },
+              { symbol: "Rendimiento del periodo", meaning: { es: "Ganancia en proporción a lo que pagaste, solo por ese plazo (no es anual).", en: "Gain in proportion to what you paid, for that term only (not annual)." } },
+            ],
+            steps: [
+              { es: "Multiplica títulos × precio: lo que inviertes.", en: "Multiply securities × price: what you invest." },
+              { es: "Multiplica títulos × $10: lo que recibes al vencimiento.", en: "Multiply securities × $10: what you receive at maturity." },
+              { es: "Resta para obtener la ganancia.", en: "Subtract to get the gain." },
+              { es: "Divide la ganancia entre la inversión y multiplica por 100.", en: "Divide the gain by the investment and multiply by 100." },
+            ],
+            example: { es: "2,000 CETES a $9.85: inversión 2,000 × 9.85 = $19,700; recibes 2,000 × 10 = $20,000; ganancia 20,000 − 19,700 = $300; rendimiento 300 ÷ 19,700 = 0.015228 → **1.52%** en el plazo.", en: "2,000 CETES at $9.85: investment 2,000 × 9.85 = $19,700; you receive 2,000 × 10 = $20,000; gain 20,000 − 19,700 = $300; return 300 ÷ 19,700 = 0.015228 → **1.52%** for the term." },
+            mistake: { es: "Dividir la ganancia entre lo que recibes ($20,000) en vez de entre lo que pagaste ($19,700).", en: "Dividing the gain by what you receive ($20,000) instead of by what you paid ($19,700)." },
+          },
+          {
+            name: { es: "Tasa anual a partir del precio", en: "Annual rate from the price" },
+            expression: "Tasa = (10 ÷ Precio − 1) × 360 ÷ Días",
+            variables: [
+              { symbol: "Tasa", meaning: { es: "Rendimiento anual equivalente, en decimal; × 100 para %.", en: "Equivalent annual yield, as a decimal; × 100 for %." } },
+              { symbol: "Precio", meaning: { es: "Lo que pagaste por cada CETE, en pesos.", en: "What you paid for each CETE, in pesos." } },
+              { symbol: "Días", meaning: { es: "Plazo del CETE.", en: "CETE term." } },
+              { symbol: "360 ÷ Días", meaning: { es: "Cuántas veces cabe el plazo en un año: sirve para anualizar.", en: "How many times the term fits in a year: used to annualize." } },
+            ],
+            steps: [
+              { es: "Divide 10 entre el precio y réstale 1: es el rendimiento del periodo.", en: "Divide 10 by the price and subtract 1: that is the period return." },
+              { es: "Multiplícalo por 360 ÷ días para llevarlo a un año.", en: "Multiply it by 360 ÷ days to scale it to a year." },
+              { es: "Multiplica por 100 para leerlo en %.", en: "Multiply by 100 to read it in %." },
+            ],
+            example: { es: "CETE a 91 días en $9.85: 10 ÷ 9.85 = 1.015228; − 1 = 0.015228; × 360 ÷ 91 = 0.015228 × 3.956 ≈ 0.0602 → **6.02%** anual.", en: "91-day CETE at $9.85: 10 ÷ 9.85 = 1.015228; − 1 = 0.015228; × 360 ÷ 91 = 0.015228 × 3.956 ≈ 0.0602 → **6.02%** annual." },
+            mistake: { es: "Comparar el rendimiento del periodo (1.52%) con tasas anuales sin anualizarlo.", en: "Comparing the period return (1.52%) with annual rates without annualizing it." },
+          },
+        ],
       },
       {
         heading: { es: "Otros bonos del gobierno: Bonos M, Udibonos y Bondes", en: "Other government bonds: Bonos M, Udibonos and Bondes" },
@@ -663,7 +844,7 @@ export const lessons: Lesson[] = [
       es: "Un bono es un préstamo que le haces a un emisor a cambio de cupones y la devolución del valor nominal; su precio se mueve al revés que las tasas y su riesgo depende de quién lo emite.",
       en: "A bond is a loan you make to an issuer in exchange for coupons and the return of the face value; its price moves opposite to rates and its risk depends on who issues it.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Identificar las partes de un bono: emisor, valor nominal, cupón y vencimiento.", en: "Identify a bond's parts: issuer, face value, coupon and maturity." },
       { es: "Explicar por qué el precio de un bono baja cuando suben las tasas y calcular su rendimiento corriente.", en: "Explain why a bond's price falls when rates rise and compute its current yield." },
@@ -686,14 +867,32 @@ export const lessons: Lesson[] = [
             en: "In Mexico, besides government bonds, companies issue debt on the exchange, commonly as **certificados bursátiles** (exchange-traded debt certificates). Mini example: a bond with a $100 face value and an 8% annual coupon pays $8 a year; if paid semiannually, you get $4 every six months.",
           },
         ],
-        formula: "Cupón anual = Valor nominal × Tasa cupón",
+        formulas: [
+          {
+            name: { es: "Cupón anual y pagos de cupón", en: "Annual coupon and coupon payments" },
+            expression: "Cupón anual = Valor nominal × Tasa cupón     Pago por periodo = Cupón anual ÷ Pagos al año     Total de cupones = Pago por periodo × Número de pagos",
+            variables: [
+              { symbol: "Valor nominal", meaning: { es: "Lo que te devuelven al final, en pesos (por ejemplo, $100 o $1,000).", en: "What you get back at the end, in pesos (for example, $100 or $1,000)." } },
+              { symbol: "Tasa cupón", meaning: { es: "Porcentaje anual que paga el bono, en decimal (8% = 0.08).", en: "Annual percentage the bond pays, as a decimal (8% = 0.08)." } },
+              { symbol: "Pagos al año", meaning: { es: "1 si es anual, 2 si es semestral, 4 si es trimestral.", en: "1 if annual, 2 if semiannual, 4 if quarterly." } },
+              { symbol: "Número de pagos", meaning: { es: "Pagos al año × años hasta el vencimiento.", en: "Payments per year × years to maturity." } },
+            ],
+            steps: [
+              { es: "Multiplica valor nominal × tasa cupón: cupón anual.", en: "Multiply face value × coupon rate: annual coupon." },
+              { es: "Divide entre los pagos al año: lo que recibes cada vez.", en: "Divide by payments per year: what you receive each time." },
+              { es: "Cuenta los pagos (pagos al año × años) y multiplica por el pago de cada periodo.", en: "Count the payments (payments per year × years) and multiply by each period's payment." },
+            ],
+            example: { es: "Bono de $1,000, cupón 8% semestral, a 4 años: cupón anual 1,000 × 0.08 = $80; cada semestre 80 ÷ 2 = $40; pagos 2 × 4 = 8; total 8 × 40 = **$320** (más los $1,000 al final).", en: "$1,000 bond, 8% coupon paid semiannually, 4 years: annual coupon 1,000 × 0.08 = $80; each half-year 80 ÷ 2 = $40; payments 2 × 4 = 8; total 8 × 40 = **$320** (plus the $1,000 at the end)." },
+            mistake: { es: "Pagar la tasa anual completa cada semestre, lo que duplica los intereses.", en: "Paying the full annual rate every half-year, which doubles the interest." },
+          },
+        ],
       },
       {
         heading: { es: "Precio y tasas: el sube y baja", en: "Price and rates: the seesaw" },
         body: [
           {
-            es: "El precio de un bono es el **valor presente** de todo lo que te pagará: cada cupón y el valor nominal, \"traídos a hoy\" con la tasa que el mercado exige. Si el precio es igual al valor nominal se dice que cotiza **a la par**; si es menor, **bajo par**; si es mayor, **sobre par**.",
-            en: "A bond's price is the **present value** of everything it will pay you: each coupon and the face value, \"brought to today\" with the rate the market demands. If the price equals the face value it trades **at par**; if lower, **below par** (at a discount); if higher, **above par** (at a premium).",
+            es: "El **valor presente** es cuánto vale hoy un pago que recibirás en el futuro: un peso de dentro de un año vale menos que uno de hoy, porque el de hoy lo podrías invertir. El precio de un bono es el valor presente de todo lo que te pagará: cada cupón y el valor nominal, \"traídos a hoy\" con la tasa que el mercado exige. Si el precio es igual al valor nominal se dice que cotiza **a la par**; si es menor, **bajo par**; si es mayor, **sobre par**.",
+            en: "**Present value** is what a payment you will receive in the future is worth today: a peso a year from now is worth less than one today, because today's peso could be invested. A bond's price is the present value of everything it will pay you: each coupon and the face value, \"brought to today\" with the rate the market demands. If the price equals the face value it trades **at par**; if lower, **below par** (at a discount); if higher, **above par** (at a premium).",
           },
           {
             es: "Regla clave: **cuando las tasas del mercado suben, el precio de los bonos que ya existen baja**, y al revés. ¿Por qué? Si tu bono paga 8% y ahora salen bonos nuevos que pagan 10%, nadie te pagará $100 por el tuyo; tendrás que venderlo más barato para que al comprador le rinda lo mismo. Entre **más largo el plazo**, más fuerte es ese efecto.",
@@ -704,7 +903,43 @@ export const lessons: Lesson[] = [
             en: "Two simple measures: **current yield** = annual coupon ÷ price, and **yield to maturity**, the rate you earn if you buy at today's price and hold the bond to the end, collecting everything. Mini example: a bond with an $8 coupon bought at $95 has a current yield of 8 ÷ 95 = 8.42%.",
           },
         ],
-        formula: "Precio = C ÷ (1 + y) + C ÷ (1 + y)² + … + (C + VN) ÷ (1 + y)ⁿ · Rendimiento corriente = Cupón anual ÷ Precio",
+        formulas: [
+          {
+            name: { es: "Precio de un bono (valor presente)", en: "Bond price (present value)" },
+            expression: "Precio = C ÷ (1 + y) + C ÷ (1 + y)² + … + (C + VN) ÷ (1 + y)ⁿ",
+            variables: [
+              { symbol: "C", meaning: { es: "Cupón de cada periodo, en pesos.", en: "Coupon each period, in pesos." } },
+              { symbol: "VN", meaning: { es: "Valor nominal que te devuelven al final, en pesos.", en: "Face value returned at the end, in pesos." } },
+              { symbol: "y", meaning: { es: "Tasa que exige hoy el mercado por periodo, en decimal (10% = 0.10).", en: "Rate the market demands today per period, as a decimal (10% = 0.10)." } },
+              { symbol: "n", meaning: { es: "Número de periodos hasta el vencimiento.", en: "Number of periods until maturity." } },
+              { symbol: "(1 + y)², (1 + y)ⁿ", meaning: { es: "(1 + y) multiplicado por sí mismo 2 o n veces: \"trae a hoy\" pagos más lejanos.", en: "(1 + y) multiplied by itself 2 or n times: it \"brings to today\" payments further away." } },
+            ],
+            steps: [
+              { es: "Calcula el cupón: VN × tasa cupón.", en: "Compute the coupon: FV × coupon rate." },
+              { es: "Divide cada cupón entre (1 + y) elevado al número de su periodo.", en: "Divide each coupon by (1 + y) raised to its period number." },
+              { es: "En el último periodo suma cupón + valor nominal antes de dividir.", en: "In the last period add coupon + face value before dividing." },
+              { es: "Suma todos los valores traídos a hoy: ese es el precio.", en: "Add all the values brought to today: that is the price." },
+            ],
+            example: { es: "VN $100, cupón 6% anual, 2 años, mercado exige 5% (tasa de ejemplo). Cupón = $6. Año 1: 6 ÷ 1.05 = $5.7143. Año 2: 106 ÷ 1.05² = 106 ÷ 1.1025 = $96.1451. Precio: 5.7143 + 96.1451 = **$101.86**.", en: "FV $100, 6% annual coupon, 2 years, market demands 5% (example rate). Coupon = $6. Year 1: 6 ÷ 1.05 = $5.7143. Year 2: 106 ÷ 1.05² = 106 ÷ 1.1025 = $96.1451. Price: 5.7143 + 96.1451 = **$101.86**." },
+            interpret: { es: "Si el cupón es mayor que la tasa del mercado, cotiza sobre par (más de $100); si es menor, bajo par.", en: "If the coupon is above the market rate, it trades above par (over $100); if below, below par." },
+            mistake: { es: "Olvidar sumar el valor nominal en el último periodo, o dividir todos los pagos entre (1 + y) sin elevar al periodo.", en: "Forgetting to add the face value in the last period, or dividing every payment by (1 + y) without raising it to the period." },
+          },
+          {
+            name: { es: "Rendimiento corriente", en: "Current yield" },
+            expression: "Rendimiento corriente = Cupón anual ÷ Precio",
+            variables: [
+              { symbol: "Cupón anual", meaning: { es: "Intereses que paga el bono en un año, en pesos.", en: "Interest the bond pays in a year, in pesos." } },
+              { symbol: "Precio", meaning: { es: "Lo que pagas hoy por el bono, en pesos (no el valor nominal).", en: "What you pay today for the bond, in pesos (not the face value)." } },
+            ],
+            steps: [
+              { es: "Calcula el cupón anual: valor nominal × tasa cupón.", en: "Compute the annual coupon: face value × coupon rate." },
+              { es: "Divide entre el precio que pagas y multiplica por 100.", en: "Divide by the price you pay and multiply by 100." },
+            ],
+            example: { es: "Cupón anual de $5 y compras el bono en $104: 5 ÷ 104 = 0.0481 → **4.81%**.", en: "Annual coupon of $5 and you buy the bond at $104: 5 ÷ 104 = 0.0481 → **4.81%**." },
+            interpret: { es: "Si compras bajo par, el rendimiento corriente supera al cupón; si compras sobre par, queda abajo.", en: "If you buy below par, current yield is above the coupon; if you buy above par, it is below." },
+            mistake: { es: "Dividir entre el valor nominal en lugar del precio que pagas.", en: "Dividing by the face value instead of the price you pay." },
+          },
+        ],
       },
       {
         heading: { es: "Riesgos y calificaciones de la renta fija", en: "Fixed-income risks and ratings" },

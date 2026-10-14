@@ -34,7 +34,7 @@ export const lessons: Lesson[] = [
       "Las finanzas cuantitativas se apoyan en tres herramientas básicas: medir rendimientos (simples y logarítmicos), usar la función exponencial y el logaritmo para el crecimiento continuo, y sumar muchos términos con sumatorias y series geométricas.",
       "Quantitative finance relies on three basic tools: measuring returns (simple and logarithmic), using the exponential function and the logarithm for continuous growth, and adding many terms with summations and geometric series.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Calcular e interpretar rendimientos simples y logarítmicos, y convertir uno en otro.", "Compute and interpret simple and log returns, and convert one into the other."),
       t("Usar la función exponencial y el logaritmo natural para la capitalización continua.", "Use the exponential function and the natural logarithm for continuous compounding."),
@@ -61,7 +61,65 @@ export const lessons: Lesson[] = [
             "Mini example: a price rises from $50 to $55 (+10%) and then falls to $49.50 (−10%). You do not get back to $50: the total simple return is 1.10 × 0.90 − 1 = **−1%**.",
           ),
         ],
-        formula: 'R = P1 / P0 − 1     r = ln(P1 / P0) = ln(1 + R)     R = e^r − 1',
+        formulas: [
+          {
+            name: t("Rendimiento simple", "Simple return"),
+            expression: "R = P1 ÷ P0 − 1",
+            variables: [
+              { symbol: "R", meaning: t("Rendimiento simple del periodo; multiplícalo por 100 para verlo en %.", "Simple return for the period; multiply by 100 to see it in %.") },
+              { symbol: "P0", meaning: t("Precio inicial (al empezar el periodo), en pesos.", "Starting price (at the beginning of the period), in pesos.") },
+              { symbol: "P1", meaning: t("Precio final (al terminar el periodo), en pesos.", "Ending price (at the end of the period), in pesos.") },
+            ],
+            steps: [
+              t("Divide el precio final entre el precio inicial: P1 ÷ P0.", "Divide the ending price by the starting price: P1 ÷ P0."),
+              t("Réstale 1 al resultado.", "Subtract 1 from the result."),
+              t("Multiplica por 100 para expresarlo en porcentaje.", "Multiply by 100 to express it as a percentage."),
+            ],
+            example: t("Una acción pasa de $200 a $230. 230 ÷ 200 = 1.15; 1.15 − 1 = 0.15; 0.15 × 100 = **15 %**.", "A share goes from $200 to $230. 230 ÷ 200 = 1.15; 1.15 − 1 = 0.15; 0.15 × 100 = **15%**."),
+            interpret: t("Positivo = ganaste; negativo = perdiste. Nunca puede ser menor que −100 % (perder todo).", "Positive = you gained; negative = you lost. It can never be below −100% (losing everything)."),
+            mistake: t("Dividir entre el precio final en vez del inicial. Siempre comparas contra el punto de partida (P0).", "Dividing by the ending price instead of the starting one. You always compare against the starting point (P0)."),
+          },
+          {
+            name: t("Rendimiento logarítmico y conversión entre ambos", "Log return and converting between both"),
+            expression: "r = ln(P1 ÷ P0) = ln(1 + R)     R = e^r − 1",
+            variables: [
+              { symbol: "r", meaning: t("Rendimiento logarítmico (continuo), en decimal; × 100 para verlo en %.", "Log (continuous) return, as a decimal; × 100 to see it in %.") },
+              { symbol: "ln", meaning: t("Logaritmo natural: la tecla \"ln\" de la calculadora.", "Natural logarithm: the \"ln\" key on a calculator.") },
+              { symbol: "R", meaning: t("Rendimiento simple, en decimal (10 % = 0.10).", "Simple return, as a decimal (10% = 0.10).") },
+              { symbol: "e", meaning: t("Número fijo ≈ 2.71828; la tecla \"e^x\" de la calculadora.", "Fixed number ≈ 2.71828; the \"e^x\" key on a calculator.") },
+              { symbol: "P0", meaning: t("Precio inicial (al empezar el periodo), en pesos.", "Starting price (at the beginning of the period), in pesos.") },
+              { symbol: "P1", meaning: t("Precio final (al terminar el periodo), en pesos.", "Ending price (at the end of the period), in pesos.") },
+            ],
+            steps: [
+              t("De precios a log: divide P1 ÷ P0 (o escribe 1 + R con R en decimal).", "From prices to log: divide P1 ÷ P0 (or write 1 + R with R as a decimal)."),
+              t("Aplica ln a ese número: el resultado es r en decimal.", "Apply ln to that number: the result is r as a decimal."),
+              t("De log a simple: calcula e^r y réstale 1.", "From log to simple: compute e^r and subtract 1."),
+              t("Multiplica por 100 para leerlo en porcentaje.", "Multiply by 100 to read it as a percentage."),
+            ],
+            example: t("Precio de $200 a $230: 230 ÷ 200 = 1.15; ln(1.15) ≈ 0.1398 → **13.98 %** log (el simple era 15 %). De regreso: e^0.1398 ≈ 1.15; 1.15 − 1 = 0.15 → 15 % simple.", "Price from $200 to $230: 230 ÷ 200 = 1.15; ln(1.15) ≈ 0.1398 → **13.98%** log (the simple one was 15%). Back again: e^0.1398 ≈ 1.15; 1.15 − 1 = 0.15 → 15% simple."),
+            interpret: t("Cuando el precio sube, el log es un poco menor que el simple; para movimientos pequeños casi coinciden.", "When the price rises, the log return is a bit smaller than the simple one; for small moves they almost coincide."),
+            mistake: t("Meter el porcentaje dentro del ln, como ln(15). Va ln(1.15): uno más el rendimiento en decimal.", "Putting the percentage inside the ln, as ln(15). It is ln(1.15): one plus the return as a decimal."),
+          },
+          {
+            name: t("Rendimiento total de varios periodos", "Total return over several periods"),
+            expression: "R total = (1 + R1) × (1 + R2) × … − 1 = P final ÷ P inicial − 1     r total = r1 + r2 + …",
+            variables: [
+              { symbol: "R total", meaning: t("Rendimiento simple acumulado de todo el tramo, en decimal.", "Accumulated simple return over the whole stretch, as a decimal.") },
+              { symbol: "R1, R2, …", meaning: t("Rendimiento simple de cada periodo (día, mes), en decimal.", "Simple return of each period (day, month), as a decimal.") },
+              { symbol: "P final, P inicial", meaning: t("Último y primer precio del tramo, en pesos.", "Last and first price of the stretch, in pesos.") },
+              { symbol: "r total, r1, r2, …", meaning: t("Rendimientos logarítmicos: el total es la suma de los de cada periodo.", "Log returns: the total is the sum of each period's.") },
+            ],
+            steps: [
+              t("Convierte cada rendimiento a factor: 1 + R (por ejemplo, +8 % → 1.08 y −8 % → 0.92).", "Turn each return into a factor: 1 + R (for example, +8% → 1.08 and −8% → 0.92)."),
+              t("Multiplica todos los factores entre sí.", "Multiply all the factors together."),
+              t("Réstale 1 y multiplica por 100 para tenerlo en %.", "Subtract 1 and multiply by 100 to get it in %."),
+              t("Comprueba con precios: P final ÷ P inicial − 1 debe dar lo mismo.", "Check with prices: P final ÷ P initial − 1 must give the same."),
+            ],
+            example: t("Un activo sube 8 % y luego baja 8 %. 1.08 × 0.92 = 0.9936; 0.9936 − 1 = −0.0064 → **−0.64 %**. Si empezó en $100: 100 × 1.08 = $108; 108 × 0.92 = $99.36, y 99.36 ÷ 100 − 1 = −0.64 %.", "An asset rises 8% and then falls 8%. 1.08 × 0.92 = 0.9936; 0.9936 − 1 = −0.0064 → **−0.64%**. If it started at $100: 100 × 1.08 = $108; 108 × 0.92 = $99.36, and 99.36 ÷ 100 − 1 = −0.64%."),
+            interpret: t("Subir y bajar el mismo porcentaje te deja abajo: la bajada se aplica sobre un precio más alto.", "Rising and falling by the same percentage leaves you lower: the drop is applied to a higher price."),
+            mistake: t("Sumar los rendimientos simples (+8 % − 8 % = 0 %). Los simples se multiplican; solo los log se suman.", "Adding the simple returns (+8% − 8% = 0%). Simple returns multiply; only log returns add up."),
+          },
+        ],
         bullets: [
           t("Simple: fácil de explicar; se combinan multiplicando (1 + R).", "Simple: easy to explain; combined by multiplying (1 + R)."),
           t("Logarítmico: se suma día con día; cómodo para modelos.", "Logarithmic: adds day by day; convenient for models."),
@@ -77,8 +135,8 @@ export const lessons: Lesson[] = [
             "The **exponential function** e^x (e ≈ 2.71828) describes something that grows in proportion to its size, like a debt that earns interest on interest. The **natural logarithm** ln(x) is its inverse: it answers \"to what power must I raise e to get x?\".",
           ),
           t(
-            "Si un banco capitaliza intereses cada año, cada mes, cada día… cada vez más seguido, en el límite llegas a la **capitalización continua**: el monto es M = C × e^(i·t). Es la convención estándar en muchos modelos, por ejemplo en la valuación de opciones.",
-            "If a bank compounds interest every year, every month, every day… more and more often, in the limit you reach **continuous compounding**: the amount is M = C × e^(i·t). It is the standard convention in many models, for example in option pricing.",
+            "**Capitalizar** significa sumar los intereses ganados al capital para que, a partir de ahí, también generen intereses. Si un banco capitaliza intereses cada año, cada mes, cada día… cada vez más seguido, en el límite llegas a la **capitalización continua**: el monto es M = C × e^(i·t). Es la convención estándar en muchos modelos, por ejemplo en la valuación de opciones.",
+            "**Compounding** means adding the interest earned to the principal so that, from then on, it also earns interest. If a bank compounds interest every year, every month, every day… more and more often, in the limit you reach **continuous compounding**: the amount is M = C × e^(i·t). It is the standard convention in many models, for example in option pricing.",
           ),
           t(
             "Dos reglas del logaritmo que usarás siempre: **ln(a × b) = ln a + ln b** (por eso los log returns se suman) y **ln(a^n) = n × ln a** (útil para despejar el tiempo).",
@@ -89,7 +147,46 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: $10,000 at 8% a year with continuous compounding for 2 years gives 10,000 × e^0.16 ≈ **$11,735.11**. With annual compounding it would be 10,000 × 1.08² = $11,664: continuous always gives a bit more.",
           ),
         ],
-        formula: 'M = C × e^(i·t)     t = ln(M / C) / i',
+        formulas: [
+          {
+            name: t("Monto con capitalización continua", "Amount with continuous compounding"),
+            expression: "M = C × e^(i·t)",
+            variables: [
+              { symbol: "M", meaning: t("Monto final: lo que tendrás al terminar, en pesos.", "Final amount: what you will have at the end, in pesos.") },
+              { symbol: "C", meaning: t("Capital: lo que inviertes hoy, en pesos.", "Principal: what you invest today, in pesos.") },
+              { symbol: "e", meaning: t("Número fijo ≈ 2.71828 (tecla \"e^x\").", "Fixed number ≈ 2.71828 (\"e^x\" key).") },
+              { symbol: "i", meaning: t("Tasa anual en decimal (6 % = 0.06).", "Annual rate as a decimal (6% = 0.06).") },
+              { symbol: "t", meaning: t("Tiempo en años (18 meses = 1.5 años).", "Time in years (18 months = 1.5 years).") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal: 6 % = 0.06.", "Convert the rate to a decimal: 6% = 0.06."),
+              t("Multiplica tasa por tiempo: i × t.", "Multiply rate by time: i × t."),
+              t("Calcula e elevado a ese resultado con la tecla e^x.", "Compute e raised to that result with the e^x key."),
+              t("Multiplica por el capital C.", "Multiply by the principal C."),
+            ],
+            example: t("$5,000 al 6 % anual (tasa de ejemplo) durante 3 años: i × t = 0.06 × 3 = 0.18; e^0.18 ≈ 1.197217; 5,000 × 1.197217 ≈ **$5,986.09**.", "$5,000 at 6% a year (example rate) for 3 years: i × t = 0.06 × 3 = 0.18; e^0.18 ≈ 1.197217; 5,000 × 1.197217 ≈ **$5,986.09**."),
+            interpret: t("Siempre da un poco más que capitalizar una vez al año, porque los intereses se suman al capital sin pausa.", "It always gives a bit more than compounding once a year, because interest is added to the principal nonstop."),
+            mistake: t("Escribir la tasa como 6 en lugar de 0.06 en el exponente, o usar (1 + i)^t, que es capitalización anual.", "Writing the rate as 6 instead of 0.06 in the exponent, or using (1 + i)^t, which is annual compounding."),
+          },
+          {
+            name: t("Tiempo necesario con capitalización continua", "Time needed with continuous compounding"),
+            expression: "t = ln(M ÷ C) ÷ i",
+            variables: [
+              { symbol: "t", meaning: t("Años que tarda C en convertirse en M.", "Years it takes C to become M.") },
+              { symbol: "ln", meaning: t("Logaritmo natural (tecla \"ln\"): deshace la exponencial.", "Natural logarithm (\"ln\" key): it undoes the exponential.") },
+              { symbol: "M", meaning: t("Monto que quieres alcanzar, en pesos.", "Amount you want to reach, in pesos.") },
+              { symbol: "C", meaning: t("Capital inicial, en pesos.", "Starting principal, in pesos.") },
+              { symbol: "i", meaning: t("Tasa anual en decimal.", "Annual rate as a decimal.") },
+            ],
+            steps: [
+              t("Divide la meta entre el capital: M ÷ C.", "Divide the target by the principal: M ÷ C."),
+              t("Aplica ln a ese cociente.", "Apply ln to that ratio."),
+              t("Divide entre la tasa en decimal: el resultado está en años.", "Divide by the rate as a decimal: the result is in years."),
+            ],
+            example: t("¿Cuánto tarda en duplicarse un dinero al 5 % continuo (tasa de ejemplo)? M ÷ C = 2; ln(2) ≈ 0.6931; 0.6931 ÷ 0.05 ≈ **13.86 años**.", "How long does money take to double at 5% continuous (example rate)? M ÷ C = 2; ln(2) ≈ 0.6931; 0.6931 ÷ 0.05 ≈ **13.86 years**."),
+            mistake: t("Dividir entre 5 en vez de 0.05: darías 0.14 años en lugar de casi 14.", "Dividing by 5 instead of 0.05: you would get 0.14 years instead of almost 14."),
+          },
+        ],
       },
       {
         heading: t("Sumatorias y series geométricas", "Summations and geometric series"),
@@ -111,7 +208,43 @@ export const lessons: Lesson[] = [
             "Mini example: 1 + 0.5 + 0.25 + 0.125 has a = 1, r = 0.5 and n = 4: S = (1 − 0.0625) / 0.5 = **1.875**. If you kept adding forever, you would reach 1 / 0.5 = 2.",
           ),
         ],
-        formula: 'S = a × (1 − r^n) / (1 − r)     S∞ = a / (1 − r), si |r| < 1',
+        formulas: [
+          {
+            name: t("Suma de una serie geométrica (n términos)", "Sum of a geometric series (n terms)"),
+            expression: "S = a × (1 − r^n) ÷ (1 − r)",
+            variables: [
+              { symbol: "S", meaning: t("Suma de todos los términos.", "Sum of all the terms.") },
+              { symbol: "a", meaning: t("Primer término de la serie.", "First term of the series.") },
+              { symbol: "r", meaning: t("Razón: el número por el que se multiplica cada término para obtener el siguiente.", "Ratio: the number each term is multiplied by to get the next one.") },
+              { symbol: "n", meaning: t("Cuántos términos sumas.", "How many terms you add.") },
+              { symbol: "r^n", meaning: t("La razón multiplicada por sí misma n veces.", "The ratio multiplied by itself n times.") },
+            ],
+            steps: [
+              t("Identifica a (el primer término), r (siguiente ÷ anterior) y n (cuántos términos).", "Identify a (the first term), r (next ÷ previous) and n (how many terms)."),
+              t("Calcula r^n y réstalo de 1.", "Compute r^n and subtract it from 1."),
+              t("Divide ese resultado entre (1 − r).", "Divide that result by (1 − r)."),
+              t("Multiplica por a.", "Multiply by a."),
+            ],
+            example: t("100 + 80 + 64: a = 100, r = 80 ÷ 100 = 0.8, n = 3. r³ = 0.512; 1 − 0.512 = 0.488; 1 − 0.8 = 0.2; 0.488 ÷ 0.2 = 2.44; 100 × 2.44 = **244**. Comprobación: 100 + 80 + 64 = 244.", "100 + 80 + 64: a = 100, r = 80 ÷ 100 = 0.8, n = 3. r³ = 0.512; 1 − 0.512 = 0.488; 1 − 0.8 = 0.2; 0.488 ÷ 0.2 = 2.44; 100 × 2.44 = **244**. Check: 100 + 80 + 64 = 244."),
+            mistake: t("Escribir n × r en vez de r^n. La razón se multiplica por sí misma n veces, no se multiplica por n.", "Writing n × r instead of r^n. The ratio is multiplied by itself n times, not multiplied by n."),
+          },
+          {
+            name: t("Suma de una serie geométrica infinita", "Sum of an infinite geometric series"),
+            expression: "S∞ = a ÷ (1 − r), solo si |r| < 1",
+            variables: [
+              { symbol: "S∞", meaning: t("Hacia dónde se acerca la suma si sumas términos para siempre.", "Where the sum heads if you keep adding terms forever.") },
+              { symbol: "a", meaning: t("Primer término.", "First term.") },
+              { symbol: "r", meaning: t("Razón; debe estar entre −1 y 1 (|r| < 1) para que la suma no crezca sin fin.", "Ratio; it must be between −1 and 1 (|r| < 1) so the sum does not grow forever.") },
+            ],
+            steps: [
+              t("Revisa que |r| < 1; si no, la suma no tiene límite.", "Check that |r| < 1; if not, the sum has no limit."),
+              t("Calcula 1 − r.", "Compute 1 − r."),
+              t("Divide el primer término entre ese número.", "Divide the first term by that number."),
+            ],
+            example: t("100 + 80 + 64 + … para siempre: a = 100, r = 0.8. 1 − 0.8 = 0.2; 100 ÷ 0.2 = **500**.", "100 + 80 + 64 + … forever: a = 100, r = 0.8. 1 − 0.8 = 0.2; 100 ÷ 0.2 = **500**."),
+            interpret: t("Es la idea detrás de valuar un pago que nunca termina (una perpetuidad).", "It is the idea behind valuing a payment that never ends (a perpetuity)."),
+          },
+        ],
       },
     ],
     examples: [
@@ -171,7 +304,7 @@ export const lessons: Lesson[] = [
       "Los vectores y matrices permiten manejar muchos activos a la vez, y la derivada mide qué tan sensible es un resultado financiero a un cambio pequeño, lo que ayuda a encontrar máximos y mínimos.",
       "Vectors and matrices let you handle many assets at once, and the derivative measures how sensitive a financial result is to a small change, which helps you find maxima and minima.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Representar un portafolio como vector y calcular su rendimiento con el producto punto.", "Represent a portfolio as a vector and compute its return with the dot product."),
       t("Multiplicar matrices, revisar sus dimensiones y resolver un sistema 2×2 con la inversa.", "Multiply matrices, check their dimensions and solve a 2×2 system with the inverse."),
@@ -194,7 +327,24 @@ export const lessons: Lesson[] = [
             "Mini example: weights (0.6, 0.4) and returns (10%, 5%): 0.6 × 10 + 0.4 × 5 = 6 + 2 = **8%**. With 500 stocks the idea is the same; the computer just does more multiplications.",
           ),
         ],
-        formula: 'Rp = w · R = Σ wi × Ri',
+        formulas: [
+          {
+            name: t("Rendimiento del portafolio (producto punto)", "Portfolio return (dot product)"),
+            expression: "Rp = w · R = w1 × R1 + w2 × R2 + … + wn × Rn",
+            variables: [
+              { symbol: "Rp", meaning: t("Rendimiento del portafolio, en %.", "Portfolio return, in %.") },
+              { symbol: "w1, w2, …", meaning: t("Pesos: qué parte de tu dinero está en cada activo, en decimal; deben sumar 1.", "Weights: what share of your money is in each asset, as decimals; they must add up to 1.") },
+              { symbol: "R1, R2, …", meaning: t("Rendimiento de cada activo, en %.", "Return of each asset, in %.") },
+            ],
+            steps: [
+              t("Revisa que los pesos sumen 1 (o 100 %).", "Check that the weights add up to 1 (or 100%)."),
+              t("Multiplica cada peso por el rendimiento de su activo, respetando los signos negativos.", "Multiply each weight by its asset's return, keeping negative signs."),
+              t("Suma todos los productos.", "Add up all the products."),
+            ],
+            example: t("Pesos (0.7, 0.3) y rendimientos (12 %, −2 %): 0.7 × 12 = 8.4; 0.3 × (−2) = −0.6; 8.4 − 0.6 = **7.8 %**.", "Weights (0.7, 0.3) and returns (12%, −2%): 0.7 × 12 = 8.4; 0.3 × (−2) = −0.6; 8.4 − 0.6 = **7.8%**."),
+            mistake: t("Promediar los rendimientos sin pesos: (12 − 2) ÷ 2 = 5 % ignora que tienes más dinero en el primer activo.", "Averaging the returns without weights: (12 − 2) ÷ 2 = 5% ignores that you have more money in the first asset."),
+          },
+        ],
       },
       {
         heading: t("Matrices, multiplicación e inversa", "Matrices, multiplication and the inverse"),
@@ -216,7 +366,59 @@ export const lessons: Lesson[] = [
             "Mini example: [[2, 1], [1, 1]] has determinant 2 × 1 − 1 × 1 = 1, so its inverse is [[1, −1], [−1, 2]]. You can check that multiplying them gives the identity.",
           ),
         ],
-        formula: 'A = [[a, b], [c, d]]   det = ad − bc   A⁻¹ = (1/det) × [[d, −b], [−c, a]]',
+        formulas: [
+          {
+            name: t("Tamaño del producto de dos matrices", "Size of the product of two matrices"),
+            expression: "(m × n) × (n × p) = (m × p)",
+            variables: [
+              { symbol: "m", meaning: t("Filas de la primera matriz.", "Rows of the first matrix.") },
+              { symbol: "n", meaning: t("Columnas de la primera = filas de la segunda; deben ser iguales.", "Columns of the first = rows of the second; they must be equal.") },
+              { symbol: "p", meaning: t("Columnas de la segunda matriz.", "Columns of the second matrix.") },
+            ],
+            steps: [
+              t("Escribe los tamaños en orden: (filas × columnas) de A y luego de B.", "Write the sizes in order: (rows × columns) of A and then of B."),
+              t("Compara los números de en medio: si no son iguales, no se puede multiplicar.", "Compare the middle numbers: if they are not equal, you cannot multiply."),
+              t("Si coinciden, el resultado toma los números de las orillas: filas de A × columnas de B.", "If they match, the result takes the outer numbers: rows of A × columns of B."),
+            ],
+            example: t("A es 2 × 3 y B es 3 × 5: los de en medio (3 y 3) coinciden, así que A × B es **2 × 5**. Si B fuera 4 × 5, no se podría (3 ≠ 4).", "A is 2 × 3 and B is 3 × 5: the middle ones (3 and 3) match, so A × B is **2 × 5**. If B were 4 × 5, it would not work (3 ≠ 4)."),
+            mistake: t("Pensar que el resultado conserva el número que coincide, o cambiar el orden: B × A puede no existir aunque A × B sí.", "Thinking the result keeps the matching number, or swapping the order: B × A may not exist even if A × B does."),
+          },
+          {
+            name: t("Determinante e inversa de una matriz 2 × 2", "Determinant and inverse of a 2 × 2 matrix"),
+            expression: "A = [[a, b], [c, d]]     det = a·d − b·c     A⁻¹ = (1 ÷ det) × [[d, −b], [−c, a]]",
+            variables: [
+              { symbol: "a, b, c, d", meaning: t("Los cuatro números de la matriz: a y b en la fila de arriba, c y d en la de abajo.", "The four numbers of the matrix: a and b in the top row, c and d in the bottom row.") },
+              { symbol: "det", meaning: t("Determinante: un solo número que dice si la matriz tiene inversa (si es 0, no la tiene).", "Determinant: a single number that tells whether the matrix has an inverse (if it is 0, it does not).") },
+              { symbol: "A⁻¹", meaning: t("Inversa: la matriz que \"deshace\" a A.", "Inverse: the matrix that \"undoes\" A.") },
+            ],
+            steps: [
+              t("Calcula det = a × d − b × c (diagonal principal menos la otra diagonal).", "Compute det = a × d − b × c (main diagonal minus the other diagonal)."),
+              t("Si det = 0, detente: no hay inversa.", "If det = 0, stop: there is no inverse."),
+              t("Intercambia a y d de lugar y cambia el signo de b y c.", "Swap a and d and change the sign of b and c."),
+              t("Divide cada número entre det.", "Divide each number by det."),
+            ],
+            example: t("A = [[3, 1], [2, 4]]: det = 3 × 4 − 1 × 2 = 12 − 2 = 10. Intercambiar y cambiar signos: [[4, −1], [−2, 3]]. Entre 10: A⁻¹ = **[[0.4, −0.1], [−0.2, 0.3]]**.", "A = [[3, 1], [2, 4]]: det = 3 × 4 − 1 × 2 = 12 − 2 = 10. Swap and change signs: [[4, −1], [−2, 3]]. Divided by 10: A⁻¹ = **[[0.4, −0.1], [−0.2, 0.3]]**."),
+            mistake: t("Calcular el determinante como a·d + b·c, u olvidar cambiar el signo de b y c.", "Computing the determinant as a·d + b·c, or forgetting to change the sign of b and c."),
+          },
+          {
+            name: t("Resolver un sistema 2 × 2 con la inversa", "Solving a 2 × 2 system with the inverse"),
+            expression: "A·x = b  →  x = A⁻¹·b",
+            variables: [
+              { symbol: "A", meaning: t("Matriz con los coeficientes de las incógnitas.", "Matrix with the coefficients of the unknowns.") },
+              { symbol: "x", meaning: t("Vector de incógnitas (x, y) que buscas.", "Vector of unknowns (x, y) you are looking for.") },
+              { symbol: "b", meaning: t("Vector con los resultados de cada ecuación (lo que va después del =).", "Vector with each equation's result (what comes after the =).") },
+              { symbol: "A⁻¹", meaning: t("Inversa de A, calculada con la fórmula anterior.", "Inverse of A, computed with the previous formula.") },
+            ],
+            steps: [
+              t("Escribe las ecuaciones como matriz A y vector b.", "Write the equations as a matrix A and a vector b."),
+              t("Calcula det y A⁻¹.", "Compute det and A⁻¹."),
+              t("Multiplica cada fila de A⁻¹ por b (fila × columna) para obtener x y luego y.", "Multiply each row of A⁻¹ by b (row × column) to get x and then y."),
+              t("Comprueba sustituyendo x y y en las ecuaciones originales.", "Check by plugging x and y into the original equations."),
+            ],
+            example: t("3x + y = 11 y 2x + 4y = 14. A = [[3, 1], [2, 4]], det = 10, b = (11, 14). x = (4 × 11 − 1 × 14) ÷ 10 = 30 ÷ 10 = **3**; y = (−2 × 11 + 3 × 14) ÷ 10 = 20 ÷ 10 = **2**. Comprobación: 3(3) + 2 = 11 y 2(3) + 4(2) = 14.", "3x + y = 11 and 2x + 4y = 14. A = [[3, 1], [2, 4]], det = 10, b = (11, 14). x = (4 × 11 − 1 × 14) ÷ 10 = 30 ÷ 10 = **3**; y = (−2 × 11 + 3 × 14) ÷ 10 = 20 ÷ 10 = **2**. Check: 3(3) + 2 = 11 and 2(3) + 4(2) = 14."),
+            mistake: t("Multiplicar b × A⁻¹ en vez de A⁻¹ × b: con matrices el orden importa.", "Multiplying b × A⁻¹ instead of A⁻¹ × b: with matrices order matters."),
+          },
+        ],
         bullets: [
           t("Dimensiones compatibles: (m × n) × (n × p) = (m × p).", "Compatible dimensions: (m × n) × (n × p) = (m × p)."),
           t("La identidad I tiene 1 en la diagonal y 0 en lo demás.", "The identity I has 1s on the diagonal and 0s elsewhere."),
@@ -244,7 +446,41 @@ export const lessons: Lesson[] = [
             "Mini example: f(x) = x², f'(x) = 2x. At x = 3 the slope is 6: if x goes from 3 to 3.1, f rises approximately 6 × 0.1 = **0.6** (the exact change is 9.61 − 9 = 0.61).",
           ),
         ],
-        formula: 'Δf ≈ f\'(x) × Δx     óptimo / optimum: f\'(x) = 0',
+        formulas: [
+          {
+            name: t("Cambio aproximado con la derivada", "Approximate change with the derivative"),
+            expression: "Δf ≈ f'(x) × Δx",
+            variables: [
+              { symbol: "Δf", meaning: t("Cuánto cambia el resultado (Δ se lee \"cambio en\").", "How much the result changes (Δ reads \"change in\").") },
+              { symbol: "f'(x)", meaning: t("Derivada: la pendiente o sensibilidad en el punto x.", "Derivative: the slope or sensitivity at point x.") },
+              { symbol: "Δx", meaning: t("Cambio pequeño en x.", "Small change in x.") },
+            ],
+            steps: [
+              t("Deriva la función con las reglas básicas (por ejemplo, x^n → n·x^(n−1)).", "Differentiate the function with the basic rules (for example, x^n → n·x^(n−1))."),
+              t("Evalúa la derivada en el punto actual x.", "Evaluate the derivative at the current point x."),
+              t("Multiplícala por el cambio pequeño Δx.", "Multiply it by the small change Δx."),
+            ],
+            example: t("f(x) = x³, x = 2, Δx = 0.1. f'(x) = 3x² → 3 × 2² = 12. Δf ≈ 12 × 0.1 = **1.2**. El cambio exacto es 2.1³ − 2³ = 9.261 − 8 = 1.261: muy parecido.", "f(x) = x³, x = 2, Δx = 0.1. f'(x) = 3x² → 3 × 2² = 12. Δf ≈ 12 × 0.1 = **1.2**. The exact change is 2.1³ − 2³ = 9.261 − 8 = 1.261: very close."),
+            interpret: t("Funciona bien para cambios pequeños; con cambios grandes el error crece.", "It works well for small changes; with large changes the error grows."),
+          },
+          {
+            name: t("Encontrar el óptimo (máximo o mínimo)", "Finding the optimum (maximum or minimum)"),
+            expression: "f'(x) = 0     derivada de k·x^n = n·k·x^(n−1)",
+            variables: [
+              { symbol: "f'(x)", meaning: t("Derivada de la función (la pendiente).", "Derivative of the function (the slope).") },
+              { symbol: "k", meaning: t("Número que multiplica a x (coeficiente).", "Number multiplying x (coefficient).") },
+              { symbol: "n", meaning: t("Exponente de x; la derivada de una constante es 0.", "Exponent of x; the derivative of a constant is 0.") },
+            ],
+            steps: [
+              t("Deriva término por término: baja el exponente a multiplicar y réstale 1.", "Differentiate term by term: bring the exponent down to multiply and subtract 1 from it."),
+              t("Iguala la derivada a cero y despeja x.", "Set the derivative to zero and solve for x."),
+              t("Si el término con x² es negativo, la curva es una montaña y el punto es un máximo; si es positivo, es un valle (mínimo).", "If the x² term is negative, the curve is a hill and the point is a maximum; if positive, it is a valley (minimum)."),
+              t("Sustituye x en la función original para obtener el valor óptimo.", "Plug x into the original function to get the optimal value."),
+            ],
+            example: t("Ganancia G(q) = −3q² + 60q − 100. G'(q) = −6q + 60. −6q + 60 = 0 → q = 60 ÷ 6 = **10**. Como −3q² es negativo, es máximo: G(10) = −300 + 600 − 100 = **200**.", "Profit G(q) = −3q² + 60q − 100. G'(q) = −6q + 60. −6q + 60 = 0 → q = 60 ÷ 6 = **10**. Since −3q² is negative, it is a maximum: G(10) = −300 + 600 − 100 = **200**."),
+            mistake: t("Derivar −3q² como −3q, sin multiplicar por el exponente 2.", "Differentiating −3q² as −3q, without multiplying by the exponent 2."),
+          },
+        ],
       },
     ],
     examples: [
@@ -299,7 +535,7 @@ export const lessons: Lesson[] = [
       "Para medir riesgo describes los rendimientos como variables aleatorias: su valor esperado, su dispersión, cómo se mueven juntos dos activos y qué tan bien (o mal) los describe la distribución normal.",
       "To measure risk you describe returns as random variables: their expected value, their dispersion, how two assets move together and how well (or poorly) the normal distribution describes them.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Calcular valor esperado, varianza y desviación estándar de un rendimiento con escenarios.", "Compute the expected value, variance and standard deviation of a return using scenarios."),
       t("Interpretar covarianza y correlación entre dos activos.", "Interpret covariance and correlation between two assets."),
@@ -326,7 +562,45 @@ export const lessons: Lesson[] = [
             "Mini example: a bet pays +20% with probability 0.6 and −10% with 0.4. E = 0.6 × 20 + 0.4 × (−10) = **8%**.",
           ),
         ],
-        formula: 'E[X] = Σ pi × xi     Var(X) = Σ pi × (xi − E[X])²     σ = √Var(X)',
+        formulas: [
+          {
+            name: t("Valor esperado", "Expected value"),
+            expression: "E[X] = p1 × x1 + p2 × x2 + … = Σ pi × xi",
+            variables: [
+              { symbol: "E[X]", meaning: t("Rendimiento promedio que esperas, en %.", "Average return you expect, in %.") },
+              { symbol: "pi", meaning: t("Probabilidad de cada escenario, en decimal; todas suman 1.", "Probability of each scenario, as a decimal; they all add up to 1.") },
+              { symbol: "xi", meaning: t("Rendimiento en cada escenario, en %.", "Return in each scenario, in %.") },
+              { symbol: "Σ", meaning: t("\"Suma todos\".", "\"Add them all\".") },
+            ],
+            steps: [
+              t("Revisa que las probabilidades sumen 1.", "Check that the probabilities add up to 1."),
+              t("Multiplica cada rendimiento por su probabilidad.", "Multiply each return by its probability."),
+              t("Suma los resultados.", "Add up the results."),
+            ],
+            example: t("Escenarios: 15 % con 0.3, 4 % con 0.5 y −10 % con 0.2. 0.3 × 15 = 4.5; 0.5 × 4 = 2; 0.2 × (−10) = −2. E = 4.5 + 2 − 2 = **4.5 %**.", "Scenarios: 15% with 0.3, 4% with 0.5 and −10% with 0.2. 0.3 × 15 = 4.5; 0.5 × 4 = 2; 0.2 × (−10) = −2. E = 4.5 + 2 − 2 = **4.5%**."),
+            mistake: t("Sacar un promedio simple sin probabilidades: (15 + 4 − 10) ÷ 3 = 3 % no es el valor esperado.", "Taking a plain average without probabilities: (15 + 4 − 10) ÷ 3 = 3% is not the expected value."),
+          },
+          {
+            name: t("Varianza y desviación estándar", "Variance and standard deviation"),
+            expression: "Var(X) = Σ pi × (xi − E[X])²     σ = √Var(X)",
+            variables: [
+              { symbol: "Var(X)", meaning: t("Varianza: promedio ponderado de las distancias al cuadrado; queda en %².", "Variance: weighted average of the squared distances; it is in %².") },
+              { symbol: "σ", meaning: t("Desviación estándar (volatilidad), en %; es la raíz de la varianza.", "Standard deviation (volatility), in %; it is the square root of the variance.") },
+              { symbol: "pi, xi", meaning: t("Probabilidad y rendimiento de cada escenario.", "Probability and return of each scenario.") },
+              { symbol: "E[X]", meaning: t("Valor esperado calculado antes.", "Expected value computed before.") },
+            ],
+            steps: [
+              t("Calcula primero E[X].", "First compute E[X]."),
+              t("Resta E[X] a cada rendimiento: xi − E[X].", "Subtract E[X] from each return: xi − E[X]."),
+              t("Eleva cada distancia al cuadrado y multiplícala por su probabilidad.", "Square each distance and multiply it by its probability."),
+              t("Suma todo: esa es la varianza.", "Add everything up: that is the variance."),
+              t("Saca raíz cuadrada para obtener σ en %.", "Take the square root to get σ in %."),
+            ],
+            example: t("Con los escenarios anteriores (E = 4.5 %): distancias 10.5, −0.5 y −14.5. Al cuadrado: 110.25, 0.25 y 210.25. Por probabilidad: 0.3 × 110.25 = 33.075; 0.5 × 0.25 = 0.125; 0.2 × 210.25 = 42.05. Var = 33.075 + 0.125 + 42.05 = 75.25; σ = √75.25 ≈ **8.67 %**.", "With the scenarios above (E = 4.5%): distances 10.5, −0.5 and −14.5. Squared: 110.25, 0.25 and 210.25. Times probability: 0.3 × 110.25 = 33.075; 0.5 × 0.25 = 0.125; 0.2 × 210.25 = 42.05. Var = 33.075 + 0.125 + 42.05 = 75.25; σ = √75.25 ≈ **8.67%**."),
+            interpret: t("Mayor σ = resultados más dispersos = más riesgo.", "Higher σ = more spread-out outcomes = more risk."),
+            mistake: t("Olvidar multiplicar cada distancia al cuadrado por su probabilidad, o reportar la varianza (75.25) como si fuera σ.", "Forgetting to multiply each squared distance by its probability, or reporting the variance (75.25) as if it were σ."),
+          },
+        ],
       },
       {
         heading: t("Covarianza y correlación", "Covariance and correlation"),
@@ -348,7 +622,25 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: σA = 20%, σB = 10% and ρ = −0.3. The covariance is −0.3 × 0.20 × 0.10 = **−0.006**.",
           ),
         ],
-        formula: 'ρ = Cov(A, B) / (σA × σB)     Cov(A, B) = ρ × σA × σB',
+        formulas: [
+          {
+            name: t("Correlación y covarianza", "Correlation and covariance"),
+            expression: "ρ = Cov(A, B) ÷ (σA × σB)     Cov(A, B) = ρ × σA × σB",
+            variables: [
+              { symbol: "ρ", meaning: t("Correlación (letra \"ro\"): de −1 a +1, sin unidades.", "Correlation (letter \"rho\"): from −1 to +1, no units.") },
+              { symbol: "Cov(A, B)", meaning: t("Covarianza: si A y B se mueven juntos (+) u opuestos (−).", "Covariance: whether A and B move together (+) or opposite (−).") },
+              { symbol: "σA, σB", meaning: t("Desviación estándar de cada activo, en decimal (4 % = 0.04).", "Standard deviation of each asset, as a decimal (4% = 0.04).") },
+            ],
+            steps: [
+              t("Escribe las desviaciones estándar en decimal, igual que la covarianza.", "Write the standard deviations as decimals, the same as the covariance."),
+              t("Multiplica σA × σB.", "Multiply σA × σB."),
+              t("Divide la covarianza entre ese producto (o, al revés, multiplica ρ × σA × σB para obtener la covarianza).", "Divide the covariance by that product (or, the other way, multiply ρ × σA × σB to get the covariance)."),
+            ],
+            example: t("Cov = 0.0009, σA = 3 % = 0.03 y σB = 6 % = 0.06. 0.03 × 0.06 = 0.0018; ρ = 0.0009 ÷ 0.0018 = **0.5**.", "Cov = 0.0009, σA = 3% = 0.03 and σB = 6% = 0.06. 0.03 × 0.06 = 0.0018; ρ = 0.0009 ÷ 0.0018 = **0.5**."),
+            interpret: t("Cerca de +1: se mueven casi igual. Cerca de −1: opuestos. Cerca de 0: sin relación lineal.", "Near +1: they move almost the same. Near −1: opposite. Near 0: no linear relationship."),
+            mistake: t("Mezclar unidades (σ en % y covarianza en decimal). Si te da un número fuera de −1 y +1, revisa las unidades.", "Mixing units (σ in % and covariance as a decimal). If you get a number outside −1 and +1, check the units."),
+          },
+        ],
       },
       {
         heading: t("Distribución normal, puntaje z y colas pesadas", "Normal distribution, z-score and fat tails"),
@@ -370,7 +662,44 @@ export const lessons: Lesson[] = [
             "Mini example: if a monthly return has μ = 1% and σ = 4%, a month of −11% has z = (−11 − 1) / 4 = **−3**: under a normal it would be very rare; in real markets it happens more often.",
           ),
         ],
-        formula: 'z = (x − μ) / σ',
+        formulas: [
+          {
+            name: t("Puntaje z", "z-score"),
+            expression: "z = (x − μ) ÷ σ",
+            variables: [
+              { symbol: "z", meaning: t("A cuántas desviaciones estándar está el dato de la media (sin unidades).", "How many standard deviations the data point is from the mean (no units).") },
+              { symbol: "x", meaning: t("El dato que quieres evaluar, en %.", "The data point you want to evaluate, in %.") },
+              { symbol: "μ", meaning: t("Media o promedio (letra \"mu\"), en %.", "Mean or average (letter \"mu\"), in %.") },
+              { symbol: "σ", meaning: t("Desviación estándar, en %.", "Standard deviation, in %.") },
+            ],
+            steps: [
+              t("Resta la media al dato: x − μ.", "Subtract the mean from the data point: x − μ."),
+              t("Divide entre σ.", "Divide by σ."),
+              t("Conserva el signo: negativo = por debajo del promedio.", "Keep the sign: negative = below average."),
+            ],
+            example: t("μ = 0.5 %, σ = 3 % y un mes de −4 %: −4 − 0.5 = −4.5; −4.5 ÷ 3 = **−1.5**: quedó 1.5 desviaciones estándar abajo del promedio.", "μ = 0.5%, σ = 3% and a month of −4%: −4 − 0.5 = −4.5; −4.5 ÷ 3 = **−1.5**: it was 1.5 standard deviations below average."),
+            interpret: t("|z| > 2 ya es poco común en una normal; |z| > 3 es rarísimo (aunque en mercados reales pasa más seguido).", "|z| > 2 is already uncommon under a normal; |z| > 3 is very rare (though in real markets it happens more often)."),
+            mistake: t("Olvidar restar la media y dividir solo x ÷ σ.", "Forgetting to subtract the mean and just dividing x ÷ σ."),
+          },
+          {
+            name: t("Rangos con la regla 68-95-99.7", "Ranges with the 68-95-99.7 rule"),
+            expression: "Rango = μ ± k × σ     k = 1 → 68 %,  k = 2 → 95 %,  k = 3 → 99.7 %",
+            variables: [
+              { symbol: "μ", meaning: t("Media, en %.", "Mean, in %.") },
+              { symbol: "σ", meaning: t("Desviación estándar, en %.", "Standard deviation, in %.") },
+              { symbol: "k", meaning: t("Cuántas desviaciones estándar te alejas (1, 2 o 3).", "How many standard deviations you move away (1, 2 or 3).") },
+              { symbol: "68 %, 95 %, 99.7 %", meaning: t("Parte aproximada de los datos que cae dentro del rango, si los datos son normales.", "Approximate share of the data inside the range, if the data are normal.") },
+            ],
+            steps: [
+              t("Elige k según el porcentaje: 68 % → 1, 95 % → 2, 99.7 % → 3.", "Choose k by the percentage: 68% → 1, 95% → 2, 99.7% → 3."),
+              t("Calcula k × σ.", "Compute k × σ."),
+              t("Réstalo y súmalo a la media para tener los límites.", "Subtract it from and add it to the mean to get the bounds."),
+              t("Lo que queda fuera se reparte por igual en las dos colas: (100 − porcentaje) ÷ 2.", "What falls outside splits equally into the two tails: (100 − percentage) ÷ 2."),
+            ],
+            example: t("μ = 0.5 % y σ = 3 %, al 95 %: 2 × 3 = 6; 0.5 − 6 = −5.5 % y 0.5 + 6 = 6.5 %. Cerca del 95 % de los meses cae **entre −5.5 % y 6.5 %**; la cola de abajo es (100 − 95) ÷ 2 = 2.5 %.", "μ = 0.5% and σ = 3%, at 95%: 2 × 3 = 6; 0.5 − 6 = −5.5% and 0.5 + 6 = 6.5%. About 95% of months fall **between −5.5% and 6.5%**; the lower tail is (100 − 95) ÷ 2 = 2.5%."),
+            mistake: t("Confundir los niveles: 68 % es ±1σ, no ±2σ.", "Mixing up the levels: 68% is ±1σ, not ±2σ."),
+          },
+        ],
         bullets: [
           t("±1σ ≈ 68 % de los datos.", "±1σ ≈ 68% of the data."),
           t("±2σ ≈ 95 % de los datos.", "±2σ ≈ 95% of the data."),
@@ -435,7 +764,7 @@ export const lessons: Lesson[] = [
       "La estadística inferencial usa una muestra de datos para sacar conclusiones sobre algo que no puedes observar completo, como el rendimiento promedio verdadero de una estrategia, midiendo cuánta incertidumbre hay en esa conclusión.",
       "Inferential statistics uses a sample of data to draw conclusions about something you cannot fully observe, like the true average return of a strategy, measuring how much uncertainty there is in that conclusion.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Distinguir población y muestra, y calcular el error estándar de la media.", "Distinguish population and sample, and compute the standard error of the mean."),
       t("Construir e interpretar un intervalo de confianza del 95 %.", "Build and interpret a 95% confidence interval."),
@@ -462,7 +791,25 @@ export const lessons: Lesson[] = [
             "Mini example: s = 6% monthly and n = 36 months: SE = 6 / √36 = 6 / 6 = **1%**.",
           ),
         ],
-        formula: 'EE = s / √n',
+        formulas: [
+          {
+            name: t("Error estándar de la media", "Standard error of the mean"),
+            expression: "EE = s ÷ √n",
+            variables: [
+              { symbol: "EE", meaning: t("Error estándar: cuánto podría variar el promedio de la muestra, en las mismas unidades que los datos (%).", "Standard error: how much the sample average could vary, in the same units as the data (%).") },
+              { symbol: "s", meaning: t("Desviación estándar de la muestra, en %.", "Sample standard deviation, in %.") },
+              { symbol: "n", meaning: t("Número de datos (por ejemplo, meses).", "Number of data points (for example, months).") },
+              { symbol: "√n", meaning: t("Raíz cuadrada de n.", "Square root of n.") },
+            ],
+            steps: [
+              t("Saca la raíz cuadrada del número de datos: √n.", "Take the square root of the number of data points: √n."),
+              t("Divide la desviación estándar entre ese número.", "Divide the standard deviation by that number."),
+            ],
+            example: t("s = 3 % y n = 25 meses: √25 = 5; 3 ÷ 5 = **0.6 %**.", "s = 3% and n = 25 months: √25 = 5; 3 ÷ 5 = **0.6%**."),
+            interpret: t("EE pequeño = promedio más confiable. Para reducirlo a la mitad necesitas cuatro veces más datos.", "Small SE = more reliable average. To cut it in half you need four times more data."),
+            mistake: t("Dividir entre n en vez de entre √n.", "Dividing by n instead of by √n."),
+          },
+        ],
       },
       {
         heading: t("Intervalos de confianza", "Confidence intervals"),
@@ -484,7 +831,25 @@ export const lessons: Lesson[] = [
             "Mini example: x̄ = 2% and SE = 0.5%: the 95% interval is 2 ± 0.98, that is **from 1.02% to 2.98%**.",
           ),
         ],
-        formula: 'IC 95 % / 95% CI = x̄ ± 1.96 × EE',
+        formulas: [
+          {
+            name: t("Intervalo de confianza del 95 % para la media", "95% confidence interval for the mean"),
+            expression: "IC 95 % = x̄ ± 1.96 × EE",
+            variables: [
+              { symbol: "x̄", meaning: t("Promedio de la muestra (se lee \"x barra\"), en %.", "Sample average (read \"x bar\"), in %.") },
+              { symbol: "1.96", meaning: t("Valor fijo de la normal para 95 % de confianza (muestras grandes).", "Fixed normal value for 95% confidence (large samples).") },
+              { symbol: "EE", meaning: t("Error estándar = s ÷ √n, en %.", "Standard error = s ÷ √n, in %.") },
+            ],
+            steps: [
+              t("Calcula el error estándar: EE = s ÷ √n.", "Compute the standard error: SE = s ÷ √n."),
+              t("Calcula el margen: 1.96 × EE.", "Compute the margin: 1.96 × SE."),
+              t("Límite inferior = x̄ − margen; límite superior = x̄ + margen.", "Lower bound = x̄ − margin; upper bound = x̄ + margin."),
+            ],
+            example: t("x̄ = 1.5 % y EE = 0.6 %: margen = 1.96 × 0.6 = 1.176. 1.5 − 1.176 = 0.324 % y 1.5 + 1.176 = 2.676 %. IC 95 % ≈ **de 0.32 % a 2.68 %**.", "x̄ = 1.5% and SE = 0.6%: margin = 1.96 × 0.6 = 1.176. 1.5 − 1.176 = 0.324% and 1.5 + 1.176 = 2.676%. 95% CI ≈ **from 0.32% to 2.68%**."),
+            interpret: t("Si el intervalo no incluye el 0, hay evidencia de que el promedio verdadero no es cero; si lo incluye, no puedes descartarlo.", "If the interval does not include 0, there is evidence the true average is not zero; if it does, you cannot rule it out."),
+            mistake: t("Usar la desviación estándar s en lugar del error estándar para el margen: el intervalo sale enorme.", "Using the standard deviation s instead of the standard error for the margin: the interval comes out huge."),
+          },
+        ],
       },
       {
         heading: t("Pruebas de hipótesis y valor p", "Hypothesis tests and p-value"),
@@ -502,11 +867,33 @@ export const lessons: Lesson[] = [
             "There are two ways to be wrong. **Type I error**: rejecting H0 when it is true (believing a strategy works when it was luck). **Type II error**: not rejecting H0 when it is false (discarding a strategy that did work). Not rejecting H0 **does not prove** it is true; it only says there was not enough evidence.",
           ),
           t(
-            "Mini ejemplo: con muestras grandes y prueba de dos colas al 5 %, el valor crítico es ≈ 1.96. Un t = 2.5 rechaza H0; un t = 1.2 no la rechaza.",
-            "Mini example: with large samples and a two-tailed test at 5%, the critical value is ≈ 1.96. A t = 2.5 rejects H0; a t = 1.2 does not.",
+            "Mini ejemplo: con muestras grandes y prueba de **dos colas** (te importa si el resultado se aleja hacia arriba o hacia abajo) al 5 %, el valor crítico es ≈ 1.96. Un t = 2.5 rechaza H0; un t = 1.2 no la rechaza.",
+            "Mini example: with large samples and a **two-tailed** test (you care whether the result moves away upward or downward) at 5%, the critical value is ≈ 1.96. A t = 2.5 rejects H0; a t = 1.2 does not.",
           ),
         ],
-        formula: 't = (x̄ − μ0) / EE     rechaza H0 si |t| > 1.96 (α = 5 %, dos colas)',
+        formulas: [
+          {
+            name: t("Estadístico t de una prueba de hipótesis", "t statistic of a hypothesis test"),
+            expression: "t = (x̄ − μ0) ÷ EE     rechaza H0 si |t| > 1.96 (o si valor p < α)",
+            variables: [
+              { symbol: "t", meaning: t("Cuántos errores estándar se aleja tu promedio de lo que dice H0.", "How many standard errors your average is from what H0 says.") },
+              { symbol: "x̄", meaning: t("Promedio de la muestra, en %.", "Sample average, in %.") },
+              { symbol: "μ0", meaning: t("Valor que afirma la hipótesis nula (muchas veces 0).", "Value the null hypothesis claims (often 0).") },
+              { symbol: "EE", meaning: t("Error estándar = s ÷ √n.", "Standard error = s ÷ √n.") },
+              { symbol: "|t|", meaning: t("Valor absoluto: t sin signo.", "Absolute value: t without its sign.") },
+              { symbol: "valor p, α", meaning: t("Valor p: probabilidad de un resultado así de extremo si H0 fuera cierta. α: nivel de significancia, típicamente 5 % (0.05).", "p-value: probability of a result this extreme if H0 were true. α: significance level, typically 5% (0.05).") },
+            ],
+            steps: [
+              t("Calcula el error estándar: EE = s ÷ √n.", "Compute the standard error: SE = s ÷ √n."),
+              t("Resta el valor de H0 al promedio: x̄ − μ0.", "Subtract the H0 value from the average: x̄ − μ0."),
+              t("Divide entre EE para obtener t.", "Divide by SE to get t."),
+              t("Compara |t| con 1.96 (5 %, dos colas). Si es mayor, rechazas H0. Si te dan el valor p, recházala cuando p < α.", "Compare |t| with 1.96 (5%, two tails). If it is larger, you reject H0. If you are given the p-value, reject it when p < α."),
+            ],
+            example: t("x̄ = 1.5 %, μ0 = 0 y EE = 0.6 %: 1.5 − 0 = 1.5; t = 1.5 ÷ 0.6 = **2.5**. Como 2.5 > 1.96, rechazas H0 al 5 %.", "x̄ = 1.5%, μ0 = 0 and SE = 0.6%: 1.5 − 0 = 1.5; t = 1.5 ÷ 0.6 = **2.5**. Since 2.5 > 1.96, you reject H0 at 5%."),
+            interpret: t("Rechazar H0 = evidencia de un efecto real. No rechazarla no prueba que H0 sea cierta: puede faltar información.", "Rejecting H0 = evidence of a real effect. Not rejecting it does not prove H0 is true: there may not be enough data."),
+            mistake: t("Dividir entre la desviación estándar s en vez del error estándar EE.", "Dividing by the standard deviation s instead of the standard error SE."),
+          },
+        ],
         bullets: [
           t("H0: la postura por defecto que intentas refutar.", "H0: the default position you try to refute."),
           t("Valor p pequeño = evidencia contra H0.", "Small p-value = evidence against H0."),
@@ -571,7 +958,7 @@ export const lessons: Lesson[] = [
       "La econometría financiera usa datos reales y modelos estadísticos para medir relaciones en los mercados, como la beta de una acción, cuidando los tipos de datos y las trampas que pueden llevar a conclusiones falsas.",
       "Financial econometrics uses real data and statistical models to measure relationships in markets, such as a stock's beta, paying attention to data types and the traps that can lead to false conclusions.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Distinguir datos de corte transversal, series de tiempo y panel.", "Distinguish cross-sectional, time-series and panel data."),
       t("Estimar e interpretar la beta y el alfa del modelo de mercado.", "Estimate and interpret the beta and alpha of the market model."),
@@ -619,14 +1006,53 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: a food company with β = 0.6. If the index falls 5%, the model expects it to fall about 0.6 × 5 = **3%** (plus alpha and the month's surprise).",
           ),
         ],
-        formula: 'Ri = α + β × Rm + ε     β = Cov(Ri, Rm) / Var(Rm) = ρ × σi / σm',
+        formulas: [
+          {
+            name: t("Beta de una acción", "Beta of a stock"),
+            expression: "β = Cov(Ri, Rm) ÷ Var(Rm) = ρ × σi ÷ σm",
+            variables: [
+              { symbol: "β", meaning: t("Beta: cuánto se mueve la acción por cada 1 % que se mueve el mercado.", "Beta: how much the stock moves for each 1% the market moves.") },
+              { symbol: "Cov(Ri, Rm)", meaning: t("Covarianza entre el rendimiento de la acción y el del mercado.", "Covariance between the stock's return and the market's.") },
+              { symbol: "Var(Rm)", meaning: t("Varianza del rendimiento del mercado (no de la acción).", "Variance of the market's return (not the stock's).") },
+              { symbol: "ρ", meaning: t("Correlación entre acción y mercado (de −1 a +1).", "Correlation between stock and market (from −1 to +1).") },
+              { symbol: "σi, σm", meaning: t("Volatilidad (desviación estándar) de la acción y del mercado, en %.", "Volatility (standard deviation) of the stock and the market, in %.") },
+            ],
+            steps: [
+              t("Si tienes covarianza: divide Cov(Ri, Rm) entre la varianza del mercado.", "If you have the covariance: divide Cov(Ri, Rm) by the market's variance."),
+              t("Si tienes correlación: multiplica ρ por σi y divide entre σm.", "If you have the correlation: multiply ρ by σi and divide by σm."),
+              t("Lee el resultado: mayor que 1 = agresiva, menor que 1 = defensiva.", "Read the result: above 1 = aggressive, below 1 = defensive."),
+            ],
+            example: t("Cov = 0.0006 y Var(Rm) = 0.0008: β = 0.0006 ÷ 0.0008 = **0.75**. Con la otra fórmula, ρ = 0.5, σi = 30 % y σm = 20 %: 0.5 × 30 ÷ 20 = 0.75.", "Cov = 0.0006 and Var(Rm) = 0.0008: β = 0.0006 ÷ 0.0008 = **0.75**. With the other formula, ρ = 0.5, σi = 30% and σm = 20%: 0.5 × 30 ÷ 20 = 0.75."),
+            interpret: t("β = 0.75: si el mercado sube 2 %, la acción tiende a subir 0.75 × 2 = 1.5 %.", "β = 0.75: if the market rises 2%, the stock tends to rise 0.75 × 2 = 1.5%."),
+            mistake: t("Invertir la división o dividir entre la varianza de la acción en lugar de la del mercado.", "Flipping the division or dividing by the stock's variance instead of the market's."),
+          },
+          {
+            name: t("Rendimiento esperado y residual (modelo de mercado)", "Expected return and residual (market model)"),
+            expression: "Esperado = α + β × Rm     ε = Ri real − Esperado",
+            variables: [
+              { symbol: "α", meaning: t("Alfa: parte del rendimiento que no explica el mercado, en %.", "Alpha: the part of the return the market does not explain, in %.") },
+              { symbol: "β", meaning: t("Beta de la acción.", "The stock's beta.") },
+              { symbol: "Rm", meaning: t("Rendimiento del mercado en el periodo, en %.", "Market return for the period, in %.") },
+              { symbol: "Ri real", meaning: t("Lo que de verdad rindió la acción, en %.", "What the stock actually returned, in %.") },
+              { symbol: "ε", meaning: t("Residual: la sorpresa propia de la empresa, en %.", "Residual: the company's own surprise, in %.") },
+            ],
+            steps: [
+              t("Multiplica β por el rendimiento del mercado.", "Multiply β by the market return."),
+              t("Súmale α: ese es el rendimiento esperado.", "Add α: that is the expected return."),
+              t("Resta: real − esperado. Ese es el residual.", "Subtract: actual − expected. That is the residual."),
+            ],
+            example: t("α = 0.3 %, β = 0.8 y el mercado cae 2 %: 0.8 × (−2) = −1.6; esperado = 0.3 − 1.6 = **−1.3 %**. Si la acción rindió −0.5 %: ε = −0.5 − (−1.3) = **+0.8 %**.", "α = 0.3%, β = 0.8 and the market falls 2%: 0.8 × (−2) = −1.6; expected = 0.3 − 1.6 = **−1.3%**. If the stock returned −0.5%: ε = −0.5 − (−1.3) = **+0.8%**."),
+            interpret: t("Residual positivo = a la empresa le fue mejor de lo que el mercado explicaba; negativo = peor.", "Positive residual = the company did better than the market explained; negative = worse."),
+            mistake: t("Olvidar sumar α, o restar al revés (esperado − real), lo que invierte el signo.", "Forgetting to add α, or subtracting the other way (expected − actual), which flips the sign."),
+          },
+        ],
       },
       {
         heading: t("Trampas comunes en datos financieros", "Common traps in financial data"),
         body: [
           t(
-            "Los datos financieros tienen problemas típicos. **Heterocedasticidad**: la varianza de los errores no es constante (hay épocas tranquilas y épocas turbulentas). **Autocorrelación**: los errores de un periodo se parecen a los del anterior. Ambas no necesariamente sesgan los coeficientes, pero sí hacen que los errores estándar \"normales\" engañen.",
-            "Financial data have typical problems. **Heteroskedasticity**: the error variance is not constant (there are calm and turbulent periods). **Autocorrelation**: errors in one period resemble those of the previous one. Neither necessarily biases the coefficients, but both make \"ordinary\" standard errors misleading.",
+            "En palabras sencillas: el **error** de un modelo es lo que el modelo no logra explicar en cada dato, y el **error estándar** de un coeficiente dice qué tan preciso es. Los datos financieros tienen problemas típicos. **Heterocedasticidad**: la varianza de los errores no es constante (hay épocas tranquilas y épocas turbulentas). **Autocorrelación**: los errores de un periodo se parecen a los del anterior. Ambas no necesariamente sesgan los coeficientes, pero sí hacen que los errores estándar \"normales\" engañen.",
+            "In plain words: a model's **error** is what the model fails to explain in each data point, and a coefficient's **standard error** tells how precise it is. Financial data have typical problems. **Heteroskedasticity**: the error variance is not constant (there are calm and turbulent periods). **Autocorrelation**: errors in one period resemble those of the previous one. Neither necessarily biases the coefficients, but both make \"ordinary\" standard errors misleading.",
           ),
           t(
             "Otros problemas sí distorsionan las conclusiones. **Sesgo de supervivencia**: estudiar solo empresas o fondos que siguen vivos y olvidar los que quebraron o cerraron. **Sesgo de anticipación** (*look-ahead*): usar un dato que todavía no se conocía en esa fecha. **Variable omitida**: dejar fuera un factor importante que mueve a ambas variables.",
@@ -697,7 +1123,7 @@ export const lessons: Lesson[] = [
       "Una regresión traza la línea que mejor resume cómo cambia una variable cuando cambian otras; aprenderás a estimarla por mínimos cuadrados, a medir qué tan bien ajusta y a interpretar regresiones con varias variables.",
       "A regression draws the line that best summarizes how one variable changes when others change; you will learn to estimate it by least squares, measure how well it fits and interpret regressions with several variables.",
     ),
-    minutes: 17,
+    minutes: 19,
     objectives: [
       t("Estimar la pendiente y la ordenada de una regresión lineal simple por MCO.", "Estimate the slope and intercept of a simple linear regression by OLS."),
       t("Calcular e interpretar el R² y la significancia de un coeficiente con su estadístico t.", "Compute and interpret R² and a coefficient's significance with its t statistic."),
@@ -724,14 +1150,35 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: a coffee chain estimates sales = 20 + 3 × (customers per hour). With 10 customers per hour, the prediction is 20 + 30 = **50** thousand pesos a day.",
           ),
         ],
-        formula: 'Ŷ = a + b·X     b = Cov(X, Y) / Var(X)     a = ȳ − b·x̄',
+        formulas: [
+          {
+            name: t("Recta de mínimos cuadrados: pendiente, ordenada y predicción", "Least-squares line: slope, intercept and prediction"),
+            expression: "b = Cov(X, Y) ÷ Var(X)     a = ȳ − b × x̄     Ŷ = a + b × X",
+            variables: [
+              { symbol: "b", meaning: t("Pendiente: cuánto cambia Y por cada unidad que sube X.", "Slope: how much Y changes for each unit X rises.") },
+              { symbol: "a", meaning: t("Ordenada: el valor de Y cuando X = 0.", "Intercept: the value of Y when X = 0.") },
+              { symbol: "Cov(X, Y)", meaning: t("Covarianza entre X y Y.", "Covariance between X and Y.") },
+              { symbol: "Var(X)", meaning: t("Varianza de X (la variable que explica), no de Y.", "Variance of X (the explaining variable), not of Y.") },
+              { symbol: "x̄, ȳ", meaning: t("Promedios de X y de Y.", "Averages of X and Y.") },
+              { symbol: "Ŷ", meaning: t("Valor de Y que predice la recta (se lee \"Y gorro\").", "Value of Y the line predicts (read \"Y hat\").") },
+              { symbol: "X", meaning: t("Valor de la variable explicativa para el que quieres predecir.", "Value of the explaining variable you want to predict for.") },
+            ],
+            steps: [
+              t("Calcula la pendiente: b = Cov(X, Y) ÷ Var(X).", "Compute the slope: b = Cov(X, Y) ÷ Var(X)."),
+              t("Calcula la ordenada: multiplica b × x̄ y réstalo a ȳ.", "Compute the intercept: multiply b × x̄ and subtract it from ȳ."),
+              t("Para predecir, sustituye X en Ŷ = a + b × X.", "To predict, plug X into Ŷ = a + b × X."),
+            ],
+            example: t("Cov(X, Y) = 8, Var(X) = 4, x̄ = 5 y ȳ = 15. b = 8 ÷ 4 = 2; a = 15 − 2 × 5 = 15 − 10 = 5. Con X = 7: Ŷ = 5 + 2 × 7 = 5 + 14 = **19**.", "Cov(X, Y) = 8, Var(X) = 4, x̄ = 5 and ȳ = 15. b = 8 ÷ 4 = 2; a = 15 − 2 × 5 = 15 − 10 = 5. With X = 7: Ŷ = 5 + 2 × 7 = 5 + 14 = **19**."),
+            mistake: t("Calcular a como ȳ − b (sin multiplicar por x̄), o dividir entre Var(Y) en vez de Var(X).", "Computing a as ȳ − b (without multiplying by x̄), or dividing by Var(Y) instead of Var(X)."),
+          },
+        ],
       },
       {
         heading: t("Bondad de ajuste y significancia", "Goodness of fit and significance"),
         body: [
           t(
-            "El **R²** dice qué parte de la variación de Y explica el modelo, de 0 a 1 (o 0 % a 100 %). Se calcula como 1 − SCR / SCT, donde SCR es la suma de cuadrados de los residuales y SCT la suma de cuadrados total (las desviaciones de Y respecto a su promedio).",
-            "**R²** tells what share of Y's variation the model explains, from 0 to 1 (or 0% to 100%). It is computed as 1 − SSR / SST, where SSR is the sum of squared residuals and SST the total sum of squares (Y's deviations from its average).",
+            "En palabras sencillas: el **R²** es la \"calificación\" de qué tan bien la recta sigue a los datos. Dice qué parte de la variación de Y explica el modelo, de 0 a 1 (o 0 % a 100 %). Se calcula como 1 − SCR / SCT, donde SCR es la suma de cuadrados de los residuales y SCT la suma de cuadrados total (las desviaciones de Y respecto a su promedio).",
+            "In plain words: **R²** is the \"grade\" for how well the line follows the data. It tells what share of Y's variation the model explains, from 0 to 1 (or 0% to 100%). It is computed as 1 − SSR / SST, where SSR is the sum of squared residuals and SST the total sum of squares (Y's deviations from its average).",
           ),
           t(
             "Un R² alto no significa que el modelo sea correcto ni causal, y uno bajo no siempre es malo: en rendimientos diarios de acciones, R² modestos son comunes porque hay mucho ruido.",
@@ -746,7 +1193,41 @@ export const lessons: Lesson[] = [
             "Mini example: SST = 200 and SSR = 50 → R² = 1 − 50/200 = **0.75**: the model explains 75% of the variation.",
           ),
         ],
-        formula: 'R² = 1 − SCR / SCT     t = b / EE(b)',
+        formulas: [
+          {
+            name: t("Coeficiente de determinación R²", "Coefficient of determination R²"),
+            expression: "R² = 1 − SCR ÷ SCT",
+            variables: [
+              { symbol: "R²", meaning: t("Parte de la variación de Y que explica el modelo, de 0 a 1 (× 100 para %).", "Share of Y's variation the model explains, from 0 to 1 (× 100 for %).") },
+              { symbol: "SCR", meaning: t("Suma de cuadrados de los residuales: lo que el modelo NO explica.", "Sum of squared residuals: what the model does NOT explain.") },
+              { symbol: "SCT", meaning: t("Suma de cuadrados total: cuánto varía Y en total respecto a su promedio.", "Total sum of squares: how much Y varies in total around its average.") },
+            ],
+            steps: [
+              t("Divide SCR entre SCT: es la parte no explicada.", "Divide SSR by SST: that is the unexplained share."),
+              t("Réstale ese resultado a 1.", "Subtract that result from 1."),
+              t("Multiplica por 100 para leerlo en %.", "Multiply by 100 to read it in %."),
+            ],
+            example: t("SCR = 36 y SCT = 90: 36 ÷ 90 = 0.4; 1 − 0.4 = 0.6 → **60 %** de la variación explicada.", "SSR = 36 and SST = 90: 36 ÷ 90 = 0.4; 1 − 0.4 = 0.6 → **60%** of the variation explained."),
+            interpret: t("Más cerca de 1 = mejor ajuste. Un R² alto no prueba causalidad.", "Closer to 1 = better fit. A high R² does not prove causation."),
+            mistake: t("Quedarte con SCR ÷ SCT, que es la parte NO explicada.", "Stopping at SSR ÷ SST, which is the share NOT explained."),
+          },
+          {
+            name: t("Estadístico t de un coeficiente", "t statistic of a coefficient"),
+            expression: "t = b ÷ EE(b)     significativo al 5 % si |t| > 1.96",
+            variables: [
+              { symbol: "b", meaning: t("Coeficiente estimado (por ejemplo, la pendiente).", "Estimated coefficient (for example, the slope).") },
+              { symbol: "EE(b)", meaning: t("Error estándar del coeficiente: qué tan impreciso es.", "Standard error of the coefficient: how imprecise it is.") },
+              { symbol: "|t|", meaning: t("Valor de t sin signo.", "Value of t without its sign.") },
+            ],
+            steps: [
+              t("Divide el coeficiente entre su error estándar.", "Divide the coefficient by its standard error."),
+              t("Compara |t| con 1.96: si es mayor, el coeficiente es significativo al 5 % (muestras grandes).", "Compare |t| with 1.96: if larger, the coefficient is significant at 5% (large samples)."),
+            ],
+            example: t("b = 0.45 y EE(b) = 0.30: t = 0.45 ÷ 0.30 = **1.5**. Como 1.5 < 1.96, no es significativo al 5 %.", "b = 0.45 and SE(b) = 0.30: t = 0.45 ÷ 0.30 = **1.5**. Since 1.5 < 1.96, it is not significant at 5%."),
+            interpret: t("Significativo = probablemente distinto de cero; revisa además si el tamaño importa en la práctica.", "Significant = probably different from zero; also check whether the size matters in practice."),
+            mistake: t("Multiplicar en vez de dividir.", "Multiplying instead of dividing."),
+          },
+        ],
       },
       {
         heading: t("Regresión múltiple, variables dummy y sobreajuste", "Multiple regression, dummy variables and overfitting"),
@@ -767,6 +1248,27 @@ export const lessons: Lesson[] = [
             "Mini ejemplo hipotético: rendimiento = 0.5 + 1.1 × Mercado − 0.3 × Dummy(crisis). Con mercado de 2 % en un mes sin crisis: 0.5 + 2.2 = **2.7 %**; el mismo mes con crisis: 2.7 − 0.3 = 2.4 %.",
             "Hypothetical mini example: return = 0.5 + 1.1 × Market − 0.3 × Dummy(crisis). With a 2% market in a non-crisis month: 0.5 + 2.2 = **2.7%**; the same month with crisis: 2.7 − 0.3 = 2.4%.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Predicción con regresión múltiple y variable dummy", "Prediction with multiple regression and a dummy variable"),
+            expression: "Ŷ = a + b1 × X1 + b2 × X2 + … + c × D",
+            variables: [
+              { symbol: "Ŷ", meaning: t("Valor de Y que predice el modelo.", "Value of Y the model predicts.") },
+              { symbol: "a", meaning: t("Ordenada: valor de Y cuando todas las X y D valen 0.", "Intercept: value of Y when all X and D are 0.") },
+              { symbol: "b1, b2, …", meaning: t("Coeficientes: efecto de subir 1 unidad esa X, dejando las demás fijas.", "Coefficients: effect of raising that X by 1 unit, holding the others fixed.") },
+              { symbol: "X1, X2, …", meaning: t("Valores de las variables explicativas.", "Values of the explaining variables.") },
+              { symbol: "D", meaning: t("Variable dummy: 1 si se cumple la característica (sí), 0 si no.", "Dummy variable: 1 if the feature applies (yes), 0 if not.") },
+              { symbol: "c", meaning: t("Coeficiente de la dummy: diferencia promedio entre el grupo con 1 y el grupo con 0.", "Dummy coefficient: average difference between the group with 1 and the group with 0.") },
+            ],
+            steps: [
+              t("Multiplica cada coeficiente por el valor de su variable (respeta signos).", "Multiply each coefficient by its variable's value (keep the signs)."),
+              t("Para la dummy pon 1 o 0 según el caso.", "For the dummy put 1 or 0 as the case may be."),
+              t("Suma la ordenada y todos los productos.", "Add the intercept and all the products."),
+            ],
+            example: t("Ventas = 50 + 2 × Publicidad + 15 × Diciembre (miles de pesos, datos hipotéticos). Publicidad = 10 en diciembre: 50 + 2 × 10 + 15 × 1 = 50 + 20 + 15 = **85**. En otro mes: 50 + 20 + 15 × 0 = 70. La diferencia (15) es justo el coeficiente de la dummy.", "Sales = 50 + 2 × Advertising + 15 × December (thousands of pesos, hypothetical data). Advertising = 10 in December: 50 + 2 × 10 + 15 × 1 = 50 + 20 + 15 = **85**. In another month: 50 + 20 + 15 × 0 = 70. The difference (15) is exactly the dummy's coefficient."),
+            mistake: t("Leer el coeficiente de la dummy como un porcentaje del grupo; es una diferencia en las unidades de Y.", "Reading the dummy coefficient as a percentage of the group; it is a difference in Y's units."),
+          },
         ],
         bullets: [
           t("Coeficiente = efecto de una X manteniendo las demás constantes.", "Coefficient = effect of one X holding the others constant."),
