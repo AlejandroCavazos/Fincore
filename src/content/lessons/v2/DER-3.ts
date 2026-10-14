@@ -41,7 +41,7 @@ export const lessons: Lesson[] = [
       es: "Las instituciones financieras necesitan permiso para operar, deben tener capital y liquidez suficientes y están vigiladas por autoridades que protegen el ahorro del público.",
       en: "Financial institutions need a license to operate, must hold enough capital and liquidity, and are overseen by authorities that protect the public's savings.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar por qué se regula a las instituciones financieras y qué autoridad supervisa a cada tipo de entidad en México.", en: "Explain why financial institutions are regulated and which authority supervises each type of entity in Mexico." },
       { es: "Calcular e interpretar el índice de capitalización y relacionarlo con las acciones correctivas del supervisor.", en: "Compute and interpret the capital adequacy ratio and relate it to the supervisor's corrective actions." },
@@ -88,7 +88,49 @@ export const lessons: Lesson[] = [
             en: "If ICAP falls below the minimums, the law provides **early corrective actions**: the supervisor may ban dividends, curb growth or require a capital restoration plan. There are also **liquidity** rules (holding easy-to-sell assets to cover about 30 days of stressed outflows). Mini example: with $1,200 million of capital and $10,000 million of RWA, ICAP is 12%.",
           },
         ],
-        formula: 'ICAP = Capital neto ÷ Activos ponderados por riesgo × 100',
+        formulas: [
+          {
+            name: { es: "Índice de capitalización (ICAP)", en: "Capital adequacy ratio (ICAP)" },
+            expression: "APR = APR de crédito + APR de mercado + APR operacional;  ICAP = Capital neto ÷ APR × 100",
+            variables: [
+              { symbol: "APR", meaning: { es: "Activos ponderados por riesgo: lo que tiene el banco, contado según qué tan riesgoso es, en millones de pesos.", en: "Risk-weighted assets: what the bank holds, counted by how risky it is, in millions of pesos." } },
+              { symbol: "APR de crédito / mercado / operacional", meaning: { es: "La parte de los APR que viene de préstamos que podrían no pagarse, de cambios en precios del mercado y de fallas internas (errores, fraudes, sistemas).", en: "The part of RWA coming from loans that might not be repaid, from market price changes and from internal failures (errors, fraud, systems)." } },
+              { symbol: "Capital neto", meaning: { es: "Dinero propio del banco que sirve de colchón contra pérdidas, en millones de pesos.", en: "The bank's own money that acts as a cushion against losses, in millions of pesos." } },
+              { symbol: "ICAP", meaning: { es: "Qué porcentaje de sus activos riesgosos puede cubrir el banco con su propio capital, en %.", en: "What percentage of its risky assets the bank can cover with its own capital, in %." } },
+            ],
+            steps: [
+              { es: "Suma los tres tipos de APR: crédito + mercado + operacional.", en: "Add the three types of RWA: credit + market + operational." },
+              { es: "Divide el capital neto entre el total de APR.", en: "Divide net capital by total RWA." },
+              { es: "Multiplica por 100 para expresarlo en %.", en: "Multiply by 100 to express it as a %." },
+            ],
+            example: {
+              es: "Banco hipotético con capital neto de $500 millones y APR de crédito $3,000, mercado $500 y operacional $500 millones. APR = 3,000 + 500 + 500 = $4,000 millones. ICAP = 500 ÷ 4,000 × 100 = **12.5%**.",
+              en: "Hypothetical bank with net capital of $500 million and RWA of credit $3,000, market $500 and operational $500 million. RWA = 3,000 + 500 + 500 = $4,000 million. ICAP = 500 ÷ 4,000 × 100 = **12.5%**.",
+            },
+            interpret: { es: "Más alto = más colchón y más solidez. Si queda por debajo del mínimo, el supervisor aplica acciones correctivas.", en: "Higher = more cushion and more soundness. If it falls below the minimum, the supervisor applies corrective actions." },
+            mistake: { es: "Usar solo el riesgo de crédito, o los activos totales sin ponderar: el ICAP sale más alto de lo que realmente es.", en: "Using only credit risk, or unweighted total assets: ICAP comes out higher than it really is." },
+          },
+          {
+            name: { es: "Capital mínimo y capital excedente", en: "Minimum capital and capital surplus" },
+            expression: "Capital mínimo = APR × % mínimo;  Excedente = Capital neto − Capital mínimo",
+            variables: [
+              { symbol: "APR", meaning: { es: "Total de activos ponderados por riesgo, en millones de pesos.", en: "Total risk-weighted assets, in millions of pesos." } },
+              { symbol: "% mínimo", meaning: { es: "Porcentaje mínimo que se exige (en esta lección se usa 10.5% como dato ilustrativo), en decimal: 10.5% = 0.105.", en: "Minimum percentage required (this lesson uses 10.5% as an illustrative figure), as a decimal: 10.5% = 0.105." } },
+              { symbol: "Capital neto", meaning: { es: "Capital que el banco realmente tiene, en millones de pesos.", en: "Capital the bank actually has, in millions of pesos." } },
+              { symbol: "Excedente", meaning: { es: "Holgura: capital que sobra encima del mínimo, en millones de pesos.", en: "Headroom: capital left above the minimum, in millions of pesos." } },
+            ],
+            steps: [
+              { es: "Convierte el % mínimo a decimal: 10.5% = 0.105.", en: "Convert the minimum % to a decimal: 10.5% = 0.105." },
+              { es: "Multiplica los APR por ese decimal: capital mínimo.", en: "Multiply RWA by that decimal: minimum capital." },
+              { es: "Resta el capital mínimo al capital neto: excedente.", en: "Subtract minimum capital from net capital: surplus." },
+            ],
+            example: {
+              es: "Con APR de $4,000 millones y capital neto de $500 millones: mínimo = 4,000 × 0.105 = $420 millones; excedente = 500 − 420 = **$80 millones**.",
+              en: "With RWA of $4,000 million and net capital of $500 million: minimum = 4,000 × 0.105 = $420 million; surplus = 500 − 420 = **$80 million**.",
+            },
+            interpret: { es: "Excedente positivo = cumple con holgura; negativo = le falta capital y debe reforzarlo.", en: "Positive surplus = complies with room to spare; negative = it lacks capital and must add more." },
+          },
+        ],
       },
       {
         heading: { es: "Protección al ahorrador y nuevas figuras (fintech)", en: "Saver protection and new entities (fintech)" },
@@ -106,7 +148,29 @@ export const lessons: Lesson[] = [
             en: "Mini example: if the hypothetical UDI value is $8.50, the maximum coverage is 400,000 × 8.50 = $3,400,000. Someone with $3,800,000 in a single bank would have $400,000 unprotected; spreading across different banks widens coverage.",
           },
         ],
-        formula: 'Cobertura IPAB = mín(depósitos en el banco, 400,000 UDIs × valor UDI)',
+        formulas: [
+          {
+            name: { es: "Cuánto protege el IPAB", en: "How much IPAB protects" },
+            expression: "Tope por banco = 400,000 UDIs × Valor de la UDI;  Cobertura en cada banco = el menor entre (Depósitos en ese banco, Tope por banco);  Cobertura total = suma de la cobertura de cada banco",
+            variables: [
+              { symbol: "400,000 UDIs", meaning: { es: "Límite de protección por persona y por banco, expresado en UDIs.", en: "Protection limit per person per bank, expressed in UDIs." } },
+              { symbol: "Valor de la UDI", meaning: { es: "Pesos que vale una UDI ese día (en los ejemplos se usa un valor hipotético).", en: "Pesos one UDI is worth that day (the examples use a hypothetical value)." } },
+              { symbol: "Depósitos en ese banco", meaning: { es: "Suma de todas tus cuentas protegidas en ese mismo banco (cheques, ahorro, plazo), en pesos.", en: "Sum of all your protected accounts at that same bank (checking, savings, time), in pesos." } },
+              { symbol: "el menor entre", meaning: { es: "Se toma la cantidad más chica de las dos: si tienes menos que el tope, se protege todo; si tienes más, solo el tope.", en: "Take the smaller of the two amounts: if you have less than the cap, everything is protected; if more, only the cap." } },
+            ],
+            steps: [
+              { es: "Calcula el tope en pesos: 400,000 × valor de la UDI.", en: "Compute the cap in pesos: 400,000 × UDI value." },
+              { es: "Suma todas tus cuentas de un mismo banco.", en: "Add up all your accounts at the same bank." },
+              { es: "En cada banco, protegido = el menor entre esa suma y el tope.", en: "At each bank, protected = the smaller of that sum and the cap." },
+              { es: "Suma lo protegido de todos los bancos.", en: "Add the protected amounts across all banks." },
+            ],
+            example: {
+              es: "UDI hipotética de $8.20. Tope = 400,000 × 8.20 = $3,280,000. Banco A: $3,500,000 → protegido $3,280,000 (quedan $220,000 sin cubrir). Banco B: $900,000 → protegido completo. Total = 3,280,000 + 900,000 = **$4,180,000**.",
+              en: "Hypothetical UDI of $8.20. Cap = 400,000 × 8.20 = $3,280,000. Bank A: $3,500,000 → protected $3,280,000 ($220,000 uncovered). Bank B: $900,000 → fully protected. Total = 3,280,000 + 900,000 = **$4,180,000**.",
+            },
+            mistake: { es: "Aplicar el tope por cuenta (es por banco) o un solo tope a la suma de todos los bancos (cada banco tiene su propio tope).", en: "Applying the cap per account (it is per bank) or a single cap to the sum of all banks (each bank has its own cap)." },
+          },
+        ],
       },
     ],
     examples: [
@@ -212,7 +276,27 @@ export const lessons: Lesson[] = [
             en: "The **audit** committee oversees financial reporting, internal control and the external auditor. The **corporate practices** committee reviews executive pay and **related-party** transactions. Mini example: with 10 directors, 25% is 2.5, so at least 3 independents are needed (always round up).",
           },
         ],
-        formula: 'Independientes mínimos = redondear hacia arriba (consejeros totales × 25%)',
+        formulas: [
+          {
+            name: { es: "Consejeros independientes mínimos (SAB)", en: "Minimum independent directors (SAB)" },
+            expression: "Independientes mínimos = redondear hacia arriba (Consejeros totales × 25%)",
+            variables: [
+              { symbol: "Consejeros totales", meaning: { es: "Número de miembros del consejo (en una SAB, máximo 21).", en: "Number of board members (in an SAB, at most 21)." } },
+              { symbol: "25%", meaning: { es: "Proporción mínima de independientes; en decimal, 0.25.", en: "Minimum share of independents; as a decimal, 0.25." } },
+              { symbol: "redondear hacia arriba", meaning: { es: "Si el resultado tiene decimales, subir al siguiente entero (no hay medio consejero).", en: "If the result has decimals, go up to the next whole number (there is no half director)." } },
+            ],
+            steps: [
+              { es: "Verifica que el consejo no pase de 21 miembros.", en: "Check that the board does not exceed 21 members." },
+              { es: "Multiplica los consejeros totales por 0.25.", en: "Multiply total directors by 0.25." },
+              { es: "Si sale con decimales, redondea hacia arriba.", en: "If it has decimals, round up." },
+            ],
+            example: {
+              es: "Consejo de 9 miembros: 9 × 0.25 = 2.25 → se redondea a **3 independientes**. Con 2 no alcanza: 2 ÷ 9 ≈ 22%, menos de 25%.",
+              en: "Board of 9 members: 9 × 0.25 = 2.25 → rounded up to **3 independents**. 2 is not enough: 2 ÷ 9 ≈ 22%, under 25%.",
+            },
+            mistake: { es: "Redondear hacia abajo o al entero más cercano: el resultado quedaría por debajo del 25%.", en: "Rounding down or to the nearest whole number: the result would fall below 25%." },
+          },
+        ],
       },
       {
         heading: { es: "Deberes de los consejeros y partes relacionadas", en: "Directors' duties and related parties" },
@@ -289,7 +373,7 @@ export const lessons: Lesson[] = [
       es: "La PLD obliga a bancos y a ciertos negocios a conocer a sus clientes, detectar operaciones sospechosas y reportarlas para que el dinero ilícito no entre a la economía formal.",
       en: "AML requires banks and certain businesses to know their customers, detect suspicious transactions and report them so illicit money does not enter the formal economy.",
     },
-    minutes: 17,
+    minutes: 18,
     objectives: [
       { es: "Describir las tres etapas del lavado de dinero y reconocer señales de alerta.", en: "Describe the three stages of money laundering and recognize red flags." },
       { es: "Explicar las obligaciones de PLD de entidades financieras y de quienes realizan actividades vulnerables.", en: "Explain the AML obligations of financial entities and of those carrying out vulnerable activities." },
@@ -318,6 +402,28 @@ export const lessons: Lesson[] = [
           { es: "Empresas fachada sin empleados ni operaciones reales.", en: "Shell companies with no employees or real operations." },
           { es: "Negarse a dar datos o usar prestanombres.", en: "Refusing to provide data or using front persons." },
           { es: "Pagos en efectivo grandes por bienes de alto valor.", en: "Large cash payments for high-value goods." },
+        ],
+        formulas: [
+          {
+            name: { es: "Monto total de un posible fraccionamiento", en: "Total amount of possible structuring" },
+            expression: "Monto a analizar = Depósito 1 + Depósito 2 + … + Depósito n;  Veces el ingreso = Monto a analizar ÷ Ingreso mensual declarado",
+            variables: [
+              { symbol: "Depósito 1 … n", meaning: { es: "Cada depósito en efectivo del patrón sospechoso (aunque cada uno quede debajo del umbral), en pesos.", en: "Each cash deposit in the suspicious pattern (even if each stays below the threshold), in pesos." } },
+              { symbol: "Monto a analizar", meaning: { es: "La suma de todos esos depósitos: lo que revisa el oficial de cumplimiento, en pesos.", en: "The sum of all those deposits: what the compliance officer reviews, in pesos." } },
+              { symbol: "Ingreso mensual declarado", meaning: { es: "Lo que el cliente dijo ganar al mes al abrir su cuenta, en pesos.", en: "What the customer said they earn per month when opening the account, in pesos." } },
+            ],
+            steps: [
+              { es: "Junta los depósitos que forman el patrón (días cercanos, sucursales distintas, montos justo bajo el umbral).", en: "Group the deposits that form the pattern (close dates, different branches, amounts just under the threshold)." },
+              { es: "Súmalos todos: ese es el monto a analizar.", en: "Add them all: that is the amount to analyze." },
+              { es: "Divide entre el ingreso mensual declarado para ver si cuadra con su perfil.", en: "Divide by the declared monthly income to see whether it matches the profile." },
+            ],
+            example: {
+              es: "Ingreso declarado $12,000 al mes; depósitos de $45,000, $46,500 y $44,800 con un umbral hipotético de $50,000. Monto = 45,000 + 46,500 + 44,800 = **$136,300**. Veces el ingreso = 136,300 ÷ 12,000 ≈ **11.4 veces**.",
+              en: "Declared income $12,000 a month; deposits of $45,000, $46,500 and $44,800 with a hypothetical threshold of $50,000. Amount = 45,000 + 46,500 + 44,800 = **$136,300**. Times income = 136,300 ÷ 12,000 ≈ **11.4 times**.",
+            },
+            interpret: { es: "Si el total es muchas veces su ingreso y cada depósito evita el umbral, es una señal de alerta que se analiza como posible operación inusual.", en: "If the total is many times the income and each deposit avoids the threshold, it is a red flag analyzed as a possible unusual transaction." },
+            mistake: { es: "Revisar cada depósito por separado y concluir que ninguno importa: la señal está en el patrón conjunto.", en: "Reviewing each deposit separately and concluding none matters: the red flag is in the combined pattern." },
+          },
         ],
       },
       {
@@ -353,7 +459,31 @@ export const lessons: Lesson[] = [
             en: "Golden rule: the employee **must not tell the customer** they were reported (that is called tipping-off). Mini example: a student with declared income of $8,000 a month who receives $600,000 in foreign transfers in one week warrants analysis and, if there is no explanation, an unusual transaction report.",
           },
         ],
-        formula: 'Puntaje de riesgo = cliente + producto + canal + geografía (modelo ilustrativo)',
+        formulas: [
+          {
+            name: { es: "Puntaje de riesgo del cliente (modelo ilustrativo)", en: "Customer risk score (illustrative model)" },
+            expression: "Puntaje = Cliente + Producto + Canal + Geografía (+ puntos extra si es PEP)",
+            variables: [
+              { symbol: "Cliente", meaning: { es: "Riesgo por su actividad y origen de recursos, de 1 (bajo) a 3 (alto) en este modelo.", en: "Risk from their activity and source of funds, 1 (low) to 3 (high) in this model." } },
+              { symbol: "Producto", meaning: { es: "Riesgo del producto que usa (efectivo o transferencias internacionales califican más alto), de 1 a 3.", en: "Risk of the product used (cash or international transfers score higher), 1 to 3." } },
+              { symbol: "Canal", meaning: { es: "Riesgo de cómo contrata (presencial o en línea), de 1 a 3.", en: "Risk of how they sign up (in person or online), 1 to 3." } },
+              { symbol: "Geografía", meaning: { es: "Riesgo de la zona donde vive u opera, de 1 a 3.", en: "Risk of the area where they live or operate, 1 to 3." } },
+              { symbol: "PEP", meaning: { es: "Persona políticamente expuesta o su familiar cercano; en este modelo suma 3 puntos.", en: "Politically exposed person or close relative; in this model it adds 3 points." } },
+            ],
+            steps: [
+              { es: "Califica cada factor del 1 al 3 según la descripción del cliente.", en: "Score each factor from 1 to 3 based on the customer description." },
+              { es: "Suma los cuatro factores.", en: "Add the four factors." },
+              { es: "Si es PEP (o familiar cercano de uno), suma los puntos extra.", en: "If a PEP (or close relative of one), add the extra points." },
+              { es: "Compara con el umbral del modelo (aquí, 10 o más = alto riesgo).", en: "Compare with the model threshold (here, 10 or more = high risk)." },
+            ],
+            example: {
+              es: "Cliente con actividad 2, producto 3, canal 2 y geografía 1: 2 + 3 + 2 + 1 = 8 (sin PEP). Es hija de un alcalde en funciones (PEP): 8 + 3 = **11** ≥ 10 → alto riesgo, debida diligencia reforzada.",
+              en: "Customer with activity 2, product 3, channel 2 and geography 1: 2 + 3 + 2 + 1 = 8 (without PEP). She is the daughter of a sitting mayor (PEP): 8 + 3 = **11** ≥ 10 → high risk, enhanced due diligence.",
+            },
+            interpret: { es: "Un puntaje alto no significa rechazar al cliente: significa más documentos, aprobación de un directivo y vigilancia más frecuente.", en: "A high score does not mean rejecting the customer: it means more documents, senior approval and more frequent monitoring." },
+            mistake: { es: "No sumar los puntos PEP a los familiares cercanos del funcionario: también cuentan como PEP.", en: "Not adding PEP points for the official's close relatives: they also count as PEPs." },
+          },
+        ],
       },
     ],
     examples: [
@@ -535,7 +665,7 @@ export const lessons: Lesson[] = [
       es: "Un programa de cumplimiento convierte la ética en controles concretos para que la empresa identifique sus riesgos legales, los prevenga, los detecte y corrija a tiempo.",
       en: "A compliance program turns ethics into concrete controls so the company identifies its legal risks, prevents them, detects them and corrects them in time.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es el cumplimiento regulatorio y por qué una empresa responde por actos de sus empleados.", en: "Explain what regulatory compliance is and why a company answers for its employees' acts." },
       { es: "Identificar los elementos de un programa de integridad y el modelo de las tres líneas.", en: "Identify the elements of an integrity program and the three lines model." },
@@ -600,7 +730,31 @@ export const lessons: Lesson[] = [
             en: "Mini example: bribery risk in permits has likelihood 4 and impact 5 → inherent 20. With a 50% effective control, residual is 20 × 0.5 = 10.",
           },
         ],
-        formula: 'Riesgo inherente = Probabilidad × Impacto;  Riesgo residual = Inherente × (1 − efectividad del control)',
+        formulas: [
+          {
+            name: { es: "Riesgo inherente y riesgo residual", en: "Inherent risk and residual risk" },
+            expression: "Riesgo inherente = Probabilidad × Impacto;  Riesgo residual = Riesgo inherente × (1 − Efectividad del control)",
+            variables: [
+              { symbol: "Probabilidad", meaning: { es: "Qué tan seguido podría pasar, del 1 (casi nunca) al 5 (muy seguido).", en: "How often it could happen, from 1 (almost never) to 5 (very often)." } },
+              { symbol: "Impacto", meaning: { es: "Qué tan grave sería si pasa, del 1 (leve) al 5 (muy grave).", en: "How serious it would be if it happens, from 1 (minor) to 5 (very serious)." } },
+              { symbol: "Riesgo inherente", meaning: { es: "El riesgo antes de cualquier control, en puntos (de 1 a 25).", en: "The risk before any control, in points (1 to 25)." } },
+              { symbol: "Efectividad del control", meaning: { es: "Qué parte del riesgo elimina el control, en decimal: 60% = 0.60.", en: "What share of the risk the control removes, as a decimal: 60% = 0.60." } },
+              { symbol: "Riesgo residual", meaning: { es: "Lo que sigue \"descubierto\" después del control, en puntos.", en: "What remains \"uncovered\" after the control, in points." } },
+            ],
+            steps: [
+              { es: "Multiplica probabilidad × impacto: riesgo inherente.", en: "Multiply likelihood × impact: inherent risk." },
+              { es: "Convierte la efectividad a decimal y réstala de 1: 40% → 1 − 0.40 = 0.60.", en: "Convert effectiveness to a decimal and subtract it from 1: 40% → 1 − 0.40 = 0.60." },
+              { es: "Multiplica el inherente por ese resultado: riesgo residual.", en: "Multiply inherent risk by that result: residual risk." },
+              { es: "Ordena los riesgos de mayor a menor residual y atiende primero el más alto.", en: "Rank risks from highest to lowest residual and address the highest first." },
+            ],
+            example: {
+              es: "Riesgo de colusión con proveedores: probabilidad 3, impacto 5 → inherente = 3 × 5 = 15. El control es 40% efectivo: residual = 15 × (1 − 0.40) = 15 × 0.60 = **9**.",
+              en: "Supplier collusion risk: likelihood 3, impact 5 → inherent = 3 × 5 = 15. The control is 40% effective: residual = 15 × (1 − 0.40) = 15 × 0.60 = **9**.",
+            },
+            interpret: { es: "A mayor residual, más urgente es reforzar ese control. Un riesgo con inherente alto pero buen control puede quedar abajo en la lista.", en: "The higher the residual, the more urgent it is to strengthen that control. A risk with high inherent score but a good control may end up lower on the list." },
+            mistake: { es: "Multiplicar por la efectividad (15 × 0.40) en vez de por lo que queda (1 − 0.40). Eso da lo que el control cubre, no lo que falta cubrir.", en: "Multiplying by the effectiveness (15 × 0.40) instead of what remains (1 − 0.40). That gives what the control covers, not what is left uncovered." },
+          },
+        ],
       },
     ],
     examples: [

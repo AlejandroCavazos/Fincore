@@ -16,7 +16,7 @@ export const lessons: Lesson[] = [
       es: "Un seguro te permite pagar una cantidad pequeña y conocida para no tener que cargar tú solo con una pérdida grande e inesperada.",
       en: "Insurance lets you pay a small, known amount so you do not have to carry a large, unexpected loss on your own.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar cómo funciona un seguro y qué son la prima, la suma asegurada, el deducible y el coaseguro.", en: "Explain how insurance works and what the premium, sum insured, deductible and coinsurance are." },
       { es: "Elegir el tipo de seguro adecuado para cada riesgo de tu vida (salud, vida, auto, hogar).", en: "Choose the right type of insurance for each risk in your life (health, life, car, home)." },
@@ -62,7 +62,30 @@ export const lessons: Lesson[] = [
             en: "Mini example: $50,000 hospital bill, $10,000 deductible and 10% coinsurance. You pay $10,000 + 10% of $40,000 = $14,000; the insurer pays $36,000.",
           },
         ],
-        formula: 'Pagas tú = Deducible + Coaseguro % × (Gasto − Deducible)  ·  Paga la aseguradora = Gasto − Pagas tú',
+        formulas: [
+          {
+            name: { es: "Cuánto pagas tú y cuánto la aseguradora", en: "How much you pay and how much the insurer pays" },
+            expression: "Coaseguro = Coaseguro % × (Gasto − Deducible);  Pagas tú = Deducible + Coaseguro;  Paga la aseguradora = Gasto − Pagas tú",
+            variables: [
+              { symbol: "Gasto", meaning: { es: "La cuenta total del siniestro (hospital, reparación), en pesos.", en: "The total bill for the claim (hospital, repair), in pesos." } },
+              { symbol: "Deducible", meaning: { es: "Cantidad fija que pagas tú primero, en pesos.", en: "Fixed amount you pay first, in pesos." } },
+              { symbol: "Coaseguro %", meaning: { es: "Porcentaje de lo que queda después del deducible que también pagas tú; en decimal, 10 % = 0.10.", en: "Percentage of what remains after the deductible that you also pay; as a decimal, 10% = 0.10." } },
+              { symbol: "Coaseguro", meaning: { es: "Ese porcentaje convertido a pesos.", en: "That percentage converted to pesos." } },
+            ],
+            steps: [
+              { es: "Resta el deducible al gasto total: lo que queda.", en: "Subtract the deductible from the total bill: what remains." },
+              { es: "Multiplica lo que queda por el coaseguro en decimal: coaseguro en pesos.", en: "Multiply what remains by the coinsurance as a decimal: coinsurance in pesos." },
+              { es: "Suma deducible + coaseguro: lo que pagas tú.", en: "Add deductible + coinsurance: what you pay." },
+              { es: "Resta lo que pagas tú al gasto total: lo que paga la aseguradora.", en: "Subtract what you pay from the total bill: what the insurer pays." },
+            ],
+            example: {
+              es: "Cuenta de $60,000, deducible de $12,000 y coaseguro de 10 %. Lo que queda: 60,000 − 12,000 = $48,000. Coaseguro: 0.10 × 48,000 = $4,800. Pagas tú: 12,000 + 4,800 = **$16,800**. Aseguradora: 60,000 − 16,800 = **$43,200**.",
+              en: "Bill of $60,000, $12,000 deductible and 10% coinsurance. What remains: 60,000 − 12,000 = $48,000. Coinsurance: 0.10 × 48,000 = $4,800. You pay: 12,000 + 4,800 = **$16,800**. Insurer: 60,000 − 16,800 = **$43,200**.",
+            },
+            interpret: { es: "Si tu póliza tiene tope de coaseguro y el coaseguro calculado lo rebasa, pagas solo el tope.", en: "If your policy has a coinsurance cap and the computed coinsurance exceeds it, you pay only the cap." },
+            mistake: { es: "Calcular el coaseguro sobre el gasto completo (10 % de $60,000 = $6,000). Se calcula sobre lo que queda después del deducible.", en: "Computing coinsurance on the full bill (10% of $60,000 = $6,000). It is computed on what remains after the deductible." },
+          },
+        ],
       },
       {
         heading: { es: "Qué seguros necesitas y cuánto asegurar", en: "Which insurance you need and how much to cover" },
@@ -80,7 +103,29 @@ export const lessons: Lesson[] = [
             en: "Before buying, compare several options and check coverages, exclusions, **waiting periods** (time before certain illnesses are covered) and **pre-existing conditions** (conditions you already had). In Mexico insurers are supervised by the **CNSF** and **CONDUSEF** handles user complaints. Mini example: two policies with the same premium can have very different sums insured.",
           },
         ],
-        formula: 'Seguro de vida necesario ≈ (Gastos anuales × Años a cubrir) + Deudas − Ahorros',
+        formulas: [
+          {
+            name: { es: "Suma asegurada de vida que necesita tu familia", en: "Life cover your family needs" },
+            expression: "Seguro de vida necesario ≈ (Gastos anuales × Años a cubrir) + Deudas − Ahorros",
+            variables: [
+              { symbol: "Gastos anuales", meaning: { es: "Lo que gasta tu familia en un año, en pesos.", en: "What your family spends in a year, in pesos." } },
+              { symbol: "Años a cubrir", meaning: { es: "Cuántos años quieres que tu familia esté cubierta sin tu ingreso.", en: "How many years you want your family covered without your income." } },
+              { symbol: "Deudas", meaning: { es: "Lo que quedaría por pagar (hipoteca, crédito de auto), en pesos.", en: "What would remain to be paid (mortgage, car loan), in pesos." } },
+              { symbol: "Ahorros", meaning: { es: "Dinero que la familia ya tiene disponible, en pesos.", en: "Money the family already has available, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica los gastos anuales por los años a cubrir.", en: "Multiply annual expenses by the years to cover." },
+              { es: "Súmale las deudas pendientes.", en: "Add the outstanding debts." },
+              { es: "Réstale los ahorros que ya tienen.", en: "Subtract the savings they already have." },
+            ],
+            example: {
+              es: "Una familia gasta $150,000 al año, quiere cubrir 6 años, debe $200,000 y tiene $120,000 ahorrados. Gastos: 150,000 × 6 = $900,000. Más deudas: 900,000 + 200,000 = $1,100,000. Menos ahorros: 1,100,000 − 120,000 = **$980,000**.",
+              en: "A family spends $150,000 a year, wants to cover 6 years, owes $200,000 and has $120,000 saved. Expenses: 150,000 × 6 = $900,000. Plus debts: 900,000 + 200,000 = $1,100,000. Minus savings: 1,100,000 − 120,000 = **$980,000**.",
+            },
+            interpret: { es: "Es una estimación para elegir la suma asegurada; revísala si cambian tus gastos, deudas o el número de dependientes.", en: "It is an estimate for choosing the sum insured; review it if your expenses, debts or number of dependents change." },
+            mistake: { es: "Olvidar restar los ahorros o usar solo un año de gastos.", en: "Forgetting to subtract savings or using only one year of expenses." },
+          },
+        ],
       },
     ],
     examples: [
@@ -143,7 +188,7 @@ export const lessons: Lesson[] = [
       es: "Tu AFORE guarda e invierte el ahorro para tu retiro; entender cómo funciona, cuánto cobra y cuánto te faltará te permite actuar desde hoy.",
       en: "Your AFORE holds and invests your retirement savings; understanding how it works, what it charges and how much you will be short lets you act today.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Explicar qué es una AFORE, qué es una SIEFORE y qué subcuentas forman tu cuenta individual.", en: "Explain what an AFORE is, what a SIEFORE is and which sub-accounts make up your individual account." },
       { es: "Distinguir el régimen de la Ley 73 del de la Ley 97 del IMSS.", en: "Distinguish the IMSS 1973 Law regime from the 1997 Law regime." },
@@ -190,7 +235,28 @@ export const lessons: Lesson[] = [
             en: "Mini example: Rogelio started working in 1994 (1973 Law); his niece Paola, in 2015 (1997 Law). For Paola, every extra peso she contributes and every point of return counts directly in her pension. The **replacement rate** measures what part of your last salary the pension covers.",
           },
         ],
-        formula: 'Tasa de reemplazo = Pensión mensual ÷ Último sueldo mensual × 100',
+        formulas: [
+          {
+            name: { es: "Tasa de reemplazo y brecha de retiro", en: "Replacement rate and retirement gap" },
+            expression: "Tasa de reemplazo = Pensión mensual ÷ Último sueldo mensual × 100;  Brecha = Pensión meta − Pensión mensual",
+            variables: [
+              { symbol: "Pensión mensual", meaning: { es: "Lo que estimas recibir de pensión al mes, en pesos.", en: "What you expect to receive as a monthly pension, in pesos." } },
+              { symbol: "Último sueldo mensual", meaning: { es: "Lo que ganas al mes antes de retirarte, en pesos.", en: "What you earn per month before retiring, in pesos." } },
+              { symbol: "Pensión meta", meaning: { es: "La pensión que te gustaría tener: tu sueldo × el % que deseas (por ejemplo, 70 %), en pesos.", en: "The pension you would like: your salary × the % you want (for example, 70%), in pesos." } },
+              { symbol: "Brecha", meaning: { es: "Lo que te faltaría cada mes, en pesos.", en: "What you would be short each month, in pesos." } },
+            ],
+            steps: [
+              { es: "Divide la pensión estimada entre tu sueldo y multiplica por 100.", en: "Divide the estimated pension by your salary and multiply by 100." },
+              { es: "Calcula tu pensión meta: sueldo × % deseado.", en: "Compute your target pension: salary × desired %." },
+              { es: "Resta la pensión estimada a la meta: esa es tu brecha mensual.", en: "Subtract the estimated pension from the target: that is your monthly gap." },
+            ],
+            example: {
+              es: "Sueldo de $20,000 y pensión estimada de $7,000. Tasa de reemplazo = 7,000 ÷ 20,000 × 100 = **35 %**. Meta del 70 %: 0.70 × 20,000 = $14,000. Brecha = 14,000 − 7,000 = **$7,000 al mes**.",
+              en: "Salary of $20,000 and estimated pension of $7,000. Replacement rate = 7,000 ÷ 20,000 × 100 = **35%**. 70% target: 0.70 × 20,000 = $14,000. Gap = 14,000 − 7,000 = **$7,000 a month**.",
+            },
+            interpret: { es: "Mientras más baja la tasa, más tendrás que recortar gastos al retirarte o más ahorro voluntario necesitas desde hoy.", en: "The lower the rate, the more you will have to cut spending at retirement or the more voluntary saving you need starting today." },
+          },
+        ],
       },
       {
         heading: { es: "Comisiones, rendimiento neto y ahorro voluntario", en: "Fees, net return and voluntary savings" },
@@ -208,7 +274,50 @@ export const lessons: Lesson[] = [
             en: "Also protect your weeks: withdrawing money due to **unemployment** is allowed, but it reduces your weeks of contributions. And register your **beneficiaries** and keep your data up to date. Mini example: with a $200,000 balance, a 1-point difference in net return equals $2,000 in one year.",
           },
         ],
-        formula: 'Rendimiento neto ≈ Rendimiento bruto − Comisión  ·  Saldo futuro = Saldo × (1 + r)^n',
+        formulas: [
+          {
+            name: { es: "Comisión, rendimiento neto y ganancia neta de tu AFORE", en: "Fee, net return and net gain of your AFORE" },
+            expression: "Comisión ($) = Comisión % × Saldo;  Rendimiento neto ≈ Rendimiento bruto − Comisión %;  Ganancia neta = Rendimiento neto × Saldo",
+            variables: [
+              { symbol: "Saldo", meaning: { es: "Lo que tienes en tu cuenta AFORE, en pesos.", en: "What you have in your AFORE account, in pesos." } },
+              { symbol: "Comisión %", meaning: { es: "Lo que cobra la AFORE al año como porcentaje del saldo; en decimal, 0.5 % = 0.005.", en: "What the AFORE charges per year as a percentage of the balance; as a decimal, 0.5% = 0.005." } },
+              { symbol: "Rendimiento bruto", meaning: { es: "Lo que ganó la inversión en el año, en %, antes de comisiones.", en: "What the investment earned in the year, in %, before fees." } },
+              { symbol: "Rendimiento neto", meaning: { es: "Lo que realmente gana tu dinero después de la comisión, en %.", en: "What your money really earns after the fee, in %." } },
+            ],
+            steps: [
+              { es: "Convierte los porcentajes a decimal: 0.5 % = 0.005; 6.5 % = 0.065.", en: "Convert percentages to decimals: 0.5% = 0.005; 6.5% = 0.065." },
+              { es: "Comisión en pesos: comisión × saldo.", en: "Fee in pesos: fee × balance." },
+              { es: "Rendimiento neto: rendimiento bruto − comisión (en puntos porcentuales).", en: "Net return: gross return − fee (in percentage points)." },
+              { es: "Ganancia neta: rendimiento neto × saldo.", en: "Net gain: net return × balance." },
+            ],
+            example: {
+              es: "Saldo de $250,000, rendimiento bruto 6.5 % y comisión 0.5 % (cifras hipotéticas). Comisión = 0.005 × 250,000 = **$1,250**. Rendimiento neto = 6.5 % − 0.5 % = **6.0 %**. Ganancia neta = 0.06 × 250,000 = **$15,000** (comprobación: 0.065 × 250,000 = 16,250; 16,250 − 1,250 = 15,000).",
+              en: "Balance of $250,000, gross return 6.5% and fee 0.5% (hypothetical figures). Fee = 0.005 × 250,000 = **$1,250**. Net return = 6.5% − 0.5% = **6.0%**. Net gain = 0.06 × 250,000 = **$15,000** (check: 0.065 × 250,000 = 16,250; 16,250 − 1,250 = 15,000).",
+            },
+            interpret: { es: "Para comparar AFORE, gana la de mayor rendimiento neto, aunque su comisión sea un poco más alta.", en: "To compare AFOREs, the one with the higher net return wins, even if its fee is slightly higher." },
+            mistake: { es: "Tratar 0.5 % como 0.5 (o como 0.05): 0.5 % en decimal es 0.005.", en: "Treating 0.5% as 0.5 (or as 0.05): 0.5% as a decimal is 0.005." },
+          },
+          {
+            name: { es: "Saldo futuro con interés compuesto", en: "Future balance with compound interest" },
+            expression: "Saldo futuro = Saldo × (1 + r)ⁿ",
+            variables: [
+              { symbol: "Saldo", meaning: { es: "Lo que depositas hoy, en pesos.", en: "What you deposit today, in pesos." } },
+              { symbol: "r", meaning: { es: "Rendimiento neto anual en decimal (4 % = 0.04).", en: "Annual net return as a decimal (4% = 0.04)." } },
+              { symbol: "n", meaning: { es: "Número de años que se queda invertido.", en: "Number of years it stays invested." } },
+              { symbol: "(1 + r)ⁿ", meaning: { es: "Multiplicar (1 + r) por sí mismo n veces: así se gana interés sobre el interés.", en: "Multiplying (1 + r) by itself n times: that is how you earn interest on interest." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal y súmale 1: 5 % → 1.05.", en: "Convert the rate to a decimal and add 1: 5% → 1.05." },
+              { es: "Elévalo a los años: multiplica 1.05 por sí mismo n veces.", en: "Raise it to the years: multiply 1.05 by itself n times." },
+              { es: "Multiplica el resultado por el saldo inicial.", en: "Multiply the result by the starting balance." },
+            ],
+            example: {
+              es: "Depositas $40,000 con un rendimiento neto hipotético de 5 % anual por 3 años. 1.05 × 1.05 = 1.1025; × 1.05 = 1.157625. Saldo = 40,000 × 1.157625 = **$46,305**.",
+              en: "You deposit $40,000 at a hypothetical 5% annual net return for 3 years. 1.05 × 1.05 = 1.1025; × 1.05 = 1.157625. Balance = 40,000 × 1.157625 = **$46,305**.",
+            },
+            mistake: { es: "Usar interés simple (40,000 × 0.05 × 3 = $6,000 → $46,000): se pierde el interés que gana el interés.", en: "Using simple interest (40,000 × 0.05 × 3 = $6,000 → $46,000): it misses the interest earned on interest." },
+          },
+        ],
       },
     ],
     examples: [
@@ -271,7 +380,7 @@ export const lessons: Lesson[] = [
       es: "La planeación financiera y patrimonial une tus metas, tu patrimonio y la protección de tu familia en un plan que revisas cada año y que define qué pasará con tus bienes.",
       en: "Financial and estate planning brings together your goals, your net worth and your family's protection in a plan you review every year and that defines what will happen to your assets.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Calcular tu patrimonio neto con un balance personal.", en: "Compute your net worth with a personal balance sheet." },
       { es: "Convertir metas de largo plazo en un ahorro mensual concreto.", en: "Turn long-term goals into a concrete monthly saving amount." },
@@ -294,7 +403,28 @@ export const lessons: Lesson[] = [
             en: "Mini example: if you have $80,000 in assets and owe $30,000, your net worth is $50,000. A negative net worth means you owe more than you own.",
           },
         ],
-        formula: 'Patrimonio neto = Activos − Pasivos',
+        formulas: [
+          {
+            name: { es: "Patrimonio neto (balance personal)", en: "Net worth (personal balance sheet)" },
+            expression: "Patrimonio neto = Activos − Pasivos",
+            variables: [
+              { symbol: "Activos", meaning: { es: "Todo lo que tienes y vale dinero (cuentas, AFORE, auto, casa), sumado en pesos.", en: "Everything you own that is worth money (accounts, AFORE, car, home), added up in pesos." } },
+              { symbol: "Pasivos", meaning: { es: "Todo lo que debes (tarjetas, créditos, hipoteca), sumado en pesos.", en: "Everything you owe (cards, loans, mortgage), added up in pesos." } },
+              { symbol: "Patrimonio neto", meaning: { es: "Lo que realmente es tuyo si pagaras todas tus deudas, en pesos.", en: "What is really yours if you paid off all your debts, in pesos." } },
+            ],
+            steps: [
+              { es: "Haz una lista de lo que tienes y súmalo: total de activos.", en: "List what you own and add it up: total assets." },
+              { es: "Haz una lista de lo que debes y súmalo: total de pasivos.", en: "List what you owe and add it up: total liabilities." },
+              { es: "Resta pasivos a activos.", en: "Subtract liabilities from assets." },
+            ],
+            example: {
+              es: "Ahorro $30,000 + AFORE $120,000 + moto $40,000 = activos $190,000. Tarjeta $18,000 + préstamo $50,000 = pasivos $68,000. Patrimonio neto = 190,000 − 68,000 = **$122,000**.",
+              en: "Savings $30,000 + AFORE $120,000 + motorcycle $40,000 = assets $190,000. Card $18,000 + loan $50,000 = liabilities $68,000. Net worth = 190,000 − 68,000 = **$122,000**.",
+            },
+            interpret: { es: "Positivo y creciendo cada año = vas bien. Negativo = debes más de lo que tienes.", en: "Positive and growing each year = you are on track. Negative = you owe more than you own." },
+            mistake: { es: "Sumar tu sueldo a los activos: el sueldo es un ingreso del mes, no algo que ya tienes.", en: "Adding your salary to assets: salary is monthly income, not something you already own." },
+          },
+        ],
       },
       {
         heading: { es: "Metas por etapas de vida", en: "Goals by life stage" },
@@ -312,7 +442,26 @@ export const lessons: Lesson[] = [
             en: "Mini example: to gather $36,000 in 12 months, you need $3,000 a month. Review the plan **once a year** or when your life changes: a new job, a child, a move.",
           },
         ],
-        formula: 'Ahorro mensual = (Meta − Lo que ya tienes) ÷ Meses disponibles',
+        formulas: [
+          {
+            name: { es: "Ahorro mensual para llegar a una meta", en: "Monthly saving to reach a goal" },
+            expression: "Ahorro mensual = (Meta − Lo que ya tienes) ÷ Meses disponibles",
+            variables: [
+              { symbol: "Meta", meaning: { es: "La cantidad total que quieres juntar, en pesos.", en: "The total amount you want to gather, in pesos." } },
+              { symbol: "Lo que ya tienes", meaning: { es: "Lo que ya apartaste para esa meta, en pesos.", en: "What you have already set aside for that goal, in pesos." } },
+              { symbol: "Meses disponibles", meaning: { es: "Meses que faltan para la fecha de la meta.", en: "Months left until the goal date." } },
+            ],
+            steps: [
+              { es: "Resta lo que ya tienes a la meta: lo que falta.", en: "Subtract what you already have from the goal: what is missing." },
+              { es: "Divide lo que falta entre los meses disponibles.", en: "Divide what is missing by the months available." },
+            ],
+            example: {
+              es: "Meta de $60,000 para un viaje en 18 meses; ya tienes $15,000. Falta: 60,000 − 15,000 = $45,000. Ahorro mensual: 45,000 ÷ 18 = **$2,500 al mes**.",
+              en: "Goal of $60,000 for a trip in 18 months; you already have $15,000. Missing: 60,000 − 15,000 = $45,000. Monthly saving: 45,000 ÷ 18 = **$2,500 a month**.",
+            },
+            mistake: { es: "Dividir la meta completa entre los meses sin descontar lo que ya tienes.", en: "Dividing the full goal by the months without subtracting what you already have." },
+          },
+        ],
       },
       {
         heading: { es: "Planeación patrimonial: proteger y transmitir", en: "Estate planning: protect and pass on" },
@@ -396,7 +545,7 @@ export const lessons: Lesson[] = [
       es: "Los fraudes financieros explotan la prisa, el miedo y la ambición; reconocer sus señales y verificar antes de actuar protege tu dinero y tus datos.",
       en: "Financial fraud exploits haste, fear and greed; recognizing its signs and verifying before acting protects your money and your data.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Reconocer los fraudes más comunes: phishing, vishing, smishing, robo de identidad, pirámides y préstamos abusivos.", en: "Recognize the most common frauds: phishing, vishing, smishing, identity theft, pyramids and abusive loans." },
       { es: "Detectar con números una promesa de rendimiento imposible.", en: "Detect with numbers an impossible return promise." },
@@ -442,7 +591,46 @@ export const lessons: Lesson[] = [
             en: "Do the math: a \"10% monthly\" looks small, but it is 120% a year without compounding, and over 200% with compound interest. Mini example: if something promises to double your money in 6 months \"risk-free\", you already have your answer.",
           },
         ],
-        formula: 'Rendimiento anual simple = Tasa mensual × 12  ·  Compuesto = (1 + tasa mensual)^12 − 1',
+        formulas: [
+          {
+            name: { es: "Pasar una tasa mensual a anual (simple y compuesta)", en: "Turning a monthly rate into an annual one (simple and compound)" },
+            expression: "Anual simple = Tasa mensual × 12;  Anual compuesta = (1 + Tasa mensual)¹² − 1",
+            variables: [
+              { symbol: "Tasa mensual", meaning: { es: "El rendimiento que prometen cada mes, en decimal (8 % = 0.08).", en: "The return promised each month, as a decimal (8% = 0.08)." } },
+              { symbol: "12", meaning: { es: "Los meses de un año.", en: "The months in a year." } },
+              { symbol: "(1 + Tasa mensual)¹²", meaning: { es: "Multiplicar (1 + tasa) por sí mismo 12 veces: reinvertir lo ganado cada mes.", en: "Multiplying (1 + rate) by itself 12 times: reinvesting what you earn each month." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal: 8 % = 0.08.", en: "Convert the rate to a decimal: 8% = 0.08." },
+              { es: "Simple: multiplica por 12.", en: "Simple: multiply by 12." },
+              { es: "Compuesta: eleva (1 + tasa) a la 12 (puedes ir elevando al cuadrado: ², ⁴, ⁸ y luego × ⁴), réstale 1 y pásalo a %.", en: "Compound: raise (1 + rate) to the 12th (you can square step by step: ², ⁴, ⁸ and then × ⁴), subtract 1 and turn it into %." },
+            ],
+            example: {
+              es: "Prometen 8 % mensual. Simple: 0.08 × 12 = **96 % al año**. Compuesta: 1.08² = 1.1664; 1.1664² ≈ 1.3605; 1.3605² ≈ 1.8509; 1.8509 × 1.3605 ≈ 2.5182; 2.5182 − 1 = 1.5182 ≈ **152 % al año**.",
+              en: "They promise 8% a month. Simple: 0.08 × 12 = **96% a year**. Compound: 1.08² = 1.1664; 1.1664² ≈ 1.3605; 1.3605² ≈ 1.8509; 1.8509 × 1.3605 ≈ 2.5182; 2.5182 − 1 = 1.5182 ≈ **152% a year**.",
+            },
+            interpret: { es: "Si el resultado anual es muchas veces lo que pagan las inversiones reguladas y además lo \"garantizan\", trátalo como señal de fraude.", en: "If the annual result is many times what regulated investments pay and they also \"guarantee\" it, treat it as a fraud red flag." },
+          },
+          {
+            name: { es: "Interés simple prometido en pesos", en: "Promised simple interest in pesos" },
+            expression: "Interés = Capital × Tasa mensual × Meses",
+            variables: [
+              { symbol: "Capital", meaning: { es: "El dinero que se invierte, en pesos.", en: "The money invested, in pesos." } },
+              { symbol: "Tasa mensual", meaning: { es: "Lo prometido por mes, en decimal.", en: "What is promised per month, as a decimal." } },
+              { symbol: "Meses", meaning: { es: "Tiempo que dura la inversión, en meses.", en: "How long the investment lasts, in months." } },
+            ],
+            steps: [
+              { es: "Convierte la tasa a decimal.", en: "Convert the rate to a decimal." },
+              { es: "Multiplica capital × tasa: interés de un mes.", en: "Multiply capital × rate: one month of interest." },
+              { es: "Multiplica por el número de meses.", en: "Multiply by the number of months." },
+            ],
+            example: {
+              es: "Te ofrecen 8 % mensual simple sobre $10,000 durante 12 meses. Un mes: 10,000 × 0.08 = $800. Doce meses: 800 × 12 = **$9,600**, casi duplicar tu dinero \"sin riesgo\".",
+              en: "You are offered 8% simple monthly on $10,000 for 12 months. One month: 10,000 × 0.08 = $800. Twelve months: 800 × 12 = **$9,600**, almost doubling your money \"risk-free\".",
+            },
+            mistake: { es: "Calcular solo un mes ($800) y pensar que no suena exagerado: siempre llévalo a un año.", en: "Computing only one month ($800) and thinking it does not sound extreme: always take it to a full year." },
+          },
+        ],
       },
       {
         heading: { es: "Préstamos abusivos y qué hacer si te defraudan", en: "Abusive loans and what to do if you are defrauded" },
@@ -520,7 +708,7 @@ export const lessons: Lesson[] = [
       es: "Las finanzas conductuales muestran que decidimos con atajos mentales que nos hacen gastar o invertir mal; conocerlos y diseñar buenos hábitos te ayuda a actuar a tu favor.",
       en: "Behavioral finance shows that we decide with mental shortcuts that make us spend or invest badly; knowing them and designing good habits helps you act in your favor.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Identificar los sesgos más comunes en decisiones de dinero.", en: "Identify the most common biases in money decisions." },
       { es: "Calcular el costo de una decisión sesgada, como mantener ahorro y deuda cara al mismo tiempo.", en: "Compute the cost of a biased decision, such as keeping savings and expensive debt at the same time." },
@@ -567,7 +755,29 @@ export const lessons: Lesson[] = [
             en: "Mini example: with $20,000 saved at 6% and $20,000 of debt at 36%, you earn $1,200 a year but pay $7,200: the mental label costs you $6,000.",
           },
         ],
-        formula: 'Costo neto anual = Deuda × tasa de la deuda − Ahorro × tasa del ahorro',
+        formulas: [
+          {
+            name: { es: "Costo de tener ahorro y deuda cara al mismo tiempo", en: "Cost of holding savings and expensive debt at the same time" },
+            expression: "Costo neto anual = Deuda × Tasa de la deuda − Ahorro × Tasa del ahorro",
+            variables: [
+              { symbol: "Deuda", meaning: { es: "Saldo que debes (por ejemplo, en la tarjeta), en pesos.", en: "Balance you owe (for example, on a card), in pesos." } },
+              { symbol: "Tasa de la deuda", meaning: { es: "Interés anual que te cobran, en decimal (45 % = 0.45).", en: "Annual interest you are charged, as a decimal (45% = 0.45)." } },
+              { symbol: "Ahorro", meaning: { es: "Dinero guardado que no es tu fondo de emergencia, en pesos.", en: "Saved money that is not your emergency fund, in pesos." } },
+              { symbol: "Tasa del ahorro", meaning: { es: "Interés anual que te pagan, en decimal (4 % = 0.04).", en: "Annual interest you are paid, as a decimal (4% = 0.04)." } },
+            ],
+            steps: [
+              { es: "Calcula lo que pagas de intereses: deuda × tasa de la deuda.", en: "Compute the interest you pay: debt × debt rate." },
+              { es: "Calcula lo que ganas: ahorro × tasa del ahorro.", en: "Compute what you earn: savings × savings rate." },
+              { es: "Resta lo que ganas a lo que pagas.", en: "Subtract what you earn from what you pay." },
+            ],
+            example: {
+              es: "Tienes $10,000 ahorrados al 4 % y debes $10,000 al 45 %. Pagas: 10,000 × 0.45 = $4,500. Ganas: 10,000 × 0.04 = $400. Costo neto = 4,500 − 400 = **$4,100 al año**.",
+              en: "You have $10,000 saved at 4% and owe $10,000 at 45%. You pay: 10,000 × 0.45 = $4,500. You earn: 10,000 × 0.04 = $400. Net cost = 4,500 − 400 = **$4,100 a year**.",
+            },
+            interpret: { es: "Ese costo es lo que te ahorrarías al año si usas ese ahorro para liquidar la deuda (sin tocar tu fondo de emergencia).", en: "That cost is what you would save per year by using those savings to pay off the debt (without touching your emergency fund)." },
+            mistake: { es: "Responder solo los intereses de la deuda ($4,500) sin restar lo que gana el ahorro.", en: "Answering only the debt interest ($4,500) without subtracting what the savings earn." },
+          },
+        ],
       },
       {
         heading: { es: "Diseña hábitos que trabajen por ti", en: "Design habits that work for you" },
@@ -583,6 +793,29 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: si ganas $18,000 al mes y automatizas el 10 %, apartas $1,800 al mes y $21,600 al año sin pensarlo cada vez.",
             en: "Mini example: if you earn $18,000 a month and automate 10%, you set aside $1,800 a month and $21,600 a year without thinking about it each time.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Ahorro automático y ahorro por un gasto pequeño", en: "Automatic saving and saving from a small expense" },
+            expression: "Ahorro automático = Sueldo × % a apartar;  Ahorro por gasto pequeño = Precio × Veces al mes;  Ahorro anual = (Ahorro automático + Ahorro por gasto pequeño) × 12",
+            variables: [
+              { symbol: "Sueldo", meaning: { es: "Lo que cobras en el periodo (mes o quincena), en pesos.", en: "What you get paid in the period (month or fortnight), in pesos." } },
+              { symbol: "% a apartar", meaning: { es: "Porcentaje que mandas al ahorro el día de pago, en decimal (10 % = 0.10).", en: "Percentage you send to savings on payday, as a decimal (10% = 0.10)." } },
+              { symbol: "Precio", meaning: { es: "Lo que cuesta el gasto pequeño que dejas (café, refresco), en pesos.", en: "Cost of the small expense you drop (coffee, soda), in pesos." } },
+              { symbol: "Veces al mes", meaning: { es: "Cuántas veces al mes lo comprabas (por ejemplo, solo días hábiles).", en: "How many times a month you used to buy it (for example, only workdays)." } },
+              { symbol: "12", meaning: { es: "Meses del año (si cobras por quincena, usa 24 quincenas).", en: "Months in the year (if paid every fortnight, use 24 paychecks)." } },
+            ],
+            steps: [
+              { es: "Multiplica tu sueldo por el % que vas a apartar.", en: "Multiply your salary by the % you will set aside." },
+              { es: "Multiplica el precio del gasto pequeño por las veces que lo comprabas al mes.", en: "Multiply the small expense's price by how many times a month you bought it." },
+              { es: "Suma ambos ahorros del mes y multiplica por 12.", en: "Add both monthly savings and multiply by 12." },
+            ],
+            example: {
+              es: "Ganas $16,000 al mes y apartas 10 %: 16,000 × 0.10 = $1,600. Dejas un refresco de $25 en 22 días hábiles: 25 × 22 = $550. Al mes: 1,600 + 550 = $2,150. Al año: 2,150 × 12 = **$25,800**.",
+              en: "You earn $16,000 a month and set aside 10%: 16,000 × 0.10 = $1,600. You drop a $25 soda on 22 workdays: 25 × 22 = $550. Per month: 1,600 + 550 = $2,150. Per year: 2,150 × 12 = **$25,800**.",
+            },
+            mistake: { es: "Multiplicar el gasto pequeño por 30 días cuando solo lo comprabas en días hábiles, o anualizar solo una de las dos partes.", en: "Multiplying the small expense by 30 days when you only bought it on workdays, or annualizing only one of the two parts." },
           },
         ],
         bullets: [
@@ -647,7 +880,7 @@ export const lessons: Lesson[] = [
       es: "Separar el dinero del negocio del tuyo te permite saber si el negocio realmente gana, pagarte un sueldo sostenible y cumplir mejor con impuestos y créditos.",
       en: "Separating the business's money from yours lets you know whether the business really makes money, pay yourself a sustainable salary and better meet tax and credit requirements.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Explicar por qué el negocio es una entidad distinta de su dueño.", en: "Explain why the business is an entity separate from its owner." },
       { es: "Calcular la utilidad real de un negocio cuando se mezclan gastos personales.", en: "Compute a business's real profit when personal expenses are mixed in." },
@@ -670,6 +903,27 @@ export const lessons: Lesson[] = [
             en: "Mini example: a beauty salon sells $40,000 a month and its owner sees only $5,000 in the account. It is not that it earns little: she paid her son's tuition and the family gasoline from the business account.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Utilidad real del negocio", en: "The business's real profit" },
+            expression: "Utilidad real = Ventas − Gastos del negocio   (los gastos personales son retiros del dueño, no gastos)",
+            variables: [
+              { symbol: "Ventas", meaning: { es: "Lo que vendió el negocio en el periodo, en pesos.", en: "What the business sold in the period, in pesos." } },
+              { symbol: "Gastos del negocio", meaning: { es: "Solo lo que se gastó para operar (insumos, renta, sueldos del personal), en pesos.", en: "Only what was spent to operate (supplies, rent, staff wages), in pesos." } },
+              { symbol: "Retiros del dueño", meaning: { es: "Dinero del negocio usado para gastos personales (súper, colegiaturas); no se restan para medir la utilidad.", en: "Business money used for personal expenses (groceries, tuition); not subtracted when measuring profit." } },
+            ],
+            steps: [
+              { es: "Separa los pagos en gastos del negocio y gastos personales.", en: "Split the payments into business expenses and personal expenses." },
+              { es: "Resta a las ventas solo los gastos del negocio.", en: "Subtract only business expenses from sales." },
+              { es: "Anota aparte los gastos personales como retiros del dueño.", en: "Record personal expenses separately as owner withdrawals." },
+            ],
+            example: {
+              es: "Una tortillería vende $50,000; paga $28,000 del negocio y $9,000 de gastos de casa desde la misma cuenta. En la cuenta se ve 50,000 − 28,000 − 9,000 = $13,000, pero la utilidad real es 50,000 − 28,000 = **$22,000**; los $9,000 son retiros.",
+              en: "A tortilla shop sells $50,000; it pays $28,000 for the business and $9,000 of household expenses from the same account. The account shows 50,000 − 28,000 − 9,000 = $13,000, but real profit is 50,000 − 28,000 = **$22,000**; the $9,000 are withdrawals.",
+            },
+            mistake: { es: "Restar también los gastos personales y concluir que el negocio gana menos de lo que realmente gana.", en: "Also subtracting personal expenses and concluding the business earns less than it really does." },
+          },
+        ],
       },
       {
         heading: { es: "Cómo separar en la práctica", en: "How to separate in practice" },
@@ -685,6 +939,27 @@ export const lessons: Lesson[] = [
           {
             es: "Cuando pones dinero tuyo en el negocio, regístralo como **aportación de capital**; cuando sacas dinero para ti fuera de tu sueldo, como **retiro** del dueño. Mini ejemplo: depositas $30,000 de tus ahorros para arrancar: en el negocio se anota un cargo a Bancos y un abono a Capital.",
             en: "When you put your own money into the business, record it as a **capital contribution**; when you take money out for yourself beyond your salary, as an owner **withdrawal**. Mini example: you deposit $30,000 of your savings to get started: the business records a debit to Bank and a credit to Capital.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Registro de una aportación del dueño", en: "Recording an owner contribution" },
+            expression: "Cargo a Bancos = Monto aportado;  Abono a Capital = Monto aportado",
+            variables: [
+              { symbol: "Monto aportado", meaning: { es: "Los pesos que pasas de tu dinero personal a la cuenta del negocio.", en: "The pesos you move from your personal money to the business account." } },
+              { symbol: "Bancos", meaning: { es: "Cuenta de activo del negocio: aumenta con un cargo (lado izquierdo) porque entra dinero.", en: "Business asset account: it increases with a debit (left side) because money comes in." } },
+              { symbol: "Capital", meaning: { es: "Cuenta de lo que el dueño ha invertido: aumenta con un abono (lado derecho).", en: "Account of what the owner has invested: it increases with a credit (right side)." } },
+            ],
+            steps: [
+              { es: "Identifica el monto que entra a la cuenta del negocio.", en: "Identify the amount that enters the business account." },
+              { es: "Carga Bancos por ese monto (entra dinero).", en: "Debit Bank for that amount (money comes in)." },
+              { es: "Abona Capital por el mismo monto (aumenta la inversión del dueño). Cargos y abonos deben sumar igual.", en: "Credit Capital for the same amount (the owner's investment grows). Debits and credits must be equal." },
+            ],
+            example: {
+              es: "Pones $20,000 de tus ahorros para abrir una tienda de abarrotes. Póliza: Bancos cargo **$20,000** / Capital abono **$20,000**. Total cargos 20,000 = total abonos 20,000.",
+              en: "You put $20,000 of your savings in to open a grocery store. Entry: Bank debit **$20,000** / Capital credit **$20,000**. Total debits 20,000 = total credits 20,000.",
+            },
+            mistake: { es: "Registrar la aportación como venta: inflaría la utilidad del negocio con dinero que no ganó.", en: "Recording the contribution as a sale: it would inflate the business's profit with money it did not earn." },
           },
         ],
         bullets: [
@@ -710,7 +985,29 @@ export const lessons: Lesson[] = [
             en: "Mini example: if your business earns $30,000 a month on average and you set aside 20% for taxes and 10% for reinvestment, you can pay yourself up to $21,000.",
           },
         ],
-        formula: 'Sueldo máximo del dueño = Utilidad promedio − Reserva de impuestos − Reinversión',
+        formulas: [
+          {
+            name: { es: "Sueldo máximo del dueño", en: "Owner's maximum salary" },
+            expression: "Utilidad promedio = Suma de utilidades ÷ Número de meses;  Reserva = Utilidad promedio × % de reserva;  Sueldo máximo = Utilidad promedio − Reserva de impuestos − Reinversión",
+            variables: [
+              { symbol: "Utilidad promedio", meaning: { es: "Lo que gana el negocio en un mes típico, en pesos.", en: "What the business earns in a typical month, in pesos." } },
+              { symbol: "% de reserva", meaning: { es: "Porcentaje que apartas para cada fin; en esta lección se usan 20 % para impuestos y 10 % para reinversión como ejemplo.", en: "Percentage set aside for each purpose; this lesson uses 20% for taxes and 10% for reinvestment as an example." } },
+              { symbol: "Reserva de impuestos", meaning: { es: "Dinero que guardas para pagar impuestos, en pesos.", en: "Money you keep to pay taxes, in pesos." } },
+              { symbol: "Reinversión", meaning: { es: "Dinero que se queda en el negocio para equipo o colchón, en pesos.", en: "Money that stays in the business for equipment or a cushion, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma la utilidad de varios meses y divide entre el número de meses.", en: "Add up several months of profit and divide by the number of months." },
+              { es: "Calcula cada reserva: utilidad promedio × su porcentaje.", en: "Compute each reserve: average profit × its percentage." },
+              { es: "Resta las reservas a la utilidad promedio: ese es tu sueldo máximo.", en: "Subtract the reserves from average profit: that is your maximum salary." },
+            ],
+            example: {
+              es: "Utilidades de 3 meses: $24,000, $30,000 y $27,000. Promedio = 81,000 ÷ 3 = $27,000. Impuestos: 0.20 × 27,000 = $5,400. Reinversión: 0.10 × 27,000 = $2,700. Sueldo máximo = 27,000 − 5,400 − 2,700 = **$18,900**.",
+              en: "Profits for 3 months: $24,000, $30,000 and $27,000. Average = 81,000 ÷ 3 = $27,000. Taxes: 0.20 × 27,000 = $5,400. Reinvestment: 0.10 × 27,000 = $2,700. Maximum salary = 27,000 − 5,400 − 2,700 = **$18,900**.",
+            },
+            interpret: { es: "Es un tope: si algunos meses son flojos, conviene pagarte algo menos para no dejar al negocio sin dinero.", en: "It is a ceiling: if some months are slow, pay yourself somewhat less so the business is not left without cash." },
+            mistake: { es: "Pagarte toda la utilidad y no dejar nada para impuestos ni para el negocio.", en: "Paying yourself the whole profit and leaving nothing for taxes or the business." },
+          },
+        ],
       },
     ],
     examples: [
