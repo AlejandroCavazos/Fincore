@@ -36,7 +36,7 @@ export const lessons: Lesson[] = [
       es: "Una acción te hace dueño de una pequeña parte de una empresa; ganas por dividendos y por la subida del precio, pero tu rendimiento no está garantizado.",
       en: "A share makes you owner of a small part of a company; you earn through dividends and price increases, but your return is not guaranteed.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Explicar qué es una acción y qué derechos te da como accionista.", en: "Explain what a share is and what rights it gives you as a shareholder." },
       { es: "Calcular el rendimiento total de una acción sumando ganancia de precio y dividendos.", en: "Compute a stock's total return by adding price gain and dividends." },
@@ -74,15 +74,65 @@ export const lessons: Lesson[] = [
             en: "There are two sources of gain. The **capital gain** is the difference between the price you sell at and the price you bought at. The **dividend** is the part of profit the company pays out in cash to shareholders. Adding them gives you the **total return**.",
           },
           {
-            es: "No todas las empresas pagan dividendos: muchas que crecen rápido prefieren **reinvertir** sus utilidades. Y el precio puede bajar: si vendes por debajo de tu compra tienes una **minusvalía** (pérdida). Una pérdida solo se vuelve real cuando vendes, pero eso no la hace menos importante.",
-            en: "Not every company pays dividends: many fast-growing ones prefer to **reinvest** their profits. And the price can fall: if you sell below your purchase price you have a **capital loss**. A loss only becomes real when you sell, but that does not make it less important.",
+            es: "No todas las empresas pagan dividendos: muchas que crecen rápido prefieren **reinvertir** sus utilidades. Y el precio puede bajar: si vendes por debajo de tu compra tienes una **minusvalía** (pérdida). Una pérdida solo se vuelve real cuando vendes, pero eso no la hace menos importante. Para comparar cuánto paga una acción en dividendos frente a lo que cuesta se usa el **rendimiento por dividendo**: los dividendos de un año entre el precio de una acción.",
+            en: "Not every company pays dividends: many fast-growing ones prefer to **reinvest** their profits. And the price can fall: if you sell below your purchase price you have a **capital loss**. A loss only becomes real when you sell, but that does not make it less important. To compare how much a share pays in dividends against what it costs you use the **dividend yield**: one year's dividends divided by the price of one share.",
           },
           {
             es: "Mini ejemplo: compras una acción en $100, recibes $3 de dividendo y la vendes en $108. Ganaste $8 de precio más $3 de dividendo: $11 sobre $100, es decir, 11 %.",
             en: "Mini example: you buy a share at $100, receive a $3 dividend and sell it at $108. You earned $8 on price plus $3 in dividends: $11 on $100, that is, 11%.",
           },
         ],
-        formula: "Rendimiento total = (Precio de venta − Precio de compra + Dividendos) ÷ Precio de compra × 100",
+        formulas: [
+          {
+            name: { es: "Rendimiento total de una inversión en acciones", en: "Total return on a stock investment" },
+            expression: "Rendimiento total = (Precio de venta − Precio de compra + Dividendos) ÷ Precio de compra × 100",
+            variables: [
+              { symbol: "Rendimiento total", meaning: { es: "Lo que ganaste (o perdiste) en proporción a lo que pagaste, en %.", en: "What you earned (or lost) in proportion to what you paid, in %." } },
+              { symbol: "Precio de venta", meaning: { es: "Precio por acción al que vendiste, en pesos.", en: "Price per share at which you sold, in pesos." } },
+              { symbol: "Precio de compra", meaning: { es: "Precio por acción que pagaste, en pesos.", en: "Price per share you paid, in pesos." } },
+              { symbol: "Dividendos", meaning: { es: "Pesos por acción que la empresa te pagó mientras la tuviste.", en: "Pesos per share the company paid you while you held it." } },
+            ],
+            steps: [
+              { es: "Calcula la ganancia de precio: precio de venta − precio de compra.", en: "Compute the price gain: selling price − purchase price." },
+              { es: "Súmale los dividendos recibidos por acción.", en: "Add the dividends received per share." },
+              { es: "Divide el total entre el precio de compra y multiplica por 100.", en: "Divide the total by the purchase price and multiply by 100." },
+              { es: "Si tienes varias acciones, puedes hacerlo con totales (todo multiplicado por el número de acciones): el % es el mismo.", en: "If you have several shares, you can do it with totals (everything multiplied by the number of shares): the % is the same." },
+            ],
+            example: {
+              es: "50 acciones compradas a $40, dividendo de $1.20 por acción y venta a $43. Inversión: 50 × 40 = $2,000. Ganancia de precio: (43 − 40) × 50 = $150. Dividendos: 1.20 × 50 = $60. Total: 150 + 60 = $210. Rendimiento: 210 ÷ 2,000 × 100 = **10.5 %**.",
+              en: "50 shares bought at $40, $1.20 dividend per share and sold at $43. Investment: 50 × 40 = $2,000. Price gain: (43 − 40) × 50 = $150. Dividends: 1.20 × 50 = $60. Total: 150 + 60 = $210. Return: 210 ÷ 2,000 × 100 = **10.5%**.",
+            },
+            interpret: {
+              es: "Positivo: ganaste; negativo: perdiste. Compáralo con lo que habrías ganado en algo seguro (como CETES) en el mismo plazo.",
+              en: "Positive: you earned; negative: you lost. Compare it with what you would have earned in something safe (such as CETES) over the same period.",
+            },
+            mistake: {
+              es: "Olvidar sumar los dividendos, o dividir entre el precio de venta en lugar del de compra.",
+              en: "Forgetting to add the dividends, or dividing by the selling price instead of the purchase price.",
+            },
+          },
+          {
+            name: { es: "Rendimiento por dividendo", en: "Dividend yield" },
+            expression: "Rendimiento por dividendo = Dividendos por acción de 12 meses ÷ Precio por acción × 100",
+            variables: [
+              { symbol: "Rendimiento por dividendo", meaning: { es: "Qué porcentaje del precio te regresa la empresa en dividendos en un año, en %.", en: "What percentage of the price the company pays back in dividends in a year, in %." } },
+              { symbol: "Dividendos por acción de 12 meses", meaning: { es: "Pesos por acción pagados en el último año.", en: "Pesos per share paid over the last year." } },
+              { symbol: "Precio por acción", meaning: { es: "Precio actual de una acción, en pesos.", en: "Current price of one share, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma los dividendos por acción pagados en los últimos 12 meses.", en: "Add up the dividends per share paid over the last 12 months." },
+              { es: "Divide entre el precio de una acción y multiplica por 100.", en: "Divide by the price of one share and multiply by 100." },
+            ],
+            example: {
+              es: "Una acción cuesta $120 y pagó $4.80 de dividendos en el año. 4.80 ÷ 120 = 0.04; × 100 = **4 %**.",
+              en: "A share costs $120 and paid $4.80 in dividends during the year. 4.80 ÷ 120 = 0.04; × 100 = **4%**.",
+            },
+            mistake: {
+              es: "Dividir el dividendo por acción entre la capitalización total de la empresa: ambos datos deben ser por acción.",
+              en: "Dividing the dividend per share by the company's total market capitalization: both figures must be per share.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Cómo se compran acciones en México", en: "How shares are bought in Mexico" },
@@ -104,7 +154,29 @@ export const lessons: Lesson[] = [
             en: "Mini example: a company has 200 million shares at $50 each. Its market capitalization is $10,000 million.",
           },
         ],
-        formula: "Capitalización de mercado = Precio por acción × Número de acciones en circulación",
+        formulas: [
+          {
+            name: { es: "Capitalización de mercado", en: "Market capitalization" },
+            expression: "Capitalización de mercado = Precio por acción × Número de acciones en circulación",
+            variables: [
+              { symbol: "Capitalización de mercado", meaning: { es: "Lo que vale en bolsa toda la empresa, en pesos.", en: "What the whole company is worth on the exchange, in pesos." } },
+              { symbol: "Precio por acción", meaning: { es: "Precio actual de una acción en bolsa, en pesos.", en: "Current price of one share on the exchange, in pesos." } },
+              { symbol: "Número de acciones en circulación", meaning: { es: "Total de acciones de la empresa que están en manos de inversionistas.", en: "Total company shares held by investors." } },
+            ],
+            steps: [
+              { es: "Toma el precio actual de una acción.", en: "Take the current price of one share." },
+              { es: "Multiplícalo por el número de acciones en circulación.", en: "Multiply it by the number of shares outstanding." },
+            ],
+            example: {
+              es: "350,000,000 acciones a $18 cada una: 350,000,000 × 18 = **$6,300,000,000** (6,300 millones de pesos).",
+              en: "350,000,000 shares at $18 each: 350,000,000 × 18 = **$6,300,000,000** (6,300 million pesos).",
+            },
+            interpret: {
+              es: "Sirve para comparar el tamaño de empresas: una capitalización mayor indica una empresa más grande a ojos del mercado, no necesariamente más barata o mejor.",
+              en: "It is used to compare company sizes: a larger capitalization means a bigger company in the market's eyes, not necessarily a cheaper or better one.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -163,7 +235,7 @@ export const lessons: Lesson[] = [
       es: "Los fondos de inversión y los ETFs juntan el dinero de muchas personas para comprar una canasta de valores, lo que te da diversificación con poco dinero; sus costos y su forma de operar marcan la diferencia.",
       en: "Investment funds and ETFs pool many people's money to buy a basket of securities, giving you diversification with little money; their costs and the way they trade make the difference.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es un fondo de inversión y cómo se calcula el precio de su acción.", en: "Explain what an investment fund is and how its share price is computed." },
       { es: "Distinguir un ETF de un fondo de inversión tradicional por la forma de comprarlo y su precio.", en: "Distinguish an ETF from a traditional investment fund by how you buy it and how it is priced." },
@@ -186,7 +258,30 @@ export const lessons: Lesson[] = [
             en: "There are **debt** funds (more stable) and **equity** funds (more volatile), and each one states how often you can withdraw your money (**liquidity**): daily, weekly, monthly. Mini example: with $1,000 in a debt fund you own a small part of dozens of bonds you could not buy separately.",
           },
         ],
-        formula: "Precio por acción del fondo (NAV) = (Activos del fondo − Pasivos del fondo) ÷ Acciones del fondo en circulación",
+        formulas: [
+          {
+            name: { es: "Precio por acción de un fondo (NAV)", en: "Price per share of a fund (NAV)" },
+            expression: "Precio por acción del fondo (NAV) = (Activos del fondo − Pasivos del fondo) ÷ Acciones del fondo en circulación",
+            variables: [
+              { symbol: "NAV", meaning: { es: "Valor neto por acción: lo que vale cada acción del fondo, en pesos.", en: "Net asset value per share: what each fund share is worth, in pesos." } },
+              { symbol: "Activos del fondo", meaning: { es: "Lo que valen hoy todas las inversiones del fondo, en pesos.", en: "What all of the fund's investments are worth today, in pesos." } },
+              { symbol: "Pasivos del fondo", meaning: { es: "Lo que el fondo debe (comisiones y cuentas por pagar), en pesos.", en: "What the fund owes (fees and accounts payable), in pesos." } },
+              { symbol: "Acciones del fondo en circulación", meaning: { es: "Cuántas acciones del fondo tienen en total los inversionistas.", en: "How many fund shares investors hold in total." } },
+            ],
+            steps: [
+              { es: "Resta los pasivos a los activos: es el patrimonio neto del fondo.", en: "Subtract liabilities from assets: that is the fund's net worth." },
+              { es: "Divide ese resultado entre el número de acciones del fondo en circulación.", en: "Divide that result by the number of fund shares outstanding." },
+            ],
+            example: {
+              es: "Activos $30,000,000, pasivos $600,000 y 2,450,000 acciones. 30,000,000 − 600,000 = $29,400,000. 29,400,000 ÷ 2,450,000 = **$12.00** por acción.",
+              en: "Assets $30,000,000, liabilities $600,000 and 2,450,000 shares. 30,000,000 − 600,000 = $29,400,000. 29,400,000 ÷ 2,450,000 = **$12.00** per share.",
+            },
+            mistake: {
+              es: "No restar los pasivos y dividir solo los activos entre las acciones.",
+              en: "Not subtracting liabilities and dividing only the assets by the shares.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "ETFs: un fondo que cotiza como acción", en: "ETFs: a fund that trades like a stock" },
@@ -227,7 +322,58 @@ export const lessons: Lesson[] = [
             en: "Mini example: with $100,000 in a fund charging 1.5% a year you pay about $1,500 in the first year; in one charging 0.2%, about $200. The difference repeats and grows every year.",
           },
         ],
-        formula: "Valor futuro ≈ Inversión × (1 + rendimiento bruto − comisión)^años",
+        formulas: [
+          {
+            name: { es: "Comisión anual en pesos", en: "Annual fee in pesos" },
+            expression: "Comisión anual = Saldo invertido × % de comisión ÷ 100",
+            variables: [
+              { symbol: "Comisión anual", meaning: { es: "Lo que pagas al fondo en un año, en pesos.", en: "What you pay the fund in a year, in pesos." } },
+              { symbol: "Saldo invertido", meaning: { es: "El dinero que tienes en el fondo, en pesos.", en: "The money you have in the fund, in pesos." } },
+              { symbol: "% de comisión", meaning: { es: "La comisión de administración anual del fondo, en %.", en: "The fund's annual management fee, in %." } },
+            ],
+            steps: [
+              { es: "Convierte la comisión a decimal dividiendo entre 100: 0.35 % = 0.0035.", en: "Convert the fee to decimals by dividing by 100: 0.35% = 0.0035." },
+              { es: "Multiplica el saldo por ese decimal.", en: "Multiply the balance by that decimal." },
+              { es: "Para comparar dos fondos, resta una comisión de la otra.", en: "To compare two funds, subtract one fee from the other." },
+            ],
+            example: {
+              es: "$150,000 en un fondo de 0.35 % y en otro de 1.25 %. Fondo barato: 150,000 × 0.0035 = **$525**. Fondo caro: 150,000 × 0.0125 = **$1,875**. Diferencia: 1,875 − 525 = **$1,350** en un año.",
+              en: "$150,000 in a 0.35% fund and in a 1.25% fund. Cheap fund: 150,000 × 0.0035 = **$525**. Expensive fund: 150,000 × 0.0125 = **$1,875**. Difference: 1,875 − 525 = **$1,350** in one year.",
+            },
+            mistake: {
+              es: "Usar 0.35 o 1.25 como si ya fueran decimales; primero hay que dividir entre 100.",
+              en: "Using 0.35 or 1.25 as if they were already decimals; you must divide by 100 first.",
+            },
+          },
+          {
+            name: { es: "Valor futuro después de comisiones", en: "Future value after fees" },
+            expression: "Valor futuro ≈ Inversión × (1 + rendimiento bruto − comisión)^años",
+            variables: [
+              { symbol: "Valor futuro", meaning: { es: "Cuánto tendrás al final, en pesos.", en: "How much you will have at the end, in pesos." } },
+              { symbol: "Inversión", meaning: { es: "El dinero que pones hoy, en pesos.", en: "The money you put in today, in pesos." } },
+              { symbol: "rendimiento bruto", meaning: { es: "Lo que rinde el fondo al año antes de comisiones, en decimal (8 % = 0.08).", en: "What the fund earns per year before fees, in decimals (8% = 0.08)." } },
+              { symbol: "comisión", meaning: { es: "Comisión anual del fondo, en decimal (1 % = 0.01).", en: "The fund's annual fee, in decimals (1% = 0.01)." } },
+              { symbol: "años", meaning: { es: "Cuántos años dejas invertido el dinero (es el exponente: se multiplica ese número de veces).", en: "How many years you leave the money invested (it is the exponent: you multiply that many times)." } },
+            ],
+            steps: [
+              { es: "Resta la comisión al rendimiento bruto, ambos en decimal: es tu rendimiento neto.", en: "Subtract the fee from the gross return, both in decimals: that is your net return." },
+              { es: "Súmale 1 y eleva el resultado al número de años.", en: "Add 1 and raise the result to the number of years." },
+              { es: "Multiplica por la inversión inicial.", en: "Multiply by the initial investment." },
+            ],
+            example: {
+              es: "$50,000 a 10 años, rendimiento bruto 8 %. Con comisión de 1 %: 0.08 − 0.01 = 0.07; 1.07^10 ≈ 1.9672; 50,000 × 1.9672 ≈ **$98,358**. Con comisión de 0.2 %: 1.078^10 ≈ 2.1193; 50,000 × 2.1193 ≈ **$105,964**. Diferencia ≈ $7,606.",
+              en: "$50,000 for 10 years, 8% gross return. With a 1% fee: 0.08 − 0.01 = 0.07; 1.07^10 ≈ 1.9672; 50,000 × 1.9672 ≈ **$98,358**. With a 0.2% fee: 1.078^10 ≈ 2.1193; 50,000 × 2.1193 ≈ **$105,964**. Difference ≈ $7,606.",
+            },
+            interpret: {
+              es: "Una diferencia de comisión que parece pequeña en un año se vuelve miles de pesos con el paso del tiempo, porque deja de componerse.",
+              en: "A fee difference that looks small in one year becomes thousands of pesos over time, because it stops compounding.",
+            },
+            mistake: {
+              es: "Multiplicar el rendimiento por los años en lugar de elevar a la potencia: el interés compuesto crece sobre lo ya ganado.",
+              en: "Multiplying the return by the years instead of raising to the power: compound interest grows on what has already been earned.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -285,7 +431,7 @@ export const lessons: Lesson[] = [
       es: "Las FIBRAs te permiten invertir en bienes raíces desde la bolsa con poco dinero: cobras parte de las rentas mediante distribuciones, aunque el precio del certificado sube y baja como cualquier valor.",
       en: "FIBRAs let you invest in real estate through the stock exchange with little money: you collect part of the rents through distributions, although the certificate's price rises and falls like any security.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Explicar qué es una FIBRA y qué compras al adquirir sus certificados.", en: "Explain what a FIBRA is and what you buy when you acquire its certificates." },
       { es: "Calcular el rendimiento por distribuciones y la tasa de ocupación de una FIBRA.", en: "Compute a FIBRA's distribution yield and occupancy rate." },
@@ -325,7 +471,76 @@ export const lessons: Lesson[] = [
             en: "Two key figures to check a FIBRA: the **distribution yield** (how much it pays per year relative to its price) and the **occupancy rate** (what part of its square meters is rented). Mini example: if a CBFI costs $20 and pays $1.60 a year, its distribution yield is 8%.",
           },
         ],
-        formula: "Rendimiento por distribución = Distribuciones de 12 meses ÷ Precio del CBFI × 100   |   Ocupación = m² rentados ÷ m² totales × 100",
+        formulas: [
+          {
+            name: { es: "Rendimiento por distribución de una FIBRA", en: "Distribution yield of a FIBRA" },
+            expression: "Rendimiento por distribución = Distribuciones de 12 meses ÷ Precio del CBFI × 100",
+            variables: [
+              { symbol: "Rendimiento por distribución", meaning: { es: "Qué porcentaje del precio te reparte la FIBRA en un año, en %.", en: "What percentage of the price the FIBRA pays you in a year, in %." } },
+              { symbol: "Distribuciones de 12 meses", meaning: { es: "Suma de todo lo que pagó por CBFI en el último año, en pesos (normalmente 4 pagos trimestrales).", en: "Sum of everything paid per CBFI over the last year, in pesos (usually 4 quarterly payments)." } },
+              { symbol: "Precio del CBFI", meaning: { es: "Precio actual de un certificado en bolsa, en pesos.", en: "Current price of one certificate on the exchange, in pesos." } },
+            ],
+            steps: [
+              { es: "Suma las distribuciones del último año; si son trimestrales iguales, multiplica una por 4.", en: "Add up the last year's distributions; if they are equal quarterly payments, multiply one by 4." },
+              { es: "Divide ese total entre el precio del CBFI.", en: "Divide that total by the CBFI price." },
+              { es: "Multiplica por 100 para expresarlo en %.", en: "Multiply by 100 to express it in %." },
+            ],
+            example: {
+              es: "CBFI a $35 con cuatro distribuciones de $0.63. Anual: 4 × 0.63 = $2.52. 2.52 ÷ 35 = 0.072; × 100 = **7.2 %**.",
+              en: "CBFI at $35 with four distributions of $0.63. Annual: 4 × 0.63 = $2.52. 2.52 ÷ 35 = 0.072; × 100 = **7.2%**.",
+            },
+            interpret: {
+              es: "Compáralo con la tasa de CETES: si la FIBRA reparte poco más que algo casi sin riesgo, quizá no compense su riesgo.",
+              en: "Compare it with the CETES rate: if the FIBRA pays barely more than something almost risk-free, it may not compensate for its risk.",
+            },
+            mistake: {
+              es: "Usar una sola distribución trimestral como si fuera la anual.",
+              en: "Using a single quarterly distribution as if it were the annual one.",
+            },
+          },
+          {
+            name: { es: "Tasa de ocupación", en: "Occupancy rate" },
+            expression: "Ocupación = m² rentados ÷ m² totales × 100",
+            variables: [
+              { symbol: "Ocupación", meaning: { es: "Qué parte del espacio está rentada, en %.", en: "What part of the space is rented, in %." } },
+              { symbol: "m² rentados", meaning: { es: "Metros cuadrados que tienen inquilino.", en: "Square meters that have a tenant." } },
+              { symbol: "m² totales", meaning: { es: "Todos los metros cuadrados que tiene la FIBRA, rentados o vacíos.", en: "All the square meters the FIBRA has, rented or empty." } },
+            ],
+            steps: [
+              { es: "Divide los m² rentados entre los m² totales.", en: "Divide rented m² by total m²." },
+              { es: "Multiplica por 100 para expresarlo en %.", en: "Multiply by 100 to express it in %." },
+            ],
+            example: {
+              es: "120,000 m² totales y 102,000 m² rentados. 102,000 ÷ 120,000 = 0.85; × 100 = **85 %**.",
+              en: "120,000 m² in total and 102,000 m² rented. 102,000 ÷ 120,000 = 0.85; × 100 = **85%**.",
+            },
+            interpret: {
+              es: "Más alta es mejor: más espacio pagando renta. Si baja con el tiempo, suelen bajar también las distribuciones.",
+              en: "Higher is better: more space paying rent. If it falls over time, distributions usually fall too.",
+            },
+          },
+          {
+            name: { es: "Ingreso mensual por rentas", en: "Monthly rental income" },
+            expression: "Ingreso mensual = m² rentados × renta por m² al mes",
+            variables: [
+              { symbol: "Ingreso mensual", meaning: { es: "Lo que la FIBRA cobra de renta en un mes, en pesos.", en: "What the FIBRA collects in rent in a month, in pesos." } },
+              { symbol: "m² rentados", meaning: { es: "Solo los metros cuadrados que tienen inquilino.", en: "Only the square meters that have a tenant." } },
+              { symbol: "renta por m² al mes", meaning: { es: "Pesos que paga cada m² rentado al mes.", en: "Pesos each rented m² pays per month." } },
+            ],
+            steps: [
+              { es: "Toma solo los m² rentados (los vacíos no pagan).", en: "Take only the rented m² (empty ones do not pay)." },
+              { es: "Multiplícalos por la renta mensual por m².", en: "Multiply them by the monthly rent per m²." },
+            ],
+            example: {
+              es: "102,000 m² rentados a $130 por m² al mes: 102,000 × 130 = **$13,260,000** al mes.",
+              en: "102,000 m² rented at $130 per m² per month: 102,000 × 130 = **$13,260,000** per month.",
+            },
+            mistake: {
+              es: "Multiplicar los m² totales: los metros vacíos no generan renta.",
+              en: "Multiplying the total m²: empty meters generate no rent.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "FIBRA vs. comprar un inmueble directamente", en: "FIBRA vs. buying a property directly" },
@@ -407,7 +622,7 @@ export const lessons: Lesson[] = [
       es: "Un portafolio se construye decidiendo qué porcentaje va a cada tipo de activo según tu objetivo, se diversifica para no depender de una sola apuesta y se rebalancea para mantener el plan.",
       en: "A portfolio is built by deciding what percentage goes to each asset type according to your goal, diversified so you do not depend on a single bet, and rebalanced to stay on plan.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Definir una asignación de activos a partir del objetivo, el horizonte y la tolerancia al riesgo.", en: "Define an asset allocation based on goal, horizon and risk tolerance." },
       { es: "Explicar cómo la diversificación reduce el riesgo específico, pero no el riesgo de mercado.", en: "Explain how diversification reduces specific risk but not market risk." },
@@ -470,7 +685,54 @@ export const lessons: Lesson[] = [
             en: "Mini example: with 50% in stocks returning 10% and 50% in debt returning 6%, the portfolio returns 0.5 × 10% + 0.5 × 6% = 8%.",
           },
         ],
-        formula: "Rendimiento del portafolio = Σ (peso del activo × rendimiento del activo)",
+        formulas: [
+          {
+            name: { es: "Rendimiento ponderado del portafolio", en: "Weighted portfolio return" },
+            expression: "Rendimiento del portafolio = Σ (peso del activo × rendimiento del activo)",
+            variables: [
+              { symbol: "Rendimiento del portafolio", meaning: { es: "Lo que rindió todo tu portafolio, en %.", en: "What your whole portfolio returned, in %." } },
+              { symbol: "Σ", meaning: { es: "Sigma: significa \"suma todos\" los productos, uno por cada activo.", en: "Sigma: means \"add up all\" the products, one for each asset." } },
+              { symbol: "peso del activo", meaning: { es: "Qué parte del portafolio ocupa ese activo, en decimal (50 % = 0.50); todos los pesos suman 1.", en: "What part of the portfolio that asset takes up, in decimals (50% = 0.50); all weights add up to 1." } },
+              { symbol: "rendimiento del activo", meaning: { es: "Lo que rindió ese activo en el periodo, en %.", en: "What that asset returned in the period, in %." } },
+            ],
+            steps: [
+              { es: "Pasa cada peso a decimal y revisa que sumen 1.", en: "Convert each weight to decimals and check they add up to 1." },
+              { es: "Multiplica el peso de cada activo por su rendimiento.", en: "Multiply each asset's weight by its return." },
+              { es: "Suma todos los resultados.", en: "Add up all the results." },
+            ],
+            example: {
+              es: "40 % en acciones que rinden 15 %, 45 % en bonos que rinden 6 % y 15 % en FIBRAs que rinden 4 %. 0.40 × 15 = 6 %; 0.45 × 6 = 2.7 %; 0.15 × 4 = 0.6 %. Suma: 6 + 2.7 + 0.6 = **9.3 %**.",
+              en: "40% in stocks returning 15%, 45% in bonds returning 6% and 15% in FIBRAs returning 4%. 0.40 × 15 = 6%; 0.45 × 6 = 2.7%; 0.15 × 4 = 0.6%. Sum: 6 + 2.7 + 0.6 = **9.3%**.",
+            },
+            mistake: {
+              es: "Sacar el promedio simple de los rendimientos, que ignora cuánto pesa cada activo.",
+              en: "Taking the simple average of the returns, which ignores how much each asset weighs.",
+            },
+          },
+          {
+            name: { es: "Montos para rebalancear", en: "Rebalancing amounts" },
+            expression: "Monto objetivo = % objetivo × Valor total actual   ·   Ajuste = Monto actual − Monto objetivo",
+            variables: [
+              { symbol: "Valor total actual", meaning: { es: "La suma de lo que valen hoy todas tus inversiones, en pesos.", en: "The sum of what all your investments are worth today, in pesos." } },
+              { symbol: "% objetivo", meaning: { es: "El porcentaje que tu plan asigna a ese activo, en decimal (60 % = 0.60).", en: "The percentage your plan assigns to that asset, in decimals (60% = 0.60)." } },
+              { symbol: "Monto objetivo", meaning: { es: "Cuántos pesos deberías tener en ese activo según tu plan.", en: "How many pesos you should have in that asset according to your plan." } },
+              { symbol: "Ajuste", meaning: { es: "Positivo: pesos que vendes; negativo: pesos que compras.", en: "Positive: pesos you sell; negative: pesos you buy." } },
+            ],
+            steps: [
+              { es: "Suma el valor actual de todos los activos.", en: "Add up the current value of all the assets." },
+              { es: "Multiplica ese total por el % objetivo de cada activo.", en: "Multiply that total by each asset's target %." },
+              { es: "Compara con lo que tienes hoy: vende lo que sobra en un activo y compra lo que falta en el otro.", en: "Compare with what you have today: sell the excess in one asset and buy the shortfall in the other." },
+            ],
+            example: {
+              es: "Plan 70 % acciones y 30 % deuda. Hoy: acciones $63,000 y deuda $33,000. Total: 63,000 + 33,000 = $96,000. Objetivo en acciones: 0.70 × 96,000 = $67,200; faltan 67,200 − 63,000 = **$4,200**, que se compran vendiendo deuda. Deuda nueva: 33,000 − 4,200 = **$28,800** (= 0.30 × 96,000).",
+              en: "Plan: 70% stocks and 30% debt. Today: stocks $63,000 and debt $33,000. Total: 63,000 + 33,000 = $96,000. Stock target: 0.70 × 96,000 = $67,200; the shortfall is 67,200 − 63,000 = **$4,200**, bought by selling debt. New debt: 33,000 − 4,200 = **$28,800** (= 0.30 × 96,000).",
+            },
+            mistake: {
+              es: "Calcular los objetivos con el monto que invertiste al inicio en lugar del valor total de hoy.",
+              en: "Computing the targets with the amount you invested at the start instead of today's total value.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -529,7 +791,7 @@ export const lessons: Lesson[] = [
       es: "El análisis fundamental estudia el negocio y los números de una empresa para estimar cuánto vale y compararlo con su precio en bolsa.",
       en: "Fundamental analysis studies a company's business and numbers to estimate what it is worth and compare that with its market price.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Explicar qué busca el análisis fundamental y qué información usa.", en: "Explain what fundamental analysis seeks and what information it uses." },
       { es: "Calcular e interpretar UPA, P/U, P/VL, ROE y margen neto.", en: "Compute and interpret EPS, P/E, P/B, ROE and net margin." },
@@ -557,16 +819,70 @@ export const lessons: Lesson[] = [
         heading: { es: "Las razones financieras clave", en: "Key financial ratios" },
         body: [
           {
-            es: "Una **razón financiera** divide un dato entre otro para poder comparar empresas de tamaños distintos. La **utilidad por acción (UPA)** reparte la utilidad neta entre las acciones: cuánto ganó la empresa por cada acción. El **múltiplo precio/utilidad (P/U)** te dice cuántos pesos pagas por cada peso de utilidad anual.",
-            en: "A **financial ratio** divides one figure by another so you can compare companies of different sizes. **Earnings per share (EPS)** spreads net profit across the shares: how much the company earned per share. The **price/earnings multiple (P/E)** tells you how many pesos you pay for each peso of annual profit.",
+            es: "En palabras sencillas: una utilidad de $1 millón es mucho para una tiendita y poco para una cadena nacional; por eso los números se comparan en proporción. Una **razón financiera** divide un dato entre otro para poder comparar empresas de tamaños distintos. La **utilidad por acción (UPA)** reparte la utilidad neta entre las acciones: cuánto ganó la empresa por cada acción. El **múltiplo precio/utilidad (P/U)** te dice cuántos pesos pagas por cada peso de utilidad anual.",
+            en: "In plain words: a $1 million profit is a lot for a corner store and little for a national chain; that is why numbers are compared in proportion. A **financial ratio** divides one figure by another so you can compare companies of different sizes. **Earnings per share (EPS)** spreads net profit across the shares: how much the company earned per share. The **price/earnings multiple (P/E)** tells you how many pesos you pay for each peso of annual profit.",
           },
           {
-            es: "El **precio/valor en libros (P/VL)** compara el precio con el capital contable por acción. El **ROE** (rentabilidad sobre el capital) mide cuánta utilidad genera la empresa con el dinero de sus accionistas. El **margen neto** dice cuántos centavos de cada peso vendido quedan como utilidad. La razón **deuda/capital** muestra qué tan endeudada está.",
-            en: "**Price/book value (P/B)** compares price with equity per share. **ROE** (return on equity) measures how much profit the company generates with its shareholders' money. **Net margin** tells how many cents of each peso sold remain as profit. The **debt/equity** ratio shows how indebted it is.",
+            es: "El **capital contable** es lo que la empresa tiene menos lo que debe: el dinero de los dueños (lo que aportaron más las utilidades que se quedaron en el negocio). El **precio/valor en libros (P/VL)** compara el precio con el capital contable por acción. El **ROE** (rentabilidad sobre el capital) mide cuánta utilidad genera la empresa con el dinero de sus accionistas. El **margen neto** dice cuántos centavos de cada peso vendido quedan como utilidad. La razón **deuda/capital** muestra qué tan endeudada está.",
+            en: "**Equity** is what the company owns minus what it owes: the owners' money (what they put in plus the profits kept in the business). **Price/book value (P/B)** compares price with equity per share. **ROE** (return on equity) measures how much profit the company generates with its shareholders' money. **Net margin** tells how many cents of each peso sold remain as profit. The **debt/equity** ratio shows how indebted it is.",
           },
           {
             es: "Ninguna razón sirve sola: compárala con **otras empresas del mismo sector** y con la **historia** de la propia empresa. Mini ejemplo: un P/U de 25 puede ser normal para una empresa de tecnología que crece rápido y caro para un banco maduro.",
             en: "No ratio works alone: compare it with **other companies in the same sector** and with the company's own **history**. Mini example: a P/E of 25 may be normal for a fast-growing tech company and expensive for a mature bank.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Utilidad por acción (UPA) y múltiplo precio/utilidad (P/U)", en: "Earnings per share (EPS) and price/earnings multiple (P/E)" },
+            expression: "UPA = Utilidad neta ÷ Acciones en circulación   ·   P/U = Precio por acción ÷ UPA",
+            variables: [
+              { symbol: "UPA", meaning: { es: "Utilidad por acción: pesos de ganancia anual que le tocan a cada acción.", en: "Earnings per share: pesos of annual profit that belong to each share." } },
+              { symbol: "Utilidad neta", meaning: { es: "Ganancia del año después de todos los gastos e impuestos, en pesos.", en: "The year's profit after all expenses and taxes, in pesos." } },
+              { symbol: "Acciones en circulación", meaning: { es: "Número total de acciones de la empresa en manos de inversionistas.", en: "Total number of company shares held by investors." } },
+              { symbol: "P/U", meaning: { es: "Cuántas veces pagas la utilidad anual al comprar una acción (se lee \"veces\").", en: "How many times the annual profit you pay when buying one share (read as \"times\")." } },
+              { symbol: "Precio por acción", meaning: { es: "Precio actual de una acción en bolsa, en pesos.", en: "Current price of one share on the exchange, in pesos." } },
+            ],
+            steps: [
+              { es: "Divide la utilidad neta entre el número de acciones: es la UPA.", en: "Divide net profit by the number of shares: that is EPS." },
+              { es: "Divide el precio de una acción entre la UPA: es el P/U.", en: "Divide the price of one share by EPS: that is the P/E." },
+            ],
+            example: {
+              es: "Utilidad neta $56,000,000 y 16,000,000 acciones a $49. UPA: 56,000,000 ÷ 16,000,000 = **$3.50**. P/U: 49 ÷ 3.50 = **14 veces**.",
+              en: "Net profit $56,000,000 and 16,000,000 shares at $49. EPS: 56,000,000 ÷ 16,000,000 = **$3.50**. P/E: 49 ÷ 3.50 = **14 times**.",
+            },
+            interpret: {
+              es: "Un P/U de 14 significa que pagas $14 por cada peso de utilidad anual. Más alto suele indicar que el mercado espera crecimiento (o que está cara); compáralo solo con empresas del mismo sector.",
+              en: "A P/E of 14 means you pay $14 for each peso of annual profit. Higher usually means the market expects growth (or that it is expensive); compare it only with companies in the same sector.",
+            },
+            mistake: {
+              es: "Dividir la utilidad entre el precio en lugar de entre el número de acciones.",
+              en: "Dividing profit by the price instead of by the number of shares.",
+            },
+          },
+          {
+            name: { es: "Rentabilidad sobre el capital (ROE)", en: "Return on equity (ROE)" },
+            expression: "ROE = Utilidad neta ÷ Capital contable × 100",
+            variables: [
+              { symbol: "ROE", meaning: { es: "Cuánta utilidad genera la empresa por cada $100 de los accionistas, en %.", en: "How much profit the company generates per $100 of shareholders' money, in %." } },
+              { symbol: "Utilidad neta", meaning: { es: "Ganancia del año después de gastos e impuestos, en pesos.", en: "The year's profit after expenses and taxes, in pesos." } },
+              { symbol: "Capital contable", meaning: { es: "Lo que la empresa tiene menos lo que debe: el dinero de los dueños, en pesos.", en: "What the company owns minus what it owes: the owners' money, in pesos." } },
+            ],
+            steps: [
+              { es: "Divide la utilidad neta entre el capital contable.", en: "Divide net profit by equity." },
+              { es: "Multiplica por 100 para expresarlo en %.", en: "Multiply by 100 to express it in %." },
+            ],
+            example: {
+              es: "Utilidad neta $9,600,000 y capital contable $80,000,000. 9,600,000 ÷ 80,000,000 = 0.12; × 100 = **12 %**.",
+              en: "Net profit $9,600,000 and equity $80,000,000. 9,600,000 ÷ 80,000,000 = 0.12; × 100 = **12%**.",
+            },
+            interpret: {
+              es: "Un ROE de 12 % significa que por cada $100 de los dueños la empresa ganó $12 en el año. Más alto es mejor, si no viene de endeudarse demasiado.",
+              en: "An ROE of 12% means that for every $100 of the owners' money the company earned $12 in the year. Higher is better, as long as it does not come from borrowing too much.",
+            },
+            mistake: {
+              es: "Dividir el capital entre la utilidad, o usar las ventas en lugar del capital contable.",
+              en: "Dividing equity by profit, or using sales instead of equity.",
+            },
           },
         ],
         bullets: [
@@ -593,7 +909,55 @@ export const lessons: Lesson[] = [
             en: "Mini example: if you estimate a value of $60 and the share trades at $45, your margin of safety is ($60 − $45) ÷ $60 = 25%.",
           },
         ],
-        formula: "Valor estimado = UPA esperada × P/U de referencia   |   Margen de seguridad = (Valor estimado − Precio) ÷ Valor estimado × 100",
+        formulas: [
+          {
+            name: { es: "Valor estimado por múltiplos", en: "Estimated value using multiples" },
+            expression: "Valor estimado = UPA esperada × P/U de referencia",
+            variables: [
+              { symbol: "Valor estimado", meaning: { es: "Lo que, según tu análisis, vale una acción, en pesos.", en: "What, according to your analysis, one share is worth, in pesos." } },
+              { symbol: "UPA esperada", meaning: { es: "Utilidad por acción que esperas para el próximo año, en pesos.", en: "Earnings per share you expect for next year, in pesos." } },
+              { symbol: "P/U de referencia", meaning: { es: "Múltiplo P/U al que cotizan empresas parecidas del mismo sector (veces).", en: "P/E multiple at which similar companies in the same sector trade (times)." } },
+            ],
+            steps: [
+              { es: "Elige un P/U de referencia de empresas comparables del mismo sector.", en: "Choose a reference P/E from comparable companies in the same sector." },
+              { es: "Multiplícalo por la UPA que esperas.", en: "Multiply it by the EPS you expect." },
+            ],
+            example: {
+              es: "UPA esperada de $2.50 y empresas parecidas a 16 veces: 2.50 × 16 = **$40** por acción.",
+              en: "Expected EPS of $2.50 and similar companies at 16 times: 2.50 × 16 = **$40** per share.",
+            },
+            mistake: {
+              es: "Usar el P/U de un sector distinto: cada sector crece y arriesga distinto.",
+              en: "Using the P/E of a different sector: each sector grows and carries risk differently.",
+            },
+          },
+          {
+            name: { es: "Margen de seguridad", en: "Margin of safety" },
+            expression: "Margen de seguridad = (Valor estimado − Precio) ÷ Valor estimado × 100",
+            variables: [
+              { symbol: "Margen de seguridad", meaning: { es: "Qué tan por debajo de su valor estimado está el precio, en %.", en: "How far below its estimated value the price is, in %." } },
+              { symbol: "Valor estimado", meaning: { es: "Tu estimación del valor de una acción, en pesos.", en: "Your estimate of one share's value, in pesos." } },
+              { symbol: "Precio", meaning: { es: "Lo que cuesta hoy la acción en bolsa, en pesos.", en: "What the share costs today on the exchange, in pesos." } },
+            ],
+            steps: [
+              { es: "Resta el precio al valor estimado.", en: "Subtract the price from the estimated value." },
+              { es: "Divide el resultado entre el valor estimado (no entre el precio).", en: "Divide the result by the estimated value (not by the price)." },
+              { es: "Multiplica por 100 para expresarlo en %.", en: "Multiply by 100 to express it in %." },
+            ],
+            example: {
+              es: "Valor estimado $40 y precio $34. 40 − 34 = $6. 6 ÷ 40 = 0.15; × 100 = **15 %**.",
+              en: "Estimated value $40 and price $34. 40 − 34 = $6. 6 ÷ 40 = 0.15; × 100 = **15%**.",
+            },
+            interpret: {
+              es: "Mientras mayor el margen, más colchón tienes si tu estimación resulta optimista. Si sale negativo, la acción cotiza por encima de tu valor estimado.",
+              en: "The larger the margin, the more cushion you have if your estimate turns out optimistic. If it is negative, the share trades above your estimated value.",
+            },
+            mistake: {
+              es: "Dividir entre el precio en lugar de entre el valor estimado.",
+              en: "Dividing by the price instead of by the estimated value.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -651,7 +1015,7 @@ export const lessons: Lesson[] = [
       es: "El análisis técnico estudia las gráficas de precio y volumen para identificar tendencias, soportes y resistencias; es una herramienta de probabilidades, no una bola de cristal.",
       en: "Technical analysis studies price and volume charts to identify trends, support and resistance; it is a tool of probabilities, not a crystal ball.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Leer una vela japonesa e identificar si es alcista o bajista.", en: "Read a candlestick and identify whether it is bullish or bearish." },
       { es: "Reconocer tendencias, soportes y resistencias en una gráfica.", en: "Recognize trends, support and resistance on a chart." },
@@ -676,6 +1040,32 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: una acción abre en $50, sube hasta $54, baja hasta $49 y cierra en $53. Es una vela alcista con cuerpo de $3 y rango total de $5.",
             en: "Mini example: a share opens at $50, rises to $54, falls to $49 and closes at $53. It is a bullish candle with a $3 body and a total range of $5.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Cuerpo y rango de una vela", en: "Body and range of a candle" },
+            expression: "Cuerpo = |Cierre − Apertura|   ·   Rango = Máximo − Mínimo",
+            variables: [
+              { symbol: "Cuerpo", meaning: { es: "Tamaño de la parte gruesa de la vela, en pesos.", en: "Size of the thick part of the candle, in pesos." } },
+              { symbol: "| |", meaning: { es: "Valor absoluto: se toma la diferencia sin signo (siempre positiva).", en: "Absolute value: take the difference without its sign (always positive)." } },
+              { symbol: "Apertura, Cierre", meaning: { es: "Primer y último precio del periodo, en pesos.", en: "First and last price of the period, in pesos." } },
+              { symbol: "Rango", meaning: { es: "Distancia total que recorrió el precio, incluidas las mechas, en pesos.", en: "Total distance the price traveled, wicks included, in pesos." } },
+              { symbol: "Máximo, Mínimo", meaning: { es: "Precio más alto y más bajo del periodo, en pesos.", en: "Highest and lowest price of the period, in pesos." } },
+            ],
+            steps: [
+              { es: "Compara cierre y apertura: si el cierre es mayor, la vela es alcista; si es menor, bajista.", en: "Compare close and open: if the close is higher, the candle is bullish; if lower, bearish." },
+              { es: "Cuerpo: resta el menor al mayor de apertura y cierre.", en: "Body: subtract the smaller from the larger of open and close." },
+              { es: "Rango: resta el mínimo al máximo.", en: "Range: subtract the low from the high." },
+            ],
+            example: {
+              es: "Apertura $120, máximo $126, mínimo $117, cierre $118. Cierre < apertura: **bajista**. Cuerpo: 120 − 118 = **$2**. Rango: 126 − 117 = **$9**.",
+              en: "Open $120, high $126, low $117, close $118. Close < open: **bearish**. Body: 120 − 118 = **$2**. Range: 126 − 117 = **$9**.",
+            },
+            mistake: {
+              es: "Confundir el cuerpo con el rango: el cuerpo usa apertura y cierre; el rango, máximo y mínimo.",
+              en: "Confusing the body with the range: the body uses open and close; the range, high and low.",
+            },
           },
         ],
       },
@@ -718,7 +1108,62 @@ export const lessons: Lesson[] = [
             en: "Technical signals **fail frequently**. That is why they are paired with a **stop loss**: an order to sell if the price falls to a level you defined in advance, to limit the loss. Mini example: you buy at $100 and set the stop loss at $95; if it triggers, you lose about $5 per share and no more (barring sharp price gaps).",
           },
         ],
-        formula: "SMA(N) = (Suma de los últimos N cierres) ÷ N   |   Precio de stop = Precio de compra × (1 − % de pérdida máxima)",
+        formulas: [
+          {
+            name: { es: "Media móvil simple (SMA)", en: "Simple moving average (SMA)" },
+            expression: "SMA(N) = (Suma de los últimos N cierres) ÷ N",
+            variables: [
+              { symbol: "SMA(N)", meaning: { es: "Promedio de los últimos N precios de cierre, en pesos.", en: "Average of the last N closing prices, in pesos." } },
+              { symbol: "N", meaning: { es: "Número de periodos que promedias (por ejemplo, 4 días o 20 días).", en: "Number of periods you average (for example, 4 days or 20 days)." } },
+              { symbol: "cierres", meaning: { es: "Precio con el que terminó cada periodo, en pesos.", en: "The price at which each period ended, in pesos." } },
+            ],
+            steps: [
+              { es: "Toma solo los N cierres más recientes.", en: "Take only the N most recent closes." },
+              { es: "Súmalos.", en: "Add them up." },
+              { es: "Divide la suma entre N.", en: "Divide the sum by N." },
+            ],
+            example: {
+              es: "Cierres de 5 días: $21, $23, $22, $25 y $24. Suma: 21 + 23 + 22 + 25 + 24 = 115. SMA(5) = 115 ÷ 5 = **$23**.",
+              en: "Closes over 5 days: $21, $23, $22, $25 and $24. Sum: 21 + 23 + 22 + 25 + 24 = 115. SMA(5) = 115 ÷ 5 = **$23**.",
+            },
+            interpret: {
+              es: "Si el último cierre ($24) está arriba de la media ($23), la tendencia de ese plazo se lee como alcista; si está abajo, bajista.",
+              en: "If the last close ($24) is above the average ($23), that time frame's trend reads as bullish; if below, bearish.",
+            },
+            mistake: {
+              es: "Dividir entre un número distinto de N, o incluir cierres más viejos de los que pide la media.",
+              en: "Dividing by a number other than N, or including older closes than the average calls for.",
+            },
+          },
+          {
+            name: { es: "Precio de stop loss y pérdida máxima", en: "Stop loss price and maximum loss" },
+            expression: "Precio de stop = Precio de compra × (1 − % de pérdida máxima)   ·   Pérdida total ≈ (Precio de compra − Precio de stop) × Número de acciones",
+            variables: [
+              { symbol: "Precio de stop", meaning: { es: "Precio al que se vende automáticamente para cortar la pérdida, en pesos.", en: "Price at which you automatically sell to cut the loss, in pesos." } },
+              { symbol: "Precio de compra", meaning: { es: "Lo que pagaste por acción, en pesos.", en: "What you paid per share, in pesos." } },
+              { symbol: "% de pérdida máxima", meaning: { es: "Cuánto aceptas que baje antes de salir, en decimal (8 % = 0.08).", en: "How much you accept it falls before getting out, in decimals (8% = 0.08)." } },
+              { symbol: "Número de acciones", meaning: { es: "Cuántas acciones compraste.", en: "How many shares you bought." } },
+            ],
+            steps: [
+              { es: "Convierte el % de pérdida a decimal y réstalo de 1.", en: "Convert the loss % to decimals and subtract it from 1." },
+              { es: "Multiplica el precio de compra por ese resultado: es el precio de stop.", en: "Multiply the purchase price by that result: that is the stop price." },
+              { es: "Resta el precio de stop al de compra para la pérdida por acción.", en: "Subtract the stop price from the purchase price for the loss per share." },
+              { es: "Multiplica por el número de acciones para la pérdida total.", en: "Multiply by the number of shares for the total loss." },
+            ],
+            example: {
+              es: "200 acciones a $60 con pérdida máxima de 5 %. 1 − 0.05 = 0.95. Stop: 60 × 0.95 = **$57**. Pérdida por acción: 60 − 57 = $3. Total: 3 × 200 = **$600**.",
+              en: "200 shares at $60 with a 5% maximum loss. 1 − 0.05 = 0.95. Stop: 60 × 0.95 = **$57**. Loss per share: 60 − 57 = $3. Total: 3 × 200 = **$600**.",
+            },
+            interpret: {
+              es: "Es la pérdida aproximada que aceptas desde antes de comprar; en un salto brusco de precio la venta podría ejecutarse un poco más abajo.",
+              en: "It is the approximate loss you accept before buying; in a sharp price gap the sale could execute a little lower.",
+            },
+            mistake: {
+              es: "Restar el porcentaje como si fueran pesos (60 − 5 = $55) en lugar de aplicar el 5 % al precio.",
+              en: "Subtracting the percentage as if it were pesos (60 − 5 = $55) instead of applying 5% to the price.",
+            },
+          },
+        ],
       },
     ],
     examples: [

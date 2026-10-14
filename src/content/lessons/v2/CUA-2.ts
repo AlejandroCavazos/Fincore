@@ -25,7 +25,7 @@ export const lessons: Lesson[] = [
       es: "Una serie de tiempo financiera es una lista ordenada de precios o rendimientos; para modelarla conviene trabajar con rendimientos, revisar si es estacionaria y usar modelos como AR para pronosticar.",
       en: "A financial time series is an ordered list of prices or returns; to model it you should work with returns, check whether it is stationary and use models such as AR to forecast.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Calcular rendimientos simples y logarítmicos a partir de una serie de precios y explicar cuándo usar cada uno.", en: "Compute simple and log returns from a price series and explain when to use each." },
       { es: "Distinguir una serie estacionaria de una no estacionaria (tendencia, caminata aleatoria) y explicar la autocorrelación.", en: "Distinguish a stationary series from a non-stationary one (trend, random walk) and explain autocorrelation." },
@@ -40,15 +40,66 @@ export const lessons: Lesson[] = [
             en: "A **time series** is a list of data ordered in time: a stock's daily closing price, the peso-dollar exchange rate every morning or the interest rate each month. What makes it special is that **order matters**: today's data point is often related to yesterday's.",
           },
           {
-            es: "En finanzas casi nunca se modelan los precios directamente, sino los **rendimientos**: cuánto cambió el precio en proporción. El **rendimiento simple** compara el precio nuevo con el anterior. El **rendimiento logarítmico** (o continuo) usa el logaritmo natural del cociente de precios; para cambios pequeños ambos dan casi lo mismo.",
-            en: "In finance we almost never model prices directly, but **returns**: how much the price changed in proportion. The **simple return** compares the new price with the previous one. The **log (continuous) return** uses the natural logarithm of the price ratio; for small changes both give almost the same result.",
+            es: "En finanzas casi nunca se modelan los precios directamente, sino los **rendimientos**: cuánto cambió el precio en proporción. El **rendimiento simple** compara el precio nuevo con el anterior. El **rendimiento logarítmico** (o continuo) usa el logaritmo natural (la tecla **ln** de la calculadora) del cociente de precios; para cambios pequeños ambos dan casi lo mismo.",
+            en: "In finance we almost never model prices directly, but **returns**: how much the price changed in proportion. The **simple return** compares the new price with the previous one. The **log (continuous) return** uses the natural logarithm (the **ln** key on your calculator) of the price ratio; for small changes both give almost the same result.",
           },
           {
             es: "¿Por qué existen los dos? El rendimiento simple **se suma entre activos** (sirve para el rendimiento de un portafolio en un día). El logarítmico **se suma en el tiempo**: el rendimiento log de una semana es la suma de los cinco rendimientos log diarios. Mini ejemplo: un precio pasa de $100 a $105 y luego a $99.75. Los rendimientos simples son +5% y −5%, pero no regresas a $100: los log son +4.88% y −5.13%, y su suma (−0.25%) sí da el cambio total.",
             en: "Why do both exist? Simple returns **add across assets** (useful for a portfolio's return on one day). Log returns **add over time**: a week's log return is the sum of the five daily log returns. Mini example: a price goes from $100 to $105 and then to $99.75. Simple returns are +5% and −5%, but you do not get back to $100: log returns are +4.88% and −5.13%, and their sum (−0.25%) does give the total change.",
           },
         ],
-        formula: "r simple = (P_t − P_(t−1)) / P_(t−1)   ·   r log = ln(P_t / P_(t−1))",
+        formulas: [
+          {
+            name: { es: "Rendimiento simple de un periodo", en: "Simple return for one period" },
+            expression: "r simple = (P_t − P_(t−1)) / P_(t−1)",
+            variables: [
+              { symbol: "r simple", meaning: { es: "Cuánto cambió el precio en proporción; se expresa en % al multiplicar por 100.", en: "How much the price changed in proportion; expressed in % by multiplying by 100." } },
+              { symbol: "P_t", meaning: { es: "Precio de hoy (el precio final del periodo), en pesos.", en: "Today's price (the end-of-period price), in pesos." } },
+              { symbol: "P_(t−1)", meaning: { es: "Precio de ayer (el precio inicial del periodo), en pesos.", en: "Yesterday's price (the start-of-period price), in pesos." } },
+            ],
+            steps: [
+              { es: "Resta el precio inicial al precio final para obtener el cambio en pesos.", en: "Subtract the starting price from the ending price to get the change in pesos." },
+              { es: "Divide ese cambio entre el precio inicial.", en: "Divide that change by the starting price." },
+              { es: "Multiplica por 100 para expresarlo en porcentaje.", en: "Multiply by 100 to express it as a percentage." },
+            ],
+            example: {
+              es: "Una acción pasa de $50 a $53. Cambio: 53 − 50 = $3. División: 3 / 50 = 0.06. En porcentaje: 0.06 × 100 = **6%**.",
+              en: "A stock goes from $50 to $53. Change: 53 − 50 = $3. Division: 3 / 50 = 0.06. As a percentage: 0.06 × 100 = **6%**.",
+            },
+            interpret: {
+              es: "Positivo: el precio subió; negativo: bajó. Un 6% significa que por cada $100 invertidos ganaste $6.",
+              en: "Positive: the price rose; negative: it fell. A 6% means that for every $100 invested you gained $6.",
+            },
+            mistake: {
+              es: "Dividir entre el precio final. El rendimiento siempre se mide contra el precio con el que empezaste.",
+              en: "Dividing by the ending price. The return is always measured against the price you started with.",
+            },
+          },
+          {
+            name: { es: "Rendimiento logarítmico y su acumulado", en: "Log return and its cumulative total" },
+            expression: "r log = ln(P_t / P_(t−1))   ·   r log acumulado = r₁ + r₂ + … + rₙ",
+            variables: [
+              { symbol: "r log", meaning: { es: "Rendimiento logarítmico (continuo) de un periodo; se expresa en % al multiplicar por 100.", en: "Log (continuous) return for one period; expressed in % by multiplying by 100." } },
+              { symbol: "ln", meaning: { es: "Logaritmo natural: la tecla ln de la calculadora.", en: "Natural logarithm: the ln key on a calculator." } },
+              { symbol: "P_t / P_(t−1)", meaning: { es: "Precio de hoy dividido entre el de ayer (por ejemplo, 1.06 si subió 6%).", en: "Today's price divided by yesterday's (for example, 1.06 if it rose 6%)." } },
+              { symbol: "r₁ … rₙ", meaning: { es: "Los rendimientos log de cada periodo (cada día), en %.", en: "The log returns of each period (each day), in %." } },
+              { symbol: "n", meaning: { es: "Número de periodos que acumulas (por ejemplo, días).", en: "Number of periods you accumulate (for example, days)." } },
+            ],
+            steps: [
+              { es: "Divide el precio final entre el inicial.", en: "Divide the ending price by the starting price." },
+              { es: "Aplica ln a ese cociente y multiplica por 100 para tenerlo en %.", en: "Apply ln to that ratio and multiply by 100 to get it in %." },
+              { es: "Para el rendimiento de varios días, suma los rendimientos log diarios (con su signo).", en: "For the return over several days, add up the daily log returns (with their signs)." },
+            ],
+            example: {
+              es: "Precio de $50 a $53: 53 / 50 = 1.06; ln(1.06) ≈ 0.0583 = **5.83%**. Acumulado de cuatro días con rendimientos log +2.0%, −1.1%, +0.6% y +0.3%: 2.0 − 1.1 + 0.6 + 0.3 = **1.8%**.",
+              en: "Price from $50 to $53: 53 / 50 = 1.06; ln(1.06) ≈ 0.0583 = **5.83%**. Cumulative over four days with log returns +2.0%, −1.1%, +0.6% and +0.3%: 2.0 − 1.1 + 0.6 + 0.3 = **1.8%**.",
+            },
+            mistake: {
+              es: "Promediar o multiplicar los rendimientos log para obtener el acumulado. Se suman; el promedio solo da el rendimiento de un día típico.",
+              en: "Averaging or multiplying log returns to get the cumulative one. They are added; the average only gives a typical day's return.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Estacionariedad, autocorrelación y caminata aleatoria", en: "Stationarity, autocorrelation and random walk" },
@@ -77,8 +128,8 @@ export const lessons: Lesson[] = [
         heading: { es: "Modelos AR, MA y pronóstico", en: "AR and MA models and forecasting" },
         body: [
           {
-            es: "Un modelo **autorregresivo de orden 1, AR(1)**, dice que el valor de hoy depende del de ayer más un choque: X_t = c + φ·X_(t−1) + ε_t. El coeficiente **φ (fi)** mide la memoria. Si |φ| < 1 la serie es estacionaria y **regresa a su media** de largo plazo, que vale c / (1 − φ). Si φ = 1 tenemos una caminata aleatoria.",
-            en: "A **first-order autoregressive model, AR(1)**, says today's value depends on yesterday's plus a shock: X_t = c + φ·X_(t−1) + ε_t. The coefficient **φ (phi)** measures memory. If |φ| < 1 the series is stationary and **reverts to its long-run mean**, which equals c / (1 − φ). If φ = 1 we have a random walk.",
+            es: "En palabras sencillas: un AR(1) es una regla de pronóstico que dice \"mañana se parecerá a hoy, pero un poco jalado hacia su promedio\". Un modelo **autorregresivo de orden 1, AR(1)**, dice que el valor de hoy depende del de ayer más un **choque** (una sorpresa que nadie pudo anticipar): X_t = c + φ·X_(t−1) + ε_t. El coeficiente **φ (fi)** mide la memoria: qué parte del dato de ayer sigue pesando hoy. Si |φ| < 1 la serie es estacionaria y **regresa a su media** de largo plazo, que vale c / (1 − φ). Si φ = 1 tenemos una caminata aleatoria.",
+            en: "In plain words: an AR(1) is a forecasting rule that says \"tomorrow will look like today, but pulled a little toward its average\". A **first-order autoregressive model, AR(1)**, says today's value depends on yesterday's plus a **shock** (a surprise no one could anticipate): X_t = c + φ·X_(t−1) + ε_t. The coefficient **φ (phi)** measures memory: how much of yesterday's value still matters today. If |φ| < 1 the series is stationary and **reverts to its long-run mean**, which equals c / (1 − φ). If φ = 1 we have a random walk.",
           },
           {
             es: "Un modelo de **medias móviles, MA(1)**, en cambio, hace depender el valor de hoy del **choque** de ayer, no del valor de ayer. Combinar ambos da los modelos **ARMA**. Para pronosticar con un AR(1) se sustituye el choque futuro por su promedio, que es cero, y se aplica la fórmula paso a paso.",
@@ -89,7 +140,58 @@ export const lessons: Lesson[] = [
             en: "Mini example: the spread between two rates follows an AR(1) with c = 0.2 and φ = 0.6, and today it is 1.5. Tomorrow's forecast is 0.2 + 0.6 × 1.5 = 1.1; the day after, 0.2 + 0.6 × 1.1 = 0.86. Each step moves closer to the long-run mean: 0.2 / (1 − 0.6) = 0.5.",
           },
         ],
-        formula: "AR(1): X_t = c + φ·X_(t−1) + ε_t   ·   media de largo plazo = c / (1 − φ)",
+        formulas: [
+          {
+            name: { es: "Pronóstico con un AR(1)", en: "Forecasting with an AR(1)" },
+            expression: "X_t = c + φ·X_(t−1) + ε_t   →   pronóstico = c + φ·(último valor)",
+            variables: [
+              { symbol: "X_t", meaning: { es: "El valor de la serie en el periodo que quieres pronosticar (por ejemplo, una tasa en %).", en: "The series value in the period you want to forecast (for example, a rate in %)." } },
+              { symbol: "X_(t−1)", meaning: { es: "El valor del periodo anterior (el último dato conocido o el pronóstico previo).", en: "The previous period's value (the last known data point or the previous forecast)." } },
+              { symbol: "c", meaning: { es: "Constante del modelo: un número fijo que se suma cada periodo.", en: "The model's constant: a fixed number added every period." } },
+              { symbol: "φ", meaning: { es: "Coeficiente de memoria (fi): qué fracción del valor de ayer pasa a hoy.", en: "Memory coefficient (phi): what fraction of yesterday's value carries into today." } },
+              { symbol: "ε_t", meaning: { es: "Choque o sorpresa de hoy; en promedio vale 0, por eso se quita al pronosticar.", en: "Today's shock or surprise; on average it is 0, so it is dropped when forecasting." } },
+            ],
+            steps: [
+              { es: "Quita el choque ε_t, porque su valor esperado es cero.", en: "Drop the shock ε_t, because its expected value is zero." },
+              { es: "Pronóstico a 1 periodo: multiplica φ por el último dato observado y súmale c.", en: "1-period forecast: multiply φ by the last observed value and add c." },
+              { es: "Pronóstico a 2 periodos: repite la cuenta usando el pronóstico a 1 periodo en lugar del último dato.", en: "2-period forecast: repeat the calculation using the 1-period forecast instead of the last data point." },
+            ],
+            example: {
+              es: "Con c = 1, φ = 0.5 y último dato X = 6. Periodo 1: 1 + 0.5 × 6 = 1 + 3 = **4**. Periodo 2: 1 + 0.5 × 4 = 1 + 2 = **3**.",
+              en: "With c = 1, φ = 0.5 and last value X = 6. Period 1: 1 + 0.5 × 6 = 1 + 3 = **4**. Period 2: 1 + 0.5 × 4 = 1 + 2 = **3**.",
+            },
+            mistake: {
+              es: "Usar otra vez el último dato observado para el segundo periodo. Cada pronóstico se construye sobre el anterior.",
+              en: "Reusing the last observed value for the second period. Each forecast is built on the previous one.",
+            },
+          },
+          {
+            name: { es: "Media de largo plazo de un AR(1)", en: "Long-run mean of an AR(1)" },
+            expression: "media de largo plazo = c / (1 − φ)",
+            variables: [
+              { symbol: "media de largo plazo", meaning: { es: "El nivel hacia el que regresa la serie con el tiempo, en las mismas unidades que X.", en: "The level the series returns to over time, in the same units as X." } },
+              { symbol: "c", meaning: { es: "Constante del modelo.", en: "The model's constant." } },
+              { symbol: "φ", meaning: { es: "Coeficiente de memoria; la fórmula solo tiene sentido si |φ| < 1.", en: "Memory coefficient; the formula only makes sense if |φ| < 1." } },
+            ],
+            steps: [
+              { es: "Revisa que |φ| sea menor que 1; si no, la serie no tiene media fija.", en: "Check that |φ| is less than 1; if not, the series has no fixed mean." },
+              { es: "Calcula 1 − φ.", en: "Compute 1 − φ." },
+              { es: "Divide c entre ese resultado.", en: "Divide c by that result." },
+            ],
+            example: {
+              es: "Con c = 1 y φ = 0.5: 1 − 0.5 = 0.5; 1 / 0.5 = **2**. Los pronósticos 4 y 3 del ejemplo anterior van bajando hacia 2.",
+              en: "With c = 1 and φ = 0.5: 1 − 0.5 = 0.5; 1 / 0.5 = **2**. The forecasts 4 and 3 from the previous example keep falling toward 2.",
+            },
+            interpret: {
+              es: "Si el dato de hoy está arriba de la media, los pronósticos bajan hacia ella; si está abajo, suben. Mientras más cerca de 1 esté φ, más lento es el regreso.",
+              en: "If today's value is above the mean, forecasts fall toward it; if it is below, they rise. The closer φ is to 1, the slower the return.",
+            },
+            mistake: {
+              es: "Calcular c / φ o c × φ. Se divide entre (1 − φ).",
+              en: "Computing c / φ or c × φ. You divide by (1 − φ).",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -149,7 +251,7 @@ export const lessons: Lesson[] = [
       es: "La volatilidad mide qué tanto se mueven los rendimientos; como cambia con el tiempo y se agrupa en rachas, se estima con modelos como EWMA y GARCH que dan más peso a la información reciente.",
       en: "Volatility measures how much returns move; since it changes over time and clusters in streaks, it is estimated with models such as EWMA and GARCH that give more weight to recent information.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Calcular la volatilidad histórica y anualizarla con la regla de la raíz del tiempo.", en: "Compute historical volatility and annualize it with the square-root-of-time rule." },
       { es: "Explicar el agrupamiento de volatilidad y actualizar una estimación EWMA.", en: "Explain volatility clustering and update an EWMA estimate." },
@@ -161,8 +263,8 @@ export const lessons: Lesson[] = [
         heading: { es: "Volatilidad histórica y su anualización", en: "Historical volatility and annualization" },
         body: [
           {
-            es: "La **volatilidad** es la desviación estándar de los rendimientos: mide qué tanto se alejan, en promedio, de su media. Una acción con volatilidad diaria de 2% se mueve típicamente alrededor de ±2% en un día; una con 0.5% es mucho más tranquila. No dice hacia dónde se moverá el precio, solo **qué tan fuerte**.",
-            en: "**Volatility** is the standard deviation of returns: it measures how far, on average, they move away from their mean. A stock with 2% daily volatility typically moves around ±2% in a day; one with 0.5% is much calmer. It does not say where the price will go, only **how strongly** it moves.",
+            es: "En palabras sencillas: la volatilidad dice qué tan \"brincón\" es un precio. Técnicamente, la **volatilidad** es la **desviación estándar** de los rendimientos: mide qué tanto se alejan, en promedio, de su media. Su cuadrado se llama **varianza**; los modelos trabajan con la varianza y al final sacas raíz cuadrada para volver a la volatilidad. Una acción con volatilidad diaria de 2% se mueve típicamente alrededor de ±2% en un día; una con 0.5% es mucho más tranquila. No dice hacia dónde se moverá el precio, solo **qué tan fuerte**.",
+            en: "In plain words: volatility tells you how \"jumpy\" a price is. Technically, **volatility** is the **standard deviation** of returns: it measures how far, on average, they move away from their mean. Its square is called **variance**; models work with variance and at the end you take the square root to get back to volatility. A stock with 2% daily volatility typically moves around ±2% in a day; one with 0.5% is much calmer. It does not say where the price will go, only **how strongly** it moves.",
           },
           {
             es: "La **volatilidad histórica** se calcula con rendimientos pasados (por ejemplo, de los últimos 60 días) dando el mismo peso a todos. Para compararla entre horizontes se usa la **regla de la raíz del tiempo**: si los rendimientos son independientes, la varianza crece en proporción al número de días, así que la volatilidad crece con su raíz cuadrada. Por convención se suelen usar unos 252 días hábiles al año.",
@@ -173,7 +275,31 @@ export const lessons: Lesson[] = [
             en: "Mini example: a 1.2% daily volatility is equivalent to 1.2% × √252 ≈ 1.2% × 15.87 ≈ 19.05% per year. Watch out: multiplying by 252 instead of √252 is a frequent mistake that hugely inflates the result.",
           },
         ],
-        formula: "σ anual = σ diaria × √252   ·   σ en T días = σ diaria × √T",
+        formulas: [
+          {
+            name: { es: "Escalar la volatilidad con la raíz del tiempo", en: "Scaling volatility with the square root of time" },
+            expression: "σ anual = σ diaria × √252   ·   σ en T días = σ diaria × √T",
+            variables: [
+              { symbol: "σ diaria", meaning: { es: "Volatilidad de un día, en %.", en: "One-day volatility, in %." } },
+              { symbol: "σ anual", meaning: { es: "Volatilidad equivalente a un año, en %.", en: "Equivalent one-year volatility, in %." } },
+              { symbol: "252", meaning: { es: "Días hábiles (de operación) que se usan por convención en un año.", en: "Trading days conventionally used in a year." } },
+              { symbol: "T", meaning: { es: "Número de días del horizonte que quieres (por ejemplo, 10 días).", en: "Number of days in the horizon you want (for example, 10 days)." } },
+              { symbol: "√", meaning: { es: "Raíz cuadrada.", en: "Square root." } },
+            ],
+            steps: [
+              { es: "Saca la raíz cuadrada del número de días: √252 ≈ 15.87 para un año.", en: "Take the square root of the number of days: √252 ≈ 15.87 for a year." },
+              { es: "Multiplica la volatilidad diaria por esa raíz.", en: "Multiply the daily volatility by that root." },
+            ],
+            example: {
+              es: "Volatilidad diaria de 0.8%. Anual: √252 ≈ 15.87; 0.8% × 15.87 ≈ **12.70%**. A 10 días: √10 ≈ 3.16; 0.8% × 3.16 ≈ **2.53%**.",
+              en: "Daily volatility of 0.8%. Annual: √252 ≈ 15.87; 0.8% × 15.87 ≈ **12.70%**. Over 10 days: √10 ≈ 3.16; 0.8% × 3.16 ≈ **2.53%**.",
+            },
+            mistake: {
+              es: "Multiplicar por 252 en vez de √252. Lo que crece en proporción a los días es la varianza; la volatilidad crece con la raíz.",
+              en: "Multiplying by 252 instead of √252. What grows in proportion to the days is variance; volatility grows with the root.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Agrupamiento de volatilidad y EWMA", en: "Volatility clustering and EWMA" },
@@ -191,14 +317,44 @@ export const lessons: Lesson[] = [
             en: "Mini example: with λ = 0.94, yesterday's volatility of 1% (variance 0.0001) and yesterday's return of 2% (squared 0.0004): σ² = 0.94 × 0.0001 + 0.06 × 0.0004 = 0.000118, so σ ≈ 1.09%. The busy day pushed the estimate up.",
           },
         ],
-        formula: "EWMA: σ²_t = λ·σ²_(t−1) + (1 − λ)·r²_(t−1)",
+        formulas: [
+          {
+            name: { es: "Actualizar la volatilidad con EWMA", en: "Updating volatility with EWMA" },
+            expression: "σ²_t = λ·σ²_(t−1) + (1 − λ)·r²_(t−1)",
+            variables: [
+              { symbol: "σ²_t", meaning: { es: "Varianza estimada para hoy (volatilidad al cuadrado, en decimal).", en: "Estimated variance for today (volatility squared, in decimals)." } },
+              { symbol: "σ²_(t−1)", meaning: { es: "Varianza de ayer: la volatilidad de ayer en decimal, elevada al cuadrado (1% → 0.01² = 0.0001).", en: "Yesterday's variance: yesterday's volatility in decimals, squared (1% → 0.01² = 0.0001)." } },
+              { symbol: "r²_(t−1)", meaning: { es: "Rendimiento de ayer en decimal, elevado al cuadrado (2% → 0.02² = 0.0004).", en: "Yesterday's return in decimals, squared (2% → 0.02² = 0.0004)." } },
+              { symbol: "λ", meaning: { es: "Lambda: peso de la varianza anterior, entre 0 y 1 (por ejemplo 0.94).", en: "Lambda: weight of the previous variance, between 0 and 1 (for example 0.94)." } },
+              { symbol: "1 − λ", meaning: { es: "Peso que recibe la noticia de ayer (el rendimiento al cuadrado).", en: "Weight given to yesterday's news (the squared return)." } },
+            ],
+            steps: [
+              { es: "Pasa la volatilidad y el rendimiento de ayer a decimal y elévalos al cuadrado.", en: "Convert yesterday's volatility and return to decimals and square them." },
+              { es: "Multiplica la varianza de ayer por λ y el rendimiento al cuadrado por (1 − λ).", en: "Multiply yesterday's variance by λ and the squared return by (1 − λ)." },
+              { es: "Suma ambos productos: es la varianza de hoy.", en: "Add both products: that is today's variance." },
+              { es: "Saca la raíz cuadrada y multiplica por 100 para tener la volatilidad en %.", en: "Take the square root and multiply by 100 to get volatility in %." },
+            ],
+            example: {
+              es: "λ = 0.90, volatilidad de ayer 1.5% (0.015² = 0.000225) y rendimiento de ayer −3% (0.03² = 0.0009). 0.90 × 0.000225 = 0.0002025; 0.10 × 0.0009 = 0.00009. Suma: 0.0002925. √0.0002925 ≈ 0.0171 = **1.71%**.",
+              en: "λ = 0.90, yesterday's volatility 1.5% (0.015² = 0.000225) and yesterday's return −3% (0.03² = 0.0009). 0.90 × 0.000225 = 0.0002025; 0.10 × 0.0009 = 0.00009. Sum: 0.0002925. √0.0002925 ≈ 0.0171 = **1.71%**.",
+            },
+            interpret: {
+              es: "Si el rendimiento de ayer fue grande (en cualquier dirección), la volatilidad estimada sube; si fue pequeño, baja poco a poco.",
+              en: "If yesterday's return was large (in either direction), estimated volatility rises; if it was small, it falls little by little.",
+            },
+            mistake: {
+              es: "Pensar que λ es el peso de lo nuevo. λ es la memoria; un λ más alto reacciona más lento.",
+              en: "Thinking λ is the weight of new information. λ is memory; a higher λ reacts more slowly.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "GARCH(1,1) y volatilidad implícita", en: "GARCH(1,1) and implied volatility" },
         body: [
           {
-            es: "El modelo **GARCH(1,1)** agrega a EWMA un término constante **ω (omega)** que jala la varianza hacia un nivel de largo plazo. Tiene tres parámetros: ω, **α (alfa)**, que mide cuánto reacciona la varianza al último rendimiento, y **β (beta)**, que mide cuánto recuerda la varianza anterior. La suma **α + β es la persistencia**: si es cercana a 1, los choques de volatilidad tardan mucho en disiparse.",
-            en: "The **GARCH(1,1)** model adds to EWMA a constant term **ω (omega)** that pulls variance toward a long-run level. It has three parameters: ω, **α (alpha)**, which measures how much variance reacts to the latest return, and **β (beta)**, which measures how much it remembers the previous variance. The sum **α + β is persistence**: if it is close to 1, volatility shocks take a long time to fade.",
+            es: "En palabras sencillas: GARCH es como EWMA, pero con un \"resorte\" que siempre jala la volatilidad hacia un nivel normal; después de una tormenta, el mercado tiende a calmarse. El modelo **GARCH(1,1)** agrega a EWMA un término constante **ω (omega)** que jala la varianza hacia un nivel de largo plazo. Tiene tres parámetros: ω, **α (alfa)**, que mide cuánto reacciona la varianza al último rendimiento, y **β (beta)**, que mide cuánto recuerda la varianza anterior. La suma **α + β es la persistencia**: si es cercana a 1, los choques de volatilidad tardan mucho en disiparse.",
+            en: "In plain words: GARCH is like EWMA, but with a \"spring\" that always pulls volatility toward a normal level; after a storm, the market tends to calm down. The **GARCH(1,1)** model adds to EWMA a constant term **ω (omega)** that pulls variance toward a long-run level. It has three parameters: ω, **α (alpha)**, which measures how much variance reacts to the latest return, and **β (beta)**, which measures how much it remembers the previous variance. The sum **α + β is persistence**: if it is close to 1, volatility shocks take a long time to fade.",
           },
           {
             es: "Si α + β < 1, la varianza **revierte a su nivel de largo plazo** ω / (1 − α − β). EWMA es un caso especial de GARCH con ω = 0 y α + β = 1, por eso EWMA no tiene un nivel al cual regresar.",
@@ -209,7 +365,57 @@ export const lessons: Lesson[] = [
             en: "Everything above looks **backward**. **Implied volatility**, by contrast, is backed out from an option's market price: it is the volatility the market is \"charging\" today for the future. Mini example: with ω = 0.000002, α = 0.08 and β = 0.90, persistence is 0.98 and the long-run variance is 0.000002 / 0.02 = 0.0001, that is, a 1% daily volatility.",
           },
         ],
-        formula: "GARCH(1,1): σ²_t = ω + α·r²_(t−1) + β·σ²_(t−1)   ·   varianza de largo plazo = ω / (1 − α − β)",
+        formulas: [
+          {
+            name: { es: "Varianza y volatilidad de hoy con GARCH(1,1)", en: "Today's variance and volatility with GARCH(1,1)" },
+            expression: "σ²_t = ω + α·r²_(t−1) + β·σ²_(t−1)",
+            variables: [
+              { symbol: "σ²_t", meaning: { es: "Varianza estimada para hoy (en decimal); su raíz es la volatilidad de hoy.", en: "Estimated variance for today (in decimals); its square root is today's volatility." } },
+              { symbol: "ω", meaning: { es: "Omega: constante pequeña que ancla la varianza de largo plazo.", en: "Omega: small constant that anchors the long-run variance." } },
+              { symbol: "α", meaning: { es: "Alfa: cuánto reacciona la varianza a la noticia de ayer.", en: "Alpha: how much variance reacts to yesterday's news." } },
+              { symbol: "r²_(t−1)", meaning: { es: "Rendimiento de ayer en decimal, elevado al cuadrado.", en: "Yesterday's return in decimals, squared." } },
+              { symbol: "β", meaning: { es: "Beta: cuánto recuerda la varianza de ayer.", en: "Beta: how much it remembers yesterday's variance." } },
+              { symbol: "σ²_(t−1)", meaning: { es: "Varianza de ayer (volatilidad de ayer en decimal, al cuadrado).", en: "Yesterday's variance (yesterday's volatility in decimals, squared)." } },
+            ],
+            steps: [
+              { es: "Eleva al cuadrado el rendimiento de ayer en decimal.", en: "Square yesterday's return in decimals." },
+              { es: "Calcula α × r²_(t−1) y β × σ²_(t−1).", en: "Compute α × r²_(t−1) and β × σ²_(t−1)." },
+              { es: "Suma ω más esos dos productos: es la varianza de hoy.", en: "Add ω plus those two products: that is today's variance." },
+              { es: "Saca la raíz cuadrada y multiplica por 100 para obtener la volatilidad en %.", en: "Take the square root and multiply by 100 to get volatility in %." },
+            ],
+            example: {
+              es: "ω = 0.0000036, α = 0.06, β = 0.90; ayer la varianza fue 0.0004 (volatilidad 2%) y el rendimiento 1% (0.01² = 0.0001). α × 0.0001 = 0.000006; β × 0.0004 = 0.00036. Suma: 0.0000036 + 0.000006 + 0.00036 = 0.0003696. √0.0003696 ≈ 0.0192 = **1.92%**.",
+              en: "ω = 0.0000036, α = 0.06, β = 0.90; yesterday variance was 0.0004 (2% volatility) and the return was 1% (0.01² = 0.0001). α × 0.0001 = 0.000006; β × 0.0004 = 0.00036. Sum: 0.0000036 + 0.000006 + 0.00036 = 0.0003696. √0.0003696 ≈ 0.0192 = **1.92%**.",
+            },
+            mistake: {
+              es: "Usar el rendimiento sin elevarlo al cuadrado (0.01 en vez de 0.0001) o reportar la varianza en lugar de su raíz.",
+              en: "Using the return without squaring it (0.01 instead of 0.0001) or reporting the variance instead of its root.",
+            },
+          },
+          {
+            name: { es: "Persistencia y volatilidad de largo plazo (GARCH)", en: "Persistence and long-run volatility (GARCH)" },
+            expression: "Persistencia = α + β   ·   varianza de largo plazo = ω / (1 − α − β)",
+            variables: [
+              { symbol: "α + β", meaning: { es: "Persistencia: qué tanto dura un choque de volatilidad; debe ser menor que 1.", en: "Persistence: how long a volatility shock lasts; it must be below 1." } },
+              { symbol: "ω", meaning: { es: "Omega: la constante del modelo.", en: "Omega: the model's constant." } },
+              { symbol: "varianza de largo plazo", meaning: { es: "Nivel \"normal\" de varianza al que regresa el modelo; su raíz es la volatilidad de largo plazo.", en: "The \"normal\" variance level the model returns to; its root is long-run volatility." } },
+            ],
+            steps: [
+              { es: "Suma α + β para obtener la persistencia.", en: "Add α + β to get persistence." },
+              { es: "Calcula 1 − (α + β).", en: "Compute 1 − (α + β)." },
+              { es: "Divide ω entre ese resultado: es la varianza de largo plazo.", en: "Divide ω by that result: that is the long-run variance." },
+              { es: "Saca la raíz cuadrada y multiplica por 100 para expresarla como volatilidad en %.", en: "Take the square root and multiply by 100 to express it as volatility in %." },
+            ],
+            example: {
+              es: "Con ω = 0.0000036, α = 0.06 y β = 0.90: persistencia = 0.06 + 0.90 = **0.96**. 1 − 0.96 = 0.04. 0.0000036 / 0.04 = 0.00009. √0.00009 ≈ 0.0095 = **0.95%** diario.",
+              en: "With ω = 0.0000036, α = 0.06 and β = 0.90: persistence = 0.06 + 0.90 = **0.96**. 1 − 0.96 = 0.04. 0.0000036 / 0.04 = 0.00009. √0.00009 ≈ 0.0095 = **0.95%** daily.",
+            },
+            interpret: {
+              es: "Una persistencia cercana a 1 (como 0.96) significa que los periodos agitados tardan mucho en calmarse. Si la volatilidad de hoy está arriba del nivel de largo plazo, se espera que baje hacia él.",
+              en: "Persistence close to 1 (like 0.96) means turbulent periods take a long time to calm down. If today's volatility is above the long-run level, it is expected to fall toward it.",
+            },
+          },
+        ],
         bullets: [
           { es: "ω: constante que ancla la varianza de largo plazo.", en: "ω: constant that anchors the long-run variance." },
           { es: "α: reacción al último rendimiento al cuadrado (las noticias).", en: "α: reaction to the latest squared return (the news)." },
@@ -275,7 +481,7 @@ export const lessons: Lesson[] = [
       es: "La teoría de Markowitz muestra que el riesgo de un portafolio depende de cómo se mueven juntos sus activos, que la diversificación reduce riesgo y que los portafolios eficientes dan el mayor rendimiento para cada nivel de riesgo.",
       en: "Markowitz's theory shows that a portfolio's risk depends on how its assets move together, that diversification reduces risk and that efficient portfolios give the highest return for each level of risk.",
     },
-    minutes: 17,
+    minutes: 18,
     objectives: [
       { es: "Calcular el rendimiento esperado y la volatilidad de un portafolio de dos activos.", en: "Compute the expected return and volatility of a two-asset portfolio." },
       { es: "Explicar con covarianza y correlación por qué la diversificación reduce el riesgo.", en: "Explain with covariance and correlation why diversification reduces risk." },
@@ -298,14 +504,37 @@ export const lessons: Lesson[] = [
             en: "Risk, however, is **not** the weighted average of volatilities. It also depends on how the assets move together. Mini example: with the same funds (volatilities of 20% and 10%), the weighted average would be 16%, but if their correlation is low the actual portfolio turns out less risky, as you will see next.",
           },
         ],
-        formula: "E(R_p) = w_A·E(R_A) + w_B·E(R_B),   con w_A + w_B = 1",
+        formulas: [
+          {
+            name: { es: "Rendimiento esperado de un portafolio", en: "Expected return of a portfolio" },
+            expression: "E(R_p) = w_A·E(R_A) + w_B·E(R_B),   con w_A + w_B = 1",
+            variables: [
+              { symbol: "E(R_p)", meaning: { es: "Rendimiento esperado del portafolio completo, en %.", en: "Expected return of the whole portfolio, in %." } },
+              { symbol: "w_A, w_B", meaning: { es: "Pesos: la fracción de tu dinero en A y en B (60% = 0.6); juntos suman 1 (100%).", en: "Weights: the fraction of your money in A and in B (60% = 0.6); together they add up to 1 (100%)." } },
+              { symbol: "E(R_A), E(R_B)", meaning: { es: "Rendimiento esperado de cada activo, en %.", en: "Expected return of each asset, in %." } },
+            ],
+            steps: [
+              { es: "Convierte los porcentajes de dinero a pesos decimales y revisa que sumen 1.", en: "Convert the money percentages to decimal weights and check they add up to 1." },
+              { es: "Multiplica cada peso por el rendimiento esperado de su activo.", en: "Multiply each weight by its asset's expected return." },
+              { es: "Suma los resultados.", en: "Add the results." },
+            ],
+            example: {
+              es: "70% en un fondo que espera 9% y 30% en uno que espera 4%. 0.7 × 9% = 6.3%; 0.3 × 4% = 1.2%. Total: 6.3% + 1.2% = **7.5%**.",
+              en: "70% in a fund expecting 9% and 30% in one expecting 4%. 0.7 × 9% = 6.3%; 0.3 × 4% = 1.2%. Total: 6.3% + 1.2% = **7.5%**.",
+            },
+            mistake: {
+              es: "Aplicar el mismo promedio ponderado a las volatilidades. Eso solo funciona para el rendimiento; el riesgo necesita la fórmula de varianza.",
+              en: "Applying the same weighted average to volatilities. That only works for return; risk needs the variance formula.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Covarianza, correlación y diversificación", en: "Covariance, correlation and diversification" },
         body: [
           {
-            es: "La **covarianza** mide si dos activos tienden a subir y bajar al mismo tiempo. La **correlación (ρ, rho)** es la covarianza \"estandarizada\": va de −1 a +1. Con ρ = +1 se mueven siempre en la misma dirección; con ρ = 0 no tienen relación lineal; con ρ = −1 uno sube exactamente cuando el otro baja. Se relacionan así: Cov(A,B) = ρ × σ_A × σ_B.",
-            en: "**Covariance** measures whether two assets tend to rise and fall at the same time. **Correlation (ρ, rho)** is \"standardized\" covariance: it ranges from −1 to +1. With ρ = +1 they always move in the same direction; with ρ = 0 they have no linear relationship; with ρ = −1 one rises exactly when the other falls. They relate as: Cov(A,B) = ρ × σ_A × σ_B.",
+            es: "En palabras sencillas: si vendes paraguas y también lentes de sol, cuando llueve ganas con uno y cuando hace sol con el otro; tus ingresos se mueven menos. Eso es lo que buscan medir estos números. La **covarianza** mide si dos activos tienden a subir y bajar al mismo tiempo. La **correlación (ρ, rho)** es la covarianza \"estandarizada\": va de −1 a +1. Con ρ = +1 se mueven siempre en la misma dirección; con ρ = 0 no tienen relación lineal; con ρ = −1 uno sube exactamente cuando el otro baja. Se relacionan así: Cov(A,B) = ρ × σ_A × σ_B.",
+            en: "In plain words: if you sell umbrellas and also sunglasses, when it rains you earn with one and when it is sunny with the other; your income moves less. That is what these numbers try to measure. **Covariance** measures whether two assets tend to rise and fall at the same time. **Correlation (ρ, rho)** is \"standardized\" covariance: it ranges from −1 to +1. With ρ = +1 they always move in the same direction; with ρ = 0 they have no linear relationship; with ρ = −1 one rises exactly when the other falls. They relate as: Cov(A,B) = ρ × σ_A × σ_B.",
           },
           {
             es: "La varianza de un portafolio de dos activos suma la varianza de cada uno, ponderada, **más un término de covarianza**. Mientras la correlación sea menor que +1, la volatilidad del portafolio queda **por debajo** del promedio ponderado: ese ahorro de riesgo es la **diversificación**. Con ρ = −1 incluso se puede llegar a riesgo cero.",
@@ -316,7 +545,59 @@ export const lessons: Lesson[] = [
             en: "Diversification removes each company's **specific** (diversifiable) risk, such as a strike or a failed product, but not **systematic risk**, which affects the whole market, such as a recession or a general rise in rates. Mini example: 60% in A (σ 20%) and 40% in B (σ 10%) with ρ = 0.2 give a volatility of ≈ 13.4%, lower than the 16% weighted average.",
           },
         ],
-        formula: "σ²_p = w_A²·σ_A² + w_B²·σ_B² + 2·w_A·w_B·ρ·σ_A·σ_B",
+        formulas: [
+          {
+            name: { es: "Covarianza a partir de la correlación", en: "Covariance from correlation" },
+            expression: "Cov(A,B) = ρ × σ_A × σ_B",
+            variables: [
+              { symbol: "Cov(A,B)", meaning: { es: "Covarianza entre A y B, en decimal (sin %).", en: "Covariance between A and B, in decimals (no %)." } },
+              { symbol: "ρ", meaning: { es: "Rho: correlación entre A y B, un número de −1 a +1.", en: "Rho: correlation between A and B, a number from −1 to +1." } },
+              { symbol: "σ_A, σ_B", meaning: { es: "Volatilidad de cada activo, en decimal (20% = 0.20).", en: "Volatility of each asset, in decimals (20% = 0.20)." } },
+            ],
+            steps: [
+              { es: "Pasa las volatilidades de % a decimal.", en: "Convert the volatilities from % to decimals." },
+              { es: "Multiplica la correlación por las dos volatilidades.", en: "Multiply the correlation by the two volatilities." },
+            ],
+            example: {
+              es: "ρ = 0.4, σ_A = 15% = 0.15 y σ_B = 25% = 0.25. 0.4 × 0.15 = 0.06; 0.06 × 0.25 = **0.015**.",
+              en: "ρ = 0.4, σ_A = 15% = 0.15 and σ_B = 25% = 0.25. 0.4 × 0.15 = 0.06; 0.06 × 0.25 = **0.015**.",
+            },
+            mistake: {
+              es: "Multiplicar las volatilidades en porcentaje (0.4 × 15 × 25 = 150). Trabaja siempre en decimales.",
+              en: "Multiplying volatilities in percent (0.4 × 15 × 25 = 150). Always work in decimals.",
+            },
+          },
+          {
+            name: { es: "Varianza y volatilidad de un portafolio de dos activos", en: "Variance and volatility of a two-asset portfolio" },
+            expression: "σ²_p = w_A²·σ_A² + w_B²·σ_B² + 2·w_A·w_B·ρ·σ_A·σ_B   ·   σ_p = √σ²_p",
+            variables: [
+              { symbol: "σ²_p", meaning: { es: "Varianza del portafolio (en decimal).", en: "Portfolio variance (in decimals)." } },
+              { symbol: "σ_p", meaning: { es: "Volatilidad del portafolio: la raíz de la varianza, en %.", en: "Portfolio volatility: the square root of the variance, in %." } },
+              { symbol: "w_A, w_B", meaning: { es: "Fracción del dinero en cada activo (suman 1).", en: "Fraction of money in each asset (they add up to 1)." } },
+              { symbol: "σ_A, σ_B", meaning: { es: "Volatilidad de cada activo, en decimal.", en: "Volatility of each asset, in decimals." } },
+              { symbol: "ρ", meaning: { es: "Correlación entre los dos activos (de −1 a +1).", en: "Correlation between the two assets (from −1 to +1)." } },
+            ],
+            steps: [
+              { es: "Pasa pesos y volatilidades a decimal.", en: "Convert weights and volatilities to decimals." },
+              { es: "Calcula w_A² × σ_A² y w_B² × σ_B².", en: "Compute w_A² × σ_A² and w_B² × σ_B²." },
+              { es: "Calcula el término cruzado 2 × w_A × w_B × ρ × σ_A × σ_B (si ρ = 0, vale 0).", en: "Compute the cross term 2 × w_A × w_B × ρ × σ_A × σ_B (if ρ = 0, it is 0)." },
+              { es: "Suma los tres términos: es la varianza del portafolio.", en: "Add the three terms: that is the portfolio variance." },
+              { es: "Saca la raíz cuadrada y multiplica por 100 para tener la volatilidad en %.", en: "Take the square root and multiply by 100 to get volatility in %." },
+            ],
+            example: {
+              es: "70% en A (σ 15%) y 30% en B (σ 25%), ρ = 0.4. 0.7² × 0.15² = 0.49 × 0.0225 = 0.011025. 0.3² × 0.25² = 0.09 × 0.0625 = 0.005625. Cruzado: 2 × 0.7 × 0.3 × 0.4 × 0.15 × 0.25 = 0.0063. Suma: 0.02295. √0.02295 ≈ 0.1515 = **15.15%**.",
+              en: "70% in A (σ 15%) and 30% in B (σ 25%), ρ = 0.4. 0.7² × 0.15² = 0.49 × 0.0225 = 0.011025. 0.3² × 0.25² = 0.09 × 0.0625 = 0.005625. Cross term: 2 × 0.7 × 0.3 × 0.4 × 0.15 × 0.25 = 0.0063. Sum: 0.02295. √0.02295 ≈ 0.1515 = **15.15%**.",
+            },
+            interpret: {
+              es: "Compara con el promedio ponderado de volatilidades (0.7 × 15% + 0.3 × 25% = 18%). La diferencia (18% − 15.15%) es el riesgo que te ahorró diversificar.",
+              en: "Compare with the weighted average of volatilities (0.7 × 15% + 0.3 × 25% = 18%). The difference (18% − 15.15%) is the risk diversification saved you.",
+            },
+            mistake: {
+              es: "Olvidar elevar al cuadrado los pesos o reportar la varianza sin sacarle raíz.",
+              en: "Forgetting to square the weights or reporting the variance without taking its square root.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Frontera eficiente e índice de Sharpe", en: "Efficient frontier and Sharpe ratio" },
@@ -334,7 +615,33 @@ export const lessons: Lesson[] = [
             en: "That slope is the **Sharpe ratio**: expected return minus the risk-free rate, divided by volatility. Higher is better. Mini example with a 3% risk-free rate: a portfolio with 9% and σ 12% has Sharpe (9 − 3)/12 = 0.50; another with 11% and σ 18% has (11 − 3)/18 ≈ 0.44. The first pays more per point of risk.",
           },
         ],
-        formula: "Sharpe = (E(R_p) − r_f) / σ_p",
+        formulas: [
+          {
+            name: { es: "Índice de Sharpe", en: "Sharpe ratio" },
+            expression: "Sharpe = (E(R_p) − r_f) / σ_p",
+            variables: [
+              { symbol: "E(R_p)", meaning: { es: "Rendimiento esperado del portafolio, en %.", en: "Expected return of the portfolio, in %." } },
+              { symbol: "r_f", meaning: { es: "Tasa libre de riesgo: lo que ganarías en algo muy seguro, en %.", en: "Risk-free rate: what you would earn in something very safe, in %." } },
+              { symbol: "σ_p", meaning: { es: "Volatilidad del portafolio, en %.", en: "Portfolio volatility, in %." } },
+            ],
+            steps: [
+              { es: "Resta la tasa libre de riesgo al rendimiento esperado: es el premio por arriesgar.", en: "Subtract the risk-free rate from the expected return: that is the reward for taking risk." },
+              { es: "Divide ese premio entre la volatilidad (ambos en las mismas unidades).", en: "Divide that reward by volatility (both in the same units)." },
+            ],
+            example: {
+              es: "Rendimiento 8.6%, tasa libre de riesgo 2%, volatilidad 12%. Premio: 8.6 − 2 = 6.6. Sharpe: 6.6 / 12 = **0.55**.",
+              en: "Return 8.6%, risk-free rate 2%, volatility 12%. Reward: 8.6 − 2 = 6.6. Sharpe: 6.6 / 12 = **0.55**.",
+            },
+            interpret: {
+              es: "Más alto es mejor: dice cuánto rendimiento extra recibes por cada punto de riesgo. Sirve para comparar portafolios con riesgos distintos.",
+              en: "Higher is better: it tells how much extra return you receive per point of risk. It helps compare portfolios with different risks.",
+            },
+            mistake: {
+              es: "Dividir el rendimiento total entre la volatilidad sin restar antes la tasa libre de riesgo.",
+              en: "Dividing the total return by volatility without first subtracting the risk-free rate.",
+            },
+          },
+        ],
         bullets: [
           { es: "Frontera eficiente: máximo rendimiento para cada nivel de riesgo.", en: "Efficient frontier: maximum return for each level of risk." },
           { es: "Portafolio de mínima varianza: el punto de menor riesgo de la frontera.", en: "Minimum-variance portfolio: the lowest-risk point of the frontier." },
@@ -399,7 +706,7 @@ export const lessons: Lesson[] = [
       es: "Optimizar es elegir la mejor decisión posible respetando reglas: se define qué se decide, qué se quiere maximizar o minimizar y qué restricciones hay, y se resuelve con programación lineal o con optimización media-varianza.",
       en: "Optimizing means choosing the best possible decision while respecting rules: you define what is decided, what you want to maximize or minimize and which constraints apply, and solve it with linear programming or mean-variance optimization.",
     },
-    minutes: 16,
+    minutes: 17,
     objectives: [
       { es: "Identificar variables de decisión, función objetivo y restricciones en un problema financiero.", en: "Identify decision variables, objective function and constraints in a financial problem." },
       { es: "Resolver un problema sencillo de programación lineal para asignar un presupuesto de inversión.", en: "Solve a simple linear programming problem to allocate an investment budget." },
@@ -446,6 +753,32 @@ export const lessons: Lesson[] = [
             en: "Mini example: with the bond at 6% and the fund at an expected 10% (hypothetical) and the 40% fund limit, the corners are 0% or 40% in the fund. With 40%: 0.10 × 400,000 + 0.06 × 600,000 = $76,000; with 0%: $60,000. The optimum is to fill the limit of the higher-yielding asset.",
           },
         ],
+        formulas: [
+          {
+            name: { es: "Mejor reparto con un límite (revisar las esquinas)", en: "Best allocation under a limit (checking the corners)" },
+            expression: "Rendimiento en pesos = r_1 × Monto_1 + r_2 × Monto_2,   con Monto_1 + Monto_2 = Total",
+            variables: [
+              { symbol: "Rendimiento en pesos", meaning: { es: "Lo que esperas ganar en un año, en pesos.", en: "What you expect to earn in a year, in pesos." } },
+              { symbol: "r_1, r_2", meaning: { es: "Rendimiento esperado anual de cada instrumento, en decimal (7% = 0.07).", en: "Expected annual return of each instrument, in decimals (7% = 0.07)." } },
+              { symbol: "Monto_1, Monto_2", meaning: { es: "Pesos que pones en cada instrumento (las variables de decisión).", en: "Pesos you put in each instrument (the decision variables)." } },
+              { symbol: "Total", meaning: { es: "Todo el dinero disponible, en pesos.", en: "All the money available, in pesos." } },
+            ],
+            steps: [
+              { es: "Identifica las esquinas: los repartos en los extremos que permiten las reglas (por ejemplo, 0% o el límite máximo en el activo que más rinde).", en: "Identify the corners: the extreme allocations the rules allow (for example, 0% or the maximum limit in the higher-yielding asset)." },
+              { es: "Para cada esquina, calcula el monto en cada instrumento: Monto = porcentaje × Total.", en: "For each corner, compute the amount in each instrument: Amount = percentage × Total." },
+              { es: "Calcula el rendimiento en pesos de cada esquina multiplicando cada monto por su tasa y sumando.", en: "Compute each corner's return in pesos by multiplying each amount by its rate and adding." },
+              { es: "Quédate con la esquina que da el mayor rendimiento.", en: "Keep the corner that gives the highest return." },
+            ],
+            example: {
+              es: "$800,000; bono a 5% y fondo a 9%; máximo 25% en el fondo. Esquina con 25%: fondo 0.25 × 800,000 = $200,000 y bono $600,000; 0.09 × 200,000 + 0.05 × 600,000 = 18,000 + 30,000 = **$48,000**. Esquina con 0%: 0.05 × 800,000 = $40,000. Gana la de 25%.",
+              en: "$800,000; bond at 5% and fund at 9%; at most 25% in the fund. Corner with 25%: fund 0.25 × 800,000 = $200,000 and bond $600,000; 0.09 × 200,000 + 0.05 × 600,000 = 18,000 + 30,000 = **$48,000**. Corner with 0%: 0.05 × 800,000 = $40,000. The 25% corner wins.",
+            },
+            mistake: {
+              es: "Poner todo en el activo que más rinde e ignorar el límite, o repartir mitad y mitad sin revisar las esquinas.",
+              en: "Putting everything in the higher-yielding asset and ignoring the limit, or splitting half and half without checking the corners.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Optimización media-varianza", en: "Mean-variance optimization" },
@@ -463,7 +796,35 @@ export const lessons: Lesson[] = [
             en: "Be careful in practice: the optimizer is **very sensitive to expected returns**, which are estimated with large error; a small change in them can shift the weights a lot and concentrate everything in a few assets. That is why constraints are added (no short selling, per-asset limits) to make the result more reasonable. Adding a constraint **never improves** the optimal value: it leaves it equal or makes it worse. Mini example: with σ_A = 20%, σ_B = 10% and ρ = 0.2, the minimum-variance portfolio has ≈ 14.3% in A and ≈ 85.7% in B, with volatility ≈ 9.56%, lower than B alone.",
           },
         ],
-        formula: "Mínima varianza: w_A = (σ_B² − Cov_AB) / (σ_A² + σ_B² − 2·Cov_AB),   w_B = 1 − w_A",
+        formulas: [
+          {
+            name: { es: "Portafolio de mínima varianza con dos activos", en: "Minimum-variance portfolio with two assets" },
+            expression: "w_A = (σ_B² − Cov_AB) / (σ_A² + σ_B² − 2·Cov_AB),   w_B = 1 − w_A   ·   si Cov_AB = 0: w_A = σ_B² / (σ_A² + σ_B²)",
+            variables: [
+              { symbol: "w_A, w_B", meaning: { es: "Fracción del dinero en A y en B que da el menor riesgo posible.", en: "Fraction of money in A and in B that gives the lowest possible risk." } },
+              { symbol: "σ_A², σ_B²", meaning: { es: "Varianza de cada activo: su volatilidad en decimal al cuadrado (20% → 0.04).", en: "Each asset's variance: its volatility in decimals, squared (20% → 0.04)." } },
+              { symbol: "Cov_AB", meaning: { es: "Covarianza entre A y B (ρ × σ_A × σ_B); vale 0 si no están correlacionados.", en: "Covariance between A and B (ρ × σ_A × σ_B); it is 0 if they are uncorrelated." } },
+            ],
+            steps: [
+              { es: "Eleva al cuadrado las volatilidades en decimal para obtener las varianzas.", en: "Square the volatilities in decimals to get the variances." },
+              { es: "Calcula la covarianza; si la correlación es 0, la covarianza es 0 y usas la versión simple.", en: "Compute the covariance; if correlation is 0, covariance is 0 and you use the simple version." },
+              { es: "Calcula w_A con la fórmula y luego w_B = 1 − w_A.", en: "Compute w_A with the formula and then w_B = 1 − w_A." },
+              { es: "Para la volatilidad del portafolio, usa la fórmula de varianza de dos activos (lección anterior) y sácale raíz.", en: "For portfolio volatility, use the two-asset variance formula (previous lesson) and take its square root." },
+            ],
+            example: {
+              es: "σ_A = 20% (0.04), σ_B = 15% (0.0225), correlación 0. w_A = 0.0225 / (0.04 + 0.0225) = 0.0225 / 0.0625 = 0.36 = **36%**; w_B = **64%**. Varianza: 0.36² × 0.04 + 0.64² × 0.0225 = 0.005184 + 0.009216 = 0.0144. Volatilidad: √0.0144 = **12%**, menor que el 15% de B sola.",
+              en: "σ_A = 20% (0.04), σ_B = 15% (0.0225), correlation 0. w_A = 0.0225 / (0.04 + 0.0225) = 0.0225 / 0.0625 = 0.36 = **36%**; w_B = **64%**. Variance: 0.36² × 0.04 + 0.64² × 0.0225 = 0.005184 + 0.009216 = 0.0144. Volatility: √0.0144 = **12%**, lower than B's 15% alone.",
+            },
+            interpret: {
+              es: "El activo más tranquilo recibe más peso, pero el otro no desaparece: mezclarlos baja el riesgo por debajo del activo más tranquilo.",
+              en: "The calmer asset gets more weight, but the other does not disappear: mixing them lowers risk below the calmer asset alone.",
+            },
+            mistake: {
+              es: "Poner el 100% en el activo menos volátil, o poner en el numerador de w_A la varianza de A en lugar de la de B.",
+              en: "Putting 100% in the less volatile asset, or putting A's variance instead of B's in the numerator of w_A.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -523,7 +884,7 @@ export const lessons: Lesson[] = [
       es: "El VaR resume en un solo monto la pérdida que no debería superarse con cierta confianza y en cierto horizonte; se calcula por método paramétrico, histórico o Monte Carlo y se complementa con el Expected Shortfall.",
       en: "VaR summarizes in a single amount the loss that should not be exceeded with a given confidence over a given horizon; it is computed by the parametric, historical or Monte Carlo method and complemented with Expected Shortfall.",
     },
-    minutes: 17,
+    minutes: 18,
     objectives: [
       { es: "Interpretar correctamente un VaR con su nivel de confianza y horizonte.", en: "Correctly interpret a VaR with its confidence level and horizon." },
       { es: "Calcular el VaR paramétrico y escalarlo a otros horizontes.", en: "Compute parametric VaR and scale it to other horizons." },
@@ -552,8 +913,8 @@ export const lessons: Lesson[] = [
         heading: { es: "Tres formas de calcularlo", en: "Three ways to compute it" },
         body: [
           {
-            es: "**Paramétrico (varianza-covarianza)**: supone que los rendimientos siguen una distribución normal con media cercana a cero. Basta multiplicar el valor del portafolio por su volatilidad y por un factor **z** de la normal: 1.645 para 95% y 2.326 para 99%. Es rápido, pero subestima el riesgo si las pérdidas extremas son más frecuentes que en la normal (\"colas pesadas\").",
-            en: "**Parametric (variance-covariance)**: assumes returns follow a normal distribution with mean close to zero. Just multiply the portfolio value by its volatility and by a normal **z** factor: 1.645 for 95% and 2.326 for 99%. It is fast, but underestimates risk if extreme losses are more frequent than under the normal (\"fat tails\").",
+            es: "**Paramétrico (varianza-covarianza)**: supone que los rendimientos siguen una distribución normal con media cercana a cero. Basta multiplicar el valor del portafolio por su volatilidad y por un factor **z** de la normal: 1.645 para 95% y 2.326 para 99%. El factor z dice cuántas volatilidades hay que alejarse del promedio para dejar fuera solo el 5% (o el 1%) de los días más malos. Es rápido, pero subestima el riesgo si las pérdidas extremas son más frecuentes que en la normal (\"colas pesadas\").",
+            en: "**Parametric (variance-covariance)**: assumes returns follow a normal distribution with mean close to zero. Just multiply the portfolio value by its volatility and by a normal **z** factor: 1.645 for 95% and 2.326 for 99%. The z factor tells how many volatilities you must move away from the average to leave out only the worst 5% (or 1%) of days. It is fast, but underestimates risk if extreme losses are more frequent than under the normal (\"fat tails\").",
           },
           {
             es: "**Histórico**: toma lo que habría ganado o perdido el portafolio actual en cada día del pasado, ordena las pérdidas de mayor a menor y lee el percentil. No supone ninguna distribución, pero asume que **el pasado reciente representa el futuro**. **Monte Carlo**: simula miles de escenarios aleatorios con un modelo; es el más flexible (sirve para opciones y relaciones no lineales), pero el más costoso de calcular.",
@@ -564,7 +925,56 @@ export const lessons: Lesson[] = [
             en: "To go from 1 day to T days the **square root of time** is commonly used, with the same assumptions as for volatility. Mini example: a $10,000,000 portfolio with 1.5% daily volatility has a 95% parametric VaR of 10,000,000 × 1.645 × 0.015 = $246,750 over 1 day, and ≈ $780,292 over 10 days (× √10).",
           },
         ],
-        formula: "VaR paramétrico = V × z × σ   ·   VaR(T días) = VaR(1 día) × √T",
+        formulas: [
+          {
+            name: { es: "VaR paramétrico de 1 día", en: "1-day parametric VaR" },
+            expression: "VaR paramétrico = V × z × σ",
+            variables: [
+              { symbol: "VaR paramétrico", meaning: { es: "Pérdida máxima esperada en un día normal al nivel de confianza elegido, en pesos.", en: "Maximum expected loss on a normal day at the chosen confidence level, in pesos." } },
+              { symbol: "V", meaning: { es: "Valor de la posición o portafolio, en pesos.", en: "Value of the position or portfolio, in pesos." } },
+              { symbol: "z", meaning: { es: "Factor de la normal según la confianza: 1.645 para 95% y 2.326 para 99%.", en: "Normal factor for the confidence level: 1.645 for 95% and 2.326 for 99%." } },
+              { symbol: "σ", meaning: { es: "Volatilidad diaria, en decimal (1.5% = 0.015).", en: "Daily volatility, in decimals (1.5% = 0.015)." } },
+            ],
+            steps: [
+              { es: "Elige z según la confianza: 1.645 (95%) o 2.326 (99%).", en: "Choose z for the confidence level: 1.645 (95%) or 2.326 (99%)." },
+              { es: "Convierte la volatilidad diaria a decimal.", en: "Convert the daily volatility to decimals." },
+              { es: "Multiplica V × z × σ.", en: "Multiply V × z × σ." },
+            ],
+            example: {
+              es: "Posición de $8,000,000, volatilidad diaria 1.2% = 0.012, confianza 95% (z = 1.645). 8,000,000 × 1.645 = 13,160,000; 13,160,000 × 0.012 = **$157,920**.",
+              en: "Position of $8,000,000, daily volatility 1.2% = 0.012, 95% confidence (z = 1.645). 8,000,000 × 1.645 = 13,160,000; 13,160,000 × 0.012 = **$157,920**.",
+            },
+            interpret: {
+              es: "En 95 de cada 100 días la pérdida no debería pasar de $157,920; en los otros 5 puede ser mayor.",
+              en: "On 95 out of 100 days the loss should not exceed $157,920; on the other 5 it may be larger.",
+            },
+            mistake: {
+              es: "Usar la z de 95% cuando piden 99% (o al revés), o escribir la volatilidad como 1.2 en lugar de 0.012.",
+              en: "Using the 95% z when 99% is asked (or vice versa), or writing volatility as 1.2 instead of 0.012.",
+            },
+          },
+          {
+            name: { es: "VaR a varios días (raíz del tiempo)", en: "Multi-day VaR (square root of time)" },
+            expression: "VaR(T días) = VaR(1 día) × √T",
+            variables: [
+              { symbol: "VaR(1 día)", meaning: { es: "VaR de un día, en pesos.", en: "One-day VaR, in pesos." } },
+              { symbol: "T", meaning: { es: "Número de días del horizonte (por ejemplo, 10).", en: "Number of days in the horizon (for example, 10)." } },
+              { symbol: "VaR(T días)", meaning: { es: "VaR para todo el horizonte de T días, en pesos.", en: "VaR for the whole T-day horizon, in pesos." } },
+            ],
+            steps: [
+              { es: "Saca la raíz cuadrada del número de días.", en: "Take the square root of the number of days." },
+              { es: "Multiplica el VaR de 1 día por esa raíz.", en: "Multiply the 1-day VaR by that root." },
+            ],
+            example: {
+              es: "VaR de 1 día = $200,000. A 4 días: √4 = 2; 200,000 × 2 = **$400,000**. A 10 días: √10 ≈ 3.1623; 200,000 × 3.1623 ≈ **$632,456**.",
+              en: "1-day VaR = $200,000. Over 4 days: √4 = 2; 200,000 × 2 = **$400,000**. Over 10 days: √10 ≈ 3.1623; 200,000 × 3.1623 ≈ **$632,456**.",
+            },
+            mistake: {
+              es: "Multiplicar por T en vez de √T: el riesgo crece con la raíz del tiempo, no en proporción directa.",
+              en: "Multiplying by T instead of √T: risk grows with the square root of time, not in direct proportion.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Limitaciones y Expected Shortfall", en: "Limitations and Expected Shortfall" },
@@ -580,6 +990,35 @@ export const lessons: Lesson[] = [
           {
             es: "Además, todo modelo de VaR se revisa comparando sus predicciones con lo que pasó: si con un VaR al 99% hay muchas más de 1 excepción por cada 100 días, el modelo subestima el riesgo. Mini ejemplo de ES histórico: con 100 días y convención de tomar como VaR al 95% la 5.ª mayor pérdida, si las cinco peores fueron 91, 74, 68, 60 y 55 mil pesos, el VaR es $55,000 y el ES, su promedio, $69,600.",
             en: "In addition, every VaR model is reviewed by comparing its predictions with what happened: if a 99% VaR shows many more than 1 exception per 100 days, the model underestimates risk. Historical ES mini example: with 100 days and the convention of taking the 5th largest loss as the 95% VaR, if the five worst were 91, 74, 68, 60 and 55 thousand pesos, VaR is $55,000 and ES, their average, is $69,600.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "VaR histórico y Expected Shortfall", en: "Historical VaR and Expected Shortfall" },
+            expression: "VaR 95% = 5.ª mayor pérdida de 100 días   ·   ES 95% = (suma de las 5 mayores pérdidas) ÷ 5",
+            variables: [
+              { symbol: "VaR 95%", meaning: { es: "Pérdida que marca la frontera del 5% de días más malos, en pesos.", en: "Loss that marks the border of the worst 5% of days, in pesos." } },
+              { symbol: "ES 95%", meaning: { es: "Expected Shortfall: pérdida promedio dentro de ese 5% de días más malos, en pesos.", en: "Expected Shortfall: average loss within that worst 5% of days, in pesos." } },
+              { symbol: "5", meaning: { es: "Número de días en la cola: 5% de 100 días = 5 días.", en: "Number of days in the tail: 5% of 100 days = 5 days." } },
+            ],
+            steps: [
+              { es: "Calcula cuántos días caen en la cola: (1 − confianza) × número de días; 5% × 100 = 5.", en: "Work out how many days fall in the tail: (1 − confidence) × number of days; 5% × 100 = 5." },
+              { es: "Ordena las pérdidas de mayor a menor.", en: "Sort the losses from largest to smallest." },
+              { es: "VaR: toma la pérdida que ocupa ese lugar (la 5.ª mayor, según la convención de la lección).", en: "VaR: take the loss in that position (the 5th largest, following the lesson's convention)." },
+              { es: "ES: suma las pérdidas de la cola (las 5 mayores) y divide entre cuántas son.", en: "ES: add the tail losses (the 5 largest) and divide by how many there are." },
+            ],
+            example: {
+              es: "100 días; pérdidas mayores ordenadas: 120, 99, 87, 80, 76 y 70 mil pesos. VaR 95% = 5.ª mayor = **$76,000**. ES = (120 + 99 + 87 + 80 + 76) ÷ 5 = 462 ÷ 5 = 92.4 mil = **$92,400**. La 6.ª (70 mil) no entra.",
+              en: "100 days; largest losses sorted: 120, 99, 87, 80, 76 and 70 thousand pesos. 95% VaR = 5th largest = **$76,000**. ES = (120 + 99 + 87 + 80 + 76) ÷ 5 = 462 ÷ 5 = 92.4 thousand = **$92,400**. The 6th (70 thousand) is left out.",
+            },
+            interpret: {
+              es: "El ES siempre es igual o mayor que el VaR: el VaR dice dónde empieza la zona de días malos; el ES, cuánto pierdes en promedio cuando caes en ella.",
+              en: "ES is always equal to or greater than VaR: VaR says where the bad-days zone starts; ES, how much you lose on average when you land in it.",
+            },
+            mistake: {
+              es: "Tomar la peor pérdida como VaR, o meter en el promedio del ES pérdidas que quedan fuera de la cola.",
+              en: "Taking the worst loss as VaR, or including in the ES average losses that are outside the tail.",
+            },
           },
         ],
         bullets: [
@@ -645,7 +1084,7 @@ export const lessons: Lesson[] = [
       es: "Las instituciones financieras enfrentan tres riesgos financieros centrales: perder por movimientos de precios (mercado), porque alguien no paga (crédito) o por no poder vender o fondearse a tiempo (liquidez); cada uno se mide con herramientas propias.",
       en: "Financial institutions face three core financial risks: losing from price moves (market), because someone does not pay (credit) or from not being able to sell or fund in time (liquidity); each one is measured with its own tools.",
     },
-    minutes: 17,
+    minutes: 18,
     objectives: [
       { es: "Distinguir riesgo de mercado, de crédito y de liquidez con ejemplos reales.", en: "Distinguish market, credit and liquidity risk with real examples." },
       { es: "Estimar el efecto de un cambio de tasas en un portafolio de bonos con la duración modificada.", en: "Estimate the effect of a rate change on a bond portfolio with modified duration." },
@@ -661,15 +1100,43 @@ export const lessons: Lesson[] = [
             en: "**Market risk** is the possibility of losing because **market prices** change. Its four main sources are **interest rates**, **exchange rates**, **stock prices** and **commodity prices** (oil, corn, metals). Everyday example: if you have a debt in dollars and the peso depreciates, you need more pesos to pay it.",
           },
           {
-            es: "Para los bonos, el factor clave son las tasas: cuando las tasas **suben**, el precio de los bonos que ya existen **baja**. La **duración modificada** mide esa sensibilidad: indica en qué porcentaje aproximado cambia el precio por cada punto porcentual que se mueve la tasa. Es una aproximación lineal que funciona bien para cambios pequeños.",
-            en: "For bonds, the key factor is rates: when rates **rise**, the price of existing bonds **falls**. **Modified duration** measures that sensitivity: it indicates by roughly what percentage the price changes for each percentage point the rate moves. It is a linear approximation that works well for small changes.",
+            es: "Para los bonos, el factor clave son las tasas: cuando las tasas **suben**, el precio de los bonos que ya existen **baja**, como un sube y baja. ¿Por qué? Si hoy salen bonos nuevos que pagan más, nadie pagará lo mismo por tu bono viejo que paga menos. La **duración modificada** mide esa sensibilidad: indica en qué porcentaje aproximado cambia el precio por cada punto porcentual que se mueve la tasa. Es una aproximación lineal que funciona bien para cambios pequeños.",
+            en: "For bonds, the key factor is rates: when rates **rise**, the price of existing bonds **falls**, like a seesaw. Why? If new bonds paying more come out today, no one will pay the same for your old bond that pays less. **Modified duration** measures that sensitivity: it indicates by roughly what percentage the price changes for each percentage point the rate moves. It is a linear approximation that works well for small changes.",
           },
           {
             es: "El riesgo de mercado del portafolio completo se resume con herramientas como el **VaR** y se complementa con **pruebas de estrés** (¿qué pasa si el peso se deprecia 20% de golpe?). Mini ejemplo: un portafolio de bonos de $10,000,000 con duración modificada de 4 pierde aproximadamente 4 × 0.5% × 10,000,000 = $200,000 si las tasas suben medio punto.",
             en: "Market risk for the whole portfolio is summarized with tools such as **VaR** and complemented with **stress tests** (what happens if the peso suddenly depreciates 20%?). Mini example: a $10,000,000 bond portfolio with modified duration of 4 loses about 4 × 0.5% × 10,000,000 = $200,000 if rates rise half a point.",
           },
         ],
-        formula: "ΔP ≈ −D_mod × Δy × P",
+        formulas: [
+          {
+            name: { es: "Cambio en el precio de un bono por duración", en: "Bond price change using duration" },
+            expression: "ΔP ≈ −D_mod × Δy × P",
+            variables: [
+              { symbol: "ΔP", meaning: { es: "Cambio aproximado en el valor del bono o portafolio, en pesos (negativo = pérdida).", en: "Approximate change in the value of the bond or portfolio, in pesos (negative = loss)." } },
+              { symbol: "D_mod", meaning: { es: "Duración modificada: % aproximado que cambia el precio por cada punto porcentual de tasa.", en: "Modified duration: approximate % the price changes for each percentage point of rate." } },
+              { symbol: "Δy", meaning: { es: "Cambio en la tasa, en decimal (0.5 puntos porcentuales = 0.005).", en: "Change in the rate, in decimals (0.5 percentage points = 0.005)." } },
+              { symbol: "P", meaning: { es: "Valor actual del bono o portafolio, en pesos.", en: "Current value of the bond or portfolio, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte el cambio de tasa a decimal: 0.25 puntos = 0.0025.", en: "Convert the rate change to decimals: 0.25 points = 0.0025." },
+              { es: "Multiplica la duración modificada por ese cambio: es el % que se mueve el precio.", en: "Multiply modified duration by that change: that is the % the price moves." },
+              { es: "Multiplica por el valor del portafolio y ponle signo contrario al movimiento de la tasa.", en: "Multiply by the portfolio value and give it the opposite sign to the rate move." },
+            ],
+            example: {
+              es: "Portafolio de $6,000,000, duración modificada 5, las tasas suben 0.25 puntos (0.0025). 5 × 0.0025 = 0.0125 (1.25%). 0.0125 × 6,000,000 = 75,000. ΔP ≈ **−$75,000** (pérdida).",
+              en: "Portfolio of $6,000,000, modified duration 5, rates rise 0.25 points (0.0025). 5 × 0.0025 = 0.0125 (1.25%). 0.0125 × 6,000,000 = 75,000. ΔP ≈ **−$75,000** (loss).",
+            },
+            interpret: {
+              es: "Si las tasas suben, el resultado es negativo (pérdida); si bajan, positivo (ganancia). A mayor duración, mayor sensibilidad.",
+              en: "If rates rise, the result is negative (loss); if they fall, positive (gain). The higher the duration, the greater the sensitivity.",
+            },
+            mistake: {
+              es: "Usar Δy = 0.5 en lugar de 0.005 para medio punto, lo que da una pérdida absurda.",
+              en: "Using Δy = 0.5 instead of 0.005 for half a point, which gives an absurd loss.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Riesgo de crédito", en: "Credit risk" },
@@ -687,7 +1154,36 @@ export const lessons: Lesson[] = [
             en: "Expected loss is a **normal cost of business**: it is covered with **loan-loss reserves (allowances)** and through the interest rate charged. **Capital** serves to absorb **unexpected** loss, the amount beyond the average in a bad year. Concentrating loans in a few borrowers or a single sector increases that risk. Mini example: a $1,000,000 loan with PD 3% and 40% recovery (LGD 60%) has EL = 0.03 × 0.60 × 1,000,000 = $18,000.",
           },
         ],
-        formula: "EL = PD × LGD × EAD,   LGD = 1 − tasa de recuperación",
+        formulas: [
+          {
+            name: { es: "Pérdida esperada de un crédito", en: "Expected loss of a loan" },
+            expression: "EL = PD × LGD × EAD,   LGD = 1 − tasa de recuperación",
+            variables: [
+              { symbol: "EL", meaning: { es: "Pérdida esperada: lo que en promedio se pierde por ese crédito en el periodo, en pesos.", en: "Expected loss: what is lost on average on that loan in the period, in pesos." } },
+              { symbol: "PD", meaning: { es: "Probabilidad de que el deudor no pague en el periodo, en decimal (2% = 0.02).", en: "Probability that the borrower does not pay in the period, in decimals (2% = 0.02)." } },
+              { symbol: "LGD", meaning: { es: "Porcentaje que se pierde si no paga, después de recuperar algo; en decimal.", en: "Percentage lost if the borrower does not pay, after recovering something; in decimals." } },
+              { symbol: "tasa de recuperación", meaning: { es: "Porcentaje que sí se recupera (por ejemplo, vendiendo la garantía).", en: "Percentage that is recovered (for example, by selling the collateral)." } },
+              { symbol: "EAD", meaning: { es: "Saldo que te deben en el momento del impago, en pesos.", en: "Balance owed at the time of default, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula la LGD: 1 menos la tasa de recuperación (en decimal).", en: "Compute LGD: 1 minus the recovery rate (in decimals)." },
+              { es: "Convierte la PD a decimal.", en: "Convert PD to decimals." },
+              { es: "Multiplica PD × LGD × EAD.", en: "Multiply PD × LGD × EAD." },
+            ],
+            example: {
+              es: "Crédito de $800,000, PD 4% y recuperación 30%. LGD = 1 − 0.30 = 0.70 = **70%**. EL = 0.04 × 0.70 × 800,000 = 0.028 × 800,000 = **$22,400**.",
+              en: "Loan of $800,000, PD 4% and 30% recovery. LGD = 1 − 0.30 = 0.70 = **70%**. EL = 0.04 × 0.70 × 800,000 = 0.028 × 800,000 = **$22,400**.",
+            },
+            interpret: {
+              es: "Esta pérdida \"normal\" se cubre con reservas y con la tasa que se cobra; el capital es para las pérdidas por encima de ella.",
+              en: "This \"normal\" loss is covered with reserves and the rate charged; capital is for losses above it.",
+            },
+            mistake: {
+              es: "Usar la tasa de recuperación como si fuera la LGD. La LGD es lo que NO se recupera.",
+              en: "Using the recovery rate as if it were LGD. LGD is what is NOT recovered.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Riesgo de liquidez y cómo se conectan", en: "Liquidity risk and how they connect" },
@@ -705,7 +1201,35 @@ export const lessons: Lesson[] = [
             en: "The three risks **spread to each other**: a sharp price drop (market) triggers margin calls that demand cash (funding), forces the sale of illiquid assets at a discount (market liquidity) and weakens borrowers (credit). Mini example: selling 20,000 shares with a $50 mid price and a $0.40 spread costs about 20,000 × 0.20 = $4,000 versus the mid price.",
           },
         ],
-        formula: "Costo de liquidación ≈ ½ × (ask − bid) × número de títulos",
+        formulas: [
+          {
+            name: { es: "Costo de liquidar una posición frente al precio medio", en: "Cost of liquidating a position versus the mid price" },
+            expression: "Precio medio = (bid + ask) ÷ 2   ·   Costo de liquidación ≈ ½ × (ask − bid) × número de títulos",
+            variables: [
+              { symbol: "bid", meaning: { es: "Mejor precio al que alguien te compra (lo que recibes al vender), en pesos por título.", en: "Best price at which someone buys from you (what you receive when selling), in pesos per unit." } },
+              { symbol: "ask", meaning: { es: "Mejor precio al que alguien te vende, en pesos por título.", en: "Best price at which someone sells to you, in pesos per unit." } },
+              { symbol: "ask − bid", meaning: { es: "Diferencial compra-venta, en pesos por título.", en: "Bid-ask spread, in pesos per unit." } },
+              { symbol: "número de títulos", meaning: { es: "Cuántas acciones o bonos vas a vender.", en: "How many shares or bonds you are going to sell." } },
+            ],
+            steps: [
+              { es: "Calcula el diferencial: ask − bid.", en: "Compute the spread: ask − bid." },
+              { es: "Toma la mitad: es lo que pierdes por título al vender al bid en lugar del precio medio.", en: "Take half: that is what you lose per unit by selling at the bid instead of the mid price." },
+              { es: "Multiplica esa mitad por el número de títulos.", en: "Multiply that half by the number of units." },
+            ],
+            example: {
+              es: "30,000 acciones; bid $41.85 y ask $42.15. Precio medio = (41.85 + 42.15) ÷ 2 = $42.00. Diferencial = 42.15 − 41.85 = $0.30; mitad = $0.15. Costo ≈ 30,000 × 0.15 = **$4,500**.",
+              en: "30,000 shares; bid $41.85 and ask $42.15. Mid price = (41.85 + 42.15) ÷ 2 = $42.00. Spread = 42.15 − 41.85 = $0.30; half = $0.15. Cost ≈ 30,000 × 0.15 = **$4,500**.",
+            },
+            interpret: {
+              es: "Mientras más ancho el diferencial, menos líquido es el activo y más caro sale vender con prisa.",
+              en: "The wider the spread, the less liquid the asset and the more expensive it is to sell in a hurry.",
+            },
+            mistake: {
+              es: "Usar el diferencial completo: frente al precio medio solo pierdes la mitad.",
+              en: "Using the full spread: versus the mid price you only lose half.",
+            },
+          },
+        ],
         bullets: [
           { es: "Mercado: tasas, tipo de cambio, acciones y materias primas.", en: "Market: rates, exchange rates, stocks and commodities." },
           { es: "Crédito: impago o deterioro del deudor; EL = PD × LGD × EAD.", en: "Credit: default or deterioration of the debtor; EL = PD × LGD × EAD." },
