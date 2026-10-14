@@ -34,7 +34,7 @@ export const lessons: Lesson[] = [
       "La contabilidad financiera se aprende por capas: la básica registra y resume operaciones sencillas, la intermedia valúa cada partida con más detalle y la avanzada resuelve casos complejos como grupos de empresas y moneda extranjera.",
       "Financial accounting is learned in layers: basic accounting records and summarizes simple transactions, intermediate accounting measures each item in more detail and advanced accounting solves complex cases such as groups of companies and foreign currency.",
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Distinguir qué temas corresponden a la contabilidad financiera básica, intermedia y avanzada.", "Distinguish which topics belong to basic, intermediate and advanced financial accounting."),
       t("Aplicar un método de valuación de inventarios (PEPS) como ejemplo de contabilidad intermedia.", "Apply an inventory costing method (FIFO) as an example of intermediate accounting."),
@@ -57,7 +57,35 @@ export const lessons: Lesson[] = [
             "Mini example: an ice-pop shop buys a $15,000 freezer in cash. In basic accounting you just swap one asset for another: Furniture and equipment goes up and Cash goes down by $15,000. Total assets do not change.",
           ),
         ],
-        formula: "Activo = Pasivo + Capital",
+        formulas: [
+          {
+            name: t("Ecuación contable: lo que tienes, lo que debes y lo que es tuyo", "Accounting equation: what you have, what you owe and what is yours"),
+            expression: "Activo = Pasivo + Capital",
+            variables: [
+              { symbol: "Activo", meaning: t("Todo lo que el negocio tiene y le sirve: dinero, mercancía, equipo, lo que le deben. En pesos.", "Everything the business has and uses: money, goods, equipment, what it is owed. In pesos.") },
+              { symbol: "Pasivo", meaning: t("Todo lo que el negocio debe a otros: proveedores, bancos, impuestos. En pesos.", "Everything the business owes others: suppliers, banks, taxes. In pesos.") },
+              { symbol: "Capital", meaning: t("Lo que realmente es de los dueños: lo que queda si con los activos se pagaran todas las deudas. En pesos.", "What really belongs to the owners: what is left if all debts were paid with the assets. In pesos.") },
+            ],
+            steps: [
+              t("Suma todos los activos del negocio.", "Add up all the business's assets."),
+              t("Suma todos los pasivos (todas las deudas).", "Add up all the liabilities (all the debts)."),
+              t("Despeja el dato que falta. Por ejemplo, Capital = Activo − Pasivo.", "Solve for the missing figure. For example, Equity = Assets − Liabilities."),
+              t("Comprueba: Pasivo + Capital debe dar exactamente el total de activos.", "Check: Liabilities + Equity must equal total assets exactly."),
+            ],
+            example: t(
+              "Una tiendita tiene $80,000 en activos (caja, mercancía y refrigerador) y debe $30,000 al proveedor. Capital = $80,000 − $30,000 = $50,000. Comprobación: $30,000 + $50,000 = $80,000.",
+              "A corner store has $80,000 in assets (cash, goods and a fridge) and owes $30,000 to the supplier. Equity = $80,000 − $30,000 = $50,000. Check: $30,000 + $50,000 = $80,000.",
+            ),
+            interpret: t(
+              "Si después de registrar una operación los dos lados no son iguales, hay un error de registro. Cambiar un activo por otro (comprar un congelador en efectivo) no mueve el total.",
+              "If after recording a transaction both sides are not equal, there is a recording error. Swapping one asset for another (buying a freezer in cash) does not change the total.",
+            ),
+            mistake: t(
+              "Pensar que todo el dinero en caja es \"del dueño\". Parte de lo que tiene el negocio está financiado con deudas.",
+              "Thinking all the cash is \"the owner's\". Part of what the business has is financed with debt.",
+            ),
+          },
+        ],
         bullets: [
           t("Cuentas, cargos y abonos.", "Accounts, debits and credits."),
           t("Registro de compras, ventas, cobros y pagos.", "Recording purchases, sales, collections and payments."),
@@ -79,6 +107,38 @@ export const lessons: Lesson[] = [
             "Mini ejemplo con PEPS: una ferretería tiene 10 martillos de $100 y luego compra 10 de $120. Si vende 12, con PEPS salen primero los 10 de $100 y después 2 de $120: costo de ventas = $1,000 + $240 = $1,240.",
             "Mini FIFO example: a hardware store has 10 hammers at $100 and then buys 10 at $120. If it sells 12, under FIFO the 10 at $100 go out first and then 2 at $120: cost of sales = $1,000 + $240 = $1,240.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Costo de ventas e inventario final con PEPS", "Cost of sales and ending inventory under FIFO"),
+            expression: "Costo de ventas (PEPS) = unidades del lote más antiguo × su costo + unidades del siguiente lote × su costo + …   ·   Inventario final = unidades que quedan × costo de su lote",
+            variables: [
+              { symbol: "Costo de ventas", meaning: t("Lo que te costó la mercancía que vendiste, en pesos.", "What the goods you sold cost you, in pesos.") },
+              { symbol: "Lote", meaning: t("Cada compra que hiciste a un mismo precio (por ejemplo, 10 martillos a $100).", "Each purchase made at one price (for example, 10 hammers at $100).") },
+              { symbol: "Unidades", meaning: t("Piezas de mercancía (cubetas, cascos, martillos).", "Pieces of merchandise (buckets, helmets, hammers).") },
+              { symbol: "Costo", meaning: t("Lo que pagaste por cada pieza de ese lote, en pesos.", "What you paid for each piece of that lot, in pesos.") },
+              { symbol: "Inventario final", meaning: t("El valor de la mercancía que sigue en bodega al terminar, en pesos.", "The value of the goods still in stock at the end, in pesos.") },
+            ],
+            steps: [
+              t("Ordena los lotes del más antiguo al más nuevo.", "Order the lots from oldest to newest."),
+              t("Saca primero todas las piezas del lote más antiguo y multiplica piezas × costo.", "Take out all pieces of the oldest lot first and multiply pieces × cost."),
+              t("Si aún faltan piezas por vender, sácalas del siguiente lote y multiplica de nuevo.", "If pieces are still left to sell, take them from the next lot and multiply again."),
+              t("Suma los resultados: ese es el costo de ventas.", "Add the results: that is the cost of sales."),
+              t("Lo que queda en bodega se valúa con el costo de los lotes más nuevos: piezas que quedan × su costo.", "What remains in stock is valued at the cost of the newest lots: pieces left × their cost."),
+            ],
+            example: t(
+              "Una papelería tiene 50 cuadernos a $20 y compra 100 a $24. Vende 90. Primero salen los 50 de $20: 50 × $20 = $1,000. Faltan 40, del lote de $24: 40 × $24 = $960. Costo de ventas: $1,000 + $960 = $1,960. Quedan 60 × $24 = $1,440. Comprobación: compras totales $1,000 + $2,400 = $3,400 = $1,960 + $1,440.",
+              "A stationery shop has 50 notebooks at $20 and buys 100 at $24. It sells 90. The 50 at $20 go first: 50 × $20 = $1,000. 40 are still missing, from the $24 lot: 40 × $24 = $960. Cost of sales: $1,000 + $960 = $1,960. 60 × $24 = $1,440 remain. Check: total goods $1,000 + $2,400 = $3,400 = $1,960 + $1,440.",
+            ),
+            interpret: t(
+              "Con precios que suben, PEPS da un costo de ventas más bajo y un inventario final más alto, porque lo vendido se costea con los precios viejos.",
+              "When prices rise, FIFO gives a lower cost of sales and a higher ending inventory, because what is sold is costed at the old prices.",
+            ),
+            mistake: t(
+              "Costear todas las piezas vendidas con el precio más reciente. En PEPS salen primero las más antiguas.",
+              "Costing all pieces sold at the latest price. Under FIFO the oldest go out first.",
+            ),
+          },
         ],
         bullets: [
           t("Inventarios: PEPS y costo promedio.", "Inventories: FIFO and average cost."),
@@ -103,7 +163,36 @@ export const lessons: Lesson[] = [
             "Hypothetical mini example: you owe USD 1,000 recorded at $18.00 ($18,000). You pay when the dollar is at $18.50: you hand over $18,500. Foreign exchange loss: $500.",
           ),
         ],
-        formula: "Diferencia cambiaria = USD × (TC de pago − TC de registro)",
+        formulas: [
+          {
+            name: t("Diferencia cambiaria al pagar una deuda en dólares", "Exchange difference when paying a dollar debt"),
+            expression: "Diferencia cambiaria = USD × (TC de pago − TC de registro)",
+            variables: [
+              { symbol: "USD", meaning: t("Los dólares que debes.", "The dollars you owe.") },
+              { symbol: "TC de registro", meaning: t("Tipo de cambio (pesos por dólar) del día en que anotaste la deuda.", "Exchange rate (pesos per dollar) on the day you recorded the debt.") },
+              { symbol: "TC de pago", meaning: t("Tipo de cambio del día en que pagas.", "Exchange rate on the day you pay.") },
+              { symbol: "Diferencia cambiaria", meaning: t("Los pesos de más (o de menos) que pagas por el cambio en el precio del dólar.", "The extra (or fewer) pesos you pay because the dollar's price changed.") },
+            ],
+            steps: [
+              t("Calcula la deuda en pesos al registrarla: USD × TC de registro.", "Compute the debt in pesos when recorded: USD × recording rate."),
+              t("Calcula los pesos que realmente pagas: USD × TC de pago.", "Compute the pesos you actually pay: USD × payment rate."),
+              t("Resta: pesos pagados − pesos registrados.", "Subtract: pesos paid − pesos recorded."),
+              t("Si da positivo, pagaste más: es pérdida cambiaria. Si da negativo, pagaste menos: es utilidad cambiaria.", "If positive, you paid more: it is a foreign exchange loss. If negative, you paid less: it is a foreign exchange gain."),
+            ],
+            example: t(
+              "Debes USD 3,000 registrados a $19.00 (dato hipotético): 3,000 × $19.00 = $57,000. Pagas con el dólar a $18.60: 3,000 × $18.60 = $55,800. Diferencia: $55,800 − $57,000 = −$1,200. Pagaste menos: **utilidad cambiaria de $1,200**.",
+              "You owe USD 3,000 recorded at $19.00 (hypothetical): 3,000 × $19.00 = $57,000. You pay with the dollar at $18.60: 3,000 × $18.60 = $55,800. Difference: $55,800 − $57,000 = −$1,200. You paid less: **foreign exchange gain of $1,200**.",
+            ),
+            interpret: t(
+              "Para quien debe dólares, un dólar más caro es pérdida y un dólar más barato es ganancia. Para quien tiene que cobrar dólares, es al revés.",
+              "For someone who owes dollars, a more expensive dollar is a loss and a cheaper dollar is a gain. For someone who must collect dollars, it is the opposite.",
+            ),
+            mistake: t(
+              "Responder solo la diferencia del tipo de cambio (por ejemplo, $0.40) sin multiplicarla por los dólares que debes.",
+              "Answering only the exchange-rate difference (for example, $0.40) without multiplying it by the dollars owed.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -156,7 +245,7 @@ export const lessons: Lesson[] = [
       "Las NIF son las reglas que emite el CINIF para que todas las empresas en México preparen sus estados financieros de la misma forma, a partir de un marco conceptual con postulados básicos.",
       "The NIF are the rules issued by CINIF so that all companies in Mexico prepare their financial statements in the same way, based on a conceptual framework with basic postulates.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué son las NIF, quién las emite y cómo se organizan en series.", "Explain what the NIF are, who issues them and how they are organized in series."),
       t("Identificar los postulados básicos del marco conceptual en situaciones cotidianas.", "Identify the basic postulates of the conceptual framework in everyday situations."),
@@ -224,7 +313,32 @@ export const lessons: Lesson[] = [
             "Accrual mini example: a gym collects $6,000 in November for six months. By December it has only \"earned\" two months, $2,000. The other $4,000 is still a **liability**: it owes the service to the customer.",
           ),
         ],
-        formula: "Ingreso devengado = Cobro anticipado × (meses transcurridos ÷ meses totales)",
+        formulas: [
+          {
+            name: t("Ingreso ya ganado de un cobro por adelantado", "Revenue already earned from an advance collection"),
+            expression: "Ingreso devengado = Cobro anticipado × (meses transcurridos ÷ meses totales)",
+            variables: [
+              { symbol: "Ingreso devengado", meaning: t("La parte del cobro que ya ganaste porque ya diste el servicio, en pesos.", "The part of the collection you have already earned because you already provided the service, in pesos.") },
+              { symbol: "Cobro anticipado", meaning: t("Lo que el cliente te pagó por adelantado, en pesos.", "What the customer paid you in advance, in pesos.") },
+              { symbol: "meses transcurridos", meaning: t("Los meses de servicio que ya prestaste hasta la fecha de corte (contando el mes en que empezó).", "The months of service already provided up to the cut-off date (counting the starting month).") },
+              { symbol: "meses totales", meaning: t("Todos los meses que cubre el pago.", "All the months the payment covers.") },
+            ],
+            steps: [
+              t("Divide el cobro entre los meses totales: eso ganas cada mes.", "Divide the collection by the total months: that is what you earn each month."),
+              t("Cuenta los meses ya prestados hasta la fecha de corte, incluyendo el mes de inicio.", "Count the months already provided up to the cut-off date, including the starting month."),
+              t("Multiplica el ingreso mensual por esos meses: es el ingreso devengado.", "Multiply the monthly revenue by those months: that is the earned revenue."),
+              t("Lo que sobra (cobro − ingreso devengado) sigue siendo un pasivo: anticipo de clientes.", "The rest (collection − earned revenue) is still a liability: customer advances."),
+            ],
+            example: t(
+              "Una escuela de idiomas cobra el 1 de agosto $18,000 por 12 meses. Por mes: $18,000 ÷ 12 = $1,500. Al 31 de diciembre van 5 meses (agosto a diciembre): 5 × $1,500 = **$7,500 de ingreso**. Pasivo: $18,000 − $7,500 = $10,500.",
+              "A language school collects $18,000 on August 1 for 12 months. Per month: $18,000 ÷ 12 = $1,500. By December 31, 5 months have passed (August to December): 5 × $1,500 = **$7,500 of revenue**. Liability: $18,000 − $7,500 = $10,500.",
+            ),
+            mistake: t(
+              "Reconocer todo el cobro como ingreso solo porque el dinero ya entró. Cobrar no es lo mismo que ganar.",
+              "Recognizing the whole collection as revenue just because the money came in. Collecting is not the same as earning.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -277,7 +391,7 @@ export const lessons: Lesson[] = [
       "Las NIIF son normas contables que emite el IASB para que empresas de muchos países presenten estados financieros comparables; en México las usan sobre todo las empresas que cotizan en bolsa.",
       "IFRS are accounting standards issued by the IASB so that companies in many countries present comparable financial statements; in Mexico they are used mainly by listed companies.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué son las NIIF, quién las emite y quién las usa en México.", "Explain what IFRS are, who issues them and who uses them in Mexico."),
       t("Relacionar normas clave (NIIF 15, NIIF 16, NIC 2) con el tema que regulan.", "Match key standards (IFRS 15, IFRS 16, IAS 2) with the topic they regulate."),
@@ -321,7 +435,36 @@ export const lessons: Lesson[] = [
             "IAS 2 mini example: inventory is presented at the **lower** of its cost and its **net realizable value** (what you expect to get when selling it, minus what it costs you to sell it). Also, IAS 2 does not allow the LIFO method (last in, first out).",
           ),
         ],
-        formula: "Valor neto de realización = Precio estimado de venta − Costos para vender",
+        formulas: [
+          {
+            name: t("Valor neto de realización y baja de valor del inventario (NIC 2)", "Net realizable value and inventory write-down (IAS 2)"),
+            expression: "VNR = Precio estimado de venta − Costos para vender   ·   Baja de valor = Costo − VNR (solo si el VNR es menor que el costo)",
+            variables: [
+              { symbol: "VNR", meaning: t("Valor neto de realización: lo que de verdad te quedará al vender la mercancía, en pesos.", "Net realizable value: what you will really keep when selling the goods, in pesos.") },
+              { symbol: "Precio estimado de venta", meaning: t("En cuánto esperas vender la mercancía hoy, en pesos.", "How much you expect to sell the goods for today, in pesos.") },
+              { symbol: "Costos para vender", meaning: t("Lo que gastarás para lograr la venta: comisiones, envío, empaque. En pesos.", "What you will spend to make the sale: commissions, shipping, packaging. In pesos.") },
+              { symbol: "Costo", meaning: t("Lo que te costó la mercancía, en pesos.", "What the goods cost you, in pesos.") },
+              { symbol: "Baja de valor", meaning: t("Lo que se pierde de valor y se reconoce como gasto, en pesos.", "The value lost, recognized as an expense, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el VNR: precio estimado de venta − costos para vender.", "Compute NRV: estimated selling price − costs to sell."),
+              t("Compara el VNR con el costo y elige el menor: ese es el valor del inventario.", "Compare NRV with cost and choose the lower: that is the inventory value."),
+              t("Si el VNR es menor, la baja de valor es Costo − VNR y se registra como gasto. Si el costo es menor, no hay baja.", "If NRV is lower, the write-down is Cost − NRV and is recorded as an expense. If cost is lower, there is no write-down."),
+            ],
+            example: t(
+              "Unos tenis pasados de moda costaron $80,000. Se espera venderlos en $75,000 pagando $4,000 de comisiones. VNR: $75,000 − $4,000 = $71,000. El menor entre $80,000 y $71,000 es $71,000. Baja de valor: $80,000 − $71,000 = **$9,000**.",
+              "Out-of-fashion sneakers cost $80,000. They are expected to sell for $75,000, paying $4,000 in commissions. NRV: $75,000 − $4,000 = $71,000. The lower of $80,000 and $71,000 is $71,000. Write-down: $80,000 − $71,000 = **$9,000**.",
+            ),
+            interpret: t(
+              "Si el VNR es mayor que el costo, el inventario se queda a su costo: no se sube su valor por esperar ganar más.",
+              "If NRV is higher than cost, inventory stays at cost: its value is not raised because you expect to earn more.",
+            ),
+            mistake: t(
+              "Olvidar restar los costos para vender y comparar el costo directo contra el precio de venta.",
+              "Forgetting to subtract the costs to sell and comparing cost directly with the selling price.",
+            ),
+          },
+        ],
         bullets: [
           t("NIIF 15: ingresos de contratos con clientes.", "IFRS 15: revenue from contracts with customers."),
           t("NIIF 16: arrendamientos.", "IFRS 16: leases."),
@@ -345,6 +488,35 @@ export const lessons: Lesson[] = [
             "Mini ejemplo: un paquete de $1,000 incluye dos promesas que por separado valen $600 y $600. Cada una recibe la mitad: $500 y $500.",
             "Mini example: a $1,000 bundle includes two promises that separately are worth $600 and $600. Each gets half: $500 and $500.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Repartir el precio de un paquete entre sus promesas (NIIF 15)", "Allocating a bundle's price among its promises (IFRS 15)"),
+            expression: "Ingreso de una promesa = Precio del paquete × (Precio independiente de esa promesa ÷ Suma de precios independientes)",
+            variables: [
+              { symbol: "Precio del paquete", meaning: t("Lo que el cliente paga por todo junto, en pesos.", "What the customer pays for everything together, in pesos.") },
+              { symbol: "Precio independiente", meaning: t("Lo que cobrarías por esa promesa si la vendieras sola, en pesos.", "What you would charge for that promise if you sold it alone, in pesos.") },
+              { symbol: "Suma de precios independientes", meaning: t("Lo que costaría todo si se comprara por separado, en pesos.", "What everything would cost if bought separately, in pesos.") },
+            ],
+            steps: [
+              t("Suma los precios independientes de todas las promesas.", "Add the standalone prices of all the promises."),
+              t("Para cada promesa, divide su precio independiente entre esa suma: es su proporción.", "For each promise, divide its standalone price by that sum: that is its share."),
+              t("Multiplica el precio del paquete por esa proporción.", "Multiply the bundle price by that share."),
+              t("Comprueba que lo asignado sume exactamente el precio del paquete.", "Check that the amounts allocated add up exactly to the bundle price."),
+            ],
+            example: t(
+              "Un paquete de consola + videojuego cuesta $5,400. Por separado: consola $4,800 y juego $1,200; suma $6,000. Consola: $5,400 × 4,800 ÷ 6,000 = $4,320. Juego: $5,400 × 1,200 ÷ 6,000 = $1,080. Comprobación: $4,320 + $1,080 = $5,400.",
+              "A console + video game bundle costs $5,400. Separately: console $4,800 and game $1,200; total $6,000. Console: $5,400 × 4,800 ÷ 6,000 = $4,320. Game: $5,400 × 1,200 ÷ 6,000 = $1,080. Check: $4,320 + $1,080 = $5,400.",
+            ),
+            interpret: t(
+              "El descuento del paquete se reparte entre todas las promesas en proporción a su valor, no se le carga a una sola.",
+              "The bundle discount is spread across all promises in proportion to their value, not charged to just one.",
+            ),
+            mistake: t(
+              "Dejar una promesa a su precio completo y darle a la otra solo lo que sobra.",
+              "Keeping one promise at its full price and giving the other only what is left.",
+            ),
+          },
         ],
         bullets: [
           t("1. Identificar el contrato con el cliente.", "1. Identify the contract with the customer."),
@@ -405,7 +577,7 @@ export const lessons: Lesson[] = [
       "Los estados financieros básicos —situación financiera, resultado integral, cambios en el capital contable y flujos de efectivo, junto con sus notas— se arman a partir de los saldos contables y se presentan con un orden que facilita leerlos.",
       "The basic financial statements —financial position, comprehensive income, changes in equity and cash flows, together with their notes— are built from account balances and presented in an order that makes them easy to read.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Identificar los cuatro estados financieros básicos, qué muestra cada uno y el papel de las notas.", "Identify the four basic financial statements, what each shows and the role of the notes."),
       t("Elaborar un estado de resultados por niveles de utilidad a partir de saldos.", "Prepare an income statement by profit levels from balances."),
@@ -456,7 +628,40 @@ export const lessons: Lesson[] = [
             "Mini example: a tortilla shop sells $100,000, its cost of sales is $60,000 and its operating expenses $25,000. Gross profit $40,000; operating profit $15,000.",
           ),
         ],
-        formula: "Ventas netas − Costo de ventas = Utilidad bruta − Gastos de operación = Utilidad de operación − Gastos financieros = Utilidad antes de impuestos − Impuestos = Utilidad neta",
+        formulas: [
+          {
+            name: t("Niveles de utilidad del estado de resultados", "Profit levels of the income statement"),
+            expression: "Ventas netas = Ventas − Devoluciones · Utilidad bruta = Ventas netas − Costo de ventas · Utilidad de operación = Utilidad bruta − Gastos de operación · Utilidad antes de impuestos = Utilidad de operación − Gastos financieros · Utilidad neta = Utilidad antes de impuestos − Impuestos",
+            variables: [
+              { symbol: "Ventas", meaning: t("Todo lo que se facturó a clientes en el periodo, en pesos.", "Everything invoiced to customers in the period, in pesos.") },
+              { symbol: "Devoluciones", meaning: t("Ventas que los clientes regresaron; se restan porque al final no fueron venta.", "Sales customers returned; they are subtracted because in the end they were not sales.") },
+              { symbol: "Costo de ventas", meaning: t("Lo que costó la mercancía que se vendió, en pesos.", "What the goods sold cost, in pesos.") },
+              { symbol: "Gastos de operación", meaning: t("Gastos de mantener el negocio andando: sueldos, renta, luz, publicidad.", "Costs of keeping the business running: salaries, rent, electricity, advertising.") },
+              { symbol: "Gastos financieros", meaning: t("Intereses de préstamos y otros costos de deudas, en pesos.", "Interest on loans and other debt costs, in pesos.") },
+              { symbol: "Impuestos", meaning: t("Impuestos a la utilidad del periodo, en pesos.", "Income taxes for the period, in pesos.") },
+              { symbol: "Utilidad neta", meaning: t("Lo que de verdad ganó el negocio al final, después de todo.", "What the business really earned in the end, after everything.") },
+            ],
+            steps: [
+              t("Calcula las ventas netas: ventas − devoluciones.", "Compute net sales: sales − returns."),
+              t("Resta el costo de ventas: obtienes la utilidad bruta.", "Subtract cost of sales: you get gross profit."),
+              t("Resta los gastos de operación: obtienes la utilidad de operación.", "Subtract operating expenses: you get operating profit."),
+              t("Resta los gastos financieros (intereses): obtienes la utilidad antes de impuestos.", "Subtract financial expenses (interest): you get profit before taxes."),
+              t("Resta los impuestos: obtienes la utilidad neta.", "Subtract taxes: you get net profit."),
+            ],
+            example: t(
+              "Una zapatería vende $600,000, le devuelven $20,000, su costo de ventas es $350,000, gastos de operación $150,000, intereses $15,000 e impuestos $18,000. Ventas netas: $600,000 − $20,000 = $580,000. Bruta: $580,000 − $350,000 = $230,000. Operación: $230,000 − $150,000 = $80,000. Antes de impuestos: $80,000 − $15,000 = $65,000. Neta: $65,000 − $18,000 = **$47,000**.",
+              "A shoe store sells $600,000, gets $20,000 in returns, its cost of sales is $350,000, operating expenses $150,000, interest $15,000 and taxes $18,000. Net sales: $600,000 − $20,000 = $580,000. Gross: $580,000 − $350,000 = $230,000. Operating: $230,000 − $150,000 = $80,000. Before taxes: $80,000 − $15,000 = $65,000. Net: $65,000 − $18,000 = **$47,000**.",
+            ),
+            interpret: t(
+              "Cada nivel te dice dónde se va el dinero: una utilidad bruta baja apunta al costo del producto; una de operación baja, a los gastos; una neta baja con buena operación, a la deuda o los impuestos.",
+              "Each level tells you where money goes: a low gross profit points to product cost; a low operating profit, to expenses; a low net profit with good operations, to debt or taxes.",
+            ),
+            mistake: t(
+              "Empezar con las ventas totales sin restar las devoluciones.",
+              "Starting from total sales without subtracting returns.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Balance clasificado y flujo de efectivo", "Classified balance sheet and cash flow"),
@@ -470,9 +675,45 @@ export const lessons: Lesson[] = [
             "The **cash flow statement** splits money into three activities: **operating** (day-to-day), **investing** (buying or selling long-term assets) and **financing** (loans and owner contributions). Making a profit is not the same as having cash: you can sell a lot on credit and run out of cash.",
           ),
           t(
+            "En palabras sencillas, el **método indirecto** convierte la utilidad (lo que ganaste \"en papel\") en efectivo (lo que de verdad entró a la caja). Si vendiste a crédito, la venta cuenta como utilidad, pero el dinero todavía no llega; si le quedaste a deber al proveedor, el gasto ya está registrado, pero el dinero sigue en tu caja.",
+            "In plain words, the **indirect method** turns profit (what you earned \"on paper\") into cash (what really came into the till). If you sold on credit, the sale counts as profit but the money has not arrived yet; if you still owe the supplier, the expense is recorded but the money is still in your till.",
+          ),
+          t(
             "Con el **método indirecto** se parte de la utilidad neta, se suman gastos que no usaron efectivo (como la depreciación) y se ajustan los cambios en clientes, inventarios y proveedores. Mini ejemplo: utilidad $50,000 + depreciación $10,000 − aumento en clientes $8,000 = $52,000 de flujo de operación.",
             "With the **indirect method** you start from net profit, add back expenses that used no cash (such as depreciation) and adjust for changes in receivables, inventories and payables. Mini example: profit $50,000 + depreciation $10,000 − increase in receivables $8,000 = $52,000 operating cash flow.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Flujo de efectivo de operación (método indirecto)", "Operating cash flow (indirect method)"),
+            expression: "Flujo de operación = Utilidad neta + Depreciación − Aumentos de activos circulantes + Disminuciones de activos circulantes + Aumentos de pasivos circulantes − Disminuciones de pasivos circulantes",
+            variables: [
+              { symbol: "Utilidad neta", meaning: t("La ganancia del estado de resultados, en pesos.", "The profit from the income statement, in pesos.") },
+              { symbol: "Depreciación", meaning: t("Gasto por desgaste de activos; se registró como gasto pero no salió dinero.", "Expense for asset wear; recorded as an expense but no money left.") },
+              { symbol: "Activos circulantes", meaning: t("Clientes (lo que te deben) e inventarios (mercancía en bodega).", "Receivables (what you are owed) and inventories (goods in stock).") },
+              { symbol: "Pasivos circulantes", meaning: t("Proveedores y otras deudas de corto plazo.", "Payables and other short-term debts.") },
+              { symbol: "Flujo de operación", meaning: t("El efectivo que de verdad dejó el día a día del negocio, en pesos.", "The cash the business's day-to-day really left, in pesos.") },
+            ],
+            steps: [
+              t("Parte de la utilidad neta.", "Start from net profit."),
+              t("Suma la depreciación y otros gastos que no usaron efectivo.", "Add depreciation and other expenses that used no cash."),
+              t("Si clientes o inventarios aumentaron, resta el aumento (dinero que quedó atorado). Si bajaron, suma la baja.", "If receivables or inventories increased, subtract the increase (money that got stuck). If they decreased, add the decrease."),
+              t("Si proveedores aumentaron, suma el aumento (compraste sin pagar todavía). Si bajaron, resta la baja (pagaste).", "If payables increased, add the increase (you bought without paying yet). If they decreased, subtract the decrease (you paid)."),
+              t("El total es el flujo de efectivo de operación.", "The total is the operating cash flow."),
+            ],
+            example: t(
+              "Una panadería tuvo utilidad de $70,000 y depreciación de $12,000. Sus clientes aumentaron $9,000, sus inventarios bajaron $4,000 y sus proveedores aumentaron $6,000. $70,000 + $12,000 = $82,000; − $9,000 = $73,000; + $4,000 = $77,000; + $6,000 = **$83,000**.",
+              "A bakery had profit of $70,000 and depreciation of $12,000. Its receivables increased $9,000, its inventories decreased $4,000 and its payables increased $6,000. $70,000 + $12,000 = $82,000; − $9,000 = $73,000; + $4,000 = $77,000; + $6,000 = **$83,000**.",
+            ),
+            interpret: t(
+              "Si el flujo de operación es mucho menor que la utilidad, el negocio gana \"en papel\" pero el dinero se le queda en clientes o en bodega.",
+              "If operating cash flow is much lower than profit, the business earns \"on paper\" but its money gets stuck in receivables or in stock.",
+            ),
+            mistake: t(
+              "Sumar un aumento de inventarios como si fuera dinero que entró. Más inventario significa que salió efectivo para comprarlo.",
+              "Adding an increase in inventories as if money came in. More inventory means cash went out to buy it.",
+            ),
+          },
         ],
         bullets: [
           t("Aumento de un activo circulante (clientes, inventarios): se resta.", "Increase in a current asset (receivables, inventories): subtract."),
@@ -533,7 +774,7 @@ export const lessons: Lesson[] = [
       "Cada activo, pasivo y partida de capital tiene reglas para reconocerse y valuarse: los activos se ajustan por desgaste o incobrabilidad, los pasivos incluyen obligaciones estimadas y el capital separa lo aportado de lo ganado.",
       "Each asset, liability and equity item has rules for recognition and measurement: assets are adjusted for wear or uncollectibility, liabilities include estimated obligations and equity separates what was contributed from what was earned.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Valuar cuentas por cobrar con su estimación de incobrables y activo fijo con depreciación en línea recta.", "Measure receivables with their allowance for doubtful accounts and fixed assets with straight-line depreciation."),
       t("Reconocer cuándo una obligación estimada se registra como provisión.", "Recognize when an estimated obligation is recorded as a provision."),
@@ -548,15 +789,88 @@ export const lessons: Lesson[] = [
             "An **asset** is a resource the business controls and from which it expects benefits: money, what it is owed, goods, machines. Accounting asks you to present it at what it is **really worth**, not just at what it cost or what the invoice says.",
           ),
           t(
-            "**Cuentas por cobrar**: no todos los clientes pagan. Se crea una **estimación para cuentas incobrables**, una cuenta que resta a Clientes lo que probablemente no se cobrará. **Activo fijo**: las máquinas y vehículos se desgastan, así que su costo se reparte en su vida útil con la **depreciación**. El método de **línea recta** reparte la misma cantidad cada año.",
-            "**Receivables**: not every customer pays. An **allowance for doubtful accounts** is created, an account that subtracts from Accounts receivable what probably will not be collected. **Fixed assets**: machines and vehicles wear out, so their cost is spread over their useful life through **depreciation**. The **straight-line** method spreads the same amount each year.",
+            "**Cuentas por cobrar** (lo que te deben tus clientes): no todos pagan. Como en la tiendita que fía, siempre hay quien no regresa. Por eso se crea una **estimación para cuentas incobrables**, una cuenta que resta a Clientes lo que probablemente no se cobrará.",
+            "**Receivables** (what your customers owe you): not everyone pays. Like a corner store that sells on credit, someone always fails to come back. That is why an **allowance for doubtful accounts** is created, an account that subtracts from Accounts receivable what probably will not be collected.",
+          ),
+          t(
+            "**Activo fijo** (máquinas, vehículos, equipo que usas varios años): se desgasta con el uso. En lugar de mandar todo su costo a gasto el año en que lo compras, se reparte entre los años que lo usarás; a eso se le llama **depreciación**. El método de **línea recta** reparte la misma cantidad cada año.",
+            "**Fixed assets** (machines, vehicles, equipment you use for several years): they wear out with use. Instead of expensing their whole cost in the year you buy them, it is spread over the years you will use them; this is called **depreciation**. The **straight-line** method spreads the same amount each year.",
           ),
           t(
             "Mini ejemplo: una camioneta de reparto cuesta $400,000, se espera venderla en $40,000 al final (valor residual) y durará 5 años. Depreciación anual: ($400,000 − $40,000) ÷ 5 = $72,000.",
             "Mini example: a delivery van costs $400,000, is expected to sell for $40,000 at the end (residual value) and will last 5 years. Annual depreciation: ($400,000 − $40,000) ÷ 5 = $72,000.",
           ),
         ],
-        formula: "Depreciación anual (línea recta) = (Costo − Valor residual) ÷ Vida útil",
+        formulas: [
+          {
+            name: t("Depreciación anual en línea recta", "Straight-line annual depreciation"),
+            expression: "Depreciación anual = (Costo − Valor residual) ÷ Vida útil",
+            variables: [
+              { symbol: "Costo", meaning: t("Lo que pagaste por el activo (máquina, camioneta), en pesos.", "What you paid for the asset (machine, van), in pesos.") },
+              { symbol: "Valor residual", meaning: t("En cuánto esperas venderlo cuando ya no lo uses, en pesos.", "How much you expect to sell it for when you stop using it, in pesos.") },
+              { symbol: "Vida útil", meaning: t("Cuántos años esperas usarlo.", "How many years you expect to use it.") },
+              { symbol: "Depreciación anual", meaning: t("La parte del costo que se vuelve gasto cada año, en pesos.", "The part of the cost that becomes an expense each year, in pesos.") },
+            ],
+            steps: [
+              t("Resta el valor residual al costo: es el monto que se va a desgastar.", "Subtract the residual value from the cost: that is the amount that will wear out."),
+              t("Divide ese monto entre los años de vida útil.", "Divide that amount by the years of useful life."),
+            ],
+            example: t(
+              "Un horno industrial cuesta $120,000, se espera venderlo en $20,000 y durará 4 años. Monto a depreciar: $120,000 − $20,000 = $100,000. Depreciación anual: $100,000 ÷ 4 = **$25,000 por año**.",
+              "An industrial oven costs $120,000, is expected to sell for $20,000 and will last 4 years. Depreciable amount: $120,000 − $20,000 = $100,000. Annual depreciation: $100,000 ÷ 4 = **$25,000 per year**.",
+            ),
+            mistake: t(
+              "Dividir el costo completo entre la vida útil sin restar antes el valor residual.",
+              "Dividing the full cost by the useful life without first subtracting the residual value.",
+            ),
+          },
+          {
+            name: t("Valor en libros de un activo fijo", "Book value of a fixed asset"),
+            expression: "Valor en libros = Costo − Depreciación acumulada   ·   Depreciación acumulada = Depreciación anual × años transcurridos",
+            variables: [
+              { symbol: "Valor en libros", meaning: t("Lo que vale el activo en tu contabilidad hoy, en pesos.", "What the asset is worth in your books today, in pesos.") },
+              { symbol: "Costo", meaning: t("Lo que pagaste por el activo, en pesos.", "What you paid for the asset, in pesos.") },
+              { symbol: "Depreciación acumulada", meaning: t("Todo el desgaste registrado desde que lo compraste, en pesos.", "All the wear recorded since you bought it, in pesos.") },
+              { symbol: "años transcurridos", meaning: t("Los años que llevas usándolo.", "The years you have been using it.") },
+            ],
+            steps: [
+              t("Calcula la depreciación anual con la fórmula de línea recta.", "Compute the annual depreciation with the straight-line formula."),
+              t("Multiplícala por los años transcurridos: es la depreciación acumulada.", "Multiply it by the years elapsed: that is the accumulated depreciation."),
+              t("Resta la depreciación acumulada al costo.", "Subtract the accumulated depreciation from the cost."),
+            ],
+            example: t(
+              "Con el horno anterior ($25,000 por año), al final del año 3: acumulada 3 × $25,000 = $75,000. Valor en libros: $120,000 − $75,000 = **$45,000**.",
+              "With the oven above ($25,000 per year), at the end of year 3: accumulated 3 × $25,000 = $75,000. Book value: $120,000 − $75,000 = **$45,000**.",
+            ),
+            mistake: t(
+              "Restar otra vez el valor residual al final. El residual ya se descontó al calcular la depreciación.",
+              "Subtracting the residual value again at the end. It was already deducted when computing depreciation.",
+            ),
+          },
+          {
+            name: t("Estimación para cuentas incobrables y clientes netos", "Allowance for doubtful accounts and net receivables"),
+            expression: "Estimación = Clientes × % que no se cobrará   ·   Clientes netos = Clientes − Estimación",
+            variables: [
+              { symbol: "Clientes", meaning: t("Lo que te deben tus clientes, en pesos.", "What your customers owe you, in pesos.") },
+              { symbol: "% que no se cobrará", meaning: t("El porcentaje que, por experiencia, esperas no cobrar.", "The percentage you expect, from experience, not to collect.") },
+              { symbol: "Estimación", meaning: t("Lo que probablemente no se cobrará; se registra como gasto, en pesos.", "What will probably not be collected; recorded as an expense, in pesos.") },
+              { symbol: "Clientes netos", meaning: t("Lo que de verdad esperas cobrar, en pesos.", "What you really expect to collect, in pesos.") },
+            ],
+            steps: [
+              t("Convierte el porcentaje a decimal: 4% = 0.04.", "Convert the percentage to a decimal: 4% = 0.04."),
+              t("Multiplica el saldo de clientes por ese decimal: es la estimación.", "Multiply the receivables balance by that decimal: that is the allowance."),
+              t("Resta la estimación al saldo de clientes para obtener clientes netos.", "Subtract the allowance from receivables to get net receivables."),
+            ],
+            example: t(
+              "Una refaccionaria tiene clientes por $180,000 y estima no cobrar el 4%. Estimación: $180,000 × 0.04 = $7,200. Clientes netos: $180,000 − $7,200 = **$172,800**.",
+              "An auto-parts store has receivables of $180,000 and estimates it will not collect 4%. Allowance: $180,000 × 0.04 = $7,200. Net receivables: $180,000 − $7,200 = **$172,800**.",
+            ),
+            mistake: t(
+              "Restar directo a Clientes. Como aún no sabes qué cliente no pagará, se usa la cuenta Estimación para cuentas incobrables.",
+              "Subtracting directly from Receivables. Since you do not yet know which customer will not pay, the Allowance for doubtful accounts is used.",
+            ),
+          },
+        ],
         bullets: [
           t("Clientes netos = Clientes − Estimación para incobrables.", "Net receivables = Receivables − Allowance for doubtful accounts."),
           t("Valor en libros = Costo − Depreciación acumulada.", "Book value = Cost − Accumulated depreciation."),
@@ -601,7 +915,46 @@ export const lessons: Lesson[] = [
             "When the shareholders' meeting **declares dividends**, earned capital goes down and a debt to the partners arises. Mini example: profit of $200,000; minimum legal reserve 5% = $10,000.",
           ),
         ],
-        formula: "Capital contable = Capital contribuido + Capital ganado = Activo − Pasivo",
+        formulas: [
+          {
+            name: t("Capital contable y sus dos partes", "Equity and its two parts"),
+            expression: "Capital contable = Activo − Pasivo = Capital contribuido + Capital ganado",
+            variables: [
+              { symbol: "Activo", meaning: t("Todo lo que tiene el negocio, en pesos.", "Everything the business has, in pesos.") },
+              { symbol: "Pasivo", meaning: t("Todo lo que debe el negocio, en pesos.", "Everything the business owes, in pesos.") },
+              { symbol: "Capital contribuido", meaning: t("Lo que los socios pusieron de su bolsa, en pesos.", "What the partners put in from their own pockets, in pesos.") },
+              { symbol: "Capital ganado", meaning: t("Utilidades que el negocio generó y no repartió, más reservas, en pesos.", "Profits the business generated and did not distribute, plus reserves, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el capital contable: activo − pasivo.", "Compute equity: assets − liabilities."),
+              t("Si conoces el capital contribuido, réstalo para obtener el capital ganado (o al revés).", "If you know contributed capital, subtract it to get earned capital (or the other way around)."),
+            ],
+            example: t(
+              "Una empresa tiene activos de $900,000 y pasivos de $350,000. Capital contable: $900,000 − $350,000 = $550,000. Si los socios aportaron $400,000, el capital ganado es $550,000 − $400,000 = **$150,000**.",
+              "A company has assets of $900,000 and liabilities of $350,000. Equity: $900,000 − $350,000 = $550,000. If the partners contributed $400,000, earned capital is $550,000 − $400,000 = **$150,000**.",
+            ),
+          },
+          {
+            name: t("Reserva legal mínima del año", "Minimum legal reserve for the year"),
+            expression: "Reserva legal del año = Utilidad neta × 5%",
+            variables: [
+              { symbol: "Utilidad neta", meaning: t("La ganancia del año, en pesos.", "The year's profit, in pesos.") },
+              { symbol: "5%", meaning: t("El mínimo que la ley pide separar cada año, mientras la reserva no llegue a la quinta parte (20%) del capital social.", "The minimum the law requires setting aside each year, while the reserve has not reached one fifth (20%) of share capital.") },
+            ],
+            steps: [
+              t("Revisa si la reserva ya llegó a la quinta parte del capital social. Si ya llegó, no hace falta separar más.", "Check whether the reserve has already reached one fifth of share capital. If it has, nothing more is required."),
+              t("Si no, multiplica la utilidad neta por 0.05.", "If not, multiply net profit by 0.05."),
+            ],
+            example: t(
+              "Una sociedad gana $240,000 y su reserva aún no llega al tope. Reserva del año: $240,000 × 0.05 = **$12,000**.",
+              "A company earns $240,000 and its reserve has not reached the cap. Reserve for the year: $240,000 × 0.05 = **$12,000**.",
+            ),
+            mistake: t(
+              "Usar el 20%. Ese es el tope total de la reserva (la quinta parte del capital social), no lo que se separa cada año.",
+              "Using 20%. That is the reserve's total cap (one fifth of share capital), not what is set aside each year.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -654,7 +1007,7 @@ export const lessons: Lesson[] = [
       "Cuando una empresa controla a otras, presenta estados financieros consolidados: suma las cifras del grupo como si fuera una sola empresa, elimina las operaciones entre ellas y muestra aparte la parte que pertenece a otros socios.",
       "When a company controls others, it presents consolidated financial statements: it adds up the group's figures as if it were a single company, eliminates transactions between them and shows separately the part that belongs to other shareholders.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Explicar qué es el control y cuándo una empresa debe consolidar a otra.", "Explain what control is and when a company must consolidate another."),
       t("Eliminar saldos y operaciones entre empresas del mismo grupo.", "Eliminate balances and transactions between companies in the same group."),
@@ -669,12 +1022,12 @@ export const lessons: Lesson[] = [
             "Many large companies are **groups**: a **parent** (the \"mother\" company) and one or more **subsidiaries** (the \"daughters\") it controls. For example, a restaurant chain may have a subsidiary that makes tortillas and another that delivers.",
           ),
           t(
-            "La clave es el **control**: tener **poder** para dirigir las actividades importantes de la otra empresa, estar **expuesto a sus rendimientos** (ganar o perder con ella) y poder **usar ese poder** para influir en esos rendimientos. Lo usual es que tener más del 50% de los votos dé control, pero no siempre: importa la realidad, no solo el porcentaje.",
-            "The key is **control**: having **power** to direct the other company's important activities, being **exposed to its returns** (gaining or losing with it) and being able to **use that power** to affect those returns. Usually holding more than 50% of the votes gives control, but not always: reality matters, not just the percentage.",
+            "En palabras sencillas: controlas una empresa cuando eres tú quien decide cómo se maneja y te va bien o mal según le vaya a ella. Formalmente, el **control** es tener **poder** para dirigir las actividades importantes de la otra empresa, estar **expuesto a sus rendimientos** (ganar o perder con ella) y poder **usar ese poder** para influir en esos rendimientos. Lo usual es que tener más del 50% de los votos dé control, pero no siempre: importa la realidad, no solo el porcentaje.",
+            "In plain words: you control a company when you are the one who decides how it is run and you do well or badly depending on how it does. Formally, **control** is having **power** to direct the other company's important activities, being **exposed to its returns** (gaining or losing with it) and being able to **use that power** to affect those returns. Usually holding more than 50% of the votes gives control, but not always: reality matters, not just the percentage.",
           ),
           t(
-            "Si solo hay **influencia significativa** (opinar e influir, sin mandar; se presume en general desde el 20% de los votos), la inversión es una **asociada** y no se consolida: se usa el **método de participación**. Mini ejemplo: con 85% de las acciones y mayoría en el consejo, consolidas; con 30% y un consejero, normalmente es asociada.",
-            "If there is only **significant influence** (having a say without being in charge; generally presumed from 20% of the votes), the investment is an **associate** and is not consolidated: the **equity method** is used. Mini example: with 85% of the shares and a board majority, you consolidate; with 30% and one board member, it is normally an associate.",
+            "Si solo hay **influencia significativa** (opinar e influir, sin mandar; se presume en general desde el 20% de los votos), la inversión es una **asociada** y no se consolida: se usa el **método de participación** (la inversión se registra en un solo renglón que sube o baja con tu parte de las utilidades de la asociada). Mini ejemplo: con 85% de las acciones y mayoría en el consejo, consolidas; con 30% y un consejero, normalmente es asociada.",
+            "If there is only **significant influence** (having a say without being in charge; generally presumed from 20% of the votes), the investment is an **associate** and is not consolidated: the **equity method** is used (the investment is recorded as one line that grows or shrinks with your share of the associate's profits). Mini example: with 85% of the shares and a board majority, you consolidate; with 30% and one board member, it is normally an associate.",
           ),
         ],
         bullets: [
@@ -699,7 +1052,30 @@ export const lessons: Lesson[] = [
             "Mini example: the parent has receivables of $300,000 and the subsidiary $120,000, of which $40,000 is owed by the parent. Consolidated receivables: $300,000 + $120,000 − $40,000 = $380,000.",
           ),
         ],
-        formula: "Saldo consolidado = Controladora + Subsidiaria − Operaciones entre ellas",
+        formulas: [
+          {
+            name: t("Saldo consolidado de un renglón", "Consolidated balance of a line item"),
+            expression: "Saldo consolidado = Controladora + Subsidiaria − Operaciones entre ellas",
+            variables: [
+              { symbol: "Controladora", meaning: t("El saldo de ese renglón (ventas, clientes…) en la empresa \"mamá\", en pesos.", "That line's balance (sales, receivables…) in the \"mother\" company, in pesos.") },
+              { symbol: "Subsidiaria", meaning: t("El saldo del mismo renglón en la empresa controlada, en pesos.", "The same line's balance in the controlled company, in pesos.") },
+              { symbol: "Operaciones entre ellas", meaning: t("Ventas, compras, cuentas por cobrar o por pagar entre empresas del mismo grupo, en pesos.", "Sales, purchases, receivables or payables between companies of the same group, in pesos.") },
+            ],
+            steps: [
+              t("Suma el renglón de la controladora y el de la subsidiaria.", "Add the parent's and the subsidiary's line."),
+              t("Identifica qué parte de ese saldo es con la otra empresa del grupo.", "Identify which part of that balance is with the other group company."),
+              t("Réstala: solo queda lo que se hizo con gente de fuera del grupo.", "Subtract it: only what was done with people outside the group remains."),
+            ],
+            example: t(
+              "La controladora vende $900,000 y la subsidiaria $300,000; de estas, $80,000 fueron ventas a la controladora. Suma: $900,000 + $300,000 = $1,200,000. Ventas consolidadas: $1,200,000 − $80,000 = **$1,120,000**.",
+              "The parent sells $900,000 and the subsidiary $300,000; of the latter, $80,000 were sales to the parent. Sum: $900,000 + $300,000 = $1,200,000. Consolidated sales: $1,200,000 − $80,000 = **$1,120,000**.",
+            ),
+            mistake: t(
+              "Sumar sin eliminar las operaciones internas: el grupo se vería más grande de lo que es.",
+              "Adding without eliminating internal transactions: the group would look bigger than it is.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Participación no controladora y crédito mercantil", "Non-controlling interest and goodwill"),
@@ -717,7 +1093,55 @@ export const lessons: Lesson[] = [
             "Simple mini example (measuring the non-controlling interest at its proportionate share): subsidiary equity $500,000 and the parent owns 80%. Non-controlling interest: 20% × $500,000 = $100,000.",
           ),
         ],
-        formula: "Crédito mercantil = Precio pagado − (% adquirido × Activos netos a valor razonable)",
+        formulas: [
+          {
+            name: t("Participación no controladora", "Non-controlling interest"),
+            expression: "Participación no controladora = (100% − % de la controladora) × Capital de la subsidiaria",
+            variables: [
+              { symbol: "% de la controladora", meaning: t("El porcentaje de acciones de la subsidiaria que tiene la controladora.", "The percentage of the subsidiary's shares the parent owns.") },
+              { symbol: "100% − % de la controladora", meaning: t("La parte que pertenece a otros socios.", "The part that belongs to other shareholders.") },
+              { symbol: "Capital de la subsidiaria", meaning: t("Activos menos pasivos de la subsidiaria, en pesos.", "The subsidiary's assets minus liabilities, in pesos.") },
+            ],
+            steps: [
+              t("Calcula el porcentaje de los otros socios: 100% − % de la controladora.", "Compute the other shareholders' percentage: 100% − parent's %."),
+              t("Conviértelo a decimal y multiplícalo por el capital de la subsidiaria.", "Convert it to a decimal and multiply it by the subsidiary's equity."),
+            ],
+            example: t(
+              "Una controladora tiene el 90% de una subsidiaria con capital de $600,000. Otros socios: 100% − 90% = 10%. Participación no controladora: 0.10 × $600,000 = **$60,000**.",
+              "A parent owns 90% of a subsidiary with $600,000 of equity. Other shareholders: 100% − 90% = 10%. Non-controlling interest: 0.10 × $600,000 = **$60,000**.",
+            ),
+            mistake: t(
+              "Multiplicar por el porcentaje de la controladora. Eso da su propia parte, no la de los otros socios.",
+              "Multiplying by the parent's percentage. That gives its own share, not the other shareholders'.",
+            ),
+          },
+          {
+            name: t("Crédito mercantil", "Goodwill"),
+            expression: "Crédito mercantil = Precio pagado − (% adquirido × Activos netos a valor razonable)",
+            variables: [
+              { symbol: "Precio pagado", meaning: t("Lo que la controladora pagó por las acciones, en pesos.", "What the parent paid for the shares, in pesos.") },
+              { symbol: "% adquirido", meaning: t("El porcentaje de la subsidiaria que se compró.", "The percentage of the subsidiary that was bought.") },
+              { symbol: "Activos netos a valor razonable", meaning: t("Activos menos pasivos de la subsidiaria, medidos a precio de mercado, en pesos.", "The subsidiary's assets minus liabilities, measured at market price, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la parte comprada de los activos netos: % adquirido × activos netos a valor razonable.", "Compute the share of net assets bought: % acquired × net assets at fair value."),
+              t("Resta esa parte al precio pagado.", "Subtract that share from the price paid."),
+              t("Si sale positivo, es crédito mercantil (un activo).", "If positive, it is goodwill (an asset)."),
+            ],
+            example: t(
+              "Una empresa paga $680,000 por el 60% de otra con activos netos a valor razonable de $1,000,000. Parte comprada: 0.60 × $1,000,000 = $600,000. Crédito mercantil: $680,000 − $600,000 = **$80,000**.",
+              "A company pays $680,000 for 60% of another with net assets at fair value of $1,000,000. Share bought: 0.60 × $1,000,000 = $600,000. Goodwill: $680,000 − $600,000 = **$80,000**.",
+            ),
+            interpret: t(
+              "El crédito mercantil es lo que se pagó de más por cosas que no se ven por separado: marca, clientes, equipo humano.",
+              "Goodwill is the extra paid for things not seen separately: brand, customers, people.",
+            ),
+            mistake: t(
+              "Comparar el precio con el 100% de los activos netos cuando solo se compró una parte.",
+              "Comparing the price with 100% of net assets when only part was bought.",
+            ),
+          },
+        ],
         bullets: [
           t("Participación no controladora = % de otros socios × capital de la subsidiaria.", "Non-controlling interest = other shareholders' % × subsidiary equity."),
           t("Se consolidan el 100% de activos y pasivos de la subsidiaria, no solo el % propio.", "100% of the subsidiary's assets and liabilities are consolidated, not just the owned %."),

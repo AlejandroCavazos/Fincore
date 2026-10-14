@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
       "Las finanzas corporativas deciden en qué invertir, cómo pagarlo y qué hacer con las ganancias, buscando crear valor sin perder de vista el riesgo ni el efectivo.",
       "Corporate finance decides what to invest in, how to pay for it and what to do with profits, aiming to create value without losing sight of risk or cash.",
     ),
-    minutes: 14,
+    minutes: 15,
     objectives: [
       t("Explicar qué son las finanzas corporativas y cuál es su objetivo principal.", "Explain what corporate finance is and what its main objective is."),
       t("Distinguir las decisiones de inversión, de financiamiento y de dividendos.", "Distinguish investment, financing and dividend decisions."),
@@ -103,7 +103,62 @@ export const lessons: Lesson[] = [
             "Mini example: you buy a share for $100, receive a $3 dividend and sell it for $112. You earned $12 + $3 = $15, that is, a 15% return.",
           ),
         ],
-        formula: "Rendimiento = (Precio final − Precio inicial + Ingresos recibidos) ÷ Precio inicial",
+        formulas: [
+          {
+            name: t("Rendimiento total de una inversión", "Total return on an investment"),
+            expression: "Rendimiento = (Precio final − Precio inicial + Ingresos recibidos) ÷ Precio inicial × 100",
+            variables: [
+              { symbol: "Precio inicial", meaning: t("Lo que pagaste al invertir, en pesos.", "What you paid when investing, in pesos.") },
+              { symbol: "Precio final", meaning: t("En cuánto vendiste (o vale hoy) la inversión, en pesos.", "What you sold the investment for (or what it is worth today), in pesos.") },
+              { symbol: "Ingresos recibidos", meaning: t("Dinero que te dio la inversión mientras la tenías: dividendos, rentas, ganancias parciales. En pesos.", "Money the investment paid you while you held it: dividends, rent, partial gains. In pesos.") },
+              { symbol: "Rendimiento", meaning: t("Lo que ganaste por cada $100 invertidos, en %.", "What you earned per $100 invested, in %.") },
+            ],
+            steps: [
+              t("Calcula la ganancia por precio: precio final − precio inicial.", "Compute the price gain: final price − initial price."),
+              t("Súmale los ingresos recibidos (dividendos, rentas): es la ganancia total.", "Add the income received (dividends, rent): that is the total gain."),
+              t("Divide la ganancia total entre el precio inicial y multiplica por 100 para tenerlo en %.", "Divide the total gain by the initial price and multiply by 100 to get it in %."),
+            ],
+            example: t(
+              "Compras una acción en $200, recibes $4 de dividendo y la vendes en $214. Ganancia por precio: $214 − $200 = $14. Ganancia total: $14 + $4 = $18. Rendimiento: $18 ÷ $200 = 0.09 × 100 = **9 %**.",
+              "You buy a share for $200, receive a $4 dividend and sell it for $214. Price gain: $214 − $200 = $14. Total gain: $14 + $4 = $18. Return: $18 ÷ $200 = 0.09 × 100 = **9%**.",
+            ),
+            interpret: t(
+              "Compáralo con lo que te daría otra opción de riesgo parecido: si otra te da más, esta inversión no fue la mejor.",
+              "Compare it with what another option of similar risk would give: if the other gives more, this investment was not the best.",
+            ),
+            mistake: t(
+              "Olvidar los dividendos o dividir entre el precio de venta en lugar del precio de compra.",
+              "Forgetting the dividends or dividing by the selling price instead of the purchase price.",
+            ),
+          },
+          {
+            name: t("Utilidad contra flujo de efectivo del periodo", "Profit versus cash flow for the period"),
+            expression: "Utilidad = Ventas − Gastos   ·   Flujo de efectivo neto = Efectivo cobrado − Efectivo pagado",
+            variables: [
+              { symbol: "Ventas", meaning: t("Todo lo vendido en el periodo, se haya cobrado o no, en pesos.", "Everything sold in the period, collected or not, in pesos.") },
+              { symbol: "Gastos", meaning: t("Todos los gastos del periodo, en pesos.", "All expenses for the period, in pesos.") },
+              { symbol: "Efectivo cobrado", meaning: t("Solo el dinero que de verdad entró, en pesos (por ejemplo, el % de las ventas que se cobró).", "Only the money that actually came in, in pesos (for example, the % of sales collected).") },
+              { symbol: "Efectivo pagado", meaning: t("Solo el dinero que de verdad salió, en pesos.", "Only the money that actually went out, in pesos.") },
+            ],
+            steps: [
+              t("Calcula la utilidad: ventas − gastos.", "Compute profit: sales − expenses."),
+              t("Calcula lo cobrado. Si te dan un porcentaje, conviértelo a decimal y multiplícalo por las ventas.", "Compute what was collected. If you are given a percentage, convert it to a decimal and multiply it by sales."),
+              t("Calcula el flujo neto: cobrado − pagado. Si sale negativo, ponle signo menos: la caja bajó.", "Compute net cash flow: collected − paid. If it is negative, keep the minus sign: cash went down."),
+            ],
+            example: t(
+              "Una florería vende $90,000, cobra el 70 % y paga en efectivo $75,000 de gastos. Utilidad: $90,000 − $75,000 = $15,000. Cobrado: 0.70 × $90,000 = $63,000. Flujo neto: $63,000 − $75,000 = **−$12,000**.",
+              "A flower shop sells $90,000, collects 70% and pays $75,000 of expenses in cash. Profit: $90,000 − $75,000 = $15,000. Collected: 0.70 × $90,000 = $63,000. Net cash flow: $63,000 − $75,000 = **−$12,000**.",
+            ),
+            interpret: t(
+              "Utilidad positiva con flujo negativo significa que el negocio gana en papel, pero su caja baja: necesita cobrar o tener un colchón para pagar a tiempo.",
+              "Positive profit with negative cash flow means the business earns on paper but its cash drops: it needs to collect or have a cushion to pay on time.",
+            ),
+            mistake: t(
+              "Suponer que el flujo de efectivo es igual a la utilidad.",
+              "Assuming cash flow equals profit.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -157,7 +212,7 @@ export const lessons: Lesson[] = [
       "Las matemáticas financieras te enseñan a calcular intereses: el simple, que se cobra solo sobre el capital, y el compuesto, que también genera intereses sobre los intereses.",
       "Financial mathematics teaches you to compute interest: simple interest, charged only on the principal, and compound interest, which also earns interest on interest.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Usar porcentajes y expresar tasas y plazos en la misma unidad de tiempo.", "Use percentages and express rates and terms in the same time unit."),
       t("Calcular interés simple y monto final.", "Compute simple interest and final amount."),
@@ -180,6 +235,31 @@ export const lessons: Lesson[] = [
             "Regla de oro: **tasa y plazo en la misma unidad**. Si la tasa es anual y el plazo es de 6 meses, usa t = 6/12 = 0.5 años. Mini ejemplo: 2 % mensual durante 1 año son 12 periodos mensuales, no 1.",
             "Golden rule: **rate and term in the same unit**. If the rate is annual and the term is 6 months, use t = 6/12 = 0.5 years. Mini example: 2% per month for 1 year is 12 monthly periods, not 1.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Poner tasa y plazo en la misma unidad", "Putting rate and term in the same unit"),
+            expression: "i (decimal) = tasa en % ÷ 100   ·   t en años = meses ÷ 12   ·   tasa por periodo = tasa anual ÷ periodos por año",
+            variables: [
+              { symbol: "i", meaning: t("La tasa de interés escrita en decimal (12 % = 0.12).", "The interest rate written as a decimal (12% = 0.12).") },
+              { symbol: "t", meaning: t("El plazo, medido en la misma unidad que la tasa (si la tasa es anual, en años).", "The term, measured in the same unit as the rate (if the rate is annual, in years).") },
+              { symbol: "periodos por año", meaning: t("Cuántas veces cabe el periodo en un año: 12 meses, 4 trimestres, 2 semestres.", "How many times the period fits in a year: 12 months, 4 quarters, 2 half-years.") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal dividiendo entre 100: 18 % = 0.18.", "Convert the rate to a decimal by dividing by 100: 18% = 0.18."),
+              t("Fíjate en qué unidad está la tasa (anual, mensual…).", "Check what unit the rate is in (annual, monthly…)."),
+              t("Pasa el plazo a esa misma unidad: si la tasa es anual y el plazo son meses, divide los meses entre 12.", "Convert the term to that same unit: if the rate is annual and the term is in months, divide the months by 12."),
+              t("Si prefieres trabajar por mes, divide la tasa anual entre 12.", "If you prefer to work by month, divide the annual rate by 12."),
+            ],
+            example: t(
+              "Una tasa de 18 % anual por 3 meses: i = 18 ÷ 100 = 0.18; t = 3 ÷ 12 = 0.25 años. O, por mes: 18 % ÷ 12 = 1.5 % mensual = 0.015, durante 3 periodos.",
+              "An 18% annual rate for 3 months: i = 18 ÷ 100 = 0.18; t = 3 ÷ 12 = 0.25 years. Or, by month: 18% ÷ 12 = 1.5% monthly = 0.015, for 3 periods.",
+            ),
+            mistake: t(
+              "Usar el plazo en meses (por ejemplo, t = 6) con una tasa anual: el interés sale 12 veces más grande.",
+              "Using the term in months (for example, t = 6) with an annual rate: interest comes out 12 times too large.",
+            ),
+          },
         ],
         bullets: [
           t("P: capital o principal.", "P: principal."),
@@ -204,7 +284,33 @@ export const lessons: Lesson[] = [
             "Mini example: you lend $50,000 at 12% simple annual interest for 9 months. I = 50,000 × 0.12 × (9/12) = $4,500, and you get back $54,500.",
           ),
         ],
-        formula: "I = P × i × t        M = P × (1 + i × t)",
+        formulas: [
+          {
+            name: t("Interés simple y monto final", "Simple interest and final amount"),
+            expression: "I = P × i × t   ·   M = P + I = P × (1 + i × t)",
+            variables: [
+              { symbol: "I", meaning: t("El interés: lo que se cobra o paga por usar el dinero, en pesos.", "Interest: what is charged or paid for using the money, in pesos.") },
+              { symbol: "P", meaning: t("El capital: el dinero prestado o invertido al inicio, en pesos.", "Principal: the money lent or invested at the start, in pesos.") },
+              { symbol: "i", meaning: t("La tasa de interés en decimal (15 % = 0.15).", "The interest rate as a decimal (15% = 0.15).") },
+              { symbol: "t", meaning: t("El tiempo, en la misma unidad que la tasa (años si la tasa es anual).", "Time, in the same unit as the rate (years if the rate is annual).") },
+              { symbol: "M", meaning: t("El monto final: capital más intereses, en pesos.", "Final amount: principal plus interest, in pesos.") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal.", "Convert the rate to a decimal."),
+              t("Pasa el plazo a la unidad de la tasa (meses ÷ 12 si la tasa es anual).", "Convert the term to the rate's unit (months ÷ 12 if the rate is annual)."),
+              t("Multiplica P × i × t: es el interés.", "Multiply P × i × t: that is the interest."),
+              t("Para el monto final, súmale el interés al capital.", "For the final amount, add the interest to the principal."),
+            ],
+            example: t(
+              "Prestas $40,000 a 18 % anual simple por 3 meses. i = 0.18; t = 3 ÷ 12 = 0.25. I = $40,000 × 0.18 × 0.25 = **$1,800**. M = $40,000 + $1,800 = $41,800.",
+              "You lend $40,000 at 18% simple annual interest for 3 months. i = 0.18; t = 3 ÷ 12 = 0.25. I = $40,000 × 0.18 × 0.25 = **$1,800**. M = $40,000 + $1,800 = $41,800.",
+            ),
+            mistake: t(
+              "Calcular el interés sobre el monto final en lugar del capital original, o dejar el plazo en meses con una tasa anual.",
+              "Computing interest on the final amount instead of the original principal, or leaving the term in months with an annual rate.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Interés compuesto y tasa efectiva", "Compound interest and effective rate"),
@@ -214,15 +320,66 @@ export const lessons: Lesson[] = [
             "With **compound interest**, at the end of each period interest is **added to the principal** (it is \"capitalized\") and earns interest in the next period too. It is \"interest on interest\" and makes money grow faster and faster. Almost all long-term investments and loans work this way.",
           ),
           t(
-            "La **tasa nominal** es la tasa anual que se anuncia, por ejemplo \"12 % anual capitalizable mensualmente\": en realidad cobra 1 % cada mes. La **tasa efectiva** es lo que de verdad ganas o pagas en el año con esa capitalización, y es **mayor** que la nominal cuando se capitaliza más de una vez al año.",
-            "The **nominal rate** is the annual rate announced, for example \"12% per year compounded monthly\": in reality it charges 1% each month. The **effective rate** is what you really earn or pay over the year with that compounding, and it is **higher** than the nominal rate when compounding happens more than once a year.",
+            "En palabras sencillas: la tasa \"de anuncio\" y la que de verdad pagas pueden ser distintas. La **tasa nominal** es la tasa anual que se anuncia, por ejemplo \"12 % anual capitalizable mensualmente\": en realidad cobra 1 % cada mes. La **tasa efectiva** es lo que de verdad ganas o pagas en el año con esa capitalización, y es **mayor** que la nominal cuando se capitaliza más de una vez al año.",
+            "In plain words: the \"advertised\" rate and the one you really pay can differ. The **nominal rate** is the annual rate announced, for example \"12% per year compounded monthly\": in reality it charges 1% each month. The **effective rate** is what you really earn or pay over the year with that compounding, and it is **higher** than the nominal rate when compounding happens more than once a year.",
           ),
           t(
             "Mini ejemplo: con 12 % nominal capitalizable mensualmente, la tasa efectiva anual es (1.01)¹² − 1 ≈ 12.68 %. Por eso en México los bancos informan indicadores anuales que permiten comparar productos, como el **CAT** en créditos o la **GAT** en ahorros.",
             "Mini example: with 12% nominal compounded monthly, the effective annual rate is (1.01)¹² − 1 ≈ 12.68%. That is why banks in Mexico report annual indicators that make products comparable, such as the **CAT** for loans or the **GAT** for savings.",
           ),
         ],
-        formula: "M = P × (1 + i)ⁿ        Tasa efectiva = (1 + i_nominal / m)ᵐ − 1",
+        formulas: [
+          {
+            name: t("Monto con interés compuesto", "Amount with compound interest"),
+            expression: "M = P × (1 + i)ⁿ",
+            variables: [
+              { symbol: "M", meaning: t("El monto final después de todos los periodos, en pesos.", "The final amount after all periods, in pesos.") },
+              { symbol: "P", meaning: t("El capital inicial, en pesos.", "The initial principal, in pesos.") },
+              { symbol: "i", meaning: t("La tasa por periodo, en decimal.", "The rate per period, as a decimal.") },
+              { symbol: "n", meaning: t("El número de periodos (años, meses…) en la misma unidad que la tasa.", "The number of periods (years, months…) in the same unit as the rate.") },
+              { symbol: "(1 + i)ⁿ", meaning: t("Multiplicar (1 + i) por sí mismo n veces. Por ejemplo, (1.07)² = 1.07 × 1.07.", "Multiplying (1 + i) by itself n times. For example, (1.07)² = 1.07 × 1.07.") },
+            ],
+            steps: [
+              t("Convierte la tasa a decimal y súmale 1: 7 % → 1.07.", "Convert the rate to a decimal and add 1: 7% → 1.07."),
+              t("Eleva ese número a n: multiplícalo por sí mismo tantas veces como periodos haya.", "Raise that number to n: multiply it by itself as many times as there are periods."),
+              t("Multiplica el resultado por el capital.", "Multiply the result by the principal."),
+            ],
+            example: t(
+              "Inviertes $25,000 a 7 % anual compuesto por 2 años. 1.07 × 1.07 = 1.1449. M = $25,000 × 1.1449 = **$28,622.50**. Con interés simple serían $25,000 × (1 + 0.07 × 2) = $28,500: el compuesto da $122.50 más.",
+              "You invest $25,000 at 7% compounded annually for 2 years. 1.07 × 1.07 = 1.1449. M = $25,000 × 1.1449 = **$28,622.50**. With simple interest it would be $25,000 × (1 + 0.07 × 2) = $28,500: compound gives $122.50 more.",
+            ),
+            mistake: t(
+              "Elevar solo la tasa (0.07²) en lugar de (1 + 0.07)², o usar la fórmula del interés simple.",
+              "Raising only the rate (0.07²) instead of (1 + 0.07)², or using the simple interest formula.",
+            ),
+          },
+          {
+            name: t("Tasa efectiva anual", "Effective annual rate"),
+            expression: "Tasa efectiva = (1 + i_nominal ÷ m)ᵐ − 1",
+            variables: [
+              { symbol: "i_nominal", meaning: t("La tasa anual anunciada, en decimal.", "The advertised annual rate, as a decimal.") },
+              { symbol: "m", meaning: t("Cuántas veces al año se capitalizan los intereses: 12 si es mensual, 4 si es trimestral.", "How many times a year interest is compounded: 12 if monthly, 4 if quarterly.") },
+              { symbol: "Tasa efectiva", meaning: t("Lo que de verdad ganas o pagas en un año, en %.", "What you really earn or pay in a year, in %.") },
+            ],
+            steps: [
+              t("Divide la tasa nominal entre m: es la tasa de cada periodo.", "Divide the nominal rate by m: that is the rate for each period."),
+              t("Súmale 1 y elévalo a la m.", "Add 1 and raise it to the power m."),
+              t("Réstale 1 y multiplica por 100 para expresarlo en %.", "Subtract 1 and multiply by 100 to express it in %."),
+            ],
+            example: t(
+              "12 % anual capitalizable cada trimestre: 0.12 ÷ 4 = 0.03 por trimestre. (1.03)⁴ = 1.125509. Tasa efectiva: 1.125509 − 1 = 0.125509 ≈ **12.55 %**.",
+              "12% per year compounded quarterly: 0.12 ÷ 4 = 0.03 per quarter. (1.03)⁴ = 1.125509. Effective rate: 1.125509 − 1 = 0.125509 ≈ **12.55%**.",
+            ),
+            interpret: t(
+              "Entre más veces al año se capitaliza, más se aleja la efectiva de la nominal. Para comparar dos ofertas, compara siempre tasas efectivas.",
+              "The more times a year interest compounds, the further the effective rate moves from the nominal one. To compare two offers, always compare effective rates.",
+            ),
+            mistake: t(
+              "Comparar tasas nominales con distinta capitalización como si fueran iguales.",
+              "Comparing nominal rates with different compounding as if they were the same.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -281,7 +438,7 @@ export const lessons: Lesson[] = [
       "Un peso hoy vale más que un peso mañana; por eso, para comparar cantidades de fechas distintas, se llevan todas a la misma fecha con valor futuro o valor presente.",
       "A peso today is worth more than a peso tomorrow; so, to compare amounts on different dates, you bring them all to the same date using future value or present value.",
     ),
-    minutes: 16,
+    minutes: 17,
     objectives: [
       t("Explicar por qué el dinero tiene un valor distinto según la fecha.", "Explain why money has a different value depending on the date."),
       t("Calcular el valor futuro y el valor presente de una cantidad.", "Compute the future value and the present value of an amount."),
@@ -327,7 +484,58 @@ export const lessons: Lesson[] = [
             "Two useful rules: the **higher the discount rate**, the **lower** the present value; and the **more years** of waiting, the **lower** the present value too. Mini example: $11,000 a year from now, at 10%, is worth 11,000 ÷ 1.10 = $10,000 today.",
           ),
         ],
-        formula: "VF = VP × (1 + i)ⁿ        VP = VF ÷ (1 + i)ⁿ",
+        formulas: [
+          {
+            name: t("Valor futuro (llevar dinero hacia adelante)", "Future value (moving money forward)"),
+            expression: "VF = VP × (1 + i)ⁿ",
+            variables: [
+              { symbol: "VF", meaning: t("Valor futuro: cuánto tendrás al final, en pesos.", "Future value: how much you will have at the end, in pesos.") },
+              { symbol: "VP", meaning: t("Valor presente: el dinero que tienes hoy, en pesos.", "Present value: the money you have today, in pesos.") },
+              { symbol: "i", meaning: t("La tasa por periodo, en decimal.", "The rate per period, as a decimal.") },
+              { symbol: "n", meaning: t("El número de periodos (por ejemplo, años).", "The number of periods (for example, years).") },
+            ],
+            steps: [
+              t("Súmale 1 a la tasa en decimal: 5 % → 1.05.", "Add 1 to the rate as a decimal: 5% → 1.05."),
+              t("Elévalo a n multiplicándolo por sí mismo n veces.", "Raise it to n by multiplying it by itself n times."),
+              t("Multiplica el resultado por el valor presente.", "Multiply the result by the present value."),
+            ],
+            example: t(
+              "Ahorras $8,000 a 5 % anual compuesto por 3 años. 1.05 × 1.05 × 1.05 = 1.157625. VF = $8,000 × 1.157625 = **$9,261.00**.",
+              "You save $8,000 at 5% compounded annually for 3 years. 1.05 × 1.05 × 1.05 = 1.157625. FV = $8,000 × 1.157625 = **$9,261.00**.",
+            ),
+            mistake: t(
+              "Usar interés simple (sumar 5 % tres veces = 15 %) en lugar de compuesto.",
+              "Using simple interest (adding 5% three times = 15%) instead of compound.",
+            ),
+          },
+          {
+            name: t("Valor presente (traer dinero a hoy)", "Present value (bringing money to today)"),
+            expression: "VP = VF ÷ (1 + i)ⁿ",
+            variables: [
+              { symbol: "VP", meaning: t("Lo que vale hoy un monto que recibirás después, en pesos.", "What an amount you will receive later is worth today, in pesos.") },
+              { symbol: "VF", meaning: t("El monto que recibirás en el futuro, en pesos.", "The amount you will receive in the future, in pesos.") },
+              { symbol: "i", meaning: t("La tasa de descuento por periodo (lo que podrías ganar en otra opción), en decimal.", "The discount rate per period (what you could earn elsewhere), as a decimal.") },
+              { symbol: "n", meaning: t("Cuántos periodos faltan para recibir el dinero.", "How many periods remain until you receive the money.") },
+            ],
+            steps: [
+              t("Calcula el factor (1 + i)ⁿ.", "Compute the factor (1 + i)ⁿ."),
+              t("Divide el monto futuro entre ese factor.", "Divide the future amount by that factor."),
+              t("Si comparas opciones, compara los valores presentes, ya en la misma fecha (hoy).", "If comparing options, compare the present values, now on the same date (today)."),
+            ],
+            example: t(
+              "Te pagarán $15,000 dentro de 3 años y tu tasa es 8 % anual. (1.08)³ = 1.259712. VP = $15,000 ÷ 1.259712 ≈ **$11,907.48**.",
+              "You will be paid $15,000 in 3 years and your rate is 8% a year. (1.08)³ = 1.259712. PV = $15,000 ÷ 1.259712 ≈ **$11,907.48**.",
+            ),
+            interpret: t(
+              "El valor presente siempre es menor que el monto futuro (con tasa positiva). Entre más alta la tasa o más lejos el pago, menor el valor presente.",
+              "Present value is always less than the future amount (with a positive rate). The higher the rate or the further away the payment, the lower the present value.",
+            ),
+            mistake: t(
+              "Multiplicar en lugar de dividir, o restar un porcentaje simple (por ejemplo, quitar 24 %) en vez de dividir entre el factor.",
+              "Multiplying instead of dividing, or subtracting a simple percentage (for example, removing 24%) instead of dividing by the factor.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Anualidades: series de pagos iguales", "Annuities: series of equal payments"),
@@ -345,7 +553,35 @@ export const lessons: Lesson[] = [
             "Mini example: 3 payments of $10,000 at the end of each year, at 10%: 9,090.91 + 8,264.46 + 7,513.15 = $24,868.52. Note it is worth less than the $30,000 the undiscounted payments add up to.",
           ),
         ],
-        formula: "VP anualidad = Pago × [1 − (1 + i)⁻ⁿ] ÷ i",
+        formulas: [
+          {
+            name: t("Valor presente de una anualidad (pagos iguales al final de cada periodo)", "Present value of an annuity (equal payments at the end of each period)"),
+            expression: "VP anualidad = Pago × [1 − (1 + i)⁻ⁿ] ÷ i",
+            variables: [
+              { symbol: "Pago", meaning: t("El monto de cada pago igual, en pesos.", "The amount of each equal payment, in pesos.") },
+              { symbol: "i", meaning: t("La tasa por periodo, en decimal (mismo periodo que los pagos).", "The rate per period, as a decimal (same period as the payments).") },
+              { symbol: "n", meaning: t("El número de pagos.", "The number of payments.") },
+              { symbol: "(1 + i)⁻ⁿ", meaning: t("Es 1 ÷ (1 + i)ⁿ: lo que vale hoy $1 que recibirás en el último periodo.", "It is 1 ÷ (1 + i)ⁿ: what $1 received in the last period is worth today.") },
+            ],
+            steps: [
+              t("Calcula (1 + i)ⁿ y luego 1 ÷ ese número: es (1 + i)⁻ⁿ.", "Compute (1 + i)ⁿ and then 1 ÷ that number: that is (1 + i)⁻ⁿ."),
+              t("Réstale ese resultado a 1 y divide entre i: es el factor de anualidad.", "Subtract that result from 1 and divide by i: that is the annuity factor."),
+              t("Multiplica el pago por el factor.", "Multiply the payment by the factor."),
+            ],
+            example: t(
+              "5 pagos anuales de $2,000 al 6 %. (1.06)⁵ ≈ 1.338226, así que (1.06)⁻⁵ ≈ 0.747258. Factor: (1 − 0.747258) ÷ 0.06 ≈ 4.212364. VP = $2,000 × 4.212364 ≈ **$8,424.73**.",
+              "5 annual payments of $2,000 at 6%. (1.06)⁵ ≈ 1.338226, so (1.06)⁻⁵ ≈ 0.747258. Factor: (1 − 0.747258) ÷ 0.06 ≈ 4.212364. PV = $2,000 × 4.212364 ≈ **$8,424.73**.",
+            ),
+            interpret: t(
+              "El resultado siempre es menor que la suma simple de los pagos ($10,000 en el ejemplo), porque los pagos lejanos valen menos hoy.",
+              "The result is always less than the simple sum of the payments ($10,000 in the example), because distant payments are worth less today.",
+            ),
+            mistake: t(
+              "Usar una tasa anual con pagos mensuales. Si los pagos son mensuales, la tasa y n también deben ser mensuales.",
+              "Using an annual rate with monthly payments. If the payments are monthly, the rate and n must be monthly too.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -403,7 +639,7 @@ export const lessons: Lesson[] = [
       "Analizar estados financieros es convertir sus cifras en historias: con el análisis vertical ves el peso de cada partida y con el horizontal cómo cambió de un año a otro.",
       "Analyzing financial statements turns their figures into stories: vertical analysis shows the weight of each item and horizontal analysis shows how it changed from one year to the next.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Identificar qué pregunta responde cada estado financiero básico.", "Identify which question each basic financial statement answers."),
       t("Aplicar el análisis vertical (porcentajes integrales).", "Apply vertical analysis (common-size percentages)."),
@@ -450,7 +686,30 @@ export const lessons: Lesson[] = [
             "Mini example: sales $500,000, cost of sales $300,000. Cost / sales = 60%: of each peso sold, 60 cents go to the cost of the goods.",
           ),
         ],
-        formula: "Porcentaje integral = Partida ÷ Cifra base × 100",
+        formulas: [
+          {
+            name: t("Porcentaje integral (análisis vertical)", "Common-size percentage (vertical analysis)"),
+            expression: "Porcentaje integral = Partida ÷ Cifra base × 100",
+            variables: [
+              { symbol: "Partida", meaning: t("La cifra que quieres analizar (costo de ventas, inventarios, utilidad bruta…), en pesos.", "The figure you want to analyze (cost of sales, inventory, gross profit…), in pesos.") },
+              { symbol: "Cifra base", meaning: t("Ventas, si es el estado de resultados; activo total, si es el balance. En pesos.", "Sales, for the income statement; total assets, for the balance sheet. In pesos.") },
+              { symbol: "Porcentaje integral", meaning: t("Qué parte de la base representa la partida, en %.", "What share of the base the item represents, in %.") },
+            ],
+            steps: [
+              t("Elige la base: ventas en el estado de resultados o activo total en el balance.", "Choose the base: sales on the income statement or total assets on the balance sheet."),
+              t("Si la partida es una utilidad, calcúlala primero (por ejemplo, utilidad bruta = ventas − costo de ventas).", "If the item is a profit, compute it first (for example, gross profit = sales − cost of sales)."),
+              t("Divide la partida entre la base y multiplica por 100.", "Divide the item by the base and multiply by 100."),
+            ],
+            example: t(
+              "Una tienda de mascotas vende $360,000 y tiene gastos de operación de $72,000. $72,000 ÷ $360,000 = 0.20 × 100 = **20 %**: de cada peso vendido, 20 centavos se van en gastos de operación.",
+              "A pet store sells $360,000 and has operating expenses of $72,000. $72,000 ÷ $360,000 = 0.20 × 100 = **20%**: of each peso sold, 20 cents go to operating expenses.",
+            ),
+            mistake: t(
+              "Dividir al revés (base ÷ partida) o usar como base el costo de ventas en lugar de las ventas.",
+              "Dividing the other way around (base ÷ item) or using cost of sales as the base instead of sales.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Análisis horizontal e interpretación", "Horizontal analysis and interpretation"),
@@ -468,7 +727,34 @@ export const lessons: Lesson[] = [
             "Mini example: sales from $400,000 to $460,000 (+15%) and operating expenses from $80,000 to $100,000 (+25%). Expenses grow faster than sales: it is worth reviewing what the money is being spent on.",
           ),
         ],
-        formula: "Variación % = (Año actual − Año anterior) ÷ Año anterior × 100",
+        formulas: [
+          {
+            name: t("Variación entre años (análisis horizontal)", "Year-over-year change (horizontal analysis)"),
+            expression: "Variación en pesos = Año actual − Año anterior   ·   Variación % = (Año actual − Año anterior) ÷ Año anterior × 100",
+            variables: [
+              { symbol: "Año actual", meaning: t("El valor de la partida en el periodo más reciente, en pesos.", "The item's value in the most recent period, in pesos.") },
+              { symbol: "Año anterior", meaning: t("El valor de la misma partida en el periodo anterior (la base), en pesos.", "The same item's value in the previous period (the base), in pesos.") },
+              { symbol: "Variación %", meaning: t("Cuánto creció (positivo) o bajó (negativo), en %.", "How much it grew (positive) or fell (negative), in %.") },
+            ],
+            steps: [
+              t("Resta: año actual − año anterior. Es la variación en pesos.", "Subtract: current year − previous year. That is the change in pesos."),
+              t("Divide esa diferencia entre el año anterior.", "Divide that difference by the previous year."),
+              t("Multiplica por 100 para tenerlo en %.", "Multiply by 100 to get it in %."),
+            ],
+            example: t(
+              "Las ventas de una tortillería pasaron de $250,000 a $290,000. Variación: $290,000 − $250,000 = $40,000. $40,000 ÷ $250,000 = 0.16 × 100 = **16 %** de aumento.",
+              "A tortilla shop's sales went from $250,000 to $290,000. Change: $290,000 − $250,000 = $40,000. $40,000 ÷ $250,000 = 0.16 × 100 = **16%** increase.",
+            ),
+            interpret: t(
+              "Compara ritmos: si una partida de riesgo (clientes, gastos) crece más rápido que las ventas, es una señal para investigar.",
+              "Compare paces: if a risky item (receivables, expenses) grows faster than sales, it is a sign to investigate.",
+            ),
+            mistake: t(
+              "Dividir entre el año actual en lugar del año anterior.",
+              "Dividing by the current year instead of the previous year.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -527,7 +813,7 @@ export const lessons: Lesson[] = [
       "Las razones financieras dividen una cifra entre otra para medir, de forma rápida, la liquidez, el endeudamiento, la eficiencia y la rentabilidad de una empresa.",
       "Financial ratios divide one figure by another to quickly measure a company's liquidity, leverage, efficiency and profitability.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Calcular e interpretar razones de liquidez: circulante y prueba ácida.", "Compute and interpret liquidity ratios: current ratio and quick ratio."),
       t("Calcular e interpretar razones de endeudamiento.", "Compute and interpret leverage ratios."),
@@ -551,7 +837,53 @@ export const lessons: Lesson[] = [
             "The **quick ratio** (acid test) is stricter: it removes **inventory**, because selling it may take time. Mini example: current assets $300,000, inventory $120,000, current liabilities $150,000. Current ratio = 2.0; quick ratio = (300,000 − 120,000) ÷ 150,000 = 1.2.",
           ),
         ],
-        formula: "Razón circulante = AC ÷ PC        Prueba ácida = (AC − Inventarios) ÷ PC",
+        formulas: [
+          {
+            name: t("Razón circulante", "Current ratio"),
+            expression: "Razón circulante = AC ÷ PC",
+            variables: [
+              { symbol: "AC", meaning: t("Activo circulante: efectivo, clientes e inventarios (lo que se vuelve dinero en menos de un año), en pesos.", "Current assets: cash, receivables and inventory (what turns into money within a year), in pesos.") },
+              { symbol: "PC", meaning: t("Pasivo circulante: lo que se debe pagar en menos de un año, en pesos.", "Current liabilities: what must be paid within a year, in pesos.") },
+            ],
+            steps: [
+              t("Toma el activo circulante total.", "Take total current assets."),
+              t("Divídelo entre el pasivo circulante. El resultado se lee en \"veces\".", "Divide it by current liabilities. The result is read in \"times\"."),
+            ],
+            example: t(
+              "Una farmacia tiene AC de $360,000 y PC de $200,000. Razón circulante: $360,000 ÷ $200,000 = **1.8 veces**: $1.80 por cada $1 que vence pronto.",
+              "A pharmacy has CA of $360,000 and CL of $200,000. Current ratio: $360,000 ÷ $200,000 = **1.8 times**: $1.80 for each $1 coming due soon.",
+            ),
+            interpret: t(
+              "Menor que 1: no alcanza para pagar lo que vence pronto. Muy alto tampoco es siempre bueno: puede haber dinero o inventario ocioso.",
+              "Below 1: not enough to pay what comes due soon. Very high is not always good either: there may be idle cash or inventory.",
+            ),
+          },
+          {
+            name: t("Prueba ácida", "Quick ratio (acid test)"),
+            expression: "Prueba ácida = (AC − Inventarios) ÷ PC",
+            variables: [
+              { symbol: "AC", meaning: t("Activo circulante, en pesos.", "Current assets, in pesos.") },
+              { symbol: "Inventarios", meaning: t("Mercancía en bodega; se quita porque venderla puede tardar. En pesos.", "Goods in stock; removed because selling them may take time. In pesos.") },
+              { symbol: "PC", meaning: t("Pasivo circulante, en pesos.", "Current liabilities, in pesos.") },
+            ],
+            steps: [
+              t("Resta los inventarios al activo circulante.", "Subtract inventory from current assets."),
+              t("Divide el resultado entre el pasivo circulante.", "Divide the result by current liabilities."),
+            ],
+            example: t(
+              "La misma farmacia tiene $150,000 de inventario. ($360,000 − $150,000) ÷ $200,000 = $210,000 ÷ $200,000 = **1.05 veces**.",
+              "The same pharmacy has $150,000 of inventory. ($360,000 − $150,000) ÷ $200,000 = $210,000 ÷ $200,000 = **1.05 times**.",
+            ),
+            interpret: t(
+              "Si es menor que 1, la empresa depende de vender su mercancía para pagar sus deudas próximas.",
+              "If it is below 1, the company depends on selling its goods to pay its upcoming debts.",
+            ),
+            mistake: t(
+              "Restar el inventario al pasivo en lugar de al activo circulante.",
+              "Subtracting inventory from liabilities instead of from current assets.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Endeudamiento: ¿quién financia a la empresa?", "Leverage: who finances the company?"),
@@ -569,7 +901,33 @@ export const lessons: Lesson[] = [
             "Mini example: total assets $800,000 and total liabilities $320,000. Debt ratio = 320,000 ÷ 800,000 = 40%; liabilities/equity = 320,000 ÷ 480,000 ≈ 0.67.",
           ),
         ],
-        formula: "Endeudamiento = Pasivo total ÷ Activo total",
+        formulas: [
+          {
+            name: t("Razón de endeudamiento", "Debt ratio"),
+            expression: "Endeudamiento = Pasivo total ÷ Activo total × 100",
+            variables: [
+              { symbol: "Pasivo total", meaning: t("Todo lo que la empresa debe, a corto y largo plazo, en pesos.", "Everything the company owes, short and long term, in pesos.") },
+              { symbol: "Activo total", meaning: t("Todo lo que la empresa tiene, en pesos.", "Everything the company has, in pesos.") },
+              { symbol: "Endeudamiento", meaning: t("Qué parte de los activos se pagó con deuda, en %.", "What share of the assets was paid for with debt, in %.") },
+            ],
+            steps: [
+              t("Divide el pasivo total entre el activo total.", "Divide total liabilities by total assets."),
+              t("Multiplica por 100 para tenerlo en %.", "Multiply by 100 to get it in %."),
+            ],
+            example: t(
+              "Una constructora tiene activo total de $1,000,000 y pasivo total de $550,000. $550,000 ÷ $1,000,000 = 0.55 × 100 = **55 %**: de cada $100 de activos, $55 se financiaron con deuda.",
+              "A builder has total assets of $1,000,000 and total liabilities of $550,000. $550,000 ÷ $1,000,000 = 0.55 × 100 = **55%**: of every $100 of assets, $55 was financed with debt.",
+            ),
+            interpret: t(
+              "Entre más alto, más riesgo: hay que pagar intereses aunque bajen las ventas. Lo que falta para 100 % es lo que pusieron los dueños.",
+              "The higher it is, the more risk: interest must be paid even if sales fall. What is left to 100% is what the owners put in.",
+            ),
+            mistake: t(
+              "Dividir entre el capital contable: eso es otra razón (pasivo ÷ capital), no el endeudamiento sobre activos.",
+              "Dividing by equity: that is a different ratio (liabilities ÷ equity), not the debt-to-assets ratio.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Rentabilidad y actividad", "Profitability and activity"),
@@ -586,6 +944,61 @@ export const lessons: Lesson[] = [
             "Una razón sola no basta: compárala con **años anteriores** y con **empresas del mismo giro**. Mini ejemplo: utilidad neta $60,000, ventas $600,000, activo $500,000, capital $300,000 → margen 10 %, ROA 12 %, ROE 20 %.",
             "A ratio alone is not enough: compare it with **prior years** and with **companies in the same line of business**. Mini example: net income $60,000, sales $600,000, assets $500,000, equity $300,000 → margin 10%, ROA 12%, ROE 20%.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Margen neto, ROA y ROE", "Net margin, ROA and ROE"),
+            expression: "Margen neto = Utilidad neta ÷ Ventas × 100   ·   ROA = Utilidad neta ÷ Activo total × 100   ·   ROE = Utilidad neta ÷ Capital contable × 100",
+            variables: [
+              { symbol: "Utilidad neta", meaning: t("Lo que ganó la empresa al final, después de todo, en pesos.", "What the company earned in the end, after everything, in pesos.") },
+              { symbol: "Ventas", meaning: t("Lo vendido en el periodo, en pesos.", "What was sold in the period, in pesos.") },
+              { symbol: "Activo total", meaning: t("Todo lo que tiene la empresa, en pesos.", "Everything the company has, in pesos.") },
+              { symbol: "Capital contable", meaning: t("Lo que pusieron y han dejado los dueños en la empresa, en pesos.", "What the owners have put and left in the company, in pesos.") },
+              { symbol: "ROA / ROE", meaning: t("Rendimiento sobre activos / rendimiento sobre capital, en %.", "Return on assets / return on equity, in %.") },
+            ],
+            steps: [
+              t("Usa siempre la utilidad neta arriba de la división.", "Always put net income on top of the division."),
+              t("Divide entre la base que corresponde: ventas para el margen, activo total para el ROA, capital contable para el ROE.", "Divide by the matching base: sales for margin, total assets for ROA, equity for ROE."),
+              t("Multiplica cada resultado por 100 para tenerlo en %.", "Multiply each result by 100 to get it in %."),
+            ],
+            example: t(
+              "Una cafetería: utilidad neta $54,000, ventas $900,000, activo $600,000, capital $360,000. Margen: $54,000 ÷ $900,000 = **6 %**. ROA: $54,000 ÷ $600,000 = **9 %**. ROE: $54,000 ÷ $360,000 = **15 %**.",
+              "A coffee shop: net income $54,000, sales $900,000, assets $600,000, equity $360,000. Margin: $54,000 ÷ $900,000 = **6%**. ROA: $54,000 ÷ $600,000 = **9%**. ROE: $54,000 ÷ $360,000 = **15%**.",
+            ),
+            interpret: t(
+              "Margen: cuántos centavos quedan de cada peso vendido. ROA: cuánto rinden todos los recursos. ROE: cuánto ganan los dueños por su dinero; si es mayor que el ROA, parte de los activos se financia con deuda.",
+              "Margin: how many cents remain from each peso sold. ROA: how much all the resources yield. ROE: how much owners earn on their money; if it is higher than ROA, part of the assets is financed with debt.",
+            ),
+            mistake: t(
+              "Calcular el ROE dividiendo entre el activo total en lugar del capital contable.",
+              "Computing ROE by dividing by total assets instead of equity.",
+            ),
+          },
+          {
+            name: t("Días de cobro", "Days sales outstanding"),
+            expression: "Días de cobro = Cuentas por cobrar ÷ Ventas a crédito × 360",
+            variables: [
+              { symbol: "Cuentas por cobrar", meaning: t("Lo que te deben tus clientes al cierre, en pesos.", "What your customers owe you at the close, in pesos.") },
+              { symbol: "Ventas a crédito", meaning: t("Las ventas del año que se hicieron a crédito, en pesos.", "The year's sales made on credit, in pesos.") },
+              { symbol: "360", meaning: t("Los días del año que se usan por convención (algunos analistas usan 365).", "The days in the year used by convention (some analysts use 365).") },
+            ],
+            steps: [
+              t("Divide las cuentas por cobrar entre las ventas a crédito.", "Divide accounts receivable by credit sales."),
+              t("Multiplica el resultado por 360: son los días que en promedio tardan en pagarte.", "Multiply the result by 360: that is the average number of days customers take to pay you."),
+            ],
+            example: t(
+              "Una imprenta tiene $60,000 por cobrar y vendió $600,000 a crédito en el año. $60,000 ÷ $600,000 = 0.10; 0.10 × 360 = **36 días**.",
+              "A print shop has $60,000 receivable and sold $600,000 on credit during the year. $60,000 ÷ $600,000 = 0.10; 0.10 × 360 = **36 days**.",
+            ),
+            interpret: t(
+              "Compáralo con el plazo que das: si das 30 días de crédito y el resultado es 36, tus clientes se están atrasando.",
+              "Compare it with the term you give: if you give 30 days of credit and the result is 36, your customers are paying late.",
+            ),
+            mistake: t(
+              "Dividir al revés (ventas ÷ cuentas por cobrar): eso da la rotación de cuentas por cobrar, no los días.",
+              "Dividing the other way (sales ÷ receivables): that gives receivables turnover, not days.",
+            ),
+          },
         ],
         bullets: [
           t("Margen neto = Utilidad neta ÷ Ventas.", "Net margin = Net income ÷ Sales."),
@@ -648,7 +1061,7 @@ export const lessons: Lesson[] = [
       "Administrar el capital de trabajo es manejar efectivo, cobranza, inventarios y proveedores para que el negocio opere sin quedarse sin dinero y sin tener recursos ociosos.",
       "Managing working capital means handling cash, collections, inventory and suppliers so the business operates without running out of money and without idle resources.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Calcular el capital de trabajo y explicar qué significa.", "Compute working capital and explain what it means."),
       t("Calcular el ciclo de conversión del efectivo.", "Compute the cash conversion cycle."),
@@ -671,7 +1084,33 @@ export const lessons: Lesson[] = [
             "Careful: **more is not always better**. A huge working capital may mean inventory that does not sell or customers who do not pay: \"sleeping\" money that earns nothing. Mini example: current assets $500,000 and current liabilities $320,000 → working capital of $180,000.",
           ),
         ],
-        formula: "Capital de trabajo neto = Activo circulante − Pasivo circulante",
+        formulas: [
+          {
+            name: t("Capital de trabajo neto", "Net working capital"),
+            expression: "Capital de trabajo neto = Activo circulante − Pasivo circulante",
+            variables: [
+              { symbol: "Activo circulante", meaning: t("Efectivo, clientes e inventarios, en pesos.", "Cash, receivables and inventory, in pesos.") },
+              { symbol: "Pasivo circulante", meaning: t("Lo que se debe pagar en menos de un año: proveedores, sueldos por pagar, préstamos que vencen este año. En pesos.", "What must be paid within a year: suppliers, wages payable, loans due this year. In pesos.") },
+            ],
+            steps: [
+              t("Suma todo el activo circulante.", "Add up all current assets."),
+              t("Suma todo el pasivo circulante.", "Add up all current liabilities."),
+              t("Resta: activo circulante − pasivo circulante. El resultado va en pesos.", "Subtract: current assets − current liabilities. The result is in pesos."),
+            ],
+            example: t(
+              "Una lavandería tiene activo circulante de $420,000 y pasivo circulante de $300,000. Capital de trabajo neto: $420,000 − $300,000 = **$120,000**.",
+              "A laundry has current assets of $420,000 and current liabilities of $300,000. Net working capital: $420,000 − $300,000 = **$120,000**.",
+            ),
+            interpret: t(
+              "Positivo: hay colchón para operar. Negativo: la empresa depende de cobrar o vender rápido, o de pedir prestado.",
+              "Positive: there is a cushion to operate. Negative: the company depends on collecting or selling fast, or on borrowing.",
+            ),
+            mistake: t(
+              "Dividir en lugar de restar: la división es la razón circulante (en veces), no el capital de trabajo (en pesos).",
+              "Dividing instead of subtracting: the division is the current ratio (in times), not working capital (in pesos).",
+            ),
+          },
+        ],
       },
       {
         heading: t("El ciclo de conversión del efectivo", "The cash conversion cycle"),
@@ -689,7 +1128,60 @@ export const lessons: Lesson[] = [
             "The **shorter** the cycle, the less money you need to operate. Mini example: 60 days of inventory + 45 of collection − 30 of payment = 75 days the company must finance with its own money or with loans.",
           ),
         ],
-        formula: "CCE = Días de inventario + Días de cobro − Días de pago",
+        formulas: [
+          {
+            name: t("Días de inventario, de cobro y de pago", "Days of inventory, collection and payment"),
+            expression: "Días de inventario = Inventario ÷ Costo de ventas × 360   ·   Días de cobro = Cuentas por cobrar ÷ Ventas a crédito × 360   ·   Días de pago = Proveedores ÷ Compras (o costo de ventas) × 360",
+            variables: [
+              { symbol: "Inventario", meaning: t("Mercancía en bodega al cierre, en pesos.", "Goods in stock at the close, in pesos.") },
+              { symbol: "Costo de ventas", meaning: t("Lo que costó la mercancía vendida en el año, en pesos.", "What the goods sold during the year cost, in pesos.") },
+              { symbol: "Cuentas por cobrar", meaning: t("Lo que te deben los clientes, en pesos.", "What customers owe you, in pesos.") },
+              { symbol: "Ventas a crédito", meaning: t("Ventas del año hechas a crédito, en pesos.", "The year's credit sales, in pesos.") },
+              { symbol: "Proveedores", meaning: t("Lo que tú debes a tus proveedores, en pesos.", "What you owe your suppliers, in pesos.") },
+              { symbol: "Compras", meaning: t("Lo que compraste en el año; si no se da, se usa el costo de ventas. En pesos.", "What you bought during the year; if not given, cost of sales is used. In pesos.") },
+              { symbol: "360", meaning: t("Días del año por convención.", "Days in the year by convention.") },
+            ],
+            steps: [
+              t("Para cada uno, divide el saldo (inventario, clientes o proveedores) entre su cifra anual que le corresponde.", "For each one, divide the balance (inventory, receivables or payables) by its matching annual figure."),
+              t("Multiplica por 360 para pasarlo a días.", "Multiply by 360 to turn it into days."),
+              t("Usa costo de ventas para inventario y proveedores, y ventas a crédito para clientes.", "Use cost of sales for inventory and payables, and credit sales for receivables."),
+            ],
+            example: t(
+              "Una zapatería: inventario $45,000, costo de ventas $540,000, clientes $80,000, ventas a crédito $720,000, proveedores $60,000. Inventario: $45,000 ÷ $540,000 × 360 = **30 días**. Cobro: $80,000 ÷ $720,000 × 360 = **40 días**. Pago: $60,000 ÷ $540,000 × 360 = **40 días**.",
+              "A shoe store: inventory $45,000, cost of sales $540,000, receivables $80,000, credit sales $720,000, payables $60,000. Inventory: $45,000 ÷ $540,000 × 360 = **30 days**. Collection: $80,000 ÷ $720,000 × 360 = **40 days**. Payment: $60,000 ÷ $540,000 × 360 = **40 days**.",
+            ),
+            mistake: t(
+              "Calcular los días de inventario con las ventas en lugar del costo de ventas: salen menos días de los reales.",
+              "Computing inventory days with sales instead of cost of sales: you get fewer days than the real ones.",
+            ),
+          },
+          {
+            name: t("Ciclo de conversión del efectivo (CCE)", "Cash conversion cycle (CCC)"),
+            expression: "CCE = Días de inventario + Días de cobro − Días de pago",
+            variables: [
+              { symbol: "Días de inventario", meaning: t("Cuánto tarda en venderse la mercancía.", "How long goods take to sell.") },
+              { symbol: "Días de cobro", meaning: t("Cuánto tardan los clientes en pagarte.", "How long customers take to pay you.") },
+              { symbol: "Días de pago", meaning: t("Cuánto tardas tú en pagar a tus proveedores.", "How long you take to pay your suppliers.") },
+              { symbol: "CCE", meaning: t("Días que tu dinero pasa \"atrapado\" en la operación.", "Days your money stays \"trapped\" in operations.") },
+            ],
+            steps: [
+              t("Suma los días de inventario y los días de cobro.", "Add days of inventory and days of collection."),
+              t("Resta los días de pago: es el tiempo que el proveedor te financia gratis.", "Subtract days of payment: that is the time the supplier finances you for free."),
+            ],
+            example: t(
+              "Una tienda tarda 50 días en vender, 30 en cobrar y paga a 20 días. CCE = 50 + 30 − 20 = **60 días**.",
+              "A store takes 50 days to sell, 30 to collect and pays in 20 days. CCC = 50 + 30 − 20 = **60 days**.",
+            ),
+            interpret: t(
+              "Entre más corto, menos dinero propio o prestado necesitas para operar. Si es negativo, tus proveedores financian toda tu operación.",
+              "The shorter it is, the less own or borrowed money you need to operate. If it is negative, your suppliers finance your whole operation.",
+            ),
+            mistake: t(
+              "Sumar los días de pago en lugar de restarlos.",
+              "Adding the days of payment instead of subtracting them.",
+            ),
+          },
+        ],
         bullets: [
           t("Días de inventario = Inventario ÷ Costo de ventas × 360.", "Days of inventory = Inventory ÷ Cost of sales × 360."),
           t("Días de cobro = Cuentas por cobrar ÷ Ventas a crédito × 360.", "Days of collection = Accounts receivable ÷ Credit sales × 360."),
