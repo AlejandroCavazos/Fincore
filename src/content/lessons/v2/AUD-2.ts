@@ -49,7 +49,7 @@ export const lessons: Lesson[] = [
       "Evaluar riesgos empresariales es identificar qué podría impedir que el negocio logre sus metas, medir qué tan probable y qué tan grave sería, y decidir qué hacer con cada riesgo según el apetito de riesgo de la empresa.",
       "Assessing enterprise risks means identifying what could stop the business from reaching its goals, measuring how likely and how serious it would be, and deciding what to do with each risk according to the company's risk appetite.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar qué es un riesgo empresarial y reconocer sus tipos principales: estratégico, operativo, financiero, de cumplimiento y reputacional.", "Explain what an enterprise risk is and recognize its main types: strategic, operational, financial, compliance and reputational."),
       t("Calificar riesgos con probabilidad e impacto, ubicarlos en un mapa de calor y distinguir riesgo inherente de riesgo residual.", "Score risks by likelihood and impact, place them on a heat map and distinguish inherent risk from residual risk."),
@@ -96,7 +96,61 @@ export const lessons: Lesson[] = [
             "When data exists, risk can also be expressed in pesos as an **expected loss**: likelihood times impact. Mini example: if there is a 10% yearly chance of losing $200,000 in a flood, the expected loss is 0.10 × $200,000 = $20,000 a year.",
           ),
         ],
-        formula: "Calificación = Probabilidad × Impacto  ·  Pérdida esperada = Probabilidad (%) × Impacto ($)",
+        formulas: [
+          {
+            name: t("Calificación de un riesgo (para el mapa de calor)", "Risk score (for the heat map)"),
+            expression: "Calificación = Probabilidad × Impacto",
+            variables: [
+              { symbol: "Calificación", meaning: t("Un número de 1 a 25 que dice qué tan grande es el riesgo; entre más alto, antes se atiende.", "A number from 1 to 25 that says how big the risk is; the higher it is, the sooner it gets attention.") },
+              { symbol: "Probabilidad", meaning: t("Qué tan seguido podría pasar, en una escala de 1 (casi nunca) a 5 (casi seguro).", "How likely it is to happen, on a scale from 1 (almost never) to 5 (almost certain).") },
+              { symbol: "Impacto", meaning: t("Qué tan grave sería si pasa, en una escala de 1 (casi nada) a 5 (muy grave).", "How serious it would be if it happens, on a scale from 1 (barely anything) to 5 (very serious).") },
+            ],
+            steps: [
+              t("Asigna la probabilidad del riesgo en la escala de 1 a 5.", "Assign the risk's likelihood on the 1-to-5 scale."),
+              t("Asigna el impacto en la misma escala de 1 a 5.", "Assign the impact on the same 1-to-5 scale."),
+              t("Multiplica los dos números: esa es la calificación.", "Multiply the two numbers: that is the score."),
+              t("Ubícala en la escala de la empresa (alto, medio o bajo). Para el riesgo residual repite el cálculo con la probabilidad o el impacto que quedan después de los controles.", "Place it on the company's scale (high, medium or low). For residual risk, repeat the calculation with the likelihood or impact that remain after the controls."),
+            ],
+            example: t(
+              "Una papelería califica el riesgo de que se moje su bodega en temporada de lluvias: probabilidad 3 e impacto 5. Calificación inherente: 3 × 5 = **15** (alto, con la escala ilustrativa de 15 o más). Si sella el techo y la probabilidad baja a 1, la calificación residual es 1 × 5 = **5** (bajo).",
+              "A stationery store scores the risk of its warehouse getting wet in the rainy season: likelihood 3 and impact 5. Inherent score: 3 × 5 = **15** (high, on the illustrative scale of 15 or more). If it seals the roof and the likelihood drops to 1, the residual score is 1 × 5 = **5** (low).",
+            ),
+            interpret: t(
+              "Una calificación alta pide atención primero. Pero revisa también los riesgos con impacto 5 aunque su calificación sea media: si pasan, pueden ser muy dañinos.",
+              "A high score calls for attention first. But also watch risks with impact 5 even if their score is medium: if they happen, they can be very damaging.",
+            ),
+            mistake: t(
+              "Sumar probabilidad e impacto (3 + 5 = 8) en lugar de multiplicarlos.",
+              "Adding likelihood and impact (3 + 5 = 8) instead of multiplying them.",
+            ),
+          },
+          {
+            name: t("Pérdida esperada en pesos", "Expected loss in pesos"),
+            expression: "Pérdida esperada = Probabilidad (%) × Impacto ($)",
+            variables: [
+              { symbol: "Pérdida esperada", meaning: t("Lo que, en promedio, te costaría el riesgo cada año, en pesos.", "What the risk would cost you on average each year, in pesos.") },
+              { symbol: "Probabilidad (%)", meaning: t("La posibilidad de que pase en un año, en porcentaje (por ejemplo, 10%).", "The chance it happens in a year, as a percentage (for example, 10%).") },
+              { symbol: "Impacto ($)", meaning: t("Cuántos pesos perderías si sí pasa.", "How many pesos you would lose if it does happen.") },
+            ],
+            steps: [
+              t("Convierte la probabilidad a decimal: divide entre 100 (20% = 0.20).", "Convert the likelihood to a decimal: divide by 100 (20% = 0.20)."),
+              t("Multiplica ese decimal por el impacto en pesos.", "Multiply that decimal by the impact in pesos."),
+              t("El resultado es la pérdida esperada al año; compárala con lo que cuesta un control.", "The result is the expected loss per year; compare it with what a control costs."),
+            ],
+            example: t(
+              "Una tienda de celulares estima 20% de probabilidad al año de un robo que le costaría $300,000. Paso 1: 20% = 0.20. Paso 2: 0.20 × $300,000 = **$60,000** de pérdida esperada al año.",
+              "A phone store estimates a 20% yearly chance of a theft that would cost it $300,000. Step 1: 20% = 0.20. Step 2: 0.20 × $300,000 = **$60,000** of expected loss per year.",
+            ),
+            interpret: t(
+              "No es lo que vas a perder seguro, sino un promedio. Sirve para decidir cuánto vale la pena gastar en protegerte.",
+              "It is not what you will surely lose, but an average. It helps decide how much is worth spending to protect yourself.",
+            ),
+            mistake: t(
+              "Multiplicar por 20 en lugar de 0.20, o confundir la pérdida esperada con el impacto completo.",
+              "Multiplying by 20 instead of 0.20, or confusing the expected loss with the full impact.",
+            ),
+          },
+        ],
       },
       {
         heading: t("Responder y dar seguimiento", "Responding and monitoring"),
@@ -113,6 +167,36 @@ export const lessons: Lesson[] = [
             "Todo se anota en un **registro de riesgos**: descripción, dueño del riesgo, calificaciones, respuesta y fecha de revisión. Para vigilarlos se usan **indicadores clave de riesgo** (KRI): señales tempranas que avisan que un riesgo está creciendo. Mini ejemplo: una distribuidora vigila el porcentaje de clientes con más de 90 días de atraso; si sube, su riesgo de cobranza está creciendo antes de que se vea en las pérdidas.",
             "Everything is written in a **risk register**: description, risk owner, scores, response and review date. To monitor them companies use **key risk indicators** (KRIs): early signals warning that a risk is growing. Mini example: a distributor tracks the percentage of customers more than 90 days late; if it rises, its collection risk is growing before it shows up in losses.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("¿Conviene el control? (beneficio neto)", "Is the control worth it? (net benefit)"),
+            expression: "Beneficio neto = (Pérdida esperada inherente − Pérdida esperada residual) − Costo del control",
+            variables: [
+              { symbol: "Beneficio neto", meaning: t("Lo que ganas al año por poner el control, en pesos.", "What you gain per year by putting the control in place, in pesos.") },
+              { symbol: "Pérdida esperada inherente", meaning: t("Probabilidad × impacto **sin** el control, en pesos al año.", "Likelihood × impact **without** the control, in pesos per year.") },
+              { symbol: "Pérdida esperada residual", meaning: t("Probabilidad × impacto **con** el control, en pesos al año.", "Likelihood × impact **with** the control, in pesos per year.") },
+              { symbol: "Costo del control", meaning: t("Lo que cuesta al año el control (cámaras, personal, seguro), en pesos.", "What the control costs per year (cameras, staff, insurance), in pesos.") },
+            ],
+            steps: [
+              t("Calcula la pérdida esperada sin control: probabilidad actual × impacto.", "Compute the expected loss without the control: current likelihood × impact."),
+              t("Calcula la pérdida esperada con control: nueva probabilidad × impacto.", "Compute the expected loss with the control: new likelihood × impact."),
+              t("Resta la segunda a la primera: eso es lo que el control ahorra.", "Subtract the second from the first: that is what the control saves."),
+              t("Al ahorro réstale el costo del control.", "Subtract the control's cost from the savings."),
+            ],
+            example: t(
+              "Un almacén tiene 25% de probabilidad al año de perder $600,000. Un sistema de alarmas cuesta $70,000 al año y baja la probabilidad a 5%. Sin control: 0.25 × $600,000 = $150,000. Con control: 0.05 × $600,000 = $30,000. Ahorro: $150,000 − $30,000 = $120,000. Beneficio neto: $120,000 − $70,000 = **$50,000** al año.",
+              "A warehouse has a 25% yearly chance of losing $600,000. An alarm system costs $70,000 a year and lowers the likelihood to 5%. Without control: 0.25 × $600,000 = $150,000. With control: 0.05 × $600,000 = $30,000. Savings: $150,000 − $30,000 = $120,000. Net benefit: $120,000 − $70,000 = **$50,000** a year.",
+            ),
+            interpret: t(
+              "Positivo: el control conviene (reducir). Negativo: cuesta más de lo que protege y quizá convenga aceptar o compartir el riesgo.",
+              "Positive: the control is worth it (reduce). Negative: it costs more than it protects, and accepting or sharing the risk may be better.",
+            ),
+            mistake: t(
+              "Comparar el costo del control contra el impacto total ($600,000) en lugar de contra el ahorro en pérdida esperada.",
+              "Comparing the control's cost with the full impact ($600,000) instead of with the savings in expected loss.",
+            ),
+          },
         ],
         bullets: [
           t("Evitar: no entrar a un mercado muy inseguro.", "Avoid: not entering a very unsafe market."),
@@ -180,7 +264,7 @@ export const lessons: Lesson[] = [
       "En una auditoría de estados financieros el auditor externo prueba, rubro por rubro, que las cifras existan, estén completas, bien valuadas y en el periodo correcto, y evalúa si las diferencias encontradas son materiales.",
       "In a financial statement audit the external auditor tests, line by line, that the figures exist, are complete, properly valued and in the right period, and evaluates whether the differences found are material.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Explicar el objetivo de la auditoría de estados financieros y las principales aseveraciones de la administración.", "Explain the objective of a financial statement audit and management's main assertions."),
       t("Relacionar procedimientos sustantivos típicos (confirmaciones, conteos, conciliaciones, corte) con la aseveración que prueban.", "Match typical substantive procedures (confirmations, counts, reconciliations, cutoff) with the assertion they test."),
@@ -216,6 +300,10 @@ export const lessons: Lesson[] = [
         heading: t("Pruebas típicas por rubro", "Typical tests by line item"),
         body: [
           t(
+            "En palabras sencillas: para cada cuenta importante el auditor elige la prueba que mejor contesta su duda. ¿El dinero en el banco existe? Le pregunta al banco. ¿Los clientes deben lo que dice la empresa? Les pregunta a los clientes. Una **conciliación bancaria** es la hoja que explica por qué el saldo del banco y el de tus libros no son iguales: casi siempre por movimientos que uno ya anotó y el otro todavía no.",
+            "In plain words: for each significant account the auditor chooses the test that best answers its question. Does the money in the bank exist? Ask the bank. Do customers owe what the company says? Ask the customers. A **bank reconciliation** is the sheet that explains why the bank's balance and your books' balance are not equal: almost always because of transactions one side has already recorded and the other has not yet.",
+          ),
+          t(
             "**Efectivo y bancos:** el auditor obtiene las **conciliaciones bancarias** al cierre y **confirma** saldos directamente con el banco. Revisa partidas en conciliación: depósitos en tránsito (que deben aparecer en el banco en los primeros días del mes siguiente) y cheques en circulación.",
             "**Cash and banks:** the auditor obtains the year-end **bank reconciliations** and **confirms** balances directly with the bank. It reviews reconciling items: deposits in transit (which should appear at the bank in the first days of the next month) and outstanding checks.",
           ),
@@ -227,6 +315,38 @@ export const lessons: Lesson[] = [
             "**Pasivos:** el riesgo típico es que **falten** (subestimarlos mejora las cifras). Por eso se hace la **búsqueda de pasivos no registrados**: revisar facturas recibidas y pagos hechos después del cierre para ver si correspondían al año auditado. **Ventas:** se hacen **pruebas de corte**, comparando la fecha de las últimas facturas del año con la fecha real de entrega. Mini ejemplo: una factura del 31 de diciembre cuya mercancía salió el 3 de enero es venta de enero, no de diciembre.",
             "**Liabilities:** the typical risk is that they are **missing** (understating them makes the figures look better). That is why auditors perform a **search for unrecorded liabilities**: reviewing invoices received and payments made after year-end to see whether they belonged to the audited year. **Sales:** auditors perform **cutoff tests**, comparing the date of the last invoices of the year with the actual delivery date. Mini example: a December 31 invoice whose goods left on January 3 is a January sale, not a December one.",
           ),
+        ],
+        formulas: [
+          {
+            name: t("Saldo conciliado según el banco y diferencia contra libros", "Reconciled balance per bank and difference versus the books"),
+            expression: "Saldo conciliado = Saldo del banco + Depósitos en tránsito − Cheques en circulación  ·  Diferencia = Saldo en libros − Saldo conciliado",
+            variables: [
+              { symbol: "Saldo conciliado", meaning: t("Lo que de verdad debería haber en la cuenta al cierre, en pesos, ya corregido por lo que el banco aún no ve.", "What should really be in the account at year-end, in pesos, already corrected for what the bank does not see yet.") },
+              { symbol: "Saldo del banco", meaning: t("El saldo que aparece en el estado de cuenta del banco, en pesos.", "The balance shown on the bank statement, in pesos.") },
+              { symbol: "Depósitos en tránsito", meaning: t("Dinero que la empresa ya depositó y anotó, pero que el banco todavía no registra. Se **suma**.", "Money the company already deposited and recorded, but the bank has not registered yet. It is **added**.") },
+              { symbol: "Cheques en circulación", meaning: t("Cheques que la empresa ya entregó y anotó, pero que nadie ha cobrado aún. Se **restan**.", "Checks the company already issued and recorded, but nobody has cashed yet. They are **subtracted**.") },
+              { symbol: "Saldo en libros", meaning: t("El saldo de la cuenta Bancos en la contabilidad de la empresa, en pesos.", "The balance of the Banks account in the company's accounting records, in pesos.") },
+              { symbol: "Diferencia", meaning: t("Lo que no se puede explicar con las partidas anteriores; el auditor la investiga.", "What cannot be explained by the items above; the auditor investigates it.") },
+            ],
+            steps: [
+              t("Parte del saldo del estado de cuenta del banco.", "Start from the bank statement balance."),
+              t("Súmale los depósitos en tránsito.", "Add the deposits in transit."),
+              t("Réstale los cheques en circulación: ese es el saldo conciliado.", "Subtract the outstanding checks: that is the reconciled balance."),
+              t("Resta el saldo conciliado al saldo en libros para ver si queda una diferencia sin explicar.", "Subtract the reconciled balance from the book balance to see whether an unexplained difference remains."),
+            ],
+            example: t(
+              "Estado de cuenta: $80,000. Depósito en tránsito: $12,000. Cheques en circulación: $9,000. Libros: $84,500. Paso 2: $80,000 + $12,000 = $92,000. Paso 3: $92,000 − $9,000 = **$83,000** conciliado. Paso 4: $84,500 − $83,000 = **$1,500** sin explicar.",
+              "Bank statement: $80,000. Deposit in transit: $12,000. Outstanding checks: $9,000. Books: $84,500. Step 2: $80,000 + $12,000 = $92,000. Step 3: $92,000 − $9,000 = **$83,000** reconciled. Step 4: $84,500 − $83,000 = **$1,500** unexplained.",
+            ),
+            interpret: t(
+              "Diferencia cero: la cuenta cuadra. Si los libros tienen de más, puede faltar registrar una comisión o un cargo del banco; si tienen de menos, puede faltar un depósito o un cobro.",
+              "Zero difference: the account balances. If the books show more, a bank fee or charge may be unrecorded; if they show less, a deposit or collection may be missing.",
+            ),
+            mistake: t(
+              "Hacerlo al revés: restar el depósito en tránsito y sumar los cheques.",
+              "Doing it backwards: subtracting the deposit in transit and adding the checks.",
+            ),
+          },
         ],
       },
       {
@@ -245,7 +365,59 @@ export const lessons: Lesson[] = [
             "The auditor asks management to correct the differences. Those not corrected are evaluated individually and in aggregate; if they are material, they affect the type of opinion (which you will see in the reporting topic). Mini example: with materiality of $300,000 and net uncorrected differences of $50,000, in principle there is no effect on the opinion, although they are communicated to management.",
           ),
         ],
-        formula: "Efecto neto en utilidad = Σ sobrestimaciones − Σ subestimaciones  →  comparar con materialidad",
+        formulas: [
+          {
+            name: t("Ajuste de auditoría por un gasto no registrado", "Audit adjustment for an unrecorded expense"),
+            expression: "Cargo a la cuenta de gasto = Abono a la cuenta por pagar = Monto del gasto del periodo",
+            variables: [
+              { symbol: "Cuenta de gasto", meaning: t("La cuenta del gasto que faltó (por ejemplo, Luz, agua y teléfono). El **cargo** la aumenta.", "The account of the missing expense (for example, Electricity, water and phone). The **debit** increases it.") },
+              { symbol: "Cuenta por pagar", meaning: t("La deuda que existía al cierre (por ejemplo, Acreedores diversos para servicios). El **abono** la aumenta.", "The debt that existed at year-end (for example, Sundry creditors for services). The **credit** increases it.") },
+              { symbol: "Monto del gasto del periodo", meaning: t("Los pesos que corresponden al año auditado, aunque se paguen después.", "The pesos that belong to the audited year, even if paid later.") },
+            ],
+            steps: [
+              t("Confirma que el gasto es del año auditado (por ejemplo, consumo de diciembre).", "Confirm the expense belongs to the audited year (for example, December usage)."),
+              t("Carga la cuenta de gasto por el monto.", "Debit the expense account for the amount."),
+              t("Abona la cuenta por pagar por el mismo monto (no Bancos, porque al cierre aún no se pagaba).", "Credit the payable account for the same amount (not Banks, because it had not been paid at year-end)."),
+            ],
+            example: t(
+              "En enero llega un recibo de agua por $3,200 del consumo de diciembre que no se registró. Ajuste al 31 de diciembre: cargo a Luz, agua y teléfono **$3,200** y abono a Acreedores diversos **$3,200**. La utilidad baja $3,200.",
+              "In January a $3,200 water bill for December usage arrives that was not recorded. Adjustment as of December 31: debit Electricity, water and phone **$3,200** and credit Sundry creditors **$3,200**. Profit goes down $3,200.",
+            ),
+            mistake: t(
+              "Abonar Bancos (eso registra el pago de enero, no la deuda de diciembre) o usar Proveedores, que es para compras de mercancía.",
+              "Crediting Banks (that records January's payment, not December's debt) or using Suppliers, which is for merchandise purchases.",
+            ),
+          },
+          {
+            name: t("Efecto neto de las diferencias en la utilidad", "Net effect of differences on profit"),
+            expression: "Efecto neto en utilidad = Σ sobrestimaciones − Σ subestimaciones  →  comparar con materialidad",
+            variables: [
+              { symbol: "Efecto neto en utilidad", meaning: t("Cuántos pesos está inflada (o reducida) la utilidad por todos los errores juntos.", "How many pesos profit is inflated (or reduced) by all the errors together.") },
+              { symbol: "Σ", meaning: t("Significa \"suma de\".", "Means \"sum of\".") },
+              { symbol: "Sobrestimaciones", meaning: t("Errores que **inflan** la utilidad: ventas de más o gastos que faltan, en pesos.", "Errors that **inflate** profit: extra sales or missing expenses, in pesos.") },
+              { symbol: "Subestimaciones", meaning: t("Errores que **reducen** la utilidad: gastos de más (duplicados) o ventas que faltan, en pesos.", "Errors that **reduce** profit: extra (duplicated) expenses or missing sales, in pesos.") },
+              { symbol: "Materialidad", meaning: t("El monto a partir del cual un error ya es importante para quien lee los estados, en pesos.", "The amount above which an error matters to the readers of the statements, in pesos.") },
+            ],
+            steps: [
+              t("Clasifica cada diferencia: ¿infla la utilidad o la reduce?", "Classify each difference: does it inflate profit or reduce it?"),
+              t("Suma todas las que la inflan.", "Add up all the ones that inflate it."),
+              t("Suma todas las que la reducen y réstalas a la suma anterior.", "Add up all the ones that reduce it and subtract them from the previous sum."),
+              t("Compara el neto con la materialidad: si es mayor o igual, es material.", "Compare the net amount with materiality: if it is equal or higher, it is material."),
+            ],
+            example: t(
+              "Materialidad: $100,000. Diferencias: ingresos registrados de más $30,000 (infla), gastos omitidos $18,000 (infla) y un gasto registrado dos veces $8,000 (reduce). Paso 2: $30,000 + $18,000 = $48,000. Paso 3: $48,000 − $8,000 = **$40,000** de sobrestimación. Paso 4: $40,000 es menor que $100,000, así que no es material en conjunto.",
+              "Materiality: $100,000. Differences: income over-recorded $30,000 (inflates), omitted expenses $18,000 (inflate) and an expense recorded twice $8,000 (reduces). Step 2: $30,000 + $18,000 = $48,000. Step 3: $48,000 − $8,000 = **$40,000** overstatement. Step 4: $40,000 is below $100,000, so it is not material in aggregate.",
+            ),
+            interpret: t(
+              "Positivo: la utilidad está inflada. Negativo: está reducida. Aunque no sea material, el auditor pide corregir y lo comunica a la dirección.",
+              "Positive: profit is inflated. Negative: it is reduced. Even if not material, the auditor asks for corrections and tells management.",
+            ),
+            mistake: t(
+              "Sumar todas las diferencias sin fijarse en su dirección; un gasto duplicado va en sentido contrario.",
+              "Adding all the differences without looking at their direction; a duplicated expense goes the opposite way.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -305,7 +477,7 @@ export const lessons: Lesson[] = [
       "La auditoría interna es un equipo de la propia empresa, independiente de las áreas que revisa, que evalúa con un plan basado en riesgos si los controles y la gestión de riesgos funcionan, y da seguimiento a que se corrijan los hallazgos.",
       "Internal audit is a team within the company, independent from the areas it reviews, that uses a risk-based plan to evaluate whether controls and risk management work, and follows up to make sure findings are corrected.",
     ),
-    minutes: 15,
+    minutes: 16,
     objectives: [
       t("Explicar qué hace la auditoría interna y en qué se diferencia de la auditoría externa.", "Explain what internal audit does and how it differs from external audit."),
       t("Ubicar a la auditoría interna en el Modelo de las Tres Líneas y explicar cómo protege su independencia.", "Place internal audit in the Three Lines Model and explain how it protects its independence."),
@@ -368,7 +540,55 @@ export const lessons: Lesson[] = [
             "The work does not end with the report: internal audit **follows up** to verify that action plans are completed and reports overdue ones to the committee. Mini example: of 20 observations, 15 were closed on time; the committee asks the owners of the remaining 5 for an explanation.",
           ),
         ],
-        formula: "Horas del área = Horas disponibles × (Riesgo del área ÷ Suma de riesgos)",
+        formulas: [
+          {
+            name: t("Horas de auditoría para cada área según su riesgo", "Audit hours for each area based on its risk"),
+            expression: "Horas del área = Horas disponibles × (Riesgo del área ÷ Suma de riesgos)",
+            variables: [
+              { symbol: "Horas del área", meaning: t("Las horas del plan que le tocan a esa área.", "The plan hours that area gets.") },
+              { symbol: "Horas disponibles", meaning: t("Todas las horas que tiene el equipo de auditoría interna en el año.", "All the hours the internal audit team has in the year.") },
+              { symbol: "Riesgo del área", meaning: t("La calificación de riesgo de esa área (un número; más alto = más riesgo).", "That area's risk score (a number; higher = more risk).") },
+              { symbol: "Suma de riesgos", meaning: t("La suma de las calificaciones de todas las áreas del plan.", "The sum of the scores of all areas in the plan.") },
+            ],
+            steps: [
+              t("Suma las calificaciones de riesgo de todas las áreas.", "Add up the risk scores of all the areas."),
+              t("Divide la calificación del área entre esa suma: es la parte que le toca (por ejemplo, 50 ÷ 100 = 0.50).", "Divide the area's score by that sum: that is its share (for example, 50 ÷ 100 = 0.50)."),
+              t("Multiplica esa parte por las horas disponibles.", "Multiply that share by the available hours."),
+              t("Comprueba: las horas de todas las áreas deben sumar las horas disponibles.", "Check: the hours of all areas must add up to the available hours."),
+            ],
+            example: t(
+              "Hay 2,000 horas. Calificaciones: Ventas 50, Nómina 30 y Sistemas 20. Paso 1: 50 + 30 + 20 = 100. Ventas: 50 ÷ 100 = 0.50; 0.50 × 2,000 = **1,000 horas**. Nómina: 0.30 × 2,000 = 600. Sistemas: 0.20 × 2,000 = 400. Comprobación: 1,000 + 600 + 400 = 2,000.",
+              "There are 2,000 hours. Scores: Sales 50, Payroll 30 and Systems 20. Step 1: 50 + 30 + 20 = 100. Sales: 50 ÷ 100 = 0.50; 0.50 × 2,000 = **1,000 hours**. Payroll: 0.30 × 2,000 = 600. Systems: 0.20 × 2,000 = 400. Check: 1,000 + 600 + 400 = 2,000.",
+            ),
+            mistake: t(
+              "Repartir las horas por partes iguales entre las áreas, ignorando que unas son más riesgosas que otras.",
+              "Splitting the hours equally among the areas, ignoring that some are riskier than others.",
+            ),
+          },
+          {
+            name: t("Avance del seguimiento de observaciones", "Progress in following up on observations"),
+            expression: "% atendidas = Observaciones atendidas ÷ Observaciones totales × 100  ·  Pendientes = Observaciones totales − Observaciones atendidas",
+            variables: [
+              { symbol: "% atendidas", meaning: t("Qué porcentaje de las observaciones ya se corrigió.", "What percentage of the observations has already been fixed.") },
+              { symbol: "Observaciones atendidas", meaning: t("Las que ya se corrigieron **y** auditoría interna verificó.", "Those already fixed **and** verified by internal audit.") },
+              { symbol: "Observaciones totales", meaning: t("Todas las observaciones que se están revisando (por ejemplo, las que ya vencieron).", "All the observations being reviewed (for example, the ones already past due).") },
+              { symbol: "Pendientes", meaning: t("Las que faltan por corregir y se reportan al comité.", "Those still to be fixed, which are reported to the committee.") },
+            ],
+            steps: [
+              t("Cuenta las observaciones totales y las atendidas (solo las verificadas).", "Count the total observations and the addressed ones (only verified ones)."),
+              t("Divide atendidas entre totales y multiplica por 100.", "Divide addressed by total and multiply by 100."),
+              t("Resta atendidas a totales para saber cuántas siguen pendientes.", "Subtract addressed from total to know how many remain open."),
+            ],
+            example: t(
+              "Hay 32 observaciones vencidas y 24 se atendieron. Paso 2: 24 ÷ 32 = 0.75; 0.75 × 100 = **75%**. Paso 3: 32 − 24 = **8 pendientes**.",
+              "There are 32 overdue observations and 24 were addressed. Step 2: 24 ÷ 32 = 0.75; 0.75 × 100 = **75%**. Step 3: 32 − 24 = **8 open**.",
+            ),
+            mistake: t(
+              "Contar como atendida una observación solo porque el área dice que la corrigió, sin que auditoría lo verifique.",
+              "Counting an observation as addressed just because the area says it fixed it, without audit verifying it.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -429,7 +649,7 @@ export const lessons: Lesson[] = [
       "Auditar un ERP es revisar cómo el sistema integrado de la empresa ejecuta los procesos de negocio: sus controles configurados, sus datos maestros y quién tiene permiso de hacer qué, para asegurar que las transacciones sean válidas y estén bien separadas las funciones.",
       "Auditing an ERP means reviewing how the company's integrated system runs business processes: its configured controls, its master data and who is allowed to do what, to ensure transactions are valid and duties are properly segregated.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar qué es un ERP y por qué cambia la forma de auditar los procesos de negocio.", "Explain what an ERP is and why it changes how business processes are audited."),
       t("Evaluar controles de aplicación configurados, como el cotejo de tres vías, y los riesgos de los datos maestros.", "Evaluate configured application controls, such as the three-way match, and master data risks."),
@@ -469,6 +689,52 @@ export const lessons: Lesson[] = [
             "**Master data** is the fixed information all transactions use: supplier, customer and employee files, prices. An improper change here is dangerous: if someone changes a supplier's bank account to their own, every payment is diverted. Mini example: the auditor matches supplier bank accounts against employee accounts and finds a match that must be investigated.",
           ),
         ],
+        formulas: [
+          {
+            name: t("Monto que se puede pagar en el cotejo de tres vías", "Amount that can be paid in the three-way match"),
+            expression: "Monto pagable = Cantidad recibida × Precio de la orden  ·  Diferencia = Monto facturado − Monto pagable",
+            variables: [
+              { symbol: "Monto pagable", meaning: t("Lo que sí se debe pagar al proveedor, en pesos.", "What should actually be paid to the supplier, in pesos.") },
+              { symbol: "Cantidad recibida", meaning: t("Las piezas que el almacén registró que llegaron.", "The pieces the warehouse recorded as received.") },
+              { symbol: "Precio de la orden", meaning: t("El precio por pieza acordado en la orden de compra, en pesos.", "The price per piece agreed on the purchase order, in pesos.") },
+              { symbol: "Monto facturado", meaning: t("Lo que cobra el proveedor en su factura, en pesos.", "What the supplier charges on its invoice, in pesos.") },
+              { symbol: "Diferencia", meaning: t("Lo cobrado de más; el ERP bloquea la factura hasta aclararlo.", "The amount overcharged; the ERP blocks the invoice until it is cleared up.") },
+            ],
+            steps: [
+              t("Compara cantidades: orden, recepción y factura.", "Compare quantities: order, receipt and invoice."),
+              t("Compara el precio de la factura con el de la orden.", "Compare the invoice price with the order price."),
+              t("Multiplica lo realmente recibido por el precio de la orden: eso es lo pagable.", "Multiply what was actually received by the order price: that is the payable amount."),
+              t("Resta lo pagable a lo facturado para ver la diferencia que hay que aclarar.", "Subtract the payable amount from the invoiced amount to see the difference to clear up."),
+            ],
+            example: t(
+              "Orden: 200 cajas a $30. Llegan 190. El proveedor factura 200 cajas por $6,000. Paso 3: 190 × $30 = **$5,700** pagables. Paso 4: $6,000 − $5,700 = **$300** de diferencia, que requiere nota de crédito o la entrega faltante.",
+              "Order: 200 boxes at $30. 190 arrive. The supplier invoices 200 boxes for $6,000. Step 3: 190 × $30 = **$5,700** payable. Step 4: $6,000 − $5,700 = **$300** difference, which requires a credit note or the missing delivery.",
+            ),
+          },
+          {
+            name: t("Monto máximo de factura con tolerancia", "Maximum invoice amount with a tolerance"),
+            expression: "Monto máximo = Cantidad × Precio unitario × (1 + Tolerancia %)",
+            variables: [
+              { symbol: "Monto máximo", meaning: t("La factura más alta que el ERP acepta sin bloquearla, en pesos.", "The highest invoice the ERP accepts without blocking it, in pesos.") },
+              { symbol: "Cantidad", meaning: t("Las unidades de la orden de compra.", "The units on the purchase order.") },
+              { symbol: "Precio unitario", meaning: t("El precio de cada unidad en la orden, en pesos.", "The price of each unit on the order, in pesos.") },
+              { symbol: "Tolerancia %", meaning: t("Cuánto puede pasarse la factura del valor de la orden, en porcentaje (en decimal: 3% = 0.03).", "How much the invoice may exceed the order value, as a percentage (as a decimal: 3% = 0.03).") },
+            ],
+            steps: [
+              t("Calcula el valor de la orden: cantidad × precio unitario.", "Compute the order value: quantity × unit price."),
+              t("Convierte la tolerancia a decimal y multiplícala por el valor de la orden: es el margen permitido en pesos.", "Convert the tolerance to a decimal and multiply it by the order value: that is the allowed margin in pesos."),
+              t("Suma el margen al valor de la orden: ese es el monto máximo.", "Add the margin to the order value: that is the maximum amount."),
+            ],
+            example: t(
+              "Orden: 40 sillas a $500, tolerancia 3%. Paso 1: 40 × $500 = $20,000. Paso 2: 0.03 × $20,000 = $600. Paso 3: $20,000 + $600 = **$20,600**. Una factura de $20,900 se bloquearía.",
+              "Order: 40 chairs at $500, 3% tolerance. Step 1: 40 × $500 = $20,000. Step 2: 0.03 × $20,000 = $600. Step 3: $20,000 + $600 = **$20,600**. A $20,900 invoice would be blocked.",
+            ),
+            mistake: t(
+              "Calcular el porcentaje sobre el precio de una sola unidad y olvidar multiplicar por la cantidad.",
+              "Computing the percentage on a single unit's price and forgetting to multiply by the quantity.",
+            ),
+          },
+        ],
         bullets: [
           t("Cotejo de tres vías: orden de compra, recepción y factura.", "Three-way match: purchase order, receipt and invoice."),
           t("Campos obligatorios y validaciones (RFC con formato válido).", "Mandatory fields and validations (properly formatted tax ID)."),
@@ -493,7 +759,34 @@ export const lessons: Lesson[] = [
             "It also reviews **generic users** (\"warehouse1\", shared by several people so you cannot tell who did what) and **superusers** with full access, who must be few, temporary and monitored. Mini example: of 150 users, 9 have conflicts (6%); after removing permissions from 6, 3 remain (2%) with a documented compensating control.",
           ),
         ],
-        formula: "% usuarios con conflicto = Usuarios con conflicto ÷ Usuarios activos × 100",
+        formulas: [
+          {
+            name: t("Porcentaje de usuarios con conflicto de funciones", "Percentage of users with a duties conflict"),
+            expression: "% usuarios con conflicto = Usuarios con conflicto ÷ Usuarios activos × 100",
+            variables: [
+              { symbol: "% usuarios con conflicto", meaning: t("Qué parte de todos los usuarios tiene permisos incompatibles, en porcentaje.", "What share of all users has incompatible permissions, as a percentage.") },
+              { symbol: "Usuarios con conflicto", meaning: t("Cuántas personas tienen al menos una combinación prohibida de permisos.", "How many people have at least one prohibited combination of permissions.") },
+              { symbol: "Usuarios activos", meaning: t("Todas las cuentas activas del ERP.", "All active ERP accounts.") },
+            ],
+            steps: [
+              t("Cuenta los usuarios activos y los que tienen conflicto.", "Count the active users and those with conflicts."),
+              t("Divide los que tienen conflicto entre los activos y multiplica por 100.", "Divide those with conflicts by the active users and multiply by 100."),
+              t("Para el \"después\", resta primero a quienes se les quitaron permisos y repite la división con el mismo total de usuarios activos.", "For the \"after\" figure, first subtract those whose permissions were removed and repeat the division with the same total of active users."),
+            ],
+            example: t(
+              "Hay 400 usuarios activos y 24 con conflicto. Antes: 24 ÷ 400 = 0.06 = **6%**. Se quitan permisos a 18: quedan 24 − 18 = 6. Después: 6 ÷ 400 = 0.015 = **1.5%**.",
+              "There are 400 active users and 24 with conflicts. Before: 24 ÷ 400 = 0.06 = **6%**. Permissions are removed from 18: 24 − 18 = 6 remain. After: 6 ÷ 400 = 0.015 = **1.5%**.",
+            ),
+            interpret: t(
+              "Lo ideal es acercarse a 0%. Los que queden necesitan un control compensatorio documentado y probado.",
+              "The goal is to get close to 0%. Those remaining need a documented and tested compensating control.",
+            ),
+            mistake: t(
+              "Dividir los que quedan entre los que tenían conflicto (6 ÷ 24) en lugar de entre todos los usuarios activos.",
+              "Dividing the remaining ones by those who had conflicts (6 ÷ 24) instead of by all active users.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -553,7 +846,7 @@ export const lessons: Lesson[] = [
       "La auditoría de TI revisa los controles generales que mantienen confiables a todos los sistemas: quién entra y con qué permisos, cómo se aprueban los cambios a los programas y cómo se respaldan y recuperan los datos.",
       "IT auditing reviews the general controls that keep all systems reliable: who gets in and with what permissions, how program changes are approved and how data is backed up and recovered.",
     ),
-    minutes: 15,
+    minutes: 17,
     objectives: [
       t("Explicar qué son los controles generales de TI y por qué sostienen a los controles automáticos.", "Explain what IT general controls are and why they support automated controls."),
       t("Evaluar controles de acceso y de administración de cambios con pruebas concretas.", "Evaluate access and change management controls with concrete tests."),
@@ -593,6 +886,35 @@ export const lessons: Lesson[] = [
             "For **changes**, every program modification must have an **approved request**, **testing** in a separate environment, **user approval** and migration to **production** done by someone other than the programmer. Mini example: if the same programmer writes the code and deploys it to production alone, nobody verifies that nothing improper was slipped in.",
           ),
         ],
+        formulas: [
+          {
+            name: t("Tasa de excepción de una prueba de control", "Exception rate of a control test"),
+            expression: "Tasa de excepción = Excepciones ÷ Tamaño de la muestra × 100  ·  Casos que cumplieron = Tamaño de la muestra − Excepciones",
+            variables: [
+              { symbol: "Tasa de excepción", meaning: t("Qué porcentaje de los casos revisados falló el control.", "What percentage of the cases reviewed failed the control.") },
+              { symbol: "Excepciones", meaning: t("Casos en los que el control no se cumplió (por ejemplo, cuentas desactivadas tarde).", "Cases where the control was not met (for example, accounts disabled late).") },
+              { symbol: "Tamaño de la muestra", meaning: t("Cuántos casos revisó el auditor en total.", "How many cases the auditor reviewed in total.") },
+              { symbol: "Casos que cumplieron", meaning: t("Los casos revisados en los que el control sí funcionó.", "The cases reviewed where the control did work.") },
+            ],
+            steps: [
+              t("Cuenta cuántos casos revisaste (la muestra) y cuántos fallaron.", "Count how many cases you reviewed (the sample) and how many failed."),
+              t("Divide las excepciones entre el total de la muestra y multiplica por 100.", "Divide the exceptions by the full sample and multiply by 100."),
+              t("Resta las excepciones a la muestra para saber cuántos cumplieron.", "Subtract the exceptions from the sample to know how many complied."),
+            ],
+            example: t(
+              "El auditor revisa 30 bajas y en 6 la cuenta se desactivó tarde. Paso 2: 6 ÷ 30 = 0.20; 0.20 × 100 = **20%**. Paso 3: 30 − 6 = **24** casos cumplieron.",
+              "The auditor reviews 30 removals and in 6 the account was disabled late. Step 2: 6 ÷ 30 = 0.20; 0.20 × 100 = **20%**. Step 3: 30 − 6 = **24** cases complied.",
+            ),
+            interpret: t(
+              "En una prueba de control se esperan pocas o ninguna excepción. Una tasa alta normalmente indica que el control no es efectivo.",
+              "In a control test few or no exceptions are expected. A high rate usually means the control is not effective.",
+            ),
+            mistake: t(
+              "Dividir las excepciones entre los que cumplieron (6 ÷ 24) en lugar de entre toda la muestra.",
+              "Dividing the exceptions by those that complied (6 ÷ 24) instead of by the whole sample.",
+            ),
+          },
+        ],
         bullets: [
           t("Alta con aprobación; baja el mismo día de la salida.", "Creation with approval; removal on the exit day."),
           t("Revisión periódica de accesos por los jefes.", "Periodic access review by managers."),
@@ -617,7 +939,59 @@ export const lessons: Lesson[] = [
             "In **cybersecurity**, it reviews the basics: up-to-date patches, antivirus, two-factor authentication, training against fake emails (phishing) and an incident response plan. Mini example: a system that was down 18 hours in a 720-hour month had **availability** of (720 − 18) ÷ 720 = 97.5%.",
           ),
         ],
-        formula: "Disponibilidad (%) = (Horas totales − Horas caído) ÷ Horas totales × 100",
+        formulas: [
+          {
+            name: t("Disponibilidad de un sistema", "System availability"),
+            expression: "Disponibilidad (%) = (Horas totales − Horas caído) ÷ Horas totales × 100",
+            variables: [
+              { symbol: "Disponibilidad (%)", meaning: t("Qué porcentaje del tiempo el sistema sí funcionó.", "What percentage of the time the system did work.") },
+              { symbol: "Horas totales", meaning: t("Las horas del periodo (un día tiene 24; un mes de 30 días, 720).", "The hours in the period (a day has 24; a 30-day month, 720).") },
+              { symbol: "Horas caído", meaning: t("Las horas en que el sistema estuvo fuera de servicio.", "The hours the system was out of service.") },
+            ],
+            steps: [
+              t("Calcula las horas totales del periodo.", "Compute the total hours in the period."),
+              t("Réstales las horas caído: son las horas que sí funcionó.", "Subtract the downtime hours: those are the hours it did work."),
+              t("Divide ese resultado entre las horas totales y multiplica por 100.", "Divide that result by the total hours and multiply by 100."),
+            ],
+            example: t(
+              "Un sistema estuvo caído 87.6 horas en un año de 8,760 horas. Paso 2: 8,760 − 87.6 = 8,672.4 horas. Paso 3: 8,672.4 ÷ 8,760 = 0.99; 0.99 × 100 = **99%**.",
+              "A system was down 87.6 hours in an 8,760-hour year. Step 2: 8,760 − 87.6 = 8,672.4 hours. Step 3: 8,672.4 ÷ 8,760 = 0.99; 0.99 × 100 = **99%**.",
+            ),
+            interpret: t(
+              "Se compara con el nivel de servicio comprometido. Si se prometió más de lo logrado, es una deficiencia.",
+              "It is compared with the committed service level. If more was promised than achieved, it is a deficiency.",
+            ),
+            mistake: t(
+              "Calcular solo Horas caído ÷ Horas totales; eso da el porcentaje de tiempo caído, no la disponibilidad.",
+              "Computing only Downtime hours ÷ Total hours; that gives the percentage of downtime, not availability.",
+            ),
+          },
+          {
+            name: t("Brecha contra el RPO y el RTO", "Gap against the RPO and RTO"),
+            expression: "Brecha RPO = Horas entre respaldos − RPO  ·  Brecha RTO = Tiempo real de restauración − RTO",
+            variables: [
+              { symbol: "Brecha RPO", meaning: t("Cuántas horas de datos de más podrías perder respecto a lo permitido.", "How many more hours of data you could lose than allowed.") },
+              { symbol: "Horas entre respaldos", meaning: t("Cada cuánto se respalda; es lo máximo que podrías perder.", "How often backups run; it is the most you could lose.") },
+              { symbol: "RPO", meaning: t("Las horas de datos que el negocio acepta perder como máximo.", "The maximum hours of data the business accepts losing.") },
+              { symbol: "Brecha RTO", meaning: t("Cuántas horas de más tardas en volver a operar respecto a la meta.", "How many more hours it takes to get running again than the target.") },
+              { symbol: "Tiempo real de restauración", meaning: t("Lo que tardó de verdad la última prueba de restauración, en horas.", "How long the last restore test actually took, in hours.") },
+              { symbol: "RTO", meaning: t("Las horas máximas en que el negocio debe volver a operar.", "The maximum hours within which the business must be running again.") },
+            ],
+            steps: [
+              t("Resta el RPO a las horas entre respaldos.", "Subtract the RPO from the hours between backups."),
+              t("Resta el RTO al tiempo real que tardó la prueba de restauración.", "Subtract the RTO from the actual time the restore test took."),
+              t("Si alguna brecha es mayor que cero, esa meta no se cumple.", "If any gap is greater than zero, that target is not met."),
+            ],
+            example: t(
+              "RPO = 2 h y se respalda cada 12 h: 12 − 2 = **10 h** de brecha. RTO = 4 h y la prueba tardó 9 h: 9 − 4 = **5 h** de brecha. Ninguna meta se cumple.",
+              "RPO = 2 h and backups run every 12 h: 12 − 2 = **10 h** gap. RTO = 4 h and the test took 9 h: 9 − 4 = **5 h** gap. Neither target is met.",
+            ),
+            interpret: t(
+              "Cero o negativo: la meta se cumple. Positivo: hay que respaldar más seguido o acelerar la restauración.",
+              "Zero or negative: the target is met. Positive: back up more often or speed up the restore.",
+            ),
+          },
+        ],
       },
     ],
     examples: [
@@ -676,7 +1050,7 @@ export const lessons: Lesson[] = [
       "La auditoría forense investiga posibles fraudes o irregularidades reuniendo evidencia que pueda sostenerse ante un juez, cuidando la cadena de custodia y usando técnicas como el análisis de datos, la ley de Benford y el método de patrimonio.",
       "Forensic auditing investigates possible frauds or irregularities by gathering evidence that can stand up before a judge, protecting the chain of custody and using techniques such as data analytics, Benford's law and the net worth method.",
     ),
-    minutes: 16,
+    minutes: 18,
     objectives: [
       t("Explicar qué distingue a la auditoría forense de una auditoría financiera y cuándo se inicia una investigación.", "Explain what distinguishes forensic auditing from a financial audit and when an investigation starts."),
       t("Aplicar los principios de cadena de custodia y preservación de evidencia física y digital.", "Apply chain-of-custody principles and the preservation of physical and digital evidence."),
@@ -740,7 +1114,64 @@ export const lessons: Lesson[] = [
             "The **net worth method** is used to estimate hidden income: if a person's net worth plus what they spent grew more than their known income, the difference is **unexplained**. Mini example: opening net worth $500,000, closing $900,000, expenses $200,000 and known income $350,000: (900,000 − 500,000) + 200,000 − 350,000 = $250,000 unexplained.",
           ),
         ],
-        formula: "Ingreso no explicado = (Patrimonio final − Patrimonio inicial) + Gastos − Ingresos conocidos  ·  Benford: P(d) = log10(1 + 1/d)",
+        formulas: [
+          {
+            name: t("Ingreso no explicado (método de patrimonio)", "Unexplained income (net worth method)"),
+            expression: "Ingreso no explicado = (Patrimonio final − Patrimonio inicial) + Gastos − Ingresos conocidos",
+            variables: [
+              { symbol: "Ingreso no explicado", meaning: t("Dinero que la persona tuvo que recibir pero que no aparece en sus ingresos conocidos, en pesos.", "Money the person must have received but that does not appear in their known income, in pesos.") },
+              { symbol: "Patrimonio final", meaning: t("Lo que la persona tiene al final del año (casa, autos, cuentas) menos lo que debe, en pesos.", "What the person owns at year-end (house, cars, accounts) minus what they owe, in pesos.") },
+              { symbol: "Patrimonio inicial", meaning: t("Lo mismo, pero al inicio del año.", "The same, but at the start of the year.") },
+              { symbol: "Gastos", meaning: t("Lo que gastó en el año para vivir (comida, escuelas, viajes), en pesos.", "What they spent during the year to live (food, schools, trips), in pesos.") },
+              { symbol: "Ingresos conocidos", meaning: t("Lo que se sabe que ganó: sueldo, prestaciones, otros ingresos comprobables, en pesos.", "What they are known to have earned: salary, benefits, other provable income, in pesos.") },
+            ],
+            steps: [
+              t("Resta el patrimonio inicial al final: es cuánto creció.", "Subtract the opening net worth from the closing one: that is how much it grew."),
+              t("Súmale los gastos del año: es todo lo que tuvo que recibir.", "Add the year's expenses: that is everything they must have received."),
+              t("Réstale los ingresos conocidos: lo que queda es el ingreso sin explicar.", "Subtract the known income: what remains is the unexplained income."),
+            ],
+            example: t(
+              "Patrimonio inicial $700,000, final $1,000,000, gastos $250,000 e ingresos conocidos $400,000. Paso 1: $1,000,000 − $700,000 = $300,000. Paso 2: $300,000 + $250,000 = $550,000. Paso 3: $550,000 − $400,000 = **$150,000** sin explicar.",
+              "Opening net worth $700,000, closing $1,000,000, expenses $250,000 and known income $400,000. Step 1: $1,000,000 − $700,000 = $300,000. Step 2: $300,000 + $250,000 = $550,000. Step 3: $550,000 − $400,000 = **$150,000** unexplained.",
+            ),
+            interpret: t(
+              "Cero o negativo: sus ingresos conocidos alcanzan. Positivo: hay una diferencia que investigar, pero no prueba fraude; primero busca explicaciones legítimas (herencia, premio, venta de un bien).",
+              "Zero or negative: known income is enough. Positive: there is a gap to investigate, but it does not prove fraud; first look for legitimate explanations (inheritance, prize, sale of an asset).",
+            ),
+            mistake: t(
+              "Olvidar sumar los gastos de vida: también se pagaron con algún ingreso.",
+              "Forgetting to add living expenses: they were also paid with some income.",
+            ),
+          },
+          {
+            name: t("Cantidad esperada según la ley de Benford", "Expected count under Benford's law"),
+            expression: "Esperado = Total de registros × P(d)  ·  P(d) = log10(1 + 1/d)",
+            variables: [
+              { symbol: "Esperado", meaning: t("Cuántos registros deberían empezar con ese dígito si las cifras son naturales.", "How many records should start with that digit if the figures are natural.") },
+              { symbol: "Total de registros", meaning: t("Cuántas facturas o pagos se analizan.", "How many invoices or payments are analyzed.") },
+              { symbol: "P(d)", meaning: t("La proporción que Benford espera para el primer dígito d (por ejemplo, 30.1% para el 1, 17.6% para el 2).", "The share Benford expects for first digit d (for example, 30.1% for 1, 17.6% for 2).") },
+              { symbol: "d", meaning: t("El primer dígito que revisas, del 1 al 9.", "The first digit you are checking, from 1 to 9.") },
+              { symbol: "log10", meaning: t("Logaritmo base 10; con calculadora: tecla \"log\". No necesitas calcularlo si el porcentaje ya te lo dan.", "Base-10 logarithm; on a calculator, the \"log\" key. You do not need to compute it if the percentage is given.") },
+            ],
+            steps: [
+              t("Obtén P(d) para el dígito que revisas (si te dan el porcentaje, pásalo a decimal: 17.6% = 0.176).", "Get P(d) for the digit you are checking (if the percentage is given, convert it to a decimal: 17.6% = 0.176)."),
+              t("Multiplica el total de registros por ese decimal.", "Multiply the total records by that decimal."),
+              t("Compara con cuántos registros empiezan realmente con ese dígito.", "Compare with how many records actually start with that digit."),
+            ],
+            example: t(
+              "Se analizan 3,000 facturas y se revisa el dígito 2. P(2) = log10(1 + 1/2) = log10(1.5) ≈ 0.176. Esperado: 3,000 × 0.176 = **528** facturas. Si aparecen 900, la desviación es grande y conviene revisar esas facturas.",
+              "3,000 invoices are analyzed and digit 2 is checked. P(2) = log10(1 + 1/2) = log10(1.5) ≈ 0.176. Expected: 3,000 × 0.176 = **528** invoices. If 900 appear, the deviation is large and those invoices should be reviewed.",
+            ),
+            interpret: t(
+              "Una desviación grande es una bandera roja que dice dónde buscar, no una prueba de fraude.",
+              "A large deviation is a red flag that says where to look, not proof of fraud.",
+            ),
+            mistake: t(
+              "Suponer que cada dígito del 1 al 9 aparece por igual (total ÷ 9).",
+              "Assuming each digit from 1 to 9 appears equally (total ÷ 9).",
+            ),
+          },
+        ],
       },
     ],
     examples: [

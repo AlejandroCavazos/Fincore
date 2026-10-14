@@ -31,7 +31,7 @@ export const lessons: Lesson[] = [
       es: "Evaluar la viabilidad es revisar, antes de invertir, si un negocio tiene clientes, se puede operar, cumple la ley y deja dinero suficiente.",
       en: "Assessing feasibility means checking, before investing, whether a business has customers, can be operated, complies with the law and makes enough money.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar qué es la viabilidad de un negocio y sus cuatro dimensiones: mercado, técnica, legal y financiera.", en: "Explain what business feasibility is and its four dimensions: market, technical, legal and financial." },
       { es: "Estimar las ventas de un negocio a partir de clientes potenciales, frecuencia y ticket promedio.", en: "Estimate a business's sales from potential customers, frequency and average ticket." },
@@ -77,7 +77,36 @@ export const lessons: Lesson[] = [
             en: "**Technical** feasibility checks whether you can produce and deliver: **capacity** (how many customers you serve per hour), **location**, **equipment**, reliable **suppliers** and staff with the necessary skills. Mini example: if your oven bakes 60 loaves per hour and you expect to sell 900 a day, you need 15 hours of baking: you may need a second oven.",
           },
         ],
-        formula: "Ventas mensuales estimadas = Clientes potenciales × % que compra × Compras al mes × Ticket promedio",
+        formulas: [
+          {
+            name: { es: "Ventas mensuales estimadas", en: "Estimated monthly sales" },
+            expression: "Ventas mensuales estimadas = Clientes potenciales × % que compra × Compras al mes × Ticket promedio",
+            variables: [
+              { symbol: "Ventas mensuales estimadas", meaning: { es: "Cuánto esperas vender en un mes, en pesos.", en: "How much you expect to sell in a month, in pesos." } },
+              { symbol: "Clientes potenciales", meaning: { es: "Personas que podrían comprarte (vecinos de la colonia, oficinistas de un edificio).", en: "People who could buy from you (neighborhood residents, office workers in a building)." } },
+              { symbol: "% que compra", meaning: { es: "Qué parte de ellos realmente compraría, según una encuesta o evidencia, en porcentaje.", en: "What share of them would actually buy, based on a survey or evidence, as a percentage." } },
+              { symbol: "Compras al mes", meaning: { es: "Cuántas veces al mes compra cada cliente.", en: "How many times a month each customer buys." } },
+              { symbol: "Ticket promedio", meaning: { es: "Cuánto gasta un cliente cada vez que compra, en pesos.", en: "How much a customer spends each time they buy, in pesos." } },
+            ],
+            steps: [
+              { es: "Convierte el porcentaje a decimal y multiplícalo por los clientes potenciales: son tus clientes reales.", en: "Convert the percentage to a decimal and multiply it by the potential customers: those are your actual customers." },
+              { es: "Multiplica los clientes reales por las compras al mes: es el número de compras.", en: "Multiply the actual customers by purchases per month: that is the number of purchases." },
+              { es: "Multiplica el número de compras por el ticket promedio: son las ventas del mes.", en: "Multiply the number of purchases by the average ticket: that is the month's sales." },
+            ],
+            example: {
+              es: "Una tortería en una zona con 3,000 vecinos: 6% le compraría, 3 veces al mes, con ticket de $80. Paso 1: 3,000 × 0.06 = 180 clientes. Paso 2: 180 × 3 = 540 compras. Paso 3: 540 × $80 = **$43,200** al mes.",
+              en: "A sandwich shop in an area with 3,000 residents: 6% would buy, 3 times a month, with an $80 ticket. Step 1: 3,000 × 0.06 = 180 customers. Step 2: 180 × 3 = 540 purchases. Step 3: 540 × $80 = **$43,200** a month.",
+            },
+            interpret: {
+              es: "Compara esta cifra con tus costos y tu punto de equilibrio. Si apenas alcanza, el negocio es frágil.",
+              en: "Compare this figure with your costs and your break-even point. If it barely covers them, the business is fragile.",
+            },
+            mistake: {
+              es: "Olvidar las compras al mes, como si cada cliente comprara una sola vez.",
+              en: "Forgetting purchases per month, as if each customer bought only once.",
+            },
+          },
+        ],
       },
       {
         heading: { es: "Viabilidad financiera: ¿deja dinero y cuándo lo recupero?", en: "Financial feasibility: does it make money and when do I get it back?" },
@@ -95,7 +124,83 @@ export const lessons: Lesson[] = [
             en: "Finally, the **payback period**: how long the net cash flow takes to return your investment. Later you will see finer tools (like net present value) that account for the time value of money. Mini example: you invest $120,000 and the business nets $10,000 a month: you recover it in 12 months.",
           },
         ],
-        formula: "Punto de equilibrio (unidades) = Costos fijos ÷ (Precio − Costo variable unitario) · Recuperación = Inversión ÷ Flujo neto por periodo",
+        formulas: [
+          {
+            name: { es: "Margen de contribución y punto de equilibrio", en: "Contribution margin and break-even point" },
+            expression: "Margen de contribución = Precio − Costo variable unitario  ·  Punto de equilibrio (unidades) = Costos fijos ÷ Margen de contribución",
+            variables: [
+              { symbol: "Margen de contribución", meaning: { es: "Lo que te deja cada unidad vendida para pagar los costos fijos, en pesos.", en: "What each unit sold leaves you to pay fixed costs, in pesos." } },
+              { symbol: "Precio", meaning: { es: "A cuánto vendes cada unidad, en pesos.", en: "What you sell each unit for, in pesos." } },
+              { symbol: "Costo variable unitario", meaning: { es: "Lo que cuesta hacer una unidad más (material, empaque), en pesos.", en: "What it costs to make one more unit (materials, packaging), in pesos." } },
+              { symbol: "Costos fijos", meaning: { es: "Lo que pagas cada mes aunque no vendas nada (renta, sueldos base), en pesos.", en: "What you pay each month even if you sell nothing (rent, base salaries), in pesos." } },
+              { symbol: "Punto de equilibrio (unidades)", meaning: { es: "Unidades que debes vender al mes para no ganar ni perder.", en: "Units you must sell per month to neither earn nor lose." } },
+            ],
+            steps: [
+              { es: "Resta el costo variable al precio: es el margen de contribución.", en: "Subtract the variable cost from the price: that is the contribution margin." },
+              { es: "Divide los costos fijos entre ese margen: es el punto de equilibrio en unidades.", en: "Divide fixed costs by that margin: that is the break-even point in units." },
+              { es: "Compara con tus ventas estimadas: entre más arriba del equilibrio, más colchón tienes.", en: "Compare with your estimated sales: the further above break-even, the more cushion you have." },
+            ],
+            example: {
+              es: "Una florería vende arreglos a $90; cada uno cuesta $50 en flores y papel; sus costos fijos son $24,000 al mes. Paso 1: $90 − $50 = $40. Paso 2: $24,000 ÷ $40 = **600 arreglos** al mes.",
+              en: "A flower shop sells arrangements at $90; each costs $50 in flowers and paper; its fixed costs are $24,000 a month. Step 1: $90 − $50 = $40. Step 2: $24,000 ÷ $40 = **600 arrangements** a month.",
+            },
+            interpret: {
+              es: "Por debajo de esa cantidad pierdes dinero; por arriba, cada unidad extra deja su margen como ganancia.",
+              en: "Below that quantity you lose money; above it, each extra unit leaves its margin as profit.",
+            },
+            mistake: {
+              es: "Dividir los costos fijos entre el precio completo, olvidando restar el costo variable.",
+              en: "Dividing fixed costs by the full price, forgetting to subtract the variable cost.",
+            },
+          },
+          {
+            name: { es: "Utilidad con las ventas estimadas", en: "Profit at estimated sales" },
+            expression: "Utilidad = Unidades vendidas × Margen de contribución − Costos fijos",
+            variables: [
+              { symbol: "Utilidad", meaning: { es: "Lo que gana el negocio en el mes, en pesos (si sale negativa, es pérdida).", en: "What the business earns in the month, in pesos (if negative, it is a loss)." } },
+              { symbol: "Unidades vendidas", meaning: { es: "Las unidades que estimas vender al mes.", en: "The units you expect to sell per month." } },
+              { symbol: "Margen de contribución", meaning: { es: "Precio − costo variable de cada unidad, en pesos.", en: "Price − variable cost of each unit, in pesos." } },
+              { symbol: "Costos fijos", meaning: { es: "Los gastos del mes que no cambian con las ventas, en pesos.", en: "The month's expenses that do not change with sales, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica las unidades vendidas por el margen de contribución.", en: "Multiply the units sold by the contribution margin." },
+              { es: "Resta los costos fijos: lo que queda es la utilidad del mes.", en: "Subtract the fixed costs: what remains is the month's profit." },
+            ],
+            example: {
+              es: "La misma florería estima vender 800 arreglos. Paso 1: 800 × $40 = $32,000. Paso 2: $32,000 − $24,000 = **$8,000** de utilidad al mes.",
+              en: "The same flower shop expects to sell 800 arrangements. Step 1: 800 × $40 = $32,000. Step 2: $32,000 − $24,000 = **$8,000** profit a month.",
+            },
+            mistake: {
+              es: "Multiplicar las unidades por el precio (no por el margen), olvidando el costo variable.",
+              en: "Multiplying the units by the price (not by the margin), forgetting the variable cost.",
+            },
+          },
+          {
+            name: { es: "Periodo de recuperación de la inversión", en: "Payback period" },
+            expression: "Recuperación = Inversión ÷ Flujo neto por periodo",
+            variables: [
+              { symbol: "Recuperación", meaning: { es: "Cuántos periodos (meses o años) tardas en recuperar lo invertido.", en: "How many periods (months or years) it takes to get back what you invested." } },
+              { symbol: "Inversión", meaning: { es: "Todo lo que pagaste antes de abrir, en pesos.", en: "Everything you paid before opening, in pesos." } },
+              { symbol: "Flujo neto por periodo", meaning: { es: "El dinero que te queda libre cada mes (o cada año), en pesos.", en: "The money left over each month (or each year), in pesos." } },
+            ],
+            steps: [
+              { es: "Revisa si el flujo es mensual o anual: el resultado sale en esa misma unidad.", en: "Check whether the flow is monthly or yearly: the result comes out in that same unit." },
+              { es: "Divide la inversión entre el flujo neto por periodo.", en: "Divide the investment by the net cash flow per period." },
+            ],
+            example: {
+              es: "Una estética invierte $150,000 y le quedan $6,000 netos al mes. Paso 2: $150,000 ÷ $6,000 = **25 meses** (poco más de 2 años).",
+              en: "A beauty salon invests $150,000 and nets $6,000 a month. Step 2: $150,000 ÷ $6,000 = **25 months** (just over 2 years).",
+            },
+            interpret: {
+              es: "Entre más corto, menos riesgo. Es una medida sencilla: no toma en cuenta el valor del dinero en el tiempo.",
+              en: "The shorter, the lower the risk. It is a simple measure: it ignores the time value of money.",
+            },
+            mistake: {
+              es: "Confundir la unidad: si el flujo es mensual, la respuesta es en meses, no en años.",
+              en: "Mixing up the unit: if the flow is monthly, the answer is in months, not years.",
+            },
+          },
+        ],
         bullets: [
           { es: "Inversión inicial: lo que pagas antes de vender el primer producto.", en: "Initial investment: what you pay before selling the first product." },
           { es: "Margen de contribución unitario: precio − costo variable.", en: "Unit contribution margin: price − variable cost." },
@@ -159,7 +264,7 @@ export const lessons: Lesson[] = [
       es: "Un KPI es un número clave, ligado a un objetivo y con una meta, que te dice a tiempo si tu negocio va bien o necesita corregir.",
       en: "A KPI is a key number, tied to an objective and with a target, that tells you in time whether your business is on track or needs correcting.",
     },
-    minutes: 15,
+    minutes: 17,
     objectives: [
       { es: "Distinguir una métrica cualquiera de un KPI y explicar qué lo hace útil.", en: "Distinguish an ordinary metric from a KPI and explain what makes it useful." },
       { es: "Diseñar un KPI con fórmula, meta, frecuencia y responsable, y reconocer indicadores adelantados y rezagados.", en: "Design a KPI with a formula, target, frequency and owner, and recognize leading and lagging indicators." },
@@ -223,7 +328,93 @@ export const lessons: Lesson[] = [
             en: "Mini example: a stationery store sold $60,000 across 500 tickets: average ticket = $120. If the target was $150, it can try school-supply bundles so each customer takes a bit more.",
           },
         ],
-        formula: "Ticket promedio = Ventas ÷ Núm. de tickets · Conversión % = Compradores ÷ Visitantes × 100 · Margen bruto % = (Ventas − Costo de ventas) ÷ Ventas × 100",
+        formulas: [
+          {
+            name: { es: "Ticket promedio", en: "Average ticket" },
+            expression: "Ticket promedio = Ventas ÷ Núm. de tickets",
+            variables: [
+              { symbol: "Ticket promedio", meaning: { es: "Cuánto gasta en promedio cada compra, en pesos.", en: "How much each purchase averages, in pesos." } },
+              { symbol: "Ventas", meaning: { es: "Lo vendido en el periodo, en pesos.", en: "What was sold in the period, in pesos." } },
+              { symbol: "Núm. de tickets", meaning: { es: "Cuántas compras (notas o tickets) hubo en ese periodo.", en: "How many purchases (receipts or tickets) there were in that period." } },
+            ],
+            steps: [
+              { es: "Toma las ventas totales del periodo.", en: "Take the total sales for the period." },
+              { es: "Divídelas entre el número de tickets del mismo periodo.", en: "Divide them by the number of tickets in the same period." },
+            ],
+            example: {
+              es: "Una farmacia vendió $84,000 en 600 tickets: $84,000 ÷ 600 = **$140** por compra.",
+              en: "A pharmacy sold $84,000 across 600 tickets: $84,000 ÷ 600 = **$140** per purchase.",
+            },
+            mistake: {
+              es: "Dividir entre los días del mes; eso da la venta diaria, no lo que gasta cada cliente.",
+              en: "Dividing by the days in the month; that gives daily sales, not what each customer spends.",
+            },
+          },
+          {
+            name: { es: "Tasa de conversión", en: "Conversion rate" },
+            expression: "Conversión % = Compradores ÷ Visitantes × 100",
+            variables: [
+              { symbol: "Conversión %", meaning: { es: "De cada 100 interesados, cuántos compran.", en: "Out of every 100 interested people, how many buy." } },
+              { symbol: "Compradores", meaning: { es: "Personas que sí compraron.", en: "People who did buy." } },
+              { symbol: "Visitantes", meaning: { es: "Todas las personas que entraron a la tienda o a la página.", en: "Everyone who came into the store or visited the page." } },
+            ],
+            steps: [
+              { es: "Divide los compradores entre los visitantes (el número chico entre el grande).", en: "Divide buyers by visitors (the small number by the large one)." },
+              { es: "Multiplica por 100 para expresarlo en porcentaje.", en: "Multiply by 100 to express it as a percentage." },
+            ],
+            example: {
+              es: "Una tienda en línea de bolsas tuvo 4,000 visitantes y 100 compraron. Paso 1: 100 ÷ 4,000 = 0.025. Paso 2: 0.025 × 100 = **2.5%**.",
+              en: "An online bag store had 4,000 visitors and 100 bought. Step 1: 100 ÷ 4,000 = 0.025. Step 2: 0.025 × 100 = **2.5%**.",
+            },
+            mistake: {
+              es: "Dividir al revés (visitantes ÷ compradores) o no multiplicar por 100.",
+              en: "Dividing the other way around (visitors ÷ buyers) or not multiplying by 100.",
+            },
+          },
+          {
+            name: { es: "Porcentaje de entregas a tiempo", en: "On-time delivery percentage" },
+            expression: "Entregas a tiempo % = Entregas a tiempo ÷ Entregas totales × 100",
+            variables: [
+              { symbol: "Entregas a tiempo %", meaning: { es: "Qué parte de los pedidos llegó cuando se prometió.", en: "What share of orders arrived when promised." } },
+              { symbol: "Entregas a tiempo", meaning: { es: "Pedidos que llegaron puntuales.", en: "Orders that arrived on time." } },
+              { symbol: "Entregas totales", meaning: { es: "Todos los pedidos entregados en el periodo.", en: "All orders delivered in the period." } },
+            ],
+            steps: [
+              { es: "Divide las entregas a tiempo entre las entregas totales.", en: "Divide on-time deliveries by total deliveries." },
+              { es: "Multiplica por 100 y compáralo con la meta para ver el color del semáforo.", en: "Multiply by 100 and compare it with the target to see the traffic-light color." },
+            ],
+            example: {
+              es: "Una mensajería hizo 300 entregas y 282 llegaron a tiempo: 282 ÷ 300 = 0.94; 0.94 × 100 = **94%**.",
+              en: "A courier made 300 deliveries and 282 arrived on time: 282 ÷ 300 = 0.94; 0.94 × 100 = **94%**.",
+            },
+          },
+          {
+            name: { es: "Margen bruto", en: "Gross margin" },
+            expression: "Margen bruto % = (Ventas − Costo de ventas) ÷ Ventas × 100",
+            variables: [
+              { symbol: "Margen bruto %", meaning: { es: "Qué parte de cada peso vendido queda después de pagar lo que costó la mercancía.", en: "What part of each peso sold remains after paying what the goods cost." } },
+              { symbol: "Ventas", meaning: { es: "Lo vendido en el periodo, en pesos.", en: "What was sold in the period, in pesos." } },
+              { symbol: "Costo de ventas", meaning: { es: "Lo que te costó la mercancía que vendiste, en pesos.", en: "What the goods you sold cost you, in pesos." } },
+            ],
+            steps: [
+              { es: "Resta el costo de ventas a las ventas: es la utilidad bruta en pesos.", en: "Subtract the cost of sales from sales: that is gross profit in pesos." },
+              { es: "Divide esa utilidad bruta entre las ventas (no entre el costo).", en: "Divide that gross profit by sales (not by cost)." },
+              { es: "Multiplica por 100.", en: "Multiply by 100." },
+            ],
+            example: {
+              es: "Una tienda de abarrotes vendió $200,000 y la mercancía le costó $130,000. Paso 1: $200,000 − $130,000 = $70,000. Paso 2: $70,000 ÷ $200,000 = 0.35. Paso 3: **35%**.",
+              en: "A grocery store sold $200,000 and the goods cost it $130,000. Step 1: $200,000 − $130,000 = $70,000. Step 2: $70,000 ÷ $200,000 = 0.35. Step 3: **35%**.",
+            },
+            interpret: {
+              es: "35% significa que de cada $100 vendidos te quedan $35 para pagar renta, sueldos y ganar.",
+              en: "35% means that out of every $100 sold you keep $35 to pay rent, salaries and make a profit.",
+            },
+            mistake: {
+              es: "Dividir entre el costo en lugar de entre las ventas; eso da un porcentaje más alto que no es el margen.",
+              en: "Dividing by cost instead of by sales; that gives a higher percentage that is not the margin.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -280,7 +471,7 @@ export const lessons: Lesson[] = [
       es: "Innovar es poner en práctica algo nuevo que crea valor, y transformar es cambiar a fondo cómo opera la empresa, probando en pequeño antes de apostar en grande.",
       en: "Innovating is putting into practice something new that creates value, and transforming is deeply changing how the company operates, testing small before betting big.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Reconocer los tipos de innovación (producto, proceso, modelo de negocio, comercialización y organización) y su grado (incremental o disruptiva).", en: "Recognize the types of innovation (product, process, business model, marketing and organizational) and their degree (incremental or disruptive)." },
       { es: "Aplicar el ciclo de probar en pequeño: idea, prototipo, medición y aprendizaje.", en: "Apply the test-small cycle: idea, prototype, measurement and learning." },
@@ -345,7 +536,34 @@ export const lessons: Lesson[] = [
             en: "To decide whether an improvement is worth it, compare what it **costs** with what it **saves or generates**. Mini example: a hardware store invests $20,000 in an inventory system that saves $35,000 a year in lost merchandise: return = (35,000 − 20,000) ÷ 20,000 × 100 = 75% in the first year.",
           },
         ],
-        formula: "Retorno % = (Beneficio − Costo) ÷ Costo × 100",
+        formulas: [
+          {
+            name: { es: "Retorno de una mejora o inversión", en: "Return on an improvement or investment" },
+            expression: "Retorno % = (Beneficio − Costo) ÷ Costo × 100",
+            variables: [
+              { symbol: "Retorno %", meaning: { es: "Cuánto ganas, en porcentaje, por cada peso invertido en la mejora.", en: "How much you earn, as a percentage, for each peso invested in the improvement." } },
+              { symbol: "Beneficio", meaning: { es: "Lo que la mejora ahorra o genera en el periodo que analizas (por ejemplo, un año), en pesos.", en: "What the improvement saves or generates in the period you analyze (for example, a year), in pesos." } },
+              { symbol: "Costo", meaning: { es: "Lo que pagaste por la mejora, en pesos.", en: "What you paid for the improvement, in pesos." } },
+            ],
+            steps: [
+              { es: "Lleva el beneficio al periodo que te piden: si es mensual y te piden un año, multiplícalo por 12.", en: "Bring the benefit to the requested period: if it is monthly and you are asked for a year, multiply it by 12." },
+              { es: "Resta el costo al beneficio: es la ganancia neta.", en: "Subtract the cost from the benefit: that is the net gain." },
+              { es: "Divide la ganancia neta entre el costo y multiplica por 100.", en: "Divide the net gain by the cost and multiply by 100." },
+            ],
+            example: {
+              es: "Una cocina económica invierte $30,000 en un refrigerador nuevo que le ahorra $4,000 al mes en comida echada a perder. Paso 1: $4,000 × 12 = $48,000 al año. Paso 2: $48,000 − $30,000 = $18,000. Paso 3: $18,000 ÷ $30,000 = 0.60; 0.60 × 100 = **60%** en el primer año.",
+              en: "A small diner invests $30,000 in a new fridge that saves it $4,000 a month in spoiled food. Step 1: $4,000 × 12 = $48,000 a year. Step 2: $48,000 − $30,000 = $18,000. Step 3: $18,000 ÷ $30,000 = 0.60; 0.60 × 100 = **60%** in the first year.",
+            },
+            interpret: {
+              es: "Positivo: la mejora ya se pagó y dejó ganancia en ese periodo. Negativo: todavía no se recupera (quizá sí más adelante).",
+              en: "Positive: the improvement has paid for itself and earned a profit in that period. Negative: it has not paid back yet (it may later).",
+            },
+            mistake: {
+              es: "Usar el beneficio de un solo mes cuando te piden el año, o dividir beneficio ÷ costo sin restar antes el costo.",
+              en: "Using a single month's benefit when asked for the year, or dividing benefit ÷ cost without first subtracting the cost.",
+            },
+          },
+        ],
         bullets: [
           { es: "Diagnóstico: elegir el problema más costoso.", en: "Diagnosis: choose the most costly problem." },
           { es: "Piloto: probar en un área o sucursal.", en: "Pilot: test in one area or branch." },
@@ -408,7 +626,7 @@ export const lessons: Lesson[] = [
       es: "Un negocio puede crecer con sus propios recursos o uniéndose a otros, y la matriz de Ansoff ayuda a elegir el camino según el riesgo que puede asumir.",
       en: "A business can grow with its own resources or by joining others, and the Ansoff matrix helps choose the path according to the risk it can take on.",
     },
-    minutes: 15,
+    minutes: 16,
     objectives: [
       { es: "Distinguir el crecimiento orgánico del inorgánico y dar ejemplos de cada uno.", en: "Distinguish organic from inorganic growth and give examples of each." },
       { es: "Usar la matriz de Ansoff para clasificar opciones de crecimiento según su riesgo.", en: "Use the Ansoff matrix to classify growth options according to their risk." },
@@ -471,7 +689,35 @@ export const lessons: Lesson[] = [
             en: "Mini example: a store goes from selling $400,000 to $520,000 in a year: it grows (520,000 − 400,000) ÷ 400,000 × 100 = 30%. If, to achieve it, it had to double its inventory on credit, it must make sure there is enough cash to pay on time.",
           },
         ],
-        formula: "Tasa de crecimiento % = (Ventas actuales − Ventas anteriores) ÷ Ventas anteriores × 100",
+        formulas: [
+          {
+            name: { es: "Tasa de crecimiento de las ventas", en: "Sales growth rate" },
+            expression: "Aumento = Ventas actuales − Ventas anteriores  ·  Tasa de crecimiento % = Aumento ÷ Ventas anteriores × 100",
+            variables: [
+              { symbol: "Aumento", meaning: { es: "Cuántos pesos más se vendieron que en el periodo anterior.", en: "How many more pesos were sold than in the previous period." } },
+              { symbol: "Ventas actuales", meaning: { es: "Ventas del periodo que estás midiendo, en pesos.", en: "Sales in the period you are measuring, in pesos." } },
+              { symbol: "Ventas anteriores", meaning: { es: "Ventas del periodo inmediato anterior, en pesos.", en: "Sales in the immediately preceding period, in pesos." } },
+              { symbol: "Tasa de crecimiento %", meaning: { es: "Cuánto crecieron las ventas, en porcentaje.", en: "How much sales grew, as a percentage." } },
+            ],
+            steps: [
+              { es: "Resta las ventas anteriores a las actuales: es el aumento en pesos.", en: "Subtract the previous sales from the current ones: that is the increase in pesos." },
+              { es: "Divide el aumento entre las ventas **anteriores**.", en: "Divide the increase by the **previous** sales." },
+              { es: "Multiplica por 100. Si analizas varios años, cada año se compara con el inmediato anterior.", en: "Multiply by 100. If you analyze several years, each year is compared with the one right before it." },
+            ],
+            example: {
+              es: "Una mueblería vendió $300,000 el año pasado y $354,000 este año. Paso 1: $354,000 − $300,000 = $54,000. Paso 2: $54,000 ÷ $300,000 = 0.18. Paso 3: **18%**.",
+              en: "A furniture store sold $300,000 last year and $354,000 this year. Step 1: $354,000 − $300,000 = $54,000. Step 2: $54,000 ÷ $300,000 = 0.18. Step 3: **18%**.",
+            },
+            interpret: {
+              es: "Positivo: las ventas crecieron; negativo: bajaron. Si la tasa sube año con año, el crecimiento se acelera.",
+              en: "Positive: sales grew; negative: they fell. If the rate rises year after year, growth is accelerating.",
+            },
+            mistake: {
+              es: "Dividir entre las ventas actuales, o comparar el año 3 contra el año 1 en vez de contra el año 2.",
+              en: "Dividing by current sales, or comparing year 3 against year 1 instead of year 2.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -529,7 +775,7 @@ export const lessons: Lesson[] = [
       es: "Un negocio es escalable cuando puede multiplicar sus ingresos sin que sus costos crezcan al mismo ritmo, y eso se prepara con procesos, tecnología y números sanos por cliente.",
       en: "A business is scalable when it can multiply its revenue without its costs growing at the same pace, and that is prepared with processes, technology and healthy per-customer numbers.",
     },
-    minutes: 16,
+    minutes: 18,
     objectives: [
       { es: "Explicar la diferencia entre crecer y escalar usando costos fijos y variables.", en: "Explain the difference between growing and scaling using fixed and variable costs." },
       { es: "Identificar las características que hacen escalable a un negocio.", en: "Identify the features that make a business scalable." },
@@ -550,6 +796,59 @@ export const lessons: Lesson[] = [
           {
             es: "Mini ejemplo: una maestra de inglés da clases particulares: cada alumno nuevo requiere una hora más de su tiempo. Si graba un curso en línea, el curso cuesta lo mismo con 10 o con 1,000 alumnos; cada alumno extra casi no le cuesta nada. El curso es más escalable.",
             en: "Mini example: an English teacher gives private lessons: each new student requires another hour of her time. If she records an online course, the course costs the same with 10 or 1,000 students; each extra student costs her almost nothing. The course is more scalable.",
+          },
+        ],
+        formulas: [
+          {
+            name: { es: "Utilidad según el número de clientes", en: "Profit by number of customers" },
+            expression: "Utilidad = Clientes × (Precio − Costo variable por cliente) − Costos fijos",
+            variables: [
+              { symbol: "Utilidad", meaning: { es: "Lo que gana el negocio en el mes, en pesos (negativa = pérdida).", en: "What the business earns in the month, in pesos (negative = loss)." } },
+              { symbol: "Clientes", meaning: { es: "Cuántos clientes o usuarios pagan ese mes.", en: "How many customers or users pay that month." } },
+              { symbol: "Precio", meaning: { es: "Lo que paga cada cliente al mes, en pesos.", en: "What each customer pays per month, in pesos." } },
+              { symbol: "Costo variable por cliente", meaning: { es: "Lo que cuesta atender a un cliente más (el costo marginal), en pesos.", en: "What it costs to serve one more customer (the marginal cost), in pesos." } },
+              { symbol: "Costos fijos", meaning: { es: "Lo que pagas al mes sin importar cuántos clientes tengas, en pesos.", en: "What you pay per month no matter how many customers you have, in pesos." } },
+            ],
+            steps: [
+              { es: "Resta el costo variable al precio: es lo que deja cada cliente.", en: "Subtract the variable cost from the price: that is what each customer leaves." },
+              { es: "Multiplícalo por el número de clientes.", en: "Multiply it by the number of customers." },
+              { es: "Resta los costos fijos.", en: "Subtract the fixed costs." },
+            ],
+            example: {
+              es: "Una app de recetas cobra $200 al mes, cada usuario cuesta $40 y los fijos son $60,000. Paso 1: $200 − $40 = $160. Con 300 usuarios: 300 × $160 = $48,000; $48,000 − $60,000 = **−$12,000** (pérdida). Con 1,500: 1,500 × $160 = $240,000; $240,000 − $60,000 = **$180,000**.",
+              en: "A recipe app charges $200 a month, each user costs $40 and fixed costs are $60,000. Step 1: $200 − $40 = $160. With 300 users: 300 × $160 = $48,000; $48,000 − $60,000 = **−$12,000** (loss). With 1,500: 1,500 × $160 = $240,000; $240,000 − $60,000 = **$180,000**.",
+            },
+            interpret: {
+              es: "Si la utilidad crece mucho más rápido que el número de clientes, el negocio es escalable.",
+              en: "If profit grows much faster than the number of customers, the business is scalable.",
+            },
+            mistake: {
+              es: "Olvidar restar los costos fijos; con pocos clientes pueden convertir la ganancia en pérdida.",
+              en: "Forgetting to subtract fixed costs; with few customers they can turn a profit into a loss.",
+            },
+          },
+          {
+            name: { es: "Costo total promedio por cliente", en: "Average total cost per customer" },
+            expression: "Costo promedio por cliente = (Costos fijos + Clientes × Costo variable por cliente) ÷ Clientes",
+            variables: [
+              { symbol: "Costo promedio por cliente", meaning: { es: "Cuánto te cuesta en total, en promedio, cada cliente, en pesos.", en: "How much each customer costs you in total, on average, in pesos." } },
+              { symbol: "Costos fijos", meaning: { es: "Gastos del mes que no cambian con los clientes, en pesos.", en: "Monthly expenses that do not change with customers, in pesos." } },
+              { symbol: "Clientes", meaning: { es: "Número de clientes del mes.", en: "Number of customers in the month." } },
+              { symbol: "Costo variable por cliente", meaning: { es: "Lo que cuesta atender a cada cliente, en pesos.", en: "What it costs to serve each customer, in pesos." } },
+            ],
+            steps: [
+              { es: "Multiplica los clientes por el costo variable: es el costo variable total.", en: "Multiply customers by the variable cost: that is the total variable cost." },
+              { es: "Súmale los costos fijos: es el costo total.", en: "Add the fixed costs: that is the total cost." },
+              { es: "Divide el costo total entre el número de clientes.", en: "Divide the total cost by the number of customers." },
+            ],
+            example: {
+              es: "La misma app con 1,500 usuarios. Paso 1: 1,500 × $40 = $60,000. Paso 2: $60,000 + $60,000 = $120,000. Paso 3: $120,000 ÷ 1,500 = **$80** por usuario.",
+              en: "The same app with 1,500 users. Step 1: 1,500 × $40 = $60,000. Step 2: $60,000 + $60,000 = $120,000. Step 3: $120,000 ÷ 1,500 = **$80** per user.",
+            },
+            interpret: {
+              es: "Entre más clientes, más se reparten los fijos y más baja el costo promedio: eso es la escala.",
+              en: "The more customers, the more fixed costs are spread out and the lower the average cost: that is scale.",
+            },
           },
         ],
       },
@@ -593,7 +892,56 @@ export const lessons: Lesson[] = [
             en: "Mini example: a gym charges $500 a month with a 60% margin; members stay 10 months on average. LTV = 500 × 60% × 10 = $3,000. If winning each member costs $750 in ads, LTV ÷ CAC = 4 times: it can invest in growth.",
           },
         ],
-        formula: "LTV = Ingreso mensual por cliente × Margen % × Meses de permanencia · CAC = Gasto en adquisición ÷ Clientes nuevos",
+        formulas: [
+          {
+            name: { es: "Valor de vida del cliente (LTV)", en: "Customer lifetime value (LTV)" },
+            expression: "LTV = Ingreso mensual por cliente × Margen % × Meses de permanencia",
+            variables: [
+              { symbol: "LTV", meaning: { es: "El margen total que te deja un cliente mientras se queda contigo, en pesos.", en: "The total margin a customer leaves you while they stay with you, in pesos." } },
+              { symbol: "Ingreso mensual por cliente", meaning: { es: "Lo que paga cada cliente al mes, en pesos.", en: "What each customer pays per month, in pesos." } },
+              { symbol: "Margen %", meaning: { es: "Qué parte de ese pago te queda después de los costos, en porcentaje.", en: "What part of that payment you keep after costs, as a percentage." } },
+              { symbol: "Meses de permanencia", meaning: { es: "Cuántos meses se queda un cliente en promedio.", en: "How many months a customer stays on average." } },
+            ],
+            steps: [
+              { es: "Convierte el margen a decimal y multiplícalo por el ingreso mensual: es lo que te deja el cliente cada mes.", en: "Convert the margin to a decimal and multiply it by the monthly revenue: that is what the customer leaves you each month." },
+              { es: "Multiplica ese resultado por los meses de permanencia.", en: "Multiply that result by the months the customer stays." },
+            ],
+            example: {
+              es: "Un servicio de lavado de autos por suscripción cobra $250 al mes con 40% de margen; los clientes se quedan 12 meses. Paso 1: $250 × 0.40 = $100 al mes. Paso 2: $100 × 12 = **$1,200**.",
+              en: "A car-wash subscription charges $250 a month with a 40% margin; customers stay 12 months. Step 1: $250 × 0.40 = $100 a month. Step 2: $100 × 12 = **$1,200**.",
+            },
+            mistake: {
+              es: "Olvidar el margen y usar lo que paga el cliente; el LTV mide lo que te deja, no lo que te paga.",
+              en: "Forgetting the margin and using what the customer pays; LTV measures what they leave you, not what they pay.",
+            },
+          },
+          {
+            name: { es: "Costo de adquisición de cliente (CAC) y relación LTV ÷ CAC", en: "Customer acquisition cost (CAC) and the LTV ÷ CAC ratio" },
+            expression: "CAC = Gasto en adquisición ÷ Clientes nuevos  ·  Relación = LTV ÷ CAC",
+            variables: [
+              { symbol: "CAC", meaning: { es: "Cuánto te cuesta conseguir un cliente nuevo, en pesos.", en: "How much it costs you to win one new customer, in pesos." } },
+              { symbol: "Gasto en adquisición", meaning: { es: "Lo gastado en publicidad y ventas en el periodo, en pesos.", en: "What was spent on advertising and sales in the period, in pesos." } },
+              { symbol: "Clientes nuevos", meaning: { es: "Clientes que llegaron en ese mismo periodo.", en: "Customers who arrived in that same period." } },
+              { symbol: "Relación", meaning: { es: "Cuántas veces cubre el LTV lo que costó conseguir al cliente.", en: "How many times LTV covers what it cost to win the customer." } },
+            ],
+            steps: [
+              { es: "Divide el gasto en adquisición entre los clientes nuevos: es el CAC.", en: "Divide acquisition spend by new customers: that is CAC." },
+              { es: "Divide el LTV entre el CAC: es la relación, en \"veces\".", en: "Divide LTV by CAC: that is the ratio, in \"times\"." },
+            ],
+            example: {
+              es: "El lavado de autos gastó $45,000 en anuncios y llegaron 90 clientes. Paso 1: $45,000 ÷ 90 = **$500** de CAC. Paso 2: $1,200 ÷ $500 = **2.4 veces**.",
+              en: "The car wash spent $45,000 on ads and 90 customers arrived. Step 1: $45,000 ÷ 90 = **$500** CAC. Step 2: $1,200 ÷ $500 = **2.4 times**.",
+            },
+            interpret: {
+              es: "Mayor que 1: cada cliente deja más de lo que costó. Menor que 1: cada cliente te cuesta dinero. Como guía práctica (no ley), muchos negocios de suscripción buscan unas 3 veces o más.",
+              en: "Above 1: each customer brings in more than they cost. Below 1: each customer costs you money. As a rule of thumb (not a law), many subscription businesses aim for about 3 times or more.",
+            },
+            mistake: {
+              es: "Dividir el gasto entre todos los clientes (también los viejos) en lugar de solo los nuevos.",
+              en: "Dividing the spend by all customers (including old ones) instead of only the new ones.",
+            },
+          },
+        ],
       },
     ],
     examples: [
@@ -650,7 +998,7 @@ export const lessons: Lesson[] = [
       es: "Las startups se financian por etapas, y el venture capital aporta dinero a cambio de una parte de la empresa, lo que diluye a los fundadores en cada ronda.",
       en: "Startups are financed in stages, and venture capital provides money in exchange for a stake in the company, which dilutes the founders in each round.",
     },
-    minutes: 17,
+    minutes: 19,
     objectives: [
       { es: "Describir las etapas de financiamiento de una startup, desde recursos propios hasta rondas de venture capital.", en: "Describe a startup's financing stages, from own resources to venture capital rounds." },
       { es: "Explicar cómo funciona un fondo de venture capital y qué busca a cambio de su inversión.", en: "Explain how a venture capital fund works and what it seeks in exchange for its investment." },
@@ -703,6 +1051,10 @@ export const lessons: Lesson[] = [
         heading: { es: "Valuación y dilución: cuánto de tu empresa entregas", en: "Valuation and dilution: how much of your company you give away" },
         body: [
           {
+            es: "En palabras sencillas: piensa en tu empresa como un pastel. Cuando entra un inversionista, el pastel crece con su dinero, pero a cambio se lleva una rebanada. Esta sección te enseña a calcular qué tan grande es su rebanada y cuánto te queda a ti.",
+            en: "In plain words: think of your company as a cake. When an investor comes in, the cake grows with their money, but in exchange they take a slice. This section teaches you to calculate how big their slice is and how much is left for you.",
+          },
+          {
             es: "La **valuación pre-money** es cuánto vale la empresa **antes** de recibir la inversión. La **post-money** es ese valor **más** el dinero que entra. El porcentaje del inversionista es su inversión dividida entre la valuación post-money.",
             en: "The **pre-money valuation** is what the company is worth **before** receiving the investment. **Post-money** is that value **plus** the money coming in. The investor's percentage is their investment divided by the post-money valuation.",
           },
@@ -715,7 +1067,60 @@ export const lessons: Lesson[] = [
             en: "Besides price, the **term sheet** sets other conditions: board seats, voting rights and the **liquidation preference** (who gets paid first if the company is sold). Mini example: with an $8 million pre-money and a $2 million investment, post-money is $10 million and the fund ends up with 20%.",
           },
         ],
-        formula: "Post-money = Pre-money + Inversión · % inversionista = Inversión ÷ Post-money × 100 · % nuevo = % anterior × (1 − % de la ronda)",
+        formulas: [
+          {
+            name: { es: "Valuación post-money y porcentaje del inversionista", en: "Post-money valuation and investor percentage" },
+            expression: "Post-money = Pre-money + Inversión  ·  % inversionista = Inversión ÷ Post-money × 100",
+            variables: [
+              { symbol: "Post-money", meaning: { es: "Lo que vale la empresa **después** de recibir el dinero, en pesos.", en: "What the company is worth **after** receiving the money, in pesos." } },
+              { symbol: "Pre-money", meaning: { es: "Lo que vale la empresa **antes** de recibir el dinero, en pesos.", en: "What the company is worth **before** receiving the money, in pesos." } },
+              { symbol: "Inversión", meaning: { es: "El dinero que pone el inversionista en esta ronda, en pesos.", en: "The money the investor puts in this round, in pesos." } },
+              { symbol: "% inversionista", meaning: { es: "La parte de la empresa que recibe el inversionista, en porcentaje.", en: "The share of the company the investor receives, as a percentage." } },
+            ],
+            steps: [
+              { es: "Suma la inversión a la pre-money: es la post-money.", en: "Add the investment to the pre-money: that is the post-money." },
+              { es: "Divide la inversión entre la post-money (no entre la pre-money).", en: "Divide the investment by the post-money (not by the pre-money)." },
+              { es: "Multiplica por 100.", en: "Multiply by 100." },
+            ],
+            example: {
+              es: "Pre-money de $16 millones e inversión de $4 millones. Paso 1: $16 M + $4 M = **$20 M**. Paso 2: $4 M ÷ $20 M = 0.20. Paso 3: **20%** para el inversionista.",
+              en: "Pre-money of $16 million and an investment of $4 million. Step 1: $16 M + $4 M = **$20 M**. Step 2: $4 M ÷ $20 M = 0.20. Step 3: **20%** for the investor.",
+            },
+            mistake: {
+              es: "Dividir entre la pre-money; eso exagera el porcentaje que se entrega.",
+              en: "Dividing by the pre-money; that overstates the percentage given away.",
+            },
+          },
+          {
+            name: { es: "Dilución: tu nuevo porcentaje después de una ronda", en: "Dilution: your new percentage after a round" },
+            expression: "% nuevo = % anterior × (1 − % de la ronda)  ·  Valor en papel = % nuevo × Post-money",
+            variables: [
+              { symbol: "% nuevo", meaning: { es: "La parte de la empresa que te queda después de la ronda.", en: "The share of the company you keep after the round." } },
+              { symbol: "% anterior", meaning: { es: "La parte que tenías antes de la ronda.", en: "The share you had before the round." } },
+              { symbol: "% de la ronda", meaning: { es: "El porcentaje que se lleva el nuevo inversionista (en decimal: 20% = 0.20).", en: "The percentage the new investor takes (as a decimal: 20% = 0.20)." } },
+              { symbol: "Valor en papel", meaning: { es: "Lo que valdría tu parte según la post-money, en pesos; no es dinero en tu bolsa hasta que vendas.", en: "What your stake would be worth at the post-money, in pesos; it is not cash in your pocket until you sell." } },
+              { symbol: "Post-money", meaning: { es: "Valor de la empresa ya con el dinero nuevo, en pesos.", en: "The company's value including the new money, in pesos." } },
+            ],
+            steps: [
+              { es: "Calcula el porcentaje de la ronda (inversión ÷ post-money).", en: "Compute the round's percentage (investment ÷ post-money)." },
+              { es: "Resta ese porcentaje a 1 (por ejemplo, 1 − 0.20 = 0.80).", en: "Subtract that percentage from 1 (for example, 1 − 0.20 = 0.80)." },
+              { es: "Multiplica tu porcentaje anterior por ese resultado.", en: "Multiply your previous percentage by that result." },
+              { es: "Para el valor en papel, multiplica tu nuevo porcentaje por la post-money.", en: "For the paper value, multiply your new percentage by the post-money." },
+            ],
+            example: {
+              es: "Los fundadores tienen 90% y entra una ronda que toma 20% con post-money de $20 millones. Paso 2: 1 − 0.20 = 0.80. Paso 3: 90% × 0.80 = **72%**. Paso 4: 0.72 × $20 M = **$14.4 millones** en papel.",
+              en: "The founders own 90% and a round takes 20% at a $20 million post-money. Step 2: 1 − 0.20 = 0.80. Step 3: 90% × 0.80 = **72%**. Step 4: 0.72 × $20 M = **$14.4 million** on paper.",
+            },
+            interpret: {
+              es: "Tu porcentaje baja, pero si la empresa vale más, tu parte en pesos puede subir. Lo importante es que el pastel crezca.",
+              en: "Your percentage goes down, but if the company is worth more, your stake in pesos can go up. What matters is that the cake grows.",
+            },
+            mistake: {
+              es: "Restar porcentajes (90% − 20% = 70%); la dilución se aplica multiplicando sobre lo que ya tenías.",
+              en: "Subtracting percentages (90% − 20% = 70%); dilution is applied by multiplying on what you already had.",
+            },
+          },
+        ],
       },
     ],
     examples: [
