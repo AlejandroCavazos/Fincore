@@ -32,3 +32,19 @@ describe('theory cards', () => {
     expect(buildCards(l, l.theory.length - 1, exercisesOfLesson(l)).at(-1)?.kind).toBe('keypoints')
   })
 })
+
+import { allChats } from '../content/chats'
+import { getLesson } from '../content'
+
+describe('chat lessons', () => {
+  it('have one script per theory section and every challenge has one right answer', () => {
+    for (const c of allChats()) {
+      const l = getLesson(c.lessonId)!
+      expect(c.sections).toHaveLength(l.theory.length)
+      for (const sec of c.sections) {
+        expect(sec.length).toBeGreaterThan(2)
+        for (const st of sec) if ('ask' in st) expect(st.options.filter((o) => o.ok)).toHaveLength(1)
+      }
+    }
+  })
+})

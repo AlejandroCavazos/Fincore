@@ -5,6 +5,8 @@ import { ExerciseRunner } from '../components/ExerciseRunner'
 import { FormulaCard } from '../components/FormulaCard'
 import { TheoryCards } from '../components/cards/TheoryCards'
 import { cardsEnabled } from '../lib/cards'
+import { ChatLesson } from '../components/cards/ChatLesson'
+import { chatFor } from '../content/chats'
 import { useState } from 'react'
 import { Button, Card, cx, Notice, ProgressBar, Rich } from '../components/ui'
 import { markSubtopic } from '../lib/progress'
@@ -236,11 +238,24 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
       {tx('Tema', 'Topic')} {pos} · {tx('Subtema', 'Subtopic')} {index + 1} {tx('de', 'of')} {subtopicCount(lesson)} · {subMinutes(lesson)} min
     </p>
   )
-  const switcher = cardsEnabled(lesson) && (
+  const { lang } = useI18n()
+  const chat = lang === 'es' ? chatFor(lesson.id) : undefined
+  const switcher = (cardsEnabled(lesson) || chat) && (
     <button type="button" data-testid="view-toggle" onClick={() => toggle(!asText)} className="text-xs font-semibold text-electric-600 hover:underline dark:text-electric-300">
-      {asText ? 'Ver en tarjetas' : 'Ver texto completo'}
+      {asText ? (chat ? 'Ver como chat' : 'Ver en tarjetas') : 'Ver texto completo'}
     </button>
   )
+
+  const head = (
+    <>
+      <Steps lesson={lesson} current={index} />
+      <div className="mt-3 flex items-center justify-between gap-2">
+        {meta}
+        {switcher}
+      </div>
+    </>
+  )
+  if (chat && !asText) return <ChatLesson key={`${lesson.id}:${index}`} chat={chat} index={index} finishLabel={finishLabel} onFinish={finish} header={head} />
 
   if (cardsEnabled(lesson) && !asText)
     return (

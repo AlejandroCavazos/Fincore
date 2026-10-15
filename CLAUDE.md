@@ -4,7 +4,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 
 ## Stack and commands
 - Vite 8 + React 19 + TypeScript 6 + Tailwind v4. Local storage in IndexedDB (`src/lib/db.ts`). Hash router (`src/state/router.ts`).
-- `npx tsc -b` checks types. `npm test` runs vitest (about 138 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 39 e2e tests.
+- `npx tsc -b` checks types. `npm test` runs vitest (about 139 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 42 e2e tests.
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
 ## Where things live
@@ -24,6 +24,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - Account sync: `src/state/cloud.tsx` (CloudSync: pull+merge on sign-in/focus, push 4 s after changes), `src/lib/cloud.ts` (Supabase table `user_progress`, SQL in `supabase/migrations/003_user_progress.sql`), `src/lib/merge.ts` (mergeStates/mergeLives, tests in `src/test/merge.test.ts`).
 - Prices: all in `src/config/pricing.ts` (Plus $99, Pro $199 per month, MXN; Gratis free). UI: `src/pages/Plans.tsx`.
 - Theory cards (pilot on L1-*, `cardsEnabled` in `src/lib/cards.ts`): `buildCards` turns each theory section into short swipeable cards automatically (first sentence + "Ver más", lists, formulas, quick mcq/truefalse questions from the lesson, key points). UI `src/components/cards/TheoryCards.tsx`, used by Subtopic in LessonPage ("Ver texto completo" toggle, saved in localStorage). Tests `src/test/cards.test.ts`.
+- Chat lessons (sample: L1-16 with "Don Memo"): scripts in `src/content/chats/<id>.ts` (one script per theory section, Spanish only), registered in `src/content/chats/index.ts`; UI `src/components/cards/ChatLesson.tsx`. LessonPage shows chat first if a script exists, then cards, with the "Ver texto completo" toggle.
 - Tests: `src/test/content.test.ts` checks the whole content bank (unique ids, solutions grade correct, formula guides complete).
 
 ## Rules

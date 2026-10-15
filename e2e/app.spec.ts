@@ -112,6 +112,29 @@ test('theory as swipeable cards with quick questions', async ({ page }) => {
   await expect(page.getByTestId('theory-cards')).toBeVisible()
 })
 
+test('chat lesson: challenge first, replies and finish', async ({ page }) => {
+  await onboard(page)
+  await page.goto('./#/settings')
+  await page.getByRole('checkbox', { name: /Modo libre/ }).check()
+  await page.goto('./#/lesson/L1-16?s=2')
+  const chat = page.getByTestId('chat-lesson')
+  await expect(chat).toBeVisible()
+  // Answer every challenge (first option) until the finish button shows.
+  for (let i = 0; i < 10; i++) {
+    if (await page.getByTestId('chat-finish').isVisible()) break
+    const opt = chat.locator('[data-testid="chat-ask"] button').first()
+    await opt.waitFor({ timeout: 8000 }).catch(() => {})
+    if (await opt.isVisible()) {
+      if (i === 0) await shot(page, '09-chat-question')
+      await opt.click()
+    }
+  }
+  await expect(page.getByTestId('chat-finish')).toBeVisible({ timeout: 10000 })
+  await shot(page, '09-chat-end')
+  await page.getByTestId('chat-finish').click()
+  await expect(page).toHaveURL(/s=3/)
+})
+
 test('courses: area, topic and subtopics advance in order', async ({ page }) => {
   await onboard(page)
   await page.goto('./#/courses')
