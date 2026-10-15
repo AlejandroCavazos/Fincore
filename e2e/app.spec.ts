@@ -88,6 +88,30 @@ test('plans: normal prices, no savings or discounts', async ({ page }) => {
   await shot(page, '07-plans-annual')
 })
 
+test('theory as swipeable cards with quick questions', async ({ page }) => {
+  await onboard(page)
+  await page.goto('./#/lesson/L1-01?s=0')
+  const deck = page.getByTestId('theory-cards')
+  await expect(deck).toBeVisible()
+  await shot(page, '08-cards-1')
+  const n = await deck.locator('section').count()
+  await deck.evaluate((el) => el.scrollTo({ top: el.clientHeight }))
+  await page.waitForTimeout(400)
+  await shot(page, '08-cards-2')
+  const check = deck.locator('[data-card="check"]').first()
+  if (await check.count()) {
+    await check.scrollIntoViewIfNeeded()
+    await shot(page, '08-cards-check')
+  }
+  await deck.evaluate((el, k) => el.scrollTo({ top: el.clientHeight * k }), n)
+  await page.getByTestId('cards-finish').click()
+  await expect(page).toHaveURL(/s=1/)
+  await page.getByTestId('view-toggle').click()
+  await expect(page.getByTestId('theory-cards')).toHaveCount(0)
+  await page.getByTestId('view-toggle').click()
+  await expect(page.getByTestId('theory-cards')).toBeVisible()
+})
+
 test('courses: area, topic and subtopics advance in order', async ({ page }) => {
   await onboard(page)
   await page.goto('./#/courses')

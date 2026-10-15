@@ -3,6 +3,9 @@ import { areaOfLesson, BUSINESS_PER_TOPIC, topicLabel } from '../content/areas'
 import { exercisesOfLesson, getLesson } from '../content'
 import { ExerciseRunner } from '../components/ExerciseRunner'
 import { FormulaCard } from '../components/FormulaCard'
+import { TheoryCards } from '../components/cards/TheoryCards'
+import { cardsEnabled } from '../lib/cards'
+import { useState } from 'react'
 import { Button, Card, cx, Notice, ProgressBar, Rich } from '../components/ui'
 import { markSubtopic } from '../lib/progress'
 import {
@@ -20,6 +23,8 @@ import { useI18n, useStore } from '../state/store'
 import type { Lesson } from '../types'
 import { money } from './AreaPage'
 import NotFound from './NotFound'
+
+const VIEW_KEY = 'fincore-theory-view'
 
 /** Minutes shown per subtopic: the lesson's time split across its parts, at least 3. */
 const subMinutes = (l: Lesson) => Math.max(3, Math.round(l.minutes / subtopicCount(l)))
@@ -210,15 +215,62 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
     update((s) => markSubtopic(s, lesson.id, index))
     navigate(last ? `/lesson/${lesson.id}?tab=practice` : `/lesson/${lesson.id}?s=${index + 1}`)
   }
+  const [asText, setAsText] = useState(() => {
+    try {
+      return localStorage.getItem(VIEW_KEY) === 'text'
+    } catch {
+      return false
+    }
+  })
+  const toggle = (text: boolean) => {
+    setAsText(text)
+    try {
+      localStorage.setItem(VIEW_KEY, text ? 'text' : 'cards')
+    } catch {
+      /* ignore */
+    }
+  }
+  const finishLabel = last ? tx('Entendido, al reto del tema', 'Got it, on to the challenge') : tx('Entendido, siguiente', 'Got it, next')
+  const meta = (
+    <p className="text-xs font-bold uppercase tracking-wider text-electric-600 dark:text-electric-300">
+      {tx('Tema', 'Topic')} {pos} · {tx('Subtema', 'Subtopic')} {index + 1} {tx('de', 'of')} {subtopicCount(lesson)} · {subMinutes(lesson)} min
+    </p>
+  )
+  const switcher = cardsEnabled(lesson) && (
+    <button type="button" data-testid="view-toggle" onClick={() => toggle(!asText)} className="text-xs font-semibold text-electric-600 hover:underline dark:text-electric-300">
+      {asText ? 'Ver en tarjetas' : 'Ver texto completo'}
+    </button>
+  )
+
+  if (cardsEnabled(lesson) && !asText)
+    return (
+      <TheoryCards
+        key={`${lesson.id}:${index}`}
+        lesson={lesson}
+        index={index}
+        finishLabel={finishLabel}
+        onFinish={finish}
+        header={
+          <>
+            <Steps lesson={lesson} current={index} />
+            <div className="mt-3 flex items-center justify-between gap-2">
+              {meta}
+              {switcher}
+            </div>
+          </>
+        }
+      />
+    )
 
   return (
     <div className="mx-auto max-w-2xl space-y-4">
       <Steps lesson={lesson} current={index} />
       <article className="space-y-4">
         <div>
-          <p className="text-xs font-bold uppercase tracking-wider text-electric-600 dark:text-electric-300">
-            {tx('Tema', 'Topic')} {pos} · {tx('Subtema', 'Subtopic')} {index + 1} {tx('de', 'of')} {subtopicCount(lesson)} · {subMinutes(lesson)} min
-          </p>
+          <div className="flex items-center justify-between gap-2">
+            {meta}
+            {switcher}
+          </div>
           <h1 className="mt-1 text-2xl font-bold tracking-tight text-navy-900 dark:text-white">{t(sec.heading)}</h1>
           <p className="text-sm text-navy-500 dark:text-navy-300">{t(lesson.title)}</p>
         </div>
@@ -258,7 +310,7 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
         )}
       </article>
       <Button size="lg" className="w-full uppercase tracking-wide shadow-[0_3px_0] shadow-electric-700" onClick={finish}>
-        {last ? tx('Entendido, al reto del tema', 'Got it, on to the challenge') : tx('Entendido, siguiente', 'Got it, next')}
+        {finishLabel}
       </Button>
     </div>
   )
