@@ -112,6 +112,27 @@ export function validateState(input: unknown): V {
       out.lab.solved = rec('lab.solved', lab.solved, (x) => (isIso(x) ? (x as string) : null))
     }
   }
+  const lx = input.labx
+  if (lx !== undefined) {
+    if (!isObj(lx)) errors.push('labx: invalid')
+    else {
+      out.labx.practice = rec('labx.practice', lx.practice, (x) => (isObj(x) && isNum(x.done) && isNum(x.correct) ? { done: x.done, correct: x.correct } : null))
+      out.labx.exams = rec('labx.exams', lx.exams, (x) =>
+        isObj(x) && isNum(x.best) && isNum(x.tries) && (x.passedAt === undefined || isIso(x.passedAt)) ? { best: x.best, tries: x.tries, ...(x.passedAt ? { passedAt: x.passedAt as string } : {}) } : null,
+      )
+      const okLine = (l: unknown) => isObj(l) && isStr(l.accountCode) && (l.side === 'D' || l.side === 'C') && isNum(l.amount) && l.amount > 0
+      const okEntry = (e: unknown) => isObj(e) && isStr(e.id) && isStr(e.date) && isObj(e.description) && (e.kind === 'I' || e.kind === 'E' || e.kind === 'D') && Array.isArray(e.lines) && e.lines.every(okLine)
+      const okProject = (p: unknown) => isObj(p) && isStr(p.id) && isStr(p.name) && isIso(p.createdAt) && Array.isArray(p.entries) && p.entries.every(okEntry) && (p.sheet === undefined || isObj(p.sheet))
+      if (lx.projects !== undefined) {
+        if (!Array.isArray(lx.projects) || !lx.projects.every(okProject)) errors.push('labx.projects: invalid')
+        else
+          out.labx.projects = (lx.projects as AppState['labx']['projects']).map((p) => ({
+            ...p,
+            sheet: rec('labx.sheet', p.sheet ?? {}, (x) => (isStr(x) && x.length <= 500 ? x : null)),
+          }))
+      }
+    }
+  }
   const fr = input.fraud
   if (fr !== undefined) {
     if (!isObj(fr) || !isNum(fr.bestScore)) errors.push('fraud: invalid')

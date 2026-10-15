@@ -21,7 +21,8 @@ export const PLANS: Plan[] = [
     features: [
       ['Todas las lecciones y los 6 niveles', 'All lessons and the 6 levels'],
       ['Ejercicios, repaso y evaluaciones', 'Exercises, review and exams'],
-      ['Laboratorio contable y calculadoras', 'Accounting lab and calculators'],
+      ['Laboratorio contable: práctica nivel Básico', 'Accounting lab: Basic practice level'],
+      ['Calculadoras', 'Calculators'],
       ['Tutor local sin IA', 'Local tutor without AI'],
       ['Algunas preguntas al tutor con IA por día', 'A few AI tutor questions per day'],
     ],
@@ -34,6 +35,7 @@ export const PLANS: Plan[] = [
     highlight: true,
     features: [
       ['Todo lo de Gratis', 'Everything in Free'],
+      ['Laboratorio completo: 3 niveles de práctica con CFDI, exámenes de Mes contable y Hoja libre', 'Full lab: 3 CFDI practice levels, monthly exams and Free sheet'],
       ['Más preguntas al tutor con IA', 'More AI tutor questions'],
       ['Progreso sincronizado entre dispositivos', 'Progress synced across devices'],
     ],

@@ -64,11 +64,31 @@ export interface AppState {
   activity: string[]
   achievements: Record<string, string>
   lab: { journal: PostedEntry[]; solved: Record<string, string> }
+  /** Lab v2: CFDI practice stats, exam results and user projects (Hoja libre). */
+  labx: LabX
   fraud: { bestScore: number; cases: Record<string, { score: number; at: string }> }
   exams: Record<string, ExamResult[]>
   tutor: { messages: number }
   /** Short subtopics read inside a topic, "lessonId:index" → ISO date. */
   subtopics: Record<string, string>
+}
+
+export interface LabProjectEntry extends PostedEntry {
+  kind: 'I' | 'E' | 'D'
+}
+
+export interface LabProject {
+  id: string
+  name: string
+  createdAt: string
+  entries: LabProjectEntry[]
+  sheet: Record<string, string>
+}
+
+export interface LabX {
+  practice: Record<string, { done: number; correct: number }>
+  exams: Record<string, { best: number; tries: number; passedAt?: string }>
+  projects: LabProject[]
 }
 
 export function defaultState(): AppState {
@@ -83,6 +103,7 @@ export function defaultState(): AppState {
     activity: [],
     achievements: {},
     lab: { journal: [], solved: {} },
+    labx: { practice: {}, exams: {}, projects: [] },
     fraud: { bestScore: 0, cases: {} },
     exams: {},
     tutor: { messages: 0 },
@@ -285,7 +306,7 @@ export const ACHIEVEMENTS: AchievementDef[] = [
   { id: 'xp-500', icon: 'Zap', title: { es: '500 XP', en: '500 XP' }, description: { es: 'Acumula 500 puntos de experiencia.', en: 'Earn 500 experience points.' }, test: (s) => totalXp(s) >= 500 },
   { id: 'streak-3', icon: 'Flame', title: { es: 'Racha de 3 días', en: '3-day streak' }, description: { es: 'Estudia 3 días seguidos.', en: 'Study 3 days in a row.' }, test: (s) => streak(s).best >= 3 },
   { id: 'streak-7', icon: 'Flame', title: { es: 'Racha de 7 días', en: '7-day streak' }, description: { es: 'Estudia 7 días seguidos.', en: 'Study 7 days in a row.' }, test: (s) => streak(s).best >= 7 },
-  { id: 'bookkeeper', icon: 'BookCheck', title: { es: 'Tenedor de libros', en: 'Bookkeeper' }, description: { es: 'Registra correctamente 5 operaciones en el laboratorio.', en: 'Correctly record 5 lab transactions.' }, test: (s) => Object.keys(s.lab.solved).length >= 5 },
+  { id: 'bookkeeper', icon: 'BookCheck', title: { es: 'Tenedor de libros', en: 'Bookkeeper' }, description: { es: 'Registra correctamente 5 operaciones en el laboratorio.', en: 'Correctly record 5 lab transactions.' }, test: (s) => Object.keys(s.lab.solved).length + Object.values(s.labx.practice).reduce((n, p) => n + p.correct, 0) >= 5 },
   { id: 'examiner', icon: 'GraduationCap', title: { es: 'Examen aprobado', en: 'Exam passed' }, description: { es: 'Aprueba una evaluación de nivel.', en: 'Pass a level exam.' }, test: (s) => Object.values(s.exams).some((r) => r.some((x) => x.passed)) },
   { id: 'reviewer', icon: 'RotateCcw', title: { es: 'Memoria de largo plazo', en: 'Long-term memory' }, description: { es: 'Responde 10 repasos correctamente.', en: 'Answer 10 reviews correctly.' }, test: (s) => s.answers.filter((a) => a.mode === 'review' && a.correct).length >= 10 },
 ]
