@@ -10,7 +10,8 @@ import { buildStatements } from '../../lib/statements'
 import { fmtMoney } from '../../lib/numbers'
 import { awardXp } from '../../lib/progress'
 import { useI18n, useStore } from '../../state/store'
-import { blankLines, DocHeader, gradeDoc, PolicyPicker, TopicLinks } from './LabPractice'
+import { blankLines, DocHeader, gradeDoc, LEVEL_PREREQS, PolicyPicker, TopicLinks } from './LabPractice'
+import { isLessonCompleted } from '../../lib/selectors'
 
 interface Answer {
   lines: DraftLine[]
@@ -83,6 +84,9 @@ export default function LabExam({ unlocked }: { unlocked: Record<LabLevel, boole
                 <p className="text-xs text-navy-500">
                   {EXAM_SIZE[lv]} {tx('documentos', 'documents')}
                   {r ? ` · ${tx('mejor', 'best')} ${Math.round(r.best * 100)}% · ${r.tries} ${tx('intentos', 'tries')}` : ''}
+                </p>
+                <p className="text-xs text-navy-500">
+                  {tx('Temas recomendados completados', 'Recommended topics done')}: {LEVEL_PREREQS[lv].filter((id) => isLessonCompleted(state, id)).length}/{LEVEL_PREREQS[lv].length}
                 </p>
                 <Button onClick={() => start(lv)} disabled={!unlocked[lv]}>
                   <Play className="h-4 w-4" /> {unlocked[lv] ? tx('Empezar', 'Start') : tx('Bloqueado 🔒', 'Locked 🔒')}

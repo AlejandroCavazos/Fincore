@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { BookCheck, Eye, Lightbulb, Shuffle } from 'lucide-react'
+import { BookCheck, CircleCheck, Circle, Eye, Lightbulb, Shuffle } from 'lucide-react'
 import { AppliedFormulas, CfdiView } from '../../components/lab/CfdiView'
 import { Solution } from '../../components/lab/Books'
 import { JournalEditor } from '../../components/JournalEditor'
@@ -7,6 +7,8 @@ import { Badge, Button, Card, cx, Notice } from '../../components/ui'
 import { checkJournal, parseDraft, type DraftLine, type JournalCheck } from '../../lib/accounting'
 import { BASIC_ACCOUNTS, LAB_LEVELS, LEVEL_DESC, LEVEL_NAME, newSeed, POLICY_NAME, practiceDoc, type LabLevel, type PolicyType, type PracticeDoc } from '../../lib/cfdi'
 import { awardXp } from '../../lib/progress'
+import { isLessonCompleted } from '../../lib/selectors'
+import { topicLabel } from '../../content/areas'
 import { LESSONS } from '../../content'
 import { navigate } from '../../state/router'
 import { useI18n, useStore } from '../../state/store'
@@ -63,6 +65,72 @@ export function PolicyPicker({ value, onChange, idPrefix, status }: { value: Pol
         ))}
       </div>
     </fieldset>
+  )
+}
+
+/** Lessons recommended before each lab level (cumulative). */
+export const LEVEL_PREREQS: Record<LabLevel, string[]> = {
+  basico: ['L1-08', 'L1-09', 'L1-10', 'L1-11', 'L1-16'],
+  intermedio: ['L1-08', 'L1-09', 'L1-10', 'L1-11', 'L1-16', 'FIS-06', 'FIS-10', 'FIS-12'],
+  avanzado: ['L1-08', 'L1-09', 'L1-10', 'L1-11', 'L1-16', 'FIS-06', 'FIS-10', 'FIS-12', 'L1-13', 'FIS-13'],
+}
+const SKIP_KEY = 'fincore-lab-prereq-skip'
+const readSkip = (): string[] => {
+  try {
+    return JSON.parse(localStorage.getItem(SKIP_KEY) ?? '[]')
+  } catch {
+    return []
+  }
+}
+
+export function usePrereqs(level: LabLevel) {
+  const { state } = useStore()
+  const [skip, setSkip] = useState<string[]>(readSkip)
+  const ids = LEVEL_PREREQS[level]
+  const done = ids.filter((id) => isLessonCompleted(state, id)).length
+  const dismiss = () => {
+    const next = [...new Set([...skip, level])]
+    setSkip(next)
+    try {
+      localStorage.setItem(SKIP_KEY, JSON.stringify(next))
+    } catch {
+      /* ignore */
+    }
+  }
+  return { ids, done, total: ids.length, ready: done === ids.length || skip.includes(level), dismiss }
+}
+
+/** Recommended topics before a level, with progress; the learner can still start. */
+export function Prereqs({ level, onStart }: { level: LabLevel; onStart: () => void }) {
+  const { state } = useStore()
+  const { t, tx } = useI18n()
+  const ids = LEVEL_PREREQS[level]
+  return (
+    <Card className="space-y-3">
+      <p className="text-lg font-semibold text-navy-900 dark:text-white">
+        {tx('Antes de empezar el nivel', 'Before starting level')} {t(LEVEL_NAME[level])}
+      </p>
+      <p className="text-sm text-navy-600 dark:text-navy-300">{tx('Te recomendamos cursar estos temas. Ahí se explica todo lo que vas a necesitar.', 'We recommend these topics first. They explain everything you will need.')}</p>
+      <ul className="space-y-1.5">
+        {ids.map((id) => {
+          const l = LESSONS.find((x) => x.id === id)
+          if (!l) return null
+          const ok = isLessonCompleted(state, id)
+          return (
+            <li key={id}>
+              <button type="button" onClick={() => navigate(`/lesson/${id}`)} className="flex w-full items-center gap-2 rounded-lg p-1.5 text-left text-sm hover:bg-navy-50 dark:hover:bg-navy-800">
+                {ok ? <CircleCheck className="h-4 w-4 shrink-0 text-money-500" /> : <Circle className="h-4 w-4 shrink-0 text-navy-300" />}
+                <span className="tabular w-10 shrink-0 text-xs font-bold text-navy-400">{topicLabel(l)}</span>
+                <span className={ok ? 'text-navy-500 line-through' : 'font-semibold text-navy-900 dark:text-white'}>{t(l.title)}</span>
+              </button>
+            </li>
+          )
+        })}
+      </ul>
+      <Button variant="secondary" onClick={onStart}>
+        {tx('Ya sé esto, empezar', 'I know this, start')}
+      </Button>
+    </Card>
   )
 }
 
@@ -132,6 +200,7 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
     if (g.correct) toast({ es: '¡Póliza correcta!', en: 'Correct entry!' }, 'success')
   }
   const stats = state.labx.practice[level]
+  const pre = usePrereqs(level)
 
   return (
     <div className="mt-4 space-y-4">
@@ -163,6 +232,9 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
         )}
       </div>
 
+      {!pre.ready ? (
+        <Prereqs level={level} onStart={pre.dismiss} />
+      ) : (
       <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-2">
         <Card className="space-y-3">
           <DocHeader doc={doc} />
@@ -224,6 +296,7 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
           </div>
         </Card>
       </div>
+      )}
     </div>
   )
 }

@@ -91,6 +91,8 @@ test('option order is stable within an attempt and survives reload', async ({ pa
 test('accounting lab: practice CFDI, exam month and free-sheet project', async ({ page }) => {
   await onboard(page)
   await page.goto('./#/lab')
+  await expect(page.getByText(/Antes de empezar el nivel/)).toBeVisible()
+  await page.getByRole('button', { name: 'Ya sé esto, empezar' }).click()
   await expect(page.getByTestId('cfdi').first()).toBeVisible()
   await expect(page.getByText(/Sin validez fiscal/i).first()).toBeVisible()
   // Wrong on purpose: an empty type and a single unbalanced line.
