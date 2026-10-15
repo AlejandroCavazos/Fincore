@@ -28,6 +28,7 @@ const Invest = lazy(() => import('./pages/Invest'))
 const Tutor = lazy(() => import('./pages/Tutor'))
 const AuthScreen = lazy(() => import('./pages/Auth'))
 const Legal = lazy(() => import('./pages/Legal'))
+const RecoverLife = lazy(() => import('./pages/RecoverLife'))
 
 function useTheme() {
   const { state } = useStore()
@@ -139,6 +140,9 @@ export default function App() {
       break
     case 'settings':
       page = <SettingsPage />
+      break
+    case 'lives':
+      page = <RecoverLife topic={route.query.get('topic')} />
       break
     default:
       page = <NotFound />

@@ -1,10 +1,13 @@
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Bot, CircleCheck, CircleX, Lightbulb, RotateCcw, Trophy } from 'lucide-react'
 import type { Answer, Exercise } from '../types'
-import { getExercise } from '../content'
+import { getExercise, lessonOfExercise } from '../content'
 import { createAttempt, emptyAnswer, evaluate, isAnswerComplete, type Attempt } from '../lib/engine'
 import { attemptScore, ensureAttempt, finishAttempt, finishLesson, recordAnswer, EXAM_PASS, LESSON_PASS } from '../lib/progress'
 import { useI18n, useStore } from '../state/store'
+import { livesCtx, useLives } from '../state/lives'
+import type { ActivityType } from '../lib/lives/service'
+import { OutOfLives } from './lives/OutOfLives'
 import { ExerciseView, kindLabel } from './ExerciseView'
 import { Badge, Button, Card, cx, ProgressBar, Rich } from './ui'
 
@@ -16,12 +19,19 @@ interface Props {
   shuffleExercises?: boolean
   onExit?: () => void
   exitLabel?: string
+  /** Kind of activity for the lives system (defaults from mode); null = costs no lives (Pro mock exams). */
+  lives?: ActivityType | null
+  /** Replaces the built-in "Nuevo intento" (e.g. exams go back to their start screen). */
+  onNewAttempt?: () => void
 }
 
 const DIFF = ['', '●○○', '●●○', '●●●']
+const KIND: Record<Props['mode'], ActivityType> = { lesson: 'quiz', review: 'practice', exam: 'eval' }
 
-export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, onExit, exitLabel }: Props) {
+export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, onExit, exitLabel, lives, onNewAttempt }: Props) {
   const { state, update, toast } = useStore()
+  const lv = useLives()
+  const kind = lives === undefined ? KIND[mode] : lives
   const { t, tx } = useI18n()
   const attempt: Attempt | undefined = state.attempts[sessionKey]
   const fixed = Array.isArray(exercises) ? exercises : null
@@ -62,9 +72,37 @@ export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, 
   const answer: Answer | null = ex ? (response?.answer ?? (draft?.id === ex.id ? draft.answer : emptyAnswer(ex))) : null
   const [earned, setEarned] = useState<Record<string, number>>({})
   const allAnswered = list.length > 0 && list.every((e) => attempt?.responses[e.id])
+  const ctx = livesCtx(ex ? lessonOfExercise(ex.id) : null)
+  const answeredSoFar = list.filter((e) => attempt?.responses[e.id]).length
+  // Out of lives: blocks the next unanswered question (the last feedback stays visible).
+  const blocked = !!kind && !!attempt && !attempt.finishedAt && !!ex && !response && !lv.canStart(kind).ok
+
+  // Paused activities that expired: evaluations are graded with the answered questions, the rest restart.
+  useEffect(() => {
+    if (!lv.takeExpired(sessionKey)) return
+    update((s) => {
+      const a = s.attempts[sessionKey]
+      if (!a || a.finishedAt) return s
+      if (mode !== 'lesson' && kind === 'eval') {
+        const ids = a.exerciseIds.filter((id) => a.responses[id])
+        if (ids.length) return finishAttempt({ ...s, attempts: { ...s.attempts, [sessionKey]: { ...a, exerciseIds: ids } } }, sessionKey, mode)
+      }
+      const rest = { ...s.attempts }
+      delete rest[sessionKey]
+      return { ...s, attempts: rest }
+    })
+  }, [sessionKey]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (!kind || !attempt) return
+    if (blocked && answeredSoFar > 0 && !lv.isPaused(sessionKey)) lv.pause({ id: sessionKey, type: kind, topic: ctx.topic, area: ctx.area, answered: answeredSoFar, correct: list.filter((e) => attempt.responses[e.id]?.evaluation.correct).length })
+    if (!blocked && lv.isPaused(sessionKey)) lv.resume(sessionKey)
+  }, [blocked, answeredSoFar, lv.s.paused.length]) // eslint-disable-line react-hooks/exhaustive-deps
 
   if (empty && !attempt) return <Card>{tx('No hay ejercicios disponibles en este momento.', 'No exercises available right now.')}</Card>
   if (!attempt || !ex || !answer) return <Card aria-busy="true">{tx('Preparando ejercicios…', 'Preparing exercises…')}</Card>
+
+  if (blocked) return <OutOfLives ctx={ctx} paused={answeredSoFar > 0} />
 
   if (attempt.finishedAt) {
     const score = attemptScore(attempt)
@@ -92,7 +130,7 @@ export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, 
                 : tx('Repaso registrado. Los intervalos de repetición se actualizaron.', 'Review recorded. Spaced-repetition intervals were updated.')}
           </p>
           <div className="mt-4 flex flex-wrap justify-center gap-2">
-            <Button variant="secondary" onClick={() => setNewAttemptRequested((n) => n + 1)}>
+            <Button variant="secondary" onClick={() => (onNewAttempt ? onNewAttempt() : setNewAttemptRequested((n) => n + 1))}>
               <RotateCcw className="h-4 w-4" /> {tx('Nuevo intento', 'New attempt')}
             </Button>
             {onExit && (
@@ -141,6 +179,11 @@ export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, 
     if (response || !isAnswerComplete(ex, answer)) return
     const ev = evaluate(ex, answer)
     const already = xpKey ? !!state.xpLedger[xpKey] : false
+    if (kind) {
+      if (answeredCount === 0) lv.started(ctx)
+      // The life is charged and saved BEFORE the answer is recorded or revealed.
+      if (!ev.correct && !lv.spend(kind, ctx)) return
+    }
     update((s) => recordAnswer(s, { exerciseId: ex.id, points: ex.points, attempt, answer, evaluation: ev, mode }))
     if (ev.correct && !already) setEarned((m) => ({ ...m, [ex.id]: mode === 'review' ? 5 : ex.points }))
   }
@@ -152,7 +195,10 @@ export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, 
       return { ...s, attempts: { ...s.attempts, [sessionKey]: { ...a, index: i } } }
     })
   }
-  const finish = () => update((s) => (mode === 'lesson' ? finishLesson(s, sessionKey) : finishAttempt(s, sessionKey, mode)))
+  const finish = () => {
+    if (kind) lv.completed()
+    update((s) => (mode === 'lesson' ? finishLesson(s, sessionKey) : finishAttempt(s, sessionKey, mode)))
+  }
 
   return (
     <div className="space-y-4">

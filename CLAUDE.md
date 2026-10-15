@@ -4,7 +4,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 
 ## Stack and commands
 - Vite 8 + React 19 + TypeScript 6 + Tailwind v4. Local storage in IndexedDB (`src/lib/db.ts`). Hash router (`src/state/router.ts`).
-- `npx tsc -b` checks types. `npm test` runs vitest (about 110 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 30 e2e tests.
+- `npx tsc -b` checks types. `npm test` runs vitest (about 131 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 33 e2e tests.
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
 ## Where things live
@@ -20,6 +20,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - Pages: `src/pages/` (Courses → AreaPage → LessonPage with views Overview/Subtopic/Reto). Components: `src/components/` (ExerciseRunner, FormulaCard, JournalEditor).
 - Logic: `src/lib/` (engine grades exercises, progress/selectors handle XP and unlocks, finance/valuation hold the calculators, auth/plans use Supabase).
 - Lab (paid, `useLabAccess` in `src/pages/Lab.tsx`): `src/pages/lab/` (LabPractice, LabExam, LabProjects, LabTemplates, LabSheet), `src/components/lab/` (CfdiView, Books), logic in `src/lib/cfdi.ts` (random practice CFDIs + expected pólizas), `statements.ts` (estados, razones, IVA), `sheet.ts` (Excel-like formulas). State in `AppState.labx`.
+- Lives (vidas): all numbers in `src/config/lives.ts`; all logic in `src/lib/lives/service.ts` (local for now, server validation pending); events in `src/lib/lives/analytics.ts` (local only); React glue `src/state/lives.tsx` (useLives); UI in `src/components/lives/` (LivesIndicator, OutOfLives, MyLives), recovery page `src/pages/RecoverLife.tsx` (#/lives/recover). Spending hooks: ExerciseRunner, LabPractice, LabExam, Exams (Pro simulacro + 3 official tries/7 days). Tests: `src/test/lives.test.ts`.
 - Tests: `src/test/content.test.ts` checks the whole content bank (unique ids, solutions grade correct, formula guides complete).
 
 ## Rules

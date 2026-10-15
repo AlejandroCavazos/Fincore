@@ -1,8 +1,12 @@
+import { useState } from 'react'
 import { ArrowLeft, GraduationCap } from 'lucide-react'
 import { LEVELS } from '../content/curriculum'
 import { exercisesOfLevel } from '../content'
 import { ExerciseRunner } from '../components/ExerciseRunner'
-import { Badge, Card, Notice, PageHeader } from '../components/ui'
+import { Badge, Button, Card, Notice, PageHeader } from '../components/ui'
+import { EXAM_MIN_TEXT } from '../components/lives/text'
+import { planLives, LIVES } from '../config/lives'
+import { useLives } from '../state/lives'
 import { EXAM_PASS } from '../lib/progress'
 import { fisherYates } from '../lib/shuffle'
 import { navigate } from '../state/router'
@@ -12,13 +16,33 @@ import type { LevelId } from '../types'
 const EXAM_SIZE = 12
 
 export default function Exams({ levelId }: { levelId?: number }) {
-  const { state } = useStore()
+  const { state, update } = useStore()
   const { t, tx } = useI18n()
+  const lv = useLives()
+  const [run, setRun] = useState<'official' | 'mock' | 'gate' | null>(null)
 
   if (levelId) {
     const level = LEVELS.find((l) => l.id === levelId)
     if (!level) return null
     const key = `exam:${level.id}`
+    const mockKey = `sim:${level.id}`
+    const active = (k: string) => !!state.attempts[k] && !state.attempts[k].finishedAt
+    // Without a choice yet: resume a running attempt or show the last official result.
+    const current = run === 'gate' ? null : (run ?? (active(mockKey) ? 'mock' : state.attempts[key] ? 'official' : null))
+    const begin = (which: 'official' | 'mock') => {
+      const k = which === 'official' ? key : mockKey
+      if (which === 'official' && !active(key) && !lv.recordOfficial(key)) return
+      update((s) => {
+        const a = { ...s.attempts }
+        if (a[k]?.finishedAt) delete a[k]
+        return { ...s, attempts: a }
+      })
+      setRun(which)
+    }
+    const gate = lv.canStart('areaExam')
+    const left = lv.officialLeft(key)
+    const freeAt = lv.officialFreeAt(key)
+    const mock = planLives(lv.plan).mockExams
     return (
       <div>
         <a href="#/exams" className="mb-3 inline-flex items-center gap-1 text-sm font-semibold text-electric-600 dark:text-electric-300">
@@ -32,13 +56,43 @@ export default function Exams({ levelId }: { levelId?: number }) {
           )}
         </Notice>
         <div className="mt-4">
-          <ExerciseRunner
-            sessionKey={key}
-            mode="exam"
-            exercises={() => fisherYates(exercisesOfLevel(level.id as LevelId)).slice(0, EXAM_SIZE)}
-            onExit={() => navigate('/exams')}
-            exitLabel={tx('Volver a evaluaciones', 'Back to exams')}
-          />
+          {current ? (
+            <ExerciseRunner
+              key={current}
+              sessionKey={current === 'official' ? key : mockKey}
+              mode={current === 'official' ? 'exam' : 'review'}
+              lives={current === 'official' ? 'eval' : null}
+              exercises={() => fisherYates(exercisesOfLevel(level.id as LevelId)).slice(0, EXAM_SIZE)}
+              onExit={() => navigate('/exams')}
+              onNewAttempt={() => setRun('gate')}
+              exitLabel={tx('Volver a evaluaciones', 'Back to exams')}
+            />
+          ) : (
+            <Card data-testid="exam-start" className="space-y-3">
+              {mock && (
+                <div>
+                  <Button variant="secondary" className="w-full" onClick={() => begin('mock')}>
+                    Simulacro de práctica
+                  </Button>
+                  <p className="mt-1 text-xs text-navy-500 dark:text-navy-300">Mismo formato que el examen, con retroalimentación en cada respuesta. Intentos ilimitados; no cuenta para tu certificado.</p>
+                </div>
+              )}
+              <div>
+                <Button className="w-full" size="lg" disabled={!gate.ok || left === 0} onClick={() => begin('official')}>
+                  {mock ? 'Examen oficial' : 'Iniciar examen'}
+                </Button>
+                {!gate.ok && <p className="mt-1 text-xs text-navy-500 dark:text-navy-300">{EXAM_MIN_TEXT(gate.need)}</p>}
+                {left !== null && (
+                  <p className="mt-1 text-xs text-navy-500 dark:text-navy-300">
+                    {left > 0
+                      ? `Te quedan ${left} de ${LIVES.officialExam.maxAttempts} intentos oficiales en estos 7 días.`
+                      : `Ya usaste tus ${LIVES.officialExam.maxAttempts} intentos de esta semana. Podrás intentarlo de nuevo el ${freeAt?.toLocaleDateString('es-MX', { day: 'numeric', month: 'long' })}.`}
+                  </p>
+                )}
+                {lv.plan !== 'pro' && <p className="mt-1 text-xs text-navy-500 dark:text-navy-300">Cada respuesta incorrecta cuesta 1 vida.</p>}
+              </div>
+            </Card>
+          )}
         </div>
       </div>
     )

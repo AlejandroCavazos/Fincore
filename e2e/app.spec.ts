@@ -23,6 +23,7 @@ test('onboarding, lesson completion, XP and persistence across reload', async ({
   // Answer every exercise (first choice in each group) and check it.
   for (let i = 0; i < 20; i++) {
     const check = page.getByRole('button', { name: /^Comprobar$/ })
+    if (await page.getByTestId('out-of-lives').isVisible().catch(() => false)) break
     if (!(await check.isVisible().catch(() => false))) break
     const card = page.locator('[data-exercise-id]')
     const groups = card.locator('[role="radiogroup"]')
@@ -38,8 +39,22 @@ test('onboarding, lesson completion, XP and persistence across reload', async ({
     const next = page.getByRole('button', { name: /Continuar|Ver resultados/ })
     await next.click()
   }
-  await expect(page.getByTestId('attempt-score')).toBeVisible()
+  // Plan Gratis: guessing usually runs out of the 5 lives before the end.
+  await expect(page.getByTestId('attempt-score').or(page.getByTestId('out-of-lives'))).toBeVisible()
   await shot(page, '05-results')
+  if (await page.getByTestId('out-of-lives').isVisible()) {
+    await expect(page.getByTestId('lives').first()).toBeAttached()
+    await expect(page.getByTestId('out-of-lives')).toContainText('guardamos tu avance')
+    // Theory, calculators and tutor still work with 0 lives.
+    await page.goto('./#/lesson/L1-01')
+    await expect(page.getByRole('heading', { level: 1 })).toBeVisible()
+    await page.goto('./#/calc')
+    await expect(page.getByTestId('out-of-lives')).toHaveCount(0)
+    // Recovery review: summary + 3 questions, costs nothing.
+    await page.goto('./#/lives/recover?topic=L1-01')
+    await expect(page.getByTestId('recover-question')).toHaveCount(3)
+    await shot(page, '05b-recover')
+  }
 
   await page.goto('./#/')
   const xpBefore = await page.getByTestId('total-xp').innerText()
@@ -48,6 +63,19 @@ test('onboarding, lesson completion, XP and persistence across reload', async ({
   await page.reload()
   await expect(page.getByTestId('total-xp')).toHaveText(xpBefore)
   await expect(page).not.toHaveURL(/welcome/)
+})
+
+test('lives: counter, popover and Mis vidas', async ({ page }) => {
+  await onboard(page)
+  const heart = page.locator('[data-testid="lives"]:visible')
+  await expect(heart).toHaveText('5/5')
+  await heart.click()
+  await expect(page.getByRole('dialog', { name: 'Tus vidas' })).toContainText('Vidas llenas')
+  await expect(page.getByRole('dialog', { name: 'Tus vidas' })).toContainText('Plan Gratis: 5 vidas máximo, 1 cada 4 horas')
+  await page.goto('./#/settings')
+  await expect(page.getByTestId('my-lives')).toContainText('5 de 5 vidas')
+  await expect(page.getByTestId('my-lives')).not.toContainText('Repasar para recuperar')
+  await shot(page, '06-my-lives')
 })
 
 test('courses: area, topic and subtopics advance in order', async ({ page }) => {

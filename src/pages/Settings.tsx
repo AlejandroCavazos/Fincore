@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react'
 import { Download, Smartphone, Trash2, Upload } from 'lucide-react'
+import { MyLives } from '../components/lives/MyLives'
 import { Button, Card, Notice, PageHeader, SectionTitle, Segmented } from '../components/ui'
 import { exportState, importState } from '../lib/backup'
 import { clearState } from '../lib/db'
@@ -55,6 +56,9 @@ export default function SettingsPage() {
     <div>
       <PageHeader title={tx('Configuración', 'Settings')} />
 
+
+      <SectionTitle>Mis vidas</SectionTitle>
+      <MyLives />
 
       <SectionTitle>{tx('Idioma', 'Language')}</SectionTitle>
       <Segmented<Lang>

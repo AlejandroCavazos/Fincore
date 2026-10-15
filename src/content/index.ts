@@ -35,3 +35,7 @@ export function previousLesson(id: string): Lesson | undefined {
   const i = LESSONS.findIndex((l) => l.id === id)
   return i > 0 ? LESSONS[i - 1] : undefined
 }
+
+const lessonByExercise = new Map(LESSONS.flatMap((l) => l.exerciseIds.map((id) => [id, l.id] as const)))
+/** Lesson (topic) that owns an exercise. */
+export const lessonOfExercise = (exerciseId: string) => lessonByExercise.get(exerciseId)

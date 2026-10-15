@@ -7,6 +7,8 @@ import { Badge, Button, Card, cx, Notice } from '../../components/ui'
 import { checkJournal, parseDraft, type DraftLine, type JournalCheck } from '../../lib/accounting'
 import { BASIC_ACCOUNTS, LAB_LEVELS, LEVEL_DESC, LEVEL_NAME, newSeed, POLICY_NAME, practiceDoc, type LabLevel, type PolicyType, type PracticeDoc } from '../../lib/cfdi'
 import { awardXp } from '../../lib/progress'
+import { livesCtx, useLives } from '../../state/lives'
+import { OutOfLives } from '../../components/lives/OutOfLives'
 import { isLessonCompleted } from '../../lib/selectors'
 import { topicLabel } from '../../content/areas'
 import { LESSONS } from '../../content'
@@ -173,6 +175,8 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
   const [counted, setCounted] = useState(false)
   const [hint, setHint] = useState(false)
   const [solution, setSolution] = useState(false)
+  const lv = useLives()
+  const ctx = livesCtx(doc.topics[0])
 
   const next = (lv = level) => {
     setLevel(lv)
@@ -187,6 +191,10 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
   }
   const check = () => {
     const g = gradeDoc(doc, lines, policy)
+    // Only the first wrong check of a case costs a life, saved before the result shows.
+    if (!counted && !g.correct && !lv.spend('lab', ctx)) return
+    if (!counted) lv.started(ctx)
+    if (g.correct) lv.completed()
     setResult(g)
     if (!counted) {
       setCounted(true)
@@ -234,6 +242,8 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
 
       {!pre.ready ? (
         <Prereqs level={level} onStart={pre.dismiss} />
+      ) : !counted && !lv.canStart('lab').ok ? (
+        <OutOfLives ctx={ctx} />
       ) : (
       <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-2">
         <Card className="space-y-3">

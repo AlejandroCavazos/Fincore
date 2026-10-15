@@ -10,6 +10,8 @@ import { buildStatements } from '../../lib/statements'
 import { fmtMoney } from '../../lib/numbers'
 import { awardXp } from '../../lib/progress'
 import { useI18n, useStore } from '../../state/store'
+import { livesCtx, useLives } from '../../state/lives'
+import { EXAM_MIN_TEXT } from '../../components/lives/text'
 import { blankLines, DocHeader, gradeDoc, LEVEL_PREREQS, PolicyPicker, TopicLinks } from './LabPractice'
 import { isLessonCompleted } from '../../lib/selectors'
 
@@ -50,6 +52,8 @@ export default function LabExam({ unlocked }: { unlocked: Record<LabLevel, boole
   const { state, update, toast } = useStore()
   const { t, tx } = useI18n()
   const [run, setRun] = useState<Run | null>(loadRun)
+  const lives = useLives()
+  const gate = lives.canStart('eval')
   useEffect(() => saveRun(run), [run])
   const docs = useMemo(() => (run ? examDocs(run.level, run.seed, new Date(`${run.month}-15T12:00:00Z`)) : []), [run?.level, run?.seed, run?.month]) // eslint-disable-line react-hooks/exhaustive-deps
 
@@ -88,9 +92,10 @@ export default function LabExam({ unlocked }: { unlocked: Record<LabLevel, boole
                 <p className="text-xs text-navy-500">
                   {tx('Temas recomendados completados', 'Recommended topics done')}: {LEVEL_PREREQS[lv].filter((id) => isLessonCompleted(state, id)).length}/{LEVEL_PREREQS[lv].length}
                 </p>
-                <Button onClick={() => start(lv)} disabled={!unlocked[lv]}>
+                <Button onClick={() => start(lv)} disabled={!unlocked[lv] || !gate.ok}>
                   <Play className="h-4 w-4" /> {unlocked[lv] ? tx('Empezar', 'Start') : tx('Bloqueado 🔒', 'Locked 🔒')}
                 </Button>
+                {unlocked[lv] && !gate.ok && <p className="text-xs text-navy-500 dark:text-navy-300">{EXAM_MIN_TEXT(gate.need)}</p>}
               </Card>
             )
           })}
@@ -110,6 +115,9 @@ export default function LabExam({ unlocked }: { unlocked: Record<LabLevel, boole
       if (missing && !window.confirm(tx(`Te faltan ${missing} documentos sin registrar. ¿Entregar de todos modos?`, `${missing} documents are empty. Submit anyway?`))) return
       const score = docs.reduce((s, d) => s + gradeDoc(d, answer(d.id).lines, answer(d.id).policy).score, 0) / docs.length
       const passed = score >= EXAM_PASS
+      // Each wrong document costs one life (never below zero), charged before the results show.
+      for (const d of docs) if (!gradeDoc(d, answer(d.id).lines, answer(d.id).policy).correct) lives.spend('eval', livesCtx(d.topics[0]))
+      lives.completed()
       update((s) => {
         const prev = s.labx.exams[run.level]
         let n = { ...s, labx: { ...s.labx, exams: { ...s.labx.exams, [run.level]: { best: Math.max(prev?.best ?? 0, score), tries: (prev?.tries ?? 0) + 1, ...(prev?.passedAt ? { passedAt: prev.passedAt } : passed ? { passedAt: new Date().toISOString() } : {}) } } } }

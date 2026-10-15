@@ -8,13 +8,15 @@ interface AuthValue {
   user: AuthUser | null
   /** Plan read from the subscriptions table; Free when unknown. */
   plan: PlanId
+  /** False while the plan of a signed-in user is still loading (do not apply plan changes yet). */
+  planReady: boolean
   refreshPlan: () => void
   /** True after the user opened a password-reset link. */
   recovering: boolean
   doneRecovering: () => void
 }
 
-const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, plan: 'free', refreshPlan: () => {}, recovering: false, doneRecovering: () => {} })
+const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, plan: 'free', planReady: true, refreshPlan: () => {}, recovering: false, doneRecovering: () => {} })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(authEnabled)
@@ -22,6 +24,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [recovering, setRecovering] = useState(false)
   const [plan, setPlan] = useState<PlanId>('free')
   const [planTick, setPlanTick] = useState(0)
+  const [planUser, setPlanUser] = useState<string | null>(null)
 
   useEffect(() => {
     if (!authEnabled || !user) {
@@ -31,7 +34,11 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     let alive = true
     getClient()
       .then((c) => c.from('subscriptions').select('plan,status').eq('user_id', user.id).maybeSingle())
-      .then(({ data }) => alive && setPlan(planFromRow(data)))
+      .then(({ data }) => {
+        if (!alive) return
+        setPlan(planFromRow(data))
+        setPlanUser(user.id)
+      })
       .catch(() => {})
     return () => {
       alive = false
@@ -66,8 +73,9 @@ export function AuthProvider({ children }: { children: ReactNode }) {
     }
   }, [])
 
+  const planReady = !authEnabled || (!loading && (!user || planUser === user.id))
   return (
-    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, plan, refreshPlan: () => setPlanTick((t) => t + 1), recovering, doneRecovering: () => setRecovering(false) }}>
+    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, plan, planReady, refreshPlan: () => setPlanTick((t) => t + 1), recovering, doneRecovering: () => setRecovering(false) }}>
       {children}
     </AuthCtx.Provider>
   )

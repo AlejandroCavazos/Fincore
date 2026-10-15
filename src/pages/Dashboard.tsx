@@ -3,7 +3,8 @@ import { Bar, BarChart, ResponsiveContainer, Tooltip, XAxis } from 'recharts'
 import { LEVELS } from '../content/curriculum'
 import { LESSONS } from '../content'
 import { Badge, Card, ProgressBar, SectionTitle, Stat } from '../components/ui'
-import { dueCards, levelInfo, streak, totalXp, xpToday } from '../lib/progress'
+import { dueCards, levelInfo, totalXp, xpToday } from '../lib/progress'
+import { useLives } from '../state/lives'
 import { levelProgress, nextLesson, xpByDay } from '../lib/selectors'
 import { useI18n, useStore } from '../state/store'
 
@@ -12,7 +13,9 @@ export default function Dashboard() {
   const { t, tx, lang } = useI18n()
   const xp = totalXp(state)
   const lvl = levelInfo(xp)
-  const st = streak(state)
+  const lives = useLives()
+  // Streak: days with a completed quiz, practice, lab exercise or recovery review (lives system).
+  const st = { current: lives.s.streak.days }
   const today = xpToday(state)
   const goal = state.settings.dailyGoalXp
   const due = dueCards(state).length

@@ -1,3 +1,4 @@
+import { LivesIndicator } from './lives/LivesIndicator'
 import { type ReactNode } from 'react'
 import {
   BarChart3,
@@ -112,6 +113,7 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
             <Logo compact />
           </a>
           <div className="flex items-center gap-1">
+            <LivesIndicator className="mr-1" />
             <a href="#/tutor" className="rounded-lg p-2 text-navy-600 hover:bg-navy-100 dark:text-navy-200 dark:hover:bg-navy-800" aria-label={tx('Tutor', 'Tutor')}>
               <Bot className="h-5 w-5" />
             </a>
@@ -124,6 +126,11 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
           </div>
         </div>
       </header>
+
+      {/* Desktop top bar: lives */}
+      <div className="fixed right-6 top-4 z-20 hidden lg:block">
+        <LivesIndicator className="rounded-full bg-white/90 shadow-sm ring-1 ring-navy-100 backdrop-blur dark:bg-navy-900/90 dark:ring-navy-800" />
+      </div>
 
       <main id="main" className="mx-auto max-w-5xl pl-[max(1rem,env(safe-area-inset-left))] pr-[max(1rem,env(safe-area-inset-right))] pb-28 pt-4 lg:ml-64 lg:max-w-none lg:px-10 lg:pb-12 lg:pt-8">
         <div className="mx-auto max-w-5xl">{children}</div>
