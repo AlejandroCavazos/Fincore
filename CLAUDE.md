@@ -4,7 +4,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 
 ## Stack and commands
 - Vite 8 + React 19 + TypeScript 6 + Tailwind v4. Local storage in IndexedDB (`src/lib/db.ts`). Hash router (`src/state/router.ts`).
-- `npx tsc -b` checks types. `npm test` runs vitest (about 137 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 36 e2e tests.
+- `npx tsc -b` checks types. `npm test` runs vitest (about 134 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 36 e2e tests.
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
 ## Where things live
@@ -22,7 +22,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - Lab (paid, `useLabAccess` in `src/pages/Lab.tsx`): `src/pages/lab/` (LabPractice, LabExam, LabProjects, LabTemplates, LabSheet), `src/components/lab/` (CfdiView, Books), logic in `src/lib/cfdi.ts` (random practice CFDIs + expected pólizas), `statements.ts` (estados, razones, IVA), `sheet.ts` (Excel-like formulas). State in `AppState.labx`.
 - Lives (vidas): all numbers in `src/config/lives.ts`; all logic in `src/lib/lives/service.ts` (local for now, server validation pending); events in `src/lib/lives/analytics.ts` (local only); React glue `src/state/lives.tsx` (useLives); UI in `src/components/lives/` (LivesIndicator, OutOfLives, MyLives), recovery page `src/pages/RecoverLife.tsx` (#/lives/recover). Spending hooks: ExerciseRunner, LabPractice, LabExam, Exams (Pro simulacro + 3 official tries/7 days). Tests: `src/test/lives.test.ts`.
 - Account sync: `src/state/cloud.tsx` (CloudSync: pull+merge on sign-in/focus, push 4 s after changes), `src/lib/cloud.ts` (Supabase table `user_progress`, SQL in `supabase/migrations/003_user_progress.sql`), `src/lib/merge.ts` (mergeStates/mergeLives, tests in `src/test/merge.test.ts`).
-- Prices: all in `src/config/pricing.ts` (normal, founder, student; savings in pesos via `savingText`). Founder spots (50, server is authority): `supabase/migrations/004_founder_pricing.sql` (founder_spots table, founder_spots_left(), take_founder_spot(), test-mode choose_plan_free(plan, billing, expect_founder)); local SQL check in `supabase/tests/`. UI: `src/pages/Plans.tsx`, badge in `src/pages/Account.tsx`.
+- Prices: all in `src/config/pricing.ts` (Plus $99, Pro $199 per month, MXN; Gratis free). UI: `src/pages/Plans.tsx`.
 - Tests: `src/test/content.test.ts` checks the whole content bank (unique ids, solutions grade correct, formula guides complete).
 
 ## Rules
