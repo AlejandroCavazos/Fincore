@@ -1,3 +1,4 @@
+import { money, priceOf, type PaidPlan } from '../config/pricing'
 import { LogOut, Mail, Star } from 'lucide-react'
 import { Badge, Button, Card, PageHeader, SectionTitle } from '../components/ui'
 import { getClient } from '../lib/auth'
@@ -36,12 +37,25 @@ export default function Account() {
         )}
       </Card>
 
-      <SectionTitle>{tx('Tu plan', 'Your plan')}</SectionTitle>
+      <SectionTitle>{tx('Mi suscripción', 'My subscription')}</SectionTitle>
       <Card className="space-y-3">
         <div className="flex items-center justify-between gap-2">
           <p data-testid="account-plan" className="text-lg font-bold text-navy-900 dark:text-white">{l(plan.name)}</p>
-          <Badge tone="money">{tx('Activo', 'Active')}</Badge>
+          <div className="flex flex-wrap gap-1">
+            {auth.founder && <Badge tone="amber">Precio de fundador</Badge>}
+            <Badge tone="money">{tx('Activo', 'Active')}</Badge>
+          </div>
         </div>
+        {auth.plan !== 'free' && (
+          <p className="tabular text-sm text-navy-600 dark:text-navy-300">
+            {auth.billing === 'annual' ? 'Pago anual' : 'Pago mensual'}: {money(priceOf(auth.founder ? 'founder' : 'normal', auth.plan as PaidPlan)![auth.billing])} {auth.billing === 'annual' ? 'al año' : 'al mes'}
+          </p>
+        )}
+        {auth.founder && (
+          <p data-testid="founder-notice" className="rounded-xl bg-amber-500/10 p-3 text-sm text-amber-800 ring-1 ring-amber-500/40 dark:text-amber-200">
+            Tienes precio de fundador. Lo conservas de por vida mientras no canceles tu suscripción, aunque cambies entre mensual y anual o entre Plus y Pro.
+          </p>
+        )}
         <p className="text-sm text-navy-500 dark:text-navy-300">{l(plan.tagline)}</p>
         <ul className="list-inside list-disc space-y-1 text-sm">
           {plan.features.map((f) => (

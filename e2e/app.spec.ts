@@ -78,6 +78,19 @@ test('lives: counter, popover and Mis vidas', async ({ page }) => {
   await shot(page, '06-my-lives')
 })
 
+test('plans: annual savings in pesos, never as a percentage', async ({ page }) => {
+  await onboard(page)
+  await page.goto('./#/plans')
+  await expect(page.getByTestId('billing-saving')).toHaveText('Ahorra hasta $789 al año')
+  await page.getByRole('radio', { name: 'Anual' }).click()
+  await expect(page.getByTestId('saving-plus')).toHaveText('Ahorras $389 al año')
+  await expect(page.getByTestId('saving-pro')).toHaveText('Ahorras $789 al año')
+  await expect(page.locator('main')).not.toContainText('%')
+  // Without the server count the founder promotion is not shown (no invented numbers).
+  await expect(page.getByTestId('founder-counter')).toHaveCount(0)
+  await shot(page, '07-plans-annual')
+})
+
 test('courses: area, topic and subtopics advance in order', async ({ page }) => {
   await onboard(page)
   await page.goto('./#/courses')

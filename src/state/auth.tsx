@@ -10,13 +10,16 @@ interface AuthValue {
   plan: PlanId
   /** False while the plan of a signed-in user is still loading (do not apply plan changes yet). */
   planReady: boolean
+  /** Billing period and founder price of the current paid subscription. */
+  billing: 'monthly' | 'annual'
+  founder: boolean
   refreshPlan: () => void
   /** True after the user opened a password-reset link. */
   recovering: boolean
   doneRecovering: () => void
 }
 
-const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, plan: 'free', planReady: true, refreshPlan: () => {}, recovering: false, doneRecovering: () => {} })
+const AuthCtx = createContext<AuthValue>({ enabled: false, loading: false, user: null, plan: 'free', planReady: true, billing: 'monthly', founder: false, refreshPlan: () => {}, recovering: false, doneRecovering: () => {} })
 
 export function AuthProvider({ children }: { children: ReactNode }) {
   const [loading, setLoading] = useState(authEnabled)
@@ -25,18 +28,22 @@ export function AuthProvider({ children }: { children: ReactNode }) {
   const [plan, setPlan] = useState<PlanId>('free')
   const [planTick, setPlanTick] = useState(0)
   const [planUser, setPlanUser] = useState<string | null>(null)
+  const [sub, setSub] = useState<{ billing: 'monthly' | 'annual'; founder: boolean }>({ billing: 'monthly', founder: false })
 
   useEffect(() => {
     if (!authEnabled || !user) {
       setPlan('free')
+      setSub({ billing: 'monthly', founder: false })
       return
     }
     let alive = true
     getClient()
-      .then((c) => c.from('subscriptions').select('plan,status').eq('user_id', user.id).maybeSingle())
+      .then((c) => c.from('subscriptions').select('*').eq('user_id', user.id).maybeSingle())
       .then(({ data }) => {
         if (!alive) return
-        setPlan(planFromRow(data))
+        const p = planFromRow(data)
+        setPlan(p)
+        setSub({ billing: data?.billing === 'annual' ? 'annual' : 'monthly', founder: p !== 'free' && data?.founder === true })
         setPlanUser(user.id)
       })
       .catch(() => {})
@@ -75,7 +82,7 @@ export function AuthProvider({ children }: { children: ReactNode }) {
 
   const planReady = !authEnabled || (!loading && (!user || planUser === user.id))
   return (
-    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, plan, planReady, refreshPlan: () => setPlanTick((t) => t + 1), recovering, doneRecovering: () => setRecovering(false) }}>
+    <AuthCtx.Provider value={{ enabled: authEnabled, loading, user, plan, planReady, ...sub, refreshPlan: () => setPlanTick((t) => t + 1), recovering, doneRecovering: () => setRecovering(false) }}>
       {children}
     </AuthCtx.Provider>
   )
