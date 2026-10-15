@@ -3,7 +3,7 @@ import { PLANS } from '../lib/plans'
 
 describe('plans', () => {
   it('lists Free, Plus, Pro and Institutional in order', () => {
-    expect(PLANS.map((p) => p.id)).toEqual(['free', 'plus', 'pro', 'institutional'])
+    expect(PLANS.map((p) => p.id)).toEqual(['free', 'plus', 'pro'])
   })
   it('every plan has bilingual features', () => {
     for (const p of PLANS) {

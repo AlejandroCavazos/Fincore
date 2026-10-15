@@ -1,5 +1,5 @@
 import { ArrowLeft, BookOpen, Calculator, Check, Lightbulb, Lock, Play, Scale, Store, Target, X } from 'lucide-react'
-import { areaOfLesson, BUSINESS_PER_TOPIC } from '../content/areas'
+import { areaOfLesson, BUSINESS_PER_TOPIC, topicLabel } from '../content/areas'
 import { exercisesOfLesson, getLesson } from '../content'
 import { ExerciseRunner } from '../components/ExerciseRunner'
 import { FormulaCard } from '../components/FormulaCard'
@@ -78,7 +78,7 @@ function Overview({ lesson, tx }: { lesson: Lesson; tx: (es: string, en: string)
   const done = states.filter((s) => s === 'done').length
   const free = state.settings.freeMode
   const area = areaOfLesson(lesson.id)
-  const pos = lesson.topicIds[0]
+  const pos = topicLabel(lesson)
   const items = [...lesson.theory.map((sec) => t(sec.heading)), tx('Reto del tema', 'Topic challenge')]
 
   return (
@@ -205,7 +205,7 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
   const { t, tx } = useI18n()
   const sec = lesson.theory[index]
   const last = index === lesson.theory.length - 1
-  const pos = lesson.topicIds[0]
+  const pos = topicLabel(lesson)
   const finish = () => {
     update((s) => markSubtopic(s, lesson.id, index))
     navigate(last ? `/lesson/${lesson.id}?tab=practice` : `/lesson/${lesson.id}?s=${index + 1}`)

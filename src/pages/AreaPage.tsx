@@ -1,5 +1,5 @@
 import { ArrowLeft, Lock, Sparkles, Store } from 'lucide-react'
-import { BUSINESS_BASE, BUSINESS_PER_TOPIC, getArea } from '../content/areas'
+import { BUSINESS_BASE, BUSINESS_PER_TOPIC, getArea, topicLabel } from '../content/areas'
 import { getLesson } from '../content'
 import type { Lesson } from '../types'
 import { SubtopicLegend, SubtopicSquares } from '../components/Subtopics'
@@ -69,7 +69,7 @@ export default function AreaPage({ areaId }: { areaId: string }) {
                         className={cx('flex items-center gap-3 px-4 py-3 transition hover:bg-navy-50 dark:hover:bg-navy-800/60', current && 'bg-electric-500/10')}
                         aria-label={`${t(l.title)}${done ? tx(' (dominado)', ' (mastered)') : !open ? tx(' (bloqueado)', ' (locked)') : ''}`}
                       >
-                        <span className="tabular w-8 shrink-0 text-xs font-bold text-navy-400">{l.topicIds[0]}</span>
+                        <span className="tabular w-8 shrink-0 text-xs font-bold text-navy-400">{topicLabel(l)}</span>
                         <span className={cx('min-w-0 flex-1 text-sm font-semibold', current ? 'text-electric-600 dark:text-electric-300' : open ? 'text-navy-900 dark:text-white' : 'text-navy-400')}>
                           {t(l.title)}
                         </span>

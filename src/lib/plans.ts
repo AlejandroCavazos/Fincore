@@ -1,6 +1,6 @@
 // Subscription tiers. Contents and prices are a draft until pricing is decided;
 // nothing here is enforced yet (no accounts or payments exist).
-export type PlanId = 'free' | 'plus' | 'pro' | 'institutional'
+export type PlanId = 'free' | 'plus' | 'pro'
 
 export interface Plan {
   id: PlanId
@@ -51,25 +51,16 @@ export const PLANS: Plan[] = [
       ['Ejercicios y casos generados con IA', 'AI-generated exercises and cases'],
     ],
   },
-  {
-    id: 'institutional',
-    name: ['Institucional', 'Institutional'],
-    tagline: ['Para universidades y despachos', 'For universities and firms'],
-    price: null,
-    features: [
-      ['Todo lo de Pro para cada alumno', 'Everything in Pro for each student'],
-      ['Grupos y panel del profesor', 'Groups and a teacher dashboard'],
-      ['Facturación por volumen', 'Volume billing'],
-    ],
-  },
 ]
 
-const PLAN_IDS: PlanId[] = ['free', 'plus', 'pro', 'institutional']
+const PLAN_IDS: PlanId[] = ['free', 'plus', 'pro']
 
 /** Plan from a `subscriptions` row; anything missing, unknown or not active counts as Free. */
 export function planFromRow(row: { plan?: unknown; status?: unknown } | null | undefined): PlanId {
-  if (!row || !PLAN_IDS.includes(row.plan as PlanId)) return 'free'
-  return row.status === 'active' || row.status === 'trialing' ? (row.plan as PlanId) : 'free'
+  // Institutional was retired; any old row with it counts as Pro.
+  const plan = row?.plan === 'institutional' ? 'pro' : row?.plan
+  if (!row || !PLAN_IDS.includes(plan as PlanId)) return 'free'
+  return row.status === 'active' || row.status === 'trialing' ? (plan as PlanId) : 'free'
 }
 
 /** Test mode: every plan costs $0 and can be picked from the Plans page. */

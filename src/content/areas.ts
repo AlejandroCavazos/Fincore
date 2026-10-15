@@ -467,3 +467,12 @@ export const areaOfLesson = (lessonId: string) => locateLesson(lessonId).area
 /** Value the learner's business starts at and gains per mastered topic (MXN, illustrative). */
 export const BUSINESS_BASE = 10000
 export const BUSINESS_PER_TOPIC = 1500
+
+/** Nivel 1 lessons in the order shown in Contabilidad (includes added bridge topics such as L1-16). */
+const N1_ORDER = (AREAS.find((a) => a.id === 'contabilidad')?.sections ?? []).flatMap((s) => s.lessonIds).filter((id) => id.startsWith('L1-'))
+
+/** Topic number shown to learners: Nivel 1 is numbered by its display order, others by their topic id. */
+export function topicLabel(lesson: { id: string; topicIds: string[] }): string {
+  const i = N1_ORDER.indexOf(lesson.id)
+  return i >= 0 ? `1.${i + 1}` : (lesson.topicIds[0] ?? '')
+}

@@ -1,5 +1,6 @@
 import { describe, expect, it } from 'vitest'
 import { AREAS, areaOfLesson, getArea } from '../content/areas'
+import { topicLabel } from '../content/areas'
 import { LESSONS } from '../content'
 import { defaultState, markSubtopic } from '../lib/progress'
 import { validateState } from '../lib/backup'
@@ -28,6 +29,8 @@ describe('areas', () => {
     const n1 = all.filter((id) => id !== 'L1-16')
     expect(n1).toHaveLength(15)
     n1.forEach((id, i) => expect(LESSONS.find((l) => l.id === id)?.topicIds[0], id).toBe(`1.${i + 1}`))
+    all.forEach((id, i) => expect(topicLabel(LESSONS.find((l) => l.id === id)!), id).toBe(`1.${i + 1}`))
+    expect(topicLabel(LESSONS.find((l) => l.id === 'L1-16')!)).toBe('1.12')
   })
 })
 
