@@ -1,5 +1,5 @@
 import { useMemo, useState } from 'react'
-import { BookCheck, Eye, Lightbulb, RefreshCw } from 'lucide-react'
+import { BookCheck, Eye, Lightbulb, Shuffle } from 'lucide-react'
 import { AppliedFormulas, CfdiView } from '../../components/lab/CfdiView'
 import { Solution } from '../../components/lab/Books'
 import { JournalEditor } from '../../components/JournalEditor'
@@ -115,6 +115,7 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
     setCounted(false)
     setHint(false)
     setSolution(false)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
   }
   const check = () => {
     const g = gradeDoc(doc, lines, policy)
@@ -151,11 +152,16 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
           </button>
         ))}
       </div>
-      {stats && (
-        <p className="text-xs text-navy-500">
-          {tx('En este nivel', 'At this level')}: {stats.correct} {tx('correctas a la primera de', 'right first time out of')} {stats.done}
-        </p>
-      )}
+      <div className="flex flex-wrap items-center gap-3">
+        <Button onClick={() => next()} data-testid="random-case">
+          <Shuffle className="h-4 w-4" /> {tx('Caso aleatorio', 'Random case')}
+        </Button>
+        {stats && (
+          <p className="text-xs text-navy-500">
+            {tx('En este nivel', 'At this level')}: {stats.correct} {tx('correctas a la primera de', 'right first time out of')} {stats.done}
+          </p>
+        )}
+      </div>
 
       <div className="grid grid-cols-[minmax(0,1fr)] gap-4 xl:grid-cols-2">
         <Card className="space-y-3">
@@ -212,8 +218,8 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
                 <Eye className="h-4 w-4" /> {tx('Ver solución', 'Show solution')}
               </Button>
             )}
-            <Button variant="secondary" onClick={() => next()}>
-              <RefreshCw className="h-4 w-4" /> {tx('Otra factura', 'Another invoice')}
+            <Button variant={result?.correct || solution ? 'success' : 'secondary'} onClick={() => next()}>
+              <Shuffle className="h-4 w-4" /> {result?.correct || solution ? tx('Siguiente caso', 'Next case') : tx('Caso aleatorio', 'Random case')}
             </Button>
           </div>
         </Card>

@@ -103,6 +103,8 @@ test('accounting lab: practice CFDI, exam month and free-sheet project', async (
   await page.getByRole('button', { name: /¿Cómo se calculan los importes\?/ }).click()
   await page.getByRole('button', { name: /Ver el cálculo/ }).click()
   await shot(page, '06-lab-practice')
+  await page.getByTestId('random-case').click()
+  await expect(page.getByText(/por qué se mueve cada cuenta/)).toHaveCount(0)
 
   await page.getByRole('radio', { name: 'Examen' }).click()
   await page.getByRole('button', { name: /Empezar/ }).first().click()
