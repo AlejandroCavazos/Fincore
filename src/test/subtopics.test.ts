@@ -22,7 +22,10 @@ describe('areas', () => {
     expect(areaOfLesson('L6-05').id).toBe('inversiones')
   })
   it('Nivel 1 follows the 15 topics of the syllabus', () => {
-    const n1 = getArea('contabilidad')!.sections.filter((s) => s.lessonIds[0].startsWith('L1-')).flatMap((s) => s.lessonIds)
+    const all = getArea('contabilidad')!.sections.filter((s) => s.lessonIds[0].startsWith('L1-')).flatMap((s) => s.lessonIds)
+    // L1-16 (pólizas, facturas e IVA) is an added bridge topic at the end of Unit 3, outside the original 15.
+    expect(all.indexOf('L1-16')).toBe(all.indexOf('L1-11') + 1)
+    const n1 = all.filter((id) => id !== 'L1-16')
     expect(n1).toHaveLength(15)
     n1.forEach((id, i) => expect(LESSONS.find((l) => l.id === id)?.topicIds[0], id).toBe(`1.${i + 1}`))
   })

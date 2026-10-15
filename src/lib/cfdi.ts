@@ -341,7 +341,7 @@ const saleServiceCash: Gen = (c) => {
   const s = pick(c.r, SERVICES)
   const form = pick(c.r, [FORM.cash, FORM.transfer, FORM.card])
   const customer = c.r() < 0.4 ? PUBLIC : pick(c.r, CUSTOMERS)
-  const cf = invoice(c, { direction: 'emitido', issuer: COMPANY, receiver: customer, use: customer === PUBLIC ? USE.none : USE.expense, method: 'PUE', form, concepts: [concept(1, 'E48 Servicio', s.desc, step(c.r, s.min, s.max, 50), 'iva16')] })
+  const cf = invoice(c, { direction: 'emitido', issuer: COMPANY, receiver: customer, use: customer === PUBLIC ? USE.none : USE.expense, method: 'PUE', form, concepts: [concept(1, 'E48 Servicio', s.desc, step(c.r, s.min, s.max, 500), 'iva16')] })
   const acc = cashAccount(form)
   return doc(c, 'basico', {
     title: { es: 'Factura de venta de contado', en: 'Cash sales invoice' },
@@ -351,15 +351,16 @@ const saleServiceCash: Gen = (c) => {
     expected: new Lines().add(acc, 'D', cf.total).add('4102', 'C', cf.subtotal).add('2104', 'C', cf.iva).get(),
     hint: { es: `Método PUE = ya te pagaron. Entra dinero a ${cashName(form).es}; el ingreso es por servicios y el IVA que cobraste se lo debes al SAT.`, en: `PUE = already paid. Money comes into ${cashName(form).en}; record service revenue and the VAT you owe.` },
     formulas: invoiceFormulas(cf.concepts, totals(cf.concepts)),
-    topics: ['L1-09', 'FIS-06', 'FIS-10'],
+    topics: ['L1-16', 'L1-09', 'FIS-06'],
   })
 }
 
 function goodsPurchase(c: Ctx, level: LabLevel, method: 'PUE' | 'PPD'): PracticeDoc {
   const supplier = pick(c.r, SUPPLIER_GOODS)
   const n = level === 'avanzado' ? 3 : 1
-  const prods = [...PRODUCTS].sort(() => c.r() - 0.5).slice(0, n)
-  const concepts = prods.map((p) => concept(int(c.r, 5, 40), p.unit, p.desc, p.cost, p.tax))
+  const pool = level === 'basico' ? PRODUCTS.filter((p) => p.tax === 'iva16') : PRODUCTS
+  const prods = [...pool].sort(() => c.r() - 0.5).slice(0, n)
+  const concepts = prods.map((p) => concept(level === 'basico' ? step(c.r, 5, 20, 5) : int(c.r, 5, 40), p.unit, p.desc, p.cost, p.tax))
   const form = pick(c.r, [FORM.transfer, FORM.transfer, FORM.cash])
   const cf = invoice(c, { direction: 'recibido', issuer: supplier, receiver: COMPANY, use: USE.goods, method, form, concepts })
   const lines = new Lines().add('1108', 'D', cf.subtotal)
@@ -379,7 +380,7 @@ function goodsPurchase(c: Ctx, level: LabLevel, method: 'PUE' | 'PPD'): Practice
         ? { es: 'Entra mercancía a tu almacén (Inventarios) y sale dinero. El IVA que pagaste lo podrás restar: es IVA acreditable.', en: 'Goods come into Inventory and money goes out. The VAT you paid is creditable.' }
         : { es: 'PPD = todavía no pagas. Le debes al proveedor, y el IVA aún no lo puedes acreditar porque no lo has pagado: va a IVA pendiente de acreditar.', en: 'PPD = not paid yet. You owe the supplier, and the VAT is not creditable until paid.' },
     formulas: invoiceFormulas(cf.concepts, totals(cf.concepts)),
-    topics: ['L1-09', 'FIS-06'],
+    topics: level === 'basico' ? ['L1-16', 'L1-09'] : ['L1-09', 'FIS-06'],
   })
 }
 
@@ -392,7 +393,7 @@ const expenseCash: Gen = (c) => {
     rentPm: { desc: 'Renta de local comercial', code: '6102', min: 8000, max: 25000 },
   }[kind]
   const form = FORM.transfer
-  const cf = invoice(c, { direction: 'recibido', issuer: SUPPLIERS[kind], receiver: COMPANY, use: USE.expense, method: 'PUE', form, concepts: [concept(1, 'E48 Servicio', info.desc, step(c.r, info.min, info.max, 10), 'iva16')] })
+  const cf = invoice(c, { direction: 'recibido', issuer: SUPPLIERS[kind], receiver: COMPANY, use: USE.expense, method: 'PUE', form, concepts: [concept(1, 'E48 Servicio', info.desc, step(c.r, info.min, info.max, 100), 'iva16')] })
   return doc(c, 'basico', {
     title: { es: 'Factura de un gasto pagado', en: 'Paid expense invoice' },
     story: { es: 'Pagaste por transferencia un gasto del negocio y te llegó esta factura.', en: 'You paid a business expense by transfer and received this invoice.' },
@@ -401,15 +402,15 @@ const expenseCash: Gen = (c) => {
     expected: new Lines().add(info.code, 'D', cf.subtotal).add('1109', 'D', cf.iva).add('1102', 'C', cf.total).get(),
     hint: { es: 'Es un gasto (se consume, no es un bien que dure). Sale dinero del banco y el IVA pagado es acreditable.', en: 'It is an expense. Money leaves the bank and the VAT paid is creditable.' },
     formulas: invoiceFormulas(cf.concepts, totals(cf.concepts)),
-    topics: ['L1-05', 'L1-09', 'FIS-06'],
+    topics: ['L1-16', 'L1-05', 'FIS-06'],
   })
 }
 
 const equipmentPurchase: Gen = (c) => {
   const comp = c.r() < 0.5
   const items = comp
-    ? [concept(int(c.r, 1, 3), 'H87 Pieza', 'Computadora portátil', step(c.r, 12000, 22000, 100), 'iva16')]
-    : [concept(int(c.r, 2, 6), 'H87 Pieza', 'Escritorio ejecutivo', step(c.r, 3000, 7000, 100), 'iva16')]
+    ? [concept(1, 'H87 Pieza', 'Computadora portátil', step(c.r, 12000, 22000, 1000), 'iva16')]
+    : [concept(int(c.r, 1, 3), 'H87 Pieza', 'Escritorio ejecutivo', step(c.r, 3000, 7000, 500), 'iva16')]
   const cf = invoice(c, { direction: 'recibido', issuer: comp ? SUPPLIERS.tech : SUPPLIERS.furniture, receiver: COMPANY, use: comp ? USE.computer : USE.equipment, method: 'PUE', form: FORM.transfer, concepts: items })
   const code = comp ? '1205' : '1203'
   return doc(c, 'basico', {
@@ -420,7 +421,7 @@ const equipmentPurchase: Gen = (c) => {
     expected: new Lines().add(code, 'D', cf.subtotal).add('1109', 'D', cf.iva).add('1102', 'C', cf.total).get(),
     hint: { es: 'No es mercancía ni gasto: es un activo que usarás varios años (activo fijo). Por eso no va a Inventarios.', en: 'Not inventory, not an expense: it is a fixed asset you will use for years.' },
     formulas: invoiceFormulas(cf.concepts, totals(cf.concepts)),
-    topics: ['L1-04', 'CON-08'],
+    topics: ['L1-16', 'L1-04', 'CON-08'],
   })
 }
 
@@ -766,3 +767,6 @@ export function examDocs(level: LabLevel, seed: number, now = new Date()): Pract
   const date = (d: PracticeDoc) => d.cfdis[d.cfdis.length - 1].date
   return out.sort((a, b) => date(a).localeCompare(date(b)) || order.get(a)! - order.get(b)!).map((d, i) => ({ ...d, id: `${String(i + 1).padStart(2, '0')}-${d.id}` }))
 }
+
+/** Accounts offered in the Básico selector, so beginners choose among the few that apply. */
+export const BASIC_ACCOUNTS = ['1101', '1102', '1104', '1108', '1109', '1203', '1205', '2101', '2104', '3101', '4101', '4102', '6102', '6103', '6104']

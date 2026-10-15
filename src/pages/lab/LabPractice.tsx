@@ -5,7 +5,7 @@ import { Solution } from '../../components/lab/Books'
 import { JournalEditor } from '../../components/JournalEditor'
 import { Badge, Button, Card, cx, Notice } from '../../components/ui'
 import { checkJournal, parseDraft, type DraftLine, type JournalCheck } from '../../lib/accounting'
-import { LAB_LEVELS, LEVEL_DESC, LEVEL_NAME, newSeed, POLICY_NAME, practiceDoc, type LabLevel, type PolicyType, type PracticeDoc } from '../../lib/cfdi'
+import { BASIC_ACCOUNTS, LAB_LEVELS, LEVEL_DESC, LEVEL_NAME, newSeed, POLICY_NAME, practiceDoc, type LabLevel, type PolicyType, type PracticeDoc } from '../../lib/cfdi'
 import { awardXp } from '../../lib/progress'
 import { LESSONS } from '../../content'
 import { navigate } from '../../state/router'
@@ -175,7 +175,7 @@ export default function LabPractice({ unlocked }: { unlocked: Record<LabLevel, b
             {tx('Ojo: el tipo de CFDI (I, E, P, N) no es lo mismo que el tipo de póliza. La póliza depende de si entra o sale dinero.', 'Note: the CFDI type is not the entry type. The entry type depends on whether money comes in or goes out.')}
           </p>
           <PolicyPicker idPrefix="prac" value={policy} onChange={(p) => { setPolicy(p); setResult(null) }} status={result ? (result.policyOk ? 'ok' : 'bad') : undefined} />
-          <JournalEditor idPrefix="prac" lines={lines} onChange={(l) => { setLines(l); setResult(null) }} lineStatus={result?.check.lineStatus} />
+          <JournalEditor idPrefix="prac" accountChoices={level === 'basico' ? BASIC_ACCOUNTS : undefined} lines={lines} onChange={(l) => { setLines(l); setResult(null) }} lineStatus={result?.check.lineStatus} />
 
           <button type="button" onClick={() => setHint((v) => !v)} className="inline-flex items-center gap-1 text-sm font-semibold text-amber-600">
             <Lightbulb className="h-4 w-4" /> {hint ? tx('Ocultar pista', 'Hide hint') : tx('Ver pista', 'Show hint')}

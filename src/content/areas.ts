@@ -101,7 +101,7 @@ const DEFS: AreaDef[] = [
     intro: [
       { title: { es: 'Nivel 1 · Unidad 1. Introducción a la contabilidad', en: 'Level 1 · Unit 1. Introduction to accounting' }, stage: BASIC, lessonIds: range('L1', 1, 3), examLevel: 1 },
       { title: { es: 'Nivel 1 · Unidad 2. Fundamentos contables', en: 'Level 1 · Unit 2. Accounting fundamentals' }, stage: BASIC, lessonIds: range('L1', 4, 7) },
-      { title: { es: 'Nivel 1 · Unidad 3. Registro contable básico', en: 'Level 1 · Unit 3. Basic bookkeeping' }, stage: BASIC, lessonIds: range('L1', 8, 11) },
+      { title: { es: 'Nivel 1 · Unidad 3. Registro contable básico', en: 'Level 1 · Unit 3. Basic bookkeeping' }, stage: BASIC, lessonIds: [...range('L1', 8, 11), 'L1-16'] },
       { title: { es: 'Nivel 1 · Unidad 4. Ciclo contable e información financiera', en: 'Level 1 · Unit 4. Accounting cycle and financial information' }, stage: BASIC, lessonIds: range('L1', 12, 15) },
     ],
     extra: [
