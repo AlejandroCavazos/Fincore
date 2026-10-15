@@ -84,8 +84,13 @@ export function LivesProvider({ children }: { children: ReactNode }) {
     const on = (e: StorageEvent) => {
       if (e.key === L.currentStorageKey()) setS(L.peek(s.plan))
     }
+    const local = () => setS(L.peek(s.plan))
     window.addEventListener('storage', on)
-    return () => window.removeEventListener('storage', on)
+    window.addEventListener(L.LIVES_CHANGED, local)
+    return () => {
+      window.removeEventListener('storage', on)
+      window.removeEventListener(L.LIVES_CHANGED, local)
+    }
   }, [s.plan])
 
   // 1 s tick for countdowns; sync when a life is due or the day changes.

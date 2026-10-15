@@ -5,6 +5,7 @@ import App from './App.tsx'
 import { StoreProvider } from './state/store'
 import { AuthProvider } from './state/auth'
 import { LivesProvider } from './state/lives'
+import { CloudSync } from './state/cloud'
 import { registerServiceWorker } from './pwa'
 
 createRoot(document.getElementById('root')!).render(
@@ -13,6 +14,7 @@ createRoot(document.getElementById('root')!).render(
       <AuthProvider>
         <LivesProvider>
           <App />
+          <CloudSync />
         </LivesProvider>
       </AuthProvider>
     </StoreProvider>

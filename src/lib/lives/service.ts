@@ -350,3 +350,19 @@ export function mutate<T extends Result>(plan: PlanId, fn: (s: LivesState) => T,
 }
 
 export const peek = (plan: PlanId, now = new Date()) => read(plan, now)
+
+export const LIVES_CHANGED = 'fincore-lives-changed'
+/** Saved lives of the current account, or null when this device has none yet. */
+export function storedLives(): LivesState | null {
+  try {
+    const raw = localStorage.getItem(storageKey)
+    return raw ? (JSON.parse(raw) as LivesState) : null
+  } catch {
+    return null
+  }
+}
+/** Replaces the saved lives (account sync) and tells the open screen to re-read them. */
+export function overwriteLives(s: LivesState) {
+  write(s)
+  window.dispatchEvent(new Event(LIVES_CHANGED))
+}

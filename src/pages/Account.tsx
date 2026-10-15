@@ -26,6 +26,7 @@ export default function Account() {
             <p data-testid="account-email" className="truncate font-semibold text-navy-900 dark:text-white">
               {auth.user?.email ?? tx('Tu progreso se guarda en este dispositivo', 'Your progress is stored on this device')}
             </p>
+            {auth.user && <p className="text-xs text-navy-500 dark:text-navy-300">{tx('Tu avance se guarda en tu cuenta: puedes seguir en cualquier navegador.', 'Your progress is saved to your account: continue in any browser.')}</p>}
           </div>
         </div>
         {auth.enabled && auth.user && (

@@ -140,7 +140,8 @@ export const COOKIES: LegalDoc = {
       paragraphs: [
         'FINCORE no instala cookies propias ni de terceros. Utiliza almacenamiento en tu navegador:',
         '**Sesión de cuenta** (almacenamiento local, proveedor Supabase, estrictamente necesaria): mantiene tu sesión iniciada; se conserva hasta que cierras sesión o borras los datos del sitio.',
-        '**Progreso y preferencias** (IndexedDB, propio de FINCORE, preferencias y funcionalidad): guarda tu avance, XP, idioma y tema en este dispositivo; se conserva hasta que lo borras desde Configuración o desde el navegador.',
+        '**Progreso y preferencias** (IndexedDB, propio de FINCORE, preferencias y funcionalidad): guarda tu avance, XP, idioma y tema en este dispositivo; se conserva hasta que lo borras desde Configuración o desde el navegador. Si inicias sesión, una copia de tu avance (incluidas tus vidas) se guarda también en tu cuenta para que puedas continuar en otro navegador.',
+        '**Vidas y registro de práctica** (almacenamiento local, propio de FINCORE, funcionalidad): guarda tus vidas, repasos del día y un registro de tus eventos de práctica en este dispositivo; el registro no se envía a terceros.',
         '**Archivos para uso sin conexión** (Cache Storage del service worker, propio, estrictamente necesaria): guarda los archivos de la app para que funcione sin internet; no contiene datos personales.',
       ],
     },
