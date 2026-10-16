@@ -88,32 +88,6 @@ test('plans: normal prices, no savings or discounts', async ({ page }) => {
   await shot(page, '07-plans-annual')
 })
 
-test('theory as swipeable cards with quick questions', async ({ page }) => {
-  await onboard(page)
-  await page.goto('./#/settings')
-  await page.getByRole('checkbox', { name: /Modo libre/ }).check()
-  await page.goto('./#/lesson/L1-08?s=0')
-  const deck = page.getByTestId('theory-cards')
-  await expect(deck).toBeVisible()
-  await shot(page, '08-cards-1')
-  const n = await deck.locator('section').count()
-  await deck.evaluate((el) => el.scrollTo({ top: el.clientHeight }))
-  await page.waitForTimeout(400)
-  await shot(page, '08-cards-2')
-  const check = deck.locator('[data-card="check"]').first()
-  if (await check.count()) {
-    await check.scrollIntoViewIfNeeded()
-    await shot(page, '08-cards-check')
-  }
-  await deck.evaluate((el, k) => el.scrollTo({ top: el.clientHeight * k }), n)
-  await page.getByTestId('cards-finish').click()
-  await expect(page).toHaveURL(/s=1/)
-  await page.getByTestId('view-toggle').click()
-  await expect(page.getByTestId('theory-cards')).toHaveCount(0)
-  await page.getByTestId('view-toggle').click()
-  await expect(page.getByTestId('theory-cards')).toBeVisible()
-})
-
 test('chat lesson: challenge first, replies and finish', async ({ page }) => {
   await onboard(page)
   await page.goto('./#/settings')
@@ -349,21 +323,32 @@ test('interactive lesson: simulator and find the error', async ({ page }) => {
   await shot(page, '10-spot-error')
 })
 
-test('interactive games: sort, order, match and balance can be finished', async ({ page }) => {
-  test.setTimeout(120000)
+test('interactive games: every activity can be finished', async ({ page }) => {
+  test.setTimeout(300000)
   await onboard(page)
   await page.goto('./#/settings')
   await page.getByRole('checkbox', { name: /Modo libre/ }).check()
-  const shots: Record<string, string> = { 'L1-01:0': '11-order', 'L1-04:0': '11-sort', 'L1-07:0': '11-match', 'L1-06:1': '11-balance' }
-  for (const [id, s] of [['L1-01', 0], ['L1-01', 1], ['L1-01', 2], ['L1-02', 0], ['L1-02', 1], ['L1-02', 2], ['L1-03', 0], ['L1-03', 2], ['L1-04', 0], ['L1-04', 1], ['L1-06', 1], ['L1-06', 2], ['L1-07', 0], ['L1-07', 1], ['L1-07', 2]] as const) {
+  const shots: Record<string, string> = { 'L1-01:0': '11-order', 'L1-04:0': '11-sort', 'L1-07:0': '11-match', 'L1-06:1': '11-balance', 'L1-11:1': '12-tacct', 'L1-09:2': '12-entry', 'L1-08:1': '12-rush', 'L1-08:2': '12-calc', 'L1-12:0': '12-multi' }
+  for (const [id, s] of [['L1-01', 0], ['L1-01', 1], ['L1-01', 2], ['L1-02', 0], ['L1-02', 1], ['L1-02', 2], ['L1-03', 0], ['L1-03', 2], ['L1-04', 0], ['L1-04', 1], ['L1-06', 1], ['L1-06', 2], ['L1-07', 0], ['L1-07', 1], ['L1-07', 2], ['L1-08', 0], ['L1-08', 1], ['L1-08', 2], ['L1-09', 0], ['L1-09', 1], ['L1-09', 2], ['L1-11', 0], ['L1-11', 1], ['L1-11', 2], ['L1-12', 0], ['L1-12', 1], ['L1-12', 2], ['L1-12', 3], ['L1-13', 0], ['L1-13', 2], ['L1-13', 3], ['L1-14', 0], ['L1-14', 1], ['L1-15', 0], ['L1-15', 1], ['L1-15', 2], ['L1-15', 3]] as const) {
     await page.goto(`./#/lesson/${id}?s=${s}`)
     await expect(page.getByTestId('interactive-lesson')).toBeVisible()
     let snapped = false
-    for (let guard = 0; guard < 80; guard++) {
+    for (let guard = 0; guard < 150; guard++) {
       if (await page.getByTestId('int-finish').isVisible()) break
       const sortNext = page.getByTestId('sort-next')
       const balNext = page.getByTestId('bal-next')
-      if (await sortNext.isVisible()) await sortNext.click()
+      if (await page.getByTestId('rush-start').isVisible()) await page.getByTestId('rush-start').click()
+      else if (await page.getByTestId('rush-0').isVisible()) await page.getByTestId('rush-0').click()
+      else if (await page.getByTestId('tacct-next').isVisible()) await page.getByTestId('tacct-next').click()
+      else if (await page.locator('[data-testid="tacct-D"]:enabled').count()) await page.getByTestId('tacct-D').click()
+      else if (await page.locator('[data-testid^="entry-"][data-testid$="-D"]:enabled').count()) await page.locator('[data-testid^="entry-"][data-testid$="-D"]:enabled').first().click()
+      else if (await page.locator('[data-testid="calc-input"]:enabled').count()) {
+        await page.getByTestId('calc-input').fill('1')
+        await page.getByTestId('calc-check').click()
+      } else if (await page.getByTestId('multi-check').isVisible()) {
+        await page.getByTestId('multi-0').click()
+        await page.getByTestId('multi-check').click()
+      } else if (await sortNext.isVisible()) await sortNext.click()
       else if (await balNext.isVisible()) await balNext.click()
       else if (await page.locator('[data-testid="sort-bucket-0"]:enabled').count()) await page.getByTestId('sort-bucket-0').click()
       else if (await page.locator('[data-testid="bal-opt-0"]:enabled').count()) await page.getByTestId('bal-opt-0').click()

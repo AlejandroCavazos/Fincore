@@ -44,6 +44,38 @@ export interface Balance {
   start: { a: number; p: number; c: number }
   ops: { story: string; options: { text: string; ok?: boolean }[]; d: { a: number; p: number; c: number }; why: string }[]
 }
+/** A T account that fills as the learner sends each movement to Debe or Haber. */
+export interface TAcct {
+  title: string
+  account: string
+  moves: { story: string; side: 'D' | 'C'; amount: number; why: string }[]
+}
+/** Build a póliza: choose Cargo or Abono for each line. */
+export interface Entry {
+  title: string
+  story: string
+  lines: { account: string; side: 'D' | 'C'; amount: number; why: string }[]
+}
+/** Timed round: answer as many as you can with two buttons. */
+export interface Rush {
+  title: string
+  seconds: number
+  labels: [string, string]
+  items: { text: string; ans: 0 | 1 }[]
+}
+/** Type the number. */
+export interface Calc {
+  question: string
+  answer: number
+  hint: string
+  why: string
+}
+/** Select every right option, then check. */
+export interface Multi {
+  title: string
+  items: { text: string; ok: boolean }[]
+  why: string
+}
 export type Block =
   | { text: string }
   | { tip: string }
@@ -54,6 +86,11 @@ export type Block =
   | { order: OrderGame }
   | { match: MatchGame }
   | { balance: Balance }
+  | { tacct: TAcct }
+  | { entry: Entry }
+  | { rush: Rush }
+  | { calc: Calc }
+  | { multi: Multi }
 
 export interface InteractiveLesson {
   lessonId: string

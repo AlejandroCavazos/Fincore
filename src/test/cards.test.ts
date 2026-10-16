@@ -49,7 +49,7 @@ describe('chat lessons', () => {
   })
 })
 
-import { allInteractive } from '../content/interactive'
+import { allInteractive, type Block } from '../content/interactive'
 
 describe('interactive lessons', () => {
   for (const it2 of allInteractive()) {
@@ -72,6 +72,14 @@ describe('interactive lessons', () => {
               expect(o.options.filter((x) => x.ok).length).toBe(1)
               expect(o.d.a).toBe(o.d.p + o.d.c)
             }
+          if ('entry' in b) {
+            const sum = (x: 'D' | 'C') => b.entry.lines.filter((l) => l.side === x).reduce((a, l) => a + l.amount, 0)
+            expect(sum('D')).toBe(sum('C'))
+          }
+          if ('tacct' in b) expect(b.tacct.moves.length).toBeGreaterThanOrEqual(2)
+          if ('rush' in b) expect(b.rush.items.length).toBeGreaterThanOrEqual(4)
+          if ('multi' in b) expect(b.multi.items.some((x) => x.ok)).toBe(true)
+          if ('calc' in b) expect(Number.isFinite(b.calc.answer)).toBe(true)
           if ('sim' in b && b.sim.goal) {
             const start = Object.fromEntries(b.sim.inputs.map((i) => [i.key, i.value]))
             // Some corner of the sliders must reach the goal.
@@ -84,4 +92,16 @@ describe('interactive lessons', () => {
       }
     })
   }
+})
+
+describe('interactive numbers match the lesson text', () => {
+  it('Café Aroma: Bancos T account ends at 64,000 and the balance ends at 112,000 = 4,000 + 108,000', () => {
+    const l = allInteractive().find((x) => x.lessonId === 'L1-15')!
+    const t = l.sections[2]!.find((b) => 'tacct' in b) as Extract<Block, { tacct: unknown }>
+    const net = t.tacct.moves.reduce((a, m) => a + (m.side === 'D' ? m.amount : -m.amount), 0)
+    expect(net).toBe(64000)
+    const bal = l.sections[1]!.find((b) => 'balance' in b) as Extract<Block, { balance: unknown }>
+    const end = bal.balance.ops.reduce((t2, o) => ({ a: t2.a + o.d.a, p: t2.p + o.d.p, c: t2.c + o.d.c }), bal.balance.start)
+    expect(end).toEqual({ a: 112000, p: 4000, c: 108000 })
+  })
 })

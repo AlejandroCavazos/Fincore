@@ -3,6 +3,7 @@ import { Pin, SlidersHorizontal, Search, CheckCircle2 } from 'lucide-react'
 import type { Block, InteractiveLesson as Lesson, Sim, Spot } from '../../content/interactive'
 import { Button, cx, Rich } from '../ui'
 import { BalanceBlock, MatchBlock, OrderBlock, SortBlock } from './Games'
+import { CalcBlock, EntryBlock, MultiBlock, RushBlock, TAcctBlock } from './Games2'
 
 const mxn = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 0 })
 const money = (n: number) => `${n < 0 ? '−' : ''}$${mxn.format(Math.abs(n))}`
@@ -234,6 +235,11 @@ export function InteractiveLesson({ data, index, title, header, finishLabel, onF
           if ('order' in b) return <OrderBlock key={i} game={b.order} onSolved={ok} />
           if ('match' in b) return <MatchBlock key={i} game={b.match} onSolved={ok} />
           if ('balance' in b) return <BalanceBlock key={i} game={b.balance} onSolved={ok} />
+          if ('tacct' in b) return <TAcctBlock key={i} game={b.tacct} onSolved={ok} />
+          if ('entry' in b) return <EntryBlock key={i} game={b.entry} onSolved={ok} />
+          if ('rush' in b) return <RushBlock key={i} game={b.rush} onSolved={ok} />
+          if ('calc' in b) return <CalcBlock key={i} game={b.calc} onSolved={ok} />
+          if ('multi' in b) return <MultiBlock key={i} game={b.multi} onSolved={ok} />
           return <AskBlock key={i} b={b} idx={i} onSolved={ok} />
         })}
         <div ref={end} />

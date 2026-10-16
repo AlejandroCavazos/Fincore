@@ -4,7 +4,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 
 ## Stack and commands
 - Vite 8 + React 19 + TypeScript 6 + Tailwind v4. Local storage in IndexedDB (`src/lib/db.ts`). Hash router (`src/state/router.ts`).
-- `npx tsc -b` checks types. `npm test` runs vitest (about 147 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 48 e2e tests.
+- `npx tsc -b` checks types. `npm test` runs vitest (about 155 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 45 e2e tests.
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
 ## Where things live
@@ -23,9 +23,9 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - Lives (vidas): all numbers in `src/config/lives.ts`; all logic in `src/lib/lives/service.ts` (local for now, server validation pending); events in `src/lib/lives/analytics.ts` (local only); React glue `src/state/lives.tsx` (useLives); UI in `src/components/lives/` (LivesIndicator, OutOfLives, MyLives), recovery page `src/pages/RecoverLife.tsx` (#/lives/recover). Spending hooks: ExerciseRunner, LabPractice, LabExam, Exams (Pro simulacro + 3 official tries/7 days). Tests: `src/test/lives.test.ts`.
 - Account sync: `src/state/cloud.tsx` (CloudSync: pull+merge on sign-in/focus, push 4 s after changes), `src/lib/cloud.ts` (Supabase table `user_progress`, SQL in `supabase/migrations/003_user_progress.sql`), `src/lib/merge.ts` (mergeStates/mergeLives, tests in `src/test/merge.test.ts`).
 - Prices: all in `src/config/pricing.ts` (Plus $99, Pro $199 per month, MXN; Gratis free). UI: `src/pages/Plans.tsx`.
-- Theory cards (pilot on L1-*, `cardsEnabled` in `src/lib/cards.ts`): `buildCards` turns each theory section into short swipeable cards automatically (first sentence + "Ver más", lists, formulas, quick mcq/truefalse questions from the lesson, key points). UI `src/components/cards/TheoryCards.tsx`, used by Subtopic in LessonPage ("Ver texto completo" toggle, saved in localStorage). Tests `src/test/cards.test.ts`.
+- Theory cards (L1-* in English only now, since Spanish L1 uses interactive lessons; `cardsEnabled` in `src/lib/cards.ts`): `buildCards` turns each theory section into short swipeable cards automatically (first sentence + "Ver más", lists, formulas, quick mcq/truefalse questions from the lesson, key points). UI `src/components/cards/TheoryCards.tsx`, used by Subtopic in LessonPage ("Ver texto completo" toggle, saved in localStorage). Tests `src/test/cards.test.ts`.
 - Chat lessons (sample: L1-16 with "Don Memo"): scripts in `src/content/chats/<id>.ts` (one script per theory section, Spanish only), registered in `src/content/chats/index.ts`; UI `src/components/cards/ChatLesson.tsx`. LessonPage shows chat first if a script exists, then cards, with the "Ver texto completo" toggle.
-- Interactive lessons (L1-01..07 = Unidades 1 y 2, plus L1-10): `src/content/interactive/<id>.ts` (blocks text/tip/ask/sim/spot/sort/order/match/balance; games in `src/components/cards/Games.tsx`; one array per theory section, null = default view), registry `index.ts`; UI `src/components/cards/InteractiveLesson.tsx`. LessonPage priority: interactive > chat > cards > text.
+- Interactive lessons (all L1-01..15; L1-16 keeps the chat): `src/content/interactive/<id>.ts` (blocks text/tip/ask/sim/spot/sort/order/match/balance/tacct/entry/rush/calc/multi; games in `src/components/cards/Games.tsx` and `Games2.tsx`; one array per theory section, null = default view), registry `index.ts`; UI `src/components/cards/InteractiveLesson.tsx`. LessonPage priority: interactive > chat > cards > text.
 - Tests: `src/test/content.test.ts` checks the whole content bank (unique ids, solutions grade correct, formula guides complete).
 
 ## Rules
