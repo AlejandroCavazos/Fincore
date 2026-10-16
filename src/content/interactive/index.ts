@@ -32,8 +32,26 @@ import { intL203 } from './L2-03'
 import { intL204 } from './L2-04'
 import { intL205 } from './L2-05'
 import { intL206 } from './L2-06'
+import { intCOS01 } from './COS-01'
+import { intCOS02 } from './COS-02'
+import { intCOS03 } from './COS-03'
+import { intCOS04 } from './COS-04'
+import { intCOS05 } from './COS-05'
+import { intCOS06 } from './COS-06'
+import { intCOS07 } from './COS-07'
+import { intCOS08 } from './COS-08'
+import { intCOS09 } from './COS-09'
+import { intCOS10 } from './COS-10'
+import { intCOS11 } from './COS-11'
+import { intCOS12 } from './COS-12'
+import { intCOS13 } from './COS-13'
+import { intCOS14 } from './COS-14'
+import { intL301 } from './L3-01'
+import { intL302 } from './L3-02'
+import { intL303 } from './L3-03'
+import { intL304 } from './L3-04'
 
 export type { Balance, Block, Calc, Entry, Multi, Rush, TAcct, InteractiveLesson, MatchGame, OrderGame, Sim, SortGame, Spot } from './types'
-const ALL: InteractiveLesson[] = [intL101, intL102, intL103, intL104, intL105, intL106, intL107, intL108, intL109, intL110, intL111, intL112, intL113, intL114, intL115, intCON04, intCON05, intCON06, intCON07, intCON08, intCON09, intCON10, intCON11, intCON12, intCON14, intCON15, intL207, intL201, intL202, intL203, intL204, intL205, intL206]
+const ALL: InteractiveLesson[] = [intL101, intL102, intL103, intL104, intL105, intL106, intL107, intL108, intL109, intL110, intL111, intL112, intL113, intL114, intL115, intCON04, intCON05, intCON06, intCON07, intCON08, intCON09, intCON10, intCON11, intCON12, intCON14, intCON15, intL207, intL201, intL202, intL203, intL204, intL205, intL206, intCOS01, intCOS02, intCOS03, intCOS04, intCOS05, intCOS06, intCOS07, intCOS08, intCOS09, intCOS10, intCOS11, intCOS12, intCOS13, intCOS14, intL301, intL302, intL303, intL304]
 export const interactiveFor = (lessonId: string) => ALL.find((x) => x.lessonId === lessonId)
 export const allInteractive = () => ALL

@@ -79,7 +79,11 @@ describe('interactive lessons', () => {
           if ('tacct' in b) expect(b.tacct.moves.length).toBeGreaterThanOrEqual(2)
           if ('rush' in b) expect(b.rush.items.length).toBeGreaterThanOrEqual(4)
           if ('multi' in b) expect(b.multi.items.some((x) => x.ok)).toBe(true)
-          if ('calc' in b) expect(Number.isFinite(b.calc.answer)).toBe(true)
+          if ('calc' in b) {
+            expect(Number.isFinite(b.calc.answer)).toBe(true)
+            // Percentages must not be shown with a "$".
+            if (/porcentaje|en %/i.test(b.calc.question)) expect(b.calc.unit).toBe('%')
+          }
           if ('sim' in b && b.sim.goal) {
             const start = Object.fromEntries(b.sim.inputs.map((i) => [i.key, i.value]))
             // Some corner of the sliders must reach the goal.
