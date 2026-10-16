@@ -360,13 +360,15 @@ test(`interactive games: every activity can be finished (group ${g + 1})`, async
       else if (await page.locator('[data-testid="sort-bucket-0"]:enabled').count()) await page.getByTestId('sort-bucket-0').click()
       else if (await page.locator('[data-testid="bal-opt-0"]:enabled').count()) await page.getByTestId('bal-opt-0').click()
       else if (await page.locator('[data-testid^="order-step-"]').count()) {
-        const n = await page.locator('[data-testid="order"] ol li').count()
-        await page.getByTestId(`order-step-${n}`).click()
+        const ord = page.locator('[data-testid="order"]').filter({ has: page.locator('[data-testid^="order-step-"]') }).first()
+        const n = await ord.locator('ol li').count()
+        await ord.getByTestId(`order-step-${n}`).click()
       } else if (await page.locator('[data-testid^="match-l-"]:enabled').count()) {
-        const l = page.locator('[data-testid^="match-l-"]:enabled').first()
+        const box = page.locator('[data-testid="match"]').filter({ has: page.locator('[data-testid^="match-l-"]:enabled') }).first()
+        const l = box.locator('[data-testid^="match-l-"]:enabled').first()
         const i = (await l.getAttribute('data-testid'))!.split('-').pop()
         await l.click()
-        await page.getByTestId(`match-r-${i}`).click()
+        await box.getByTestId(`match-r-${i}`).click()
       } else if (await page.locator('[data-testid="int-ask"] button:enabled').count()) await page.locator('[data-testid="int-ask"] button:enabled').first().click()
       else if ((await page.locator('[data-testid="spot"]').count()) > (await page.locator('[data-testid="spot-why"]').count())) {
         const spot = page.locator('[data-testid="spot"]').last()
