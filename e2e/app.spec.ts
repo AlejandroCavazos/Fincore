@@ -349,6 +349,7 @@ test('interactive games: every activity can be finished', async ({ page }) => {
         await page.getByTestId('multi-0').click()
         await page.getByTestId('multi-check').click()
       } else if (await sortNext.isVisible()) await sortNext.click()
+
       else if (await balNext.isVisible()) await balNext.click()
       else if (await page.locator('[data-testid="sort-bucket-0"]:enabled').count()) await page.getByTestId('sort-bucket-0').click()
       else if (await page.locator('[data-testid="bal-opt-0"]:enabled').count()) await page.getByTestId('bal-opt-0').click()
@@ -362,6 +363,18 @@ test('interactive games: every activity can be finished', async ({ page }) => {
         await page.getByTestId(`match-r-${i}`).click()
       } else if (await page.locator('[data-testid="int-ask"] button:enabled').count()) await page.locator('[data-testid="int-ask"] button:enabled').first().click()
       else if (await page.getByTestId('int-next').isVisible()) await page.getByTestId('int-next').click()
+      else if ((await page.locator('[data-testid="sim"]').last().isVisible()) && !(await page.getByTestId('int-next').isVisible()) && !(await page.getByTestId('int-finish').isVisible())) {
+        // Try every corner of the sliders until the goal is reached.
+        const sliders = page.locator('[data-testid="sim"]').last().locator('input[type="range"]')
+        const n = await sliders.count()
+        for (let m = 0; m < 2 ** n; m++) {
+          for (let k = 0; k < n; k++) {
+            const el = sliders.nth(k)
+            await el.fill((await el.getAttribute(m & (1 << k) ? 'max' : 'min'))!)
+          }
+          if ((await page.getByTestId('int-next').isVisible()) || (await page.getByTestId('int-finish').isVisible())) break
+        }
+      }
       const key = `${id}:${s}`
       if (!snapped && shots[key] && (await page.getByTestId(shots[key].slice(3)).isVisible())) {
         snapped = true
