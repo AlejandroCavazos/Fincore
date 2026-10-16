@@ -324,12 +324,12 @@ test('interactive lesson: simulator and find the error', async ({ page }) => {
 })
 
 test('interactive games: every activity can be finished', async ({ page }) => {
-  test.setTimeout(300000)
+  test.setTimeout(600000)
   await onboard(page)
   await page.goto('./#/settings')
   await page.getByRole('checkbox', { name: /Modo libre/ }).check()
   const shots: Record<string, string> = { 'L1-01:0': '11-order', 'L1-04:0': '11-sort', 'L1-07:0': '11-match', 'L1-06:1': '11-balance', 'L1-11:1': '12-tacct', 'L1-09:2': '12-entry', 'L1-08:1': '12-rush', 'L1-08:2': '12-calc', 'L1-12:0': '12-multi' }
-  for (const [id, s] of [['L1-01', 0], ['L1-01', 1], ['L1-01', 2], ['L1-02', 0], ['L1-02', 1], ['L1-02', 2], ['L1-03', 0], ['L1-03', 2], ['L1-04', 0], ['L1-04', 1], ['L1-06', 1], ['L1-06', 2], ['L1-07', 0], ['L1-07', 1], ['L1-07', 2], ['L1-08', 0], ['L1-08', 1], ['L1-08', 2], ['L1-09', 0], ['L1-09', 1], ['L1-09', 2], ['L1-11', 0], ['L1-11', 1], ['L1-11', 2], ['L1-12', 0], ['L1-12', 1], ['L1-12', 2], ['L1-12', 3], ['L1-13', 0], ['L1-13', 2], ['L1-13', 3], ['L1-14', 0], ['L1-14', 1], ['L1-15', 0], ['L1-15', 1], ['L1-15', 2], ['L1-15', 3]] as const) {
+  for (const [id, s] of [['L1-01', 0], ['L1-01', 1], ['L1-01', 2], ['L1-02', 0], ['L1-02', 1], ['L1-02', 2], ['L1-03', 0], ['L1-03', 2], ['L1-04', 0], ['L1-04', 1], ['L1-06', 1], ['L1-06', 2], ['L1-07', 0], ['L1-07', 1], ['L1-07', 2], ['L1-08', 0], ['L1-08', 1], ['L1-08', 2], ['L1-09', 0], ['L1-09', 1], ['L1-09', 2], ['L1-11', 0], ['L1-11', 1], ['L1-11', 2], ['L1-12', 0], ['L1-12', 1], ['L1-12', 2], ['L1-12', 3], ['L1-13', 0], ['L1-13', 2], ['L1-13', 3], ['L1-14', 0], ['L1-14', 1], ['L1-15', 0], ['L1-15', 1], ['L1-15', 2], ['L1-15', 3], ['CON-04', 0], ['CON-04', 1], ['CON-04', 2], ['CON-05', 0], ['CON-05', 1], ['CON-05', 2], ['CON-06', 0], ['CON-06', 1], ['CON-06', 2], ['CON-07', 0], ['CON-07', 1], ['CON-07', 2], ['CON-08', 0], ['CON-08', 1], ['CON-08', 2], ['CON-09', 0], ['CON-09', 1], ['CON-09', 2], ['CON-10', 0], ['CON-10', 1], ['CON-10', 2], ['CON-11', 0], ['CON-11', 1], ['CON-11', 2], ['CON-12', 0], ['CON-12', 1], ['CON-12', 2], ['CON-14', 0], ['CON-14', 1], ['CON-14', 2], ['CON-15', 0], ['CON-15', 1], ['CON-15', 2]] as const) {
     await page.goto(`./#/lesson/${id}?s=${s}`)
     await expect(page.getByTestId('interactive-lesson')).toBeVisible()
     let snapped = false
@@ -362,6 +362,11 @@ test('interactive games: every activity can be finished', async ({ page }) => {
         await l.click()
         await page.getByTestId(`match-r-${i}`).click()
       } else if (await page.locator('[data-testid="int-ask"] button:enabled').count()) await page.locator('[data-testid="int-ask"] button:enabled').first().click()
+      else if ((await page.locator('[data-testid="spot"]').count()) > (await page.locator('[data-testid="spot-why"]').count())) {
+        const spot = page.locator('[data-testid="spot"]').last()
+        const n = await spot.locator('[data-testid^="spot-line-"]').count()
+        for (let k = 0; k < n && !(await spot.getByTestId('spot-why').isVisible()); k++) await spot.getByTestId(`spot-line-${k}`).click()
+      }
       else if (await page.getByTestId('int-next').isVisible()) await page.getByTestId('int-next').click()
       else if ((await page.locator('[data-testid="sim"]').last().isVisible()) && !(await page.getByTestId('int-next').isVisible()) && !(await page.getByTestId('int-finish').isVisible())) {
         // Try every corner of the sliders until the goal is reached.

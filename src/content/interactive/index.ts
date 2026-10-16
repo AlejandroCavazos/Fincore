@@ -14,8 +14,19 @@ import { intL112 } from './L1-12'
 import { intL113 } from './L1-13'
 import { intL114 } from './L1-14'
 import { intL115 } from './L1-15'
+import { intCON04 } from './CON-04'
+import { intCON05 } from './CON-05'
+import { intCON06 } from './CON-06'
+import { intCON07 } from './CON-07'
+import { intCON08 } from './CON-08'
+import { intCON09 } from './CON-09'
+import { intCON10 } from './CON-10'
+import { intCON11 } from './CON-11'
+import { intCON12 } from './CON-12'
+import { intCON14 } from './CON-14'
+import { intCON15 } from './CON-15'
 
 export type { Balance, Block, Calc, Entry, Multi, Rush, TAcct, InteractiveLesson, MatchGame, OrderGame, Sim, SortGame, Spot } from './types'
-const ALL: InteractiveLesson[] = [intL101, intL102, intL103, intL104, intL105, intL106, intL107, intL108, intL109, intL110, intL111, intL112, intL113, intL114, intL115]
+const ALL: InteractiveLesson[] = [intL101, intL102, intL103, intL104, intL105, intL106, intL107, intL108, intL109, intL110, intL111, intL112, intL113, intL114, intL115, intCON04, intCON05, intCON06, intCON07, intCON08, intCON09, intCON10, intCON11, intCON12, intCON14, intCON15]
 export const interactiveFor = (lessonId: string) => ALL.find((x) => x.lessonId === lessonId)
 export const allInteractive = () => ALL
