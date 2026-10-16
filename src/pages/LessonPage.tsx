@@ -1,4 +1,4 @@
-import { ArrowLeft, BookOpen, Calculator, Check, Lightbulb, Lock, Play, Scale, Store, Target, X } from 'lucide-react'
+import { ArrowLeft, Calculator, Check, Lightbulb, Lock, Play, Scale, Store, Target, X } from 'lucide-react'
 import { areaOfLesson, BUSINESS_PER_TOPIC, topicLabel } from '../content/areas'
 import { exercisesOfLesson, getLesson } from '../content'
 import { ExerciseRunner } from '../components/ExerciseRunner'
@@ -376,48 +376,6 @@ function Reto({ lesson }: { lesson: Lesson }) {
         </Notice>
       )}
 
-      {formulas.length > 0 && (
-        <details className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-navy-100 dark:bg-navy-900 dark:ring-navy-800">
-          <summary className="flex cursor-pointer items-center gap-2 font-semibold text-navy-900 dark:text-white">
-            <Calculator className="h-5 w-5 text-electric-500" /> {tx('Fórmulas del tema', 'Formulas of this topic')} ({formulas.length})
-          </summary>
-          <div className="mt-3 space-y-3">
-            {formulas.map((f, k) => (
-              <FormulaCard key={k} f={f} />
-            ))}
-          </div>
-        </details>
-      )}
-
-      <details className="rounded-2xl bg-white p-4 shadow-sm ring-1 ring-navy-100 dark:bg-navy-900 dark:ring-navy-800">
-        <summary className="flex cursor-pointer items-center gap-2 font-semibold text-navy-900 dark:text-white">
-          <BookOpen className="h-5 w-5 text-electric-500" /> {tx('Antes del reto: ejemplos resueltos', 'Before the challenge: worked examples')}
-        </summary>
-        <div className="mt-3 space-y-4">
-          {lesson.examples.map((ex, k) => (
-            <div key={k} className="border-l-4 border-money-500 pl-3">
-              <h3 className="font-semibold text-navy-900 dark:text-white">{t(ex.title)}</h3>
-              <p className="mt-1 whitespace-pre-line text-[15px] text-navy-700 dark:text-navy-200">
-                <Rich text={t(ex.problem)} />
-              </p>
-              <ol className="mt-2 space-y-1.5">
-                {ex.steps.map((s, j) => (
-                  <li key={j} className="flex gap-2 text-sm text-navy-700 dark:text-navy-200">
-                    <span className="tabular flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-navy-100 text-[11px] font-bold dark:bg-navy-800">{j + 1}</span>
-                    <span className="whitespace-pre-line">
-                      <Rich text={t(s)} />
-                    </span>
-                  </li>
-                ))}
-              </ol>
-              <p className="mt-2 rounded-lg bg-money-500/10 px-3 py-2 text-sm font-semibold text-money-800 dark:text-money-200">
-                <Rich text={t(ex.result)} />
-              </p>
-            </div>
-          ))}
-        </div>
-      </details>
-
       {lesson.normativeNote && (
         <Notice tone="warning" title={tx('Nota normativa', 'Regulatory note')}>
           <span className="flex gap-2">
@@ -434,6 +392,69 @@ function Reto({ lesson }: { lesson: Lesson }) {
         onExit={() => navigate(next ? `/lesson/${next.id}` : `/area/${area.id}`)}
         exitLabel={next ? tx('Siguiente tema', 'Next topic') : tx('Volver al área', 'Back to area')}
       />
+      <RetoHelp lesson={lesson} formulas={formulas} />
+    </div>
+  )
+}
+
+/** Help for the challenge, hidden until the learner asks: one worked example at a time, formulas behind a second tap. */
+function RetoHelp({ lesson, formulas }: { lesson: Lesson; formulas: NonNullable<Lesson['theory'][number]['formulas']> }) {
+  const { t, tx } = useI18n()
+  const [open, setOpen] = useState(false)
+  const [k, setK] = useState(0)
+  const ex = lesson.examples[k % Math.max(1, lesson.examples.length)]
+  if (!ex && !formulas.length) return null
+  if (!open)
+    return (
+      <button type="button" onClick={() => setOpen(true)} data-testid="reto-help" className="mx-auto flex items-center gap-1.5 text-sm font-semibold text-amber-600">
+        <Lightbulb className="h-4 w-4" /> {tx('¿Te atoraste? Ver un ejemplo resuelto', 'Stuck? See a worked example')}
+      </button>
+    )
+  return (
+    <div className="space-y-3 rounded-2xl bg-white p-4 shadow-sm ring-1 ring-navy-100 dark:bg-navy-900 dark:ring-navy-800">
+      {ex && (
+        <div className="border-l-4 border-money-500 pl-3">
+          <h3 className="font-semibold text-navy-900 dark:text-white">{t(ex.title)}</h3>
+          <p className="mt-1 whitespace-pre-line text-[15px] text-navy-700 dark:text-navy-200">
+            <Rich text={t(ex.problem)} />
+          </p>
+          <ol className="mt-2 space-y-1.5">
+            {ex.steps.map((st, j) => (
+              <li key={j} className="flex gap-2 text-sm text-navy-700 dark:text-navy-200">
+                <span className="tabular flex h-5 w-5 shrink-0 items-center justify-center rounded-full bg-navy-100 text-[11px] font-bold dark:bg-navy-800">{j + 1}</span>
+                <span className="whitespace-pre-line">
+                  <Rich text={t(st)} />
+                </span>
+              </li>
+            ))}
+          </ol>
+          <p className="mt-2 rounded-lg bg-money-500/10 px-3 py-2 text-sm font-semibold text-money-800 dark:text-money-200">
+            <Rich text={t(ex.result)} />
+          </p>
+        </div>
+      )}
+      <div className="flex flex-wrap gap-3 text-sm font-semibold">
+        {lesson.examples.length > 1 && (
+          <button type="button" className="text-electric-600" onClick={() => setK((x) => x + 1)}>
+            {tx('Otro ejemplo', 'Another example')} ({(k % lesson.examples.length) + 1}/{lesson.examples.length})
+          </button>
+        )}
+        <button type="button" className="text-navy-500" onClick={() => setOpen(false)}>
+          {tx('Ocultar', 'Hide')}
+        </button>
+      </div>
+      {formulas.length > 0 && (
+        <details>
+          <summary className="flex cursor-pointer items-center gap-2 text-sm font-semibold text-navy-700 dark:text-navy-200">
+            <Calculator className="h-4 w-4 text-electric-500" /> {tx('Ver las fórmulas del tema', 'See the formulas')} ({formulas.length})
+          </summary>
+          <div className="mt-3 space-y-3">
+            {formulas.map((f, i) => (
+              <FormulaCard key={i} f={f} />
+            ))}
+          </div>
+        </details>
+      )}
     </div>
   )
 }
