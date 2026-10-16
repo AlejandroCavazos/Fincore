@@ -4,7 +4,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 
 ## Stack and commands
 - Vite 8 + React 19 + TypeScript 6 + Tailwind v4. Local storage in IndexedDB (`src/lib/db.ts`). Hash router (`src/state/router.ts`).
-- `npx tsc -b` checks types. `npm test` runs vitest (about 173 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 57 e2e tests.
+- `npx tsc -b` checks types. `npm test` runs vitest (about 191 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 63 e2e tests (about 25 min).
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
 ## Where things live
@@ -25,7 +25,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - Prices: all in `src/config/pricing.ts` (Plus $99, Pro $199 per month, MXN; Gratis free). UI: `src/pages/Plans.tsx`.
 - Theory cards (L1-* in English only now, since Spanish L1 uses interactive lessons; `cardsEnabled` in `src/lib/cards.ts`): `buildCards` turns each theory section into short swipeable cards automatically (first sentence + "Ver más", lists, formulas, quick mcq/truefalse questions from the lesson, key points). UI `src/components/cards/TheoryCards.tsx`, used by Subtopic in LessonPage ("Ver texto completo" toggle, saved in localStorage). Tests `src/test/cards.test.ts`.
 - Chat lessons (sample: L1-16 with "Don Memo"): scripts in `src/content/chats/<id>.ts` (one script per theory section, Spanish only), registered in `src/content/chats/index.ts`; UI `src/components/cards/ChatLesson.tsx`. LessonPage shows chat first if a script exists, then cards, with the "Ver texto completo" toggle.
-- Interactive lessons (all of Contabilidad: L1-01..15, CON-04..12, 14, 15, L2-01..07; L1-16 keeps the chat; e2e walks every interactive subtopic, generated from the registry): `src/content/interactive/<id>.ts` (blocks text/tip/ask/sim/spot/sort/order/match/balance/tacct/entry/rush/calc/multi; games in `src/components/cards/Games.tsx` and `Games2.tsx`; one array per theory section, null = default view), registry `index.ts`; UI `src/components/cards/InteractiveLesson.tsx`. LessonPage priority: interactive > chat > cards > text.
+- Interactive lessons (all of Contabilidad: L1-01..15, CON-04..12, 14, 15, L2-01..07; all of Costos: COS-01..14, L3-01..04; calc has optional unit; L1-16 keeps the chat; e2e walks every interactive subtopic, generated from the registry): `src/content/interactive/<id>.ts` (blocks text/tip/ask/sim/spot/sort/order/match/balance/tacct/entry/rush/calc/multi; games in `src/components/cards/Games.tsx` and `Games2.tsx`; one array per theory section, null = default view), registry `index.ts`; UI `src/components/cards/InteractiveLesson.tsx`. LessonPage priority: interactive > chat > cards > text.
 - Tests: `src/test/content.test.ts` checks the whole content bank (unique ids, solutions grade correct, formula guides complete).
 
 ## Rules
