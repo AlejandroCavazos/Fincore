@@ -342,17 +342,18 @@ test(`interactive games: every activity can be finished (group ${g + 1})`, async
       if (await page.getByTestId('int-finish').isVisible()) break
       const sortNext = page.getByTestId('sort-next')
       const balNext = page.getByTestId('bal-next')
-      if (await page.getByTestId('rush-start').isVisible()) await page.getByTestId('rush-start').click()
+      if (await page.locator('[data-testid="rush-start"]').count()) await page.locator('[data-testid="rush-start"]').first().click()
       else if (await page.getByTestId('rush-0').isVisible()) await page.getByTestId('rush-0').click()
-      else if (await page.getByTestId('tacct-next').isVisible()) await page.getByTestId('tacct-next').click()
-      else if (await page.locator('[data-testid="tacct-D"]:enabled').count()) await page.getByTestId('tacct-D').click()
+      else if (await page.locator('[data-testid="tacct-next"]').count()) await page.locator('[data-testid="tacct-next"]').first().click()
+      else if (await page.locator('[data-testid="tacct-D"]:enabled').count()) await page.locator('[data-testid="tacct-D"]:enabled').first().click()
       else if (await page.locator('[data-testid^="entry-"][data-testid$="-D"]:enabled').count()) await page.locator('[data-testid^="entry-"][data-testid$="-D"]:enabled').first().click()
       else if (await page.locator('[data-testid="calc-input"]:enabled').count()) {
-        await page.getByTestId('calc-input').fill('1')
-        await page.getByTestId('calc-check').click()
-      } else if (await page.getByTestId('multi-check').isVisible()) {
-        await page.getByTestId('multi-0').click()
-        await page.getByTestId('multi-check').click()
+        await page.locator('[data-testid="calc-input"]:enabled').first().fill('1')
+        await page.locator('[data-testid="calc-check"]:enabled').first().click()
+      } else if (await page.locator('[data-testid="multi-check"]').count()) {
+        const multi = page.locator('[data-testid="multi"]').last()
+        await multi.getByTestId('multi-0').click()
+        await multi.getByTestId('multi-check').click()
       } else if (await sortNext.isVisible()) await sortNext.click()
 
       else if (await balNext.isVisible()) await balNext.click()
