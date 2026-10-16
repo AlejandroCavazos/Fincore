@@ -471,8 +471,27 @@ export const BUSINESS_PER_TOPIC = 1500
 /** Nivel 1 lessons in the order shown in Contabilidad (includes added bridge topics such as L1-16). */
 const N1_ORDER = (AREAS.find((a) => a.id === 'contabilidad')?.sections ?? []).flatMap((s) => s.lessonIds).filter((id) => id.startsWith('L1-'))
 
-/** Topic number shown to learners: Nivel 1 is numbered by its display order, others by their topic id. */
+/**
+ * Topic numbers shown to learners, "<chapter>.<position>" in display order.
+ * Contabilidad Nivel 1 is chapter 1 (1.1 to 1.16); every other section of an
+ * area is the next chapter. A lesson listed in several areas keeps the number
+ * from the first area that shows it.
+ */
+const LABELS = (() => {
+  const out = new Map<string, string>()
+  for (const area of AREAS) {
+    let chapter = 0
+    for (const sec of area.sections) {
+      const ids = sec.lessonIds.filter((id) => !id.startsWith('L1-'))
+      if (!ids.length) continue
+      chapter++
+      ids.forEach((id, k) => out.has(id) || out.set(id, `${chapter + (N1_ORDER.length && area.id === 'contabilidad' ? 1 : 0)}.${k + 1}`))
+    }
+  }
+  N1_ORDER.forEach((id, i) => out.set(id, `1.${i + 1}`))
+  return out
+})()
+
 export function topicLabel(lesson: { id: string; topicIds: string[] }): string {
-  const i = N1_ORDER.indexOf(lesson.id)
-  return i >= 0 ? `1.${i + 1}` : (lesson.topicIds[0] ?? '')
+  return LABELS.get(lesson.id) ?? lesson.topicIds[0] ?? ''
 }
