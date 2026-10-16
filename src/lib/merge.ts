@@ -60,6 +60,14 @@ export function mergeStates(local: AppState, remote: AppState): AppState {
         return { best: Math.max(x.best, y.best), tries: Math.max(x.tries, y.tries), ...(passedAt ? { passedAt } : {}) }
       }),
       projects: Object.values(byKey(Object.fromEntries(local.labx.projects.map((p) => [p.id, p])), Object.fromEntries(remote.labx.projects.map((p) => [p.id, p])), (x, y) => (y.entries.length > x.entries.length ? y : x))),
+      ...(local.labx.despacho || remote.labx.despacho
+        ? {
+            despacho: {
+              ...((local.labx.despacho?.name ?? remote.labx.despacho?.name) ? { name: (local.labx.despacho?.name ?? remote.labx.despacho?.name) as string } : {}),
+              cases: byKey(local.labx.despacho?.cases ?? {}, remote.labx.despacho?.cases ?? {}, (x, y) => (y.stars > x.stars ? y : x)),
+            },
+          }
+        : {}),
     },
     fraud: {
       bestScore: Math.max(local.fraud.bestScore, remote.fraud.bestScore),

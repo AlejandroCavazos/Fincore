@@ -89,6 +89,8 @@ export interface LabX {
   practice: Record<string, { done: number; correct: number }>
   exams: Record<string, { best: number; tries: number; passedAt?: string }>
   projects: LabProject[]
+  /** "Tu Despacho": the learner's practice firm, its name and the client cases finished. */
+  despacho?: { name?: string; cases: Record<string, { stars: number; at: string }> }
 }
 
 export function defaultState(): AppState {

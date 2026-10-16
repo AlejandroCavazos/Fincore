@@ -123,6 +123,13 @@ export function validateState(input: unknown): V {
       const okLine = (l: unknown) => isObj(l) && isStr(l.accountCode) && (l.side === 'D' || l.side === 'C') && isNum(l.amount) && l.amount > 0
       const okEntry = (e: unknown) => isObj(e) && isStr(e.id) && isStr(e.date) && isObj(e.description) && (e.kind === 'I' || e.kind === 'E' || e.kind === 'D') && Array.isArray(e.lines) && e.lines.every(okLine)
       const okProject = (p: unknown) => isObj(p) && isStr(p.id) && isStr(p.name) && isIso(p.createdAt) && Array.isArray(p.entries) && p.entries.every(okEntry) && (p.sheet === undefined || isObj(p.sheet))
+      if (isObj(lx.despacho)) {
+        const d = lx.despacho
+        out.labx.despacho = {
+          ...(isStr(d.name) && d.name.length <= 60 ? { name: d.name } : {}),
+          cases: rec('labx.despacho', d.cases ?? {}, (x) => (isObj(x) && isNum(x.stars) && isIso(x.at) ? { stars: x.stars, at: x.at as string } : null)),
+        }
+      }
       if (lx.projects !== undefined) {
         if (!Array.isArray(lx.projects) || !lx.projects.every(okProject)) errors.push('labx.projects: invalid')
         else

@@ -1,5 +1,6 @@
 import { expect, test, type Page } from '@playwright/test'
 import { allInteractive } from '../src/content/interactive'
+import { CASES } from '../src/lib/despacho'
 
 async function onboard(page: Page) {
   await page.goto('./')
@@ -154,6 +155,7 @@ test('option order is stable within an attempt and survives reload', async ({ pa
 test('accounting lab: practice CFDI, exam month and free-sheet project', async ({ page }) => {
   await onboard(page)
   await page.goto('./#/lab')
+  await page.getByRole('radio', { name: 'Práctica' }).click()
   await expect(page.getByText(/Antes de empezar el nivel/)).toBeVisible()
   await page.getByRole('button', { name: 'Ya sé esto, empezar' }).click()
   await expect(page.getByTestId('cfdi').first()).toBeVisible()
@@ -203,6 +205,39 @@ test('accounting lab: practice CFDI, exam month and free-sheet project', async (
   await page.getByLabel('Contenido de la celda').press('Enter')
   await expect(page.getByTestId('sheet-trace')).toContainText('160')
   await shot(page, '07b-lab-sheet')
+})
+
+test('lab: Tu Despacho, first client solved with 3 stars unlocks the referral', async ({ page }) => {
+  await onboard(page)
+  await page.goto('./#/lab')
+  await expect(page.getByTestId('despacho')).toBeVisible()
+  await expect(page.getByTestId('client-chuy')).toBeDisabled()
+  await page.getByLabel('Tu despacho').fill('Despacho Prueba')
+  await page.getByTestId('client-lupe').click()
+  await page.getByTestId('case-start').click()
+  const lupe = CASES.find((c) => c.id === 'lupe')!
+  const pol = { I: /^Ingreso/, E: /^Egreso/, D: /^Diario/ }
+  for (const [k, item] of lupe.docs.entries()) {
+    await expect(page.getByText(`Papel ${k + 1} de ${lupe.docs.length}`)).toBeVisible()
+    await page.getByRole('radio', { name: pol[item.doc.policy] }).click()
+    for (const [i, l] of item.doc.expected.entries()) {
+      await page.getByLabel(`Cuenta del renglón ${i + 1}`).selectOption(l.accountCode)
+      await page.getByRole('radiogroup', { name: 'Cargo o abono' }).nth(i).getByRole('radio', { name: l.side === 'D' ? 'Cargo' : 'Abono' }).click()
+      await page.getByLabel(`Importe del renglón ${i + 1}`).fill(String(l.amount))
+    }
+    await page.getByTestId('desp-check').click()
+    await expect(page.getByText(item.ok)).toBeVisible()
+    if (k === 0) await shot(page, '07c-despacho-doc')
+    await page.getByTestId('desp-next').click()
+  }
+  await page.getByTestId(`final-${lupe.final.options.findIndex((o) => o.ok)}`).click()
+  await shot(page, '07d-despacho-final')
+  await page.getByTestId('case-finish').click()
+  await expect(page.getByText(lupe.review.good)).toBeVisible()
+  await page.getByTestId('case-exit').click()
+  await expect(page.getByTestId('despacho-stars')).toContainText('3 /')
+  await expect(page.getByTestId('client-chuy')).toBeEnabled()
+  await shot(page, '07e-despacho-office')
 })
 
 test('calculators: NPV/IRR, break-even and validation', async ({ page }) => {

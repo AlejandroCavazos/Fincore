@@ -10,8 +10,9 @@ import LabPractice from './lab/LabPractice'
 
 const LabExam = lazy(() => import('./lab/LabExam'))
 const LabProjects = lazy(() => import('./lab/LabProjects'))
+const LabDespacho = lazy(() => import('./lab/LabDespacho'))
 
-type Section = 'practice' | 'exam' | 'free'
+type Section = 'despacho' | 'practice' | 'exam' | 'free'
 
 /** Paid feature: Free accounts get Práctica básico; Plus and above get everything. Builds without accounts unlock all. */
 export function useLabAccess() {
@@ -43,7 +44,7 @@ function Upgrade() {
 export default function Lab() {
   const { tx } = useI18n()
   const { paid, unlocked } = useLabAccess()
-  const [section, setSection] = useState<Section>('practice')
+  const [section, setSection] = useState<Section>('despacho')
   return (
     <div>
       <PageHeader title={tx('Laboratorio contable', 'Accounting lab')} subtitle={tx('Practica con facturas (CFDI) de un negocio de práctica, presenta exámenes y lleva tus propios proyectos.', 'Practice with invoices (CFDI), take exams and keep your own projects.')} />
@@ -52,6 +53,7 @@ export default function Lab() {
         value={section}
         onChange={setSection}
         options={[
+          { value: 'despacho', label: tx('Despacho', 'Firm') },
           { value: 'practice', label: tx('Práctica', 'Practice') },
           { value: 'exam', label: tx('Examen', 'Exam') },
           { value: 'free', label: tx('Hoja libre', 'Free sheet') },
@@ -59,6 +61,7 @@ export default function Lab() {
       />
       {section === 'practice' && <LabPractice unlocked={unlocked} />}
       <Suspense fallback={<p className="mt-4 text-sm text-navy-500">…</p>}>
+        {section === 'despacho' && <LabDespacho paid={paid} />}
         {section === 'exam' && (paid ? <LabExam unlocked={unlocked} /> : <Upgrade />)}
         {section === 'free' && (paid ? <LabProjects /> : <Upgrade />)}
       </Suspense>

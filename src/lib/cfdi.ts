@@ -220,11 +220,11 @@ class Ctx {
   }
 }
 
-function concept(qty: number, unit: string, desc: string, price: number, tax: Concept['tax'], discount = 0): Concept {
+export function concept(qty: number, unit: string, desc: string, price: number, tax: Concept['tax'], discount = 0): Concept {
   return { qty, unit, desc, price, amount: r2(qty * price), discount: r2(discount), tax }
 }
 
-function totals(concepts: Concept[], ret: { isr?: number; iva?: number } = {}) {
+export function totals(concepts: Concept[], ret: { isr?: number; iva?: number } = {}) {
   const subtotal = r2(concepts.reduce((s, c) => s + c.amount, 0))
   const discount = r2(concepts.reduce((s, c) => s + c.discount, 0))
   const base16 = r2(concepts.filter((c) => c.tax === 'iva16').reduce((s, c) => s + c.amount - c.discount, 0))
@@ -254,7 +254,7 @@ class Lines {
 const FORM = { cash: '01 Efectivo', transfer: '03 Transferencia electrónica de fondos', card: '04 Tarjeta de crédito', tbd: '99 Por definir' }
 const USE = { goods: 'G01 Adquisición de mercancías', expense: 'G03 Gastos en general', equipment: 'I02 Mobiliario y equipo de oficina por inversiones', computer: 'I04 Equipo de cómputo y accesorios', returns: 'G02 Devoluciones, descuentos o bonificaciones', payment: 'CP01 Pagos', payroll: 'CN01 Nómina', none: 'S01 Sin efectos fiscales' }
 
-function invoiceFormulas(concepts: Concept[], t: ReturnType<typeof totals>, opts: { ret?: boolean } = {}): AppliedFormula[] {
+export function invoiceFormulas(concepts: Concept[], t: ReturnType<typeof totals>, opts: { ret?: boolean } = {}): AppliedFormula[] {
   const f: AppliedFormula[] = [
     {
       name: { es: 'Importe de cada concepto', en: 'Amount of each line item' },
@@ -292,7 +292,7 @@ function invoiceFormulas(concepts: Concept[], t: ReturnType<typeof totals>, opts
   return f
 }
 
-function costFormula(items: { desc: string; qty: number; cost: number }[]): AppliedFormula {
+export function costFormula(items: { desc: string; qty: number; cost: number }[]): AppliedFormula {
   const total = r2(items.reduce((s, i) => s + i.qty * i.cost, 0))
   return {
     name: { es: 'Costo de ventas', en: 'Cost of goods sold' },
