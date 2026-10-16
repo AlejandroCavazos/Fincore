@@ -128,7 +128,7 @@ export const intL207: InteractiveLesson = {
       {
         calc: {
           question: '¿En qué **porcentaje** se inflarían las ventas? (escribe solo el número)',
-          answer: 20,
+          answer: 20, unit: '%',
           hint: 'diferencia ÷ cifra **real** × 100.',
           why: '$300,000 − $250,000 = $50,000. $50,000 ÷ $250,000 = 0.20 → **20%**. Ojo: se divide entre la cifra real, no entre la pedida.',
         },

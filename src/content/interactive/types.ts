@@ -67,6 +67,8 @@ export interface Rush {
 export interface Calc {
   question: string
   answer: number
+  /** What the number counts when it is not pesos, e.g. '%', 'piezas', 'horas'. Without it the answer is in pesos. */
+  unit?: string
   hint: string
   why: string
 }

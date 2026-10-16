@@ -106,7 +106,7 @@ export const intCOS12: InteractiveLesson = {
       {
         calc: {
           question: 'Gas: presupuesto **$40,000**, real **$44,000**. ¿Cuál es la variación en **porcentaje**?',
-          answer: 10,
+          answer: 10, unit: '%',
           hint: '(real − presupuesto) ÷ presupuesto × 100.',
           why: '($44,000 − $40,000) ÷ $40,000 × 100 = **10 %**. Con umbral de 5 %, se investiga.',
         },

@@ -290,7 +290,7 @@ export function CalcBlock({ game, onSolved }: { game: Calc; onSolved: () => void
       </p>
       <div className="flex gap-2">
         <div className="flex flex-1 items-center rounded-xl border-2 border-navy-200 px-3 focus-within:border-teal-500 dark:border-navy-700">
-          <span className="text-lg font-bold text-navy-400">$</span>
+          {!game.unit && <span className="text-lg font-bold text-navy-400">$</span>}
           <input
             inputMode="numeric"
             data-testid="calc-input"
@@ -302,6 +302,7 @@ export function CalcBlock({ game, onSolved }: { game: Calc; onSolved: () => void
             placeholder="0"
             aria-label="Tu respuesta"
           />
+          {game.unit && <span className="shrink-0 text-base font-bold text-navy-400">{game.unit}</span>}
         </div>
         <button type="button" data-testid="calc-check" disabled={done} onClick={check} className="min-h-12 rounded-xl bg-teal-500 px-4 font-bold text-white hover:bg-teal-600 disabled:opacity-50">
           Comprobar
@@ -310,7 +311,7 @@ export function CalcBlock({ game, onSolved }: { game: Calc; onSolved: () => void
       {!done && tries === 1 && <p className="animate-shake mt-2 text-sm text-amber-700 dark:text-amber-300">🤔 Casi. Pista: <Rich text={game.hint} /></p>}
       {done && (
         <p className={cx('animate-pop mt-3 rounded-xl p-3 text-[15px] text-navy-800 ring-1 dark:text-navy-100', ok ? 'bg-money-50 ring-money-500/50 dark:bg-money-500/10' : 'bg-amber-50 ring-amber-400 dark:bg-amber-500/10')}>
-          <Rich text={`${ok ? '✅ ¡Exacto! ' : `💡 Era **${money(game.answer)}**. `}${game.why}`} />
+          <Rich text={`${ok ? '✅ ¡Exacto! ' : `💡 Era **${game.unit ? `${mxn.format(game.answer)}${game.unit === '%' ? '%' : ` ${game.unit}`}` : money(game.answer)}**. `}${game.why}`} />
         </p>
       )}
     </Shell>

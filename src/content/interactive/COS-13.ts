@@ -35,7 +35,7 @@ export const intCOS13: InteractiveLesson = {
       {
         calc: {
           question: 'La meta de ventas de la cafetería ☕ era **$80,000** y vendió **$68,000**. ¿Qué **porcentaje de cumplimiento** tiene?',
-          answer: 85,
+          answer: 85, unit: '%',
           hint: 'real ÷ meta × 100.',
           why: '$68,000 ÷ $80,000 × 100 = **85 %**.',
         },
@@ -116,7 +116,7 @@ export const intCOS13: InteractiveLesson = {
       {
         calc: {
           question: 'Un taller hizo **4,000** piezas y **80** salieron con defecto. ¿Cuál es la **tasa de defectos** en %?',
-          answer: 2,
+          answer: 2, unit: '%',
           hint: 'defectuosas ÷ producidas × 100.',
           why: '80 ÷ 4,000 × 100 = **2 %**. Si la meta es 1 %, el indicador está en rojo y conviene revisar el proceso.',
         },

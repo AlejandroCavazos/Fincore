@@ -100,7 +100,7 @@ export const intCON14: InteractiveLesson = {
       {
         calc: {
           question: 'La fábrica emitió **120 tCO₂e** y vendió **$40,000,000** (40 millones). ¿Cuál es su **intensidad** (t por millón vendido)?',
-          answer: 3,
+          answer: 3, unit: 'tCO₂e por millón',
           hint: 'emisiones entre ventas escritas en millones.',
           why: '120 ÷ 40 = **3 tCO₂e por millón**. La intensidad permite comparar empresas de distinto tamaño.',
         },

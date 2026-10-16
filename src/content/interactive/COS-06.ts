@@ -74,7 +74,7 @@ export const intCOS06: InteractiveLesson = {
       {
         calc: {
           question: 'Se hicieron **2,000 frascos**. ¿Cuál es la **cantidad estándar permitida** de fruta, en kilos?',
-          answer: 600,
+          answer: 600, unit: 'kg',
           hint: 'estándar por unidad × unidades realmente producidas.',
           why: '0.3 × 2,000 = **600 kg**. Es lo que debiste usar para lo que de verdad produjiste.',
         },

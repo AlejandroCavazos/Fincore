@@ -62,7 +62,7 @@ export const intCON15: InteractiveLesson = {
       {
         calc: {
           question: 'Tu plan tiene **240 horas** y un área pesa **40 %** del examen. ¿Cuántas horas le tocan?',
-          answer: 96,
+          answer: 96, unit: 'horas',
           hint: '40 % = 0.40; multiplica.',
           why: '240 × 0.40 = **96 horas**. Si además sacaste bajo puntaje en esa área, conviene darle un poco más.',
         },
@@ -75,7 +75,7 @@ export const intCON15: InteractiveLesson = {
       {
         calc: {
           question: 'El examen dura **240 minutos**, dejas **30** para revisar y tiene **70 preguntas**. ¿Cuántos minutos por pregunta?',
-          answer: 3,
+          answer: 3, unit: 'minutos',
           hint: 'resta el margen y divide entre las preguntas.',
           why: '(240 − 30) ÷ 70 = **3 minutos** por pregunta.',
         },

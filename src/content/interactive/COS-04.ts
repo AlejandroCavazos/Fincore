@@ -47,7 +47,7 @@ export const intCOS04: InteractiveLesson = {
       {
         calc: {
           question: 'Quedan **2,000 botellas** al **50 %** de avance. ¿A cuántas botellas completas **equivalen**?',
-          answer: 1000,
+          answer: 1000, unit: 'botellas',
           hint: 'unidades × % de avance.',
           why: '2,000 × 0.50 = **1,000** unidades equivalentes.',
         },

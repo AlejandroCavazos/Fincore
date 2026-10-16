@@ -22,7 +22,7 @@ export const intCOS09: InteractiveLesson = {
       {
         calc: {
           question: 'Un autolavado 🚗 cobra **$120**, cada lavado le cuesta **$40** en jabón, agua y comisión, y sus fijos son **$36,000** al mes. ¿Cuántos lavados son su **PE**?',
-          answer: 450,
+          answer: 450, unit: 'lavados',
           hint: 'CF ÷ (precio − cv).',
           why: 'Margen: 120 − 40 = 80. PE = 36,000 ÷ 80 = **450 lavados** (450 × $120 = $54,000 de ventas).',
         },
@@ -85,7 +85,7 @@ export const intCOS09: InteractiveLesson = {
       {
         calc: {
           question: 'Un salón de uñas 💅 planea **300 servicios** y su PE es **225**. ¿Cuál es su **margen de seguridad en %**?',
-          answer: 25,
+          answer: 25, unit: '%',
           hint: '(ventas − PE) ÷ **ventas** × 100.',
           why: '300 − 225 = 75 servicios. 75 ÷ 300 = 0.25 → **25 %**: sus ventas pueden caer una cuarta parte antes de perder.',
         },
@@ -107,7 +107,7 @@ export const intCOS09: InteractiveLesson = {
       {
         calc: {
           question: '¿Cuántos **paquetes** necesitan vender para el PE?',
-          answer: 600,
+          answer: 600, unit: 'paquetes',
           hint: 'fijos ÷ margen del paquete.',
           why: '27,000 ÷ 45 = **600 paquetes**: 600 × 3 = 1,800 tacos y 600 aguas. Comprobación: 1,800 × 12 + 600 × 9 = 21,600 + 5,400 = 27,000 ✔',
         },

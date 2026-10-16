@@ -30,7 +30,7 @@ export const intCOS08: InteractiveLesson = {
       {
         calc: {
           question: '¿Cuál es la **razón de margen de contribución**, en %?',
-          answer: 60,
+          answer: 60, unit: '%',
           hint: 'margen unitario ÷ precio × 100.',
           why: '33 ÷ 55 = 0.60 → **60 %**. De cada $100 vendidos, $60 van a cubrir fijos y generar utilidad.',
         },
@@ -72,7 +72,7 @@ export const intCOS08: InteractiveLesson = {
       {
         calc: {
           question: 'El frappé deja **$33** de margen. Los fijos son **$33,000** y quieren ganar **$16,500**. ¿Cuántos frappés deben vender?',
-          answer: 1500,
+          answer: 1500, unit: 'frappés',
           hint: '(CF + utilidad meta) ÷ MC unitario.',
           why: '(33,000 + 16,500) ÷ 33 = 49,500 ÷ 33 = **1,500 frappés**.',
         },
@@ -122,7 +122,7 @@ export const intCOS08: InteractiveLesson = {
       {
         calc: {
           question: 'Un negocio tiene margen de contribución total de **$60,000** y utilidad de operación de **$20,000**. ¿Cuál es su **GAO**?',
-          answer: 3,
+          answer: 3, unit: 'veces',
           hint: 'MC total ÷ utilidad de operación.',
           why: '60,000 ÷ 20,000 = **3**. Un cambio en ventas se multiplica por 3 en la utilidad.',
         },

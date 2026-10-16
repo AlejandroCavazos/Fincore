@@ -51,7 +51,7 @@ export const intCOS10: InteractiveLesson = {
       {
         calc: {
           question: 'Una fábrica de piñatas 🪅 espera vender **4,000**. Tiene **500** en bodega y quiere terminar con **300**. ¿Cuántas debe **producir**?',
-          answer: 3800,
+          answer: 3800, unit: 'piñatas',
           hint: 'ventas + inventario final − inventario inicial.',
           why: '4,000 + 300 − 500 = **3,800 piñatas**. Como quiere terminar con menos inventario del que tiene, fabrica menos de lo que vende.',
         },
@@ -99,7 +99,7 @@ export const intCOS10: InteractiveLesson = {
       {
         calc: {
           question: 'Las 3,000 mesas necesitan **4 tablas** cada una. Quieres terminar con **1,000** tablas en bodega y hoy tienes **1,500**. ¿Cuántas tablas debes **comprar**?',
-          answer: 11500,
+          answer: 11500, unit: 'tablas',
           hint: 'primero 3,000 × 4; luego + inventario final − inventario inicial de tablas.',
           why: 'Material requerido: 3,000 × 4 = 12,000. Compras: 12,000 + 1,000 − 1,500 = **11,500 tablas**.',
         },
