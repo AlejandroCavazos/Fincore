@@ -90,7 +90,9 @@ test('plans: normal prices, no savings or discounts', async ({ page }) => {
 
 test('theory as swipeable cards with quick questions', async ({ page }) => {
   await onboard(page)
-  await page.goto('./#/lesson/L1-01?s=0')
+  await page.goto('./#/settings')
+  await page.getByRole('checkbox', { name: /Modo libre/ }).check()
+  await page.goto('./#/lesson/L1-08?s=0')
   const deck = page.getByTestId('theory-cards')
   await expect(deck).toBeVisible()
   await shot(page, '08-cards-1')
@@ -147,6 +149,7 @@ test('courses: area, topic and subtopics advance in order', async ({ page }) => 
   await page.getByText(/^Continuar$/i).click()
   await expect(page).toHaveURL(/s=0/)
   await shot(page, '12-subtopic')
+  await page.getByTestId('view-toggle').click()
   await page.getByRole('button', { name: /Entendido, siguiente/ }).click()
   await expect(page).toHaveURL(/s=1/)
   await page.goto('./#/lesson/L1-01')
@@ -344,4 +347,42 @@ test('interactive lesson: simulator and find the error', async ({ page }) => {
   await page.getByTestId('spot-line-3').click()
   await expect(page.getByTestId('spot-why')).toBeVisible()
   await shot(page, '10-spot-error')
+})
+
+test('interactive games: sort, order, match and balance can be finished', async ({ page }) => {
+  test.setTimeout(120000)
+  await onboard(page)
+  await page.goto('./#/settings')
+  await page.getByRole('checkbox', { name: /Modo libre/ }).check()
+  const shots: Record<string, string> = { 'L1-01:0': '11-order', 'L1-04:0': '11-sort', 'L1-07:0': '11-match', 'L1-06:1': '11-balance' }
+  for (const [id, s] of [['L1-01', 0], ['L1-01', 1], ['L1-01', 2], ['L1-02', 0], ['L1-02', 1], ['L1-02', 2], ['L1-03', 0], ['L1-03', 2], ['L1-04', 0], ['L1-04', 1], ['L1-06', 1], ['L1-06', 2], ['L1-07', 0], ['L1-07', 1], ['L1-07', 2]] as const) {
+    await page.goto(`./#/lesson/${id}?s=${s}`)
+    await expect(page.getByTestId('interactive-lesson')).toBeVisible()
+    let snapped = false
+    for (let guard = 0; guard < 80; guard++) {
+      if (await page.getByTestId('int-finish').isVisible()) break
+      const sortNext = page.getByTestId('sort-next')
+      const balNext = page.getByTestId('bal-next')
+      if (await sortNext.isVisible()) await sortNext.click()
+      else if (await balNext.isVisible()) await balNext.click()
+      else if (await page.locator('[data-testid="sort-bucket-0"]:enabled').count()) await page.getByTestId('sort-bucket-0').click()
+      else if (await page.locator('[data-testid="bal-opt-0"]:enabled').count()) await page.getByTestId('bal-opt-0').click()
+      else if (await page.locator('[data-testid^="order-step-"]').count()) {
+        const n = await page.locator('[data-testid="order"] ol li').count()
+        await page.getByTestId(`order-step-${n}`).click()
+      } else if (await page.locator('[data-testid^="match-l-"]:enabled').count()) {
+        const l = page.locator('[data-testid^="match-l-"]:enabled').first()
+        const i = (await l.getAttribute('data-testid'))!.split('-').pop()
+        await l.click()
+        await page.getByTestId(`match-r-${i}`).click()
+      } else if (await page.locator('[data-testid="int-ask"] button:enabled').count()) await page.locator('[data-testid="int-ask"] button:enabled').first().click()
+      else if (await page.getByTestId('int-next').isVisible()) await page.getByTestId('int-next').click()
+      const key = `${id}:${s}`
+      if (!snapped && shots[key] && (await page.getByTestId(shots[key].slice(3)).isVisible())) {
+        snapped = true
+        await shot(page, shots[key])
+      }
+    }
+    await expect(page.getByTestId('int-finish'), `${id} s=${s}`).toBeVisible()
+  }
 })

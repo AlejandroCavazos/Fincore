@@ -100,6 +100,14 @@ textarea {
 .animate-fade-up {
   animation: fc-fade-up 0.25s ease-out;
 }
+@keyframes fc-shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-5px); }
+  75% { transform: translateX(5px); }
+}
+.animate-shake {
+  animation: fc-shake 0.25s ease-in-out 2;
+}
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after {
     animation-duration: 0.001ms !important;

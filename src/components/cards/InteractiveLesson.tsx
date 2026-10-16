@@ -2,6 +2,7 @@ import { useEffect, useRef, useState, type ReactNode } from 'react'
 import { Pin, SlidersHorizontal, Search, CheckCircle2 } from 'lucide-react'
 import type { Block, InteractiveLesson as Lesson, Sim, Spot } from '../../content/interactive'
 import { Button, cx, Rich } from '../ui'
+import { BalanceBlock, MatchBlock, OrderBlock, SortBlock } from './Games'
 
 const mxn = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 0 })
 const money = (n: number) => `${n < 0 ? '−' : ''}$${mxn.format(Math.abs(n))}`
@@ -192,7 +193,7 @@ function AskBlock({ b, idx, onSolved }: { b: Extract<Block, { ask: string }>; id
  * "¿Cuál está mal?" pólizas. Each interactive step must be solved before the
  * "Continuar" button appears.
  */
-export function InteractiveLesson({ data, index, header, finishLabel, onFinish }: { data: Lesson; index: number; header: ReactNode; finishLabel: string; onFinish: () => void }) {
+export function InteractiveLesson({ data, index, title, header, finishLabel, onFinish }: { data: Lesson; index: number; title: string; header: ReactNode; finishLabel: string; onFinish: () => void }) {
   const blocks = data.sections[index] ?? []
   const [shown, setShown] = useState(1)
   const [solved, setSolved] = useState<Record<number, boolean>>({})
@@ -208,6 +209,7 @@ export function InteractiveLesson({ data, index, header, finishLabel, onFinish }
   return (
     <div className="mx-auto max-w-2xl">
       {header}
+      <h1 className="mt-2 text-2xl font-bold tracking-tight text-navy-900 dark:text-white">{title}</h1>
       <div data-testid="interactive-lesson" className="mt-4 space-y-3">
         {blocks.slice(0, shown).map((b, i) => {
           const ok = () => setSolved((s) => ({ ...s, [i]: true }))
@@ -228,6 +230,10 @@ export function InteractiveLesson({ data, index, header, finishLabel, onFinish }
             )
           if ('sim' in b) return <SimBlock key={i} sim={b.sim} onSolved={ok} />
           if ('spot' in b) return <SpotBlock key={i} spot={b.spot} onSolved={ok} />
+          if ('sort' in b) return <SortBlock key={i} game={b.sort} onSolved={ok} />
+          if ('order' in b) return <OrderBlock key={i} game={b.order} onSolved={ok} />
+          if ('match' in b) return <MatchBlock key={i} game={b.match} onSolved={ok} />
+          if ('balance' in b) return <BalanceBlock key={i} game={b.balance} onSolved={ok} />
           return <AskBlock key={i} b={b} idx={i} onSolved={ok} />
         })}
         <div ref={end} />

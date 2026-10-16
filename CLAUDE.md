@@ -4,7 +4,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 
 ## Stack and commands
 - Vite 8 + React 19 + TypeScript 6 + Tailwind v4. Local storage in IndexedDB (`src/lib/db.ts`). Hash router (`src/state/router.ts`).
-- `npx tsc -b` checks types. `npm test` runs vitest (about 141 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 45 e2e tests.
+- `npx tsc -b` checks types. `npm test` runs vitest (about 147 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 48 e2e tests.
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
 ## Where things live
@@ -25,7 +25,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - Prices: all in `src/config/pricing.ts` (Plus $99, Pro $199 per month, MXN; Gratis free). UI: `src/pages/Plans.tsx`.
 - Theory cards (pilot on L1-*, `cardsEnabled` in `src/lib/cards.ts`): `buildCards` turns each theory section into short swipeable cards automatically (first sentence + "Ver más", lists, formulas, quick mcq/truefalse questions from the lesson, key points). UI `src/components/cards/TheoryCards.tsx`, used by Subtopic in LessonPage ("Ver texto completo" toggle, saved in localStorage). Tests `src/test/cards.test.ts`.
 - Chat lessons (sample: L1-16 with "Don Memo"): scripts in `src/content/chats/<id>.ts` (one script per theory section, Spanish only), registered in `src/content/chats/index.ts`; UI `src/components/cards/ChatLesson.tsx`. LessonPage shows chat first if a script exists, then cards, with the "Ver texto completo" toggle.
-- Interactive lessons (samples: L1-05 simulator, L1-10 "¿Cuál está mal?"): `src/content/interactive/<id>.ts` (blocks text/tip/ask/sim/spot, one array per theory section, null = default view), registry `index.ts`; UI `src/components/cards/InteractiveLesson.tsx`. LessonPage priority: interactive > chat > cards > text.
+- Interactive lessons (L1-01..07 = Unidades 1 y 2, plus L1-10): `src/content/interactive/<id>.ts` (blocks text/tip/ask/sim/spot/sort/order/match/balance; games in `src/components/cards/Games.tsx`; one array per theory section, null = default view), registry `index.ts`; UI `src/components/cards/InteractiveLesson.tsx`. LessonPage priority: interactive > chat > cards > text.
 - Tests: `src/test/content.test.ts` checks the whole content bank (unique ids, solutions grade correct, formula guides complete).
 
 ## Rules

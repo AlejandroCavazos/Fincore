@@ -259,7 +259,7 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
       </div>
     </>
   )
-  if (inter && interHere && !asText) return <InteractiveLesson key={`${lesson.id}:${index}`} data={inter} index={index} finishLabel={finishLabel} onFinish={finish} header={head} />
+  if (inter && interHere && !asText) return <InteractiveLesson key={`${lesson.id}:${index}`} data={inter} index={index} title={t(lesson.theory[index].heading)} finishLabel={finishLabel} onFinish={finish} header={head} />
   if (chat && !asText) return <ChatLesson key={`${lesson.id}:${index}`} chat={chat} index={index} finishLabel={finishLabel} onFinish={finish} header={head} />
 
   if (cardsEnabled(lesson) && !asText)

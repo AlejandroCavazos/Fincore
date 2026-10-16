@@ -64,11 +64,21 @@ describe('interactive lessons', () => {
             expect(s.wrong).toBeGreaterThanOrEqual(0)
             expect(s.wrong).toBeLessThan(s.lines.length)
           }
+          if ('sort' in b) for (const x of b.sort.items) expect(b.sort.buckets[x.bucket]).toBeTruthy()
+          if ('order' in b) expect(b.order.steps.length).toBeGreaterThanOrEqual(3)
+          if ('match' in b) expect(new Set(b.match.pairs.map((p) => p[0])).size).toBe(b.match.pairs.length)
+          if ('balance' in b)
+            for (const o of b.balance.ops) {
+              expect(o.options.filter((x) => x.ok).length).toBe(1)
+              expect(o.d.a).toBe(o.d.p + o.d.c)
+            }
           if ('sim' in b && b.sim.goal) {
             const start = Object.fromEntries(b.sim.inputs.map((i) => [i.key, i.value]))
-            const best = Object.fromEntries(b.sim.inputs.map((i) => [i.key, /costo|gasto|cost/i.test(i.label) ? i.min : i.max]))
+            // Some corner of the sliders must reach the goal.
+            const ins = b.sim.inputs
+            const corners = Array.from({ length: 2 ** ins.length }, (_, m) => Object.fromEntries(ins.map((i, k) => [i.key, m & (1 << k) ? i.max : i.min])))
+            expect(corners.some((c) => b.sim.goal!.check(c))).toBe(true)
             expect(b.sim.goal.check(start)).toBe(false)
-            expect(b.sim.goal.check(best)).toBe(true)
           }
         }
       }
