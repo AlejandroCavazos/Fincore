@@ -66,9 +66,9 @@ export const intAUD07: InteractiveLesson = {
             { key: 'd', label: 'Depósitos al banco al día (deja menos efectivo en caja)', min: 0, max: 2, step: 1, value: 0 },
           ],
           outputs: [
-            { label: 'Probabilidad residual (1 a 5)', calc: (x) => Math.max(1, 4 - x.c) },
-            { label: 'Impacto residual (1 a 5)', calc: (x) => 5 - x.d },
-            { label: 'Calificación residual', calc: (x) => Math.max(1, 4 - x.c) * (5 - x.d), main: true },
+            { label: 'Probabilidad residual (1 a 5)', calc: (x) => Math.max(1, 4 - x.c), unit: 'puntos' },
+            { label: 'Impacto residual (1 a 5)', calc: (x) => 5 - x.d, unit: 'puntos' },
+            { label: 'Calificación residual', calc: (x) => Math.max(1, 4 - x.c) * (5 - x.d), main: true, unit: 'puntos' },
           ],
           goal: {
             text: 'Lleva el riesgo a **bajo**: una calificación de **5 o menos**.',

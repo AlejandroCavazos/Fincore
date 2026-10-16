@@ -62,7 +62,7 @@ export const intCOS04: InteractiveLesson = {
           ],
           outputs: [
             { label: 'Equivalentes de lo que está en proceso', calc: (x) => (x.p * x.a) / 100 },
-            { label: 'Unidades equivalentes de conversión', calc: (x) => x.t + (x.p * x.a) / 100, main: true },
+            { label: 'Unidades equivalentes de conversión', calc: (x) => x.t + (x.p * x.a) / 100, main: true, unit: 'unidades' },
           ],
           goal: {
             text: 'Llega a **15,000 unidades equivalentes** o más.',

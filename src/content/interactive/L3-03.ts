@@ -31,7 +31,7 @@ export const intL303: InteractiveLesson = {
           ],
           outputs: [
             { label: 'Margen por torta', calc: (x) => x.p - x.cv },
-            { label: 'Razón de MC (%)', calc: (x) => Math.round(((x.p - x.cv) / x.p) * 1000) / 10, main: true },
+            { label: 'Razón de MC (%)', calc: (x) => Math.round(((x.p - x.cv) / x.p) * 1000) / 10, main: true, unit: '%' },
           ],
           goal: {
             text: 'Sube la razón de MC a **45% o más** (cambiando precio o costo).',

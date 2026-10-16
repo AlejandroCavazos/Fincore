@@ -51,7 +51,25 @@ import { intL302 } from './L3-02'
 import { intL303 } from './L3-03'
 import { intL304 } from './L3-04'
 
+import { intAUD01 } from './AUD-01'
+import { intAUD02 } from './AUD-02'
+import { intAUD03 } from './AUD-03'
+import { intAUD04 } from './AUD-04'
+import { intAUD05 } from './AUD-05'
+import { intAUD06 } from './AUD-06'
+import { intAUD07 } from './AUD-07'
+import { intAUD08 } from './AUD-08'
+import { intAUD09 } from './AUD-09'
+import { intAUD10 } from './AUD-10'
+import { intAUD11 } from './AUD-11'
+import { intAUD12 } from './AUD-12'
+import { intAUD13 } from './AUD-13'
+import { intAUD14 } from './AUD-14'
+import { intAUD15 } from './AUD-15'
+import { intL503 } from './L5-03'
+import { intL504 } from './L5-04'
+import { intL505 } from './L5-05'
 export type { Balance, Block, Calc, Entry, Multi, Rush, TAcct, InteractiveLesson, MatchGame, OrderGame, Sim, SortGame, Spot } from './types'
-const ALL: InteractiveLesson[] = [intL101, intL102, intL103, intL104, intL105, intL106, intL107, intL108, intL109, intL110, intL111, intL112, intL113, intL114, intL115, intCON04, intCON05, intCON06, intCON07, intCON08, intCON09, intCON10, intCON11, intCON12, intCON14, intCON15, intL207, intL201, intL202, intL203, intL204, intL205, intL206, intCOS01, intCOS02, intCOS03, intCOS04, intCOS05, intCOS06, intCOS07, intCOS08, intCOS09, intCOS10, intCOS11, intCOS12, intCOS13, intCOS14, intL301, intL302, intL303, intL304]
+const ALL: InteractiveLesson[] = [intL101, intL102, intL103, intL104, intL105, intL106, intL107, intL108, intL109, intL110, intL111, intL112, intL113, intL114, intL115, intCON04, intCON05, intCON06, intCON07, intCON08, intCON09, intCON10, intCON11, intCON12, intCON14, intCON15, intL207, intL201, intL202, intL203, intL204, intL205, intL206, intCOS01, intCOS02, intCOS03, intCOS04, intCOS05, intCOS06, intCOS07, intCOS08, intCOS09, intCOS10, intCOS11, intCOS12, intCOS13, intCOS14, intL301, intL302, intL303, intL304, intAUD01, intAUD02, intAUD03, intAUD04, intAUD05, intAUD06, intAUD07, intAUD08, intAUD09, intAUD10, intAUD11, intAUD12, intAUD13, intAUD14, intAUD15, intL503, intL504, intL505]
 export const interactiveFor = (lessonId: string) => ALL.find((x) => x.lessonId === lessonId)
 export const allInteractive = () => ALL

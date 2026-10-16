@@ -60,7 +60,7 @@ export const intCOS09: InteractiveLesson = {
           outputs: [
             { label: 'PE en tazas', calc: (x) => Math.ceil(54000 / (x.p - x.v)) },
             { label: 'Margen de seguridad (tazas)', calc: (x) => x.q - Math.ceil(54000 / (x.p - x.v)) },
-            { label: 'Margen de seguridad (%)', calc: (x) => ((x.q - Math.ceil(54000 / (x.p - x.v))) / x.q) * 100, main: true },
+            { label: 'Margen de seguridad (%)', calc: (x) => ((x.q - Math.ceil(54000 / (x.p - x.v))) / x.q) * 100, main: true, unit: '%' },
           ],
           goal: {
             text: 'Sube el margen de seguridad a **30 % o más**.',

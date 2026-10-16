@@ -10,7 +10,7 @@ export interface SimInput {
 export interface Sim {
   title: string
   inputs: SimInput[]
-  outputs: { label: string; calc: (v: Record<string, number>) => number; main?: boolean }[]
+  outputs: { label: string; calc: (v: Record<string, number>) => number; main?: boolean; unit?: string }[]
   goal?: { text: string; check: (v: Record<string, number>) => boolean; done: string }
 }
 export interface Spot {

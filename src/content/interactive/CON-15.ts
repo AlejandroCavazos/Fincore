@@ -51,7 +51,7 @@ export const intCON15: InteractiveLesson = {
             { key: 'h', label: 'Horas totales que necesitas', min: 160, max: 320, step: 20, value: 240 },
             { key: 's', label: 'Semanas para el examen', min: 8, max: 24, step: 1, value: 10 },
           ],
-          outputs: [{ label: 'Horas por semana', calc: (x) => Math.round((x.h / x.s) * 10) / 10, main: true }],
+          outputs: [{ label: 'Horas por semana', calc: (x) => Math.round((x.h / x.s) * 10) / 10, main: true, unit: 'horas' }],
           goal: {
             text: 'Diego trabaja y solo puede estudiar **15 horas por semana o menos**. Ajusta el plan.',
             check: (x) => x.h / x.s <= 15,

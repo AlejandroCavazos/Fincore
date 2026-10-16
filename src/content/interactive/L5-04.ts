@@ -29,8 +29,8 @@ export const intL504: InteractiveLesson = {
             { key: 'rc', label: 'Riesgo de control RC (%)', min: 20, max: 100, step: 10, value: 100 },
           ],
           outputs: [
-            { label: 'Riesgo de error material RI × RC (%)', calc: (x) => (x.ri * x.rc) / 100 },
-            { label: 'Riesgo de detección permitido RD (%)', calc: (x) => Math.min(100, (x.ra * 100) / ((x.ri * x.rc) / 100)), main: true },
+            { label: 'Riesgo de error material RI × RC (%)', calc: (x) => (x.ri * x.rc) / 100, unit: '%' },
+            { label: 'Riesgo de detección permitido RD (%)', calc: (x) => Math.min(100, (x.ra * 100) / ((x.ri * x.rc) / 100)), main: true, unit: '%' },
           ],
           goal: {
             text: 'Sofía prueba los controles y salen buenos (baja el **RC**). Logra un **RD de 25% o más**: así necesita menos pruebas sustantivas.',

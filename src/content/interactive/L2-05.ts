@@ -65,7 +65,7 @@ export const intL205: InteractiveLesson = {
             { key: 'g', label: '% con falla mayor (costaría $300,000 si todo fallara así)', min: 0, max: 10, step: 1, value: 2 },
           ],
           outputs: [
-            { label: '% sin falla', calc: (x) => 100 - x.m - x.g },
+            { label: '% sin falla', calc: (x) => 100 - x.m - x.g, unit: '%' },
             { label: 'Provisión (valor esperado)', calc: (x) => (x.m / 100) * 50000 + (x.g / 100) * 300000, main: true },
           ],
           goal: {

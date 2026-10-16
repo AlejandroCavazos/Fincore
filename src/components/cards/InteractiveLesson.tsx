@@ -7,6 +7,8 @@ import { CalcBlock, EntryBlock, MultiBlock, RushBlock, TAcctBlock } from './Game
 
 const mxn = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 0 })
 const money = (n: number) => `${n < 0 ? '−' : ''}$${mxn.format(Math.abs(n))}`
+const num = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 2 })
+const withUnit = (n: number, unit?: string) => (unit ? `${n < 0 ? '−' : ''}${num.format(Math.abs(n))} ${unit}` : money(n))
 
 function Panel({ children, className, ...rest }: { children: ReactNode; className?: string; 'data-testid'?: string }) {
   return (
@@ -43,7 +45,7 @@ function SimBlock({ sim, onSolved }: { sim: Sim; onSolved: () => void }) {
             <div key={o.label} className={cx('flex items-center justify-between gap-3 py-2', o.main ? 'text-base font-bold' : 'text-sm')}>
               <span className="text-navy-700 dark:text-navy-200">{o.label}</span>
               <span data-testid={o.main ? 'sim-result' : undefined} className={cx('tabular-nums', o.main && (n < 0 ? 'text-red-600' : 'text-money-600'))}>
-                {money(n)}
+                {withUnit(n, o.unit)}
                 {o.main && n < 0 ? ' pérdida' : ''}
               </span>
             </div>

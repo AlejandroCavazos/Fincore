@@ -96,7 +96,7 @@ export const intAUD10: InteractiveLesson = {
           inputs: [{ key: 'q', label: 'Usuarios a los que les quitas permisos', min: 0, max: 15, step: 1, value: 0 }],
           outputs: [
             { label: 'Usuarios que siguen con conflicto', calc: (x) => 15 - x.q },
-            { label: '% usuarios con conflicto', calc: (x) => ((15 - x.q) / 300) * 100, main: true },
+            { label: '% usuarios con conflicto', calc: (x) => ((15 - x.q) / 300) * 100, main: true, unit: '%' },
           ],
           goal: {
             text: 'Baja el porcentaje a **1% o menos**.',

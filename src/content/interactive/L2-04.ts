@@ -120,7 +120,7 @@ export const intL204: InteractiveLesson = {
           outputs: [
             { label: 'Saldo requerido', calc: (x) => (x.cl * x.pc) / 100 },
             { label: 'Ajuste (gasto del periodo)', calc: (x) => (x.cl * x.pc) / 100 - x.e, main: true },
-            { label: 'Clientes neto', calc: (x) => x.cl - (x.cl * x.pc) / 100 },
+            { label: 'Clientes neto', calc: (x) => x.cl - (x.cl * x.pc) / 100, unit: 'clientes' },
           ],
           goal: {
             text: 'Mueve los datos hasta que el ajuste sea de **$10,000 o más**.',

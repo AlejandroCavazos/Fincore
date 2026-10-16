@@ -55,9 +55,9 @@ export const intCOS13: InteractiveLesson = {
             { key: 'a', label: 'Activos operativos', min: 1500000, max: 3000000, step: 250000, value: 2000000 },
           ],
           outputs: [
-            { label: 'Margen (%)', calc: (x) => Math.round((x.u / x.v) * 1000) / 10 },
-            { label: 'Rotación de activos (veces)', calc: (x) => Math.round((x.v / x.a) * 100) / 100 },
-            { label: 'ROI (%)', calc: (x) => Math.round((x.u / x.a) * 1000) / 10, main: true },
+            { label: 'Margen (%)', calc: (x) => Math.round((x.u / x.v) * 1000) / 10, unit: '%' },
+            { label: 'Rotación de activos (veces)', calc: (x) => Math.round((x.v / x.a) * 100) / 100, unit: 'veces' },
+            { label: 'ROI (%)', calc: (x) => Math.round((x.u / x.a) * 1000) / 10, main: true, unit: '%' },
           ],
           goal: {
             text: 'Lleva el ROI a **20 % o más**.',
