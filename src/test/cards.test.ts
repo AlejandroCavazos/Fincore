@@ -48,3 +48,30 @@ describe('chat lessons', () => {
     }
   })
 })
+
+import { allInteractive } from '../content/interactive'
+
+describe('interactive lessons', () => {
+  for (const it2 of allInteractive()) {
+    it(`${it2.lessonId} matches the lesson and every challenge is solvable`, () => {
+      const lesson = getLesson(it2.lessonId)!
+      expect(it2.sections.length).toBe(lesson.theory.length)
+      for (const sec of it2.sections) {
+        for (const b of sec ?? []) {
+          if ('ask' in b) expect(b.options.filter((o) => o.ok).length).toBe(1)
+          if ('spot' in b) {
+            const s = b.spot
+            expect(s.wrong).toBeGreaterThanOrEqual(0)
+            expect(s.wrong).toBeLessThan(s.lines.length)
+          }
+          if ('sim' in b && b.sim.goal) {
+            const start = Object.fromEntries(b.sim.inputs.map((i) => [i.key, i.value]))
+            const best = Object.fromEntries(b.sim.inputs.map((i) => [i.key, /costo|gasto|cost/i.test(i.label) ? i.min : i.max]))
+            expect(b.sim.goal.check(start)).toBe(false)
+            expect(b.sim.goal.check(best)).toBe(true)
+          }
+        }
+      }
+    })
+  }
+})

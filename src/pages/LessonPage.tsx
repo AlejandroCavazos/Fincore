@@ -7,6 +7,8 @@ import { TheoryCards } from '../components/cards/TheoryCards'
 import { cardsEnabled } from '../lib/cards'
 import { ChatLesson } from '../components/cards/ChatLesson'
 import { chatFor } from '../content/chats'
+import { InteractiveLesson } from '../components/cards/InteractiveLesson'
+import { interactiveFor } from '../content/interactive'
 import { useState } from 'react'
 import { Button, Card, cx, Notice, ProgressBar, Rich } from '../components/ui'
 import { markSubtopic } from '../lib/progress'
@@ -240,9 +242,11 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
   )
   const { lang } = useI18n()
   const chat = lang === 'es' ? chatFor(lesson.id) : undefined
-  const switcher = (cardsEnabled(lesson) || chat) && (
+  const inter = lang === 'es' ? interactiveFor(lesson.id) : undefined
+  const interHere = !!inter?.sections[index]
+  const switcher = (cardsEnabled(lesson) || chat || interHere) && (
     <button type="button" data-testid="view-toggle" onClick={() => toggle(!asText)} className="text-xs font-semibold text-electric-600 hover:underline dark:text-electric-300">
-      {asText ? (chat ? 'Ver como chat' : 'Ver en tarjetas') : 'Ver texto completo'}
+      {asText ? (interHere ? 'Ver versión interactiva' : chat ? 'Ver como chat' : 'Ver en tarjetas') : 'Ver texto completo'}
     </button>
   )
 
@@ -255,6 +259,7 @@ function Subtopic({ lesson, index }: { lesson: Lesson; index: number }) {
       </div>
     </>
   )
+  if (inter && interHere && !asText) return <InteractiveLesson key={`${lesson.id}:${index}`} data={inter} index={index} finishLabel={finishLabel} onFinish={finish} header={head} />
   if (chat && !asText) return <ChatLesson key={`${lesson.id}:${index}`} chat={chat} index={index} finishLabel={finishLabel} onFinish={finish} header={head} />
 
   if (cardsEnabled(lesson) && !asText)
