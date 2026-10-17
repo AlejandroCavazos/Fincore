@@ -23,6 +23,7 @@ import { cx } from './ui'
 import { Logo } from './Logo'
 import { useAuth } from '../state/auth'
 import { PLANS } from '../lib/plans'
+import { FOCUS_COURSES } from '../config/focus'
 
 interface NavItem {
   href: string
@@ -53,6 +54,10 @@ export const SIDE_NAV: NavItem[] = [
   { href: '/settings', match: ['/settings'], label: ['Configuración', 'Settings'], icon: <Settings className={ic} /> },
 ]
 
+/** Focus mode keeps only Cursos (and Configuración in the sidebar). */
+const FOCUS_KEEP = ['/courses', '/settings']
+const sideNav = FOCUS_COURSES ? SIDE_NAV.filter((i) => FOCUS_KEEP.includes(i.href)) : SIDE_NAV
+
 function isActive(item: NavItem, path: string) {
   return item.match.some((m) => (m === '/' ? path === '/' : path === m || path.startsWith(`${m}/`)))
 }
@@ -76,7 +81,7 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
           <Logo />
         </a>
         <nav aria-label={tx('Navegación principal', 'Main navigation')} className="flex flex-1 flex-col gap-0.5 overflow-y-auto">
-          {SIDE_NAV.map((item) => {
+          {sideNav.map((item) => {
             const active = isActive(item, path)
             return (
               <a
@@ -100,7 +105,7 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
           </span>
           <span className="min-w-0">
             <span className="block truncate text-sm font-medium text-navy-800 dark:text-navy-100">{user?.email ?? tx('Mi cuenta', 'My account')}</span>
-            <span className="block text-xs text-navy-400">{tx('Plan', 'Plan')} {label(plan.name)}</span>
+            {!FOCUS_COURSES && <span className="block text-xs text-navy-400">{tx('Plan', 'Plan')} {label(plan.name)}</span>}
           </span>
         </a>
         <p className="px-3 pt-4 text-[11px] text-navy-400">FINCORE v1.0 · {tx('Contenido educativo', 'Educational content')}</p>
@@ -113,10 +118,14 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
             <Logo compact />
           </a>
           <div className="flex items-center gap-1">
-            <LivesIndicator className="mr-1" />
-            <a href="#/tutor" className="rounded-lg p-2 text-navy-600 hover:bg-navy-100 dark:text-navy-200 dark:hover:bg-navy-800" aria-label={tx('Tutor', 'Tutor')}>
-              <Bot className="h-5 w-5" />
-            </a>
+            {!FOCUS_COURSES && (
+              <>
+                <LivesIndicator className="mr-1" />
+                <a href="#/tutor" className="rounded-lg p-2 text-navy-600 hover:bg-navy-100 dark:text-navy-200 dark:hover:bg-navy-800" aria-label={tx('Tutor', 'Tutor')}>
+                  <Bot className="h-5 w-5" />
+                </a>
+              </>
+            )}
             <a href="#/account" className="rounded-lg p-2 text-navy-600 hover:bg-navy-100 dark:text-navy-200 dark:hover:bg-navy-800" aria-label={tx('Cuenta', 'Account')}>
               <UserRound className="h-5 w-5" />
             </a>
@@ -128,7 +137,7 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
       </header>
 
       {/* Desktop top bar: lives */}
-      <div className="fixed right-6 top-4 z-20 hidden lg:block">
+      <div className={cx('fixed right-6 top-4 z-20 hidden', !FOCUS_COURSES && 'lg:block')}>
         <LivesIndicator className="rounded-full bg-white/90 shadow-sm ring-1 ring-navy-100 backdrop-blur dark:bg-navy-900/90 dark:ring-navy-800" />
       </div>
 
@@ -138,6 +147,7 @@ export function Layout({ path, children }: { path: string; children: ReactNode }
 
       {/* Mobile bottom navigation */}
       <nav
+        hidden={FOCUS_COURSES}
         aria-label={tx('Navegación inferior', 'Bottom navigation')}
         className="pb-safe fixed inset-x-0 bottom-0 z-30 border-t border-navy-100 bg-white/95 backdrop-blur dark:border-navy-800 dark:bg-navy-900/95 lg:hidden"
       >

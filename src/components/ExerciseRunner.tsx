@@ -1,3 +1,4 @@
+import { FOCUS_COURSES } from '../config/focus'
 import { useEffect, useMemo, useState } from 'react'
 import { ArrowRight, Bot, CircleCheck, CircleX, Lightbulb, RotateCcw, Trophy } from 'lucide-react'
 import type { Answer, Exercise } from '../types'
@@ -241,7 +242,7 @@ export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, 
                 <Rich text={t(ex.explanation)} />
               </p>
             </div>
-            {!evaluation.correct && (
+            {!evaluation.correct && !FOCUS_COURSES && (
               <a href={`#/tutor?ex=${encodeURIComponent(ex.id)}`} className="mt-3 inline-flex items-center gap-1 text-sm font-semibold text-electric-600 hover:underline dark:text-electric-300">
                 <Bot className="h-4 w-4" /> {tx('Pídele al tutor que explique el procedimiento', 'Ask the tutor to explain the procedure')}
               </a>

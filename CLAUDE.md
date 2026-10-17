@@ -7,6 +7,9 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - `npx tsc -b` checks types. `npm test` runs vitest (about 213 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 72 e2e tests (about 35 min).
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
+## Focus mode (on in production since 2026-10-16)
+- `src/config/focus.ts` + `VITE_FOCUS_COURSES=true` in `.env.production`: only Cursos/temas, account, settings and legal are visible; other routes open Cursos; lives are off. Nothing is deleted. Dev and e2e builds keep everything visible (e2e still tests all features). Remove the env line to bring it all back.
+
 ## Where things live
 - `src/types.ts`: Lesson, TheorySection, FormulaGuide, Exercise (8 kinds) and all other models. Text is bilingual: `L = {es, en}`.
 - `src/content/index.ts`: builds `LESSONS` and `EXERCISES`. It loads every file in `lessons/v2/*.ts` automatically.

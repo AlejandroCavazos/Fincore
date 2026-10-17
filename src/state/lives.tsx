@@ -1,3 +1,4 @@
+import { FOCUS_COURSES } from '../config/focus'
 import { createContext, useCallback, useContext, useEffect, useMemo, useRef, useState, type ReactNode } from 'react'
 import { LIVES, planLives } from '../config/lives'
 import { LOW_LIVES_TEXT } from '../components/lives/text'
@@ -162,7 +163,11 @@ const FALLBACK: LivesApi = {
   track: noop,
 }
 
-export const useLives = (): LivesApi => useContext(Ctx_) ?? FALLBACK
+/** In focus mode (only Cursos visible) lives are off: everything behaves like an unlimited plan. */
+export const useLives = (): LivesApi => {
+  const c = useContext(Ctx_)
+  return FOCUS_COURSES ? FALLBACK : (c ?? FALLBACK)
+}
 
 /** Topic and area of a lesson, for analytics and the recovery review. */
 export function livesCtx(lessonId?: string | null): Ctx {

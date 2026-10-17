@@ -1,3 +1,4 @@
+import { FOCUS_COURSES } from '../config/focus'
 import { LogOut, Mail, Star } from 'lucide-react'
 import { Badge, Button, Card, PageHeader, SectionTitle } from '../components/ui'
 import { getClient } from '../lib/auth'
@@ -37,6 +38,7 @@ export default function Account() {
       </Card>
 
       <SectionTitle>{tx('Mi suscripción', 'My subscription')}</SectionTitle>
+      {!FOCUS_COURSES && (
       <Card className="space-y-3">
         <div className="flex items-center justify-between gap-2">
           <p data-testid="account-plan" className="text-lg font-bold text-navy-900 dark:text-white">{l(plan.name)}</p>
@@ -56,6 +58,7 @@ export default function Account() {
           </Button>
         </a>
       </Card>
+      )}
     </div>
   )
 }

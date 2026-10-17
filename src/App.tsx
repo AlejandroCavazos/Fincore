@@ -4,6 +4,7 @@ import { LogoMark } from './components/Logo'
 import { useStore } from './state/store'
 import { useAuth } from './state/auth'
 import { navigate, useRoute } from './state/router'
+import { FOCUS_COURSES, FOCUS_ROUTES } from './config/focus'
 import Dashboard from './pages/Dashboard'
 import Welcome from './pages/Welcome'
 import Courses from './pages/Courses'
@@ -89,7 +90,8 @@ export default function App() {
 
   const [first, second] = route.segments
   let page
-  switch (first) {
+  // Focus mode: anything outside Cursos opens Cursos.
+  switch (FOCUS_COURSES && !FOCUS_ROUTES.includes(first ?? '') ? 'courses' : first) {
     case undefined:
       page = <Dashboard />
       break

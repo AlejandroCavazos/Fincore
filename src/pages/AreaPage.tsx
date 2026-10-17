@@ -1,3 +1,4 @@
+import { FOCUS_COURSES } from '../config/focus'
 import { ArrowLeft, Lock, Sparkles, Store } from 'lucide-react'
 import { BUSINESS_BASE, BUSINESS_PER_TOPIC, getArea, topicLabel } from '../content/areas'
 import { getLesson } from '../content'
@@ -84,7 +85,7 @@ export default function AreaPage({ areaId }: { areaId: string }) {
                 })}
               </ol>
             </Card>
-            {sec.examLevel && si === area.sections.findIndex((x) => x.examLevel === sec.examLevel) && (
+            {!FOCUS_COURSES && sec.examLevel && si === area.sections.findIndex((x) => x.examLevel === sec.examLevel) && (
               <a href={`#/exams/${sec.examLevel}`} className="mt-2 inline-block text-xs font-semibold text-electric-600 dark:text-electric-300">
                 {tx('Evaluación del nivel', 'Level exam')}
               </a>

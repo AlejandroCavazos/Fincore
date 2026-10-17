@@ -1,3 +1,4 @@
+import { FOCUS_COURSES } from '../config/focus'
 import { useEffect, useRef, useState } from 'react'
 import { Download, Smartphone, Trash2, Upload } from 'lucide-react'
 import { MyLives } from '../components/lives/MyLives'
@@ -58,7 +59,7 @@ export default function SettingsPage() {
 
 
       <SectionTitle>Mis vidas</SectionTitle>
-      <MyLives />
+      {!FOCUS_COURSES && <MyLives />}
 
       <SectionTitle>{tx('Idioma', 'Language')}</SectionTitle>
       <Segmented<Lang>
