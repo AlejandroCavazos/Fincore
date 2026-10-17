@@ -24,7 +24,7 @@ export const lessons: Lesson[] = [
       "Separar los costos en fijos y variables te permite escribir una ecuación sencilla del costo total y usarla para proyectar cuánto gastarás con distintos volúmenes.",
       "Splitting costs into fixed and variable lets you write a simple total-cost equation and use it to project how much you will spend at different volumes.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Explicar cómo se comportan los costos fijos y variables en total y por unidad dentro del rango relevante.", "Explain how fixed and variable costs behave in total and per unit within the relevant range."),
       t("Separar un costo mixto en su parte fija y su parte variable con el método de punto alto y punto bajo.", "Split a mixed cost into its fixed and variable parts using the high-low method."),
@@ -32,7 +32,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Fijos y variables: en total y por unidad", "Fixed and variable: in total and per unit"),
+        heading: t("¿Qué gasto sube y cuál no?", "Which cost rises and which doesn't?"),
         body: [
           t(
             "Un **costo variable** cambia en total en proporción a lo que produces o vendes: si haces el doble de tortillas, gastas el doble de masa. Un **costo fijo** se mantiene igual en total aunque produzcas más o menos: la renta del local es la misma si vendes 100 o 1,000 kilos.",
@@ -77,7 +77,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Costos mixtos y el método de punto alto y punto bajo", "Mixed costs and the high-low method"),
+        heading: t("¿Fijo, variable o las dos?", "Fixed, variable or both?"),
         body: [
           t(
             "Muchos costos son **mixtos** (o semivariables): tienen una parte fija y una variable. El recibo de luz de un negocio suele traer un cargo fijo más lo que consumes. Otros son **escalonados**: se quedan fijos un tramo y luego saltan, como contratar un supervisor más por cada 10 operarios.",
@@ -121,7 +121,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("La ecuación del costo total y la estructura de costos", "The total-cost equation and cost structure"),
+        heading: t("¿Cuánto gastarás el próximo mes?", "How much will you spend next month?"),
         body: [
           t(
             "Con la parte fija (CF) y el costo variable por unidad (cv) puedes escribir la **ecuación del costo total**. Con ella proyectas cuánto gastarás el próximo mes según el volumen que esperas.",
@@ -216,7 +216,7 @@ export const lessons: Lesson[] = [
       t("Los costos mixtos se separan con punto alto y punto bajo: cv = Δcosto ÷ Δactividad.", "Mixed costs are split with the high-low method: vc = Δcost ÷ Δactivity."),
       t("Costo total = CF + cv × Q te sirve para proyectar costos.", "Total cost = FC + vc × Q helps you project costs."),
     ],
-    exerciseIds: ['COS-07-E1', 'COS-07-E2', 'COS-07-E3', 'COS-07-E4', 'COS-07-E5', 'COS-07-E6'],
+    exerciseIds: ['COS-07-E1', 'COS-07-E2', 'COS-07-E3', 'COS-07-E4', 'COS-07-E5'],
   },
 
   // ───────────────────────────── COS-08 ─────────────────────────────
@@ -229,7 +229,7 @@ export const lessons: Lesson[] = [
       "El análisis costo-volumen-utilidad (CVU) muestra cómo cambian las utilidades cuando cambian el precio, el volumen o los costos, usando el margen de contribución como pieza central.",
       "Cost-volume-profit (CVP) analysis shows how profit changes when price, volume or costs change, using the contribution margin as its central piece.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Calcular el margen de contribución unitario, total y como porcentaje de las ventas.", "Compute the contribution margin per unit, in total and as a percentage of sales."),
       t("Usar la ecuación CVU para calcular la utilidad y el volumen necesario para una utilidad meta.", "Use the CVP equation to compute profit and the volume needed for a target profit."),
@@ -237,7 +237,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El margen de contribución", "The contribution margin"),
+        heading: t("¿Cuánto te deja cada venta?", "How much does each sale leave you?"),
         body: [
           t(
             "El **margen de contribución** es lo que te queda de cada venta después de pagar sus costos variables. Se llama así porque ese dinero **contribuye** primero a cubrir los costos fijos y, cuando ya los cubrió, se vuelve utilidad.",
@@ -290,7 +290,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("La ecuación CVU y la utilidad meta", "The CVP equation and target profit"),
+        heading: t("¿Cuánto vender para ganar tanto?", "How much to sell to earn that?"),
         body: [
           t(
             "El modelo CVU resume el negocio en una sola línea: la utilidad de operación es el margen de contribución total menos los costos fijos. Con ella puedes responder: ¿cuánto gano si vendo tanto?, o al revés, ¿cuánto debo vender para ganar tanto?",
@@ -368,7 +368,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Escenarios de qué pasa si y apalancamiento operativo", "What-if scenarios and operating leverage"),
+        heading: t("¿Te conviene bajar el precio?", "Should you cut the price?"),
         body: [
           t(
             "En palabras sencillas: antes de bajar un precio o pagar un anuncio, puedes hacer la cuenta en papel y ver si te conviene. Y el **apalancamiento operativo** es como una lupa: como los costos fijos no cambian, cualquier subida o bajada de las ventas se nota más grande en la utilidad.",
@@ -475,7 +475,7 @@ export const lessons: Lesson[] = [
       t("El modelo supone precio, cv y fijos constantes dentro del rango relevante.", "The model assumes constant price, vc and fixed costs within the relevant range."),
       t("GAO = MC total ÷ utilidad: multiplica el efecto de los cambios en ventas.", "DOL = total CM ÷ profit: it multiplies the effect of changes in sales."),
     ],
-    exerciseIds: ['COS-08-E1', 'COS-08-E2', 'COS-08-E3', 'COS-08-E4', 'COS-08-E5', 'COS-08-E6'],
+    exerciseIds: ['COS-08-E1', 'COS-08-E2', 'COS-08-E3', 'COS-08-E5', 'COS-08-E6'],
   },
 
   // ───────────────────────────── COS-09 ─────────────────────────────
@@ -488,7 +488,7 @@ export const lessons: Lesson[] = [
       "El punto de equilibrio es el nivel de ventas en el que no ganas ni pierdes; saber dónde está te dice cuánto debes vender como mínimo y qué tan lejos estás del riesgo de pérdida.",
       "The break-even point is the sales level at which you neither earn nor lose; knowing where it is tells you the minimum you must sell and how far you are from the risk of loss.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Calcular el punto de equilibrio en unidades y en pesos de venta.", "Compute the break-even point in units and in sales pesos."),
       t("Calcular e interpretar el margen de seguridad en unidades, pesos y porcentaje.", "Compute and interpret the margin of safety in units, pesos and percentage."),
@@ -496,7 +496,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Qué es y cómo se calcula", "What it is and how to compute it"),
+        heading: t("¿Cuánto vender para no perder?", "How much to sell to not lose?"),
         body: [
           t(
             "El **punto de equilibrio** (PE) es la cantidad de ventas en la que los ingresos cubren exactamente todos los costos: la utilidad es cero. Debajo de él pierdes; arriba de él ganas.",
@@ -553,7 +553,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Margen de seguridad y qué mueve el punto de equilibrio", "Margin of safety and what moves the break-even point"),
+        heading: t("¿Qué tan lejos estás de perder?", "How far are you from losing?"),
         body: [
           t(
             "El **margen de seguridad** es cuánto pueden caer tus ventas antes de llegar a pérdidas. Es la distancia entre tus ventas reales (o presupuestadas) y el punto de equilibrio, y se expresa en unidades, en pesos o en porcentaje de las ventas.",
@@ -590,7 +590,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Punto de equilibrio con varios productos", "Break-even with several products"),
+        heading: t("¿Y si vendes varios productos?", "What if you sell several products?"),
         body: [
           t(
             "Casi ningún negocio vende un solo producto. Cuando hay varios, se usa la **mezcla de ventas**: la proporción en que normalmente se venden. Por ejemplo, una panadería vende 3 panes dulces por cada pastel.",
@@ -678,7 +678,7 @@ export const lessons: Lesson[] = [
       t("Margen de seguridad: cuánto pueden caer las ventas antes de perder.", "Margin of safety: how much sales can fall before losing."),
       t("Con varios productos, usa un paquete con la mezcla de ventas; si la mezcla cambia, el PE cambia.", "With several products, use a bundle with the sales mix; if the mix changes, the BEP changes."),
     ],
-    exerciseIds: ['COS-09-E1', 'COS-09-E2', 'COS-09-E3', 'COS-09-E4', 'COS-09-E5', 'COS-09-E6'],
+    exerciseIds: ['COS-09-E1', 'COS-09-E2', 'COS-09-E3', 'COS-09-E5', 'COS-09-E6'],
   },
 
   // ───────────────────────────── COS-10 ─────────────────────────────
@@ -691,7 +691,7 @@ export const lessons: Lesson[] = [
       "Los presupuestos operativos traducen el plan de ventas en cuánto producir, cuánto material comprar, cuánta mano de obra contratar y cuánto gastar, en una cadena donde cada presupuesto alimenta al siguiente.",
       "Operating budgets translate the sales plan into how much to produce, how much material to buy, how much labor to hire and how much to spend, in a chain where each budget feeds the next.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Describir el presupuesto maestro y el orden en que se elaboran los presupuestos operativos.", "Describe the master budget and the order in which operating budgets are prepared."),
       t("Elaborar el presupuesto de producción a partir de las ventas y los inventarios deseados.", "Prepare the production budget from sales and desired inventories."),
@@ -699,7 +699,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El presupuesto maestro y su cadena", "The master budget and its chain"),
+        heading: t("¿Por dónde empieza el plan?", "Where does the plan start?"),
         body: [
           t(
             "Un **presupuesto** es un plan expresado en dinero y cantidades para un periodo futuro, por ejemplo el próximo año. Sirve para **coordinar** áreas (que producción fabrique lo que ventas espera vender), anticipar necesidades de efectivo y luego **comparar** lo real contra lo planeado.",
@@ -727,7 +727,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Presupuesto de producción", "Production budget"),
+        heading: t("¿Cuántas piezas fabricar?", "How many units to make?"),
         body: [
           t(
             "Producción no fabrica exactamente lo que se vende: también debe dejar un **inventario final** de reserva para no quedarse sin producto, y puede aprovechar el **inventario inicial** que ya tiene en bodega.",
@@ -763,7 +763,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Materiales, mano de obra y gastos", "Materials, labor and expenses"),
+        heading: t("¿Cuánto material y trabajo necesitas?", "How much material and labor?"),
         body: [
           t(
             "El **presupuesto de materiales** usa la misma lógica, pero con la materia prima. Primero calculas cuánto material necesita la producción (unidades a producir × material por unidad); luego ajustas por inventarios de materia prima para saber cuánto **comprar**.",
@@ -864,7 +864,7 @@ export const lessons: Lesson[] = [
       t("Compras de material: material requerido + inventario final − inventario inicial de material.", "Material purchases: material required + ending − beginning material inventory."),
       t("MOD presupuestada = unidades × horas por unidad × tarifa por hora.", "Budgeted direct labor = units × hours per unit × hourly rate."),
     ],
-    exerciseIds: ['COS-10-E1', 'COS-10-E2', 'COS-10-E3', 'COS-10-E4', 'COS-10-E5', 'COS-10-E6'],
+    exerciseIds: ['COS-10-E1', 'COS-10-E2', 'COS-10-E3', 'COS-10-E4', 'COS-10-E5'],
   },
 
   // ───────────────────────────── COS-11 ─────────────────────────────
@@ -877,7 +877,7 @@ export const lessons: Lesson[] = [
       "La contabilidad administrativa prepara información a la medida para que quienes dirigen el negocio planeen, controlen y decidan; una de sus herramientas clave es el costeo directo con enfoque de contribución.",
       "Managerial accounting prepares tailored information so those who run the business can plan, control and decide; one of its key tools is direct (variable) costing with a contribution approach.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Distinguir la contabilidad administrativa de la financiera por usuarios, reglas, enfoque y detalle.", "Distinguish managerial from financial accounting by users, rules, focus and detail."),
       t("Explicar las funciones de planeación, control y toma de decisiones que apoya la información administrativa.", "Explain the planning, control and decision-making functions that managerial information supports."),
@@ -885,7 +885,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Qué es y en qué se distingue de la financiera", "What it is and how it differs from financial accounting"),
+        heading: t("Números para decidir adentro", "Numbers for deciding inside"),
         body: [
           t(
             "La **contabilidad administrativa** es la que produce información para los **usuarios internos**: dueños, directores y gerentes que necesitan decidir. La **financiera** produce estados generales para usuarios externos como bancos, inversionistas o autoridades.",
@@ -908,7 +908,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Para qué sirve: planear, controlar y decidir", "What it is for: planning, controlling and deciding"),
+        heading: t("Planear, controlar y decidir", "Plan, control and decide"),
         body: [
           t(
             "**Planear** es fijar metas y la forma de lograrlas: aquí entran los presupuestos y el análisis costo-volumen-utilidad. **Controlar** es comparar lo real con lo planeado y corregir a tiempo. **Decidir** es elegir entre alternativas con la información relevante.",
@@ -925,7 +925,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Costeo directo frente a costeo absorbente", "Direct costing versus absorption costing"),
+        heading: t("¿Cuánto cuesta cada producto?", "What does each product cost?"),
         body: [
           t(
             "En palabras sencillas: son dos formas de calcular cuánto cuesta cada producto. La diferencia está en los costos fijos de la fábrica (la renta de la nave, el sueldo del supervisor): ¿se reparten entre los productos o se restan completos en el mes?",
@@ -1061,7 +1061,7 @@ export const lessons: Lesson[] = [
       t("Si la producción supera a las ventas, el absorbente muestra más utilidad que el directo.", "If production exceeds sales, absorption costing shows more profit than direct costing."),
     ],
     normativeNote: NOTE_MANAGERIAL,
-    exerciseIds: ['COS-11-E1', 'COS-11-E2', 'COS-11-E3', 'COS-11-E4', 'COS-11-E5', 'COS-11-E6'],
+    exerciseIds: ['COS-11-E1', 'COS-11-E2', 'COS-11-E3', 'COS-11-E5', 'COS-11-E6'],
   },
 
   // ───────────────────────────── COS-12 ─────────────────────────────
@@ -1074,7 +1074,7 @@ export const lessons: Lesson[] = [
       "El control presupuestal compara lo real con lo planeado, usa presupuestos flexibles para que la comparación sea justa y asigna cada resultado al responsable que lo puede controlar.",
       "Budgetary control compares actual with plan, uses flexible budgets so the comparison is fair, and assigns each result to the manager who can control it.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Describir el ciclo de control y clasificar variaciones como favorables o desfavorables.", "Describe the control cycle and classify variances as favorable or unfavorable."),
       t("Preparar un presupuesto flexible y separar la variación por volumen de la variación de gestión.", "Prepare a flexible budget and separate the volume variance from the management (flexible-budget) variance."),
@@ -1082,7 +1082,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El ciclo de control y las variaciones", "The control cycle and variances"),
+        heading: t("¿Vas como planeaste?", "Are you on plan?"),
         body: [
           t(
             "Hacer un presupuesto y guardarlo en un cajón no sirve. El **control presupuestal** es un ciclo: **planear**, **ejecutar**, **medir** lo que pasó, **comparar** contra el plan y **corregir**. Luego el ciclo vuelve a empezar.",
@@ -1122,7 +1122,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Presupuesto estático y presupuesto flexible", "Static budget and flexible budget"),
+        heading: t("¿Cuánto debiste gastar?", "How much should you have spent?"),
         body: [
           t(
             "En palabras sencillas: el presupuesto flexible responde a la pregunta «¿cuánto **debí** gastar para lo que **de verdad** hice?». Así evalúas a cada quien con la vara correcta.",
@@ -1197,7 +1197,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Centros de responsabilidad y gestión por excepción", "Responsibility centers and management by exception"),
+        heading: t("¿Quién responde por cada número?", "Who answers for each number?"),
         body: [
           t(
             "El control de gestión asigna cada resultado a quien **puede controlarlo**. Un **centro de responsabilidad** es un área cuyo jefe responde por ciertos números. Hay cuatro tipos según de qué responde.",
@@ -1281,7 +1281,7 @@ export const lessons: Lesson[] = [
       t("Variación por volumen = flexible − estático; variación flexible = real − flexible.", "Volume variance = flexible − static; flexible-budget variance = actual − flexible."),
       t("Cada resultado se asigna al centro de responsabilidad que lo controla: costos, ingresos, utilidades o inversión.", "Each result is assigned to the responsibility center that controls it: cost, revenue, profit or investment."),
     ],
-    exerciseIds: ['COS-12-E1', 'COS-12-E2', 'COS-12-E3', 'COS-12-E4', 'COS-12-E5', 'COS-12-E6'],
+    exerciseIds: ['COS-12-E1', 'COS-12-E2', 'COS-12-E3', 'COS-12-E4', 'COS-12-E6'],
   },
 ]
 

@@ -3,65 +3,72 @@ import type { InteractiveLesson } from './types'
 export const intL301: InteractiveLesson = {
   lessonId: 'L3-01',
   sections: [
-    // ¿Qué es un costo y para qué se clasifica?
+    // ¿Qué es un costo?
     [
-      { text: 'Repaso integrador 🥖: en toda esta lección acompañas a **Panadería La Espiga**, de doña Rosa. Un **costo** es lo que entrega (dinero, trabajo, materiales) para tener su pan.' },
+      { text: 'Doña Rosa tiene la **Panadería La Espiga** 🥖. Para hacer pan entrega harina, horas de trabajo y gas. Todo eso es un **costo**.' },
+      {
+        ask: 'Rosa pregunta: «Si mañana hago 200 panes más, ¿cuánto más me va a costar?». ¿Qué necesita saber de cada costo?',
+        options: [
+          { text: 'Si sube o no cuando produce más', ok: true, reply: '¡Eso! A eso se le llama clasificar por **comportamiento**.' },
+          { text: 'Si se puede ligar a un pan en particular', reply: 'Eso sirve para saber cuánto cuesta un pan. Para saber cuánto **más** costará producir más, necesita ver **si sube con la producción**.' },
+          { text: 'Cuánto tiene en el banco', reply: 'El banco no dice qué costos se moverán. Necesita saber **si cada costo sube cuando produce más**.' },
+        ],
+      },
+      { text: 'Un **costo** es el valor de lo que se entrega para tener un bien o servicio. Se clasifica para responder preguntas:\n📈 **Comportamiento:** ¿cambia si produzco más? (fijo, variable, mixto)\n🔎 **Rastreabilidad:** ¿se liga a un producto? (directo, indirecto)' },
       {
         match: {
           title: 'Une cada palabra con su significado',
           pairs: [
-            ['Costo', 'Valor de los recursos que se sacrifican para tener un bien o servicio'],
+            ['Costo', 'Valor de lo que se entrega para tener un bien o servicio'],
             ['Comportamiento', 'Cómo cambia el costo si produces más o menos'],
             ['Rastreabilidad', 'Si el costo se puede ligar a un producto, orden o departamento'],
             ['Objeto de costo', 'Aquello a lo que le quieres sacar el costo: un pan, un pedido, un área'],
           ],
         },
       },
-      { text: 'Cada clasificación responde **una pregunta distinta** de doña Rosa. Y un mismo costo puede llevar dos etiquetas a la vez.' },
       {
         sort: {
-          title: '¿Qué dos etiquetas lleva cada costo de La Espiga?',
+          title: 'Un costo lleva dos etiquetas. ¿Cuáles lleva cada uno?',
           buckets: ['Variable y directo', 'Fijo e indirecto'],
           items: [
-            { text: 'La harina que va dentro de cada bolillo', bucket: 0, why: 'Sube con cada pan (variable) y se ve dentro del pan (directo).' },
+            { text: 'La harina que va dentro de cada bolillo', bucket: 0, why: 'Sube con cada pan (variable) y va dentro del pan (directo).' },
             { text: 'La renta del local donde está el horno', bucket: 1, why: 'Se paga igual hagas mucho o poco pan, y sirve a todos los panes.' },
             { text: 'La mantequilla de cada concha', bucket: 0, why: 'Va dentro del producto y crece con cada pieza.' },
             { text: 'El sueldo del supervisor de la panadería', bucket: 1, why: 'Es igual cada mes y cuida toda la producción, no un pan en particular.' },
           ],
         },
       },
-      {
-        ask: 'Doña Rosa pregunta: «Si mañana hago 200 panes más, ¿cuánto más me va a costar?». ¿Qué clasificación le ayuda?',
-        options: [
-          { text: 'Por comportamiento (fijo, variable, mixto)', ok: true, reply: '¡Eso! El comportamiento dice qué costos crecen al producir más.' },
-          { text: 'Por rastreabilidad (directo, indirecto)', reply: 'Esa responde cuánto cuesta un producto en particular, no cuánto cambia el total al producir más.' },
-          { text: 'Ninguna, solo hay que ver el saldo del banco', reply: 'El banco no te dice qué costos se moverán. Para eso está el comportamiento.' },
-        ],
-      },
       { tip: 'Dos preguntas, dos clasificaciones: **¿cambia con el volumen?** (fijo o variable) y **¿se liga al producto?** (directo o indirecto).' },
     ],
-    // Costos fijos, variables y mixtos
+    // ¿Sube si produces más?
     [
-      { text: 'Un costo **variable** sube en total con cada pan, pero por pieza es igual. Un costo **fijo** se queda igual en total dentro del rango relevante.' },
       {
-        rush: {
-          title: 'La Espiga: ¿fijo o variable?',
-          seconds: 40,
-          labels: ['Fijo', 'Variable'],
+        ask: 'Este mes La Espiga hará **el doble** de pan. ¿Qué costo se duplica, más o menos?',
+        options: [
+          { text: 'La harina', ok: true, reply: '¡Sí! Más pan, más harina. Es un costo **variable**.' },
+          { text: 'La renta del local', reply: 'La renta es la misma hagas poco o mucho pan: es **fija**. La que se duplica es la **harina**.' },
+          { text: 'El sueldo del supervisor', reply: 'Su sueldo no cambia con los panes: es **fijo**. La que se duplica es la **harina**.' },
+        ],
+      },
+      { text: 'Tres comportamientos:\n📈 **Variable:** sube en total con cada pan; por pieza es igual.\n🏠 **Fijo:** igual en total dentro del rango relevante.\n🔀 **Mixto:** una parte fija y otra variable, como el recibo de gas: cargo fijo más lo que consumes.' },
+      {
+        sort: {
+          title: '¿Fijo, variable o mixto?',
+          buckets: ['Fijo', 'Variable', 'Mixto'],
           items: [
-            { text: 'Renta del local', ans: 0 },
-            { text: 'Harina de los panes', ans: 1 },
-            { text: 'Sueldo del supervisor', ans: 0 },
-            { text: 'Bolsas para entregar el pan', ans: 1 },
-            { text: 'Depreciación del horno en línea recta', ans: 0 },
-            { text: 'Comisión al repartidor por cada venta', ans: 1 },
+            { text: 'Renta del local: $18,000 al mes', bucket: 0, why: 'Se paga igual hagas mucho o poco pan.' },
+            { text: 'Harina de cada pan', bucket: 1, why: 'Sube con cada pieza.' },
+            { text: 'Gas: cargo fijo mensual más lo que consumes', bucket: 2, why: 'Tiene una parte fija y otra que crece con el uso.' },
+            { text: 'Comisión de 5 % al repartidor por cada venta', bucket: 1, why: 'Crece con cada venta.' },
+            { text: 'Seguro anual del local', bucket: 0, why: 'Es igual pase lo que pase con la producción.' },
+            { text: 'Mantenimiento del horno: cuota base más un cargo por hora de uso', bucket: 2, why: 'Parte fija (la cuota) y parte variable (las horas).' },
           ],
         },
       },
-      { text: 'El gas del horno es **mixto**: un cargo fijo más lo que consumes. Doña Rosa lo separa con el **punto alto–punto bajo**: solo usa el mes de más y el de menos actividad.' },
+      { text: 'Para separar un mixto se usa el **punto alto–punto bajo**: solo el mes de más y el de menos actividad. Datos del gas: mes bajo **400 hornadas** y **$9,000**; mes alto **900 hornadas** y **$14,000**.' },
       {
         calc: {
-          question: 'Gas de La Espiga: mes bajo **400 hornadas** y **$9,000**; mes alto **900 hornadas** y **$14,000**. ¿Cuánto sube el gas por **cada hornada** (CVu)?',
+          question: '¿Cuánto sube el gas por **cada hornada** (costo variable unitario)?',
           answer: 10,
           hint: 'diferencia de costo ÷ diferencia de hornadas.',
           why: '(14,000 − 9,000) ÷ (900 − 400) = 5,000 ÷ 500 = **$10 por hornada**.',
@@ -69,54 +76,53 @@ export const intL301: InteractiveLesson = {
       },
       {
         calc: {
-          question: 'Con el CVu de **$10**, ¿cuál es la parte **fija** del gas al mes?',
+          question: 'Con **$10** por hornada, ¿cuál es la parte **fija** del gas al mes?',
           answer: 5000,
           hint: 'toma el mes bajo y réstale 10 × 400.',
-          why: '9,000 − 10 × 400 = 9,000 − 4,000 = **$5,000**. Compruébalo con el mes alto: 14,000 − 9,000 = $5,000.',
+          why: '9,000 − 10 × 400 = 9,000 − 4,000 = **$5,000**. Con el mes alto da igual: 14,000 − 9,000 = $5,000.',
         },
       },
       {
         calc: {
           question: 'El próximo mes planea **700 hornadas**. ¿Cuánto espera pagar de gas?',
           answer: 12000,
-          hint: 'parte fija + CVu × hornadas esperadas.',
+          hint: 'parte fija + 10 × hornadas esperadas.',
           why: '5,000 + 10 × 700 = 5,000 + 7,000 = **$12,000**.',
         },
       },
-      { tip: 'Error común: dividir el costo total entre las unidades. Eso mezcla lo fijo con lo variable. Usa siempre **diferencia ÷ diferencia**.' },
+      { tip: 'Error común: dividir el costo total entre las unidades. Eso mezcla lo fijo con lo variable. Usa **diferencia ÷ diferencia**.' },
     ],
-    // Costos directos e indirectos
+    // ¿Va dentro del pan?
     [
-      { text: 'El costo del pan tiene tres partes: **MPD** (lo que va dentro), **MOD** (quien lo hace con sus manos) y **CIF** (lo que ayuda a producir todo). Lo de vender y administrar es **gasto del periodo**.' },
+      {
+        ask: 'Un bolillo lleva harina, el trabajo del panadero y el gas del horno. ¿Cuál se puede ligar **a ese bolillo** en particular?',
+        options: [
+          { text: 'La harina que lleva', ok: true, reply: '¡Sí! Va dentro del pan: es un costo **directo**.' },
+          { text: 'El gas del horno', reply: 'El horno cuece muchos panes a la vez: no se sabe cuánto gas es de un bolillo. Es **indirecto**. La que sí se liga es la **harina**.' },
+          { text: 'La renta del local', reply: 'La renta sirve a toda la producción: es **indirecta**. La que va dentro del bolillo es la **harina**.' },
+        ],
+      },
+      { text: 'El costo de producir tiene tres partes:\n🌾 **MPD** (materia prima directa): lo que va dentro.\n👩‍🍳 **MOD** (mano de obra directa): quien lo hace con sus manos.\n🔥 **CIF** (cargos indirectos): lo que ayuda a producir todo.\nLo de **vender y administrar** no entra: es **gasto del periodo**.' },
       {
         sort: {
-          title: 'Clasifica los costos de La Espiga',
-          buckets: ['MPD', 'MOD', 'CIF', 'Gasto del periodo'],
+          title: 'Clasifica los costos de producir pan',
+          buckets: ['MPD', 'MOD', 'CIF'],
           items: [
             { text: 'Azúcar y huevo de los panes dulces', bucket: 0, why: 'Va dentro del pan: materia prima directa.' },
             { text: 'Sueldo del panadero que amasa', bucket: 1, why: 'Trabaja directamente en el pan: mano de obra directa.' },
             { text: 'Gas del horno', bucket: 2, why: 'Ayuda a hornear todo, pero no se liga a un pan en particular.' },
-            { text: 'Seguro del área de producción', bucket: 2, why: 'Es de la fábrica, pero de toda: cargo indirecto.' },
-            { text: 'Anuncio en redes para vender más', bucket: 3, why: 'Es de vender, no de producir: gasto del periodo.' },
-            { text: 'Sueldo de la persona que lleva la contabilidad', bucket: 3, why: 'Es de administración: no entra al costo del pan.' },
+            { text: 'Pago al decorador por cada pastel que decora', bucket: 1, why: 'Trabaja directamente en cada pastel: mano de obra directa.' },
+            { text: 'Sueldo del supervisor de producción', bucket: 2, why: 'Cuida toda la producción: cargo indirecto.' },
           ],
         },
       },
-      { text: 'Un mes: MPD **$36,000**, MOD **$24,000**, CIF **$18,000** y publicidad **$9,000**. Hizo **6,000 piezas**. Calcula en cadena:' },
-      {
-        calc: {
-          question: '¿Cuánto es el **costo primo** (MPD + MOD)?',
-          answer: 60000,
-          hint: 'solo materia prima directa y mano de obra directa.',
-          why: '36,000 + 24,000 = **$60,000**.',
-        },
-      },
+      { text: 'Un mes de La Espiga: MPD **$36,000**, MOD **$24,000**, CIF **$18,000** y publicidad **$9,000**. Hizo **6,000 piezas**.' },
       {
         calc: {
           question: '¿Cuánto es el **costo de conversión** (MOD + CIF)?',
           answer: 42000,
-          hint: 'lo que cuesta convertir la harina en pan.',
-          why: '24,000 + 18,000 = **$42,000**. Ojo: la MOD está en el primo **y** en el de conversión.',
+          hint: 'lo que cuesta convertir la harina en pan: mano de obra directa + cargos indirectos.',
+          why: '24,000 + 18,000 = **$42,000**. La publicidad no entra: es gasto del periodo.',
         },
       },
       {
@@ -124,14 +130,22 @@ export const intL301: InteractiveLesson = {
           question: '¿Cuánto cuesta **cada pieza** (costo de producción ÷ piezas)?',
           answer: 13,
           hint: 'suma MPD + MOD + CIF (sin la publicidad) y divide entre 6,000.',
-          why: '(36,000 + 24,000 + 18,000) ÷ 6,000 = 78,000 ÷ 6,000 = **$13 por pieza**. La publicidad no entra: es gasto del periodo.',
+          why: '(36,000 + 24,000 + 18,000) ÷ 6,000 = 78,000 ÷ 6,000 = **$13 por pieza**.',
         },
       },
-      { tip: '**Costo primo** = MPD + MOD. **Conversión** = MOD + CIF. **Producción** = MPD + MOD + CIF.' },
+      { tip: '**Costo primo** = MPD + MOD. **Conversión** = MOD + CIF. **Producción** = MPD + MOD + CIF. La MOD está en los tres.' },
     ],
-    // El rango relevante y los errores comunes
+    // ¿Cuándo lo fijo deja de serlo?
     [
-      { text: 'La renta de La Espiga es **$18,000** al mes y su horno da hasta **3,000 piezas** (su rango relevante). Mueve la producción y mira qué pasa con la renta **por pieza**.' },
+      { text: 'La renta de La Espiga es **$18,000** al mes y su horno da hasta **3,000 piezas** (su **rango relevante**).' },
+      {
+        ask: 'Si Rosa hace más pan, ¿qué pasa con la renta que le toca a **cada pieza**?',
+        options: [
+          { text: 'Baja, porque se reparte entre más piezas', ok: true, reply: '¡Exacto! La renta total no cambia, pero por pieza baja. Compruébalo abajo.' },
+          { text: 'Se queda igual, porque es fija', reply: 'Es fija en **total**. Por pieza **baja**, porque los $18,000 se reparten entre más panes.' },
+          { text: 'Sube', reply: 'La renta total sigue en $18,000. Repartida entre más panes, a cada uno le toca **menos**.' },
+        ],
+      },
       {
         sim: {
           title: 'La renta repartida entre los panes',
@@ -143,16 +157,16 @@ export const intL301: InteractiveLesson = {
           goal: {
             text: 'Haz que la renta por pieza baje a **$10 o menos**.',
             check: (x) => 18000 / x.q <= 10,
-            done: 'La renta **total** no se movió: sigue en $18,000. Solo se repartió entre más piezas. Por eso el fijo **por unidad** no es constante.',
+            done: 'La renta **total** no se movió: sigue en $18,000. Por eso el fijo **por pieza** no es constante.',
           },
         },
       },
       {
-        ask: 'Doña Rosa quiere hacer **4,500 piezas**, más de lo que da su horno. Tendrá que rentar otro local. ¿Qué pasa con la renta?',
+        ask: 'Rosa quiere hacer **4,500 piezas**, más de lo que da su horno. Tendrá que rentar otro local. ¿Qué pasa con la renta?',
         options: [
-          { text: 'Sigue igual: es un costo fijo', reply: 'Solo es fijo **dentro** del rango relevante. Fuera de él, cambia.' },
           { text: 'Salta a otro nivel: es un costo escalonado', ok: true, reply: '¡Exacto! Al pasar la capacidad, el fijo brinca a un escalón más alto.' },
-          { text: 'Baja, porque hace más piezas', reply: 'Por pieza podría bajar, pero en total sube: hay que pagar otro local.' },
+          { text: 'Sigue igual: es un costo fijo', reply: 'Solo es fijo **dentro** del rango relevante. Fuera de él **salta** a otro nivel.' },
+          { text: 'Baja, porque hace más piezas', reply: 'Por pieza podría bajar, pero en total **sube**: hay que pagar otro local.' },
         ],
       },
       {

@@ -18,7 +18,7 @@ export const lessons: Lesson[] = [
       "La contabilidad de costos mide cuánto cuesta fabricar un producto sumando materia prima directa, mano de obra directa y costos indirectos, y sigue ese costo desde la fábrica hasta el costo de ventas.",
       "Cost accounting measures how much it costs to make a product by adding direct materials, direct labor and overhead, and follows that cost from the factory to cost of goods sold.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Explicar qué es la contabilidad de costos y en qué se diferencia un costo de un gasto.", "Explain what cost accounting is and how a cost differs from an expense."),
       t("Identificar los tres elementos del costo: materia prima directa, mano de obra directa y costos indirectos de fabricación.", "Identify the three cost elements: direct materials, direct labor and manufacturing overhead."),
@@ -26,7 +26,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es la contabilidad de costos?", "What is cost accounting?"),
+        heading: t("¿Costo o gasto?", "Cost or expense?"),
         body: [
           t(
             "Imagina una **panadería**. La dueña quiere saber cuánto le cuesta hacer una concha para ponerle un buen precio. La **contabilidad de costos** es la rama de la contabilidad que **mide, registra y analiza** lo que cuesta producir un bien o dar un servicio.",
@@ -49,7 +49,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Los tres elementos del costo", "The three cost elements"),
+        heading: t("¿De qué está hecho un costo?", "What is a cost made of?"),
         body: [
           t(
             "Todo costo de producción se arma con tres piezas. La **materia prima directa (MPD)** es el material principal que se ve en el producto y se puede medir por pieza: la madera de una mesa o la tela de un pantalón.",
@@ -126,7 +126,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Del costo de producción al costo de ventas", "From cost of production to cost of goods sold"),
+        heading: t("¿Cuánto costó lo vendido?", "What did sold goods cost?"),
         body: [
           t(
             "Una fábrica tiene tres inventarios. **Materia prima** (lo que compraste y aún no usas), **producción en proceso** (lo que está a medio hacer) y **producto terminado** (lo que ya está listo para vender). El costo viaja de uno a otro como una banda transportadora.",
@@ -254,7 +254,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo. En México, la valuación de inventarios en estados financieros se rige por las NIF del CINIF (norma de inventarios, NIF C-4) y, a nivel internacional, por la NIC 2; ambas piden incluir en el inventario los costos de producción. Las normas se actualizan: verifica la versión vigente (2026).",
       "Educational content. In Mexico, inventory valuation in financial statements follows CINIF's NIF (inventory standard, NIF C-4) and, internationally, IAS 2; both require production costs to be included in inventory. Standards are updated: verify the current version (2026).",
     ),
-    exerciseIds: ['COS-01-E1', 'COS-01-E2', 'COS-01-E3', 'COS-01-E4', 'COS-01-E5', 'COS-01-E6'],
+    exerciseIds: ['COS-01-E1', 'COS-01-E2', 'COS-01-E3', 'COS-01-E4', 'COS-01-E5'],
   },
 
   // ───────────────────────────── COS-02 ─────────────────────────────
@@ -267,7 +267,7 @@ export const lessons: Lesson[] = [
       "Los costos se clasifican según a qué se pueden ligar (directos o indirectos), para qué función sirven y cuándo se restan (del producto o del periodo), y según cómo cambian cuando cambia el volumen (fijos, variables o mixtos).",
       "Costs are classified by what they can be traced to (direct or indirect), which function they serve and when they are deducted (product or period), and by how they change when volume changes (fixed, variable or mixed).",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Distinguir costos directos e indirectos respecto a un objeto de costo.", "Distinguish direct and indirect costs relative to a cost object."),
       t("Clasificar costos por función y como costos del producto o del periodo.", "Classify costs by function and as product or period costs."),
@@ -275,7 +275,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Objeto de costo: directos e indirectos", "Cost object: direct and indirect"),
+        heading: t("¿Directo respecto a qué?", "Direct relative to what?"),
         body: [
           t(
             "Un **objeto de costo** es aquello cuyo costo quieres conocer: un producto, un pedido, un cliente o un departamento. Antes de clasificar un costo como directo o indirecto, siempre pregunta: **¿directo respecto a qué?**",
@@ -292,7 +292,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Por función: costos del producto y del periodo", "By function: product and period costs"),
+        heading: t("¿Se guarda o se resta?", "Stored or deducted?"),
         body: [
           t(
             "Por **función**, los costos se agrupan en **producción** (todo lo de la fábrica), **venta** (publicidad, comisiones, fletes a clientes) y **administración** (oficinas, contabilidad, dirección). En lenguaje cotidiano a los dos últimos se les llama gastos de operación.",
@@ -314,7 +314,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Comportamiento: fijos, variables y mixtos", "Behavior: fixed, variable and mixed"),
+        heading: t("¿Qué cambia al producir más?", "What changes when you make more?"),
         body: [
           t(
             "Por **comportamiento**, miras qué le pasa al costo cuando produces más o menos. Un **costo variable** sube en proporción al volumen: si haces el doble de tortas, compras el doble de bolillos. Un **costo fijo** se mantiene igual en total dentro de cierto rango: la renta del local es la misma si vendes 100 o 300 tortas.",
@@ -418,7 +418,7 @@ export const lessons: Lesson[] = [
       t("Fijo: constante en total dentro del rango relevante, baja por unidad al producir más.", "Fixed: constant in total within the relevant range, falls per unit as output rises."),
       t("Mixto: parte fija más parte variable.", "Mixed: a fixed part plus a variable part."),
     ],
-    exerciseIds: ['COS-02-E1', 'COS-02-E2', 'COS-02-E3', 'COS-02-E4', 'COS-02-E5', 'COS-02-E6'],
+    exerciseIds: ['COS-02-E1', 'COS-02-E2', 'COS-02-E3', 'COS-02-E4', 'COS-02-E5'],
   },
 
   // ───────────────────────────── COS-03 ─────────────────────────────
@@ -431,7 +431,7 @@ export const lessons: Lesson[] = [
       "El costeo por órdenes acumula materia prima, mano de obra e indirectos aplicados con una tasa predeterminada en una hoja de costos por cada pedido distinto.",
       "Job order costing accumulates materials, labor and overhead applied with a predetermined rate on a cost sheet for each distinct order.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Reconocer qué negocios usan costeo por órdenes y para qué sirve la hoja de costos.", "Recognize which businesses use job order costing and what the job cost sheet is for."),
       t("Calcular una tasa predeterminada de costos indirectos y aplicarla a una orden.", "Compute a predetermined overhead rate and apply it to a job."),
@@ -439,7 +439,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Cuándo se usa y la hoja de costos", "When to use it and the job cost sheet"),
+        heading: t("¿Cada pedido es distinto?", "Is every order different?"),
         body: [
           t(
             "El **costeo por órdenes** sirve cuando cada pedido es **distinto**: una imprenta que hace invitaciones de boda personalizadas, un taller de cocinas integrales a la medida o una constructora que levanta una casa por encargo. Cada pedido se llama **orden de producción** y tiene su propio número.",
@@ -507,7 +507,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("La tasa predeterminada de indirectos", "The predetermined overhead rate"),
+        heading: t("¿Cómo cotizar sin saber la luz?", "How to quote before the bills?"),
         body: [
           t(
             "Los CIF reales (luz, renta, supervisor) se conocen hasta fin de mes o de año, pero el cliente quiere su cotización hoy. Por eso se usa una **tasa predeterminada**: al inicio del año divides los CIF **presupuestados** entre una **base** también presupuestada, como horas de mano de obra directa u horas máquina.",
@@ -566,7 +566,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Flujo del costo y ajuste de indirectos", "Cost flow and overhead adjustment"),
+        heading: t("¿A dónde va el costo?", "Where does the cost go?"),
         body: [
           t(
             "Mientras se trabaja, la orden está en **producción en proceso**. Al terminarla, su costo pasa a **producto terminado** (inventario). Cuando se entrega y se vende, ese costo sale del inventario y se registra como **costo de ventas**: cargo a Costo de ventas y abono a Inventarios.",
@@ -653,7 +653,7 @@ export const lessons: Lesson[] = [
       t("Aplicados < reales: subaplicados; aplicados > reales: sobreaplicados.", "Applied < actual: underapplied; applied > actual: overapplied."),
       t("Al vender la orden: cargo a Costo de ventas, abono a Inventarios.", "When the job is sold: debit Cost of goods sold, credit Inventory."),
     ],
-    exerciseIds: ['COS-03-E1', 'COS-03-E2', 'COS-03-E3', 'COS-03-E4', 'COS-03-E5', 'COS-03-E6'],
+    exerciseIds: ['COS-03-E1', 'COS-03-E2', 'COS-03-E3', 'COS-03-E5', 'COS-03-E6'],
   },
 
   // ───────────────────────────── COS-04 ─────────────────────────────
@@ -666,7 +666,7 @@ export const lessons: Lesson[] = [
       "El costeo por procesos acumula los costos por departamento durante un periodo y los divide entre las unidades equivalentes para obtener un costo unitario promedio de productos idénticos fabricados en serie.",
       "Process costing accumulates costs by department over a period and divides them by equivalent units to get an average unit cost for identical products made in series.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Reconocer cuándo conviene el costeo por procesos y en qué se diferencia del de órdenes.", "Recognize when process costing fits and how it differs from job order costing."),
       t("Calcular unidades equivalentes según el grado de avance.", "Compute equivalent units based on degree of completion."),
@@ -674,7 +674,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Producción continua, costos por departamento", "Continuous production, costs by department"),
+        heading: t("¿Y si todo sale igual?", "What if every unit is the same?"),
         body: [
           t(
             "Piensa en una **embotelladora de agua**: todas las botellas son iguales y la línea no se detiene. No tiene sentido una hoja de costos por botella. En el **costeo por procesos** los costos se juntan por **departamento** (por ejemplo, purificado, embotellado y etiquetado) durante un periodo, y luego se dividen entre lo producido.",
@@ -696,7 +696,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Unidades equivalentes", "Equivalent units"),
+        heading: t("¿Cuánto vale lo a medio hacer?", "What is half-done work worth?"),
         body: [
           t(
             "El problema: al cierre del mes casi siempre quedan unidades **a medio hacer**. No puedes contarlas como completas, pero tampoco como cero. La solución son las **unidades equivalentes**: expresar lo incompleto como si fueran unidades terminadas.",
@@ -738,7 +738,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("El informe de costos de producción", "The production cost report"),
+        heading: t("¿Cuadra el costo del mes?", "Does the month's cost add up?"),
         body: [
           t(
             "Con las unidades equivalentes armas el **informe de costos de producción** del departamento en tres pasos: (1) costo por unidad equivalente de cada elemento, (2) costo de las unidades terminadas y transferidas, (3) costo del inventario final en proceso.",
@@ -867,7 +867,7 @@ export const lessons: Lesson[] = [
       t("Costo por UE = costo del elemento ÷ UE del elemento.", "Cost per EU = element cost ÷ element EU."),
       t("Terminadas + en proceso final = costo total del departamento.", "Completed + ending WIP = total department cost."),
     ],
-    exerciseIds: ['COS-04-E1', 'COS-04-E2', 'COS-04-E3', 'COS-04-E4', 'COS-04-E5', 'COS-04-E6'],
+    exerciseIds: ['COS-04-E1', 'COS-04-E2', 'COS-04-E3', 'COS-04-E5', 'COS-04-E6'],
   },
 
   // ───────────────────────────── COS-05 ─────────────────────────────
@@ -880,7 +880,7 @@ export const lessons: Lesson[] = [
       "El costeo ABC reparte los costos indirectos según las actividades que cada producto realmente consume, usando un generador de costo por actividad, lo que evita que unos productos subsidien a otros.",
       "ABC assigns overhead according to the activities each product actually consumes, using a cost driver per activity, which prevents some products from subsidizing others.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Explicar por qué una sola base de reparto puede distorsionar el costo de los productos.", "Explain why a single allocation base can distort product costs."),
       t("Aplicar los pasos del ABC: actividades, generadores de costo, tasas y asignación.", "Apply the ABC steps: activities, cost drivers, rates and assignment."),
@@ -888,7 +888,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El problema de repartir con una sola base", "The problem with a single allocation base"),
+        heading: t("¿Quién paga los cambios de molde?", "Who pays for mold changes?"),
         body: [
           t(
             "En el costeo tradicional, todos los CIF se reparten con **una sola base**, por ejemplo horas máquina. Funciona bien si todos los productos se parecen. Pero imagina una fábrica de dulces que hace una **paleta clásica** (mucho volumen, proceso sencillo) y una **paleta gourmet** (poco volumen, muchos cambios de molde y revisiones de calidad).",
@@ -905,7 +905,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Los pasos del ABC", "The ABC steps"),
+        heading: t("¿Qué provoca cada costo?", "What drives each cost?"),
         body: [
           t(
             "El **costeo basado en actividades (ABC)** parte de una idea sencilla: los productos consumen **actividades**, y las actividades consumen **recursos**. Una actividad es una tarea que se repite: preparar máquinas, inspeccionar, comprar materiales, mover material.",
@@ -977,7 +977,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Interpretar y decidir con ABC", "Interpreting and deciding with ABC"),
+        heading: t("¿Cuándo vale la pena ABC?", "When is ABC worth it?"),
         body: [
           t(
             "Con ABC suele pasar que los productos de **bajo volumen y complejos** resultan más caros de lo que se creía, y los de **alto volumen y sencillos**, más baratos. Esa información sirve para **fijar precios**, decidir qué productos o clientes son rentables y negociar pedidos mínimos.",
@@ -1037,7 +1037,7 @@ export const lessons: Lesson[] = [
       t("Los productos de bajo volumen y complejos suelen salir más caros con ABC.", "Low-volume, complex products usually come out more expensive under ABC."),
       t("ABC conviene cuando los CIF pesan mucho y los productos son diversos.", "ABC pays off when overhead is significant and products are diverse."),
     ],
-    exerciseIds: ['COS-05-E1', 'COS-05-E2', 'COS-05-E3', 'COS-05-E4', 'COS-05-E5', 'COS-05-E6'],
+    exerciseIds: ['COS-05-E1', 'COS-05-E2', 'COS-05-E3', 'COS-05-E4', 'COS-05-E6'],
   },
 
   // ───────────────────────────── COS-06 ─────────────────────────────
@@ -1050,7 +1050,7 @@ export const lessons: Lesson[] = [
       "Un costo estándar es lo que un producto debería costar; comparar lo real contra el estándar en precio y cantidad (o tarifa y eficiencia) muestra dónde se ganó o se perdió dinero y quién debe explicarlo.",
       "A standard cost is what a product should cost; comparing actual against standard in price and quantity (or rate and efficiency) shows where money was gained or lost and who should explain it.",
     ),
-    minutes: 19,
+    minutes: 11,
     objectives: [
       t("Explicar qué es un costo estándar y para qué sirve.", "Explain what a standard cost is and what it is for."),
       t("Calcular las variaciones en precio y cantidad de materiales, y en tarifa y eficiencia de mano de obra.", "Compute materials price and quantity variances, and labor rate and efficiency variances."),
@@ -1058,7 +1058,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es un costo estándar?", "What is a standard cost?"),
+        heading: t("¿Cuánto debería costar?", "What should it cost?"),
         body: [
           t(
             "Un **costo estándar** es lo que un producto **debería** costar si todo sale como se planeó. Es como la receta de la abuela con cantidades exactas: \"para un pastel, 300 g de harina a $20 el kilo\". Se fija antes de producir, con base en estudios de ingeniería, experiencia y precios esperados.",
@@ -1098,7 +1098,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Variaciones de materia prima", "Materials variances"),
+        heading: t("¿Compraste caro o usaste de más?", "Paid too much or used too much?"),
         body: [
           t(
             "La variación total de materiales se separa en dos para saber **por qué** pasó. La **variación en precio** mide si compraste más caro o más barato que el estándar. La **variación en cantidad** (o en uso) mide si usaste más o menos material del que se permitía para lo que produjiste.",
@@ -1170,7 +1170,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Variaciones de mano de obra y su interpretación", "Labor variances and their interpretation"),
+        heading: t("¿Horas caras u horas de más?", "Pricey hours or extra hours?"),
         body: [
           t(
             "La mano de obra funciona igual, solo cambian los nombres. La **variación en tarifa** compara lo que pagaste por hora contra la tarifa estándar. La **variación en eficiencia** compara las horas reales contra las **horas estándar permitidas** para lo producido.",
@@ -1285,7 +1285,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo. Para reportes internos, cada empresa define sus estándares. Para valuar inventarios en estados financieros, las normas de inventarios (NIF C-4 en México y NIC 2 a nivel internacional) admiten el costo estándar como técnica de medición solo si sus resultados se aproximan al costo real. Verifica la versión vigente (2026).",
       "Educational content. For internal reports, each company defines its own standards. To value inventory in financial statements, inventory standards (NIF C-4 in Mexico and IAS 2 internationally) allow standard cost as a measurement technique only if the results approximate actual cost. Verify the current version (2026).",
     ),
-    exerciseIds: ['COS-06-E1', 'COS-06-E2', 'COS-06-E3', 'COS-06-E4', 'COS-06-E5', 'COS-06-E6'],
+    exerciseIds: ['COS-06-E1', 'COS-06-E2', 'COS-06-E3', 'COS-06-E4', 'COS-06-E5'],
   },
 ]
 

@@ -16,7 +16,7 @@ export const lessons: Lesson[] = [
       es: "Los indicadores clave (KPI) convierten la estrategia en números medibles: el ROI, el ingreso residual y el Balanced Scorecard te dicen si cada área avanza hacia sus metas.",
       en: "Key indicators (KPIs) turn strategy into measurable numbers: ROI, residual income and the Balanced Scorecard tell you whether each area is moving toward its goals.",
     },
-    minutes: 19,
+    minutes: 11,
     objectives: [
       { es: "Distinguir una métrica cualquiera de un indicador clave (KPI) bien diseñado.", en: "Distinguish an ordinary metric from a well-designed key indicator (KPI)." },
       { es: "Calcular el ROI con el modelo DuPont y el ingreso residual de una división.", en: "Compute ROI with the DuPont model and the residual income of a division." },
@@ -25,7 +25,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es un indicador clave (KPI)?", en: "What is a key performance indicator (KPI)?" },
+        heading: { es: "¿Qué número sí importa?", en: "Which number really matters?" },
         body: [
           {
             es: "Una **métrica** es cualquier dato que se puede contar: visitas a la página, llamadas, kilos vendidos. Un **indicador clave de desempeño** (KPI, por sus siglas en inglés) es una métrica que la empresa eligió porque mide algo **importante para su estrategia** y tiene una **meta** contra la cual compararse.",
@@ -81,7 +81,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Indicadores financieros: ROI, DuPont e ingreso residual", en: "Financial indicators: ROI, DuPont and residual income" },
+        heading: { es: "¿Cuánto rinde cada peso?", en: "How much does each peso earn?" },
         body: [
           {
             es: "En palabras sencillas: el ROI responde «por cada peso que metí en el negocio, ¿cuántos centavos de ganancia me regresó?». La **utilidad operativa** es lo que gana el negocio con su actividad normal antes de intereses e impuestos; los **activos operativos** son lo que usa para trabajar (local, equipo, inventario, mercancía).",
@@ -165,7 +165,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Balanced Scorecard e indicadores operativos", en: "Balanced Scorecard and operating indicators" },
+        heading: { es: "¿Cómo ver más que dinero?", en: "How to see beyond money?" },
         body: [
           {
             es: "Medir solo dinero es como manejar viendo el retrovisor. El **Balanced Scorecard** (cuadro de mando integral), propuesto por Kaplan y Norton en los años noventa, ordena los KPI en **cuatro perspectivas** conectadas: aprendizaje y crecimiento → procesos internos → clientes → finanzas.",
@@ -289,7 +289,7 @@ export const lessons: Lesson[] = [
       { es: "El Balanced Scorecard une cuatro perspectivas: finanzas, clientes, procesos internos y aprendizaje.", en: "The Balanced Scorecard links four perspectives: finance, customers, internal processes and learning." },
       { es: "Los indicadores adelantados (operativos, de clientes) avisan antes de que la utilidad caiga.", en: "Leading indicators (operating, customer) warn before profit falls." },
     ],
-    exerciseIds: ['COS-13-E1', 'COS-13-E2', 'COS-13-E3', 'COS-13-E4', 'COS-13-E5', 'COS-13-E6'],
+    exerciseIds: ['COS-13-E1', 'COS-13-E2', 'COS-13-E3', 'COS-13-E5', 'COS-13-E6'],
   },
 
   // ───────────────────────────── COS-14 ─────────────────────────────
@@ -302,7 +302,7 @@ export const lessons: Lesson[] = [
       es: "Para decidir solo importan los costos e ingresos relevantes —futuros y que cambian entre alternativas—, aplicados a pedidos especiales, hacer o comprar, eliminar líneas y recursos limitados.",
       en: "To decide, only relevant costs and revenues matter —future ones that differ between alternatives— applied to special orders, make-or-buy, dropping product lines and limited resources.",
     },
-    minutes: 20,
+    minutes: 11,
     objectives: [
       { es: "Separar costos relevantes de costos hundidos e irrelevantes.", en: "Separate relevant costs from sunk and irrelevant costs." },
       { es: "Evaluar pedidos especiales, decisiones de hacer o comprar y de eliminar una línea.", en: "Evaluate special orders, make-or-buy and drop-a-line decisions." },
@@ -311,7 +311,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Costos relevantes, hundidos y de oportunidad", en: "Relevant, sunk and opportunity costs" },
+        heading: { es: "¿Qué costos sí cuentan?", en: "Which costs really count?" },
         body: [
           {
             es: "Un **costo relevante** cumple dos condiciones: es **futuro** y **cambia** según la alternativa que elijas. Si un costo será igual decidas lo que decidas, no ayuda a decidir, aunque sea grande.",
@@ -339,7 +339,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Pedido especial, hacer o comprar y eliminar una línea", en: "Special order, make or buy and dropping a line" },
+        heading: { es: "¿Acepto, hago, compro o cierro?", en: "Accept, make, buy or close?" },
         body: [
           {
             es: "Antes, tres palabras clave. **Costo variable**: el que crece con cada pieza que haces (tela, material, comisión por pieza). **Costo fijo**: el que pagas igual hagas 10 o 1,000 piezas (renta, sueldo del gerente). **Margen de contribución**: lo que queda de la venta después de pagar los costos variables; con eso se cubren los fijos y sale la ganancia. Un costo fijo es **evitable** si desaparece al tomar la decisión (por ejemplo, el sueldo de un supervisor que solo trabaja en esa línea).",
@@ -452,7 +452,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Recursos limitados y procesar más o vender", en: "Limited resources and sell or process further" },
+        heading: { es: "¿Qué hacer si algo escasea?", en: "What if something is scarce?" },
         body: [
           {
             es: "Cuando un recurso es escaso —horas máquina, kilos de materia prima, metros de anaquel—, no gana el producto con mayor margen por unidad, sino el que da más **margen de contribución por unidad del recurso escaso**. Primero se produce ese, hasta cubrir su demanda, y luego el siguiente.",
@@ -571,7 +571,7 @@ export const lessons: Lesson[] = [
       { es: "Con un recurso escaso, prioriza el mayor margen por unidad de ese recurso.", en: "With a scarce resource, prioritize the highest margin per unit of that resource." },
       { es: "Completa el análisis con el costo de oportunidad y los factores cualitativos.", en: "Complete the analysis with opportunity cost and qualitative factors." },
     ],
-    exerciseIds: ['COS-14-E1', 'COS-14-E2', 'COS-14-E3', 'COS-14-E4', 'COS-14-E5', 'COS-14-E6'],
+    exerciseIds: ['COS-14-E1', 'COS-14-E2', 'COS-14-E3', 'COS-14-E4', 'COS-14-E5'],
   },
 ]
 

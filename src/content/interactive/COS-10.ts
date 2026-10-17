@@ -3,13 +3,21 @@ import type { InteractiveLesson } from './types'
 export const intCOS10: InteractiveLesson = {
   lessonId: 'COS-10',
   sections: [
-    // El presupuesto maestro y su cadena
+    // ¿Por dónde empieza el plan?
     [
-      { text: 'Un **presupuesto** es un plan en dinero y cantidades para el futuro, por ejemplo el próximo año. Sirve para que todas las áreas jalen parejo y luego comparar lo real contra lo planeado.' },
-      { text: 'Todo el plan junto se llama **presupuesto maestro**, y es una cadena: cada paso usa el resultado del anterior.' },
+      { text: 'Don Ramón fabrica sillas 🪑. El año pasado hizo de más y se le llenó la bodega. Este año quiere hacer un **presupuesto**: un plan en dinero y cantidades para el futuro.' },
+      {
+        ask: '¿Con qué número debe empezar su plan?',
+        options: [
+          { text: 'Cuántas sillas espera vender', ok: true, reply: '¡Eso! Casi todo depende de las ventas: cuánto fabricar, cuánto material, cuánta gente.' },
+          { text: 'Cuántas sillas puede fabricar', reply: 'Así le volvería a pasar lo del año pasado. Primero va **cuánto espera vender**; de ahí sale cuánto fabricar.' },
+          { text: 'Cuánto dinero tiene en el banco', reply: 'El efectivo se planea después. Todo arranca con **cuánto espera vender**.' },
+        ],
+      },
+      { text: 'El plan completo se llama **presupuesto maestro**. Es una cadena: cada paso usa el resultado del anterior.' },
       {
         order: {
-          title: 'Ordena la cadena del presupuesto en una fábrica de sillas 🪑',
+          title: 'Ordena la cadena del presupuesto de Don Ramón',
           steps: [
             'Ventas: cuántas sillas y cuántos pesos',
             'Producción: cuántas sillas fabricar',
@@ -20,6 +28,7 @@ export const intCOS10: InteractiveLesson = {
           done: 'Todo arranca con **ventas**. Si el pronóstico de ventas está inflado, contamina toda la cadena.',
         },
       },
+      { text: 'Esa cadena forma los presupuestos **operativos**. Además hay **financieros**: flujo de efectivo, inversiones y estado de situación presupuestado.' },
       {
         sort: {
           title: '¿Es presupuesto operativo o financiero?',
@@ -27,33 +36,33 @@ export const intCOS10: InteractiveLesson = {
           items: [
             { text: 'Presupuesto de ventas', bucket: 0, why: 'Es el primero de los operativos.' },
             { text: 'Flujo de efectivo', bucket: 1, why: 'Dice cuánto dinero entra y sale: es financiero.' },
-            { text: 'Mano de obra directa', bucket: 0, why: 'Es parte de la operación de fabricar.' },
+            { text: 'Presupuesto de producción', bucket: 0, why: 'Es parte de la operación de fabricar.' },
             { text: 'Estado de situación presupuestado', bucket: 1, why: 'Es uno de los financieros.' },
-            { text: 'Gastos de operación', bucket: 0, why: 'Es operativo, junto con el costo de ventas.' },
-            { text: 'Presupuesto de inversiones', bucket: 1, why: 'Las inversiones van en la parte financiera.' },
+            { text: 'Gastos de venta y administración', bucket: 0, why: 'Son gastos de operación: operativo.' },
+            { text: 'Inversiones en maquinaria', bucket: 1, why: 'Las inversiones van en la parte financiera.' },
           ],
         },
       },
       {
         calc: {
-          question: 'Una cafetería ☕ espera vender **12,000** cafés el próximo año a **$45** cada uno. ¿Cuánto es su **presupuesto de ventas** en pesos?',
-          answer: 540000,
+          question: 'Don Ramón espera vender **6,000** sillas a **$700** cada una. ¿Cuánto es su **presupuesto de ventas** en pesos?',
+          answer: 4200000,
           hint: 'unidades × precio.',
-          why: '12,000 × $45 = **$540,000**. De aquí parte todo lo demás.',
+          why: '6,000 × $700 = **$4,200,000**. De aquí parte todo lo demás.',
         },
       },
-      { tip: 'Presupuesto maestro = **operativos** (ventas, producción, costos, gastos, resultados) + **financieros** (efectivo, inversiones, estado de situación).' },
+      { tip: 'Presupuesto maestro = **operativos** (empiezan con ventas) + **financieros** (efectivo, inversiones, estado de situación).' },
     ],
-    // Presupuesto de producción
+    // ¿Cuántas piezas fabricar?
     [
-      { text: 'La fábrica no hace justo lo que vende: quiere dejar un **inventario final** de reserva y puede usar el **inventario inicial** que ya tiene en bodega.' },
-      { tip: '**Producción = ventas + inventario final deseado − inventario inicial.**' },
+      { text: 'Don Ramón no fabrica justo lo que vende 📦. Quiere dejar sillas de reserva al final (**inventario final**) y puede usar las que ya tiene en bodega (**inventario inicial**).' },
+      { text: '🧮 **Producción = ventas + inventario final deseado − inventario inicial**' },
       {
         calc: {
-          question: 'Una fábrica de piñatas 🪅 espera vender **4,000**. Tiene **500** en bodega y quiere terminar con **300**. ¿Cuántas debe **producir**?',
-          answer: 3800, unit: 'piñatas',
-          hint: 'ventas + inventario final − inventario inicial.',
-          why: '4,000 + 300 − 500 = **3,800 piñatas**. Como quiere terminar con menos inventario del que tiene, fabrica menos de lo que vende.',
+          question: 'Espera vender **6,000** sillas, tiene **500** en bodega y quiere terminar con **800**. ¿Cuántas debe **producir**?',
+          answer: 6300, unit: 'sillas',
+          hint: '6,000 + 800 − 500.',
+          why: '6,000 + 800 − 500 = **6,300 sillas**. Quiere terminar con más de las que tiene, así que fabrica más de lo que vende.',
         },
       },
       {
@@ -69,39 +78,47 @@ export const intCOS10: InteractiveLesson = {
             { label: 'Sillas a producir', calc: (x) => x.v + x.f - x.i, main: true },
           ],
           goal: {
-            text: 'Haz que la fábrica **produzca menos sillas de las que vende**.',
+            text: 'Haz que Don Ramón **produzca menos sillas de las que vende**.',
             check: (x) => x.v + x.f - x.i < x.v,
             done: 'Si quieres terminar con **menos** inventario del que tienes hoy, fabricas menos de lo que vendes. Si quieres más, fabricas de más.',
           },
         },
       },
       {
-        ask: 'La fábrica tiene **200** sillas en bodega y quiere terminar el año con **900**. ¿Qué pasa con la producción?',
+        ask: 'Tiene **200** sillas en bodega y quiere terminar el año con **900**. ¿Qué pasa con la producción?',
         options: [
-          { text: 'Produce más de lo que vende', ok: true, reply: '¡Exacto! Quiere subir su inventario de 200 a 900, así que debe fabricar 700 sillas extra además de las que vende.' },
-          { text: 'Produce menos de lo que vende', reply: 'Al revés: quiere terminar con **más** inventario del que tiene, así que debe fabricar de más.' },
+          { text: 'Produce más de lo que vende', ok: true, reply: '¡Exacto! Quiere subir su inventario de 200 a 900, así que fabrica 700 sillas extra además de las que vende.' },
+          { text: 'Produce menos de lo que vende', reply: 'Al revés: quiere terminar con **más** inventario del que tiene, así que fabrica de más.' },
           { text: 'Produce exactamente lo que vende', reply: 'Eso pasa solo si el inventario inicial y el final son iguales. Aquí no lo son.' },
         ],
       },
+      { tip: 'Inventario final mayor que el inicial → produces **más** de lo que vendes. Menor → produces **menos**.' },
     ],
-    // Materiales, mano de obra y gastos
+    // ¿Cuánto material y trabajo necesitas?
     [
-      { text: 'Con las unidades a producir ya puedes calcular lo demás. La **mano de obra directa** (MOD) son los sueldos de quienes fabrican.' },
+      { text: 'Este trimestre Don Ramón va a producir **3,000** sillas. Con ese número saca lo demás 👇\n👷 **Mano de obra directa** = sillas × horas por silla × pago por hora\n🪵 **Materiales** = lo que pide la producción + inventario final − inventario inicial' },
       {
         calc: {
-          question: 'Un taller 🔧 va a producir **3,000** mesas. Cada una lleva **2 horas** de trabajo y la hora se paga a **$90**. ¿Cuánto es el presupuesto de **mano de obra directa**?',
+          question: 'Cada silla lleva **2 horas** de trabajo y la hora se paga a **$90**. ¿Cuánto es el presupuesto de **mano de obra directa**?',
           answer: 540000,
-          hint: 'unidades × horas por unidad × tarifa por hora.',
+          hint: '3,000 × 2 × 90.',
           why: '3,000 × 2 × $90 = **$540,000**.',
         },
       },
-      { text: 'Para los **materiales** primero sacas cuánto necesita la producción y luego ajustas por los inventarios de material para saber cuánto **comprar**.' },
       {
         calc: {
-          question: 'Las 3,000 mesas necesitan **4 tablas** cada una. Quieres terminar con **1,000** tablas en bodega y hoy tienes **1,500**. ¿Cuántas tablas debes **comprar**?',
+          question: 'Cada silla lleva **4 tablas**. Tiene **1,500** tablas en bodega y quiere terminar con **1,000**. ¿Cuántas tablas debe **comprar**?',
           answer: 11500, unit: 'tablas',
-          hint: 'primero 3,000 × 4; luego + inventario final − inventario inicial de tablas.',
-          why: 'Material requerido: 3,000 × 4 = 12,000. Compras: 12,000 + 1,000 − 1,500 = **11,500 tablas**.',
+          hint: 'Primero 3,000 × 4; luego + inventario final − inventario inicial.',
+          why: 'Necesita: 3,000 × 4 = 12,000. Compras: 12,000 + 1,000 − 1,500 = **11,500 tablas**.',
+        },
+      },
+      {
+        calc: {
+          question: 'Cada tabla cuesta **$40**. ¿Cuánto le costarán las **compras** de tablas?',
+          answer: 460000,
+          hint: 'tablas a comprar × precio por tabla.',
+          why: '11,500 × $40 = **$460,000**.',
         },
       },
       {
@@ -113,10 +130,10 @@ export const intCOS10: InteractiveLesson = {
             { text: 'Todo desemboca en el estado de resultados presupuestado', ok: true },
             { text: 'El presupuesto de mano de obra se hace antes que el de ventas', ok: false },
           ],
-          why: 'Primero ventas, luego producción, luego materiales, MOD y gastos (con parte fija y variable). Todo termina en el estado de resultados presupuestado.',
+          why: 'Primero ventas, luego producción, luego materiales, mano de obra y gastos (con parte fija y variable). Todo termina en el estado de resultados presupuestado.',
         },
       },
-      { tip: 'MOD = unidades a producir × horas por unidad × tarifa por hora.' },
+      { tip: 'Para comprar material: primero cuánto **necesita** la producción, luego ajustas por inventarios, y al final multiplicas por el precio.' },
     ],
   ],
 }

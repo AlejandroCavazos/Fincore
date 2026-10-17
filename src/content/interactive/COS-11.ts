@@ -3,44 +3,56 @@ import type { InteractiveLesson } from './types'
 export const intCOS11: InteractiveLesson = {
   lessonId: 'COS-11',
   sections: [
-    // Qué es y en qué se distingue de la financiera
+    // Números para decidir adentro
     [
-      { text: 'La **contabilidad administrativa** da información a la gente de **adentro** (dueños, directores, gerentes) para decidir. La **financiera** hace estados para los de **afuera**: bancos, inversionistas, autoridades.' },
+      { text: 'Lupita tiene 3 taquerías 🌮. Su banco le pide estados financieros cada año. Pero ella quiere saber **cada lunes** qué sucursal deja más.' },
+      {
+        ask: '¿Qué contabilidad le da ese reporte de cada lunes?',
+        options: [
+          { text: 'La administrativa', ok: true, reply: '¡Eso! Es información para decidir **adentro** del negocio.' },
+          { text: 'La financiera', reply: 'La financiera hace estados generales para los de **afuera**, como el banco. El reporte de cada lunes es **administrativa**.' },
+          { text: 'La fiscal', reply: 'La fiscal es para los impuestos. Para decidir qué sucursal conviene, se usa la **administrativa**.' },
+        ],
+      },
+      { text: '👥 **Para quién:** administrativa → adentro; financiera → afuera.\n📏 **Reglas:** administrativa → el formato que más ayude; financiera → NIF obligatorias.\n🔮 **Tiempo:** administrativa → pasado y futuro; financiera → sobre todo pasado.\n🔍 **Detalle:** administrativa → por sucursal o producto; financiera → la empresa entera.' },
       {
         sort: {
           title: '¿Administrativa o financiera?',
           buckets: ['Administrativa', 'Financiera'],
           items: [
-            { text: 'Reporte semanal de ventas por sucursal para el director', bucket: 0, why: 'Es para uso interno y por segmento.' },
+            { text: 'Reporte semanal de ventas por sucursal para Lupita', bucket: 0, why: 'Es para uso interno y por sucursal.' },
             { text: 'Estados financieros anuales que pide el banco', bucket: 1, why: 'Son para un usuario externo.' },
             { text: 'Proyección de ventas del próximo año', bucket: 0, why: 'Mira al futuro: típico de la administrativa.' },
-            { text: 'Debe seguir las NIF obligatoriamente', bucket: 1, why: 'La administrativa no está obligada a seguir las NIF.' },
-            { text: 'Un dato aproximado pero a tiempo', bucket: 0, why: 'La administrativa prefiere la oportunidad.' },
-            { text: 'Mira la empresa en conjunto, sobre todo el pasado', bucket: 1, why: 'Así trabaja la financiera.' },
+            { text: 'Debe seguir las NIF', bucket: 1, why: 'La administrativa no está obligada a seguir las NIF.' },
+            { text: 'Usa el formato que más ayude a decidir', bucket: 0, why: 'Como es interna, tiene formato libre.' },
+            { text: 'Presenta a la empresa en conjunto', bucket: 1, why: 'Así trabaja la financiera.' },
           ],
         },
       },
       {
-        ask: 'El gerente de Grupo Tacos Felices 🌮 quiere un reporte de margen **por sucursal** con un formato propio, sin seguir las NIF. ¿Se puede?',
-        options: [
-          { text: 'No, todo reporte contable debe seguir las NIF', reply: 'Las NIF son obligatorias para los estados de usuarios externos. Un reporte interno puede tener el formato que más ayude.' },
-          { text: 'Sí, es contabilidad administrativa para uso interno', ok: true, reply: '¡Así es! Como es para decidir adentro, puede usar el formato que más sirva.' },
-          { text: 'Solo si lo autoriza el banco', reply: 'El banco no tiene nada que ver: es un reporte interno.' },
-        ],
+        multi: {
+          title: '¿Cuáles son reportes de contabilidad administrativa? Marca todos.',
+          items: [
+            { text: 'Costo de cada taco para fijar precios', ok: true },
+            { text: 'Presupuesto de gastos del próximo trimestre', ok: true },
+            { text: 'Margen por sucursal', ok: true },
+            { text: 'Estados financieros anuales para el banco', ok: false },
+          ],
+          why: 'Los tres primeros son internos, por producto o sucursal, o miran al futuro. Los estados anuales para el banco son de la **financiera**.',
+        },
       },
-      { tip: 'Administrativa: **adentro**, futuro, por segmentos, a tiempo. Financiera: **afuera**, NIF, empresa en conjunto.' },
+      { tip: 'Administrativa: **adentro**, formato libre, futuro, por partes. Financiera: **afuera**, NIF, empresa entera.' },
     ],
-    // Para qué sirve: planear, controlar y decidir
+    // Planear, controlar y decidir
     [
-      { text: 'La contabilidad administrativa sirve para tres cosas: **planear**, **controlar** y **decidir**.' },
+      { text: 'Lupita usa sus números para tres cosas 🎯:\n📝 **Planear:** fijar metas y cómo lograrlas.\n🔎 **Controlar:** comparar lo real con lo planeado y corregir a tiempo.\n🤔 **Decidir:** elegir entre alternativas.' },
       {
         match: {
-          title: 'Une cada palabra con lo que hace la taquería',
+          title: 'Une cada palabra con lo que hace Lupita',
           pairs: [
             ['Planear', 'Fijar la meta de vender 9,000 tacos al mes'],
             ['Controlar', 'Revisar cada semana cuánto vendió y cuánto gastó en carne'],
             ['Decidir', 'Evaluar si abrir también en la noche'],
-            ['Contralor', 'Quien coordina los reportes internos y cuida los costos'],
           ],
         },
       },
@@ -50,69 +62,61 @@ export const intCOS11: InteractiveLesson = {
           buckets: ['Planear', 'Controlar', 'Decidir'],
           items: [
             { text: 'Hacer el presupuesto del próximo año', bucket: 0, why: 'Fijar metas y cómo lograrlas es planear.' },
-            { text: 'Comparar lo gastado en gas contra lo planeado', bucket: 1, why: 'Comparar real contra plan y corregir es controlar.' },
-            { text: 'Elegir entre comprar o rentar un horno', bucket: 2, why: 'Elegir entre alternativas es decidir.' },
-            { text: 'Análisis costo-volumen-utilidad para fijar metas de venta', bucket: 0, why: 'El análisis costo-volumen-utilidad es parte de planear.' },
+            { text: 'Cada viernes, comparar el gas gastado en cada sucursal contra lo presupuestado', bucket: 1, why: 'Comparar real contra plan y pedir explicaciones es controlar.' },
+            { text: 'Elegir entre comprar o rentar un trompo nuevo', bucket: 2, why: 'Elegir entre alternativas es decidir.' },
+            { text: 'Fijar cuánto debe vender cada sucursal', bucket: 0, why: 'Es fijar una meta: planear.' },
             { text: 'Corregir a tiempo un gasto que se salió del plan', bucket: 1, why: 'Corregir a tiempo es controlar.' },
           ],
         },
       },
-      { tip: 'En un negocio pequeño, el papel del **contralor** lo hace el propio dueño o su contador.' },
-    ],
-    // Costeo directo frente a costeo absorbente
-    [
-      { text: 'Son dos formas de calcular cuánto cuesta cada producto. La pregunta es qué hacer con los **costos fijos de la fábrica** (renta de la nave, sueldo del supervisor).' },
       {
-        match: {
-          title: 'Une cada término con su significado',
-          pairs: [
-            ['Costeo absorbente', 'El producto carga también los fijos de fabricación'],
-            ['Costeo directo', 'El producto solo carga los costos variables de fabricación'],
-            ['Margen de contribución', 'Lo que queda de la venta tras los costos variables'],
-            ['Gasto del periodo', 'Se resta completo en el mes, no se guarda en inventario'],
-          ],
-        },
+        ask: 'En empresas medianas y grandes, ¿quién suele coordinar estos reportes internos?',
+        options: [
+          { text: 'El contralor', ok: true, reply: '¡Así es! Diseña los reportes internos, cuida los costos y apoya a la dirección. En un negocio pequeño lo hace el dueño o su contador.' },
+          { text: 'El banco', reply: 'El banco está afuera. Adentro, quien coordina los reportes internos es el **contralor**.' },
+          { text: 'Los clientes', reply: 'Los clientes no ven los reportes internos. Los coordina el **contralor**.' },
+        ],
       },
-      { text: 'Si produces más de lo que vendes, el absorbente deja parte de los fijos «guardados» en el inventario y muestra **más utilidad**.' },
+      { tip: 'Planear = **metas**. Controlar = **comparar y corregir**. Decidir = **elegir**.' },
+    ],
+    // ¿Cuánto cuesta cada producto?
+    [
+      { text: 'Lupita también embotella su salsa 🌶️. La duda: los fijos de la fábrica (renta de la nave, sueldo del supervisor), ¿se reparten entre los frascos o se restan completos en el mes?' },
+      { text: '🧱 **Costeo absorbente:** cada frasco carga sus variables **y** su parte de los fijos de fábrica. Es el que piden los estados para terceros.\n⚡ **Costeo directo:** cada frasco solo carga sus variables; los fijos de fábrica se restan completos en el mes.\nEn los dos, los gastos de operación se restan completos.' },
       {
-        sim: {
-          title: 'Absorbente vs. directo',
-          inputs: [
-            { key: 'u', label: 'Unidades que quedan en inventario (producidas − vendidas)', min: 0, max: 5000, step: 500, value: 0 },
-            { key: 'f', label: 'Fijo de fabricación por unidad', min: 5, max: 30, step: 5, value: 15 },
-          ],
-          outputs: [
-            { label: 'Fijos «guardados» en el inventario', calc: (x) => x.u * x.f },
-            { label: 'Cuánto más utilidad muestra el absorbente', calc: (x) => x.u * x.f, main: true },
-          ],
-          goal: {
-            text: 'Haz que la utilidad absorbente supere a la directa por **$50,000 o más**.',
-            check: (x) => x.u * x.f >= 50000,
-            done: 'Diferencia = (producidas − vendidas) × fijo por unidad. Si producción y ventas son iguales, las dos utilidades coinciden.',
-          },
+        calc: {
+          question: 'Hizo **5,000** frascos. Variable: **$20** por frasco. Fijos de fábrica: **$25,000**. ¿Cuál es el costo por frasco con **costeo absorbente**?',
+          answer: 25,
+          hint: 'variable + fijos ÷ frascos producidos: 20 + 25,000 ÷ 5,000.',
+          why: '25,000 ÷ 5,000 = $5 de fijo por frasco. 20 + 5 = **$25**.',
         },
       },
       {
         calc: {
-          question: 'Una fábrica produjo **10,000** unidades y vendió **7,000**. El fijo de fabricación por unidad es **$20**. ¿Por cuánto supera la utilidad absorbente a la directa?',
-          answer: 60000,
-          hint: '(producidas − vendidas) × fijo por unidad.',
-          why: '(10,000 − 7,000) × $20 = **$60,000** que se quedan en el inventario con el absorbente.',
+          question: 'Vendió **4,000** frascos a **$50**. Gastos fijos de operación: **$10,000**. ¿Cuál es la utilidad con **costeo directo**?',
+          answer: 85000,
+          hint: '4,000 × (50 − 20) − 25,000 − 10,000.',
+          why: 'Margen: 4,000 × 30 = 120,000. Menos todos los fijos (25,000 + 10,000) = **$85,000**.',
         },
       },
       {
-        multi: {
-          title: '¿Qué es cierto? Marca todas.',
-          items: [
-            { text: 'El absorbente es el que exigen los estados financieros para terceros', ok: true },
-            { text: 'El costeo directo muestra primero el margen de contribución', ok: true },
-            { text: 'Si vendes más de lo que produces, el absorbente muestra menos utilidad que el directo', ok: true },
-            { text: 'En el costeo directo, los fijos de fabricación se guardan en el inventario', ok: false },
-          ],
-          why: 'En el directo los fijos de fabricación son **gasto del periodo**. Por eso es tan útil para decidir: separa lo que cambia con el volumen de lo que no.',
+        calc: {
+          question: '¿Y la utilidad con **costeo absorbente**?',
+          answer: 90000,
+          hint: '4,000 × (50 − 25) − 10,000.',
+          why: '4,000 × 25 = 100,000. Menos 10,000 de operación = **$90,000**.',
         },
       },
-      { tip: 'Producción = ventas → las dos utilidades son **iguales**. Producción > ventas → gana el **absorbente**.' },
+      { text: '¿Por qué $5,000 más? Quedaron **1,000** frascos en bodega, cada uno con **$5** de fijos «guardados». Si produces más de lo que vendes, el absorbente muestra **más utilidad**.' },
+      {
+        calc: {
+          question: 'Otro mes: fijos de fábrica **$30,000**, produjo **6,000** frascos y vendió **4,800**. ¿Por cuánto supera la utilidad absorbente a la directa?',
+          answer: 6000,
+          hint: 'Fijo por frasco = 30,000 ÷ 6,000. Luego × frascos que quedaron (6,000 − 4,800).',
+          why: '30,000 ÷ 6,000 = $5 por frasco. Quedaron 1,200 frascos: 1,200 × 5 = **$6,000**.',
+        },
+      },
+      { tip: 'Producción = ventas → las dos utilidades son **iguales**. Produces más de lo que vendes → gana el **absorbente**. Vendes más de lo que produces → gana el **directo**.' },
     ],
   ],
 }

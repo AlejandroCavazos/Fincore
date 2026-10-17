@@ -3,27 +3,24 @@ import type { InteractiveLesson } from './types'
 export const intCOS06: InteractiveLesson = {
   lessonId: 'COS-06',
   sections: [
-    // ¿Qué es un costo estándar?
+    // ¿Cuánto debería costar?
     [
-      { text: 'Un **costo estándar** es lo que un producto **debería** costar si todo sale como se planeó. Es como la receta de la abuela: cantidades y precios exactos, fijados **antes** de producir.' },
+      { text: 'Doña Mari hace **barras de chocolate** 🍫. Su receta dice: "0.2 kg de cacao a $100 el kilo". Eso es lo que **debería** costar cada barra.' },
       {
-        match: {
-          title: 'Une cada palabra con su significado',
-          pairs: [
-            ['Cantidad estándar', 'Cuánto material u horas debería llevar una unidad'],
-            ['Precio estándar', 'Cuánto debería costar cada kilo u hora'],
-            ['Hoja de costo estándar', 'Todo el estándar del producto junto, en una sola hoja'],
-            ['Variación', 'La diferencia entre lo real y el estándar'],
-          ],
-        },
+        ask: 'Lo que un producto **debería** costar si todo sale como se planeó, ¿cuándo se fija?',
+        options: [
+          { text: 'Antes de producir', ok: true, reply: '¡Eso! Se fija antes, con estudios, experiencia y precios esperados. Se llama **costo estándar**.' },
+          { text: 'Después de vender', reply: 'Entonces ya no serviría para comparar. El **costo estándar** se fija **antes** de producir.' },
+          { text: 'Nunca, se adivina', reply: 'No se adivina: se fija **antes** de producir, con estudios, experiencia y precios esperados.' },
+        ],
       },
-      { text: 'La cafetería de **Grupo Tacos Felices** ☕ también vende tamales. Arma su estándar:' },
+      { text: 'Cada estándar tiene dos partes:\n⚖️ **Cantidad:** cuánto material u horas lleva una pieza.\n💲 **Precio:** cuánto cuesta cada kilo u hora.\nTodo junto forma la **hoja de costo estándar**.' },
       {
         calc: {
-          question: 'Un tamal lleva **0.1 kg** de masa a **$30** el kilo y **0.05 horas** de trabajo a **$100** la hora. ¿Cuál es su **costo estándar** por tamal?',
-          answer: 8,
-          hint: 'multiplica cantidad × precio en cada elemento y suma.',
-          why: 'Masa: 0.1 × 30 = 3. Mano de obra: 0.05 × 100 = 5. Estándar = 3 + 5 = **$8 por tamal**.',
+          question: 'Una barra lleva **0.2 kg** de cacao a **$100** el kilo y **0.05 horas** de trabajo a **$120** la hora. ¿Cuál es su **costo estándar**?',
+          answer: 26,
+          hint: 'Cantidad × precio en cada parte, y suma.',
+          why: 'Cacao: 0.2 × 100 = 20. Trabajo: 0.05 × 120 = 6. Estándar = **$26 por barra**.',
         },
       },
       {
@@ -31,26 +28,34 @@ export const intCOS06: InteractiveLesson = {
           title: '¿Estándar ideal o alcanzable?',
           buckets: ['Ideal (perfección)', 'Alcanzable (realista)'],
           items: [
-            { text: 'Cero desperdicio y máquinas que nunca se paran', bucket: 0, why: 'Eso es perfección: casi imposible de lograr.' },
-            { text: 'Considera un poco de merma normal y los descansos', bucket: 1, why: 'Es exigente, pero el equipo sí lo puede cumplir.' },
-            { text: 'Nadie se equivoca nunca', bucket: 0, why: 'Suena bonito, pero no es realista: es un estándar ideal.' },
-            { text: 'Exigente, pero el equipo lo logra si trabaja bien', bucket: 1, why: 'Justo eso es un estándar alcanzable, y motiva más.' },
+            { text: 'Cero desperdicio y máquinas que nunca paran', bucket: 0, why: 'Eso es perfección: casi imposible.' },
+            { text: 'Considera un poco de merma normal y descansos', bucket: 1, why: 'Es exigente, pero el equipo sí lo cumple.' },
+            { text: 'Nadie se equivoca nunca', bucket: 0, why: 'Suena bonito, pero no es realista.' },
+            { text: 'Exigente, pero se logra si se trabaja bien', bucket: 1, why: 'Eso es alcanzable, y motiva más.' },
           ],
         },
       },
       {
-        ask: 'El estándar de una barra de chocolate es **$20** y en realidad costó **$18**. ¿Cómo es la variación?',
+        ask: 'El estándar de la barra es **$26** y en realidad costó **$24**. ¿Cómo es la **variación**?',
         options: [
           { text: 'Favorable (F)', ok: true, reply: '¡Exacto! Gastaste **menos** de lo que debías: es favorable.' },
-          { text: 'Desfavorable (D)', reply: 'Desfavorable sería gastar **más** que el estándar. Aquí gastaste menos.' },
+          { text: 'Desfavorable (D)', reply: 'Desfavorable sería gastar **más** que el estándar. Aquí gastaste menos: es **favorable**.' },
+          { text: 'No hay variación', reply: 'Sí la hay: $2 de diferencia. Como gastaste menos, es **favorable**.' },
         ],
       },
-      { tip: 'Gastaste **menos** que el estándar → **F**. Gastaste **más** → **D**. Y así revisas solo las variaciones grandes: **administración por excepción**.' },
+      { tip: '**Variación** = real contra estándar. Gastaste **menos** → **F**. Gastaste **más** → **D**.' },
     ],
-    // Variaciones de materia prima
+    // ¿Compraste caro o usaste de más?
     [
-      { text: 'La variación de materiales se parte en dos: **precio** (¿compraste caro o barato?) y **cantidad** (¿usaste más o menos de lo permitido?).' },
-      { text: 'Haces 1,000 barras de chocolate 🍫. El estándar permite **200 kg** de cacao a **$100** el kilo. Mueve lo real:' },
+      { text: 'Mari hizo 1,000 barras. Se permitían **200 kg** de cacao a **$100**. La variación de material se parte en dos:\n💲 **Precio:** ¿compró caro o barato?\n⚖️ **Cantidad:** ¿usó más o menos de lo permitido?' },
+      {
+        order: {
+          title: 'Arma la fórmula de la variación en precio',
+          steps: ['(Precio real', '− Precio estándar)', '× Cantidad real'],
+          done: 'Variación en precio = (precio real − precio estándar) × cantidad **real**.',
+        },
+      },
+      { text: '📏 Variación en cantidad = (cantidad real − cantidad **permitida**) × precio estándar.\n➕ Si sale positiva es **D**; si sale negativa es **F**.' },
       {
         sim: {
           title: 'Variaciones del cacao',
@@ -66,52 +71,51 @@ export const intCOS06: InteractiveLesson = {
           goal: {
             text: 'Logra que **las dos** variaciones salgan **favorables** (números negativos).',
             check: (x) => x.p < 100 && x.q < 200,
-            done: 'Precio: (real − estándar) × cantidad **real**. Cantidad: (real − permitida) × precio **estándar**. Negativo = favorable.',
+            done: 'Compra más barato que el estándar y usa menos de lo permitido: las dos salen F.',
           },
         },
       },
-      { text: 'Ahora una mermelada 🍓: el estándar es **0.3 kg** de fruta por frasco a **$40** el kilo.' },
       {
         calc: {
-          question: 'Se hicieron **2,000 frascos**. ¿Cuál es la **cantidad estándar permitida** de fruta, en kilos?',
+          question: 'Ahora bombones: el estándar es **0.3 kg** de chocolate por caja. Mari hizo **2,000 cajas**. ¿Cuál es la **cantidad estándar permitida**, en kilos?',
           answer: 600, unit: 'kg',
-          hint: 'estándar por unidad × unidades realmente producidas.',
-          why: '0.3 × 2,000 = **600 kg**. Es lo que debiste usar para lo que de verdad produjiste.',
+          hint: 'Estándar por pieza × piezas realmente producidas.',
+          why: '0.3 × 2,000 = **600 kg**. Es lo que debió usar para lo que de verdad produjo.',
         },
       },
       {
         calc: {
-          question: 'Se usaron **650 kg** de fruta. ¿De cuánto es la **variación en cantidad**, en pesos?',
+          question: 'El kilo estándar cuesta **$40** y usó **650 kg**. ¿De cuánto es la **variación en cantidad**?',
           answer: 2000,
           hint: '(cantidad real − permitida) × precio estándar.',
-          why: '(650 − 600) × 40 = 50 × 40 = **$2,000 D**. Sale positiva: hubo desperdicio.',
+          why: '(650 − 600) × 40 = **$2,000 D**. Sale positiva: hubo desperdicio.',
         },
       },
       {
-        ask: 'Esos 650 kg se compraron a **$38** el kilo (estándar $40). ¿Cuál es la **variación en precio**?',
+        ask: 'Esos 650 kg los compró a **$38** el kilo (estándar $40). ¿Cuál es la **variación en precio**?',
         options: [
-          { text: '$1,200 F, porque (38 − 40) × 600', reply: 'Casi: en la variación en precio se multiplica por la cantidad **real** (650), no por la permitida.' },
-          { text: '$1,300 F, porque (38 − 40) × 650', ok: true, reply: '¡Bien! (38 − 40) × 650 = −1,300 → **$1,300 F**: compraste más barato.' },
-          { text: '$1,300 D, porque compraste 650 kg', reply: 'El signo sale negativo: compraste más barato que el estándar. Eso es **favorable**.' },
+          { text: '$1,300 F', ok: true, reply: '¡Bien! (38 − 40) × 650 = −1,300 → **$1,300 F**: compró más barato.' },
+          { text: '$1,200 F', reply: 'Casi: se multiplica por la cantidad **real** (650), no por la permitida (600). Es **$1,300 F**.' },
+          { text: '$1,300 D', reply: 'Sale negativa: compró más barato que el estándar. Eso es **favorable**: $1,300 F.' },
         ],
       },
       { tip: 'Precio → por la cantidad **real**. Cantidad → por el precio **estándar**. Positivo = **D**, negativo = **F**.' },
     ],
-    // Variaciones de mano de obra y su interpretación
+    // ¿Horas caras u horas de más?
     [
-      { text: 'Con la mano de obra es igual, solo cambian los nombres: **tarifa** (lo que pagaste por hora) y **eficiencia** (cuántas horas usaste).' },
-      { text: 'En el taller de Grupo Tacos Felices 🔧 el estándar es **0.25 h** por pieza a **$100** la hora. Hicieron **1,600 piezas** en **380 horas**, pagadas a **$110**.' },
+      { text: 'Con la mano de obra es igual, solo cambian los nombres 👷:\n💲 **Tarifa:** ¿pagaste la hora más cara o más barata?\n⏱️ **Eficiencia:** ¿usaste más o menos horas de las permitidas?' },
+      { text: 'En la chocolatería el estándar es **0.25 h** por caja a **$100** la hora. Hicieron **1,600 cajas** en **380 horas**, pagadas a **$110**.' },
       {
         calc: {
-          question: '¿De cuánto es la **variación en tarifa**, en pesos?',
+          question: '¿De cuánto es la **variación en tarifa**?',
           answer: 3800,
           hint: '(tarifa real − tarifa estándar) × horas reales.',
-          why: '(110 − 100) × 380 = **$3,800 D**. Se pagó más caro por hora.',
+          why: '(110 − 100) × 380 = **$3,800 D**. Se pagó más cara la hora.',
         },
       },
       {
         calc: {
-          question: 'Se permitían 0.25 × 1,600 = 400 horas. ¿De cuánto es la **variación en eficiencia**, en pesos (sin signo)?',
+          question: 'Se permitían 0.25 × 1,600 = 400 horas. ¿De cuánto es la **variación en eficiencia** (sin signo)?',
           answer: 2000,
           hint: '(horas reales − horas permitidas) × tarifa estándar.',
           why: '(380 − 400) × 100 = −2,000 → **$2,000 F**. Trabajaron más rápido de lo esperado.',
@@ -134,18 +138,18 @@ export const intCOS06: InteractiveLesson = {
           seconds: 40,
           labels: ['Favorable (F)', 'Desfavorable (D)'],
           items: [
-            { text: 'Compraste la harina a $18; el estándar es $20', ans: 0 },
-            { text: 'Usaste 520 kg y se permitían 500', ans: 1 },
-            { text: 'Pagaste la hora a $130; el estándar es $120', ans: 1 },
+            { text: 'Compró el cacao a $95; el estándar es $100', ans: 0 },
+            { text: 'Usó 520 kg y se permitían 500', ans: 1 },
+            { text: 'Pagó la hora a $130; el estándar es $120', ans: 1 },
             { text: 'Trabajaron 380 h y se permitían 400', ans: 0 },
-            { text: 'La fórmula dio +$1,500', ans: 1 },
+            { text: 'El proveedor subió el precio por encima del estándar', ans: 1 },
             { text: 'La fórmula dio −$900', ans: 0 },
           ],
         },
       },
       {
         multi: {
-          title: 'Compras consiguió cacao más barato, pero venía de mala calidad. ¿Qué puede pasar? Marca todas.',
+          title: 'Compras consiguió cacao más barato, pero de mala calidad. ¿Qué puede pasar? Marca todas.',
           items: [
             { text: 'Variación en precio favorable', ok: true },
             { text: 'Variación en cantidad desfavorable (más desperdicio)', ok: true },
@@ -155,7 +159,7 @@ export const intCOS06: InteractiveLesson = {
           why: 'Las variaciones **se conectan**: comprar barato (precio F) puede traer más desperdicio (cantidad D). Por eso se revisan juntas.',
         },
       },
-      { tip: 'Tarifa → por las horas **reales**. Eficiencia → por la tarifa **estándar**. Antes de culpar a alguien, mira cómo se conectan las variaciones.' },
+      { tip: 'Tarifa → por las horas **reales**. Eficiencia → por la tarifa **estándar**. Antes de culpar a alguien, mira cómo se conectan.' },
     ],
   ],
 }

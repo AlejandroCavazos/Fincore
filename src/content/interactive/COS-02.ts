@@ -3,46 +3,58 @@ import type { InteractiveLesson } from './types'
 export const intCOS02: InteractiveLesson = {
   lessonId: 'COS-02',
   sections: [
-    // Objeto de costo: directos e indirectos
+    // ¿Directo respecto a qué?
     [
-      { text: 'Un **objeto de costo** es aquello cuyo costo quieres conocer: un producto, un pedido, un cliente o una sucursal. Antes de decir "directo" pregunta: **¿directo respecto a qué?**' },
+      { text: 'Don Chema tiene **Tortas Chema** 🥪, con dos sucursales. Quiere saber cuánto le cuesta **una torta**.' },
+      { text: 'Lo que quieres costear se llama **objeto de costo**: una torta, un pedido, un cliente o una sucursal.' },
+      { text: '🎯 **Directo:** se liga claro y barato al objeto (el pan de esa torta).\n🧩 **Indirecto:** se comparte entre varios y hay que repartirlo (la renta del local).' },
       {
         sort: {
-          title: 'Objeto de costo: un kilo de tortillas 🌮',
+          title: 'Objeto de costo: una torta',
           buckets: ['Directo', 'Indirecto'],
           items: [
-            { text: 'La masa de ese kilo', bucket: 0, why: 'Se liga de forma clara al kilo: directo.' },
-            { text: 'El papel en que se envuelve ese kilo', bucket: 0, why: 'Se puede medir por kilo de forma fácil y barata: directo.' },
-            { text: 'La renta del local', bucket: 1, why: 'Se comparte entre todos los kilos: hay que repartirla.' },
-            { text: 'El sueldo del encargado de la tortillería', bucket: 1, why: 'Atiende todo el negocio, no un kilo: indirecto.' },
-            { text: 'La luz de todo el local', bucket: 1, why: 'Se comparte entre toda la producción: indirecto.' },
+            { text: 'El bolillo de esa torta', bucket: 0, why: 'Se liga claro a esa torta: directo.' },
+            { text: 'El jamón de esa torta', bucket: 0, why: 'Se mide fácil por torta: directo.' },
+            { text: 'La renta del local', bucket: 1, why: 'Se comparte entre todas las tortas: indirecto.' },
+            { text: 'El gas de la plancha que hace todas las tortas', bucket: 1, why: 'Lo usan muchas tortas a la vez: indirecto.' },
+            { text: 'El sueldo del gerente de la sucursal', bucket: 1, why: 'Atiende todo el local, no una torta: indirecto.' },
           ],
         },
       },
       {
-        ask: 'Tortillerías Lupe tiene 3 sucursales. El sueldo del **gerente de la sucursal Centro**, ¿qué es si el objeto de costo es **la sucursal Centro completa**?',
+        ask: 'Ahora el objeto de costo es **la sucursal Centro completa**. El sueldo de su gerente, ¿qué es?',
         options: [
-          { text: 'Indirecto, porque no se liga a ningún kilo', reply: 'Eso sería si el objeto fuera el kilo. Aquí el objeto es la sucursal.' },
           { text: 'Directo, porque es solo de esa sucursal', ok: true, reply: '¡Eso! El mismo costo cambia de etiqueta según el objeto.' },
-          { text: 'No es costo', reply: 'Sí es costo; la pregunta es si es directo o indirecto respecto a la sucursal.' },
+          { text: 'Indirecto, como antes', reply: 'Era indirecto para **una torta**. Para la sucursal completa se liga claro: es **directo**.' },
+          { text: 'No es costo', reply: 'Sí es costo. La pregunta es si es directo o indirecto respecto a la sucursal: es **directo**.' },
         ],
       },
-      { tip: 'No hay costos "directos" a secas: siempre son directos **respecto a un objeto**.' },
+      { tip: 'Antes de decir "directo", pregunta: **¿directo respecto a qué?**' },
     ],
-    // Por función: costos del producto y del periodo
+    // ¿Se guarda o se resta?
     [
-      { text: 'Por **función**: producción, venta y administración. Lo de **producción** se queda en el inventario (**costo del producto**). Lo de venta y administración se resta en el mes (**costo del periodo**).' },
+      { text: 'Chema pagó **$8,000** de luz de la cocina y **$3,000** de luz de la oficina. ¿Son lo mismo?' },
+      {
+        ask: '¿En qué se diferencian esas dos luces?',
+        options: [
+          { text: 'Una es para producir y otra para administrar', ok: true, reply: '¡Exacto! La de la cocina es para hacer tortas; la de la oficina, para administrar.' },
+          { text: 'En nada, las dos son luz', reply: 'Las dos son luz, pero tienen distinta **función**: una es para producir y otra para administrar.' },
+          { text: 'Solo en el monto', reply: 'El monto no importa aquí. Importa la **función**: producir o administrar.' },
+        ],
+      },
+      { text: 'Por **función** hay tres grupos:\n🍳 **Producción:** todo lo de la cocina o fábrica.\n📣 **Venta:** publicidad, comisiones, envíos a clientes.\n🗂️ **Administración:** oficina, contabilidad, dirección.' },
+      { text: '📦 **Costo del producto** (producción): se guarda en el inventario hasta que vendes.\n📅 **Costo del periodo** (venta y administración): se resta en el mes, vendas o no.' },
       {
         sort: {
-          title: 'Una carpintería: ¿cada costo a dónde va?',
-          buckets: ['Producción (costo del producto)', 'Venta (periodo)', 'Administración (periodo)'],
+          title: 'En Tortas Chema, ¿a qué grupo va?',
+          buckets: ['Producción (producto)', 'Venta (periodo)', 'Administración (periodo)'],
           items: [
-            { text: 'La luz de las máquinas del taller', bucket: 0, why: 'Es de la fábrica: CIF, va al inventario.' },
-            { text: 'La madera de los roperos', bucket: 0, why: 'Material directo: costo del producto.' },
-            { text: 'El flete para llevar un ropero al cliente', bucket: 1, why: 'Los fletes a clientes son de venta.' },
-            { text: 'La publicidad en el periódico', bucket: 1, why: 'Ayuda a vender: gasto de venta.' },
-            { text: 'El despacho contable que lleva la contabilidad', bucket: 2, why: 'La contabilidad es administración.' },
-            { text: 'La luz de las oficinas', bucket: 2, why: 'Es de la oficina, no del taller: gasto de administración.' },
+            { text: 'La luz de la cocina', bucket: 0, why: 'Es para producir: costo del producto.' },
+            { text: 'El sueldo del tortero', bucket: 0, why: 'Hace las tortas: costo del producto.' },
+            { text: 'La comisión del repartidor', bucket: 1, why: 'Se paga por vender: periodo.' },
+            { text: 'El anuncio en redes', bucket: 1, why: 'Ayuda a vender: periodo.' },
+            { text: 'El sueldo de la contadora de la oficina', bucket: 2, why: 'Es administración: se resta en el mes.' },
+            { text: 'La luz de la oficina', bucket: 2, why: 'No es de la cocina: gasto de administración.' },
           ],
         },
       },
@@ -52,75 +64,82 @@ export const intCOS02: InteractiveLesson = {
           seconds: 40,
           labels: ['Costo del producto', 'Costo del periodo'],
           items: [
-            { text: 'Sueldo del carpintero', ans: 0 },
+            { text: 'El jamón de las tortas', ans: 0 },
             { text: 'Comisión del vendedor', ans: 1 },
-            { text: 'Renta de la nave de producción', ans: 0 },
-            { text: 'Sueldo del director general', ans: 1 },
-            { text: 'Pegamento para los muebles', ans: 0 },
-            { text: 'Anuncio en redes', ans: 1 },
-            { text: 'Sueldo del supervisor del taller', ans: 0 },
+            { text: 'Renta de la cocina', ans: 0 },
+            { text: 'Sueldo del director', ans: 1 },
+            { text: 'Gas de la plancha', ans: 0 },
+            { text: 'Volantes de publicidad', ans: 1 },
           ],
         },
       },
-      { tip: 'Producción → **inventario** hasta que vendes. Venta y administración → **se restan en el mes**, vendas o no.' },
+      { tip: 'Producción → **inventario** hasta vender. Venta y administración → **se restan en el mes**.' },
     ],
-    // Comportamiento: fijos, variables y mixtos
+    // ¿Qué cambia al producir más?
     [
-      { text: 'Ahora mira qué pasa al **producir más**. El **variable** sube con el volumen (más tortas, más bolillos). El **fijo** queda igual en total (la renta).' },
+      {
+        ask: 'Si Chema vende **el doble** de tortas, ¿qué pasa con la **renta** del local?',
+        options: [
+          { text: 'Se queda igual', ok: true, reply: '¡Bien! La renta es **fija**: no cambia si vende 100 o 300 tortas.' },
+          { text: 'Se duplica', reply: 'Lo que se duplica son los bolillos. La renta es **fija**: se queda igual.' },
+          { text: 'Baja a la mitad', reply: 'La renta total no baja. Se queda igual: es un costo **fijo**.' },
+        ],
+      },
+      { text: '📈 **Variable:** sube con el volumen (más tortas, más bolillos).\n🏠 **Fijo:** igual en total (la renta).\n📱 **Mixto:** una parte fija y otra variable (celular con renta más consumo extra).' },
       {
         sort: {
           title: '¿Fijo, variable o mixto?',
           buckets: ['Fijo', 'Variable', 'Mixto'],
           items: [
-            { text: 'Renta del local de tortas', bucket: 0, why: 'Es la misma si vendes 100 o 300 tortas.' },
+            { text: 'Renta del local', bucket: 0, why: 'Es la misma si vende 100 o 300 tortas.' },
             { text: 'Los bolillos de cada torta', bucket: 1, why: 'El doble de tortas, el doble de bolillos.' },
-            { text: 'El recibo del celular: renta mensual más consumo extra', bucket: 2, why: 'Tiene una parte fija y otra variable.' },
-            { text: 'El jamón de cada torta', bucket: 1, why: 'Sube en proporción a las tortas.' },
-            { text: 'El sueldo mensual del encargado', bucket: 0, why: 'No cambia si vendes más o menos tortas.' },
+            { text: 'Sueldo del vendedor: base fija más comisión', bucket: 2, why: 'Tiene una parte fija y otra que sube con las ventas.' },
+            { text: 'Camioneta rentada: cuota mensual más cargo por kilómetro', bucket: 2, why: 'Cuota fija más una parte que sube con los kilómetros.' },
+            { text: 'Sueldo mensual del encargado', bucket: 0, why: 'No cambia si vende más o menos tortas.' },
           ],
         },
       },
-      { text: 'Lo curioso: **por unidad** es al revés. El fijo se reparte entre más piezas y **baja**; el variable se queda igual por pieza. Juega con los números:' },
+      { text: 'Lo curioso: **por torta** es al revés. El fijo se reparte entre más tortas y **baja**. El variable se queda igual por torta. Pruébalo:' },
       {
         sim: {
-          title: 'El taller de tazas ☕',
+          title: 'El costo de cada torta 🥪',
           inputs: [
             { key: 'f', label: 'Costo fijo del mes (renta)', min: 10000, max: 40000, step: 2000, value: 30000 },
-            { key: 'v', label: 'Costo variable por taza', min: 20, max: 60, step: 5, value: 50 },
-            { key: 'u', label: 'Tazas producidas', min: 500, max: 3000, step: 250, value: 1000 },
+            { key: 'v', label: 'Costo variable por torta', min: 15, max: 40, step: 5, value: 25 },
+            { key: 'u', label: 'Tortas del mes', min: 500, max: 3000, step: 250, value: 1000 },
           ],
           outputs: [
             { label: 'Costo total', calc: (x) => x.f + x.v * x.u },
-            { label: 'Costo unitario', calc: (x) => Math.round(((x.f + x.v * x.u) / x.u) * 100) / 100, main: true },
+            { label: 'Costo por torta', calc: (x) => Math.round(((x.f + x.v * x.u) / x.u) * 100) / 100, main: true },
           ],
           goal: {
-            text: 'Baja el **costo unitario a $65 o menos**.',
-            check: (x) => (x.f + x.v * x.u) / x.u <= 65,
-            done: 'Producir más reparte el fijo entre más tazas. El variable por taza no cambia con el volumen.',
+            text: 'Baja el **costo por torta a $40 o menos**.',
+            check: (x) => (x.f + x.v * x.u) / x.u <= 40,
+            done: 'Hacer más tortas reparte el fijo entre más piezas. El variable por torta no cambia.',
           },
         },
       },
       {
         calc: {
-          question: 'Fijo **$20,000** y variable **$40** por pieza. Con **2,000** piezas, ¿cuál es el **costo unitario**?',
+          question: 'Fijo **$24,000** al mes y **$30** variables por torta. Con **1,200** tortas, ¿cuál es el **costo por torta**?',
           answer: 50,
-          hint: 'costo total = fijo + variable × unidades; luego divide entre unidades.',
-          why: '40 × 2,000 = 80,000; 20,000 + 80,000 = 100,000; 100,000 ÷ 2,000 = **$50** ($10 de fijo + $40 de variable).',
+          hint: 'Costo total = fijo + variable × tortas. Luego divide entre las tortas.',
+          why: '30 × 1,200 = 36,000. 24,000 + 36,000 = 60,000. 60,000 ÷ 1,200 = **$50**. Con 2,400 tortas sería 96,000 ÷ 2,400 = $40.',
         },
       },
       {
         multi: {
           title: '¿Qué es cierto? Marca todas.',
           items: [
-            { text: 'El costo variable es constante por unidad', ok: true },
-            { text: 'El costo fijo por unidad baja cuando produces más', ok: true },
-            { text: 'Si rentas otro local, el costo fijo da un salto', ok: true },
-            { text: 'Si el volumen se duplica, el costo total también se duplica', ok: false },
+            { text: 'El costo variable es igual por unidad', ok: true },
+            { text: 'El costo fijo por unidad baja al producir más', ok: true },
+            { text: 'Si renta otro local, el costo fijo da un salto', ok: true },
+            { text: 'Si las tortas se duplican, el costo total se duplica', ok: false },
           ],
           why: 'Solo la parte variable se duplica; el fijo se queda igual dentro del **rango relevante**. Fuera de él (otro local), el fijo salta.',
         },
       },
-      { tip: '**Costo total = Fijo + (Variable por unidad × Unidades).** Costo unitario = Costo total ÷ Unidades.' },
+      { tip: '**Costo total = Fijo + (Variable × Unidades).** Costo unitario = Costo total ÷ Unidades.' },
     ],
   ],
 }

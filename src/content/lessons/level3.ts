@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
       'Aprende a clasificar los costos según su comportamiento ante el volumen y según su rastreabilidad al producto, y a separar costos mixtos con el método de punto alto-punto bajo.',
       'Learn to classify costs by how they behave with volume and by how traceable they are to the product, and to split mixed costs with the high-low method.',
     ),
-    minutes: 16,
+    minutes: 14,
     objectives: [
       t(
         'Distinguir costos fijos, variables y mixtos según su comportamiento ante cambios en el volumen.',
@@ -40,7 +40,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('¿Qué es un costo y para qué se clasifica?', 'What is a cost and why classify it?'),
+        heading: t('¿Qué es un costo?', 'What is a cost?'),
         body: [
           t(
             'Un **costo** es el valor de los recursos sacrificados para obtener un bien o servicio. En contabilidad de costos lo clasificamos de distintas maneras porque cada clasificación responde a una pregunta gerencial diferente: ¿cuánto cambiará el costo si produzco más? ¿cuánto cuesta realmente este producto? ¿qué costo desaparece si elimino una línea?',
@@ -53,7 +53,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Costos fijos, variables y mixtos', 'Fixed, variable and mixed costs'),
+        heading: t('¿Sube si produces más?', 'Does it rise if you make more?'),
         body: [
           t(
             'En palabras sencillas: algunos costos suben cuando produces más y otros se quedan igual. Piensa en una taquería: la tortilla y la carne aumentan con cada taco vendido; la renta del local se paga igual vendas 100 o 1,000 tacos.',
@@ -96,7 +96,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Costos directos e indirectos', 'Direct and indirect costs'),
+        heading: t('¿Va dentro del pan?', 'Does it go into the bread?'),
         body: [
           t(
             'Un costo es **directo** cuando puede identificarse de forma económica y precisa con un objeto de costo (un producto, una orden, un departamento). Es **indirecto** cuando se comparte entre varios objetos y debe asignarse mediante una base de prorrateo.',
@@ -158,7 +158,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('El rango relevante y los errores comunes', 'The relevant range and common mistakes'),
+        heading: t('¿Cuándo lo fijo deja de serlo?', 'When does fixed stop being fixed?'),
         body: [
           t(
             'Las clasificaciones fijo/variable solo son válidas dentro del **rango relevante**: si la producción supera la capacidad de la planta habrá que rentar otra nave y el costo "fijo" salta a otro nivel (costo escalonado).',
@@ -256,7 +256,7 @@ export const lessons: Lesson[] = [
         'The high-low method splits mixed costs using only the activity extremes.',
       ),
     ],
-    exerciseIds: ['N3-001', 'N3-002', 'N3-003', 'N3-004', 'N3-005', 'N3-006'],
+    exerciseIds: ['N3-002', 'N3-003', 'N3-004', 'N3-005', 'N3-006'],
   },
 
   // ─────────────── L3-02 ───────────────
@@ -269,7 +269,7 @@ export const lessons: Lesson[] = [
       'Compara el costeo por órdenes de producción, el costeo por procesos con unidades equivalentes y el costeo basado en actividades (ABC) para asignar los costos indirectos.',
       'Compare job-order costing, process costing with equivalent units and activity-based costing (ABC) for assigning overhead.',
     ),
-    minutes: 21,
+    minutes: 14,
     objectives: [
       t(
         'Elegir el sistema de costeo adecuado según el tipo de producción.',
@@ -290,7 +290,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('Costeo por órdenes de producción', 'Job-order costing'),
+        heading: t('¿Cuánto costó este pedido?', 'What did this order cost?'),
         body: [
           t(
             'En palabras sencillas: cuando cada trabajo es distinto (como un carpintero que hace un clóset a la medida), llevas una "cuenta" por cada pedido para saber cuánto te costó ese pedido en particular.',
@@ -349,7 +349,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Costeo por procesos y unidades equivalentes', 'Process costing and equivalent units'),
+        heading: t('¿Y las paletas a medias?', 'What about half-made ice pops?'),
         body: [
           t(
             'Se usa en producción continua de artículos homogéneos (cemento, refrescos, químicos). Los costos se acumulan por **departamento o proceso** y se dividen entre las unidades producidas en el periodo.',
@@ -410,7 +410,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Costeo basado en actividades (ABC)', 'Activity-based costing (ABC)'),
+        heading: t('¿Quién paga los gastos compartidos?', 'Who pays the shared costs?'),
         body: [
           t(
             'El costeo tradicional asigna todos los CIF con una sola base (horas de MOD u horas máquina). Cuando hay productos muy distintos en volumen y complejidad, esto **subcostea** los productos de bajo volumen y complejos y **sobrecostea** los de alto volumen.',
@@ -471,7 +471,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Cómo elegir el sistema', 'How to choose a system'),
+        heading: t('¿Qué sistema me conviene?', 'Which system suits me?'),
         body: [
           t(
             'Órdenes y procesos responden a **cómo se produce**; ABC responde a **cómo se asignan los CIF**, por lo que puede combinarse con cualquiera de los dos. ABC es más preciso pero más costoso de mantener: conviene cuando los CIF son una proporción grande del costo y la mezcla de productos es diversa.',
@@ -560,7 +560,7 @@ export const lessons: Lesson[] = [
       'Contenido educativo. Para estados financieros, el costo de los inventarios producidos se determina conforme a la NIF C-4 (Inventarios) en México y a la NIC 2 / IAS 2 (Inventories) bajo IFRS, que requieren asignar los costos indirectos de producción de forma sistemática con base en la capacidad normal. Los sistemas de costeo internos (como ABC) son herramientas gerenciales. Verifica la versión vigente de las normas a la fecha de consulta (2026).',
       'Educational content. For financial statements, the cost of manufactured inventories is determined under NIF C-4 (Inventories) in Mexico and IAS 2 (Inventories) under IFRS, which require production overhead to be allocated systematically based on normal capacity. Internal costing systems (such as ABC) are management tools. Verify the version of the standards in force as of the consultation date (2026).',
     ),
-    exerciseIds: ['N3-007', 'N3-008', 'N3-009', 'N3-010', 'N3-011', 'N3-012'],
+    exerciseIds: ['N3-007', 'N3-008', 'N3-009', 'N3-010', 'N3-011'],
   },
 
   // ─────────────── L3-03 ───────────────
@@ -573,7 +573,7 @@ export const lessons: Lesson[] = [
       'Usa el análisis costo-volumen-utilidad para calcular el punto de equilibrio en unidades y en pesos, las ventas necesarias para una utilidad objetivo y el margen de seguridad.',
       'Use cost-volume-profit analysis to compute the break-even point in units and pesos, the sales needed for a target profit and the margin of safety.',
     ),
-    minutes: 19,
+    minutes: 14,
     objectives: [
       t(
         'Calcular el margen de contribución unitario, total y la razón de margen de contribución.',
@@ -591,7 +591,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('Margen de contribución', 'Contribution margin'),
+        heading: t('¿Cuánto te deja cada venta?', 'How much does each sale leave you?'),
         body: [
           t(
             'El **margen de contribución (MC)** es lo que queda del precio después de cubrir los costos variables. Ese margen "contribuye" primero a cubrir los costos fijos y, una vez cubiertos, se convierte en utilidad.',
@@ -648,7 +648,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Punto de equilibrio', 'Break-even point'),
+        heading: t('¿Cuándo dejas de perder?', 'When do you stop losing?'),
         body: [
           t(
             'El **punto de equilibrio (PE)** es el volumen en que la utilidad es cero: el margen de contribución total iguala exactamente a los costos fijos. En unidades se divide el costo fijo entre el margen unitario; en pesos, entre la razón de MC.',
@@ -703,7 +703,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Utilidad objetivo', 'Target profit'),
+        heading: t('¿Cuánto vender para tu meta?', 'How much to sell for your goal?'),
         body: [
           t(
             'Para lograr una utilidad deseada, se trata como si fuera un costo fijo adicional que el margen debe cubrir. Si la meta es **después de impuestos**, primero se convierte a utilidad antes de impuestos dividiendo entre (1 − t).',
@@ -757,7 +757,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Margen de seguridad y apalancamiento operativo', 'Margin of safety and operating leverage'),
+        heading: t('¿Qué tanto aguantas una caída?', 'How big a drop can you take?'),
         body: [
           t(
             'El **margen de seguridad** mide cuánto pueden caer las ventas presupuestadas antes de entrar en pérdida. El **grado de apalancamiento operativo (GAO)** mide la sensibilidad de la utilidad de operación a cambios en ventas: con GAO = 4, un aumento de 10 % en ventas eleva la utilidad 40 %.',
@@ -877,7 +877,7 @@ export const lessons: Lesson[] = [
       'Contenido educativo con contexto de México. La tasa de 30 % usada en los cálculos de utilidad después de impuestos corresponde a la tasa general del ISR para personas morales (Ley del Impuesto sobre la Renta) y se emplea solo con fines ilustrativos. Verifica la tasa y las disposiciones vigentes en la ley y el DOF a la fecha de consulta (2026).',
       'Educational content with a Mexican context. The 30 % rate used in after-tax profit calculations is the general corporate income tax (ISR) rate under the Ley del Impuesto sobre la Renta and is used for illustration only. Verify the rate and provisions in force in the law and the DOF as of the consultation date (2026).',
     ),
-    exerciseIds: ['N3-013', 'N3-014', 'N3-015', 'N3-016', 'N3-017', 'N3-018', 'N3-019'],
+    exerciseIds: ['N3-014', 'N3-016', 'N3-017', 'N3-018', 'N3-019'],
   },
 
   // ─────────────── L3-04 ───────────────
@@ -893,7 +893,7 @@ export const lessons: Lesson[] = [
       'Construye presupuestos estáticos y flexibles, calcula variaciones de precio y cantidad, y toma decisiones de fabricar o comprar y de pedidos especiales con costos relevantes.',
       'Build static and flexible budgets, compute price and quantity variances, and make make-or-buy and special-order decisions with relevant costs.',
     ),
-    minutes: 23,
+    minutes: 14,
     objectives: [
       t(
         'Describir la secuencia del presupuesto maestro y la diferencia entre presupuesto estático y flexible.',
@@ -914,7 +914,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('Presupuesto maestro, estático y flexible', 'Master, static and flexible budgets'),
+        heading: t('¿Cuánto debiste gastar?', 'How much should you have spent?'),
         body: [
           t(
             'El **presupuesto maestro** integra los planes de un periodo. Parte del **presupuesto de ventas**, porque el volumen esperado determina producción, compras de materiales, mano de obra, CIF, gastos de operación, flujo de efectivo y estados financieros proyectados.',
@@ -955,7 +955,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Variaciones de precio y cantidad', 'Price and quantity variances'),
+        heading: t('¿Pagaste más o usaste más?', 'Did you pay more or use more?'),
         body: [
           t(
             'Con **costos estándar** (cantidad y precio esperados por unidad) la variación total de materiales se divide en dos: la **variación de precio** (pagamos más o menos por cada kg) y la **variación de cantidad** o eficiencia (usamos más o menos kg de los permitidos para la producción real).',
@@ -1001,7 +1001,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Costos relevantes', 'Relevant costs'),
+        heading: t('¿Lo ya gastado cuenta?', 'Does money already spent count?'),
         body: [
           t(
             'Un costo es **relevante** para una decisión si es **futuro** y **difiere** entre alternativas. Los **costos hundidos** (ya incurridos, como un estudio pagado) nunca son relevantes. Los costos fijos asignados que no desaparecen con la decisión tampoco lo son; sí lo son los costos fijos **evitables**.',
@@ -1018,7 +1018,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Fabricar o comprar y pedidos especiales', 'Make-or-buy and special orders'),
+        heading: t('¿Hacerlo, comprarlo o aceptar el pedido?', 'Make it, buy it or take the order?'),
         body: [
           t(
             '**Fabricar o comprar:** compara el precio del proveedor con los costos **evitables** de fabricar (variables + fijos evitables) más cualquier costo de oportunidad de la capacidad liberada.',
@@ -1141,7 +1141,7 @@ export const lessons: Lesson[] = [
         'Only future costs that differ between alternatives matter; ignore sunk costs and include opportunity costs.',
       ),
     ],
-    exerciseIds: ['N3-020', 'N3-021', 'N3-022', 'N3-023', 'N3-024', 'N3-025', 'N3-026', 'N3-027'],
+    exerciseIds: ['N3-020', 'N3-021', 'N3-022', 'N3-026', 'N3-027'],
   },
 ]
 

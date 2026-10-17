@@ -3,114 +3,129 @@ import type { InteractiveLesson } from './types'
 export const intCOS01: InteractiveLesson = {
   lessonId: 'COS-01',
   sections: [
-    // ¿Qué es la contabilidad de costos?
+    // ¿Costo o gasto?
     [
-      { text: 'Doña Lupe tiene una **tortillería** 🌮. Quiere saber cuánto le cuesta cada kilo para ponerle un buen precio. Eso mide la **contabilidad de costos**: lo que cuesta producir algo.' },
-      { text: 'Dos palabras que se confunden: un **costo** es para **fabricar** (se guarda en el inventario). Un **gasto** es para **vender o administrar** (se resta en el mes).' },
+      { text: 'Doña Lupe tiene una **tortillería** 🌮. Vende mucho, pero no sabe cuánto le cuesta **cada kilo**. Así no sabe si su precio es bueno.' },
+      {
+        ask: '¿Qué necesita saber Lupe para ponerle buen precio al kilo?',
+        options: [
+          { text: 'Cuánto le cuesta hacer cada kilo', ok: true, reply: '¡Eso! Si sabe lo que le cuesta producirlo, sabe cuánto cobrar para ganar.' },
+          { text: 'Cuánto cobra la tortillería de enfrente', reply: 'Ayuda a comparar, pero si su costo es más alto, perdería. Primero necesita saber **cuánto le cuesta cada kilo**.' },
+          { text: 'Cuántos clientes llegan al día', reply: 'Eso dice cuánto vende, no cuánto le cuesta. Le falta saber **el costo de cada kilo**.' },
+        ],
+      },
+      { text: 'Eso mide la **contabilidad de costos**: lo que cuesta **producir** algo o dar un servicio.' },
+      { text: 'Dos palabras que se confunden:\n🏭 **Costo:** lo que gastas para **fabricar**. Se guarda en el inventario.\n📣 **Gasto:** lo que pagas para **vender o administrar**. Se resta en el mes.' },
       {
         sort: {
           title: '¿Costo o gasto en la tortillería?',
           buckets: ['Costo (fabricar)', 'Gasto (vender o administrar)'],
           items: [
-            { text: 'La harina de maíz para la masa', bucket: 0, why: 'Se usa para fabricar las tortillas: es costo y entra al inventario.' },
+            { text: 'La harina de maíz para la masa', bucket: 0, why: 'Se usa para fabricar las tortillas: es costo.' },
             { text: 'El sueldo del tortillero que opera la máquina', bucket: 0, why: 'Transforma la masa en tortillas: es costo.' },
-            { text: 'El gas de la máquina tortilladora', bucket: 0, why: 'Se consume al fabricar: es costo.' },
-            { text: 'El anuncio en redes sociales', bucket: 1, why: 'Sirve para vender, no para fabricar: es gasto de venta.' },
+            { text: 'El anuncio en redes sociales', bucket: 1, why: 'Sirve para vender, no para fabricar: es gasto.' },
             { text: 'El sueldo de la cajera', bucket: 1, why: 'Cobrar es vender, no fabricar: es gasto.' },
+            { text: 'La comisión del repartidor por cada venta', bucket: 1, why: 'Se paga por vender, no por fabricar: es gasto, no costo de producción.' },
           ],
         },
       },
       {
-        ask: 'Doña Lupe compró **$600** de harina hoy, pero las tortillas aún no se venden. ¿Qué pasa con ese costo?',
+        ask: 'Lupe compró **$600** de harina hoy, pero esas tortillas aún no se venden. ¿Qué pasa con ese costo?',
         options: [
-          { text: 'Se resta hoy como gasto del mes', reply: 'No: eso pasa con los gastos. La harina es costo de fabricar.' },
-          { text: 'Se queda en el inventario y se vuelve costo de ventas al vender', ok: true, reply: '¡Exacto! El costo se queda "guardado" en el inventario hasta que vendes.' },
-          { text: 'No se registra hasta fin de año', reply: 'No: se registra, pero se queda en el inventario hasta que se vende.' },
+          { text: 'Se queda en el inventario hasta que vende', ok: true, reply: '¡Exacto! El costo se queda "guardado" y se vuelve **costo de ventas** cuando vende.' },
+          { text: 'Se resta hoy como gasto del mes', reply: 'Eso pasa con los gastos. La harina es para fabricar: se queda en el inventario hasta que vende.' },
+          { text: 'No se anota hasta fin de año', reply: 'Sí se anota hoy, pero se queda en el inventario hasta que vende.' },
         ],
       },
-      { tip: 'Pregunta clave: **¿sirve para fabricar?** Entonces es costo. **¿Sirve para vender o administrar?** Entonces es gasto.' },
+      { tip: '**¿Sirve para fabricar?** Es costo. **¿Sirve para vender o administrar?** Es gasto.' },
     ],
-    // Los tres elementos del costo
+    // ¿De qué está hecho un costo?
     [
-      { text: 'Todo costo de producción tiene **tres piezas**: el material principal (**MPD**), el sueldo de quien lo transforma (**MOD**) y todo lo demás de la fábrica (**CIF**).' },
-      {
-        match: {
-          title: 'Une cada término con su significado',
-          pairs: [
-            ['MPD', 'El material principal que se ve en el producto'],
-            ['MOD', 'El sueldo de quien transforma el material'],
-            ['CIF', 'Los demás costos de la fábrica: renta, luz, supervisor'],
-            ['Costo primo', 'MPD + MOD (lo directo)'],
-            ['Costo de conversión', 'MOD + CIF (lo que cuesta transformar)'],
-          ],
-        },
-      },
-      { text: 'Ahora clasifica los costos de una **carpintería** que hace mesas 🪑.' },
+      { text: 'Cada kilo de tortillas de Lupe se arma con **tres piezas**, como una receta 🧩.' },
+      { text: '🌽 **MPD** (materia prima directa): el material principal, la masa.\n👷 **MOD** (mano de obra directa): el sueldo de quien la transforma, el tortillero.\n💡 **CIF** (costos indirectos de fabricación): todo lo demás de la fábrica, como la renta o la luz.' },
       {
         sort: {
-          title: '¿A qué elemento pertenece?',
-          buckets: ['MPD', 'MOD', 'CIF', 'No es costo de producción'],
+          title: '¿A qué pieza pertenece?',
+          buckets: ['MPD', 'MOD', 'CIF'],
           items: [
-            { text: 'La madera de la mesa', bucket: 0, why: 'Es el material principal y se mide por pieza.' },
-            { text: 'El sueldo del carpintero que arma la mesa', bucket: 1, why: 'Transforma la madera con sus manos: MOD.' },
-            { text: 'Los clavos y el pegamento', bucket: 2, why: 'Son materiales menores que no se miden fácil por pieza: CIF.' },
-            { text: 'La renta del taller', bucket: 2, why: 'Es de la fábrica pero se comparte entre todo: CIF.' },
-            { text: 'El sueldo del supervisor', bucket: 2, why: 'No arma mesas con sus manos: CIF.' },
-            { text: 'La comisión del vendedor', bucket: 3, why: 'Es para vender: gasto, no costo de producción.' },
+            { text: 'La masa de maíz', bucket: 0, why: 'Es el material principal y se mide por kilo: MPD.' },
+            { text: 'El sueldo del tortillero que opera la máquina', bucket: 1, why: 'Transforma la masa con su máquina: MOD.' },
+            { text: 'La renta del local', bucket: 2, why: 'Es de la fábrica, pero se comparte entre todo: CIF.' },
+            { text: 'La luz de la tortilladora', bucket: 2, why: 'No se mide fácil por kilo: CIF.' },
+            { text: 'El sueldo de la encargada que supervisa', bucket: 2, why: 'No hace tortillas con sus manos: CIF.' },
+          ],
+        },
+      },
+      { text: 'Dos sumas útiles:\n➕ **Costo primo** = MPD + MOD (lo directo).\n🔄 **Costo de conversión** = MOD + CIF (lo que cuesta transformar).\n🧮 **Costo de producción** = MPD + MOD + CIF.' },
+      {
+        match: {
+          title: 'Une cada costo con su suma',
+          pairs: [
+            ['Costo primo', 'MPD + MOD'],
+            ['Costo de conversión', 'MOD + CIF'],
+            ['Costo de producción', 'MPD + MOD + CIF'],
           ],
         },
       },
       {
         calc: {
-          question: 'Una mesa usa **$1,500** de madera, **$900** de carpintero y **$300** de CIF. ¿Cuál es su **costo de producción**?',
+          question: 'Hoy Lupe usó **$1,500** de masa, pagó **$900** al tortillero y tuvo **$300** de CIF. ¿Cuál es su **costo de producción**?',
           answer: 2700,
-          hint: 'suma MPD + MOD + CIF.',
-          why: '1,500 + 900 + 300 = **$2,700**. El costo primo sería $2,400 y el de conversión $1,200.',
+          hint: 'Suma las tres piezas: MPD + MOD + CIF.',
+          why: '1,500 + 900 + 300 = **$2,700**. El costo primo sería 1,500 + 900 = $2,400.',
         },
       },
       {
         calc: {
-          question: 'Con la misma mesa (madera $1,500, carpintero $900, CIF $300), ¿cuál es el **costo de conversión**?',
+          question: 'Con los mismos números (masa $1,500, tortillero $900, CIF $300), ¿cuál es el **costo de conversión**?',
           answer: 1200,
-          hint: 'MOD + CIF. La madera no entra.',
+          hint: 'MOD + CIF. La masa no entra.',
           why: '900 + 300 = **$1,200**. Ojo: no sumes primo + conversión para el total, contarías la MOD dos veces.',
         },
       },
-      { tip: '**Costo de producción = MPD + MOD + CIF.** Primo = MPD + MOD. Conversión = MOD + CIF.' },
+      { tip: 'Primo = MPD + MOD. Conversión = MOD + CIF. **Producción = MPD + MOD + CIF.**' },
     ],
-    // Del costo de producción al costo de ventas
+    // ¿Cuánto costó lo vendido?
     [
-      { text: 'Una fábrica tiene **tres inventarios**: materia prima, producción en proceso y producto terminado. El costo viaja de uno a otro como en una banda transportadora.' },
+      { text: 'Lupe ahora también hace **totopos en bolsa** 🥨. Al cerrar el mes tiene harina en la bodega, totopos a medio hacer y bolsas listas sin vender.' },
+      {
+        ask: 'Este mes terminó totopos por **$80,000**, pero algunas bolsas siguen en la bodega. ¿Su costo de ventas es $80,000?',
+        options: [
+          { text: 'No: solo cuenta lo que sí vendió', ok: true, reply: '¡Bien! Lo que sigue en la bodega no se ha vendido. El costo de ventas es solo lo que salió.' },
+          { text: 'Sí: todo lo que terminó ya es costo de ventas', reply: 'Lo que sigue en la bodega no se ha vendido. Se vuelve costo de ventas hasta que lo vende.' },
+          { text: 'Sí, y además suma lo que quedó en la bodega', reply: 'Al revés: lo que queda en la bodega **se resta**, porque no se vendió.' },
+        ],
+      },
+      { text: 'El costo viaja por **tres inventarios** como en una banda 🏭:\n🌽 **Materia prima:** lo que compró y aún no usa.\n⚙️ **En proceso:** lo que está a medio hacer.\n📦 **Producto terminado:** lo que está listo para vender.' },
       {
         order: {
           title: 'Ordena el viaje del costo',
           steps: [
             'Calcular la materia prima usada',
-            'Sumar MOD y CIF para obtener el costo de producción',
-            'Ajustar por lo que quedó a medio hacer: costo de lo terminado',
-            'Ajustar por lo que no se vendió: costo de ventas',
-            'Presentar el costo de ventas en el estado de resultados',
+            'Sumar MOD y CIF: costo de producción',
+            'Restar lo que quedó a medio hacer: costo de lo terminado',
+            'Restar lo que no se vendió: costo de ventas',
           ],
           done: 'Materia prima → en proceso → terminado → vendido. Siempre en ese orden.',
         },
       },
       {
         calc: {
-          question: 'La tortillería tenía **$5,000** de harina, compró **$40,000** y le quedan **$3,000**. ¿Cuánta **materia prima usó**?',
+          question: 'Lupe tenía **$5,000** de harina, compró **$40,000** y le quedan **$3,000**. ¿Cuánta **materia prima usó**?',
           answer: 42000,
-          hint: 'inicial + compras − final.',
-          why: '5,000 + 40,000 = 45,000; 45,000 − 3,000 = **$42,000** usados.',
+          hint: 'Lo que tenía + lo que compró − lo que quedó.',
+          why: '5,000 + 40,000 = 45,000. Menos 3,000 que quedan = **$42,000** usados.',
         },
       },
       {
         calc: {
-          question: 'Terminó producto por **$80,000**, tenía **$6,000** de producto terminado al inicio y le quedan **$4,000** al final. ¿Cuál es el **costo de ventas**?',
+          question: 'Tenía **$6,000** de totopos listos al inicio, terminó **$80,000** y le quedan **$4,000**. ¿Cuál es su **costo de ventas**?',
           answer: 82000,
-          hint: 'inicial PT + terminado − final PT.',
-          why: '6,000 + 80,000 = 86,000; 86,000 − 4,000 = **$82,000**. Lo que queda en bodega no se vendió, por eso se resta.',
+          hint: 'Terminado inicial + terminado del mes − terminado final.',
+          why: '6,000 + 80,000 = 86,000. Menos 4,000 que no vendió = **$82,000**.',
         },
       },
-      { tip: 'En los tres pasos la idea es igual: **lo que tenías + lo que entró − lo que quedó**.' },
+      { tip: 'En cada paso la idea es igual: **lo que tenías + lo que entró − lo que quedó**.' },
     ],
   ],
 }
