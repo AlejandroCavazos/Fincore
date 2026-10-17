@@ -205,20 +205,35 @@ export function InteractiveLesson({ data, index, title, header, finishLabel, onF
   const needs = !!cur && !('text' in cur) && !('tip' in cur)
   const blocked = needs && !solved[shown - 1]
   const done = shown >= blocks.length && !blocked
+  const isGame = (b: Block) => !('text' in b) && !('tip' in b)
+  // One screen at a time: a new screen starts after each solved activity, so the
+  // learner never scrolls through a long page of earlier content.
+  let start = 0
+  for (let j = shown - 2; j >= 0; j--)
+    if (isGame(blocks[j])) {
+      start = j + 1
+      break
+    }
+  const top = useRef<HTMLDivElement>(null)
   useEffect(() => {
-    if (shown > 1) end.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
-  }, [shown, solved])
+    if (shown > 1 && start === shown - 1) top.current?.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    else if (shown > 1) end.current?.scrollIntoView({ behavior: 'smooth', block: 'end' })
+  }, [shown, solved, start])
 
   return (
-    <div className="mx-auto max-w-2xl">
+    <div className="mx-auto max-w-2xl" ref={top}>
       {header}
       <h1 className="mt-2 text-2xl font-bold tracking-tight text-navy-900 dark:text-white">{title}</h1>
-      <div data-testid="interactive-lesson" className="mt-4 space-y-3">
+      <div className="mt-3 h-2 overflow-hidden rounded-full bg-navy-100 dark:bg-navy-800" aria-hidden>
+        <div className="h-full rounded-full bg-money-500 transition-all duration-500" style={{ width: `${Math.round(((done ? blocks.length : shown - 1) / Math.max(1, blocks.length)) * 100)}%` }} />
+      </div>
+      <div data-testid="interactive-lesson" className="mt-5 space-y-4">
         {blocks.slice(0, shown).map((b, i) => {
+          if (i < start) return null
           const ok = () => setSolved((s) => ({ ...s, [i]: true }))
           if ('text' in b)
             return (
-              <p key={i} className="animate-fade-up px-1 text-[17px] leading-relaxed text-navy-800 dark:text-navy-100">
+              <p key={i} className="animate-fade-up whitespace-pre-line px-1 text-[18px] leading-relaxed text-navy-800 dark:text-navy-100">
                 <Rich text={b.text} />
               </p>
             )
@@ -247,7 +262,7 @@ export function InteractiveLesson({ data, index, title, header, finishLabel, onF
         <div ref={end} />
       </div>
       {!done && !blocked && (
-        <Button size="lg" variant="secondary" className="animate-fade-up mt-4 w-full" onClick={() => setShown((n) => n + 1)} data-testid="int-next">
+        <Button size="lg" className="animate-fade-up mt-5 w-full shadow-[0_3px_0] shadow-electric-700" onClick={() => setShown((n) => n + 1)} data-testid="int-next">
           Continuar
         </Button>
       )}

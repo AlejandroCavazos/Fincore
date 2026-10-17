@@ -2,7 +2,7 @@ import type { Evaluation, L, Lang } from '../types'
 import type { Attempt } from './engine'
 import type { PostedEntry } from './accounting'
 
-export const STATE_VERSION = 1
+export const STATE_VERSION = 2
 
 export type ThemePref = 'light' | 'dark' | 'system'
 

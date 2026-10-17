@@ -34,7 +34,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Concepto, objetivos e importancia", en: "Concept, objectives and importance" },
+        heading: { es: "¿Para qué sirve la contabilidad?", en: "What is accounting for?" },
         body: [
           {
             es: "Piensa en una **tiendita de la esquina**. Cada día entra dinero por lo que vende y sale dinero para pagar refrescos, luz o renta. Si nadie lo anota, al final del mes la dueña no sabe si ganó o perdió. La **contabilidad** es justo eso: un sistema para **anotar, ordenar y resumir** en dinero todo lo que pasa en un negocio.",
@@ -48,6 +48,17 @@ export const lessons: Lesson[] = [
             es: "¿Por qué es **importante**? Porque sin números confiables decides a ciegas: no sabes si subir precios, si te alcanza para contratar a alguien o si puedes pedir un préstamo. La contabilidad también ayuda a **controlar** (detectar faltantes o errores) y a **cumplir** con obligaciones, como pagar impuestos.",
             en: "Why is it **important**? Because without reliable numbers you decide blindly: you do not know whether to raise prices, whether you can afford to hire someone or whether you can ask for a loan. Accounting also helps to **control** (spot shortages or mistakes) and to **comply** with obligations, such as paying taxes.",
           },
+        ],
+        bullets: [
+          { es: "Registrar: anotar cada operación (una venta, una compra, un pago).", en: "Record: write down each transaction (a sale, a purchase, a payment)." },
+          { es: "Clasificar: agrupar lo parecido (todo lo que se vendió, todo lo que se pagó de renta).", en: "Classify: group similar items (everything sold, all rent paid)." },
+          { es: "Resumir: presentar totales en reportes fáciles de leer.", en: "Summarize: present totals in easy-to-read reports." },
+          { es: "Informar: entregar esos reportes a quien necesita decidir.", en: "Report: deliver those reports to whoever needs to decide." },
+        ],
+      },
+      {
+        heading: { es: "El corte de caja", en: "The cash count" },
+        body: [
           {
             es: "El ejemplo más sencillo de control es el **corte de caja**: al cerrar, comparas el dinero que **debería** haber según tus anotaciones con el que **realmente** cuentas. Si no coinciden, hay un **faltante** (falta dinero) o un **sobrante** (sobra dinero), y sabes que algo hay que revisar.",
             en: "The simplest example of control is the **cash count** (corte de caja): at closing, you compare the money that **should** be there according to your notes with the money you **actually** count. If they do not match, there is a **shortage** (money missing) or an **overage** (extra money), and you know something needs checking.",
@@ -83,15 +94,9 @@ export const lessons: Lesson[] = [
             },
           },
         ],
-        bullets: [
-          { es: "Registrar: anotar cada operación (una venta, una compra, un pago).", en: "Record: write down each transaction (a sale, a purchase, a payment)." },
-          { es: "Clasificar: agrupar lo parecido (todo lo que se vendió, todo lo que se pagó de renta).", en: "Classify: group similar items (everything sold, all rent paid)." },
-          { es: "Resumir: presentar totales en reportes fáciles de leer.", en: "Summarize: present totals in easy-to-read reports." },
-          { es: "Informar: entregar esos reportes a quien necesita decidir.", en: "Report: deliver those reports to whoever needs to decide." },
-        ],
       },
       {
-        heading: { es: "Usuarios de la información financiera", en: "Users of financial information" },
+        heading: { es: "¿Quién mira tus números?", en: "Who looks at your numbers?" },
         body: [
           {
             es: "Un **usuario** es cualquier persona u organización que lee la información financiera para tomar una decisión. Se dividen en dos grupos según si están dentro o fuera del negocio.",
@@ -108,7 +113,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Tipos de contabilidad", en: "Types of accounting" },
+        heading: { es: "¿Qué tipos de contabilidad hay?", en: "What types of accounting are there?" },
         body: [
           {
             es: "Según **para qué** se usa la información, hay tres tipos principales. La **contabilidad financiera** prepara reportes generales sobre la situación y los resultados del negocio, siguiendo reglas comunes (en México, las **NIF**), para que cualquier usuario, sobre todo externo, los entienda.",
@@ -174,7 +179,7 @@ export const lessons: Lesson[] = [
       { es: "Tipos por quién la lleva: privada, gubernamental y sin fines de lucro.", en: "Types by who keeps it: private, governmental and non-profit." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1A-001', 'N1A-002', 'N1A-003', 'N1A-004', 'N1A-005', 'N1A-006', 'N1A-007', 'N1A-008'],
+    exerciseIds: ['N1A-001', 'N1A-007', 'N1A-003', 'N1A-004', 'N1A-008'],
   },
 
   // ───────────────────────────── L1-02 ─────────────────────────────

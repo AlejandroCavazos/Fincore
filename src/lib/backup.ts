@@ -152,6 +152,7 @@ export function validateState(input: unknown): V {
     Array.isArray(x) && x.every((r) => isObj(r) && isNum(r.score) && isIso(r.at) && isBool(r.passed)) ? (x as AppState['exams'][string]) : null,
   )
   out.subtopics = rec('subtopics', input.subtopics, (x) => (isIso(x) ? (x as string) : null))
+  if (isNum(input.version) && input.version < 2) out.subtopics = migrateSubtopicsV2(out.subtopics)
   if (isObj(input.tutor) && isNum(input.tutor.messages)) out.tutor.messages = input.tutor.messages
 
   return errors.length ? { ok: false, errors } : { ok: true, state: out }
@@ -179,4 +180,17 @@ export function importState(text: string): V {
   }
   if (!isObj(parsed) || parsed.app !== 'FINCORE' || parsed.format !== 1) return { ok: false, errors: ['file: not a FINCORE backup'] }
   return validateState(parsed.state)
+}
+
+/**
+ * v2 (2026-10-17): topic 1.1 (L1-01) went from 3 to 4 subtopics. "El corte de caja"
+ * was inserted at index 1, so the old subtopics 1 and 2 move to 2 and 3.
+ */
+export function migrateSubtopicsV2(sub: Record<string, string>): Record<string, string> {
+  const out = { ...sub }
+  delete out['L1-01:1']
+  delete out['L1-01:2']
+  if (sub['L1-01:1']) out['L1-01:2'] = sub['L1-01:1']
+  if (sub['L1-01:2']) out['L1-01:3'] = sub['L1-01:2']
+  return out
 }
