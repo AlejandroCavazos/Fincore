@@ -49,7 +49,7 @@ export const lessons: Lesson[] = [
       "Evaluar riesgos empresariales es identificar qué podría impedir que el negocio logre sus metas, medir qué tan probable y qué tan grave sería, y decidir qué hacer con cada riesgo según el apetito de riesgo de la empresa.",
       "Assessing enterprise risks means identifying what could stop the business from reaching its goals, measuring how likely and how serious it would be, and deciding what to do with each risk according to the company's risk appetite.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Explicar qué es un riesgo empresarial y reconocer sus tipos principales: estratégico, operativo, financiero, de cumplimiento y reputacional.", "Explain what an enterprise risk is and recognize its main types: strategic, operational, financial, compliance and reputational."),
       t("Calificar riesgos con probabilidad e impacto, ubicarlos en un mapa de calor y distinguir riesgo inherente de riesgo residual.", "Score risks by likelihood and impact, place them on a heat map and distinguish inherent risk from residual risk."),
@@ -57,7 +57,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es un riesgo empresarial?", "What is an enterprise risk?"),
+        heading: t("¿Qué puede salir mal?", "What could go wrong?"),
         body: [
           t(
             "Un **riesgo** es la posibilidad de que algo pase y afecte lo que quieres lograr. Si una panadería quiere vender 1,000 conchas diarias, un riesgo es que suba mucho el precio de la harina o que se descomponga el horno. La **administración de riesgos empresariales** (en inglés, ERM) mira **todos** los riesgos del negocio juntos, no cada área por separado.",
@@ -81,7 +81,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Medir el riesgo: probabilidad, impacto y mapa de calor", "Measuring risk: likelihood, impact and heat map"),
+        heading: t("¿Qué tan grave es un riesgo?", "How serious is a risk?"),
         body: [
           t(
             "Para comparar riesgos se califican con dos preguntas: **¿qué tan probable es?** (probabilidad) y **¿qué tan grave sería?** (impacto). Muchas empresas usan escalas de 1 a 5 y multiplican: así obtienen una **calificación** de 1 a 25. Con esas calificaciones se arma un **mapa de calor**: una cuadrícula con colores donde los riesgos rojos (altos) piden atención primero.",
@@ -153,7 +153,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Responder y dar seguimiento", "Responding and monitoring"),
+        heading: t("¿Qué hacemos con cada riesgo?", "What do we do with each risk?"),
         body: [
           t(
             "El **apetito de riesgo** es cuánto riesgo está dispuesta a aceptar la empresa para lograr sus metas; lo aprueba el consejo o los dueños. La **tolerancia** es el margen aceptable alrededor de una meta concreta (por ejemplo, que la merma de inventario no pase de cierto porcentaje). Si el riesgo residual queda por encima del apetito, hay que actuar o escalarlo.",
@@ -251,7 +251,7 @@ export const lessons: Lesson[] = [
       t("El registro de riesgos y los KRI permiten dar seguimiento continuo.", "The risk register and KRIs allow continuous monitoring."),
     ],
     normativeNote: NOTE_ERM,
-    exerciseIds: ['AUD-07-E1', 'AUD-07-E2', 'AUD-07-E3', 'AUD-07-E4', 'AUD-07-E5', 'AUD-07-E6'],
+    exerciseIds: ['AUD-07-E1', 'AUD-07-E2', 'AUD-07-E3', 'AUD-07-E5', 'AUD-07-E6'],
   },
 
   // ───────────────────────────── AUD-08 ─────────────────────────────
@@ -264,7 +264,7 @@ export const lessons: Lesson[] = [
       "En una auditoría de estados financieros el auditor externo prueba, rubro por rubro, que las cifras existan, estén completas, bien valuadas y en el periodo correcto, y evalúa si las diferencias encontradas son materiales.",
       "In a financial statement audit the external auditor tests, line by line, that the figures exist, are complete, properly valued and in the right period, and evaluates whether the differences found are material.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Explicar el objetivo de la auditoría de estados financieros y las principales aseveraciones de la administración.", "Explain the objective of a financial statement audit and management's main assertions."),
       t("Relacionar procedimientos sustantivos típicos (confirmaciones, conteos, conciliaciones, corte) con la aseveración que prueban.", "Match typical substantive procedures (confirmations, counts, reconciliations, cutoff) with the assertion they test."),
@@ -272,7 +272,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Objetivo y aseveraciones", "Objective and assertions"),
+        heading: t("¿Qué afirman los números?", "What do the numbers claim?"),
         body: [
           t(
             "Una **auditoría de estados financieros** la hace un contador público **independiente** (externo) para opinar si el balance, el estado de resultados y demás estados presentan razonablemente la situación de la empresa conforme al marco aplicable (en México, normalmente las **NIF**). **Razonablemente** significa sin errores importantes, no perfecto al último peso.",
@@ -297,7 +297,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Pruebas típicas por rubro", "Typical tests by line item"),
+        heading: t("¿Cómo se prueba cada cifra?", "How is each figure tested?"),
         body: [
           t(
             "En palabras sencillas: para cada cuenta importante el auditor elige la prueba que mejor contesta su duda. ¿El dinero en el banco existe? Le pregunta al banco. ¿Los clientes deben lo que dice la empresa? Les pregunta a los clientes. Una **conciliación bancaria** es la hoja que explica por qué el saldo del banco y el de tus libros no son iguales: casi siempre por movimientos que uno ya anotó y el otro todavía no.",
@@ -350,7 +350,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Diferencias, ajustes y materialidad", "Differences, adjustments and materiality"),
+        heading: t("¿Y si el auditor halla errores?", "What if the auditor finds errors?"),
         body: [
           t(
             "Cuando una prueba encuentra un error, el auditor lo cuantifica y propone un **ajuste de auditoría**: un asiento que la empresa debería registrar para corregir. Por ejemplo, si encuentra un recibo de luz de diciembre que no se registró, propone cargar el gasto y abonar la cuenta por pagar.",
@@ -464,7 +464,7 @@ export const lessons: Lesson[] = [
       t("Las diferencias se acumulan, se netean por su efecto en utilidad y se comparan con la materialidad.", "Differences are accumulated, netted by their effect on profit and compared with materiality."),
     ],
     normativeNote: NOTE_FS_AUDIT,
-    exerciseIds: ['AUD-08-E1', 'AUD-08-E2', 'AUD-08-E3', 'AUD-08-E4', 'AUD-08-E5', 'AUD-08-E6'],
+    exerciseIds: ['AUD-08-E1', 'AUD-08-E2', 'AUD-08-E4', 'AUD-08-E5', 'AUD-08-E6'],
   },
 
   // ───────────────────────────── AUD-09 ─────────────────────────────
@@ -477,7 +477,7 @@ export const lessons: Lesson[] = [
       "La auditoría interna es un equipo de la propia empresa, independiente de las áreas que revisa, que evalúa con un plan basado en riesgos si los controles y la gestión de riesgos funcionan, y da seguimiento a que se corrijan los hallazgos.",
       "Internal audit is a team within the company, independent from the areas it reviews, that uses a risk-based plan to evaluate whether controls and risk management work, and follows up to make sure findings are corrected.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Explicar qué hace la auditoría interna y en qué se diferencia de la auditoría externa.", "Explain what internal audit does and how it differs from external audit."),
       t("Ubicar a la auditoría interna en el Modelo de las Tres Líneas y explicar cómo protege su independencia.", "Place internal audit in the Three Lines Model and explain how it protects its independence."),
@@ -485,7 +485,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es la auditoría interna?", "What is internal auditing?"),
+        heading: t("¿Quién revisa por dentro?", "Who checks from the inside?"),
         body: [
           t(
             "La **auditoría interna** es un área de la propia empresa que da **aseguramiento** independiente y objetivo (le dice al consejo y a la dirección si los procesos funcionan como deben) y también **asesoría** (ayuda a mejorar procesos sin tomar decisiones por la administración). Su guía internacional son las normas del **Instituto de Auditores Internos (IIA)**.",
@@ -508,7 +508,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Independencia y el Modelo de las Tres Líneas", "Independence and the Three Lines Model"),
+        heading: t("¿Por qué debe ser independiente?", "Why must it be independent?"),
         body: [
           t(
             "El **Modelo de las Tres Líneas** del IIA ordena quién hace qué con los riesgos. La **primera línea** son las áreas operativas que dan el servicio y manejan sus riesgos día a día (el gerente de ventas que revisa descuentos). La **segunda línea** apoya y vigila: administración de riesgos, cumplimiento, control interno. La **tercera línea** es auditoría interna, que evalúa de forma independiente a las dos primeras.",
@@ -525,7 +525,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Plan basado en riesgos, hallazgos y seguimiento", "Risk-based plan, findings and follow-up"),
+        heading: t("¿Qué revisa y cómo reporta?", "What does it review and report?"),
         body: [
           t(
             "Como no se puede revisar todo, auditoría interna arma un **plan anual basado en riesgos**: lista los procesos de la empresa (el **universo auditable**), califica el riesgo de cada uno y asigna más horas a los de mayor riesgo. El comité de auditoría aprueba el plan.",
@@ -636,7 +636,7 @@ export const lessons: Lesson[] = [
       t("Un hallazgo completo tiene condición, criterio, causa y efecto, y se le da seguimiento.", "A complete finding has condition, criteria, cause and effect, and is followed up."),
     ],
     normativeNote: NOTE_IIA,
-    exerciseIds: ['AUD-09-E1', 'AUD-09-E2', 'AUD-09-E3', 'AUD-09-E4', 'AUD-09-E5', 'AUD-09-E6'],
+    exerciseIds: ['AUD-09-E1', 'AUD-09-E2', 'AUD-09-E3', 'AUD-09-E4', 'AUD-09-E5'],
   },
 
   // ───────────────────────────── AUD-10 ─────────────────────────────
@@ -649,7 +649,7 @@ export const lessons: Lesson[] = [
       "Auditar un ERP es revisar cómo el sistema integrado de la empresa ejecuta los procesos de negocio: sus controles configurados, sus datos maestros y quién tiene permiso de hacer qué, para asegurar que las transacciones sean válidas y estén bien separadas las funciones.",
       "Auditing an ERP means reviewing how the company's integrated system runs business processes: its configured controls, its master data and who is allowed to do what, to ensure transactions are valid and duties are properly segregated.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Explicar qué es un ERP y por qué cambia la forma de auditar los procesos de negocio.", "Explain what an ERP is and why it changes how business processes are audited."),
       t("Evaluar controles de aplicación configurados, como el cotejo de tres vías, y los riesgos de los datos maestros.", "Evaluate configured application controls, such as the three-way match, and master data risks."),
@@ -657,7 +657,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es un ERP y por qué importa al auditor?", "What is an ERP and why does it matter to the auditor?"),
+        heading: t("¿Un solo sistema para todo?", "One system for everything?"),
         body: [
           t(
             "Un **ERP** (planeación de recursos empresariales) es un sistema que reúne en **una sola base de datos** las áreas de la empresa: compras, almacén, ventas, cobranza, nómina y contabilidad. Cuando el almacén registra que llegó mercancía, el dato queda disponible al instante para cuentas por pagar y para la contabilidad, sin volver a capturarlo.",
@@ -674,7 +674,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Controles de aplicación y datos maestros", "Application controls and master data"),
+        heading: t("¿Qué reglas revisan cada operación?", "Which rules check each transaction?"),
         body: [
           t(
             "Los **controles de aplicación** son reglas dentro del ERP que revisan cada transacción. Pueden ser **automáticos** (el sistema bloquea o calcula solo) o **manuales apoyados en reportes** del sistema. El más conocido en compras es el **cotejo de tres vías**: el ERP compara la **orden de compra**, la **recepción en almacén** y la **factura del proveedor**, y solo libera el pago si coinciden dentro de una tolerancia.",
@@ -744,7 +744,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Roles, accesos y segregación de funciones", "Roles, access and segregation of duties"),
+        heading: t("¿Quién puede hacer qué?", "Who can do what?"),
         body: [
           t(
             "En un ERP cada usuario recibe **roles** que le dan permisos (crear proveedores, aprobar pedidos, emitir pagos). La **segregación de funciones** dice que una sola persona no debe controlar todos los pasos de una operación sensible, porque podría cometer y ocultar un error o un fraude.",
@@ -833,7 +833,7 @@ export const lessons: Lesson[] = [
       t("Los conflictos de segregación de funciones se eliminan o se mitigan con controles compensatorios.", "Segregation-of-duties conflicts are removed or mitigated with compensating controls."),
     ],
     normativeNote: NOTE_ERP,
-    exerciseIds: ['AUD-10-E1', 'AUD-10-E2', 'AUD-10-E3', 'AUD-10-E4', 'AUD-10-E5', 'AUD-10-E6'],
+    exerciseIds: ['AUD-10-E1', 'AUD-10-E2', 'AUD-10-E3', 'AUD-10-E4', 'AUD-10-E5'],
   },
 
   // ───────────────────────────── AUD-11 ─────────────────────────────
@@ -846,7 +846,7 @@ export const lessons: Lesson[] = [
       "La auditoría de TI revisa los controles generales que mantienen confiables a todos los sistemas: quién entra y con qué permisos, cómo se aprueban los cambios a los programas y cómo se respaldan y recuperan los datos.",
       "IT auditing reviews the general controls that keep all systems reliable: who gets in and with what permissions, how program changes are approved and how data is backed up and recovered.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Explicar qué son los controles generales de TI y por qué sostienen a los controles automáticos.", "Explain what IT general controls are and why they support automated controls."),
       t("Evaluar controles de acceso y de administración de cambios con pruebas concretas.", "Evaluate access and change management controls with concrete tests."),
@@ -854,7 +854,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Controles generales de TI", "IT general controls"),
+        heading: t("Los cimientos de los sistemas", "The foundations of the systems"),
         body: [
           t(
             "Los **controles generales de TI** (ITGC, por sus siglas en inglés) no revisan una transacción en particular; protegen el **ambiente** donde corren todos los sistemas. Son como los cimientos de una casa: si fallan, no puedes confiar en nada de lo que está arriba, incluidos los controles automáticos del ERP.",
@@ -871,7 +871,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Accesos y administración de cambios", "Access and change management"),
+        heading: t("¿Quién entra y quién cambia?", "Who gets in, who changes?"),
         body: [
           t(
             "En **accesos**, el auditor revisa el ciclo completo de un usuario: **alta** (con solicitud y aprobación del jefe), **modificación** de permisos, **baja** oportuna cuando la persona se va, y **revisiones periódicas** en las que cada jefe confirma que su equipo tiene solo lo necesario (**mínimo privilegio**). También revisa contraseñas robustas, autenticación de dos factores y las cuentas **privilegiadas** (administradores).",
@@ -924,7 +924,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Operaciones, respaldos, continuidad y ciberseguridad", "Operations, backups, continuity and cybersecurity"),
+        heading: t("¿Y si el sistema falla?", "What if the system fails?"),
         body: [
           t(
             "En **operaciones**, el auditor revisa que los procesos automáticos (cierres nocturnos, interfaces entre sistemas) se monitoreen y que sus fallas se atiendan. También revisa los **respaldos**: que se hagan con la frecuencia definida, que se guarden en un lugar separado y, sobre todo, que se **pruebe restaurarlos**; un respaldo que nunca se ha probado puede no servir.",
@@ -1037,7 +1037,7 @@ export const lessons: Lesson[] = [
       t("Un respaldo solo sirve si se prueba restaurarlo y cumple el RPO y el RTO.", "A backup is only useful if restores are tested and meet the RPO and RTO."),
     ],
     normativeNote: NOTE_IT,
-    exerciseIds: ['AUD-11-E1', 'AUD-11-E2', 'AUD-11-E3', 'AUD-11-E4', 'AUD-11-E5', 'AUD-11-E6'],
+    exerciseIds: ['AUD-11-E1', 'AUD-11-E2', 'AUD-11-E3', 'AUD-11-E4', 'AUD-11-E6'],
   },
 
   // ───────────────────────────── AUD-12 ─────────────────────────────
@@ -1050,7 +1050,7 @@ export const lessons: Lesson[] = [
       "La auditoría forense investiga posibles fraudes o irregularidades reuniendo evidencia que pueda sostenerse ante un juez, cuidando la cadena de custodia y usando técnicas como el análisis de datos, la ley de Benford y el método de patrimonio.",
       "Forensic auditing investigates possible frauds or irregularities by gathering evidence that can stand up before a judge, protecting the chain of custody and using techniques such as data analytics, Benford's law and the net worth method.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Explicar qué distingue a la auditoría forense de una auditoría financiera y cuándo se inicia una investigación.", "Explain what distinguishes forensic auditing from a financial audit and when an investigation starts."),
       t("Aplicar los principios de cadena de custodia y preservación de evidencia física y digital.", "Apply chain-of-custody principles and the preservation of physical and digital evidence."),
@@ -1058,7 +1058,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es la auditoría forense?", "What is forensic auditing?"),
+        heading: t("¿Qué hace un auditor forense?", "What does a forensic auditor do?"),
         body: [
           t(
             "La palabra **forense** viene de \"foro\", el lugar donde se hacían los juicios. La **auditoría forense** aplica conocimientos contables, de auditoría y de investigación para **aclarar hechos** que pueden terminar en un proceso legal: un desfalco, un soborno, una quiebra sospechosa o un pleito entre socios.",
@@ -1082,7 +1082,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Cadena de custodia y evidencia digital", "Chain of custody and digital evidence"),
+        heading: t("¿Cómo cuidar una prueba?", "How do you protect evidence?"),
         body: [
           t(
             "La **cadena de custodia** es el registro que demuestra que una prueba es **la misma** que se obtuvo y que **nadie la alteró**. Anota quién la recogió, cuándo, dónde, quién la ha tenido después y en qué condiciones se guardó. Si hay huecos en ese registro, la contraparte puede alegar que la prueba fue manipulada y perder su valor.",
@@ -1099,7 +1099,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Técnicas: datos, Benford y método de patrimonio", "Techniques: data, Benford and the net worth method"),
+        heading: t("¿Cómo se rastrea el dinero?", "How do you trace the money?"),
         body: [
           t(
             "El **análisis de datos** revisa poblaciones completas en busca de patrones raros: facturas duplicadas, pagos en fin de semana, montos justo por debajo del límite de autorización, proveedores que comparten domicilio o cuenta bancaria con empleados. Cada alerta no prueba un fraude, pero dice **dónde buscar**.",
@@ -1218,7 +1218,7 @@ export const lessons: Lesson[] = [
       t("El auditor forense reporta hechos; la culpabilidad la decide un juez.", "The forensic auditor reports facts; guilt is decided by a judge."),
     ],
     normativeNote: NOTE_FORENSIC,
-    exerciseIds: ['AUD-12-E1', 'AUD-12-E2', 'AUD-12-E3', 'AUD-12-E4', 'AUD-12-E5', 'AUD-12-E6'],
+    exerciseIds: ['AUD-12-E1', 'AUD-12-E2', 'AUD-12-E3', 'AUD-12-E5', 'AUD-12-E6'],
   },
 ]
 

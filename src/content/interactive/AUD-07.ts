@@ -3,61 +3,63 @@ import type { InteractiveLesson } from './types'
 export const intAUD07: InteractiveLesson = {
   lessonId: 'AUD-07',
   sections: [
-    // ¿Qué es un riesgo empresarial?
+    // ¿Qué puede salir mal?
     [
-      { text: 'Un **riesgo** es la posibilidad de que algo pase y afecte lo que quieres lograr. Si una panadería 🥐 quiere vender 1,000 conchas al día, un riesgo es que se descomponga el horno.' },
+      { text: 'Don Beto tiene una panadería 🥐 y quiere vender **1,000 conchas al día**. Una mañana se descompone el horno y no vende ni la mitad.' },
       {
-        ask: '¿Contra qué se evalúan los riesgos?',
+        ask: 'Para su meta, ¿qué fue lo del horno?',
         options: [
-          { text: 'Contra los objetivos del negocio', ok: true, reply: '¡Eso! No se evalúan en el aire: siempre contra una meta concreta, como crecer en ventas o abrir sucursales.' },
-          { text: 'Contra lo que hace la competencia', reply: 'Compararse con empresas del giro ayuda a encontrar riesgos, pero el punto de partida son los **objetivos**.' },
-          { text: 'Contra el saldo de Bancos', reply: 'No. El punto de partida son los objetivos de la empresa.' },
+          { text: 'Un riesgo que se hizo realidad', ok: true, reply: '¡Eso! Algo pasó y afectó lo que quería lograr. Eso es un **riesgo**.' },
+          { text: 'Pura mala suerte que nadie podía prever', reply: 'Un horno que se descompone sí se puede prever. Era un **riesgo**: algo que podía pasar y afectar su meta.' },
+          { text: 'Un problema de contabilidad', reply: 'Los números lo reflejan, pero el problema fue de operación. Era un **riesgo** para su meta de ventas.' },
         ],
       },
-      { text: 'Una cadena de farmacias 💊 quiere abrir 10 sucursales. Clasifica sus riesgos:' },
+      { text: 'Un **riesgo** es la posibilidad de que algo pase y afecte lo que quieres lograr. Por eso se mide **contra un objetivo**, como vender 1,000 conchas.' },
       {
-        sort: {
-          title: '¿Qué tipo de riesgo es?',
-          buckets: ['Estratégico', 'Operativo', 'Financiero', 'Cumplimiento', 'Reputacional'],
-          items: [
-            { text: 'No conseguir locales bien ubicados', bucket: 0, why: 'Afecta el rumbo del plan de crecimiento: estratégico.' },
-            { text: 'Que falle el sistema de inventarios', bucket: 1, why: 'Falla en procesos o sistemas: operativo.' },
-            { text: 'Recibir una multa sanitaria', bucket: 3, why: 'Incumplir una norma: cumplimiento.' },
-            { text: 'Que suba el tipo de cambio de medicinas importadas', bucket: 2, why: 'Tipo de cambio: financiero.' },
-            { text: 'Una queja viral en redes sobre mala atención', bucket: 4, why: 'Pierdes la confianza de los clientes: reputacional.' },
-            { text: 'Llega un competidor nuevo a la zona', bucket: 0, why: 'Cambio del mercado que afecta el rumbo: estratégico.' },
-            { text: 'Clientes de crédito que no pagan', bucket: 2, why: 'Riesgo de cobranza: financiero.' },
+        text: 'Hay cinco tipos:\n🧭 **Estratégico:** cambios del mercado (llega un competidor).\n⚙️ **Operativo:** fallas en procesos, personas o sistemas.\n💰 **Financiero:** tipo de cambio, tasas, clientes que no pagan.\n📜 **Cumplimiento** y 📣 **reputacional:** multas o perder la confianza de los clientes.',
+      },
+      {
+        match: {
+          title: 'Une cada tipo con un riesgo de Don Beto',
+          pairs: [
+            ['Estratégico', 'Abren otra panadería en la misma cuadra'],
+            ['Operativo', 'Se descompone el horno'],
+            ['Financiero', 'Las cafeterías que le compran a crédito no le pagan'],
+            ['Cumplimiento', 'Le ponen una multa sanitaria'],
+            ['Reputacional', 'Una queja viral en redes sobre pan duro'],
           ],
         },
       },
+      { text: 'Para encontrar riesgos **antes** de que pasen se usan talleres con los responsables, pérdidas pasadas, escenarios ("¿qué pasa si…?") y comparación con negocios del mismo giro.' },
       {
         multi: {
-          title: '¿Qué sirve para encontrar riesgos? Marca todas.',
+          title: 'Don Beto quiere adelantarse. ¿Qué le sirve? Marca todas.',
           items: [
-            { text: 'Talleres con los responsables de cada proceso', ok: true },
-            { text: 'Revisar pérdidas e incidentes pasados', ok: true },
-            { text: 'Análisis de escenarios (¿qué pasa si…?)', ok: true },
-            { text: 'Compararse con empresas del mismo giro', ok: true },
-            { text: 'Esperar a que el riesgo pase para anotarlo', ok: false },
+            { text: 'Platicar con su panadero y su cajera sobre qué puede fallar', ok: true },
+            { text: 'Revisar qué pérdidas tuvo el año pasado', ok: true },
+            { text: 'Preguntarse "¿qué pasa si sube mucho la harina?"', ok: true },
+            { text: 'Esperar a que algo pase para anotarlo', ok: false },
+            { text: 'Ignorar lo que casi nunca pasa aunque sea muy grave', ok: false },
           ],
-          why: 'Talleres, incidentes pasados, escenarios y comparación con el giro. La idea es adelantarse, no esperar.',
+          why: 'Talleres, pérdidas pasadas y escenarios ayudan a adelantarse. Esperar es reaccionar, y lo raro pero muy grave puede ser lo más dañino.',
         },
       },
-      { tip: 'La administración de riesgos empresariales (**ERM**) mira **todos** los riesgos juntos, no cada área por separado.' },
+      { tip: 'La administración de riesgos empresariales (**ERM**) mira **todos** los riesgos del negocio juntos, no cada área por separado.' },
     ],
-    // Medir el riesgo: probabilidad, impacto y mapa de calor
+    // ¿Qué tan grave es un riesgo?
     [
-      { text: 'Cada riesgo se califica de 1 a 5 en **probabilidad** (¿qué tan seguido?) y en **impacto** (¿qué tan grave?). Se **multiplican**: sale una calificación de 1 a 25 para el **mapa de calor** 🔥.' },
+      { text: 'Don Beto tiene muchos riesgos. ¿Cuál atiende primero? Califica cada uno de 1 a 5 en **probabilidad** (¿qué tan probable?) y en **impacto** (¿qué tan grave?), y los **multiplica**.' },
       {
         calc: {
-          question: 'Un taller mecánico 🔧 califica el riesgo de que se roben herramientas: probabilidad **3** e impacto **4**. ¿Cuál es su calificación?',
+          question: 'Que se descomponga el horno: probabilidad **3** e impacto **4**. ¿Cuál es su calificación?',
           answer: 12,
           unit: 'puntos',
-          hint: 'multiplica, no sumes.',
-          why: '3 × 4 = **12**. Sumar (3 + 4 = 7) es el error típico.',
+          hint: 'Multiplica, no sumes: 3 × 4.',
+          why: '3 × 4 = **12**, de un máximo de 25. Sumar (3 + 4 = 7) es el error típico.',
         },
       },
-      { text: 'La tiendita de Doña Lupe maneja mucho efectivo: riesgo de robo con probabilidad 4 e impacto 5 (**inherente**: sin controles). Ponle controles y mira el **residual**.' },
+      { text: 'Con las calificaciones se arma un **mapa de calor** 🔥: los riesgos rojos (altos) se atienden primero.' },
+      { text: 'La caja de Don Beto maneja mucho efectivo. Sin ningún control, el robo tiene probabilidad 4 e impacto 5: **20**. Ese es el riesgo **inherente**. Ponle controles y mira lo que queda: el riesgo **residual**.' },
       {
         sim: {
           title: 'Mapa de calor: robo de efectivo',
@@ -73,7 +75,7 @@ export const intAUD07: InteractiveLesson = {
           goal: {
             text: 'Lleva el riesgo a **bajo**: una calificación de **5 o menos**.',
             check: (x) => Math.max(1, 4 - x.c) * (5 - x.d) <= 5,
-            done: 'Los controles bajan la probabilidad o el impacto, y con eso la calificación. Lo que queda es el **riesgo residual**.',
+            done: 'Los controles bajan la probabilidad o el impacto. Lo que queda después de ellos es el **riesgo residual**.',
           },
         },
       },
@@ -81,58 +83,67 @@ export const intAUD07: InteractiveLesson = {
         ask: 'Riesgo **inherente** y riesgo **residual**: ¿cuál es cuál?',
         options: [
           { text: 'Inherente: antes de controles. Residual: lo que queda después', ok: true, reply: '¡Bien! El inherente es como si nadie hiciera nada; el residual queda con los controles que ya existen.' },
-          { text: 'Inherente: después de controles. Residual: antes', reply: 'Al revés: **residual** es lo que «resta» después de los controles.' },
-          { text: 'Son lo mismo con otro nombre', reply: 'No. Se miden en dos momentos distintos: antes y después de los controles.' },
+          { text: 'Inherente: después de controles. Residual: antes', reply: 'Al revés: **residual** es lo que «resta» después de los controles; el inherente es antes de cualquier control.' },
+          { text: 'Residual es el riesgo que ya pasó y causó una pérdida', reply: 'Un riesgo que ya pasó es un incidente. El **residual** es lo que queda después de los controles.' },
         ],
       },
+      { text: 'Si hay datos, el riesgo también se mide en pesos: **pérdida esperada = probabilidad × impacto**.' },
       {
         calc: {
-          question: 'Hay **15%** de probabilidad al año de perder **$400,000** por una inundación. ¿Cuál es la **pérdida esperada** al año?',
+          question: 'Hay **15%** de probabilidad al año de que una inundación le cueste a Don Beto **$400,000**. ¿Cuál es la **pérdida esperada** al año?',
           answer: 60000,
-          hint: '15% = 0.15; multiplícalo por el impacto en pesos.',
-          why: '0.15 × $400,000 = **$60,000** al año. Es un promedio, no lo que perderás seguro.',
+          hint: '15% = 0.15. Multiplícalo por $400,000.',
+          why: '0.15 × $400,000 = **$60,000** al año. Es un promedio para comparar, no lo que perderá seguro. Multiplicar por 15 en vez de 0.15 es el error típico.',
         },
       },
-      { tip: 'Revisa también los riesgos con **impacto 5** aunque su calificación sea media: si pasan, pueden ser muy dañinos.' },
     ],
-    // Responder y dar seguimiento
+    // ¿Qué hacemos con cada riesgo?
     [
-      { text: 'Hay cuatro respuestas: **evitar** (dejar la actividad), **reducir** (poner controles), **compartir** (seguros, contratos) y **aceptar** (vivir con él).' },
+      {
+        text: 'Don Beto ya sabe qué riesgos pesan más. Ahora elige qué hacer con cada uno:\n🚫 **Evitar:** dejar la actividad que causa el riesgo.\n🛡️ **Reducir:** poner controles.\n🤝 **Compartir o transferir:** seguros, contratos, subcontratar.\n👌 **Aceptar:** vivir con él, porque controlarlo cuesta más.',
+      },
+      {
+        match: {
+          title: 'Une cada respuesta con lo que hizo Don Beto',
+          pairs: [
+            ['Evitar', 'No abre sucursal en una zona muy insegura'],
+            ['Reducir', 'Da mantenimiento al horno cada mes'],
+            ['Compartir o transferir', 'Contrata un seguro contra incendio'],
+            ['Aceptar', 'Asume que a veces se rompe una charola barata'],
+          ],
+        },
+      },
       {
         sort: {
-          title: '¿Qué respuesta eligió la cafetería ☕?',
-          buckets: ['Evitar', 'Reducir', 'Compartir o transferir', 'Aceptar'],
+          title: '¿Reduce o comparte el riesgo?',
+          buckets: ['Reducir', 'Compartir o transferir'],
           items: [
-            { text: 'Decide no abrir sucursal en una zona muy insegura', bucket: 0, why: 'Deja la actividad que causa el riesgo: evitar.' },
-            { text: 'Pide doble firma para pagos grandes', bucket: 1, why: 'Pone un control: reducir.' },
-            { text: 'Contrata un seguro de daños', bucket: 2, why: 'Pasa parte del golpe a la aseguradora: compartir.' },
-            { text: 'Asume que de vez en cuando se rompe una taza', bucket: 3, why: 'Controlarlo cuesta más de lo que protege: aceptar.' },
-            { text: 'Subcontrata el reparto a domicilio', bucket: 2, why: 'Subcontratar es una forma de compartir o transferir.' },
-            { text: 'Instala cámaras en la caja', bucket: 1, why: 'Un control más: reducir.' },
+            { text: 'Pide doble firma para pagos grandes', bucket: 0, why: 'Es un control: hace que el problema pase menos. Reduce.' },
+            { text: 'Contrata un seguro de daños para la bodega', bucket: 1, why: 'El seguro no hace que pase menos: pasa parte del golpe a la aseguradora. Comparte.' },
+            { text: 'Instala cámaras en la caja', bucket: 0, why: 'Otro control: reduce.' },
+            { text: 'Contrata un repartidor que responde por daños al pan', bucket: 1, why: 'Subcontratar con responsabilidad es compartir o transferir.' },
           ],
         },
       },
       { text: 'Un control conviene si lo que **ahorra en pérdida esperada** es mayor que lo que cuesta.' },
       {
         calc: {
-          question: 'Una bodega tiene **20%** de probabilidad al año de perder **$500,000**. Unas alarmas cuestan **$30,000** al año y bajan la probabilidad a **4%**. ¿Cuál es el **beneficio neto** del control?',
+          question: 'La bodega de harina tiene **20%** de probabilidad al año de perder **$500,000**. Unas alarmas cuestan **$30,000** al año y bajan la probabilidad a **4%**. ¿Cuál es el **beneficio neto** del control?',
           answer: 50000,
-          hint: 'pérdida sin control − pérdida con control − costo del control.',
-          why: 'Sin control: 0.20 × $500,000 = $100,000. Con control: 0.04 × $500,000 = $20,000. Ahorro $80,000 − costo $30,000 = **$50,000**. Positivo: conviene.',
+          hint: 'Pérdida esperada sin control − pérdida esperada con control − costo del control.',
+          why: 'Sin control: 0.20 × $500,000 = $100,000. Con control: 0.04 × $500,000 = $20,000. Ahorro $80,000 − costo $30,000 = **$50,000**. Es positivo: conviene.',
         },
       },
+      { text: 'El **apetito de riesgo** es cuánto riesgo acepta el negocio para lograr sus metas. Lo aprueban los dueños o el consejo.' },
       {
-        match: {
-          title: 'Une cada término con su significado',
-          pairs: [
-            ['Apetito de riesgo', 'Cuánto riesgo acepta la empresa para lograr sus metas; lo aprueba el consejo o los dueños'],
-            ['Tolerancia', 'El margen aceptable alrededor de una meta concreta'],
-            ['Registro de riesgos', 'Lista con descripción, dueño, calificaciones, respuesta y fecha de revisión'],
-            ['Indicador clave de riesgo (KRI)', 'Señal temprana que avisa que un riesgo está creciendo'],
-          ],
-        },
+        ask: 'El riesgo de robo quedó **por encima** del apetito que aprobaron los dueños. ¿Qué toca?',
+        options: [
+          { text: 'Actuar más o llevarlo a los dueños para que decidan', ok: true, reply: '¡Exacto! Se refuerza la respuesta (reducir, compartir o evitar) o se escala.' },
+          { text: 'Anotarlo en la lista de riesgos y ya', reply: 'Anotarlo no basta. Si supera el apetito, hay que **actuar o escalarlo**.' },
+          { text: 'Esperar a ver si pasa', reply: 'Esperar es dejar el riesgo arriba de lo aceptado. Hay que **actuar o escalarlo**.' },
+        ],
       },
-      { tip: 'Si el riesgo residual queda **por encima del apetito**, hay que actuar o escalarlo.' },
+      { tip: 'Todo va a un **registro de riesgos** (dueño, calificación, respuesta, fecha de revisión), y unos **indicadores clave (KRI)** avisan cuando un riesgo empieza a crecer.' },
     ],
   ],
 }

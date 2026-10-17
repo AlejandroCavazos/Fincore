@@ -3,23 +3,21 @@ import type { InteractiveLesson } from './types'
 export const intL504: InteractiveLesson = {
   lessonId: 'L5-04',
   sections: [
-    // El modelo de riesgo de auditoría
+    // ¿Cómo se cuela un error?
     [
-      { text: 'Repaso integrador 🔎: **Sofía**, auditora junior, planea la auditoría de **Distribuidora La Norteña**. Empieza por la cuenta de **Clientes** (lo que le deben las tienditas).' },
-      { text: 'Un error solo llega a los estados financieros si pasa **tres filtros**. Ponlos en orden:' },
+      { text: 'Repaso integrador 🔎: **Sofía** planea la auditoría de **La Norteña**. Empieza por **Clientes** (lo que le deben las tienditas). Su miedo: que un error se le **cuele** 🕳️.' },
       {
-        order: {
-          title: 'El camino de un error',
-          steps: [
-            'El error ocurre (riesgo inherente)',
-            'Los controles de la empresa no lo atrapan (riesgo de control)',
-            'El auditor tampoco lo encuentra (riesgo de detección)',
-            'El error queda en los estados financieros y la opinión sale equivocada',
-          ],
-          done: 'RI y RC son de la empresa. El único que Sofía decide es el **RD**: cuánto revisar.',
-        },
+        text: 'Un error llega a los estados financieros solo si pasa tres filtros:\n1️⃣ Ocurre (**riesgo inherente**, RI).\n2️⃣ Los controles de la empresa no lo atrapan (**riesgo de control**, RC).\n3️⃣ El auditor tampoco lo encuentra (**riesgo de detección**, RD).',
       },
-      { text: 'La fórmula: **RA = RI × RC × RD**, así que **RD = RA ÷ (RI × RC)**. Mueve los riesgos y mira cuánto RD te puedes permitir.' },
+      {
+        ask: '¿Cuál de los tres puede decidir Sofía?',
+        options: [
+          { text: 'El riesgo de detección', ok: true, reply: '¡Sí! Ella decide cuánto revisar. RI y RC son de la empresa.' },
+          { text: 'El riesgo inherente', reply: 'El RI es de la cuenta misma; Sofía no lo cambia. Ella decide el **riesgo de detección**: cuánto revisar.' },
+          { text: 'El riesgo de control', reply: 'Los controles son de la empresa. Sofía decide el **riesgo de detección**: cuánto revisar.' },
+        ],
+      },
+      { text: 'La fórmula: **RA = RI × RC × RD**, donde RA es el riesgo de auditoría que acepta. Despejando: **RD = RA ÷ (RI × RC)**.' },
       {
         sim: {
           title: 'Los tres filtros de Clientes',
@@ -35,13 +33,13 @@ export const intL504: InteractiveLesson = {
           goal: {
             text: 'Sofía prueba los controles y salen buenos (baja el **RC**). Logra un **RD de 25% o más**: así necesita menos pruebas sustantivas.',
             check: (x) => (x.ra * 100) / ((x.ri * x.rc) / 100) >= 25,
-            done: 'Mientras más bajo el RI × RC, más alto puede ser el RD y **menos** pruebas hacen falta. Con RC al 100%, el RD es bajísimo: a revisar mucho.',
+            done: 'Mientras más bajo el RI × RC, más alto puede ser el RD y **menos** pruebas hacen falta.',
           },
         },
       },
       {
         calc: {
-          question: 'Para Clientes, Sofía fija **RA = 5%**, evalúa **RI = 50%** y **RC = 40%**. ¿Cuál es el **RD** planeado?',
+          question: 'Sofía fija **RA = 5%**, evalúa **RI = 50%** y **RC = 40%**. ¿Cuál es el **RD** planeado?',
           answer: 25,
           unit: '%',
           hint: 'Primero RI × RC en decimal, luego divide RA entre ese resultado.',
@@ -49,22 +47,24 @@ export const intL504: InteractiveLesson = {
         },
       },
       {
-        ask: 'En Inventarios, Sofía evalúa RI y RC **altos** y quiere un RA bajo. ¿Qué le toca hacer?',
+        ask: 'Tras probar los controles, Sofía sube el **RC** de bajo a alto. Con el mismo RA, ¿qué le toca hacer?',
         options: [
-          { text: 'Pocas pruebas, porque la empresa ya tiene controles', reply: 'Si el RC es alto, esos controles no son confiables. No puede apoyarse en ellos.' },
+          { text: 'Menos pruebas, porque la empresa ya tiene controles', reply: 'Si el RC es alto, esos controles no son confiables. El RD baja y toca **revisar más**.' },
           { text: 'Más pruebas sustantivas, más cerca del cierre y con muestras mayores', ok: true, reply: '¡Eso! RD planeado **bajo** = más trabajo de detalle (NIA 315 y NIA 330).' },
-          { text: 'Bajar el riesgo inherente', reply: 'El auditor no puede cambiar el RI: es de la cuenta misma.' },
+          { text: 'Subir la materialidad para compensar', reply: 'La materialidad no se mueve para tapar riesgo. Lo que cambia es el RD: **más pruebas**.' },
         ],
       },
       { tip: 'RI y RC **altos** → RD **bajo** → más pruebas. RI y RC **bajos** → RD más alto → menos pruebas.' },
     ],
-    // Materialidad
+    // ¿Qué error sí importa?
     [
-      { text: '¿Qué tan grande debe ser un error para que importe? Si tu recibo de nómina trae $5 de error no pasa nada; si trae $5,000, sí. Eso es la **materialidad** (NIA 320).' },
-      { text: 'La Norteña tuvo una **utilidad antes de impuestos de $3,000,000**. Sofía usa como referencia un **5%** (es un rango ilustrativo, no una regla de la norma).' },
+      { text: 'Si tu recibo de nómina trae $5 de error, no pasa nada. Si trae $5,000, sí 😬. Eso es la **materialidad** (NIA 320): el error que ya cambiaría decisiones.' },
+      {
+        text: 'Sofía calcula tres números (los % son ilustrativos, no reglas de la norma):\n🎯 **Materialidad global** = referencia × % (por ejemplo, 5% de la utilidad antes de impuestos).\n🛡️ **De ejecución:** más baja, un % de la global.\n🪶 **Umbral insignificante:** un % pequeño de la global.',
+      },
       {
         calc: {
-          question: 'Paso 1: ¿cuál es la **materialidad global**?',
+          question: 'La Norteña tuvo **utilidad antes de impuestos de $3,000,000**. Con **5%**, ¿cuál es la **materialidad global**?',
           answer: 150000,
           hint: 'Referencia × % de referencia.',
           why: '$3,000,000 × 0.05 = **$150,000**.',
@@ -72,7 +72,7 @@ export const intL504: InteractiveLesson = {
       },
       {
         calc: {
-          question: 'Paso 2: Sofía usa **70%** para la materialidad de ejecución. ¿Cuánto es?',
+          question: 'Sofía usa **70%** para la materialidad de ejecución. ¿Cuánto es?',
           answer: 105000,
           hint: 'Se calcula sobre la materialidad **global**, no sobre la utilidad.',
           why: '$150,000 × 0.70 = **$105,000**. Es más baja para dejar margen a errores que no se detecten.',
@@ -80,7 +80,7 @@ export const intL504: InteractiveLesson = {
       },
       {
         calc: {
-          question: 'Paso 3: el umbral de errores **claramente insignificantes** es el **5%**. ¿Cuánto es?',
+          question: 'El umbral de errores **claramente insignificantes** es el **5%** de la global. ¿Cuánto es?',
           answer: 7500,
           hint: 'También sobre la materialidad global.',
           why: '$150,000 × 0.05 = **$7,500**. Revisa el orden: $7,500 < $105,000 < $150,000. ✅',
@@ -99,18 +99,43 @@ export const intL504: InteractiveLesson = {
         },
       },
       {
-        ask: 'Un compañero calculó la materialidad de ejecución así: $3,000,000 × 70%. ¿Qué hizo mal?',
+        ask: 'Un compañero calculó la de ejecución así: $3,000,000 × 70%. ¿Qué hizo mal?',
         options: [
-          { text: 'Nada, está perfecto', reply: 'Le salió $2,100,000: ¡más que la global! Algo no cuadra.' },
+          { text: 'Nada, está perfecto', reply: 'Le salió $2,100,000: ¡más que la global! Usó la utilidad en lugar de la **materialidad global**.' },
           { text: 'Usó la utilidad en lugar de la materialidad global', ok: true, reply: '¡Bien visto! Ejecución y umbral siempre salen de la **materialidad global**.' },
-          { text: 'Debió sumar en lugar de multiplicar', reply: 'No, sí se multiplica. El problema es sobre qué cifra.' },
+          { text: 'Debió sumar en lugar de multiplicar', reply: 'Sí se multiplica. El problema es la cifra: debió usar la **materialidad global**.' },
         ],
       },
-      { tip: 'Siempre debe cumplirse: **umbral insignificante < materialidad de ejecución < materialidad global**.' },
+      { tip: 'Siempre: **umbral insignificante < materialidad de ejecución < materialidad global**.' },
     ],
-    // Evidencia: suficiente y adecuada
+    // ¿Qué prueba vale más?
     [
-      { text: 'La NIA 500 pide evidencia **suficiente** (cantidad) y **adecuada** (calidad: relevante y confiable). Ojo: mucha evidencia mala **no** compensa.' },
+      { text: 'Sofía quiere saber cuánto le debe una tiendita a La Norteña. Tiene varias pruebas a la mano 🤔.' },
+      {
+        ask: '¿A cuál le cree **más**?',
+        options: [
+          { text: 'A lo que dice el gerente de La Norteña de palabra', reply: 'Es interna y verbal: de las más débiles. Pesa más la **confirmación** que la tiendita le manda directo.' },
+          { text: 'A una fotocopia del estado de cuenta interno', reply: 'Es interna y es copia. Pesa más la **confirmación** externa que llega directo a Sofía.' },
+          { text: 'A la confirmación que la tiendita le manda directo a Sofía', ok: true, reply: '¡Exacto! Externa, independiente y obtenida directo por el auditor (NIA 505).' },
+        ],
+      },
+      {
+        text: 'La NIA 500 pide evidencia **suficiente** (cantidad) y **adecuada** (calidad). Mucha evidencia mala **no** compensa.\nPesa más: externa > interna · directa > indirecta · documental > verbal · original > copia.',
+      },
+      {
+        multi: {
+          title: 'Marca las evidencias MÁS confiables',
+          items: [
+            { text: 'Confirmación de saldo que el banco envía directo a Sofía', ok: true },
+            { text: 'Lo que dice de palabra el gerente de ventas', ok: false },
+            { text: 'La depreciación recalculada por la propia Sofía', ok: true },
+            { text: 'Fotocopia de un contrato que da el cliente', ok: false },
+            { text: 'Contrato original firmado que Sofía inspecciona', ok: true },
+          ],
+          why: 'Externa, obtenida directo por el auditor y original pesa más. Lo verbal y las copias pesan menos, y juntar más de lo mismo **no** arregla la mala calidad.',
+        },
+      },
+      { text: 'Para conseguir evidencia, Sofía puede **inspeccionar** documentos, **observar**, pedir **confirmación externa**, **recalcular** o **indagar** (preguntar).' },
       {
         match: {
           title: 'Une cada procedimiento con lo que hace Sofía',
@@ -123,39 +148,21 @@ export const intL504: InteractiveLesson = {
           ],
         },
       },
-      {
-        ask: '¿Qué evidencia es **más confiable** sobre el saldo de un cliente?',
-        options: [
-          { text: 'Lo que dice el gerente de La Norteña de palabra', reply: 'Es interna y verbal: de las más débiles.' },
-          { text: 'Una fotocopia del estado de cuenta interno', reply: 'Es interna y es copia: mejor el original y, aún mejor, algo externo.' },
-          { text: 'La confirmación que el cliente le manda directo a Sofía', ok: true, reply: '¡Exacto! Externa, independiente y obtenida directo por el auditor (NIA 505).' },
-        ],
-      },
-      {
-        multi: {
-          title: 'Marca las frases correctas sobre la evidencia',
-          items: [
-            { text: 'La evidencia documental pesa más que la verbal', ok: true },
-            { text: 'El original pesa más que una copia', ok: true },
-            { text: 'Juntar muchas copias malas compensa la mala calidad', ok: false },
-            { text: 'La evidencia interna es más fuerte si los controles son eficaces', ok: true },
-            { text: 'Lo que dice la empresa siempre vale más que lo de un tercero', ok: false },
-          ],
-          why: 'Externa > interna, directa > indirecta, documental > verbal, original > copia. Y la cantidad **no** arregla la mala calidad.',
-        },
-      },
       { tip: 'Suficiente = **cuánta**. Adecuada = **qué tan buena**. Necesitas las dos.' },
     ],
-    // Tipos de procedimientos
+    // Tres tipos de revisión
     [
-      { text: 'Sofía usa tres tipos de procedimientos. Ordénalos como suelen aparecer en la auditoría:' },
+      { text: 'Sofía ya tiene su plan. Ahora usa **tres tipos de revisión**, cada uno con su propósito 🧭.' },
+      {
+        text: '🧭 **Evaluación de riesgos:** entender el negocio y preguntar, para ver dónde hay riesgo.\n🔒 **Pruebas de controles:** ver si un control funciona.\n🔎 **Pruebas sustantivas:** buscar errores en saldos y transacciones.',
+      },
       {
         order: {
           title: 'El recorrido de Sofía',
           steps: [
-            'Procedimientos de evaluación de riesgos: entender el negocio y preguntar',
-            'Pruebas de controles: ver si los controles funcionan',
-            'Pruebas sustantivas: buscar errores en saldos y transacciones',
+            'Evaluación de riesgos: entender el negocio',
+            'Pruebas de controles: ver si funcionan',
+            'Pruebas sustantivas: buscar errores en saldos',
             'Emitir la opinión',
           ],
           done: 'Primero **identificas** riesgos, luego **pruebas** controles y al final **buscas** errores.',
@@ -163,20 +170,22 @@ export const intL504: InteractiveLesson = {
       },
       {
         sort: {
-          title: '¿Qué tipo de procedimiento es?',
+          title: '¿Qué tipo de revisión es?',
           buckets: ['Evaluación de riesgos', 'Prueba de controles', 'Prueba sustantiva'],
           items: [
-            { text: 'Platicar con el director para entender cómo vende La Norteña', bucket: 0, why: 'Entender el negocio sirve para identificar riesgos.' },
-            { text: 'Revisar que 50 órdenes de pago tengan la firma de autorización', bucket: 1, why: 'Verifica si un control opera.' },
-            { text: 'Revisar las facturas detrás de las ventas grandes de diciembre', bucket: 2, why: 'Prueba de detalle: busca errores en transacciones.' },
-            { text: 'Analíticos preliminares: comparar las ventas contra el año pasado al planear', bucket: 0, why: 'Al planear, los analíticos ayudan a ver dónde hay riesgo.' },
+            { text: 'Preguntar al director qué cambió en el negocio este año', bucket: 0, why: 'Entender el negocio sirve para identificar riesgos.' },
+            { text: 'Revisar que las órdenes de compra tengan la firma de autorización', bucket: 1, why: 'Verifica si un control opera.' },
+            { text: 'Enviar confirmaciones de saldo a las tienditas', bucket: 2, why: 'Busca errores en el saldo de Clientes.' },
+            { text: 'Rehacer la conciliación bancaria para ver si el control opera', bucket: 1, why: 'Reejecutar un control es probarlo.' },
+            { text: 'Cotejar ventas registradas contra remisiones y CFDI', bucket: 2, why: 'Prueba de detalle sobre transacciones.' },
+            { text: 'Comparar márgenes contra el año pasado al planear', bucket: 0, why: 'Al planear, los analíticos ayudan a ver dónde hay riesgo.' },
           ],
         },
       },
       {
         spot: {
           title: 'Encuentra el error en el ajuste propuesto',
-          story: 'En su prueba sustantiva, Sofía halla una venta a crédito de **$120,000** que nunca salió del almacén. Como rebasa la materialidad de ejecución, propone cancelarla (sin IVA, para simplificar):',
+          story: 'En su prueba sustantiva, Sofía halla una venta a crédito de **$120,000** que nunca salió del almacén. Propone cancelarla (sin IVA, para simplificar):',
           lines: [
             { account: 'Ventas', side: 'D', amount: 120000 },
             { account: 'Clientes', side: 'D', amount: 120000 },

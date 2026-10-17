@@ -3,121 +3,116 @@ import type { InteractiveLesson } from './types'
 export const intAUD05: InteractiveLesson = {
   lessonId: 'AUD-05',
   sections: [
-    // ¿Qué es el control interno?
+    // ¿Cómo cuida Marta su negocio?
     [
-      { text: 'El **control interno** no es un manual en un cajón: es lo que **toda la gente** hace a diario para que la empresa opere bien, tenga información confiable y cumpla leyes.' },
-      { text: 'Primero piensas en el **riesgo** (lo que podría salir mal) y luego en el **control** (la acción que lo reduce). Ejemplo: una cafetería ☕.' },
+      { text: 'Marta abrió una cafetería ☕. No puede estar en la caja todo el día. ¿Cómo sabe que no se pierde dinero?' },
+      { text: 'Con **control interno**: lo que **toda la gente** hace a diario para que el negocio opere bien, tenga información confiable y cumpla leyes. No es un manual guardado en un cajón.' },
+      { text: 'Primero piensas en el **riesgo** (lo que podría salir mal) y luego en el **control** (la acción que lo reduce).' },
       {
         sort: {
           title: '¿Riesgo o control?',
           buckets: ['Riesgo', 'Control'],
           items: [
-            { text: 'Que el cajero se quede con efectivo', bucket: 0, why: 'Es algo que podría salir mal.' },
-            { text: 'Registrar cada venta en la caja', bucket: 1, why: 'Es una acción que reduce el riesgo.' },
+            { text: 'Que el cajero se quede con efectivo', bucket: 0, why: 'Algo que podría salir mal.' },
+            { text: 'Registrar cada venta en la caja', bucket: 1, why: 'Acción que reduce el riesgo.' },
             { text: 'Que otra persona cuente el efectivo al cierre contra el reporte', bucket: 1, why: 'Acción concreta: control.' },
             { text: 'Que se pierda café del almacén', bucket: 0, why: 'Algo que podría pasar: riesgo.' },
             { text: 'Guardar el café con llave', bucket: 1, why: 'Resguardo físico: control.' },
           ],
         },
       },
+      { text: 'Pero ningún control es perfecto:\n😓 La gente se **equivoca** o se cansa.\n🤝 Dos empleados se ponen de acuerdo (**colusión**).\n👔 Un directivo lo ignora (**elusión por la dirección**).\n💸 Algunos controles **cuestan más** de lo que protegen.' },
       {
         multi: {
-          title: '¿Por qué el control interno no da seguridad absoluta? Marca todas.',
+          title: '¿Cuáles son límites de cualquier control interno? Marca todas.',
           items: [
-            { text: 'Las personas se equivocan o se cansan', ok: true },
-            { text: 'Dos empleados se ponen de acuerdo para saltarse un control (colusión)', ok: true },
-            { text: 'Un directivo lo ignora (elusión por la dirección)', ok: true },
-            { text: 'Algunos controles cuestan más de lo que protegen', ok: true },
-            { text: 'Porque solo lo aplica el área de contabilidad', ok: false },
+            { text: 'El cajero y el barista se ponen de acuerdo para saltarse un control', ok: true },
+            { text: 'El gerente ordena ignorar un control', ok: true },
+            { text: 'Alguien cansado cuenta mal la caja', ok: true },
+            { text: 'Un control cuesta más de lo que protege', ok: true },
+            { text: 'Un buen control interno garantiza que nunca habrá pérdidas', ok: false },
           ],
-          why: 'Por esas limitaciones da **seguridad razonable**. Y lo hacen personas de todos los niveles, no solo contabilidad.',
+          why: 'Por esos límites, el control interno da **seguridad razonable**, nunca absoluta.',
         },
       },
-      { tip: 'Un control no debe costar más que el beneficio que da.' },
     ],
-    // Tipos de controles y controles clave
+    // ¿Evitar, detectar o reparar?
     [
-      { text: 'Según **cuándo** actúa, un control es preventivo (antes), detectivo (después) o correctivo (repara).' },
+      { text: 'Marta quiere **evitar** errores, **encontrarlos** si pasan y **repararlos**.' },
+      { text: 'Según cuándo actúa, un control es:\n🛑 **Preventivo:** evita el error. Ej. dos firmas para un pago grande.\n🔦 **Detectivo:** lo descubre después. Ej. la conciliación bancaria.\n🩹 **Correctivo:** repara el daño. Ej. restaurar datos de un respaldo.' },
       {
         sort: {
           title: '¿Qué tipo de control es?',
           buckets: ['Preventivo', 'Detectivo', 'Correctivo'],
           items: [
-            { text: 'Pedir dos firmas para un pago grande', bucket: 0, why: 'Evita el error antes de que pase.' },
-            { text: 'Conciliación bancaria mensual', bucket: 1, why: 'Descubre el error después.' },
-            { text: 'Restaurar datos desde un respaldo', bucket: 2, why: 'Repara el daño.' },
-            { text: 'El sistema bloquea una factura duplicada', bucket: 0, why: 'Impide el error antes de registrarse.' },
-            { text: 'Conteo físico periódico del almacén', bucket: 1, why: 'Encuentra faltantes después de que ocurrieron.' },
+            { text: 'El sistema no deja registrar dos veces el mismo folio', bucket: 0, why: 'Evita el error antes de que pase.' },
+            { text: 'Conteo sorpresa del inventario contra el kárdex', bucket: 1, why: 'Descubre faltantes después.' },
+            { text: 'Restaurar la lista de clientes desde el respaldo', bucket: 2, why: 'Repara el daño.' },
+            { text: 'Dos firmas para pagos grandes', bucket: 0, why: 'Frena el pago antes.' },
+            { text: 'Conciliación bancaria mensual', bucket: 1, why: 'Encuentra diferencias después.' },
+            { text: 'Nota de crédito para reponer un cobro de más', bucket: 2, why: 'Corrige el error ya hecho.' },
+          ],
+        },
+      },
+      { text: 'El control más importante en un negocio chico: **segregación de funciones**. Que no sea la misma persona quien **autoriza**, **registra** y **custodia**.' },
+      {
+        match: {
+          title: '¿Quién hace qué en la cafetería?',
+          pairs: [
+            ['Autorizar', 'Marta aprueba la compra de café'],
+            ['Registrar', 'La contadora captura la compra'],
+            ['Custodiar', 'El almacenista guarda los costales con llave'],
           ],
         },
       },
       {
-        rush: {
-          title: '¿Manual o automático?',
-          seconds: 35,
-          labels: ['Manual', 'Automático'],
-          items: [
-            { text: 'El gerente firma la orden de compra', ans: 0 },
-            { text: 'El sistema no deja capturar una factura duplicada', ans: 1 },
-            { text: 'La encargada cuenta la caja al cierre', ans: 0 },
-            { text: 'El sistema numera solo las notas de venta', ans: 1 },
-            { text: 'El almacenista revisa la nota pagada antes de entregar', ans: 0 },
-          ],
-        },
-      },
-      { text: 'El control más importante en una pyme: **segregación de funciones**. Separar **autorizar**, **registrar** y **custodiar**.' },
-      {
-        ask: 'En una tienda de materiales 🧱, Don Pepe autoriza descuentos, **cobra** y **entrega** la mercancía. ¿Cuál es el problema?',
+        ask: 'En una clínica veterinaria, la recepcionista cobra, registra los cobros y prepara el depósito. Nadie revisa. ¿Cuál es el problema?',
         options: [
-          { text: 'Ninguno, así atienden más rápido', reply: 'Rápido sí, pero podría regalar material a un conocido sin que nadie lo note.' },
-          { text: 'Una sola persona autoriza, registra y custodia: puede cometer y esconder un robo', ok: true, reply: '¡Eso! Lo sano: vendedor autoriza, cajero cobra y registra, almacenista entrega.' },
-          { text: 'Que no usa documentos prenumerados', reply: 'Ayudaría, pero el problema de fondo es que **una persona hace las tres funciones**.' },
+          { text: 'El sistema de cobro es viejo', reply: 'El problema de fondo es que **una sola persona** custodia y registra el efectivo: falta segregación.' },
+          { text: 'Falta segregación: una persona custodia y registra el efectivo', ok: true, reply: '¡Eso! Podría tomar dinero y esconderlo en el registro sin que nadie lo note.' },
+          { text: 'La recepcionista tiene pocas tareas', reply: 'Al revés: tiene tareas que deberían estar **separadas**.' },
         ],
       },
       { tip: 'Otros controles clave: autorizaciones con límites, conciliaciones, resguardo físico, documentos prenumerados y conteos físicos.' },
     ],
-    // Diseño, operación y deficiencias
+    // ¿El control sí se cumple?
     [
-      { text: 'Un control se evalúa en dos pasos: **diseño** (¿si funcionara, reduciría el riesgo?) y **operación** (¿de verdad se aplica siempre?).' },
+      { text: 'El manual de Marta dice: «toda compra lleva mi firma» ✍️. ¿Pero de verdad se cumple?' },
+      { text: 'Un control se revisa en dos pasos:\n📐 **Diseño:** si funcionara como está escrito, ¿reduciría el riesgo?\n⚙️ **Operación:** ¿de verdad se aplica siempre, por la persona correcta y a tiempo?' },
+      {
+        ask: 'El control está bien escrito, pero casi nunca se firma. ¿Puede el auditor confiar en él?',
+        options: [
+          { text: 'Sí, está en el manual', reply: 'Estar escrito no basta: hay que probar que **opera**. Aquí hay una **deficiencia de control**.' },
+          { text: 'No: está bien diseñado pero no opera', ok: true, reply: '¡Bien! Es una **deficiencia de control**: se ve perfecto en el papel, pero no se aplica.' },
+          { text: 'Sí, si Marta lo promete', reply: 'Hay que **probar** que opera, no basta la palabra.' },
+        ],
+      },
+      { text: 'Para probarlo, se revisa una muestra y se cuentan las **desviaciones** (veces que no se aplicó):\n**Tasa de desviación = desviaciones ÷ casos revisados**\nLuego se compara con una **tasa tolerable** fijada antes.' },
       {
         order: {
-          title: 'Ordena cómo se prueba que un control opera',
-          steps: [
-            'Fijar de antemano la tasa tolerable',
-            'Revisar una muestra de casos',
-            'Contar las desviaciones (veces que el control no se aplicó)',
-            'Calcular la tasa de desviación',
-            'Comparar con la tasa tolerable y concluir',
-          ],
-          done: 'Si la tasa de desviación rebasa la tolerable, el control **no es confiable**.',
+          title: 'Ordena la prueba del control',
+          steps: ['Fijar la tasa tolerable', 'Revisar una muestra de casos', 'Contar las desviaciones', 'Calcular la tasa de desviación', 'Comparar y concluir'],
+          done: 'Si la tasa rebasa la tolerable, el control **no es confiable**.',
         },
       },
       {
         calc: {
-          question: 'De **75** órdenes de compra revisadas, **6** no tienen la firma del gerente. ¿Cuál es la **tasa de desviación**?',
+          question: 'De **75** compras revisadas, **6** no tienen la firma de Marta. ¿Cuál es la tasa de desviación, en %?',
           answer: 8,
           unit: '%',
-          hint: 'desviaciones ÷ todos los casos revisados × 100.',
-          why: '6 ÷ 75 = 0.08 → **8 %**. Divide entre **todos** los revisados, no solo los correctos.',
+          hint: '6 ÷ 75 × 100.',
+          why: '6 ÷ 75 = 0.08 → **8 %**. Divide entre **todos** los casos revisados.',
         },
       },
       {
         ask: 'La tasa tolerable era **5 %** y salió **8 %**. ¿Qué concluye el auditor?',
         options: [
           { text: 'El control es confiable', reply: '8 % rebasa el 5 % tolerable: **no** es confiable.' },
-          { text: 'El control no es confiable y hace más pruebas sustantivas', ok: true, reply: '¡Correcto! No se apoya en el control y busca errores directo en las cifras.' },
-          { text: 'Repite la muestra hasta que salga menos de 5 %', reply: 'No: eso sería maquillar el resultado.' },
+          { text: 'El control no es confiable', ok: true, reply: '¡Correcto! Hay una deficiencia de control.' },
+          { text: 'Repite la muestra hasta que salga menos de 5 %', reply: 'Eso sería maquillar el resultado. Con 8 % el control **no es confiable**.' },
         ],
       },
-      {
-        ask: 'Un manual dice que el gerente firma cada pago, pero en la práctica casi nunca lo hace. ¿Qué hay?',
-        options: [
-          { text: 'Un control bien diseñado que no opera: deficiencia de control', ok: true, reply: '¡Bien! Puede verse perfecto en el papel y no aplicarse. Eso es una **deficiencia**.' },
-          { text: 'Nada: el control existe en el manual', reply: 'No basta con estar escrito; tiene que **aplicarse**.' },
-          { text: 'Un control mal diseñado', reply: 'El diseño está bien; lo que falla es la **operación**.' },
-        ],
-      },
-      { tip: 'Las **deficiencias significativas** se comunican por escrito al gobierno de la entidad.' },
+      { tip: 'Las deficiencias más graves (**significativas**) se comunican por escrito al gobierno de la entidad.' },
     ],
   ],
 }

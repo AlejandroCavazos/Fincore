@@ -32,7 +32,7 @@ export const lessons: Lesson[] = [
       es: "El fraude aparece cuando coinciden presión, oportunidad y racionalización; se previene quitando oportunidades con controles y cultura, y se detecta con señales de alerta, denuncias y análisis de datos.",
       en: "Fraud appears when pressure, opportunity and rationalization meet; it is prevented by removing opportunities through controls and culture, and detected through red flags, tips and data analytics.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Explicar el triángulo del fraude y los tres grandes tipos de fraude ocupacional.", en: "Explain the fraud triangle and the three main types of occupational fraud." },
       { es: "Seleccionar controles preventivos que reduzcan la oportunidad de cometer fraude.", en: "Select preventive controls that reduce the opportunity to commit fraud." },
@@ -41,7 +41,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Por qué ocurre el fraude: el triángulo y sus tipos", en: "Why fraud happens: the triangle and its types" },
+        heading: { es: "¿Por qué alguien comete fraude?", en: "Why does someone commit fraud?" },
         body: [
           {
             es: "El **fraude** es un engaño hecho a propósito para obtener un beneficio indebido. A diferencia del **error**, que es involuntario, el fraude tiene **intención** y casi siempre alguien intenta ocultarlo. Por eso es más difícil de encontrar.",
@@ -68,7 +68,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Prevención: cerrar la puerta antes del robo", en: "Prevention: closing the door before the theft" },
+        heading: { es: "Cerrarle la puerta al fraude", en: "Closing the door on fraud" },
         body: [
           {
             es: "Prevenir es más barato que investigar. La base es el **tono desde arriba**: si la dirección actúa con integridad y castiga las faltas sin excepciones, el personal entiende que el fraude no se tolera. Esto se apoya en un **código de ética** firmado, capacitación y una política clara de **conflictos de interés**.",
@@ -96,7 +96,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Detección: señales de alerta y análisis de datos", en: "Detection: red flags and data analytics" },
+        heading: { es: "¿Cómo se descubre un fraude?", en: "How is fraud discovered?" },
         body: [
           {
             es: "Una **señal de alerta** (red flag) es un hecho raro que no prueba fraude, pero pide revisar más. Ejemplos: un empleado que nunca toma vacaciones, un estilo de vida muy superior a su sueldo, un proveedor con la misma cuenta bancaria que un trabajador, o asientos contables registrados un domingo en la noche.",
@@ -221,7 +221,7 @@ export const lessons: Lesson[] = [
       { es: "Las señales de alerta y pruebas como Benford dirigen la revisión, pero no prueban el fraude por sí solas.", en: "Red flags and tests such as Benford direct the review, but do not prove fraud by themselves." },
     ],
     normativeNote: NOTE_FRAUD,
-    exerciseIds: ['AUD-13-E1', 'AUD-13-E2', 'AUD-13-E3', 'AUD-13-E4', 'AUD-13-E5', 'AUD-13-E6'],
+    exerciseIds: ['AUD-13-E1', 'AUD-13-E2', 'AUD-13-E4', 'AUD-13-E5', 'AUD-13-E6'],
   },
 
   // ───────────────────────────── AUD-14 ─────────────────────────────
@@ -234,7 +234,7 @@ export const lessons: Lesson[] = [
       es: "Un programa de cumplimiento identifica las obligaciones de la empresa, asigna quién las cumple y quién las vigila según el modelo de las tres líneas, y las monitorea con indicadores y pruebas contra un apetito de riesgo definido.",
       en: "A compliance program identifies the company's obligations, assigns who meets them and who oversees them under the three lines model, and monitors them with indicators and tests against a defined risk appetite.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Describir los elementos de un programa de cumplimiento eficaz.", en: "Describe the elements of an effective compliance program." },
       { es: "Asignar responsabilidades con el modelo de las tres líneas.", en: "Assign responsibilities using the three lines model." },
@@ -243,7 +243,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué es cumplimiento y cómo se arma un programa", en: "What compliance is and how a program is built" },
+        heading: { es: "¿Cómo se cumplen las reglas?", en: "How are the rules followed?" },
         body: [
           {
             es: "**Cumplimiento** (compliance) es asegurarse de que la empresa respeta sus **obligaciones**: leyes, reglas de las autoridades, contratos y sus propias políticas. Un ejemplo cotidiano: una casa de empeño en México debe identificar a sus clientes y avisar de ciertas operaciones a la autoridad por las reglas contra el lavado de dinero; si no lo hace, arriesga multas y su reputación.",
@@ -271,7 +271,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "El modelo de las tres líneas", en: "The three lines model" },
+        heading: { es: "¿Quién cuida cada riesgo?", en: "Who looks after each risk?" },
         body: [
           {
             es: "El **modelo de las tres líneas** del IIA ordena quién hace qué con los riesgos. Encima está el **órgano de gobierno** (consejo de administración y sus comités), que fija la dirección y supervisa. Debajo, la administración y la auditoría interna.",
@@ -298,7 +298,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Apetito de riesgo, indicadores y pruebas de cumplimiento", en: "Risk appetite, indicators and compliance testing" },
+        heading: { es: "¿Cuánto riesgo aceptamos?", en: "How much risk do we accept?" },
         body: [
           {
             es: "El **apetito de riesgo** es cuánto riesgo está dispuesta a aceptar la empresa para lograr sus metas; lo aprueba el consejo. La **tolerancia** es el margen concreto de variación aceptable en una métrica. Ejemplo: «aceptamos riesgo bajo en lavado de dinero» (apetito) y «máximo 2 % de expedientes incompletos» (tolerancia).",
@@ -437,7 +437,7 @@ export const lessons: Lesson[] = [
       { es: "Una excepción por encima de la tolerancia se corrige en su causa y se reporta al gobierno.", en: "An exception above tolerance is fixed at its cause and reported to governance." },
     ],
     normativeNote: NOTE_COMPLIANCE,
-    exerciseIds: ['AUD-14-E1', 'AUD-14-E2', 'AUD-14-E3', 'AUD-14-E4', 'AUD-14-E5', 'AUD-14-E6'],
+    exerciseIds: ['AUD-14-E1', 'AUD-14-E2', 'AUD-14-E3', 'AUD-14-E4', 'AUD-14-E5'],
   },
 
   // ───────────────────────────── AUD-15 ─────────────────────────────
@@ -450,7 +450,7 @@ export const lessons: Lesson[] = [
       es: "El informe es el producto final de la auditoría: el auditor externo emite una opinión limpia o modificada según la materialidad y el alcance del problema, y el auditor interno comunica hallazgos con condición, criterio, causa, efecto y recomendación.",
       en: "The report is the final product of the audit: the external auditor issues a clean or modified opinion based on the materiality and extent of the problem, and the internal auditor communicates findings with condition, criteria, cause, effect and recommendation.",
     },
-    minutes: 20,
+    minutes: 11,
     objectives: [
       { es: "Identificar las secciones del informe del auditor independiente.", en: "Identify the sections of the independent auditor's report." },
       { es: "Elegir el tipo de opinión según materialidad y generalización del problema.", en: "Choose the type of opinion based on materiality and pervasiveness of the issue." },
@@ -459,7 +459,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "El informe del auditor independiente", en: "The independent auditor's report" },
+        heading: { es: "¿Qué dice el informe del auditor?", en: "What does the auditor's report say?" },
         body: [
           {
             es: "Cuando un despacho audita los estados financieros, su trabajo termina en un **informe** con una **opinión**: si los estados financieros están presentados razonablemente, **en todos los aspectos materiales**, conforme al marco contable (por ejemplo, NIF o IFRS). «Razonablemente» significa que no hay errores que cambiarían las decisiones de quien los lee; no significa que estén perfectos.",
@@ -487,7 +487,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Tipos de opinión: limpia o modificada", en: "Types of opinion: clean or modified" },
+        heading: { es: "¿Qué calificación le toca?", en: "Which grade does it get?" },
         body: [
           {
             es: "En palabras sencillas: la opinión es la «calificación» que el auditor pone a los estados financieros. La opinión **limpia** (no modificada) dice que todo es razonable. Las opiniones **modificadas** (NIA 705) son tres, y se eligen respondiendo dos preguntas: ¿el problema es una **incorrección** (algo mal registrado) o una **limitación** (no pude obtener evidencia)? ¿Y es **material pero no generalizado**, o **material y generalizado**?",
@@ -546,7 +546,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Informes de auditoría interna: hallazgos que se entienden", en: "Internal audit reports: findings people understand" },
+        heading: { es: "Hallazgos que se entienden", en: "Findings people understand" },
         body: [
           {
             es: "El informe de auditoría interna no da una opinión sobre estados financieros: comunica **hallazgos** a la dirección y al comité de auditoría para que se corrijan. Suele abrir con un **resumen ejecutivo** de una página: objetivo, alcance, calificación general y los hallazgos más graves.",
@@ -641,7 +641,7 @@ export const lessons: Lesson[] = [
       { es: "Un hallazgo interno tiene condición, criterio, causa, efecto y recomendación, más un plan con responsable y fecha.", en: "An internal finding has condition, criteria, cause, effect and recommendation, plus a plan with an owner and a date." },
     ],
     normativeNote: NOTE_REPORT,
-    exerciseIds: ['AUD-15-E1', 'AUD-15-E2', 'AUD-15-E3', 'AUD-15-E4', 'AUD-15-E5', 'AUD-15-E6'],
+    exerciseIds: ['AUD-15-E1', 'AUD-15-E2', 'AUD-15-E3', 'AUD-15-E4', 'AUD-15-E5'],
   },
 ]
 

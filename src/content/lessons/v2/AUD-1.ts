@@ -49,7 +49,7 @@ export const lessons: Lesson[] = [
       "Auditar es revisar de forma independiente y con evidencia si la información de alguien es confiable, para que un tercero pueda creer en ella; hay varios tipos de auditoría y todos se apoyan en independencia, escepticismo y juicio profesional.",
       "Auditing is independently reviewing, with evidence, whether someone's information is reliable so a third party can trust it; there are several types of audit and all rely on independence, skepticism and professional judgment.",
     ),
-    minutes: 15,
+    minutes: 11,
     objectives: [
       t("Explicar qué es una auditoría y quiénes participan en ella.", "Explain what an audit is and who takes part in it."),
       t("Distinguir los principales tipos de auditoría por quién la hace y qué revisa.", "Distinguish the main types of audit by who performs it and what it reviews."),
@@ -58,7 +58,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es auditar y para qué sirve?", "What is auditing and what is it for?"),
+        heading: t("¿Para qué sirve auditar?", "Why audit?"),
         body: [
           t(
             "**Auditar** es revisar algo de forma **independiente**, reuniendo **evidencia**, para dar una opinión sobre si cumple con un criterio. El criterio puede ser una norma contable, una ley o una política interna. La idea central: alguien que no preparó la información la revisa para que otros puedan confiar en ella.",
@@ -81,7 +81,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Tipos de auditoría", "Types of audit"),
+        heading: t("¿Qué tipos de auditoría hay?", "What kinds of audit exist?"),
         body: [
           t(
             "Las auditorías se distinguen por **quién** las hace y **qué** revisan. La **auditoría externa de estados financieros** la hace un contador público independiente, ajeno a la empresa, y opina si los estados financieros están bien presentados. La **auditoría interna** la hace un área de la propia organización que reporta al consejo o a un comité de auditoría y revisa riesgos, controles y procesos.",
@@ -105,7 +105,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Seguridad razonable, independencia y escepticismo", "Reasonable assurance, independence and skepticism"),
+        heading: t("Confianza alta, pero no total", "High confidence, not total"),
         body: [
           t(
             "Una auditoría da **seguridad razonable**: un nivel alto de confianza, pero **no absoluta**. El auditor no revisa cada peso, usa muestras y juicio, y algunas cosas (como un fraude bien escondido con documentos falsos) pueden no detectarse. Una **revisión limitada** da todavía menos seguridad porque usa sobre todo preguntas y análisis, no pruebas detalladas.",
@@ -196,7 +196,7 @@ export const lessons: Lesson[] = [
       t("Escepticismo: ni desconfiar de todo ni creer sin evidencia.", "Skepticism: neither distrust everything nor believe without evidence."),
     ],
     normativeNote: NOTE_FUND,
-    exerciseIds: ['AUD-01-E1', 'AUD-01-E2', 'AUD-01-E3', 'AUD-01-E4', 'AUD-01-E5', 'AUD-01-E6'],
+    exerciseIds: ['AUD-01-E1', 'AUD-01-E2', 'AUD-01-E3', 'AUD-01-E4', 'AUD-01-E6'],
   },
 
   // ───────────────────────────── AUD-02 ─────────────────────────────
@@ -209,7 +209,7 @@ export const lessons: Lesson[] = [
       "Las NIA son las reglas comunes que sigue un auditor externo en casi todo el mundo, incluido México: se agrupan por número según la etapa de la auditoría y cada una combina un objetivo, requisitos obligatorios y guía de aplicación.",
       "ISAs are the common rules followed by external auditors in most of the world, including Mexico: they are grouped by number according to the audit stage and each combines an objective, mandatory requirements and application guidance.",
     ),
-    minutes: 14,
+    minutes: 11,
     objectives: [
       t("Explicar quién emite las NIA y por qué existen normas comunes de auditoría.", "Explain who issues the ISAs and why common auditing standards exist."),
       t("Ubicar una NIA en su grupo según su numeración (200, 300-400, 500, 600, 700).", "Place an ISA in its group by its numbering (200, 300-400, 500, 600, 700)."),
@@ -218,7 +218,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué son las NIA y quién las emite?", "What are the ISAs and who issues them?"),
+        heading: t("¿Qué reglas sigue el auditor?", "What rules does the auditor follow?"),
         body: [
           t(
             "Las **Normas Internacionales de Auditoría (NIA)** son el «reglamento» que sigue el auditor externo de estados financieros. Dicen qué debe lograr, qué debe hacer sí o sí y cómo documentarlo. Gracias a ellas, una auditoría hecha en México se puede comparar con una hecha en España o en Colombia.",
@@ -241,7 +241,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("El mapa de las NIA por número", "The map of ISAs by number"),
+        heading: t("¿Cómo se ordenan las NIA?", "How are the ISAs organized?"),
         body: [
           t(
             "Las NIA se numeran por grupos que siguen el orden de una auditoría. Si recuerdas el grupo, sabes de qué trata la norma aunque no conozcas su número exacto. Es como los pasillos de un supermercado: cada número de centena es un pasillo.",
@@ -265,7 +265,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Cómo se lee una NIA y sus principios generales", "How to read an ISA and its general principles"),
+        heading: t("¿Qué parte de una NIA obliga?", "Which part of an ISA is binding?"),
         body: [
           t(
             "Cada NIA tiene partes fijas: una **introducción**, un **objetivo** (lo que el auditor debe lograr), **definiciones**, **requisitos** (lo que el auditor **debe** hacer; suelen redactarse con «deberá») y **guía de aplicación y otras anotaciones explicativas** (ejemplos y explicaciones que ayudan a cumplir los requisitos). Solo los requisitos son obligatorios, pero la guía es necesaria para entenderlos bien.",
@@ -324,7 +324,7 @@ export const lessons: Lesson[] = [
       t("La NIA 200 pide seguridad razonable, ética, escepticismo, juicio y evidencia suficiente y adecuada.", "ISA 200 requires reasonable assurance, ethics, skepticism, judgment and sufficient appropriate evidence."),
     ],
     normativeNote: NOTE_NIA,
-    exerciseIds: ['AUD-02-E1', 'AUD-02-E2', 'AUD-02-E3', 'AUD-02-E4', 'AUD-02-E5', 'AUD-02-E6'],
+    exerciseIds: ['AUD-02-E1', 'AUD-02-E2', 'AUD-02-E3', 'AUD-02-E4', 'AUD-02-E6'],
   },
 
   // ───────────────────────────── AUD-03 ─────────────────────────────
@@ -337,7 +337,7 @@ export const lessons: Lesson[] = [
       "Una auditoría avanza por etapas: aceptar el encargo, planear (conocer el negocio, fijar la materialidad y valorar riesgos), ejecutar pruebas de controles y sustantivas, y concluir; el modelo de riesgo de auditoría dice cuánto trabajo hacer.",
       "An audit moves through stages: accepting the engagement, planning (understanding the business, setting materiality and assessing risks), performing tests of controls and substantive tests, and concluding; the audit risk model tells how much work to do.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Ordenar las etapas de una auditoría, desde la aceptación hasta la conclusión.", "Order the stages of an audit, from acceptance to conclusion."),
       t("Calcular una materialidad ilustrativa y la materialidad de ejecución.", "Compute an illustrative materiality and performance materiality."),
@@ -346,7 +346,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Las etapas de una auditoría", "The stages of an audit"),
+        heading: t("¿En qué pasos va una auditoría?", "What are the steps of an audit?"),
         body: [
           t(
             "Antes de empezar, el despacho decide si **acepta el encargo**: revisa si es independiente, si tiene gente capaz y si la administración es íntegra. Luego firma una **carta convenio** (carta de encargo) que deja por escrito el objetivo, las responsabilidades de cada parte y el informe que se entregará.",
@@ -369,7 +369,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Materialidad: ¿qué tanto es importante?", "Materiality: how much is significant?"),
+        heading: t("¿Qué error sí importa?", "Which error really matters?"),
         body: [
           t(
             "Una cifra es **material** cuando un error en ella podría cambiar la decisión de quien lee los estados. Como el auditor no revisa todo, fija un **monto de materialidad** para saber qué errores importan. Se calcula aplicando un porcentaje a una **base** (por ejemplo, utilidad antes de impuestos, ventas o activos totales).",
@@ -454,7 +454,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Riesgo de auditoría y tipos de pruebas", "Audit risk and types of tests"),
+        heading: t("¿Cuánto debe probar el auditor?", "How much should the auditor test?"),
         body: [
           t(
             "En palabras sencillas: el auditor nunca está 100 % seguro, así que decide cuánta probabilidad de equivocarse acepta y, con eso, cuánto trabajo hacer. Los riesgos se expresan como porcentajes (probabilidades): 5 % quiere decir «5 de cada 100 veces». El **riesgo de auditoría** es el riesgo de dar una opinión limpia cuando los estados sí tienen un error material. Se descompone en tres: el **riesgo inherente** (qué tan propensa es la cuenta a errores antes de controles, como un inventario de joyería), el **riesgo de control** (que los controles de la empresa no prevengan o detecten el error) y el **riesgo de detección** (que las pruebas del auditor no lo encuentren).",
@@ -546,7 +546,7 @@ export const lessons: Lesson[] = [
       t("Pruebas de controles revisan controles; los sustantivos buscan errores en las cifras.", "Tests of controls check controls; substantive procedures look for errors in figures."),
     ],
     normativeNote: NOTE_PLAN,
-    exerciseIds: ['AUD-03-E1', 'AUD-03-E2', 'AUD-03-E3', 'AUD-03-E4', 'AUD-03-E5', 'AUD-03-E6'],
+    exerciseIds: ['AUD-03-E1', 'AUD-03-E2', 'AUD-03-E4', 'AUD-03-E5', 'AUD-03-E6'],
   },
 
   // ───────────────────────────── AUD-04 ─────────────────────────────
@@ -559,7 +559,7 @@ export const lessons: Lesson[] = [
       "La opinión del auditor vale lo que vale su evidencia: debe ser suficiente y adecuada, se obtiene con procedimientos como inspección, observación, confirmación o recálculo, y queda registrada en papeles de trabajo que otro auditor pueda entender.",
       "The auditor's opinion is only as good as its evidence: it must be sufficient and appropriate, is obtained through procedures such as inspection, observation, confirmation or recalculation, and is recorded in working papers that another auditor can understand.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Explicar qué hace que la evidencia sea suficiente y adecuada.", "Explain what makes evidence sufficient and appropriate."),
       t("Ordenar fuentes de evidencia según su confiabilidad.", "Rank sources of evidence by their reliability."),
@@ -568,7 +568,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Evidencia suficiente y adecuada", "Sufficient and appropriate evidence"),
+        heading: t("¿Qué prueba sirve de verdad?", "Which evidence really counts?"),
         body: [
           t(
             "La **evidencia de auditoría** es toda la información que usa el auditor para llegar a su opinión: facturas, contratos, estados de cuenta, respuestas de terceros, conteos físicos, entrevistas. Debe ser **suficiente** (cantidad: ¿tengo bastante?) y **adecuada** (calidad: ¿es relevante y confiable?).",
@@ -592,7 +592,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Procedimientos para obtener evidencia y muestreo", "Procedures to obtain evidence and sampling"),
+        heading: t("¿Cómo junta pruebas el auditor?", "How does the auditor gather evidence?"),
         body: [
           t(
             "El auditor tiene una «caja de herramientas»: **inspección** (revisar documentos o activos), **observación** (ver un proceso mientras ocurre, como el conteo de inventario), **indagación** (preguntar), **confirmación externa** (un tercero responde directo al auditor), **recálculo** (rehacer una cuenta), **reejecución** (repetir un control por su cuenta) y **procedimientos analíticos** (comparar cifras y tendencias).",
@@ -638,7 +638,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Papeles de trabajo: documentar para que otro entienda", "Working papers: documenting so someone else understands"),
+        heading: t("Si no se anota, no pasó", "Not written down, not done"),
         body: [
           t(
             "Los **papeles de trabajo** son el registro de lo que hizo el auditor: qué pruebas aplicó, cuándo, sobre qué partidas, qué encontró y qué concluyó. La regla de oro: un **auditor experimentado que no participó** debe poder entenderlos sin preguntar nada. Si no está documentado, para efectos prácticos no se hizo.",
@@ -705,7 +705,7 @@ export const lessons: Lesson[] = [
       t("Papeles de trabajo: claros para un auditor experimentado ajeno, propiedad del auditor y confidenciales.", "Working papers: clear to an experienced outside auditor, owned by the auditor and confidential."),
     ],
     normativeNote: NOTE_EVID,
-    exerciseIds: ['AUD-04-E1', 'AUD-04-E2', 'AUD-04-E3', 'AUD-04-E4', 'AUD-04-E5', 'AUD-04-E6'],
+    exerciseIds: ['AUD-04-E2', 'AUD-04-E3', 'AUD-04-E4', 'AUD-04-E5', 'AUD-04-E6'],
   },
 
   // ───────────────────────────── AUD-05 ─────────────────────────────
@@ -718,7 +718,7 @@ export const lessons: Lesson[] = [
       "El control interno es el conjunto de actividades que la propia empresa pone en marcha para lograr sus objetivos con menos sorpresas: hay controles preventivos, detectivos y correctivos, manuales y automáticos, y todos deben estar bien diseñados y funcionar en la práctica.",
       "Internal control is the set of activities a company puts in place to achieve its objectives with fewer surprises: there are preventive, detective and corrective controls, manual and automated, and all must be well designed and work in practice.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Definir control interno y explicar para qué le sirve a una empresa.", "Define internal control and explain what it does for a company."),
       t("Clasificar controles en preventivos, detectivos y correctivos, y en manuales o automáticos.", "Classify controls as preventive, detective and corrective, and as manual or automated."),
@@ -727,7 +727,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es el control interno?", "What is internal control?"),
+        heading: t("¿Cómo cuida Marta su negocio?", "How does Marta protect her business?"),
         body: [
           t(
             "El **control interno** es un proceso que diseñan y ejecutan el consejo, la dirección y todo el personal para dar **seguridad razonable** de que la empresa logrará sus objetivos: operar bien, tener información confiable y cumplir leyes. No es un departamento ni un manual guardado en un cajón: es lo que la gente hace todos los días.",
@@ -750,7 +750,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Tipos de controles y controles clave", "Types of controls and key controls"),
+        heading: t("¿Evitar, detectar o reparar?", "Prevent, detect or fix?"),
         body: [
           t(
             "Por su momento, un control puede ser **preventivo** (evita que el error ocurra, como pedir dos firmas para un pago grande), **detectivo** (lo descubre después, como la conciliación bancaria mensual) o **correctivo** (repara el daño, como restaurar datos desde un respaldo). Por su forma, puede ser **manual** (lo hace una persona) o **automático** (lo hace el sistema, como bloquear una factura duplicada).",
@@ -773,7 +773,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Diseño, operación y deficiencias", "Design, operation and deficiencies"),
+        heading: t("¿El control sí se cumple?", "Is the control really applied?"),
         body: [
           t(
             "Un control se evalúa en dos pasos. **Diseño**: ¿si funcionara como está escrito, reduciría el riesgo? **Operación (eficacia operativa)**: ¿de verdad se aplica siempre, por la persona correcta y a tiempo? Un control puede estar muy bien diseñado en el papel y no aplicarse en la práctica.",
@@ -864,7 +864,7 @@ export const lessons: Lesson[] = [
       t("Limitaciones: error humano, colusión, elusión por la dirección y costo-beneficio.", "Limitations: human error, collusion, management override and cost-benefit."),
     ],
     normativeNote: NOTE_CI,
-    exerciseIds: ['AUD-05-E1', 'AUD-05-E2', 'AUD-05-E3', 'AUD-05-E4', 'AUD-05-E5', 'AUD-05-E6'],
+    exerciseIds: ['AUD-05-E1', 'AUD-05-E2', 'AUD-05-E3', 'AUD-05-E4', 'AUD-05-E5'],
   },
 
   // ───────────────────────────── AUD-06 ─────────────────────────────
@@ -877,7 +877,7 @@ export const lessons: Lesson[] = [
       "El marco COSO organiza el control interno en tres categorías de objetivos, cinco componentes y diecisiete principios; un sistema es eficaz cuando los cinco componentes están presentes, funcionan y operan juntos.",
       "The COSO framework organizes internal control into three categories of objectives, five components and seventeen principles; a system is effective when all five components are present, functioning and operating together.",
     ),
-    minutes: 15,
+    minutes: 11,
     objectives: [
       t("Explicar qué es COSO y para qué se usa su marco de control interno.", "Explain what COSO is and what its internal control framework is used for."),
       t("Nombrar las tres categorías de objetivos y los cinco componentes.", "Name the three categories of objectives and the five components."),
@@ -886,7 +886,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es COSO y el cubo de control?", "What is COSO and the control cube?"),
+        heading: t("¿Qué es el cubo COSO?", "What is the COSO cube?"),
         body: [
           t(
             "**COSO** es un comité formado por asociaciones profesionales de Estados Unidos (de contadores, auditores internos y directores de finanzas) que publicó el **Marco Integrado de Control Interno**. Es el marco de control interno más usado en el mundo, también en México, por empresas, auditores y entidades públicas. Su versión actualizada es de **2013**.",
@@ -908,7 +908,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Los cinco componentes", "The five components"),
+        heading: t("Las cinco piezas de COSO", "The five pieces of COSO"),
         body: [
           t(
             "1) **Entorno de control**: la base. Es el «tono desde arriba»: integridad, valores, supervisión del consejo, estructura y responsabilidades claras, y gente competente. 2) **Evaluación de riesgos**: identificar y analizar lo que podría impedir los objetivos, incluido el riesgo de fraude y los cambios importantes.",
@@ -932,7 +932,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("17 principios y control eficaz", "17 principles and effective control"),
+        heading: t("¿Cuándo funciona el control interno?", "When does internal control work?"),
         body: [
           t(
             "La versión 2013 baja los componentes a **17 principios**: 5 del entorno de control (por ejemplo, compromiso con la integridad y valores éticos), 4 de evaluación de riesgos (incluido considerar el riesgo de fraude), 3 de actividades de control (incluidos los controles generales sobre la tecnología), 3 de información y comunicación y 2 de supervisión.",
@@ -1021,7 +1021,7 @@ export const lessons: Lesson[] = [
       t("COSO ERM es otro marco, enfocado en riesgo, estrategia y desempeño.", "COSO ERM is a different framework, focused on risk, strategy and performance."),
     ],
     normativeNote: NOTE_COSO,
-    exerciseIds: ['AUD-06-E1', 'AUD-06-E2', 'AUD-06-E3', 'AUD-06-E4', 'AUD-06-E5', 'AUD-06-E6'],
+    exerciseIds: ['AUD-06-E1', 'AUD-06-E2', 'AUD-06-E3', 'AUD-06-E4', 'AUD-06-E5'],
   },
 ]
 

@@ -381,7 +381,7 @@ export const lessons: Lesson[] = [
       "Entiende el objetivo de una auditoría de estados financieros bajo NIA, los tipos de opinión y cómo el marco COSO 2013 y la segregación de funciones sostienen un control interno eficaz.",
       "Understand the objective of a financial statement audit under ISA, the types of opinion, and how the COSO 2013 framework and segregation of duties support effective internal control."
     ),
-    minutes: 17,
+    minutes: 14,
     objectives: [
       t("Explicar el objetivo de la auditoría financiera y la responsabilidad de la administración.", "Explain the objective of a financial audit and management's responsibility."),
       t("Distinguir los tipos de opinión del auditor.", "Distinguish the types of auditor's opinion."),
@@ -390,7 +390,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es una auditoría financiera?", "What is a financial audit?"),
+        heading: t("¿Qué hace un auditor?", "What does an auditor do?"),
         body: [
           t(
             "En palabras sencillas: una auditoría es una **revisión de un experto externo** que dice si puedes creerle a los números de una empresa. Es como cuando un mecánico independiente revisa un auto usado antes de que lo compres: no garantiza que nunca fallará, pero te dice si lo importante está bien. **Material** significa \"lo bastante grande o importante como para cambiar la decisión de quien lee los números\".",
@@ -407,7 +407,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Tipos de opinión", "Types of opinion"),
+        heading: t("La calificación final del auditor", "The auditor's final grade"),
         body: [
           t(
             "La opinión **no modificada (limpia)** se emite cuando los estados financieros están razonablemente presentados (NIA 700). Las opiniones modificadas (NIA 705) dependen de si el problema es material y de si es **generalizado** (pervasive), es decir, si afecta a muchas partes de los estados financieros y no solo a una cuenta:",
@@ -421,7 +421,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Control interno: el marco COSO 2013", "Internal control: the COSO 2013 framework"),
+        heading: t("Las cinco piezas del control", "The five parts of control"),
         body: [
           t(
             "COSO define el control interno como un proceso llevado a cabo por el consejo, la administración y el personal para dar seguridad razonable sobre objetivos de operación, información y cumplimiento. Tiene **cinco componentes** (y 17 principios):",
@@ -437,7 +437,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Segregación de funciones y tipos de control", "Segregation of duties and types of control"),
+        heading: t("Que nadie haga todo solo", "No one should do everything alone"),
         body: [
           t(
             "La **segregación de funciones** separa cuatro funciones incompatibles: **autorizar**, **custodiar** activos, **registrar** y **conciliar/revisar**. Si una sola persona concentra dos o más, puede cometer y ocultar un error o fraude.",
@@ -534,7 +534,7 @@ export const lessons: Lesson[] = [
       t("Separar autorizar, custodiar, registrar y conciliar.", "Separate authorizing, custody, recording and reconciling."),
     ],
     normativeNote: NOTE_AUDIT("NIA 200, NIA 700 y NIA 705; COSO Internal Control — Integrated Framework (2013)"),
-    exerciseIds: ["N5-015", "N5-016", "N5-017", "N5-018", "N5-019", "N5-020", "N5-021"],
+    exerciseIds: ["N5-015", "N5-017", "N5-018", "N5-020", "N5-021"],
   },
   // ───────────────────────────── L5-04 ─────────────────────────────
   {
@@ -546,7 +546,7 @@ export const lessons: Lesson[] = [
       "Aplica el modelo de riesgo de auditoría, determina una materialidad ilustrativa y evalúa si la evidencia obtenida es suficiente y adecuada.",
       "Apply the audit risk model, determine an illustrative materiality and evaluate whether the evidence obtained is sufficient and appropriate."
     ),
-    minutes: 18,
+    minutes: 14,
     objectives: [
       t("Usar el modelo RA = RI × RC × RD para despejar el riesgo de detección.", "Use the model AR = IR × CR × DR to solve for detection risk."),
       t("Calcular materialidad global y de ejecución con referencias ilustrativas.", "Compute overall and performance materiality using illustrative benchmarks."),
@@ -555,7 +555,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El modelo de riesgo de auditoría", "The audit risk model"),
+        heading: t("¿Cómo se cuela un error?", "How does an error slip through?"),
         body: [
           t(
             "En palabras sencillas: un error puede \"colarse\" hasta los estados financieros solo si pasa tres filtros: que ocurra (**riesgo inherente**), que los controles de la empresa no lo atrapen (**riesgo de control**) y que el auditor tampoco lo encuentre (**riesgo de detección**). El auditor no puede cambiar los dos primeros, pero sí decide cuánto revisar para que el tercero sea lo bastante bajo.",
@@ -602,7 +602,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Materialidad", "Materiality"),
+        heading: t("¿Qué error sí importa?", "Which error really matters?"),
         body: [
           t(
             "Un error es **material** si, individualmente o en conjunto, podría influir en las decisiones económicas de los usuarios (NIA 320). La materialidad es un juicio profesional; en la práctica se parte de una **referencia (benchmark)** y un porcentaje. Ejemplo cotidiano: si tu recibo de nómina trae $5 de error no te importa, pero si trae $5,000 sí; lo \"material\" depende del tamaño de las cifras. Los rangos siguientes son **ilustrativos**, no reglas de la norma:",
@@ -652,7 +652,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Evidencia: suficiente y adecuada", "Evidence: sufficient and appropriate"),
+        heading: t("¿Qué prueba vale más?", "Which evidence counts more?"),
         body: [
           t(
             "La NIA 500 exige evidencia **suficiente** (cantidad) y **adecuada** (calidad: relevante y confiable). Más cantidad **no compensa** evidencia de mala calidad. Los procedimientos incluyen inspección, observación, confirmación externa (NIA 505), recálculo, reejecución, procedimientos analíticos e indagación.",
@@ -667,7 +667,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Tipos de procedimientos", "Types of procedures"),
+        heading: t("Tres tipos de revisión", "Three kinds of checks"),
         body: [
           t(
             "Los **procedimientos de evaluación de riesgos** (indagación, analíticos preliminares, entendimiento del negocio) identifican riesgos. Las **pruebas de controles** verifican si un control opera eficazmente. Las **pruebas sustantivas** (pruebas de detalle y analíticos sustantivos) detectan errores materiales en saldos y transacciones.",
@@ -711,7 +711,7 @@ export const lessons: Lesson[] = [
       t("Evidencia suficiente (cantidad) y adecuada (calidad); la cantidad no compensa la mala calidad.", "Evidence must be sufficient (quantity) and appropriate (quality); quantity does not compensate for poor quality."),
     ],
     normativeNote: NOTE_AUDIT("NIA 200, NIA 315, NIA 320, NIA 330, NIA 500 y NIA 505"),
-    exerciseIds: ["N5-022", "N5-023", "N5-024", "N5-025", "N5-026", "N5-027", "N5-028"],
+    exerciseIds: ["N5-023", "N5-024", "N5-025", "N5-026", "N5-028"],
   },
   // ───────────────────────────── L5-05 ─────────────────────────────
   {
@@ -723,7 +723,7 @@ export const lessons: Lesson[] = [
       "Analiza por qué ocurre el fraude, cómo distinguir una señal de alerta de un fraude probado y qué técnicas forenses básicas (cadena de custodia, ley de Benford, pagos duplicados) se usan para investigarlo.",
       "Analyze why fraud happens, how to tell a red flag from proven fraud, and which basic forensic techniques (chain of custody, Benford's law, duplicate payments) are used to investigate it."
     ),
-    minutes: 17,
+    minutes: 14,
     objectives: [
       t("Explicar los tres elementos del triángulo del fraude.", "Explain the three elements of the fraud triangle."),
       t("Clasificar esquemas en apropiación indebida, información financiera fraudulenta y corrupción.", "Classify schemes as asset misappropriation, fraudulent financial reporting and corruption."),
@@ -732,7 +732,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El triángulo del fraude", "The fraud triangle"),
+        heading: t("¿Qué empuja a alguien al fraude?", "What pushes someone to fraud?"),
         body: [
           t(
             "Según el modelo de Cressey, el fraude suele aparecer cuando coinciden tres elementos: **presión o incentivo** (metas agresivas, deudas personales), **oportunidad** (controles débiles, falta de supervisión) y **racionalización** (la persona se justifica: «lo devolveré», «la empresa me lo debe»). La organización influye sobre todo en la oportunidad, mediante control interno.",
@@ -745,7 +745,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Señales de alerta no son pruebas", "Red flags are not proof"),
+        heading: t("Una señal no es prueba", "A red flag is not proof"),
         body: [
           t(
             "Una **señal de alerta** (red flag) es una circunstancia inusual que aumenta la probabilidad de fraude: asientos manuales redondos al cierre, proveedores con la misma dirección que un empleado, empleados que nunca toman vacaciones, conciliaciones atrasadas. Una señal **justifica investigar**, pero no prueba nada por sí misma; puede tener una explicación legítima.",
@@ -758,7 +758,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Auditoría forense y cadena de custodia", "Forensic audit and chain of custody"),
+        heading: t("Cuidar la evidencia", "Protecting the evidence"),
         body: [
           t(
             "La auditoría forense aplica técnicas contables, de auditoría e informáticas con el fin de que la evidencia sea útil en un proceso legal. La **cadena de custodia** documenta quién obtuvo cada evidencia, cuándo, cómo se conservó y quién tuvo acceso, para demostrar que no fue alterada. En evidencia digital se usan copias forenses y valores hash para verificar integridad.",
@@ -767,7 +767,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Pruebas analíticas forenses: Benford y duplicados", "Forensic analytics: Benford and duplicates"),
+        heading: t("Números que delatan", "Numbers that give it away"),
         body: [
           t(
             "La **ley de Benford** establece que en muchos conjuntos de datos naturales (montos de facturas, pagos) el primer dígito no se distribuye de manera uniforme: el 1 aparece cerca del 30.1 % de las veces y el 9 solo cerca del 4.6 %. Desviaciones grandes pueden indicar datos inventados o montos fraccionados para evadir límites de autorización. Es una prueba **exploratoria**: no aplica a números asignados (folios, precios fijos) ni prueba fraude.",
@@ -869,7 +869,7 @@ export const lessons: Lesson[] = [
       t("Benford: P(d) = log10(1 + 1/d); es una prueba exploratoria.", "Benford: P(d) = log10(1 + 1/d); it is an exploratory test."),
     ],
     normativeNote: NOTE_AUDIT("NIA 240 (responsabilidades del auditor respecto al fraude) y la clasificación de fraude ocupacional de la ACFE; los aspectos penales y procesales dependen de la legislación mexicana vigente"),
-    exerciseIds: ["N5-029", "N5-030", "N5-031", "N5-032", "N5-033", "N5-034"],
+    exerciseIds: ["N5-029", "N5-030", "N5-031", "N5-033", "N5-034"],
   },
 ]
 

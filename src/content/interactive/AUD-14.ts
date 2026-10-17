@@ -3,27 +3,38 @@ import type { InteractiveLesson } from './types'
 export const intAUD14: InteractiveLesson = {
   lessonId: 'AUD-14',
   sections: [
-    // Qué es cumplimiento y cómo se arma un programa
+    // ¿Cómo se cumplen las reglas?
     [
-      { text: '**Cumplimiento** (compliance) es asegurarte de que la empresa respeta sus **obligaciones**: leyes, reglas de las autoridades, contratos y sus propias políticas.' },
+      { text: '**Monedita** es una fintech que presta dinero por app 📱. Su dueña, Ana, se entera de que multaron a otra empresa por no cumplir una regla.' },
+      {
+        ask: '¿Qué crees que es **cumplimiento** (compliance)?',
+        options: [
+          { text: 'Respetar leyes, reglas de las autoridades, contratos y las políticas propias', ok: true, reply: '¡Eso! Es asegurarse de que la empresa respeta **todas** sus obligaciones.' },
+          { text: 'Solo pagar los impuestos a tiempo', reply: 'Los impuestos son una parte. Cumplimiento abarca **leyes, reglas, contratos y políticas propias**.' },
+          { text: 'Llegar a las metas de ventas', reply: 'Eso es desempeño. Cumplimiento es respetar las **obligaciones**: leyes, reglas, contratos y políticas.' },
+        ],
+      },
+      {
+        text: 'Un **programa de cumplimiento** no es un manual en un cajón. Se arma así:\n📋 Inventario de obligaciones: qué reglas te aplican.\n⚠️ Evaluar dónde es más probable fallar.\n🔒 Poner controles y capacitar.\n👀 Vigilar siempre y mejorar.',
+      },
       {
         order: {
-          title: 'Ordena cómo se arma un programa de cumplimiento',
+          title: 'Ordena cómo arma Ana su programa',
           steps: [
-            'Hacer el inventario de obligaciones: qué normas te aplican y qué exigen',
-            'Evaluar los riesgos de incumplimiento: dónde es más probable fallar y qué tan grave sería',
+            'Hacer el inventario de obligaciones',
+            'Evaluar los riesgos de incumplimiento',
             'Poner controles y dar capacitación',
             'Vigilar de forma continua y mejorar',
           ],
-          done: 'Un programa de cumplimiento **no es un manual en un cajón**: se vive y se vigila.',
+          done: 'Para cada obligación: **un dueño, sus controles y una fecha de revisión**.',
         },
       },
       {
-        ask: '¿Qué necesita el **oficial de cumplimiento** para hacer bien su trabajo?',
+        ask: '¿Qué necesita el **oficial de cumplimiento** de Monedita para hacer bien su trabajo?',
         options: [
-          { text: 'Depender del área de ventas para no estorbar', reply: 'Así perdería independencia frente a quienes debe vigilar.' },
-          { text: 'Autoridad, independencia, recursos suficientes y reporte directo al consejo o al comité de auditoría', ok: true, reply: '¡Exacto! Es la lógica que describen normas como la ISO 37301.' },
-          { text: 'Solo un buen manual impreso', reply: 'Un manual solo no basta: hacen falta autoridad, recursos y vigilancia.' },
+          { text: 'Depender del área de ventas para no estorbar', reply: 'Así perdería independencia frente a quienes debe vigilar. Necesita **autoridad, recursos y reporte directo al consejo**.' },
+          { text: 'Autoridad, independencia, recursos y reporte directo al consejo o al comité de auditoría', ok: true, reply: '¡Exacto! Es la lógica que describen normas como la ISO 37301.' },
+          { text: 'Solo un buen manual impreso', reply: 'Un manual solo no basta: hacen falta **autoridad, recursos y vigilancia**.' },
         ],
       },
       {
@@ -33,74 +44,82 @@ export const intAUD14: InteractiveLesson = {
             { text: 'Compromiso de la dirección', ok: true },
             { text: 'Políticas, controles y capacitación según el riesgo de cada área', ok: true },
             { text: 'Canal de denuncia, investigación y consecuencias disciplinarias', ok: true },
-            { text: 'Seguimiento a cambios regulatorios', ok: true },
+            { text: 'Seguimiento a cambios en las reglas', ok: true },
             { text: 'Revisarlo una sola vez y guardarlo', ok: false },
           ],
           why: 'El cumplimiento es continuo: monitoreo, pruebas y mejora, porque las reglas cambian.',
         },
       },
-      { tip: 'Para cada obligación del inventario: **un dueño, sus controles y una fecha de revisión**.' },
     ],
-    // El modelo de las tres líneas
+    // ¿Quién cuida cada riesgo?
     [
-      { text: 'El **modelo de las tres líneas** del IIA ordena quién hace qué con los riesgos. Piénsalo en un banco 🏦.' },
+      { text: 'Ana quiere saber **quién cuida cada riesgo** en Monedita. Para eso usa el **modelo de las tres líneas** del IIA 🧱.' },
       {
-        sort: {
-          title: '¿Quién es quién en el banco?',
-          buckets: ['Órgano de gobierno', 'Primera línea', 'Segunda línea', 'Tercera línea'],
-          items: [
-            { text: 'El consejo fija el apetito de riesgo y supervisa', bucket: 0, why: 'Fija la dirección y supervisa: **órgano de gobierno**.' },
-            { text: 'La sucursal integra los expedientes de los clientes', bucket: 1, why: 'Opera y es dueña del riesgo: **primera línea**.' },
-            { text: 'El ejecutivo pide identificación al cliente', bucket: 1, why: 'Ejecuta el control día a día: **primera línea**.' },
-            { text: 'Cumplimiento revisa cada mes una muestra y emite alertas', bucket: 2, why: 'Vigila, asesora y reta: **segunda línea**.' },
-            { text: 'Gestión de riesgos diseña la metodología', bucket: 2, why: 'Función especializada: **segunda línea**.' },
-            { text: 'Auditoría interna evalúa una vez al año si todo el proceso es eficaz', bucket: 3, why: 'Aseguramiento independiente: **tercera línea**.' },
-          ],
-        },
+        text: '🏛️ **Órgano de gobierno** (el consejo): fija la dirección y supervisa.\n1️⃣ **Primera línea:** las áreas que operan. Son dueñas del riesgo.\n2️⃣ **Segunda línea:** riesgos y cumplimiento. Vigilan, asesoran y retan.\n3️⃣ **Tercera línea:** auditoría interna. Revisa de forma independiente.',
       },
       {
-        ask: 'El director pide que **auditoría interna** diseñe y opere los controles de un proceso nuevo, y luego los evalúe. ¿Qué problema hay?',
+        ask: 'El ejecutivo de Monedita pide identificación a cada cliente nuevo. ¿Qué línea es?',
         options: [
-          { text: 'Ninguno: así ahorran gente', reply: 'Sí hay problema: perdería su independencia.' },
-          { text: 'Se estaría auditando a sí misma y perdería su independencia', ok: true, reply: '¡Bien! La tercera línea no debe diseñar ni operar lo que luego evaluará.' },
-          { text: 'Que eso le toca al consejo', reply: 'El consejo supervisa, pero no opera los controles. El punto aquí es la independencia de auditoría.' },
+          { text: 'Primera línea', ok: true, reply: '¡Bien! Opera el control día a día: es dueño del riesgo.' },
+          { text: 'Segunda línea', reply: 'La segunda línea diseña métodos y vigila. Quien pide la identificación **opera**: es **primera línea**.' },
+          { text: 'Tercera línea', reply: 'La tercera es auditoría interna, que evalúa desde fuera. Quien opera el control es **primera línea**.' },
         ],
       },
-      { tip: 'Primera línea **opera**, segunda **vigila y reta**, tercera **asegura de forma independiente**, y el órgano de gobierno **supervisa**.' },
-    ],
-    // Apetito de riesgo, indicadores y pruebas de cumplimiento
-    [
-      { text: 'El **apetito de riesgo** es cuánto riesgo acepta la empresa; la **tolerancia** es el margen concreto en una métrica, como «máximo 2% de expedientes incompletos».' },
       {
-        match: {
-          title: 'Une cada término con su significado',
-          pairs: [
-            ['Apetito de riesgo', 'Cuánto riesgo acepta la empresa para lograr sus metas'],
-            ['Tolerancia', 'Margen concreto de variación aceptable en una métrica'],
-            ['KRI', 'Métrica que avisa antes de que el riesgo pase, con semáforo'],
-            ['Riesgo inherente', 'El riesgo que habría sin ningún control'],
-            ['Riesgo residual', 'Lo que queda del riesgo después de los controles'],
+        sort: {
+          title: '¿Qué línea es en Monedita?',
+          buckets: ['Primera línea', 'Segunda línea', 'Tercera línea'],
+          items: [
+            { text: 'El gerente de crédito aprueba préstamos dentro de sus límites', bucket: 0, why: 'Opera y es dueño del riesgo: **primera línea**.' },
+            { text: 'Cumplimiento diseña la metodología contra lavado de dinero', bucket: 1, why: 'Función especializada: **segunda línea**.' },
+            { text: 'Riesgos vigila los indicadores y avisa cuando pasan a rojo', bucket: 1, why: 'Vigila y reta: **segunda línea**.' },
+            { text: 'Auditoría interna informa al comité si el programa funciona', bucket: 2, why: 'Aseguramiento independiente: **tercera línea**.' },
+            { text: 'El área de cobranza llama a clientes atrasados', bucket: 0, why: 'Opera día a día: **primera línea**.' },
           ],
         },
       },
       {
+        ask: 'Para ahorrar, el director pide que **auditoría interna** diseñe y opere los controles, y luego los evalúe. ¿Qué problema hay?',
+        options: [
+          { text: 'Ninguno: así ahorran gente', reply: 'Sí hay problema: se estaría auditando a sí misma y perdería su **independencia**.' },
+          { text: 'Se estaría auditando a sí misma y perdería su independencia', ok: true, reply: '¡Bien! La tercera línea no debe diseñar ni operar lo que luego evaluará.' },
+          { text: 'Que eso le toca al consejo', reply: 'El consejo supervisa, pero no opera controles. El problema es la **independencia** de auditoría.' },
+        ],
+      },
+      { tip: 'Primera línea **opera**, segunda **vigila y reta**, tercera **revisa de forma independiente**, y el consejo **supervisa**.' },
+    ],
+    // ¿Cuánto riesgo aceptamos?
+    [
+      { text: 'El consejo de Monedita dice: «aceptamos riesgo **bajo** en lavado de dinero» y «máximo **2%** de expedientes incompletos». ¿Son lo mismo? 🤔' },
+      { text: 'La primera frase es el **apetito de riesgo**: cuánto riesgo acepta la empresa. La segunda es la **tolerancia**: el margen concreto en una métrica.' },
+      {
+        ask: 'Otra regla del consejo: «máximo **1%** de reportes entregados tarde». ¿Qué es?',
+        options: [
+          { text: 'Tolerancia', ok: true, reply: '¡Sí! Es un margen concreto en una métrica: **tolerancia**.' },
+          { text: 'Apetito de riesgo', reply: 'El apetito es la idea general («riesgo bajo»). Un número concreto en una métrica es **tolerancia**.' },
+          { text: 'Riesgo inherente', reply: 'El riesgo inherente es el que habría sin controles. Un margen en una métrica es **tolerancia**.' },
+        ],
+      },
+      { text: 'Para probar, Ana toma una muestra y cuenta las **excepciones** (casos que no cumplen).\n**Tasa de excepción** = excepciones ÷ revisados × 100.' },
+      {
         calc: {
-          question: 'Revisas **120** expedientes de clientes y **6** están incompletos. ¿Cuál es la **tasa de excepción**?',
+          question: 'Ana revisa **120** expedientes y **6** están incompletos. ¿Cuál es la **tasa de excepción**?',
           answer: 5,
           unit: '%',
           hint: 'casos que no cumplen ÷ casos revisados × 100.',
-          why: '6 ÷ 120 = 0.05 → **5%**. La tasa de cumplimiento sería 100 − 5 = 95%.',
+          why: '6 ÷ 120 = 0.05 → **5%**. La tasa de cumplimiento es 100 − 5 = **95%**.',
         },
       },
       {
         calc: {
-          question: 'Esa tasa de excepción es **5%** y la tolerancia es **2%**. ¿Por cuántos **puntos porcentuales** se rebasó?',
+          question: 'La tasa salió **5%** y la tolerancia es **2%**. ¿Por cuántos **puntos porcentuales** se rebasó?',
           answer: 3,
           unit: 'puntos porcentuales',
           hint: 'resta, no dividas: tasa − tolerancia.',
           why: '5 − 2 = **3 puntos porcentuales** por encima: hay que buscar la causa, corregir y reportar.',
         },
       },
+      { text: '**Riesgo inherente:** el que habría sin ningún control. **Riesgo residual:** lo que queda después de los controles.\nResidual = inherente × (1 − efectividad del control).' },
       {
         sim: {
           title: 'El paraguas con agujeros ☂️',
@@ -115,11 +134,10 @@ export const intAUD14: InteractiveLesson = {
           goal: {
             text: 'El apetito máximo es **8**. Mejora los controles hasta que el riesgo residual quede en **8 o menos**.',
             check: (x) => x.i * (100 - x.e) <= 800,
-            done: 'Riesgo residual = riesgo inherente × (1 − efectividad del control). Si multiplicas por la efectividad, obtienes lo que el control **quita**, no lo que **queda**.',
+            done: 'Si multiplicas por la efectividad, obtienes lo que el control **quita**, no lo que **queda**. Ejemplo: 16 × (1 − 0.75) = **4**.',
           },
         },
       },
-      { tip: 'Si la tasa de excepción **supera la tolerancia**: se analiza la causa, se corrige y se reporta.' },
     ],
   ],
 }
