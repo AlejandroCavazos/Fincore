@@ -26,7 +26,7 @@ export const lessons: Lesson[] = [
       es: "La contabilidad es el sistema que anota y ordena el dinero de un negocio para que cualquiera pueda entender cómo va y tomar buenas decisiones.",
       en: "Accounting is the system that records and organizes a business's money so anyone can understand how it is doing and make good decisions.",
     },
-    minutes: 15,
+    minutes: 14,
     objectives: [
       { es: "Explicar con tus palabras qué es la contabilidad, cuáles son sus objetivos y por qué es importante.", en: "Explain in your own words what accounting is, what its objectives are and why it matters." },
       { es: "Identificar quién usa la información financiera y distinguir usuarios internos y externos.", en: "Identify who uses financial information and distinguish internal and external users." },

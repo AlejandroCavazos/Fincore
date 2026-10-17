@@ -217,7 +217,6 @@ export function ExerciseRunner({ sessionKey, exercises, mode, shuffleExercises, 
             <span aria-label={tx(`Dificultad ${ex.difficulty} de 3`, `Difficulty ${ex.difficulty} of 3`)}>{DIFF[ex.difficulty]}</span>
           </Badge>
           <Badge tone="money">{ex.points} XP</Badge>
-          <span className="ml-auto font-mono text-[11px] text-navy-400">{ex.id}</span>
         </div>
         <ExerciseView exercise={ex} attempt={attempt} answer={answer} onChange={(a) => setDraft({ id: ex.id, answer: a })} evaluation={evaluation} reveal={reveal} />
 

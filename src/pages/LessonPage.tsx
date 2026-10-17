@@ -10,6 +10,7 @@ import { chatFor } from '../content/chats'
 import { InteractiveLesson } from '../components/cards/InteractiveLesson'
 import { interactiveFor } from '../content/interactive'
 import { useState } from 'react'
+import { FOCUS_COURSES } from '../config/focus'
 import { Button, Card, cx, Notice, ProgressBar, Rich } from '../components/ui'
 import { markSubtopic } from '../lib/progress'
 import {
@@ -146,7 +147,7 @@ function Overview({ lesson, tx }: { lesson: Lesson; tx: (es: string, en: string)
                   <p className={cx('font-bold', st === 'done' ? 'text-money-700 dark:text-money-300' : st === 'next' ? 'text-electric-600 dark:text-electric-300' : reto ? 'text-amber-800 dark:text-amber-300' : 'text-navy-900 dark:text-white')}>
                     {title}
                   </p>
-                  {reto && st !== 'done' && (
+                  {reto && st !== 'done' && !FOCUS_COURSES && (
                     <p className="text-xs font-semibold text-navy-500 dark:text-navy-300">
                       {tx('Sello de dominio y una mejora para', 'Mastery seal and an upgrade for')} {t(area.business).toLowerCase()}
                     </p>
@@ -355,6 +356,7 @@ function Reto({ lesson }: { lesson: Lesson }) {
         <h1 className="mt-1 text-2xl font-bold tracking-tight text-navy-900 dark:text-white">{t(lesson.title)}</h1>
       </div>
 
+      {!FOCUS_COURSES && (
       <div className="flex items-center gap-3 rounded-2xl bg-navy-900 px-4 py-3 text-white dark:bg-navy-950">
         <span className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-amber-300 text-amber-900">
           <Store className="h-5 w-5" />
@@ -365,6 +367,7 @@ function Reto({ lesson }: { lesson: Lesson }) {
             : `${tx('Pásalo y', 'Pass it and')} ${t(area.business).toLowerCase()} ${tx('gana', 'gains')} +${money(BUSINESS_PER_TOPIC)} ${tx('y el sello de dominio.', 'and the mastery seal.')}`}
         </p>
       </div>
+      )}
 
       {theoryLeft && (
         <Notice tone="info">
@@ -376,14 +379,6 @@ function Reto({ lesson }: { lesson: Lesson }) {
         </Notice>
       )}
 
-      {lesson.normativeNote && (
-        <Notice tone="warning" title={tx('Nota normativa', 'Regulatory note')}>
-          <span className="flex gap-2">
-            <Scale className="mt-0.5 h-4 w-4 shrink-0" />
-            <Rich text={t(lesson.normativeNote)} />
-          </span>
-        </Notice>
-      )}
 
       <ExerciseRunner
         sessionKey={lesson.id}
@@ -393,6 +388,12 @@ function Reto({ lesson }: { lesson: Lesson }) {
         exitLabel={next ? tx('Siguiente tema', 'Next topic') : tx('Volver al área', 'Back to area')}
       />
       <RetoHelp lesson={lesson} formulas={formulas} />
+      {lesson.normativeNote && (
+        <p className="flex gap-2 px-1 text-xs text-navy-400 dark:text-navy-400">
+          <Scale className="mt-0.5 h-3.5 w-3.5 shrink-0" />
+          <span><Rich text={t(lesson.normativeNote)} /></span>
+        </p>
+      )}
     </div>
   )
 }

@@ -4,7 +4,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 
 ## Stack and commands
 - Vite 8 + React 19 + TypeScript 6 + Tailwind v4. Local storage in IndexedDB (`src/lib/db.ts`). Hash router (`src/state/router.ts`).
-- `npx tsc -b` checks types. `npm test` runs vitest (about 213 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 72 e2e tests (about 35 min).
+- `npx tsc -b` checks types. `npm test` runs vitest (about 214 tests). `npm run build:e2e && PW_CHROMIUM=/opt/pw-browsers/chromium npx playwright test` runs the 72 e2e tests (about 35 min).
 - Deploy: push to `main`, then run `gh workflow run pages.yml -R AlejandroCavazos/Fincore --ref main`. The site is https://alejandrocavazos.github.io/Fincore/
 
 ## Focus mode (on in production since 2026-10-16)
@@ -32,6 +32,7 @@ PWA that teaches Mexican accounting, tax, audit and finance. The owner, Alex, wr
 - Tests: `src/test/content.test.ts` checks the whole content bank (unique ids, solutions grade correct, formula guides complete).
 
 ## Rules
-- Do not change the number or order of a lesson's theory sections. Progress is stored by section index.
+- Do not change the number or order of a lesson's theory sections. Progress is stored by section index. If you must (L1-01 went 3→4 on 2026-10-17), bump STATE_VERSION in `src/lib/progress.ts` and add a migration in `validateState` (`src/lib/backup.ts`, see `migrateSubtopicsV2`).
+- L1-01 (tema 1.1) is the pilot of the short-lesson format (4 lessons of ~3 min, one idea each, 5-question reto). The interactive view shows one screen at a time with a progress bar.
 - Every commit ends with the session's Co-Authored-By trailer.
 - Facts a CP or lawyer must verify are listed in `/mnt/project-files/fincore/temario/Datos_a_verificar_temario_v2.md`.
