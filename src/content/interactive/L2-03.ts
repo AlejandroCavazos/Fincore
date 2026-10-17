@@ -3,166 +3,160 @@ import type { InteractiveLesson } from './types'
 export const intL203: InteractiveLesson = {
   lessonId: 'L2-03',
   sections: [
-    // ¿Por qué se ajusta?
+    // ¿Cuándo se anota un gasto?
     [
-      { text: '**Devengar** es anotar algo en el mes en que de verdad se usó o se ganó, no en el mes en que se pagó o se cobró.' },
-      { text: 'Al cierre, algunas cuentas no cuentan la historia real. Los **asientos de ajuste** las corrigen antes de hacer los estados financieros.' },
+      { text: 'Sofía tiene una cafetería ☕. El 1 de noviembre pagó **$36,000** de un seguro por 12 meses. En diciembre cierra el año y se pregunta: ¿todo eso fue gasto de este año?' },
       {
-        sort: {
-          title: '¿Qué tipo de ajuste es?',
-          buckets: ['Gasto pagado por anticipado', 'Ingreso cobrado por anticipado', 'Gasto devengado no pagado', 'Estimación'],
-          items: [
-            { text: 'La cafetería pagó en enero la renta de todo el semestre', bucket: 0, why: 'Pagaste antes de usar el local. Cada mes pasa a gasto la parte que ya usaste.' },
-            { text: 'El taller cobró por adelantado 3 meses de mantenimiento a un cliente', bucket: 1, why: 'Cobraste antes de trabajar. Cada mes reconoces como ingreso la parte que ya hiciste.' },
-            { text: 'Los sueldos de la última semana de diciembre se pagan hasta enero', bucket: 2, why: 'El trabajo ya se hizo en diciembre: es gasto de diciembre aunque se pague después.' },
-            { text: 'La depreciación del horno de la tiendita', bucket: 3, why: 'La depreciación es una estimación: reparte el costo del horno entre los años en que lo usas.' },
-            { text: 'Intereses del préstamo que ya corrieron pero aún no pagas', bucket: 2, why: 'El interés ya se generó en el periodo: va a gasto y queda una deuda (pasivo).' },
-            { text: 'Clientes que seguramente nunca te van a pagar', bucket: 3, why: 'Las cuentas incobrables también son una estimación.' },
-          ],
-        },
+        ask: '¿Qué crees?',
+        options: [
+          { text: 'No: solo lo de noviembre y diciembre', ok: true, reply: '¡Bien! Solo usó 2 meses del seguro. Los otros 10 siguen siendo un derecho a su favor (un activo).' },
+          { text: 'Sí: lo pagó este año, todo es gasto', reply: 'Pagar no es lo mismo que usar. Solo usó **2 meses**; el resto es un pago anticipado (activo).' },
+          { text: 'Nada es gasto hasta que se acabe el seguro', reply: 'Cada mes que pasa ya lo usó. Noviembre y diciembre **sí** son gasto de este año.' },
+        ],
       },
-      { text: 'Para saber cuánto ajustar: saca lo de **un mes** y multiplícalo por los meses que ya pasaron (cuenta el mes en que empezó).' },
+      { text: '**Devengar** es anotar algo en el mes en que se **usó o se ganó**, no cuando se pagó o se cobró. Al cierre, los **asientos de ajuste** corrigen las cuentas. Casi siempre mueven una cuenta de resultados y una de balance, y **nunca** Bancos.' },
+      { text: 'Dos casos comunes:\n💸 **Pagaste antes** (renta, seguro): al usarlo, cargo al gasto y abono al pago anticipado\n💰 **Cobraste antes**: al ganarlo, cargo a Anticipos de clientes y abono al ingreso\n🧮 **Cuánto:** lo de un mes × los meses que ya pasaron' },
       {
         calc: {
-          question: 'El 1 de octubre la tiendita pagó **$24,000** de un seguro por 12 meses. ¿Cuánto pasa a **gasto** al 31 de diciembre?',
+          question: 'Seguro de **$36,000** por 12 meses, pagado el 1 de noviembre. ¿Cuánto pasa a **gasto** al 31 de diciembre?',
           answer: 6000,
-          hint: '24,000 ÷ 12 meses y luego por los meses de octubre a diciembre.',
-          why: '24,000 ÷ 12 = $2,000 al mes. Pasaron 3 meses (oct, nov, dic): 2,000 × 3 = **$6,000**. Los otros $18,000 siguen siendo un pago anticipado (activo).',
+          hint: '36,000 ÷ 12 meses, por los meses de noviembre y diciembre.',
+          why: '36,000 ÷ 12 = $3,000 al mes × 2 meses = **$6,000**. Quedan $30,000 como pago anticipado.',
         },
       },
       {
         entry: {
-          title: 'Arma el ajuste de enero',
-          story: 'La cafetería pagó en enero **$36,000** de renta por 6 meses. Al cierre de enero, ¿cómo pasas a gasto el mes que ya usaste?',
+          title: 'Arma el ajuste del seguro',
+          story: 'Al 31 de diciembre, Sofía pasa a gasto los **$6,000** del seguro que ya usó. El pago ya se había registrado en Pagos anticipados.',
           lines: [
-            { account: 'Gasto por renta', side: 'D', amount: 6000, why: 'Ya usaste un mes: 36,000 ÷ 6 = $6,000 de gasto. Se carga.' },
-            { account: 'Renta pagada por anticipado', side: 'C', amount: 6000, why: 'Baja el derecho que tenías a favor (activo): se abona.' },
+            { account: 'Gasto por seguros', side: 'D', amount: 6000, why: 'Es la parte que ya usó: gasto, se carga.' },
+            { account: 'Pagos anticipados (seguros)', side: 'C', amount: 6000, why: 'Baja el derecho que tenía a favor (activo): se abona. Bancos no se toca.' },
           ],
         },
       },
       {
-        spot: {
-          title: 'Encuentra el error',
-          story: 'El taller cobró **$12,000** por adelantado por 3 meses de servicio. Al cierre del primer mes hace este ajuste:',
-          lines: [
-            { account: 'Anticipos de clientes', side: 'D', amount: 4000 },
-            { account: 'Bancos', side: 'C', amount: 4000 },
-          ],
-          wrong: 1,
-          why: 'El dinero ya había entrado antes. Un ajuste **nunca toca Bancos**: aquí se abona el **ingreso** por la parte ya ganada.',
-        },
+        ask: 'El 1 de noviembre Sofía cobró **$18,000** por 6 meses de café para una oficina (noviembre a abril) y lo registró en Anticipos de clientes. ¿Cuál es el ajuste al 31 de diciembre?',
+        options: [
+          { text: 'Cargo Anticipos de clientes $6,000 / Abono Ingresos $6,000', ok: true, reply: '¡Exacto! 18,000 ÷ 6 = $3,000 al mes × 2 meses ya servidos = **$6,000**. Quedan $12,000 por servir.' },
+          { text: 'Cargo Anticipos de clientes $18,000 / Abono Ingresos $18,000', reply: 'Solo ha ganado 2 de 6 meses: 3,000 × 2 = **$6,000**. Lo demás sigue siendo un pasivo.' },
+          { text: 'Cargo Bancos $6,000 / Abono Ingresos $6,000', reply: 'El cobro ya se registró: un ajuste **no toca Bancos**. Se carga Anticipos de clientes.' },
+        ],
       },
-      { tip: 'Un ajuste casi siempre mueve **una cuenta de resultados y una de balance**, y nunca a Bancos.' },
+      { tip: 'Ajuste = lo de un mes × meses que ya pasaron. Mueve resultados y balance, **nunca Bancos**.' },
     ],
-    // Depreciación
+    // Repartir el costo en años
     [
-      { text: 'Compras un horno que te durará varios años 🔥. No es justo cargar todo el gasto al primer año: la **depreciación** lo **reparte** entre los años en que lo usas.' },
-      { text: '**Valor residual**: lo que esperas recibir al venderlo cuando ya no te sirva. **Vida útil**: cuántos años lo piensas usar. Juega con los datos:' },
+      { text: 'Sofía compra una cafetera de **$100,000** que le durará varios años. ¿Es justo cargar todo el gasto al primer año? No: la **depreciación** lo **reparte** entre los años en que la usa.' },
+      { text: 'Tres datos:\n🏷️ **Valor residual:** lo que espera sacar al venderla al final\n⏳ **Vida útil:** los años que la usará\n📐 **Depreciación anual = (Costo − Valor residual) ÷ Vida útil**' },
       {
         sim: {
-          title: 'El horno de la tiendita (línea recta)',
+          title: 'La cafetera de Sofía (línea recta)',
           inputs: [
-            { key: 'c', label: 'Costo del horno', min: 100000, max: 400000, step: 10000, value: 100000 },
+            { key: 'c', label: 'Costo de la cafetera', min: 100000, max: 400000, step: 10000, value: 100000 },
             { key: 'r', label: 'Valor residual', min: 0, max: 50000, step: 5000, value: 20000 },
             { key: 'v', label: 'Vida útil (años)', min: 2, max: 10, step: 1, value: 8 },
           ],
           outputs: [
             { label: 'Monto depreciable (costo − residual)', calc: (x) => x.c - x.r },
             { label: 'Depreciación anual', calc: (x) => (x.c - x.r) / x.v, main: true },
-            { label: 'Depreciación mensual', calc: (x) => (x.c - x.r) / x.v / 12 },
           ],
           goal: {
             text: 'Mueve los datos hasta que la depreciación anual sea de **$50,000 o más**.',
             check: (x) => (x.c - x.r) / x.v >= 50000,
-            done: 'Más costo, menos residual o menos años de vida = más gasto por año. Fórmula: (Costo − Valor residual) ÷ Vida útil.',
+            done: 'Más costo, menos residual o menos años = más gasto por año.',
           },
         },
       },
-      { text: 'Cada año se carga **Gasto por depreciación** y se abona **Depreciación acumulada**, que va sumando todo lo depreciado.' },
+      {
+        calc: {
+          question: 'Una máquina de espresso cuesta **$130,000**, valor residual **$10,000**, vida útil **4 años**. ¿Cuál es la **depreciación anual**?',
+          answer: 30000,
+          hint: '(Costo − residual) ÷ años.',
+          why: '(130,000 − 10,000) ÷ 4 = **$30,000**. Error común: no restar el residual (daría 32,500).',
+        },
+      },
+      { text: 'Cada año: cargo a **Gasto por depreciación** y abono a **Depreciación acumulada**, que va sumando todo lo depreciado.\n**Valor en libros = Costo − Depreciación acumulada**' },
       {
         tacct: {
-          title: 'Una máquina de $240,000 que se deprecia $54,000 al año',
+          title: 'La máquina de espresso, año por año',
           account: 'Depreciación acumulada',
           moves: [
-            { story: 'Cierre del año 1: registras la depreciación del año, **$54,000**.', side: 'C', amount: 54000, why: 'La depreciación acumulada crece con abonos.' },
-            { story: 'Cierre del año 2: otra vez **$54,000**.', side: 'C', amount: 54000, why: 'Se sigue abonando: ya suma $108,000.' },
-            { story: 'Cierre del año 3: otros **$54,000**.', side: 'C', amount: 54000, why: 'Ya suma $162,000. Es una cuenta complementaria: se resta del costo.' },
+            { story: 'Cierre del año 1: depreciación del año, **$30,000**.', side: 'C', amount: 30000, why: 'La depreciación acumulada crece con abonos.' },
+            { story: 'Cierre del año 2: otra vez **$30,000**.', side: 'C', amount: 30000, why: 'Ya suma $60,000.' },
+            { story: 'Cierre del año 3: otros **$30,000**.', side: 'C', amount: 30000, why: 'Ya suma $90,000. Se resta del costo para el valor en libros.' },
           ],
         },
       },
       {
         calc: {
-          question: 'Con esos datos (costo **$240,000**, acumulada **$162,000** al año 3), ¿cuál es el **valor en libros**?',
-          answer: 78000,
-          hint: 'costo menos depreciación acumulada. El residual aquí no se resta.',
-          why: '240,000 − 162,000 = **$78,000**. El valor residual solo sirve para calcular la depreciación anual.',
+          question: 'Al final del año 3: costo **$130,000** y depreciación acumulada **$90,000**. ¿Cuál es el **valor en libros**?',
+          answer: 40000,
+          hint: 'Costo − depreciación acumulada. Aquí el residual no se resta.',
+          why: '130,000 − 90,000 = **$40,000**. El residual solo sirve para calcular la depreciación anual.',
         },
       },
       {
         multi: {
           title: '¿Qué es cierto? Marca todas.',
           items: [
-            { text: 'La depreciación reparte el costo del activo a lo largo de su vida útil', ok: true },
-            { text: 'Depreciación acumulada es una cuenta complementaria que se resta del costo', ok: true },
-            { text: 'Valor en libros = Costo − Depreciación acumulada', ok: true },
-            { text: 'La depreciación busca mostrar cuánto vale el activo en el mercado', ok: false },
-            { text: 'El valor en libros es el precio al que puedes vender el activo', ok: false },
+            { text: 'La depreciación reparte el costo a lo largo de la vida útil', ok: true },
+            { text: 'Depreciación acumulada se resta del costo', ok: true },
+            { text: 'La depreciación muestra cuánto vale el activo en el mercado', ok: false },
+            { text: 'El valor en libros es el precio al que puedes venderlo', ok: false },
           ],
-          why: 'La depreciación es **asignación del costo**, no una valuación a mercado. Por eso el valor en libros no es un precio de venta.',
+          why: 'La depreciación **reparte el costo**; no mide el valor de mercado. Por eso el valor en libros no es un precio de venta.',
         },
       },
-      { tip: 'Línea recta: **(Costo − Valor residual) ÷ Vida útil**. Si te piden un mes, divide entre 12.' },
     ],
-    // Unidades producidas
+    // Depreciar según el uso
     [
-      { text: 'Hay activos que se gastan **según cuánto los usas**: un horno que trabaja más horas se desgasta más. Ahí se calcula una **cuota por unidad** (pieza, hora o kilómetro).' },
+      {
+        ask: 'El tostador de café de Sofía trabaja el doble en diciembre que en febrero. ¿Se desgasta igual cada mes?',
+        options: [
+          { text: 'No: entre más se usa, más se desgasta', ok: true, reply: '¡Eso! Para estos activos se deprecia **según el uso**.' },
+          { text: 'Sí, el tiempo es lo único que cuenta', reply: 'Para algunos activos sí, pero el tostador se gasta **según cuánto trabaja**.' },
+          { text: 'No se desgasta nunca', reply: 'Todo equipo se desgasta. Este, **según cuánto lo usa**.' },
+        ],
+      },
+      { text: 'Método de **unidades producidas**:\n1️⃣ Cuota por unidad = (Costo − Residual) ÷ unidades totales estimadas (piezas, horas, km)\n2️⃣ Depreciación = cuota × unidades del periodo' },
       {
         sim: {
-          title: 'El horno industrial de Grupo Tacos Felices 🌮',
+          title: 'El tostador de Sofía',
           inputs: [{ key: 'h', label: 'Horas que trabajó este año', min: 0, max: 20000, step: 500, value: 5000 }],
           outputs: [
             { label: 'Cuota por hora: (300,000 − 20,000) ÷ 70,000', calc: () => (300000 - 20000) / 70000 },
             { label: 'Depreciación del año', calc: (x) => ((300000 - 20000) / 70000) * x.h, main: true },
           ],
           goal: {
-            text: 'Es un año de mucha venta. Sube las horas hasta que la depreciación llegue a **$50,000 o más**.',
+            text: 'Año de mucha venta: sube las horas hasta que la depreciación llegue a **$50,000 o más**.',
             check: (x) => ((300000 - 20000) / 70000) * x.h >= 50000,
-            done: 'Con 12,500 horas × $4.00 = $50,000. Año con mucha producción, más depreciación; año flojo, menos.',
+            done: '12,500 horas × $4.00 = $50,000. Más uso, más depreciación.',
           },
         },
       },
       {
         calc: {
-          question: 'Una camioneta de reparto cuesta **$450,000**, residual **$50,000**, y se espera que recorra **200,000 km**. Este año recorrió **35,000 km**. ¿Cuánto es la depreciación del año?',
+          question: 'Una prensa para empaques cuesta **$450,000**, residual **$50,000**, y se espera que haga **200,000 piezas**. Este año hizo **35,000**. ¿Cuánto es la depreciación del año?',
           answer: 70000,
-          hint: 'primero la cuota por km: (costo − residual) ÷ km totales.',
-          why: 'Cuota = (450,000 − 50,000) ÷ 200,000 = $2.00 por km. Año: 35,000 × 2.00 = **$70,000**.',
+          hint: 'Primero la cuota por pieza: (costo − residual) ÷ piezas totales.',
+          why: 'Cuota = 400,000 ÷ 200,000 = $2.00. Año: 35,000 × 2.00 = **$70,000**. Error común: usar el costo sin restar el residual.',
         },
       },
       {
         rush: {
           title: '¿Qué método le queda mejor?',
-          seconds: 40,
+          seconds: 35,
           labels: ['Línea recta', 'Unidades producidas'],
           items: [
-            { text: 'Una camioneta cuyo desgaste depende de los kilómetros', ans: 1 },
-            { text: 'Un escritorio que se usa parejo todos los años', ans: 0 },
-            { text: 'Una máquina que se gasta según las piezas que hace', ans: 1 },
-            { text: 'Un mostrador de la tiendita que se usa igual cada año', ans: 0 },
-            { text: 'Un horno que se desgasta por hora de uso', ans: 1 },
-            { text: 'Unas sillas de oficina con uso parejo', ans: 0 },
+            { text: 'Camioneta que se gasta según los kilómetros', ans: 1 },
+            { text: 'Escritorio que se usa parejo', ans: 0 },
+            { text: 'Máquina que se gasta según las piezas', ans: 1 },
+            { text: 'Mostrador que se usa igual cada año', ans: 0 },
+            { text: 'Tostador que se gasta por hora de uso', ans: 1 },
           ],
         },
       },
-      {
-        ask: 'La contadora del despacho ve que la depreciación de su libro contable no coincide con la que usa para impuestos. ¿Por qué puede pasar?',
-        options: [
-          { text: 'Seguro hay un error y hay que igualarlas', reply: 'No necesariamente. Son dos reglas distintas y pueden diferir.' },
-          { text: 'La fiscal usa porcentajes máximos de la Ley del ISR y puede diferir de la contable', ok: true, reply: '¡Exacto! Esa diferencia se estudia en el nivel de fiscalidad.' },
-          { text: 'Porque la contable siempre usa unidades producidas', reply: 'No: la contable puede usar línea recta o unidades producidas, según cómo se desgaste el activo.' },
-        ],
-      },
-      { tip: 'Unidades producidas: **cuota por unidad × unidades del periodo**. El gasto sube y baja con la actividad.' },
+      { tip: 'Unidades producidas: **cuota × unidades del periodo**. La depreciación para impuestos sigue otras reglas y puede ser distinta.' },
     ],
   ],
 }

@@ -34,7 +34,7 @@ export const lessons: Lesson[] = [
       "La contabilidad financiera se aprende por capas: la básica registra y resume operaciones sencillas, la intermedia valúa cada partida con más detalle y la avanzada resuelve casos complejos como grupos de empresas y moneda extranjera.",
       "Financial accounting is learned in layers: basic accounting records and summarizes simple transactions, intermediate accounting measures each item in more detail and advanced accounting solves complex cases such as groups of companies and foreign currency.",
     ),
-    minutes: 15,
+    minutes: 11,
     objectives: [
       t("Distinguir qué temas corresponden a la contabilidad financiera básica, intermedia y avanzada.", "Distinguish which topics belong to basic, intermediate and advanced financial accounting."),
       t("Aplicar un método de valuación de inventarios (PEPS) como ejemplo de contabilidad intermedia.", "Apply an inventory costing method (FIFO) as an example of intermediate accounting."),
@@ -42,7 +42,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Básica: registrar y resumir", "Basic: record and summarize"),
+        heading: t("La capa básica: anotar y cuadrar", "Basic layer: record and balance"),
         body: [
           t(
             "La **contabilidad financiera** prepara información para personas de fuera del negocio: bancos, socios, inversionistas. Se aprende en tres capas, como las matemáticas: primero sumas, luego ecuaciones, luego cálculo.",
@@ -93,7 +93,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Intermedia: valuar cada partida con detalle", "Intermediate: measure each item in detail"),
+        heading: t("La capa intermedia: ¿cuánto vale?", "Intermediate layer: what is it worth?"),
         body: [
           t(
             "En la capa **intermedia** ya no basta con anotar: hay que decidir **cuánto vale** cada cosa. A esto se le llama **valuación**: elegir con qué monto aparece una partida en los estados financieros.",
@@ -148,7 +148,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Avanzada: casos complejos", "Advanced: complex cases"),
+        heading: t("La capa avanzada: casos grandes", "Advanced layer: big cases"),
         body: [
           t(
             "La capa **avanzada** atiende situaciones que no caben en una sola empresa sencilla: **grupos de empresas** que se presentan como una sola (consolidación), **fusiones y adquisiciones**, operaciones en **moneda extranjera**, **instrumentos financieros** y **arrendamientos** de largo plazo.",
@@ -232,7 +232,7 @@ export const lessons: Lesson[] = [
       t("Cada capa usa todo lo de la anterior: no se salta ninguna.", "Each layer uses everything from the previous one: none is skipped."),
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['CON-04-E1', 'CON-04-E2', 'CON-04-E3', 'CON-04-E4', 'CON-04-E5', 'CON-04-E6'],
+    exerciseIds: ['CON-04-E1', 'CON-04-E2', 'CON-04-E3', 'CON-04-E4', 'CON-04-E5'],
   },
 
   // ───────────────────────────── CON-05 ─────────────────────────────
@@ -245,7 +245,7 @@ export const lessons: Lesson[] = [
       "Las NIF son las reglas que emite el CINIF para que todas las empresas en México preparen sus estados financieros de la misma forma, a partir de un marco conceptual con postulados básicos.",
       "The NIF are the rules issued by CINIF so that all companies in Mexico prepare their financial statements in the same way, based on a conceptual framework with basic postulates.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Explicar qué son las NIF, quién las emite y cómo se organizan en series.", "Explain what the NIF are, who issues them and how they are organized in series."),
       t("Identificar los postulados básicos del marco conceptual en situaciones cotidianas.", "Identify the basic postulates of the conceptual framework in everyday situations."),
@@ -253,7 +253,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Qué son las NIF y quién las emite", "What the NIF are and who issues them"),
+        heading: t("¿Quién pone las reglas?", "Who sets the rules?"),
         body: [
           t(
             "Imagina que cada empresa midiera sus ganancias a su manera. Sería imposible comparar dos negocios. Por eso existen las **Normas de Información Financiera (NIF)**: un reglamento común para preparar y presentar estados financieros en México.",
@@ -274,7 +274,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Cómo se organizan: las series", "How they are organized: the series"),
+        heading: t("¿Dónde busco cada regla?", "Where do I look up each rule?"),
         body: [
           t(
             "Las NIF se agrupan en **series** identificadas con letras. Piensa en ellas como los capítulos de un manual: primero las ideas generales y luego los temas específicos.",
@@ -298,7 +298,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Marco conceptual y postulados básicos", "Conceptual framework and basic postulates"),
+        heading: t("Las ideas que todos suponen", "The ideas everyone assumes"),
         body: [
           t(
             "El **marco conceptual** (serie A) es la base de todas las NIF. Incluye los **postulados básicos**: ideas fundamentales que se dan por ciertas al registrar. También define las **características** que debe tener la información: ser **confiable, relevante, comprensible y comparable**.",
@@ -378,7 +378,7 @@ export const lessons: Lesson[] = [
       t("Si una NIF no cubre un caso, se aplican normas supletorias, empezando por las NIIF.", "If no NIF covers a case, supplementary standards apply, starting with IFRS."),
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['CON-05-E1', 'CON-05-E2', 'CON-05-E3', 'CON-05-E4', 'CON-05-E5', 'CON-05-E6'],
+    exerciseIds: ['CON-05-E1', 'CON-05-E2', 'CON-05-E3', 'CON-05-E4', 'CON-05-E6'],
   },
 
   // ───────────────────────────── CON-06 ─────────────────────────────
@@ -391,7 +391,7 @@ export const lessons: Lesson[] = [
       "Las NIIF son normas contables que emite el IASB para que empresas de muchos países presenten estados financieros comparables; en México las usan sobre todo las empresas que cotizan en bolsa.",
       "IFRS are accounting standards issued by the IASB so that companies in many countries present comparable financial statements; in Mexico they are used mainly by listed companies.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Explicar qué son las NIIF, quién las emite y quién las usa en México.", "Explain what IFRS are, who issues them and who uses them in Mexico."),
       t("Relacionar normas clave (NIIF 15, NIIF 16, NIC 2) con el tema que regulan.", "Match key standards (IFRS 15, IFRS 16, IAS 2) with the topic they regulate."),
@@ -399,7 +399,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Un idioma contable para todo el mundo", "One accounting language for the whole world"),
+        heading: t("Un idioma contable mundial", "One worldwide accounting language"),
         body: [
           t(
             "Si una empresa mexicana quiere dinero de inversionistas en Europa, ellos deben entender sus números. Las **NIIF** (en inglés **IFRS**) son un conjunto de normas contables pensado para que los estados financieros se lean igual en muchos países.",
@@ -420,7 +420,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Normas clave y su enfoque", "Key standards and their approach"),
+        heading: t("Reglas con criterio, no recetas", "Rules with judgment, not recipes"),
         body: [
           t(
             "Las NIIF se basan en **principios**, no en recetas detalladas: piden entender la **sustancia** de la operación y usar juicio profesional. Por eso las notas a los estados financieros explican mucho cómo se decidió cada cifra.",
@@ -474,7 +474,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("NIIF 15: el modelo de cinco pasos", "IFRS 15: the five-step model"),
+        heading: t("¿Cuándo cuenta una venta?", "When does a sale count?"),
         body: [
           t(
             "La NIIF 15 responde **cuándo y por cuánto** reconocer un ingreso. Lo hace con cinco pasos que sirven igual para una tienda que para una constructora.",
@@ -564,7 +564,7 @@ export const lessons: Lesson[] = [
       t("NIC 2: inventario al menor entre costo y valor neto de realización; sin UEPS.", "IAS 2: inventory at the lower of cost and net realizable value; no LIFO."),
     ],
     normativeNote: NOTE_IFRS,
-    exerciseIds: ['CON-06-E1', 'CON-06-E2', 'CON-06-E3', 'CON-06-E4', 'CON-06-E5', 'CON-06-E6'],
+    exerciseIds: ['CON-06-E1', 'CON-06-E2', 'CON-06-E3', 'CON-06-E4', 'CON-06-E5'],
   },
 
   // ───────────────────────────── CON-07 ─────────────────────────────
@@ -577,7 +577,7 @@ export const lessons: Lesson[] = [
       "Los estados financieros básicos —situación financiera, resultado integral, cambios en el capital contable y flujos de efectivo, junto con sus notas— se arman a partir de los saldos contables y se presentan con un orden que facilita leerlos.",
       "The basic financial statements —financial position, comprehensive income, changes in equity and cash flows, together with their notes— are built from account balances and presented in an order that makes them easy to read.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Identificar los cuatro estados financieros básicos, qué muestra cada uno y el papel de las notas.", "Identify the four basic financial statements, what each shows and the role of the notes."),
       t("Elaborar un estado de resultados por niveles de utilidad a partir de saldos.", "Prepare an income statement by profit levels from balances."),
@@ -585,7 +585,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El juego completo de estados financieros", "The complete set of financial statements"),
+        heading: t("¿Foto o película?", "Snapshot or movie?"),
         body: [
           t(
             "Un **estado financiero** es un reporte que resume una parte de la vida del negocio. Igual que un chequeo médico tiene varios estudios (presión, sangre, peso), la empresa tiene varios estados que juntos dan el diagnóstico completo.",
@@ -613,7 +613,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("De los saldos al estado de resultados", "From balances to the income statement"),
+        heading: t("¿Ganó o perdió el negocio?", "Did the business win or lose?"),
         body: [
           t(
             "Para elaborar los estados se parte de la **balanza de comprobación** ya ajustada: la lista de todas las cuentas con su saldo final. Cada cuenta se lleva a su estado: activos, pasivos y capital al balance; ingresos y gastos al estado de resultados.",
@@ -664,7 +664,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Balance clasificado y flujo de efectivo", "Classified balance sheet and cash flow"),
+        heading: t("Corto plazo y dinero real", "Short term and real cash"),
         body: [
           t(
             "En el balance, activos y pasivos se separan en **circulantes** (a corto plazo: se cobran, venden o pagan dentro de un año o del ciclo normal del negocio) y **no circulantes** (largo plazo). Así un banco ve rápido si la empresa puede pagar sus deudas próximas.",
@@ -761,7 +761,7 @@ export const lessons: Lesson[] = [
       t("Flujo de efectivo: operación, inversión y financiamiento; utilidad no es lo mismo que efectivo.", "Cash flow: operating, investing and financing; profit is not the same as cash."),
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['CON-07-E1', 'CON-07-E2', 'CON-07-E3', 'CON-07-E4', 'CON-07-E5', 'CON-07-E6'],
+    exerciseIds: ['CON-07-E1', 'CON-07-E2', 'CON-07-E3', 'CON-07-E4', 'CON-07-E6'],
   },
 
   // ───────────────────────────── CON-08 ─────────────────────────────
@@ -774,7 +774,7 @@ export const lessons: Lesson[] = [
       "Cada activo, pasivo y partida de capital tiene reglas para reconocerse y valuarse: los activos se ajustan por desgaste o incobrabilidad, los pasivos incluyen obligaciones estimadas y el capital separa lo aportado de lo ganado.",
       "Each asset, liability and equity item has rules for recognition and measurement: assets are adjusted for wear or uncollectibility, liabilities include estimated obligations and equity separates what was contributed from what was earned.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Valuar cuentas por cobrar con su estimación de incobrables y activo fijo con depreciación en línea recta.", "Measure receivables with their allowance for doubtful accounts and fixed assets with straight-line depreciation."),
       t("Reconocer cuándo una obligación estimada se registra como provisión.", "Recognize when an estimated obligation is recorded as a provision."),
@@ -782,7 +782,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Activos: lo que vale de verdad", "Assets: what they are really worth"),
+        heading: t("¿Cuánto vale de verdad?", "What is it really worth?"),
         body: [
           t(
             "Un **activo** es un recurso que controla el negocio y del que espera obtener beneficios: dinero, lo que le deben, mercancía, máquinas. La contabilidad pide presentarlo por lo que **realmente vale**, no por lo que costó o lo que dice la factura.",
@@ -878,7 +878,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Pasivos: lo que se debe, aunque sea estimado", "Liabilities: what is owed, even if estimated"),
+        heading: t("Deudas que hay que estimar", "Debts you have to estimate"),
         body: [
           t(
             "Un **pasivo** es una obligación presente que hará salir recursos del negocio: pagar a proveedores, sueldos, impuestos o un préstamo. Se separan en **corto plazo** (hasta un año) y **largo plazo**.",
@@ -900,7 +900,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Capital: lo aportado y lo ganado", "Equity: what was contributed and what was earned"),
+        heading: t("¿Qué es de los dueños?", "What belongs to the owners?"),
         body: [
           t(
             "El **capital contable** es lo que les pertenece a los dueños: activos menos pasivos. Se divide en dos partes. El **capital contribuido** es lo que los socios **pusieron**: capital social, aportaciones para futuros aumentos de capital y prima en venta de acciones (lo que pagaron de más sobre el valor nominal).",
@@ -994,7 +994,7 @@ export const lessons: Lesson[] = [
       t("La reserva legal toma al menos 5% de la utilidad anual hasta llegar a la quinta parte del capital social.", "The legal reserve takes at least 5% of annual profit until it reaches one fifth of share capital."),
     ],
     normativeNote: NOTE_EQUITY,
-    exerciseIds: ['CON-08-E1', 'CON-08-E2', 'CON-08-E3', 'CON-08-E4', 'CON-08-E5', 'CON-08-E6'],
+    exerciseIds: ['CON-08-E1', 'CON-08-E2', 'CON-08-E3', 'CON-08-E4', 'CON-08-E5'],
   },
 
   // ───────────────────────────── CON-09 ─────────────────────────────
@@ -1007,7 +1007,7 @@ export const lessons: Lesson[] = [
       "Cuando una empresa controla a otras, presenta estados financieros consolidados: suma las cifras del grupo como si fuera una sola empresa, elimina las operaciones entre ellas y muestra aparte la parte que pertenece a otros socios.",
       "When a company controls others, it presents consolidated financial statements: it adds up the group's figures as if it were a single company, eliminates transactions between them and shows separately the part that belongs to other shareholders.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Explicar qué es el control y cuándo una empresa debe consolidar a otra.", "Explain what control is and when a company must consolidate another."),
       t("Eliminar saldos y operaciones entre empresas del mismo grupo.", "Eliminate balances and transactions between companies in the same group."),
@@ -1015,7 +1015,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Control: quién manda en el grupo", "Control: who is in charge of the group"),
+        heading: t("¿Quién manda en el grupo?", "Who is in charge of the group?"),
         body: [
           t(
             "Muchas empresas grandes son **grupos**: una **controladora** (la empresa \"mamá\") y una o varias **subsidiarias** (las \"hijas\") que ella controla. Por ejemplo, una cadena de restaurantes puede tener una subsidiaria que hace las tortillas y otra que reparte.",
@@ -1037,7 +1037,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Sumar y eliminar: el grupo como una sola empresa", "Add and eliminate: the group as a single company"),
+        heading: t("Sumar todo y quitar lo interno", "Add it all, remove internal deals"),
         body: [
           t(
             "Consolidar es presentar al grupo **como si fuera una sola empresa**. El primer paso es **sumar** renglón por renglón: caja con caja, clientes con clientes, ventas con ventas.",
@@ -1078,7 +1078,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Participación no controladora y crédito mercantil", "Non-controlling interest and goodwill"),
+        heading: t("Otros socios y lo pagado de más", "Other partners and overpaying"),
         body: [
           t(
             "Si la controladora tiene el 80% de la subsidiaria, igual suma el **100%** de sus activos y pasivos, porque los controla todos. Pero el 20% de su capital pertenece a otros socios: esa parte se llama **participación no controladora** y se muestra por separado dentro del capital contable consolidado.",
@@ -1188,7 +1188,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo basado en las NIF del CINIF sobre estados financieros consolidados e inversiones en asociadas, y en las NIIF equivalentes del IASB. Los porcentajes de referencia (como el 20% para influencia significativa) son presunciones generales, no reglas automáticas. Verifica la versión vigente (2026) de las normas; los montos de los ejemplos son hipotéticos.",
       "Educational content based on CINIF's NIF on consolidated financial statements and investments in associates, and on the IASB's equivalent IFRS. Reference percentages (such as 20% for significant influence) are general presumptions, not automatic rules. Verify the current version (2026) of the standards; amounts in the examples are hypothetical.",
     ),
-    exerciseIds: ['CON-09-E1', 'CON-09-E2', 'CON-09-E3', 'CON-09-E4', 'CON-09-E5', 'CON-09-E6'],
+    exerciseIds: ['CON-09-E1', 'CON-09-E3', 'CON-09-E4', 'CON-09-E5', 'CON-09-E6'],
   },
 ]
 

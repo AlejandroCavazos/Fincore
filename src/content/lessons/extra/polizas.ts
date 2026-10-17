@@ -11,7 +11,7 @@ export const lessons: Lesson[] = [
       es: 'Aprende los 3 tipos de póliza, a leer una factura (CFDI) y a registrar el IVA. Es lo que necesitas para el laboratorio contable.',
       en: 'Learn the 3 entry types, how to read an invoice (CFDI) and how to record VAT. It is what you need for the accounting lab.',
     },
-    minutes: 12,
+    minutes: 14,
     objectives: [
       { es: 'Elegir el tipo de póliza correcto: ingreso, egreso o diario.', en: 'Choose the right entry type: receipt, payment or journal.' },
       { es: 'Leer en una factura los datos que necesitas para registrarla.', en: 'Read the data you need from an invoice to record it.' },
@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: 'Los 3 tipos de póliza', en: 'The 3 entry types' },
+        heading: { es: '¿Qué póliza uso?', en: 'Which entry type do I use?' },
         body: [
           {
             es: 'En palabras sencillas: una **póliza** es la hoja donde anotas una operación con sus cargos y abonos. Es el asiento de partida doble que ya conoces, con fecha, número y concepto.',
@@ -37,7 +37,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: 'Cómo leer una factura (CFDI) para registrarla', en: 'How to read an invoice (CFDI) to record it' },
+        heading: { es: '¿Qué miro en una factura?', en: 'What do I check on an invoice?' },
         body: [
           {
             es: 'En palabras sencillas: el **CFDI** es la factura electrónica. Antes de registrarla, busca estos datos:',
@@ -53,7 +53,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: 'IVA trasladado e IVA acreditable', en: 'Output VAT and input VAT' },
+        heading: { es: '¿De quién es el IVA?', en: 'Whose VAT is it?' },
         body: [
           {
             es: 'En palabras sencillas: el IVA no es tuyo. Cuando vendes, **cobras** IVA a tu cliente y se lo debes al SAT: es **IVA trasladado** (una deuda, se abona). Cuando compras, **pagas** IVA a tu proveedor y lo puedes restar: es **IVA acreditable** (un derecho, se carga).',
@@ -99,7 +99,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: 'Tu primera póliza con factura, paso a paso', en: 'Your first entry from an invoice, step by step' },
+        heading: { es: 'Mi primera póliza con factura', en: 'My first entry from an invoice' },
         body: [
           {
             es: 'Sigue siempre el mismo orden y no te equivocas: **1)** ¿entra o sale dinero? (tipo de póliza y cuenta Caja o Bancos), **2)** ¿qué recibes o entregas? (venta, mercancía, gasto o equipo, por el subtotal), **3)** el IVA en su cuenta, **4)** revisa que cargos = abonos.',
@@ -145,7 +145,7 @@ export const lessons: Lesson[] = [
       { es: 'PUE = ya se pagó; PPD = se pagará después.', en: 'PUE = already paid; PPD = to be paid later.' },
     ],
     normativeNote: { es: 'Tasa general de IVA de 16% y claves del CFDI 4.0 usadas como referencia; verifica la regla vigente con tu contador.', en: 'General 16% VAT rate and CFDI 4.0 codes used as reference; check current rules with your accountant.' },
-    exerciseIds: ['L1-16-E1', 'L1-16-E2', 'L1-16-E3', 'L1-16-E4', 'L1-16-E5', 'L1-16-E6'],
+    exerciseIds: ['L1-16-E1', 'L1-16-E2', 'L1-16-E3', 'L1-16-E4', 'L1-16-E5'],
   },
 ]
 

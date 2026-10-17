@@ -21,7 +21,7 @@ export const lessons: Lesson[] = [
       es: "La cuenta T es un dibujo sencillo para ver todos los movimientos de una cuenta y calcular su saldo.",
       en: "The T-account is a simple drawing to see all the movements of one account and work out its balance.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Describir las partes de una cuenta T: nombre, debe y haber.", en: "Describe the parts of a T-account: name, debit side and credit side." },
       { es: "Anotar cargos y abonos en la cuenta T correcta.", en: "Post debits and credits to the right T-account." },
@@ -30,7 +30,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Estructura y funcionamiento de la cuenta T", en: "Structure and use of the T-account" },
+        heading: { es: "¿Qué es una cuenta T?", en: "What is a T-account?" },
         body: [
           {
             es: "Una **cuenta T** es un dibujo con forma de letra T que sirve para ver los movimientos de **una sola cuenta**. Arriba va el nombre (por ejemplo, Caja). El lado izquierdo se llama **debe** y ahí van los **cargos**. El lado derecho se llama **haber** y ahí van los **abonos**.",
@@ -55,7 +55,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Registro de movimientos", en: "Posting movements" },
+        heading: { es: "¿Cómo se anota cada movimiento?", en: "How do you post each movement?" },
         body: [
           {
             es: "Registrar en cuentas T se llama **pasar** o **traspasar** los asientos. Tomas cada línea del asiento y la escribes en la cuenta T que corresponde, del mismo lado: si el asiento dice cargo a Caja, lo anotas en el debe de Caja.",
@@ -72,7 +72,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cálculo de saldos", en: "Computing balances" },
+        heading: { es: "¿Cuánto queda en la cuenta?", en: "How much is left in the account?" },
         body: [
           {
             es: "Para conocer el **saldo** de una cuenta T, primero sumas cada lado. La suma del debe se llama **movimientos deudores** y la suma del haber, **movimientos acreedores**. El saldo es la **diferencia** entre las dos sumas.",
@@ -178,7 +178,7 @@ export const lessons: Lesson[] = [
       { es: "Saldo deudor si gana el debe, acreedor si gana el haber, saldada si son iguales.", en: "Debit balance if debits are larger, credit balance if credits are larger, settled if equal." },
       { es: "Todas las cuentas T juntas forman el libro mayor.", en: "All the T-accounts together form the general ledger." },
     ],
-    exerciseIds: ['N1C-001', 'N1C-002', 'N1C-003', 'N1C-004', 'N1C-005', 'N1C-006', 'N1C-007', 'N1C-008'],
+    exerciseIds: ['N1C-001', 'N1C-002', 'N1C-003', 'N1C-005', 'N1C-008'],
   },
 
   // ───────────────────────────── L1-12 ─────────────────────────────
@@ -191,7 +191,7 @@ export const lessons: Lesson[] = [
       es: "El ciclo contable es la ruta que sigue cada operación: se identifica, se registra en el diario, se pasa al mayor, se comprueba en la balanza y al final del periodo se ajusta y se cierra.",
       en: "The accounting cycle is the path each transaction follows: it is identified, recorded in the journal, posted to the ledger, checked in the trial balance and, at period end, adjusted and closed.",
     },
-    minutes: 17,
+    minutes: 14,
     objectives: [
       { es: "Reconocer qué hechos son transacciones que se registran.", en: "Recognize which events are transactions that get recorded." },
       { es: "Distinguir el libro diario del libro mayor.", en: "Tell the journal apart from the general ledger." },
@@ -200,7 +200,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Identificación de transacciones", en: "Identifying transactions" },
+        heading: { es: "¿Esto se anota o no?", en: "Do I record this or not?" },
         body: [
           {
             es: "El **ciclo contable** es la serie de pasos que se repite en cada periodo (un mes o un año) para convertir las operaciones del negocio en información. Todo empieza con una pregunta: **¿esto es una transacción que debo registrar?**",
@@ -223,7 +223,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Libro diario y libro mayor", en: "Journal and general ledger" },
+        heading: { es: "¿Diario o mayor?", en: "Journal or ledger?" },
         body: [
           {
             es: "El **libro diario** es como un diario personal: anota las operaciones **una tras otra, en orden de fecha**. Cada anotación se llama **asiento** e indica la fecha, las cuentas, el cargo, el abono y una breve descripción. En México cada asiento suele respaldarse con una **póliza**.",
@@ -240,7 +240,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Balanza de comprobación", en: "Trial balance" },
+        heading: { es: "¿Cuadran las cuentas?", en: "Do the accounts balance?" },
         body: [
           {
             es: "La **balanza de comprobación** es una lista con el saldo de **todas** las cuentas del mayor a una fecha. Los saldos deudores van en una columna y los acreedores en otra. Si el registro se hizo con partida doble, **las dos columnas suman lo mismo**.",
@@ -288,7 +288,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ajustes y cierre: visión general", en: "Adjustments and closing: an overview" },
+        heading: { es: "¿Cómo se cierra el mes?", en: "How is the month closed?" },
         body: [
           {
             es: "Antes de preparar los estados financieros se hacen **ajustes**: asientos al final del periodo para que cada ingreso y cada gasto quede en el mes en que realmente ocurrió. Por ejemplo, sueldos que ya se trabajaron pero se pagarán el mes siguiente, o el desgaste de una máquina (depreciación).",
@@ -343,7 +343,7 @@ export const lessons: Lesson[] = [
       { es: "El cierre deja en cero ingresos y gastos y pasa el resultado al capital.", en: "Closing resets revenue and expenses to zero and moves the result into equity." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1C-009', 'N1C-010', 'N1C-011', 'N1C-012', 'N1C-013', 'N1C-014', 'N1C-015'],
+    exerciseIds: ['N1C-009', 'N1C-010', 'N1C-011', 'N1C-013', 'N1C-014'],
   },
 
   // ───────────────────────────── L1-13 ─────────────────────────────
@@ -356,7 +356,7 @@ export const lessons: Lesson[] = [
       es: "Los estados financieros resumen la contabilidad en cuatro reportes: situación financiera, resultado integral, flujos de efectivo y cambios en el capital contable.",
       en: "The financial statements summarize the accounting in four reports: financial position, comprehensive income, cash flows and changes in equity.",
     },
-    minutes: 20,
+    minutes: 14,
     objectives: [
       { es: "Identificar qué pregunta responde cada estado financiero.", en: "Identify which question each financial statement answers." },
       { es: "Distinguir un estado a una fecha (foto) de un estado por un periodo (película).", en: "Tell a statement at a date (snapshot) from a statement for a period (movie)." },
@@ -365,7 +365,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Estado de situación financiera", en: "Statement of financial position" },
+        heading: { es: "Una foto de tu negocio", en: "A snapshot of your business" },
         body: [
           {
             es: "También se le llama **balance general**. Es como una **foto** del negocio **en una fecha**, por ejemplo al 31 de diciembre. Muestra lo que el negocio tiene (**activo**), lo que debe (**pasivo**) y lo que les pertenece a los dueños (**capital contable**).",
@@ -408,7 +408,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Estado de resultado integral", en: "Statement of comprehensive income" },
+        heading: { es: "¿Ganaste o perdiste?", en: "Did you win or lose?" },
         body: [
           {
             es: "Este estado es como una **película** de un **periodo** (un mes o un año). Muestra los **ingresos** que se ganaron y los **costos y gastos** que se consumieron para lograrlos. La diferencia es la **utilidad neta** (si ganaste) o la **pérdida neta** (si no).",
@@ -455,7 +455,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Estado de flujos de efectivo", en: "Statement of cash flows" },
+        heading: { es: "¿A dónde se fue el dinero?", en: "Where did the money go?" },
         body: [
           {
             es: "Este estado sigue **solo al dinero real**: cuánto efectivo entró y cuánto salió durante el periodo, y por qué. Responde a la pregunta: **¿de dónde vino el dinero y en qué se fue?**",
@@ -508,7 +508,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Estado de cambios en el capital contable", en: "Statement of changes in equity" },
+        heading: { es: "¿Por qué cambió lo tuyo?", en: "Why did your equity change?" },
         body: [
           {
             es: "Este estado explica **por qué cambió el capital de los dueños** durante el periodo. El capital sube con nuevas **aportaciones** y con la **utilidad**, y baja con **retiros** o **dividendos** (lo que se reparte a los dueños) y con las **pérdidas**.",
@@ -588,7 +588,7 @@ export const lessons: Lesson[] = [
       { es: "Los cuatro estados están conectados entre sí.", en: "The four statements are connected to each other." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1C-016', 'N1C-017', 'N1C-018', 'N1C-019', 'N1C-020', 'N1C-021', 'N1C-022'],
+    exerciseIds: ['N1C-016', 'N1C-017', 'N1C-018', 'N1C-019', 'N1C-020'],
   },
 
   // ───────────────────────────── L1-14 ─────────────────────────────
@@ -601,7 +601,7 @@ export const lessons: Lesson[] = [
       es: "Ganar dinero (utilidad) y tener dinero (efectivo) no es lo mismo: un negocio puede tener utilidad y quedarse sin efectivo, o tener efectivo y estar perdiendo.",
       en: "Making money (profit) and having money (cash) are not the same: a business can be profitable and run out of cash, or have cash while losing money.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Distinguir un ingreso de un cobro.", en: "Distinguish revenue from a cash collection." },
       { es: "Distinguir un gasto de un pago.", en: "Distinguish an expense from a cash payment." },
@@ -610,7 +610,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Diferencia entre ingresos y cobros", en: "Revenue vs. collections" },
+        heading: { es: "¿Ganar es lo mismo que cobrar?", en: "Is earning the same as collecting?" },
         body: [
           {
             es: "Un **ingreso** se reconoce cuando **vendes o prestas el servicio**, aunque todavía no te paguen. Un **cobro** es el momento en que **el dinero entra** a tu caja o a tu cuenta. Esta regla viene del postulado de **devengación contable** de las NIF, que en palabras sencillas dice: lo que ganas se anota cuando lo ganas, no cuando te pagan.",
@@ -660,7 +660,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Diferencia entre gastos y pagos", en: "Expenses vs. payments" },
+        heading: { es: "¿Gastar es lo mismo que pagar?", en: "Is spending the same as paying?" },
         body: [
           {
             es: "Un **gasto** se reconoce cuando **usas o consumes** algo para operar: la luz del mes, el trabajo de tus empleados, la renta del local. Un **pago** es cuando **el dinero sale**. A veces coinciden y a veces no.",
@@ -703,7 +703,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ejemplos de rentabilidad y liquidez", en: "Examples of profitability and liquidity" },
+        heading: { es: "¿Gano o tengo dinero?", en: "Profit or cash?" },
         body: [
           {
             es: "**Rentabilidad** es la capacidad de un negocio de **generar utilidad**: que sus ingresos superen a sus costos y gastos. **Liquidez** es tener **efectivo suficiente para pagar a tiempo** lo que debes: sueldos, renta, proveedores.",
@@ -811,7 +811,7 @@ export const lessons: Lesson[] = [
       { es: "Rentabilidad (¿gano?) y liquidez (¿puedo pagar?) se revisan juntas.", en: "Profitability (am I earning?) and liquidity (can I pay?) are reviewed together." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1C-023', 'N1C-024', 'N1C-025', 'N1C-026', 'N1C-027', 'N1C-028', 'N1C-029'],
+    exerciseIds: ['N1C-023', 'N1C-024', 'N1C-026', 'N1C-027', 'N1C-028'],
   },
 
   // ───────────────────────────── L1-15 ─────────────────────────────
@@ -824,7 +824,7 @@ export const lessons: Lesson[] = [
       es: "Con el caso de la cafetería «Café Aroma» aplicas todo el nivel: clasificas operaciones, usas la ecuación contable, registras con partida doble, llevas cuentas T e interpretas los resultados.",
       en: "With the case of the coffee shop «Café Aroma» you apply the whole level: you classify transactions, use the accounting equation, record with double entry, keep T-accounts and interpret the results.",
     },
-    minutes: 22,
+    minutes: 14,
     objectives: [
       { es: "Clasificar las operaciones de un negocio real por su efecto en la ecuación contable.", en: "Classify a business's transactions by their effect on the accounting equation." },
       { es: "Registrar asientos de partida doble y pasarlos a cuentas T.", en: "Record double-entry entries and post them to T-accounts." },
@@ -833,7 +833,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Clasificación de operaciones", en: "Classifying transactions" },
+        heading: { es: "¿Qué cambia en cada operación?", en: "What changes in each transaction?" },
         body: [
           {
             es: "Sofía abre la cafetería **«Café Aroma»**. Para simplificar, en este proyecto **no consideramos IVA ni depreciación**. Estas son las operaciones de su primer mes:",
@@ -853,7 +853,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Aplicación de la ecuación contable", en: "Applying the accounting equation" },
+        heading: { es: "¿Cuadra la ecuación de Sofía?", en: "Does Sofía's equation balance?" },
         body: [
           {
             es: "Sigamos los saldos al final del mes. **Bancos**: 100,000 − 45,000 + 30,000 − 7,000 − 8,000 − 6,000 = $64,000. **Mobiliario y equipo**: $45,000. **Inventarios**: 12,000 − 9,000 = $3,000. **Activo total = $112,000**.",
@@ -901,7 +901,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ejercicios de partida doble y cuentas T", en: "Double-entry and T-account practice" },
+        heading: { es: "Pólizas y cuentas T de Sofía", en: "Sofía's entries and T-accounts" },
         body: [
           {
             es: "Cada operación se registra con al menos un cargo y un abono por el mismo importe. Por ejemplo, (1) cargo a Bancos y abono a Capital social por $100,000; (3) cargo a Inventarios y abono a Proveedores por $12,000; (4) cargo a Bancos y abono a Ventas por $30,000, y otro asiento con cargo a Costo de ventas y abono a Inventarios por $9,000.",
@@ -940,7 +940,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Evaluación final", en: "Final assessment" },
+        heading: { es: "¿De dónde salió el dinero?", en: "Where did the cash come from?" },
         body: [
           {
             es: "Con los saldos se ven los estados financieros básicos de Café Aroma: **resultado integral** con utilidad de $8,000; **situación financiera** con activo de $112,000 = pasivo $4,000 + capital $108,000; y **flujos de efectivo** de 0 a $64,000.",
@@ -1020,7 +1020,7 @@ export const lessons: Lesson[] = [
       { es: "La utilidad aumenta el capital; las aportaciones también, pero no son ingreso.", en: "Profit increases equity; contributions do too, but they are not revenue." },
       { es: "Utilidad y efectivo cuentan historias distintas: revísalas juntas.", en: "Profit and cash tell different stories: review them together." },
     ],
-    exerciseIds: ['N1C-030', 'N1C-031', 'N1C-032', 'N1C-033', 'N1C-034', 'N1C-035', 'N1C-036', 'N1C-037'],
+    exerciseIds: ['N1C-030', 'N1C-031', 'N1C-033', 'N1C-034', 'N1C-037'],
   },
 ]
 

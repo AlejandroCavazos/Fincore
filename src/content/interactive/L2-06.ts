@@ -5,25 +5,21 @@ const pv = (p: number, n: number, r: number) => (p * (1 - Math.pow(1 + r / 100, 
 export const intL206: InteractiveLesson = {
   lessonId: 'L2-06',
   sections: [
-    // Arrendamientos: modelo del arrendatario
+    // Rentar también es deber
     [
-      { text: 'La cafetería renta un local por 4 años ☕. Ya se comprometió a pagar todas esas rentas, así que anota una **deuda** (pasivo por arrendamiento) y el **derecho a usar el local** (activo por derecho de uso).' },
+      { text: 'Tacos Felices 🌮 firma la renta de un local por **4 años**. Antes, solo anotaba la renta de cada mes como gasto.' },
       {
-        match: {
-          title: 'Une cada término con su significado',
-          pairs: [
-            ['Arrendatario', 'Quien renta y usa el bien'],
-            ['Activo por derecho de uso', 'Tu derecho a usar el bien rentado'],
-            ['Pasivo por arrendamiento', 'La deuda por las rentas que faltan'],
-            ['Valor presente', 'Lo que valen hoy pagos que harás en el futuro'],
-            ['Tasa incremental de financiamiento', 'La tasa que te cobraría un banco por un préstamo parecido'],
-          ],
-        },
+        ask: 'Si ya firmó por 4 años, ¿ya tiene una deuda?',
+        options: [
+          { text: 'Sí: ya se comprometió a pagar todas las rentas', ok: true, reply: '¡Eso! Por eso la norma pide anotarla desde el inicio.' },
+          { text: 'No: solo debe la renta de este mes', reply: 'Ya firmó: está obligado a pagar **todas** las rentas. Esa es su deuda.' },
+          { text: 'Solo si se atrasa', reply: 'No depende de atrasarse: al firmar ya se comprometió a **todas** las rentas.' },
+        ],
       },
-      { text: 'La deuda **no** es la suma simple de las rentas: un peso de dentro de 3 años vale menos que un peso hoy. Juega con los datos:' },
+      { text: 'Quien renta (**arrendatario**) anota dos cosas (NIF D-5 / IFRS 16):\n📍 **Activo por derecho de uso:** su derecho a usar el local\n🧾 **Pasivo por arrendamiento:** la deuda por las rentas\nAmbos al **valor presente** de los pagos: un peso de dentro de 3 años vale menos que uno hoy.' },
       {
         sim: {
-          title: 'El local de la cafetería',
+          title: 'El local de Tacos Felices',
           inputs: [
             { key: 'p', label: 'Renta al final de cada año', min: 10000, max: 40000, step: 5000, value: 20000 },
             { key: 'n', label: 'Años del contrato', min: 2, max: 10, step: 1, value: 5 },
@@ -32,151 +28,135 @@ export const intL206: InteractiveLesson = {
           outputs: [
             { label: 'Suma simple de las rentas', calc: (x) => x.p * x.n },
             { label: 'Pasivo inicial (valor presente)', calc: (x) => pv(x.p, x.n, x.r), main: true },
-            { label: 'Diferencia', calc: (x) => x.p * x.n - pv(x.p, x.n, x.r) },
           ],
           goal: {
-            text: 'Haz que la diferencia entre la suma simple y el pasivo sea de **$30,000 o más**.',
+            text: 'Haz que la suma simple supere al pasivo por **$30,000 o más**.',
             check: (x) => x.p * x.n - pv(x.p, x.n, x.r) >= 30000,
-            done: 'Más años y una tasa más alta hacen que los pagos futuros valgan menos hoy. Con $20,000 por 5 años al 6 % el pasivo es **$84,247.28**, no $100,000.',
+            done: 'Más años y más tasa: los pagos futuros valen menos hoy. Por eso la deuda no es la suma simple.',
           },
         },
       },
+      { text: 'Hay dos **exenciones** opcionales: rentas de **corto plazo** (12 meses o menos) y de **activos de bajo valor**. Esas pueden ir directo a gasto, en línea recta.' },
       {
         sort: {
-          title: '¿Va al balance o puede ir directo a gasto?',
+          title: '¿Va al balance o puede ir a gasto?',
           buckets: ['Activo y pasivo en el balance', 'Puede ir a gasto (exención)'],
           items: [
-            { text: 'Renta de un local por 4 años', bucket: 0, why: 'Es un arrendamiento largo de un bien importante: se reconocen activo y pasivo.' },
-            { text: 'Renta de una bodega por 8 meses', bucket: 1, why: 'Es de **corto plazo** (12 meses o menos): la exención permite gasto en línea recta.' },
-            { text: 'Renta de una impresora pequeña de bajo valor', bucket: 1, why: 'Es un **activo de bajo valor**: puede usarse la exención.' },
-            { text: 'Renta de un camión de reparto por 3 años', bucket: 0, why: 'Más de 12 meses y no es de bajo valor: va al balance.' },
+            { text: 'Local por 4 años', bucket: 0, why: 'Largo y no es de bajo valor: activo y pasivo.' },
+            { text: 'Bodega por 8 meses', bucket: 1, why: 'Corto plazo (12 meses o menos): puede ir a gasto.' },
+            { text: 'Una impresora pequeña de bajo valor', bucket: 1, why: 'Activo de bajo valor: puede usar la exención.' },
+            { text: 'Camión de reparto por 3 años', bucket: 0, why: 'Más de 12 meses y no es de bajo valor: va al balance.' },
+            { text: 'Oficinas por 5 años', bucket: 0, why: 'Largo plazo: derecho de uso y pasivo.' },
           ],
         },
       },
-      { tip: 'Pasivo inicial = **valor presente de los pagos**, con la tasa implícita o, si no se puede saber, la tasa incremental. El activo parte de ese mismo importe.' },
+      { tip: 'Renta larga → **activo por derecho de uso** + **pasivo por arrendamiento**, al valor presente. Corto plazo o bajo valor → puede ir a gasto.' },
     ],
-    // Medición posterior
+    // ¿Cómo baja la deuda de renta?
     [
-      { text: 'Después, la deuda **cobra interés** (saldo × tasa) y baja con cada pago. El activo se **deprecia**, normalmente en línea recta durante el plazo.' },
+      { text: 'Pasa el primer año en el local. Cada año:\n📈 La deuda **cobra interés**: saldo × tasa\n💵 El **pago** baja la deuda\n📉 El activo se **deprecia**: activo ÷ plazo (en línea recta)' },
       {
         tacct: {
-          title: 'La deuda del taller durante el año 1',
+          title: 'La deuda del local durante el año 1',
           account: 'Pasivo por arrendamiento',
           moves: [
-            { story: 'Firma el contrato: valor presente de las rentas **$100,000**.', side: 'C', amount: 100000, why: 'Nace la deuda: un pasivo aumenta con abono.' },
-            { story: 'Al cierre se reconoce el interés: 100,000 × 10 % = **$10,000**.', side: 'C', amount: 10000, why: 'El interés hace crecer la deuda: abono.' },
-            { story: 'Paga la renta del año: **$30,000**.', side: 'D', amount: 30000, why: 'El pago reduce la deuda: cargo. Saldo final: 100,000 + 10,000 − 30,000 = $80,000.' },
+            { story: 'Firma: valor presente de las rentas **$100,000**.', side: 'C', amount: 100000, why: 'Nace la deuda: un pasivo aumenta con abono.' },
+            { story: 'Al cierre, el interés: 100,000 × 10 % = **$10,000**.', side: 'C', amount: 10000, why: 'El interés hace crecer la deuda: abono.' },
+            { story: 'Paga la renta del año: **$30,000**.', side: 'D', amount: 30000, why: 'El pago reduce la deuda: cargo. Saldo: 100,000 + 10,000 − 30,000 = $80,000.' },
           ],
         },
       },
       {
         calc: {
-          question: 'La tiendita renta una vitrina refrigerada. Pasivo inicial **$50,000**, tasa **8 %**, pago del año **$15,000**. ¿Cuánto se debe al final del año?',
+          question: 'Tacos Felices renta una vitrina. Pasivo inicial **$50,000**, tasa **8 %**, pago del año **$15,000**. ¿Cuánto se debe al **final del año**?',
           answer: 39000,
-          hint: 'primero interés = saldo × tasa; luego saldo + interés − pago.',
-          why: 'Interés = 50,000 × 0.08 = 4,000. Pasivo final = 50,000 + 4,000 − 15,000 = **$39,000**. Solo $11,000 del pago bajó la deuda; el resto cubrió intereses.',
+          hint: 'Interés = saldo × tasa; luego saldo + interés − pago.',
+          why: 'Interés = 4,000. 50,000 + 4,000 − 15,000 = **$39,000**. Error común: restar el pago sin sumar antes el interés (35,000).',
         },
       },
       {
-        entry: {
-          title: 'Registra los gastos del año 1 del taller',
-          story: 'Activo por derecho de uso de **$100,000** a 5 años (depreciación **$20,000**) e interés del año de **$10,000**.',
-          lines: [
-            { account: 'Gasto por intereses', side: 'D', amount: 10000, why: 'Es el costo del financiamiento del año: gasto, se carga.' },
-            { account: 'Gasto por depreciación', side: 'D', amount: 20000, why: '100,000 ÷ 5 años = 20,000: gasto, se carga.' },
-            { account: 'Pasivo por arrendamiento', side: 'C', amount: 10000, why: 'El interés aumenta la deuda: abono.' },
-            { account: 'Depreciación acumulada del activo por derecho de uso', side: 'C', amount: 20000, why: 'Baja el valor del activo: la depreciación acumulada se abona.' },
-          ],
+        calc: {
+          question: 'El activo por derecho de uso de esa vitrina es **$50,000** y el contrato dura **4 años**. ¿Cuánto es la **depreciación anual**?',
+          answer: 12500,
+          hint: 'Activo ÷ años del plazo.',
+          why: '50,000 ÷ 4 = **$12,500** por año.',
         },
       },
       {
-        ask: 'Con este modelo, ¿qué ve el taller en su **estado de resultados** por el local rentado?',
+        ask: 'Con este modelo, ¿qué ve Tacos Felices en su **estado de resultados** por el local?',
         options: [
-          { text: 'Un gasto de renta por $30,000', reply: 'Antes así era, pero ahora el arrendatario reconoce activo y pasivo, así que el gasto se divide en otros dos.' },
-          { text: 'Gasto por intereses y gasto por depreciación', ok: true, reply: '¡Eso! En lugar de renta aparecen **intereses** (de la deuda) y **depreciación** (del activo).' },
-          { text: 'Nada: todo queda en el balance', reply: 'El balance tiene el activo y el pasivo, pero cada año sí pasan gastos al estado de resultados.' },
+          { text: 'Un gasto de renta', reply: 'Ya no: en lugar de renta aparecen **intereses** y **depreciación**.' },
+          { text: 'Gasto por intereses y gasto por depreciación', ok: true, reply: '¡Eso! Intereses por la deuda y depreciación por el activo.' },
+          { text: 'Nada: todo queda en el balance', reply: 'Cada año sí pasan gastos a resultados: **intereses** y **depreciación**.' },
         ],
       },
-      { tip: 'Interés = saldo × tasa. Pasivo final = saldo + interés − pago. Depreciación = activo ÷ plazo (o la vida útil, si es menor).' },
+      { tip: 'Pasivo final = saldo + interés − pago. Depreciación = activo ÷ plazo.' },
     ],
-    // Control y consolidación
+    // ¿Quién manda en otra empresa?
     [
-      { text: 'Cuando **Grupo Tacos Felices** 🌮 (la **controladora**) manda sobre otra empresa (la **subsidiaria**), presenta sus números como un solo negocio: eso es **consolidar**.' },
+      { text: 'Tacos Felices compra parte de una tortillería. Si **manda** sobre ella, es la **controladora** y la tortillería, su **subsidiaria**. Juntas presentan sus números como un solo negocio: eso es **consolidar**.' },
       {
-        multi: {
-          title: '¿Qué elementos forman el control? Marca todos.',
-          items: [
-            { text: 'Poder sobre las actividades relevantes de la otra empresa', ok: true },
-            { text: 'Exposición o derecho a rendimientos variables', ok: true },
-            { text: 'Capacidad de usar ese poder para afectar esos rendimientos', ok: true },
-            { text: 'Tener siempre el 100 % de las acciones', ok: false },
-            { text: 'Que las dos empresas estén en la misma ciudad', ok: false },
-          ],
-          why: 'Control = **poder + rendimientos variables + capacidad de usar el poder**. Normalmente da más del 50 % de los votos, pero importa la realidad.',
-        },
+        ask: 'Tacos Felices tiene el **45 %** de los votos, pero un contrato le da derecho a dirigir lo importante. ¿Manda?',
+        options: [
+          { text: 'Sí: lo que importa es quién decide', ok: true, reply: '¡Bien! Puede haber control con menos del 50 % por acuerdos o contratos.' },
+          { text: 'No: necesita más del 50 %', reply: 'Más del 50 % **normalmente** da control, pero no siempre. Con un contrato que le da la dirección, **sí manda**.' },
+          { text: 'Solo con el 100 %', reply: 'No hace falta el 100 %. Importa quién **decide** de verdad.' },
+        ],
       },
+      { text: 'Hay **control** con 3 cosas juntas:\n🎛️ **Poder** sobre lo importante de la otra empresa\n📈 **Rendimientos variables:** gana o pierde con ella\n🔗 **Capacidad** de usar ese poder para afectar esos rendimientos' },
+      { text: 'Sin control:\n🤝 **Influencia significativa** (participa en políticas, sin mandar) → **asociada**, método de participación\n⚖️ **Control conjunto** (todo se decide entre dos) → **negocio conjunto**' },
       {
         sort: {
-          title: '¿Qué es cada inversión de Grupo Tacos Felices?',
-          buckets: ['Subsidiaria (se consolida)', 'Asociada (método de participación)', 'Negocio conjunto'],
+          title: '¿Qué es cada inversión?',
+          buckets: ['Subsidiaria (se consolida)', 'Asociada', 'Negocio conjunto'],
           items: [
-            { text: 'Tortillería: 90 % de los votos y decide todo', bucket: 0, why: 'Tiene poder y lo usa: control.' },
-            { text: 'Salsería: 30 % y un lugar en el consejo, pero no manda', bucket: 1, why: 'Influye sin controlar: influencia significativa.' },
-            { text: 'Food truck: 50 % con otro socio y todo se decide entre los dos', bucket: 2, why: 'Control **conjunto**: negocio conjunto.' },
-            { text: 'Cafetería: 40 %, pero un acuerdo le da la mayoría del consejo', bucket: 0, why: 'Puede haber control con menos del 50 % por acuerdos o derechos contractuales.' },
+            { text: 'Tortillería: 60 % de los votos y nombra a la mayoría del consejo', bucket: 0, why: 'Tiene poder y lo usa: control.' },
+            { text: 'Salsería: 25 % y un consejero, participa en políticas', bucket: 1, why: 'Influye sin mandar: asociada.' },
+            { text: 'Food truck: 50 % con otro socio, todo por unanimidad', bucket: 2, why: 'Control compartido: negocio conjunto.' },
+            { text: 'Cafetería: 45 % más un contrato para dirigirla', bucket: 0, why: 'El contrato le da el poder: subsidiaria.' },
+            { text: 'Panadería: 30 %, sin dirigir, pero influye en políticas', bucket: 1, why: 'Influencia significativa: asociada.' },
           ],
         },
       },
-      {
-        match: {
-          title: 'Une cada caso con su norma',
-          pairs: [
-            ['Consolidar subsidiarias', 'NIF B-8 / IFRS 10'],
-            ['Método de participación en asociadas', 'NIF C-7 / IAS 28'],
-          ],
-        },
-      },
-      { tip: 'No cuentes solo acciones: pregunta **¿quién decide de verdad?** Control → consolidas. Influencia significativa → método de participación.' },
+      { tip: 'No cuentes solo acciones: pregunta **¿quién decide de verdad?** Control → consolidas (NIF B-8 / IFRS 10).' },
     ],
-    // Eliminaciones intercompañía
+    // El grupo como un solo negocio
     [
-      { text: 'Consolidar es presentar al grupo como **una sola entidad**. Se suma renglón por renglón y luego se **elimina** lo que pasó entre ellas. Como en una familia: si tu hermano te debe $500, la familia no es más rica.' },
+      { text: 'Consolidar es presentar al grupo como **una sola entidad**. Como en una familia: si tu hermano te debe $500, la familia no es más rica 👨‍👩‍👧.' },
+      { text: 'Se suma renglón por renglón y luego se **eliminan** las operaciones entre ellas:\n🔁 Lo que se deben (por cobrar y por pagar)\n🔁 Lo que se venden y compran entre sí\n**Saldo consolidado = controladora + subsidiaria − intercompañía**' },
       {
-        order: {
-          title: 'Ordena los pasos para consolidar',
-          steps: [
-            'Juntar los estados de la controladora y de la subsidiaria',
-            'Sumar renglón por renglón',
-            'Eliminar lo de dentro del grupo: inversión contra capital, saldos, ventas y compras, utilidades no realizadas',
-            'Mostrar aparte la participación no controladora',
-            'Presentar al grupo como una sola entidad económica',
-          ],
-          done: 'Primero **sumas**, luego **eliminas**, y la parte de otros socios va como **participación no controladora**.',
+        ask: 'Tacos Felices le vendió **$20,000** a crédito a su tortillería. Al consolidar, ¿qué eliminas?',
+        options: [
+          { text: 'El cliente de uno y el proveedor del otro', ok: true, reply: '¡Exacto! Elimina los **dos lados**: por cobrar y por pagar.' },
+          { text: 'Solo el cliente de Tacos Felices', reply: 'Error clásico: si quitas un lado, el otro queda inflado. Elimina **los dos**.' },
+          { text: 'Nada, ya está facturado', reply: 'El grupo no puede deberse a sí mismo: elimina **los dos lados**.' },
+        ],
+      },
+      {
+        calc: {
+          question: 'Clientes: Tacos Felices **$200,000** (incluye **$20,000** que le debe la tortillería) y tortillería **$70,000**. ¿Cuánto es **Clientes consolidado**?',
+          answer: 250000,
+          hint: 'Suma los dos y resta lo que se deben entre ellas.',
+          why: '200,000 + 70,000 − 20,000 = **$250,000**.',
         },
       },
       {
         calc: {
-          question: 'Clientes: controladora **$200,000** (incluye **$20,000** que le debe la subsidiaria) y subsidiaria **$70,000**. ¿Cuánto es Clientes consolidado?',
-          answer: 250000,
-          hint: 'suma los dos renglones y resta lo que se deben entre ellas.',
-          why: '200,000 + 70,000 − 20,000 = **$250,000**. Y los proveedores de la subsidiaria también bajan esos $20,000.',
+          question: 'Proveedores: Tacos Felices **$90,000** y tortillería **$60,000** (incluye los **$20,000** que le debe a Tacos Felices). ¿Cuánto es **Proveedores consolidado**?',
+          answer: 130000,
+          hint: 'Mismo truco: suma y resta lo intercompañía.',
+          why: '90,000 + 60,000 − 20,000 = **$130,000**.',
         },
       },
       {
-        spot: {
-          title: 'Encuentra el error en la eliminación',
-          story: 'La controladora le vendió a crédito **$35,000** a la subsidiaria y aún no se cobra. El contador elimina la venta y los saldos entre ellas:',
-          lines: [
-            { account: 'Ventas', side: 'D', amount: 35000 },
-            { account: 'Costo de ventas', side: 'C', amount: 35000 },
-            { account: 'Proveedores', side: 'C', amount: 35000 },
-            { account: 'Clientes', side: 'C', amount: 35000 },
-          ],
-          wrong: 2,
-          why: 'Proveedores es un pasivo (saldo en el haber); para quitarlo se **carga**, no se abona. Así se eliminan los dos lados: clientes y proveedores.',
+        calc: {
+          question: 'Ventas: Tacos Felices **$500,000** (incluye **$80,000** vendidos a la tortillería) y tortillería **$300,000**, todo a terceros. ¿Cuánto son las **ventas consolidadas**?',
+          answer: 720000,
+          hint: 'El grupo no se vende a sí mismo: quita los $80,000.',
+          why: '500,000 + 300,000 − 80,000 = **$720,000**.',
         },
       },
-      { tip: 'Error clásico: eliminar solo un lado. Si una empresa tiene la cuenta **por cobrar**, la otra tiene la **por pagar**: elimina las dos.' },
+      { tip: 'Primero **sumas**, luego **eliminas** los dos lados. La parte de la subsidiaria que es de otros socios va como **participación no controladora**.' },
     ],
   ],
 }

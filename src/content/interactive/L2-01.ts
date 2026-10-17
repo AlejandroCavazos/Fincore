@@ -7,98 +7,81 @@ const SUBE_AP = 'Suben el activo y el pasivo'
 export const intL201: InteractiveLesson = {
   lessonId: 'L2-01',
   sections: [
-    // Estado de situación financiera
+    // ¿Qué tiene y qué debe?
     [
-      { text: 'El **estado de situación financiera** es una **foto** 📸 de un día concreto: lo que el negocio **tiene** (activos), lo que **debe** (pasivos) y lo que es de los dueños (**capital contable**).' },
+      { text: 'Don Beto tiene una ferretería 🔧 y va al banco por un préstamo. El banco le pide una **foto** de su negocio: lo que **tiene** y lo que **debe** hoy.' },
       {
-        sim: {
-          title: 'La foto de la tiendita',
-          inputs: [
-            { key: 'a', label: 'Activos (lo que tiene)', min: 100000, max: 500000, step: 25000, value: 200000 },
-            { key: 'p', label: 'Pasivos (lo que debe)', min: 50000, max: 300000, step: 25000, value: 250000 },
-          ],
-          outputs: [{ label: 'Capital contable (lo de los dueños)', calc: (x) => x.a - x.p, main: true }],
-          goal: {
-            text: 'El capital sale negativo: ¡debe más de lo que tiene! Ajusta hasta que el capital sea **$150,000 o más**.',
-            check: (x) => x.a - x.p >= 150000,
-            done: 'Capital contable = Activo − Pasivo. Si sale negativo, es una **señal de alerta**.',
-          },
-        },
+        ask: 'La ferretería tiene **$300,000** en cosas y debe **$100,000**. ¿Cuánto es realmente de Don Beto?',
+        options: [
+          { text: '$200,000', ok: true, reply: '¡Eso! Lo que tiene menos lo que debe: 300,000 − 100,000 = **$200,000**.' },
+          { text: '$300,000', reply: 'Eso es todo lo que tiene, pero $100,000 son deuda. Lo suyo es 300,000 − 100,000 = **$200,000**.' },
+          { text: '$400,000', reply: 'Las deudas no se suman, se restan: 300,000 − 100,000 = **$200,000**.' },
+        ],
       },
-      { text: 'Se separa en **corto plazo** (circulante: se cobra, usa o paga en 12 meses o en el ciclo normal) y **largo plazo** (no circulante).' },
-      {
-        sort: {
-          title: '¿Dónde va cada renglón?',
-          buckets: ['Activo circulante', 'Activo no circulante', 'Pasivo a corto plazo', 'Pasivo a largo plazo'],
-          items: [
-            { text: 'Clientes que pagan en 30 días', bucket: 0, why: 'Se cobra dentro de 12 meses.' },
-            { text: 'Maquinaria del taller', bucket: 1, why: 'Se usa varios años.' },
-            { text: 'Proveedores', bucket: 2, why: 'Se paga en meses.' },
-            { text: 'Préstamo bancario a 5 años (parte que vence después del próximo año)', bucket: 3, why: 'Se paga después de 12 meses.' },
-            { text: 'Inventario de mercancía', bucket: 0, why: 'Se vende dentro del ciclo normal.' },
-            { text: 'La parte del préstamo de largo plazo que vence en los próximos 12 meses', bucket: 2, why: 'Lo que vence en el año se presenta como **pasivo a corto plazo**.' },
-          ],
-        },
-      },
+      { text: 'Esa foto es el **estado de situación financiera**, siempre a una fecha («al 31 de diciembre»):\n📦 **Activos:** lo que tiene\n🧾 **Pasivos:** lo que debe\n👤 **Capital contable:** lo de los dueños = Activo − Pasivo' },
+      { text: 'Se separa en **corto plazo** (se cobra o se paga en los próximos 12 meses) y **largo plazo**. Si un préstamo se paga en partes, lo que vence en los próximos 12 meses va a **corto plazo**.' },
       {
         calc: {
-          question: 'Caja **$25,000**, clientes **$35,000**, inventarios **$40,000**. Proveedores **$30,000**, impuestos por pagar **$8,000** y un préstamo a 5 años de **$90,000**. ¿Cuál es el **capital de trabajo**?',
-          answer: 62000,
-          hint: 'activo circulante − pasivo a corto plazo. El préstamo a 5 años no entra.',
-          why: '$100,000 − $38,000 = **$62,000**. Es el «colchón» que queda tras cubrir las deudas del próximo año.',
+          question: 'Don Beto debe un préstamo de **$200,000**. En los próximos 12 meses pagará **$50,000** y el resto en años siguientes. ¿Cuánto va en **pasivo a largo plazo**?',
+          answer: 150000,
+          hint: 'Saldo total − lo que vence en 12 meses.',
+          why: '200,000 − 50,000 = **$150,000** a largo plazo. Los $50,000 van a corto plazo.',
         },
       },
+      { text: '¿Para qué separar? Para ver si alcanza para lo que vence pronto. **Capital de trabajo** = activo circulante − pasivo a corto plazo: el «colchón» que queda.' },
       {
         calc: {
-          question: 'Un préstamo de **$500,000**; en los próximos 12 meses se pagarán **$80,000**. ¿Cuánto va en **pasivo a largo plazo**?',
-          answer: 420000,
-          hint: 'saldo total − lo que vence en 12 meses.',
-          why: '$500,000 − $80,000 = **$420,000** a largo plazo; los $80,000 van a corto plazo.',
+          question: 'Bancos **$20,000**, clientes **$30,000** e inventario **$50,000**. Proveedores **$25,000**, sueldos por pagar **$5,000** y un préstamo a largo plazo de **$80,000**. ¿Cuál es el **capital de trabajo**?',
+          answer: 70000,
+          hint: 'Suma lo de corto plazo de cada lado. El préstamo a largo plazo no entra.',
+          why: 'Activo circulante 20,000 + 30,000 + 50,000 = 100,000. Pasivo a corto plazo 25,000 + 5,000 = 30,000. Capital de trabajo = **$70,000**. Si metes el préstamo te daría −10,000.',
         },
       },
-      { tip: 'En México lo regula la **NIF B-6**. Foto a una **fecha**: «al 31 de diciembre».' },
+      { tip: 'Foto a una **fecha**: Activo = Pasivo + Capital. Lo que vence en 12 meses es **corto plazo**.' },
     ],
-    // Estado de resultados
+    // ¿Ganaste o perdiste?
     [
-      { text: 'El **estado de resultados** es la **película** 🎬 de un periodo: ¿cuánto vendí, cuánto me costó y cuánto gané? Se lee como una **escalera** que baja hasta la utilidad neta.' },
+      { text: 'La foto no dice si Don Beto **ganó** en el año. Para eso está la **película** 🎬: el **estado de resultados**, que cubre un periodo (del 1 de enero al 31 de diciembre).' },
+      {
+        ask: 'Don Beto vendió **$100,000** y la mercancía le costó **$60,000**. ¿Ya sabe cuánto ganó?',
+        options: [
+          { text: 'Sí: ganó $100,000', reply: 'Eso es lo que vendió, no lo que ganó. Y aún faltan gastos, intereses e impuestos.' },
+          { text: 'Sí: ganó $40,000', reply: 'Esa es solo la **utilidad bruta**. Todavía faltan gastos, intereses e impuestos.' },
+          { text: 'Aún no: faltan gastos, intereses e impuestos', ok: true, reply: '¡Bien! Los $40,000 son el primer escalón. Hay que seguir bajando.' },
+        ],
+      },
+      { text: 'Se lee como una **escalera** 🪜. En cada escalón restas algo:\n➖ Devoluciones → **Ventas netas**\n➖ Costo de ventas → **Utilidad bruta**\n➖ Gastos de operación → **Utilidad de operación**\n➖ Intereses → **Utilidad antes de impuestos**\n➖ ISR → **Utilidad neta**' },
       {
         order: {
           title: 'Ordena los escalones, de arriba hacia abajo',
-          steps: [
-            'Ventas netas (ventas − devoluciones y descuentos)',
-            'Utilidad bruta (− costo de ventas)',
-            'Utilidad de operación (− gastos de operación)',
-            'Utilidad antes de impuestos (± intereses)',
-            'Utilidad neta (− ISR)',
-          ],
-          done: 'En cada escalón restas un tipo de costo o gasto hasta llegar a lo que quedó para los dueños.',
+          steps: ['Ventas netas', 'Utilidad bruta', 'Utilidad de operación', 'Utilidad antes de impuestos', 'Utilidad neta'],
+          done: 'Así llegas a lo que de verdad quedó para los dueños.',
         },
       },
-      { text: 'Ahora bájala con números de **Grupo Tacos Felices** 🌮 (tasa de ISR 30%, solo como supuesto de práctica).' },
       {
         calc: {
-          question: 'Ventas **$300,000**; devoluciones **$10,000**; costo de ventas **$170,000**; gastos de operación **$50,000**; intereses pagados **$6,000**; ISR 30%. ¿Cuál es la **utilidad neta**?',
+          question: 'La ferretería: ventas **$300,000**; devoluciones **$10,000**; costo de ventas **$170,000**; gastos de operación **$50,000**; intereses pagados **$6,000**; ISR 30 % (solo supuesto de práctica). ¿Cuál es la **utilidad neta**?',
           answer: 44800,
-          hint: '290,000 → 120,000 → 70,000 → 64,000; luego quita el 30%.',
-          why: 'Antes de impuestos $64,000. ISR = 64,000 × 0.30 = $19,200. Utilidad neta = 64,000 − 19,200 = **$44,800**.',
+          hint: '290,000 → 120,000 → 70,000 → 64,000; luego quita el 30 %.',
+          why: 'Ventas netas 290,000 − 170,000 = 120,000 − 50,000 = 70,000 − 6,000 = 64,000. ISR = 64,000 × 0.30 = 19,200. Utilidad neta = **$44,800**.',
         },
       },
       {
         ask: 'Un compañero calculó el ISR sobre la **utilidad de operación** ($70,000). ¿Qué opinas?',
         options: [
-          { text: 'Está bien, da casi lo mismo', reply: 'No: el ISR se calcula sobre la utilidad **antes de impuestos**, ya restados los intereses.' },
+          { text: 'Está bien, da casi lo mismo', reply: 'No: el ISR se calcula sobre la utilidad **antes de impuestos**, ya restados los intereses ($64,000).' },
           { text: 'Error: va sobre la utilidad antes de impuestos ($64,000)', ok: true, reply: '¡Correcto! Primero se restan los intereses y luego se calcula el impuesto.' },
-          { text: 'Error: va sobre las ventas', reply: 'El ISR es un impuesto a la **utilidad**, no a las ventas.' },
+          { text: 'Error: va sobre las ventas', reply: 'El ISR de este estado va sobre la **utilidad antes de impuestos**, no sobre las ventas.' },
         ],
       },
-      { tip: 'Utilidad bruta: ¿vendes arriba de lo que te cuesta? De operación: ¿el negocio es rentable? Neta: ¿cuánto ganaron los dueños?' },
+      { tip: 'Película de un **periodo**. Error común: olvidar restar las devoluciones antes del costo de ventas.' },
     ],
-    // Relación entre ambos estados
+    // ¿Cómo se unen foto y película?
     [
-      { text: 'La película termina en la foto: la **utilidad neta** del estado de resultados se suma al **capital ganado** del estado de situación financiera.' },
+      { text: 'Al cerrar el año, la película termina en la foto: la **utilidad neta** se suma al **capital ganado** del estado de situación financiera.' },
       {
         balance: {
-          title: 'Fin de año en la cafetería ☕',
+          title: 'Fin de año en la ferretería 🔧',
           start: { a: 300000, p: 100000, c: 200000 },
           ops: [
             { story: 'El año cierra con **$40,000** de utilidad neta, que quedó en el banco.', options: [{ text: SUBE_AP }, { text: SUBE_AC, ok: true }, { text: BAJA_AC }], d: { a: 40000, p: 0, c: 40000 }, why: 'La utilidad aumenta el capital ganado; el dinero está en el activo.' },
@@ -106,23 +89,33 @@ export const intL201: InteractiveLesson = {
           ],
         },
       },
+      { text: '¿Foto o película? Pregunta: ¿es un **saldo** a una fecha o algo que **pasó en el periodo**?\n📸 Foto: proveedores, inventarios, **anticipos de clientes** (mercancía que aún debes entregar) y la **estimación para cuentas incobrables** (resta a clientes)\n🎬 Película: ventas, costo de ventas, **gasto por depreciación** e **ISR del ejercicio**' },
       {
         rush: {
           title: '¿Foto o película?',
-          seconds: 35,
+          seconds: 40,
           labels: ['Situación financiera (foto)', 'Resultados (película)'],
           items: [
-            { text: 'Saldo de Bancos al 31 de diciembre', ans: 0 },
-            { text: 'Ventas de enero a diciembre', ans: 1 },
-            { text: 'Proveedores por pagar', ans: 0 },
-            { text: 'Costo de ventas del año', ans: 1 },
-            { text: 'Maquinaria', ans: 0 },
-            { text: 'Gastos de operación del mes', ans: 1 },
-            { text: 'Capital social', ans: 0 },
+            { text: 'Proveedores', ans: 0 },
+            { text: 'Ventas del año', ans: 1 },
+            { text: 'Anticipos de clientes', ans: 0 },
+            { text: 'Gasto por depreciación', ans: 1 },
+            { text: 'Estimación para cuentas incobrables', ans: 0 },
+            { text: 'ISR del ejercicio', ans: 1 },
+            { text: 'Inventarios', ans: 0 },
+            { text: 'Costo de ventas', ans: 1 },
           ],
         },
       },
-      { tip: 'Al cerrar el ejercicio, las cuentas de resultados se «cierran» y su saldo pasa a **Utilidad del ejercicio**, dentro del capital.' },
+      {
+        ask: 'Un compañero dice: «El estado de situación financiera muestra lo que pasó **del 1 de enero al 31 de diciembre**». ¿Tiene razón?',
+        options: [
+          { text: 'No: muestra saldos a una fecha', ok: true, reply: '¡Exacto! Es la foto «al 31 de diciembre». Lo del periodo lo cuenta el estado de resultados.' },
+          { text: 'Sí, es lo mismo que el estado de resultados', reply: 'Son distintos: el de situación financiera es la **foto a una fecha**; el de resultados, la película del periodo.' },
+          { text: 'Sí, pero solo en diciembre', reply: 'No depende del mes: siempre muestra saldos **a una fecha**. Lo del periodo va en el estado de resultados.' },
+        ],
+      },
+      { tip: 'Utilidad → **sube** el capital. Pérdida → lo **baja**. Al cerrar el año, las cuentas de resultados pasan a **Utilidad del ejercicio**.' },
     ],
   ],
 }

@@ -3,20 +3,30 @@ import type { InteractiveLesson } from './types'
 export const intCON06: InteractiveLesson = {
   lessonId: 'CON-06',
   sections: [
-    // Un idioma contable para todo el mundo
+    // Un idioma contable mundial
     [
-      { text: 'Si una empresa mexicana quiere dinero de inversionistas en Europa, ellos deben entender sus números. Para eso están las **NIIF** (en inglés, **IFRS**): un idioma contable para muchos países 🌍.' },
+      { text: 'Celulares Luna 📱 es una cadena mexicana que quiere dinero de inversionistas en Europa. Ellos tienen que **entender sus números**.' },
+      {
+        ask: '¿Qué necesita Celulares Luna para que la entiendan?',
+        options: [
+          { text: 'Normas que se lean igual en muchos países', ok: true, reply: '¡Eso! Un mismo "idioma contable" para todos.' },
+          { text: 'Solo traducir sus reportes al inglés', reply: 'Traducir no basta: si las reglas son distintas, los números no se comparan. Necesita **normas comunes** a muchos países.' },
+          { text: 'Que el SAT firme sus reportes', reply: 'El SAT no hace eso. Lo que necesita son **normas comunes** a muchos países.' },
+        ],
+      },
+      { text: 'Esas normas son las **NIIF** (en inglés **IFRS**). Las emite el **IASB**, que forma parte de la **Fundación IFRS**. Las más antiguas se llaman **NIC** y siguen vigentes si no se han sustituido.' },
       {
         match: {
           title: 'Las siglas clave',
           pairs: [
             ['IASB', 'Consejo que emite las NIIF'],
-            ['Fundación IFRS', 'La organización de la que forma parte el IASB'],
-            ['NIC (IAS)', 'Las normas más antiguas, vigentes si no se han sustituido'],
+            ['CINIF', 'Organismo que emite las NIF mexicanas'],
+            ['NIC (IAS)', 'Las normas internacionales más antiguas'],
             ['CNBV', 'Comisión que pide NIIF a las empresas que cotizan en Bolsa'],
           ],
         },
       },
+      { text: 'En México, en general, las empresas que **cotizan en la Bolsa** usan NIIF. Las privadas **pequeñas y medianas** suelen usar las **NIF**.' },
       {
         rush: {
           title: '¿NIIF o NIF?',
@@ -34,10 +44,18 @@ export const intCON06: InteractiveLesson = {
           ],
         },
       },
-      { tip: 'En México, en general: **cotiza en Bolsa → NIIF**; empresa privada pequeña o mediana → normalmente **NIF**.' },
+      {
+        ask: 'Una tlapalería pequeña, ¿está obligada a usar NIIF?',
+        options: [
+          { text: 'No, normalmente usa las NIF mexicanas', ok: true, reply: '¡Correcto! Las NIIF se piden, en general, a las que **cotizan en Bolsa**.' },
+          { text: 'Sí, todas las empresas de México', reply: 'No todas. En general se piden a las que **cotizan en Bolsa**; las pequeñas suelen usar **NIF**.' },
+          { text: 'Sí, si vende en pesos', reply: 'La moneda no decide eso. Las pequeñas suelen usar **NIF**; las que cotizan en Bolsa, NIIF.' },
+        ],
+      },
     ],
-    // Normas clave y su enfoque
+    // Reglas con criterio, no recetas
     [
+      { text: 'A Celulares Luna le quedaron celulares del modelo anterior. Ya nadie los quiere al precio de antes. ¿En cuánto los presenta?' },
       { text: 'Las NIIF se basan en **principios**, no en recetas: piden entender el fondo (la **sustancia**) de cada operación y usar juicio. Por eso las notas explican mucho.' },
       {
         match: {
@@ -51,13 +69,27 @@ export const intCON06: InteractiveLesson = {
           ],
         },
       },
-      { text: 'Según la NIC 2, el inventario va al **menor** entre su costo y su **valor neto de realización** (VNR): lo que esperas cobrar al venderlo, menos lo que cuesta venderlo. Una tienda de ropa 👕 compró una chamarra en **$800**.' },
+      {
+        sort: {
+          title: '¿Qué norma aplica?',
+          buckets: ['NIIF 15: ingresos', 'NIIF 16: arrendamientos', 'NIC 2: inventarios'],
+          items: [
+            { text: 'Celulares Luna decide cuándo reconocer el ingreso de un plan de datos anual', bucket: 0, why: 'Es un ingreso de un contrato con clientes: NIIF 15.' },
+            { text: 'Renta su bodega por 6 años', bucket: 1, why: 'Una renta de largo plazo: NIIF 16.' },
+            { text: 'Compara el costo de sus celulares viejos con lo que espera recuperar', bucket: 2, why: 'Valuar inventario: NIC 2.' },
+            { text: 'Elige entre PEPS y costo promedio', bucket: 2, why: 'Métodos de inventario: NIC 2.' },
+            { text: 'Renta camionetas de reparto por 4 años', bucket: 1, why: 'Otra renta de largo plazo: NIIF 16.' },
+            { text: 'Vende un celular con instalación de apps incluida y reparte el precio', bucket: 0, why: 'Repartir el precio entre promesas: NIIF 15.' },
+          ],
+        },
+      },
+      { text: 'Según la **NIC 2**, el inventario va al **menor** entre su costo y su **VNR** (valor neto de realización):\n💰 VNR = precio al que esperas venderlo − lo que cuesta venderlo.\n📉 Si el VNR es menor que el costo, la diferencia es una **baja de valor**.' },
       {
         sim: {
-          title: 'La chamarra que ya no se vende',
+          title: 'Un celular viejo que costó $800',
           inputs: [
-            { key: 'p', label: 'Precio al que esperas venderla', min: 600, max: 1200, step: 50, value: 1000 },
-            { key: 'g', label: 'Costos para venderla (comisión, envío)', min: 0, max: 200, step: 25, value: 50 },
+            { key: 'p', label: 'Precio al que esperas venderlo', min: 600, max: 1200, step: 50, value: 1000 },
+            { key: 'g', label: 'Costos para venderlo (comisión, envío)', min: 0, max: 200, step: 25, value: 50 },
           ],
           outputs: [
             { label: 'VNR', calc: (x) => x.p - x.g },
@@ -65,10 +97,18 @@ export const intCON06: InteractiveLesson = {
             { label: 'Baja de valor', calc: (x) => Math.max(0, 800 - (x.p - x.g)) },
           ],
           goal: {
-            text: 'La chamarra pasó de moda. Ajusta precio y costos hasta tener una **baja de valor de $100 o más**.',
+            text: 'El modelo pasó de moda. Ajusta precio y costos hasta tener una **baja de valor de $100 o más**.',
             check: (x) => 800 - (x.p - x.g) >= 100,
             done: 'Si el VNR queda **debajo del costo**, el inventario se presenta al VNR y la diferencia es una baja de valor.',
           },
+        },
+      },
+      {
+        calc: {
+          question: 'El lote de celulares viejos costó **$50,000**. Celulares Luna espera venderlo en **$46,000** y pagar **$2,000** de comisiones y envío. ¿De cuánto es la **baja de valor**?',
+          answer: 6000,
+          hint: 'Primero el VNR: 46,000 − 2,000. Luego costo − VNR.',
+          why: 'VNR = 46,000 − 2,000 = 44,000. Baja = 50,000 − 44,000 = **$6,000**. El lote queda en el balance en $44,000.',
         },
       },
       {
@@ -79,11 +119,11 @@ export const intCON06: InteractiveLesson = {
           { text: 'Costo promedio', reply: 'El costo promedio sí se permite. El prohibido es **UEPS**.' },
         ],
       },
-      { tip: 'NIC 2: inventario al **menor** entre costo y VNR. Nunca por encima de lo que de verdad vas a recuperar.' },
     ],
-    // NIIF 15: el modelo de cinco pasos
+    // ¿Cuándo cuenta una venta?
     [
-      { text: 'La NIIF 15 responde **cuándo y por cuánto** reconocer un ingreso, con cinco pasos. Sirven igual para una tienda que para una constructora.' },
+      { text: 'Celulares Luna vende un paquete: **celular + un año de datos**. ¿Cuánto del precio es por el celular y cuánto por los datos?' },
+      { text: 'La **NIIF 15** responde **cuándo y por cuánto** reconocer un ingreso, con cinco pasos. Sirven igual para una tienda que para una constructora.' },
       {
         order: {
           title: 'Ordena los cinco pasos',
@@ -97,10 +137,10 @@ export const intCON06: InteractiveLesson = {
           done: 'Primero entiendes el trato y sus promesas; luego pones precio y lo repartes; al final reconoces el ingreso.',
         },
       },
-      { text: 'Una **obligación de desempeño** es cada promesa distinta al cliente. Una tienda de celulares 📱 vende un paquete: celular + un año de datos.' },
+      { text: 'Una **obligación de desempeño** es cada promesa distinta al cliente. En un paquete, el precio se **reparte** según lo que cobrarías por cada promesa por separado (**precio de venta independiente**).' },
       {
         multi: {
-          title: '¿Cuáles son obligaciones de desempeño distintas en este paquete?',
+          title: '¿Cuáles son obligaciones de desempeño en el paquete?',
           items: [
             { text: 'Entregar el celular', ok: true },
             { text: 'Dar servicio de datos por un año', ok: true },
@@ -114,10 +154,18 @@ export const intCON06: InteractiveLesson = {
           question: 'El paquete cuesta **$900**. Por separado, el celular vale **$800** y los datos **$400**. ¿Cuánto ingreso le toca al **celular**?',
           answer: 600,
           hint: '900 × (800 ÷ 1,200).',
-          why: 'Suma de precios independientes: 800 + 400 = 1,200. Celular: 900 × 800 ÷ 1,200 = **$600**. Datos: $300.',
+          why: 'Suma de precios por separado: 800 + 400 = 1,200. Celular: 900 × 800 ÷ 1,200 = **$600**. Datos: $300.',
         },
       },
-      { tip: 'Un paquete se **reparte** según el precio de venta independiente de cada promesa.' },
+      {
+        calc: {
+          question: 'Otro paquete: tableta + funda por **$2,700**. Por separado, la tableta vale **$2,400** y la funda **$600**. ¿Cuánto ingreso le toca a la **funda**?',
+          answer: 540,
+          hint: 'Suma los precios por separado (3,000) y luego 2,700 × (600 ÷ 3,000).',
+          why: '2,700 × 600 ÷ 3,000 = **$540**. A la tableta le tocan $2,160. Juntos suman los $2,700 del paquete.',
+        },
+      },
+      { tip: 'Un paquete se **reparte** según el precio por separado de cada promesa. Las partes siempre suman el precio del paquete.' },
     ],
   ],
 }

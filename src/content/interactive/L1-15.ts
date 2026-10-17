@@ -12,6 +12,7 @@ export const intL115: InteractiveLesson = {
     // Clasificación de operaciones
     [
       { text: 'Sofía abre la cafetería **«Café Aroma»** ☕. Vas a llevar su primer mes completo. (Sin IVA ni depreciación, para simplificar.)' },
+      { text: 'Antes de anotar cada operación, Sofía se pregunta:\n🔎 ¿Qué cuentas cambian?\n🏷️ ¿Son activo, pasivo, capital, ingreso o gasto?\n↕️ ¿Suben o bajan?' },
       {
         match: {
           title: '¿Qué cuentas cambian?',
@@ -24,10 +25,19 @@ export const intL115: InteractiveLesson = {
           ],
         },
       },
+      {
+        ask: 'En (3) Sofía compra café y leche a crédito. ¿Qué pasa en la ecuación?',
+        options: [
+          { text: 'Sube un activo y sube un pasivo', ok: true, reply: '¡Eso! Sube Inventarios (activo) y sube Proveedores (lo que debe).' },
+          { text: 'Sube un activo y baja otro', reply: 'No sale dinero: queda a deber. Sube Inventarios (activo) y sube Proveedores (**pasivo**).' },
+          { text: 'Sube el activo y sube el capital', reply: 'El café no es aportación de Sofía: se debe al proveedor. Suben activo y **pasivo**.' },
+        ],
+      },
+      { tip: 'Si queda a deber, sube el **pasivo**. Si cambia dinero por otra cosa, **un activo sube y otro baja**.' },
     ],
     // Aplicación de la ecuación contable
     [
-      { text: 'Ahora sigue el mes completo en la balanza. Predice cada operación.' },
+      { text: 'Ahora sigue el mes completo en la balanza. Predice cada operación: **activo = pasivo + capital** siempre debe cuadrar.' },
       {
         balance: {
           title: 'Café Aroma, primer mes',
@@ -54,7 +64,7 @@ export const intL115: InteractiveLesson = {
     ],
     // Partida doble y cuentas T
     [
-      { text: 'Registra en pólizas las operaciones clave de Sofía.' },
+      { text: 'Cada operación lleva al menos un **cargo** y un **abono** por el mismo importe. Registra las operaciones clave de Sofía.' },
       {
         entry: {
           title: 'Operación (3)',
@@ -77,7 +87,18 @@ export const intL115: InteractiveLesson = {
           ],
         },
       },
-      { text: 'Ahora pasa todo lo de **Bancos** a su cuenta T:' },
+      {
+        entry: {
+          title: 'Practica: venta mitad y mitad',
+          story: 'Otro día Sofía vende **$10,000**: **$8,000** de contado (al banco) y **$2,000** a crédito a una oficina vecina.',
+          lines: [
+            { account: 'Bancos', side: 'D', amount: 8000, why: 'Entra dinero al banco: cargo.' },
+            { account: 'Clientes', side: 'D', amount: 2000, why: 'La oficina le debe: derecho que sube, cargo.' },
+            { account: 'Ventas', side: 'C', amount: 10000, why: 'La venta completa es ingreso: abono por el total.' },
+          ],
+        },
+      },
+      { text: 'Ahora pasa todo lo de **Bancos** del primer mes a su cuenta T:' },
       {
         tacct: {
           title: 'La cuenta T de Bancos',
@@ -90,6 +111,14 @@ export const intL115: InteractiveLesson = {
             { story: '(6) Pago al proveedor, **$8,000**', side: 'C', amount: 8000, why: 'Sale dinero: haber.' },
             { story: '(7) Sueldo, **$6,000**', side: 'C', amount: 6000, why: 'Sale dinero: haber.' },
           ],
+        },
+      },
+      {
+        calc: {
+          question: '¿Cuánto suma el **debe** de Bancos?',
+          answer: 130000,
+          hint: 'Suma solo lo que entró: la aportación y la venta.',
+          why: '100,000 + 30,000 = **$130,000**. El haber suma 45,000 + 7,000 + 8,000 + 6,000 = 66,000. Saldo: **$64,000 deudor**.',
         },
       },
       { tip: 'El saldo de Bancos en la T ($64,000) es el mismo que salió con la ecuación. **Dos caminos, el mismo resultado.**' },
@@ -106,6 +135,8 @@ export const intL115: InteractiveLesson = {
             { text: 'Cafetera y muebles, $45,000', bucket: 1, why: 'Bienes duraderos: inversión.' },
             { text: 'Cobro de ventas, $30,000', bucket: 0, why: 'Día a día: operación.' },
             { text: 'Pago de renta, sueldo y proveedor', bucket: 0, why: 'Día a día: operación.' },
+            { text: 'Si comprara un horno', bucket: 1, why: 'Bien duradero: inversión.' },
+            { text: 'Si el banco le prestara dinero', bucket: 2, why: 'Préstamo: financiamiento.' },
           ],
         },
       },
@@ -122,6 +153,7 @@ export const intL115: InteractiveLesson = {
         options: [
           { text: 'Al proveedor se le pagó $8,000 y lo vendido costó $9,000', ok: true, reply: '¡Exacto! Utilidad y efectivo miden cosas distintas. Ya estás listo para el reto con el **segundo mes** de Café Aroma.' },
           { text: 'Hay un error en las cuentas', reply: 'No hay error: la utilidad usa el **costo** de lo vendido ($9,000) y el efectivo usa lo **pagado** al proveedor ($8,000). Miden cosas distintas.' },
+          { text: 'Porque Sofía aportó $100,000', reply: 'La aportación es financiamiento, no entra en la operación. La diferencia es que al proveedor se le pagaron **$8,000** y lo vendido costó **$9,000**.' },
         ],
       },
     ],

@@ -192,7 +192,7 @@ export const lessons: Lesson[] = [
       es: "La contabilidad nació hace miles de años para llevar la cuenta de bienes y deudas, se perfeccionó con la partida doble que difundió Luca Pacioli y hoy funciona con normas y computadoras.",
       en: "Accounting was born thousands of years ago to keep track of goods and debts, was refined with the double entry that Luca Pacioli spread, and today works with standards and computers.",
     },
-    minutes: 14,
+    minutes: 11,
     objectives: [
       { es: "Describir cómo surgieron los primeros registros contables en las civilizaciones antiguas.", en: "Describe how the first accounting records arose in ancient civilizations." },
       { es: "Explicar quién fue Luca Pacioli y en qué consiste la idea básica de la partida doble.", en: "Explain who Luca Pacioli was and the basic idea of double entry." },
@@ -200,7 +200,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Origen de los registros contables", en: "Origin of accounting records" },
+        heading: { es: "¿Desde cuándo llevamos cuentas?", en: "Since when have we kept count?" },
         body: [
           {
             es: "Mucho antes de que existieran las monedas, las personas ya necesitaban **llevar la cuenta**: cuántos costales de grano había en el almacén, cuántas cabezas de ganado tenía alguien o quién le debía qué a quién. Llevar la cuenta es la semilla de la contabilidad.",
@@ -217,7 +217,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Luca Pacioli y la partida doble", en: "Luca Pacioli and double entry" },
+        heading: { es: "La regla de los dos lados", en: "The two-sides rule" },
         body: [
           {
             es: "En la Edad Media, los comerciantes de ciudades italianas como **Venecia, Génova y Florencia** compraban y vendían mucho, a crédito y con socios. Necesitaban un método ordenado y desarrollaron la **partida doble**.",
@@ -267,7 +267,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Evolución de la contabilidad moderna", en: "Evolution of modern accounting" },
+        heading: { es: "¿Cómo llegamos a hoy?", en: "How did we get here?" },
         body: [
           {
             es: "Con la **Revolución Industrial** aparecieron fábricas grandes y empresas con muchos dueños (accionistas). Hizo falta calcular cuánto costaba fabricar cada producto (**contabilidad de costos**) y que alguien independiente revisara las cuentas (**auditoría**).",
@@ -332,7 +332,7 @@ export const lessons: Lesson[] = [
       { es: "La contabilidad moderna suma normas (NIF, IFRS) y tecnología, sobre la misma base.", en: "Modern accounting adds standards (NIF, IFRS) and technology on the same foundation." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1A-009', 'N1A-010', 'N1A-011', 'N1A-012', 'N1A-013', 'N1A-014', 'N1A-015', 'N1A-016'],
+    exerciseIds: ['N1A-011', 'N1A-010', 'N1A-013', 'N1A-014', 'N1A-015'],
   },
 
   // ───────────────────────────── L1-03 ─────────────────────────────
@@ -345,7 +345,7 @@ export const lessons: Lesson[] = [
       es: "El dinero pasó del trueque a objetos valiosos, monedas, billetes respaldados por la confianza y hoy a saldos digitales, y la contabilidad lo usa como su unidad de medida.",
       en: "Money moved from barter to valuable objects, coins, bills backed by trust and today digital balances, and accounting uses it as its unit of measure.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Explicar por qué el trueque era incómodo y cómo el dinero lo resolvió.", en: "Explain why barter was inconvenient and how money solved it." },
       { es: "Describir el papel de los bancos y qué es el dinero fiduciario.", en: "Describe the role of banks and what fiat money is." },
@@ -354,7 +354,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Del trueque al dinero moderno", en: "From barter to modern money" },
+        heading: { es: "¿Por qué inventamos el dinero?", en: "Why did we invent money?" },
         body: [
           {
             es: "Antes del dinero existía el **trueque**: cambiar una cosa por otra. Si tú tienes maíz y quieres una gallina, necesitas encontrar a alguien que tenga una gallina **y además** quiera maíz. A eso se le llama **doble coincidencia de necesidades**, y es difícil de lograr.",
@@ -404,7 +404,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Bancos y dinero fiduciario", en: "Banks and fiat money" },
+        heading: { es: "¿Por qué vale un billete?", en: "Why is a bill worth anything?" },
         body: [
           {
             es: "Guardar oro en casa era riesgoso, así que la gente lo dejaba con quien tuviera una bóveda segura y recibía un **recibo** a cambio. Esos recibos empezaron a circular como si fueran dinero. Así nacieron, en parte, los **bancos** y los billetes.",
@@ -445,7 +445,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Dinero digital y criptomonedas", en: "Digital money and cryptocurrencies" },
+        heading: { es: "Dinero digital y cripto", en: "Digital money and crypto" },
         body: [
           {
             es: "Hoy casi todo el dinero es **digital**: es el saldo de tu cuenta bancaria, que mueves con tarjeta, transferencia o una app. Sigue siendo **pesos mexicanos**; solo cambia la forma de moverlo. En México, muchas transferencias pasan por el sistema SPEI que opera el Banco de México.",
@@ -508,7 +508,7 @@ export const lessons: Lesson[] = [
       { es: "Las criptomonedas no son moneda de curso legal en México y su precio es muy volátil.", en: "Cryptocurrencies are not legal tender in Mexico and their price is very volatile." },
     ],
     normativeNote: NOTE_MONEY,
-    exerciseIds: ['N1A-017', 'N1A-018', 'N1A-019', 'N1A-020', 'N1A-021', 'N1A-022', 'N1A-023', 'N1A-024'],
+    exerciseIds: ['N1A-017', 'N1A-021', 'N1A-024', 'N1A-019', 'N1A-022'],
   },
 
   // ───────────────────────────── L1-04 ─────────────────────────────
@@ -521,7 +521,7 @@ export const lessons: Lesson[] = [
       es: "Todo negocio tiene cosas que le pertenecen (activos), deudas (pasivos) y lo que de verdad es de los dueños (capital contable), y estos tres elementos describen su patrimonio.",
       en: "Every business has things it owns (assets), debts (liabilities) and what truly belongs to the owners (equity), and these three elements describe its net worth.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Definir activo, pasivo y capital contable con palabras sencillas.", en: "Define assets, liabilities and equity in simple words." },
       { es: "Clasificar bienes, derechos y deudas comunes de un negocio.", en: "Classify a business's common goods, rights and debts." },
@@ -530,7 +530,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Conceptos y clasificación", en: "Concepts and classification" },
+        heading: { es: "Las 3 palabras del negocio", en: "The 3 words of a business" },
         body: [
           {
             es: "Un **activo** es todo lo que el negocio **controla** y le va a traer un beneficio: dinero en caja o en el banco, mercancía para vender, mobiliario, una camioneta, o el dinero que un cliente le debe (un **derecho de cobro**). Las NIF lo describen como un recurso económico controlado por la entidad, que viene de operaciones pasadas y del que se esperan beneficios futuros.",
@@ -554,7 +554,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ejemplos de empresas", en: "Examples from businesses" },
+        heading: { es: "¿Un préstamo es activo?", en: "Is a loan an asset?" },
         body: [
           {
             es: "**Cafetería**: sus activos son la cafetera, las mesas, el café y la leche en bodega y el dinero de la caja. Sus pasivos, lo que debe al proveedor de café y el préstamo con que compró la cafetera. Su capital, lo que la dueña invirtió y las ganancias que ha dejado ahí.",
@@ -571,7 +571,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Patrimonio de una entidad", en: "An entity's net worth" },
+        heading: { es: "¿Cuánto es de los dueños?", en: "How much is the owners'?" },
         body: [
           {
             es: "El **patrimonio** es el conjunto de bienes, derechos y obligaciones de un negocio. Lo que de verdad \"vale\" para los dueños es el **patrimonio neto**, que en contabilidad se llama **capital contable**: activos menos pasivos.",
@@ -653,7 +653,7 @@ export const lessons: Lesson[] = [
       { es: "Los bienes y deudas personales del dueño no forman parte del negocio.", en: "The owner's personal goods and debts are not part of the business." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1A-025', 'N1A-026', 'N1A-027', 'N1A-028', 'N1A-029', 'N1A-030', 'N1A-031', 'N1A-032'],
+    exerciseIds: ['N1A-025', 'N1A-029', 'N1A-027', 'N1A-032', 'N1A-031'],
   },
 
   // ───────────────────────────── L1-05 ─────────────────────────────
@@ -666,7 +666,7 @@ export const lessons: Lesson[] = [
       es: "La utilidad es lo que queda de los ingresos después de restar los costos y los gastos; si no alcanza, hay pérdida.",
       en: "Profit is what remains of revenue after subtracting costs and expenses; if it falls short, there is a loss.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Distinguir ingreso, costo y gasto con ejemplos de la vida diaria.", en: "Distinguish revenue, cost and expense with everyday examples." },
       { es: "Reconocer entradas de dinero que no son ingresos (préstamos, aportaciones).", en: "Recognize cash inflows that are not revenue (loans, contributions)." },
@@ -674,7 +674,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Diferencias fundamentales", en: "Fundamental differences" },
+        heading: { es: "¿Ingreso, costo o gasto?", en: "Income, cost or expense?" },
         body: [
           {
             es: "Un **ingreso** es lo que el negocio **gana por vender** sus productos o servicios: los cafés que vende la cafetería, las reparaciones que cobra el taller. El ingreso aumenta el capital contable de los dueños.",
@@ -697,7 +697,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Utilidad y pérdida", en: "Profit and loss" },
+        heading: { es: "¿Ganaste o perdiste?", en: "Did you profit or lose?" },
         body: [
           {
             es: "La **utilidad** es la ganancia: lo que queda de los ingresos después de restar costos y gastos de un periodo (un mes, un año). Si los costos y gastos son **mayores** que los ingresos, el resultado es negativo y se llama **pérdida**.",
@@ -766,7 +766,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ejemplos prácticos", en: "Practical examples" },
+        heading: { es: "Casos de todos los días", en: "Everyday cases" },
         body: [
           {
             es: "**Cafetería**: vender cafés y pasteles es ingreso; el café, la leche y el azúcar usados en lo que se vendió son costo; la renta del local y el sueldo del barista son gastos. Pedir un préstamo para remodelar no es ingreso, y pagar ese préstamo no es gasto (los intereses sí lo son).",
@@ -818,7 +818,7 @@ export const lessons: Lesson[] = [
       { es: "Utilidad bruta = Ingresos − Costo de ventas.", en: "Gross profit = Revenue − Cost of sales." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1A-033', 'N1A-034', 'N1A-035', 'N1A-036', 'N1A-037', 'N1A-038', 'N1A-039', 'N1A-040'],
+    exerciseIds: ['N1A-033', 'N1A-035', 'N1A-034', 'N1A-038', 'N1A-040'],
   },
 ]
 

@@ -20,7 +20,7 @@ export const lessons: Lesson[] = [
       "La contabilidad internacional te enseña a registrar operaciones en otras monedas, a convertir los estados de una filial extranjera a pesos y a entender por qué no todos los países usan las mismas reglas.",
       "International accounting teaches you to record transactions in other currencies, to translate a foreign subsidiary's statements into pesos and to understand why not every country uses the same rules.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Distinguir la moneda de registro, la moneda funcional y la moneda de informe de una empresa.", "Distinguish a company's recording currency, functional currency and reporting currency."),
       t("Registrar operaciones en moneda extranjera y calcular la diferencia cambiaria al pagar o al cierre.", "Record foreign-currency transactions and compute the exchange difference on payment or at closing."),
@@ -29,7 +29,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Tres monedas: de registro, funcional y de informe", "Three currencies: recording, functional and reporting"),
+        heading: t("¿En qué moneda vive tu negocio?", "Which currency does your business live in?"),
         body: [
           t(
             "Cuando una empresa hace negocios con otros países aparecen **tres monedas**. La **moneda de registro** es en la que llevas tus libros (en México, casi siempre pesos). La **moneda de informe** es en la que presentas tus estados financieros a los usuarios.",
@@ -52,7 +52,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Operaciones en moneda extranjera", "Foreign-currency transactions"),
+        heading: t("¿Y si el dólar cambia?", "What if the dollar moves?"),
         body: [
           t(
             "Si compras o vendes en dólares, registras la operación en tu moneda funcional usando el **tipo de cambio** del día de la operación. El tipo de cambio es simplemente cuántos pesos cuesta un dólar (o un euro) en ese momento.",
@@ -125,7 +125,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Conversión de una subsidiaria extranjera y armonización", "Translating a foreign subsidiary and harmonization"),
+        heading: t("Números de otro país", "Numbers from another country"),
         body: [
           t(
             "En palabras sencillas: convertir es \"traducir\" a pesos los números de una filial que lleva sus cuentas en otra moneda. Si tu empresa mexicana tiene una filial en Texas cuya moneda funcional es el dólar, antes de juntar sus números con los tuyos debes **convertir** sus estados a pesos. La regla general: **activos y pasivos** al tipo de cambio de **cierre**; **ingresos y gastos** al tipo de cambio de cada operación (se acepta un **promedio** si se parece); y el **capital aportado** a tipo de cambio **histórico**.",
@@ -228,7 +228,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo basado en reglas generales de la NIF B-15 (CINIF) y la NIC 21 (IASB) sobre moneda extranjera, y en diferencias conocidas entre NIIF y US GAAP. Los tipos de cambio usados son hipotéticos. Las normas y los requisitos de cada autoridad cambian: verifica la versión vigente (2026) antes de aplicarlas.",
       "Educational content based on general rules of NIF B-15 (CINIF) and IAS 21 (IASB) on foreign currency, and on well-known differences between IFRS and US GAAP. The exchange rates used are hypothetical. Standards and each authority's requirements change: verify the current version (2026) before applying them.",
     ),
-    exerciseIds: ['CON-10-E1', 'CON-10-E2', 'CON-10-E3', 'CON-10-E4', 'CON-10-E5', 'CON-10-E6'],
+    exerciseIds: ['CON-10-E1', 'CON-10-E2', 'CON-10-E3', 'CON-10-E4', 'CON-10-E5'],
   },
 
   // ───────────────────────────── CON-11 ─────────────────────────────
@@ -241,7 +241,7 @@ export const lessons: Lesson[] = [
       "La contabilidad gubernamental registra al mismo tiempo el presupuesto y el patrimonio de los entes públicos, siguiendo los momentos contables del ingreso y del egreso, para rendir cuentas a la ciudadanía.",
       "Government accounting records public entities' budget and net worth at the same time, following the accounting moments of revenue and expenditure, so they are accountable to citizens.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Explicar en qué se diferencia la contabilidad gubernamental de la de una empresa privada.", "Explain how government accounting differs from that of a private company."),
       t("Ordenar y aplicar los momentos contables del egreso y del ingreso.", "Order and apply the accounting moments of expenditure and revenue."),
@@ -250,7 +250,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué la hace distinta?", "What makes it different?"),
+        heading: t("¿Por qué el gobierno es distinto?", "Why is government different?"),
         body: [
           t(
             "Un municipio, una secretaría de estado o una universidad pública no buscan **ganar dinero**: su meta es dar servicios (agua, seguridad, educación) con recursos que son de todos. Por eso su contabilidad tiene un objetivo central: **rendir cuentas**, es decir, mostrar en qué se gastó cada peso y si se respetó lo autorizado.",
@@ -267,7 +267,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Momentos contables del egreso y del ingreso", "Accounting moments of expenditure and revenue"),
+        heading: t("Las etapas de cada peso", "The stages of every peso"),
         body: [
           t(
             "Cada peso del presupuesto pasa por etapas llamadas **momentos contables**. Del lado del gasto (egreso) son seis: **aprobado**, **modificado**, **comprometido**, **devengado**, **ejercido** y **pagado**.",
@@ -355,7 +355,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Clasificadores, estados e información pública", "Classifications, statements and public information"),
+        heading: t("¿En qué se gastó?", "What was it spent on?"),
         body: [
           t(
             "Para ordenar el gasto se usan **clasificadores presupuestarios**. El más conocido es el **clasificador por objeto del gasto**, que agrupa todo en capítulos: por ejemplo, el capítulo **1000** son servicios personales (sueldos), el **2000** materiales y suministros, el **3000** servicios generales, el **5000** bienes muebles, inmuebles e intangibles y el **6000** inversión pública (obra).",
@@ -425,7 +425,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo basado en la Ley General de Contabilidad Gubernamental, la normatividad del CONAC y las NICSP (IPSAS) en términos generales. Los montos son hipotéticos y los clasificadores y normas se actualizan: verifica la versión vigente (2026) antes de aplicarlos.",
       "Educational content based in general terms on Mexico's General Law of Government Accounting, CONAC regulations and IPSAS. Amounts are hypothetical and classifications and standards are updated: verify the current version (2026) before applying them.",
     ),
-    exerciseIds: ['CON-11-E1', 'CON-11-E2', 'CON-11-E3', 'CON-11-E4', 'CON-11-E5', 'CON-11-E6'],
+    exerciseIds: ['CON-11-E1', 'CON-11-E2', 'CON-11-E4', 'CON-11-E5', 'CON-11-E6'],
   },
 
   // ───────────────────────────── CON-12 ─────────────────────────────
@@ -438,7 +438,7 @@ export const lessons: Lesson[] = [
       "Un sistema de información contable convierte documentos en reportes confiables gracias a personas, procesos, software y controles, y el cierre contable asegura que cada periodo quede completo, conciliado y bloqueado.",
       "An accounting information system turns documents into reliable reports through people, processes, software and controls, and the period-end close ensures each period is complete, reconciled and locked.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Identificar los componentes de un sistema de información contable y su flujo de entrada, proceso y salida.", "Identify the components of an accounting information system and its input, processing and output flow."),
       t("Explicar los controles básicos de un sistema contable y la idea de la contabilidad electrónica en México.", "Explain the basic controls of an accounting system and the idea of electronic accounting in Mexico."),
@@ -446,7 +446,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Componentes de un sistema de información contable", "Components of an accounting information system"),
+        heading: t("De papeles a reportes", "From papers to reports"),
         body: [
           t(
             "Un **sistema de información contable** es todo lo que usa una empresa para capturar sus operaciones y convertirlas en reportes. No es solo el programa de computadora: también son las **personas**, los **procedimientos** (quién hace qué y cuándo), los **datos** (catálogo de cuentas, clientes, proveedores) y los **controles**.",
@@ -470,7 +470,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Controles y contabilidad electrónica", "Controls and electronic accounting"),
+        heading: t("¿Quién vigila el dinero?", "Who watches the money?"),
         body: [
           t(
             "Un sistema solo es confiable si tiene **controles**. El más importante es la **segregación de funciones**: la misma persona no debe autorizar un pago, registrarlo y conciliar el banco, porque podría esconder un error o un fraude. Otros controles son los **permisos por usuario**, la **bitácora** (registro de quién cambió qué), los **respaldos** y el **bloqueo de periodos** cerrados.",
@@ -487,7 +487,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("El cierre contable paso a paso", "The period-end close step by step"),
+        heading: t("Cerrar el mes sin errores", "Closing the month right"),
         body: [
           t(
             "El **cierre** es el proceso para dejar un periodo (un mes o un año) completo y correcto antes de emitir reportes. Empieza con el **corte documental**: todo lo que pasó en el periodo debe estar registrado en ese periodo, y nada del siguiente.",
@@ -625,7 +625,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo. Las obligaciones de contabilidad electrónica y CFDI ante el SAT se describen de forma general; quién está obligado, los formatos y los plazos cambian con el tiempo: verifica las reglas vigentes (2026) antes de aplicarlas.",
       "Educational content. Electronic accounting and CFDI obligations before the SAT are described in general terms; who is required, the formats and the deadlines change over time: verify the current rules (2026) before applying them.",
     ),
-    exerciseIds: ['CON-12-E1', 'CON-12-E2', 'CON-12-E3', 'CON-12-E4', 'CON-12-E5', 'CON-12-E6'],
+    exerciseIds: ['CON-12-E1', 'CON-12-E3', 'CON-12-E4', 'CON-12-E5', 'CON-12-E6'],
   },
 
   // ───────────────────────────── CON-14 ─────────────────────────────
@@ -638,7 +638,7 @@ export const lessons: Lesson[] = [
       "Los reportes ESG muestran cómo una empresa afecta y es afectada por temas ambientales, sociales y de gobierno corporativo, usando marcos como GRI y las normas del ISSB, y métricas verificables como las emisiones de gases de efecto invernadero.",
       "ESG reports show how a company affects and is affected by environmental, social and governance matters, using frameworks such as GRI and ISSB standards, and verifiable metrics such as greenhouse gas emissions.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Explicar qué es un reporte ESG y cómo se relaciona con los estados financieros.", "Explain what an ESG report is and how it relates to financial statements."),
       t("Distinguir los principales marcos: GRI, normas del ISSB (IFRS S1 y S2) y la idea de doble materialidad.", "Distinguish the main frameworks: GRI, ISSB standards (IFRS S1 and S2) and the idea of double materiality."),
@@ -646,7 +646,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es un reporte ESG?", "What is an ESG report?"),
+        heading: t("Lo que el dinero no muestra", "What money doesn't show"),
         body: [
           t(
             "**ESG** son las siglas en inglés de ambiental (**E**nvironmental), social (**S**ocial) y gobierno corporativo (**G**overnance). Un reporte ESG o de sostenibilidad cuenta lo que los estados financieros no muestran por sí solos: cuánta agua y energía usa la empresa, cómo trata a sus trabajadores y quién la vigila por dentro.",
@@ -668,7 +668,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Marcos y normas principales", "Main frameworks and standards"),
+        heading: t("Las reglas para reportarlo", "The rules for reporting it"),
         body: [
           t(
             "Los **Estándares GRI** (Global Reporting Initiative) se enfocan en los **impactos** de la empresa en las personas y el planeta, y sirven a muchos públicos. El **ISSB** (Consejo de Normas Internacionales de Sostenibilidad, de la Fundación IFRS) emitió en 2023 la **IFRS S1** (requisitos generales) y la **IFRS S2** (información sobre el **clima**), pensadas sobre todo para inversionistas.",
@@ -685,7 +685,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Métricas: emisiones de gases de efecto invernadero", "Metrics: greenhouse gas emissions"),
+        heading: t("¿Cuánto contamina tu empresa?", "How much does your business pollute?"),
         body: [
           t(
             "La métrica ambiental más usada son las **emisiones de gases de efecto invernadero (GEI)**, medidas en toneladas de CO₂ equivalente (tCO₂e): una sola unidad que permite sumar todos los gases como si todos fueran CO₂. Según el GHG Protocol se dividen en **alcances**. **Alcance 1**: emisiones directas de fuentes propias (gas de tu caldera, gasolina de tus camiones). **Alcance 2**: emisiones por la **electricidad** que compras. **Alcance 3**: todas las demás de tu cadena (viajes de negocio, traslado de empleados, uso de tus productos por los clientes).",
@@ -800,7 +800,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo basado en los Estándares GRI, las normas IFRS S1 y S2 del ISSB, el GHG Protocol y las NIS del CINIF en términos generales. Los factores de emisión usados son ilustrativos, no oficiales. La adopción obligatoria de estas normas depende de cada país y autoridad y está cambiando: verifica la versión y los requisitos vigentes (2026).",
       "Educational content based in general terms on the GRI Standards, ISSB's IFRS S1 and S2, the GHG Protocol and CINIF's NIS. The emission factors used are illustrative, not official. Mandatory adoption of these standards depends on each country and authority and is changing: verify the current version and requirements (2026).",
     ),
-    exerciseIds: ['CON-14-E1', 'CON-14-E2', 'CON-14-E3', 'CON-14-E4', 'CON-14-E5', 'CON-14-E6'],
+    exerciseIds: ['CON-14-E1', 'CON-14-E2', 'CON-14-E4', 'CON-14-E5', 'CON-14-E6'],
   },
 
   // ───────────────────────────── CON-15 ─────────────────────────────
@@ -813,7 +813,7 @@ export const lessons: Lesson[] = [
       "Una certificación profesional demuestra con un examen que dominas la contaduría; prepararla bien exige elegir la adecuada, planear horas según el peso de cada área y practicar con estrategia de tiempo.",
       "A professional certification proves through an exam that you master accounting; preparing well requires choosing the right one, planning hours by each area's weight and practicing with a time strategy.",
     ),
-    minutes: 15,
+    minutes: 11,
     objectives: [
       t("Reconocer las principales certificaciones contables en México y en el mundo y su enfoque.", "Recognize the main accounting certifications in Mexico and worldwide and their focus."),
       t("Diseñar un plan de estudio con horas por semana y por área según su peso en el examen.", "Design a study plan with hours per week and per area according to its weight in the exam."),
@@ -821,7 +821,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Mapa de certificaciones", "Map of certifications"),
+        heading: t("¿Qué certificación te conviene?", "Which certification suits you?"),
         body: [
           t(
             "Un título universitario dice que estudiaste contaduría; una **certificación** dice que, además, aprobaste un examen exigente y te mantienes actualizado. En México, el **IMCP** (Instituto Mexicano de Contadores Públicos) otorga la certificación de **Contador Público Certificado (CPC)** a quien aprueba el **Examen Uniforme de Certificación**, y también certificaciones por disciplina (por ejemplo, fiscal o auditoría).",
@@ -845,7 +845,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Plan de estudio basado en el temario", "A study plan based on the syllabus"),
+        heading: t("Arma tu plan de estudio", "Build your study plan"),
         body: [
           t(
             "Todo examen serio publica un **temario** con áreas y su **peso** (qué porcentaje de preguntas tiene cada una). Ese documento es tu mapa: lee la versión oficial vigente antes de empezar. Por ejemplo, el examen CPA se organiza en tres secciones obligatorias (auditoría, contabilidad financiera y regulación) más una sección de especialidad a elegir.",
@@ -904,7 +904,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Estrategia para el día del examen", "Exam-day strategy"),
+        heading: t("El día del examen", "Exam day"),
         body: [
           t(
             "El tiempo es un recurso más. Antes de empezar calcula tu **ritmo**: minutos disponibles (menos un margen para revisar) entre número de preguntas. Si una pregunta te atora, márcala y sigue; vuelve al final.",
@@ -1015,7 +1015,7 @@ export const lessons: Lesson[] = [
       "Contenido educativo. Los requisitos, formatos, temarios y costos de las certificaciones (IMCP, CPA, ACCA, CMA, CIA) y los casos en que una autoridad exige estar certificado cambian con el tiempo; los temarios y tiempos usados aquí son hipotéticos. Consulta la información oficial vigente (2026) de cada organismo antes de inscribirte.",
       "Educational content. The requirements, formats, syllabi and fees of certifications (IMCP, CPA, ACCA, CMA, CIA) and the cases in which an authority requires certification change over time; the syllabi and times used here are hypothetical. Check each body's current official information (2026) before registering.",
     ),
-    exerciseIds: ['CON-15-E1', 'CON-15-E2', 'CON-15-E3', 'CON-15-E4', 'CON-15-E5', 'CON-15-E6'],
+    exerciseIds: ['CON-15-E1', 'CON-15-E2', 'CON-15-E3', 'CON-15-E5', 'CON-15-E6'],
   },
 ]
 

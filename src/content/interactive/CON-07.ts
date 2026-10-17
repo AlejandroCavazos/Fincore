@@ -3,10 +3,12 @@ import type { InteractiveLesson } from './types'
 export const intCON07: InteractiveLesson = {
   lessonId: 'CON-07',
   sections: [
-    // El juego completo de estados financieros
+    // ¿Foto o película?
     [
-      { text: 'Como un chequeo médico con varios estudios 🩺, la empresa tiene varios **estados financieros** que juntos dan el diagnóstico completo.' },
-      { text: 'El balance es una **foto en una fecha**. Los demás son una **película de un periodo**.' },
+      { text: 'Doña Güera tiene una tortillería 🌽 y pide un crédito. El banco le dice: "Tráigame sus **estados financieros**". ¿Cuáles son?' },
+      {
+        text: 'Como un chequeo médico con varios estudios 🩺, son varios reportes que juntos dan el diagnóstico:\n📸 El **balance** (estado de situación financiera) es una **foto en una fecha**.\n🎬 Resultados, cambios en el capital y flujos de efectivo son una **película de un periodo**.',
+      },
       {
         sort: {
           title: '¿Foto o película?',
@@ -32,17 +34,21 @@ export const intCON07: InteractiveLesson = {
           ],
         },
       },
+      { text: 'Junto a los números van las **notas**: explican políticas, detalles y riesgos.' },
       {
-        ask: '¿Las **notas** son parte de los estados financieros?',
+        ask: '¿Puede Doña Güera entregar sus estados **sin notas**?',
         options: [
-          { text: 'Sí, son parte integral: explican políticas, detalles y riesgos', ok: true, reply: '¡Así es! Sin notas, los números quedan **incompletos**.' },
-          { text: 'No, son un anexo opcional', reply: 'Las notas **sí** forman parte de los estados. Sin ellas, los números quedan incompletos.' },
+          { text: 'No: las notas son parte de los estados', ok: true, reply: '¡Así es! Sin notas, los números quedan **incompletos**.' },
+          { text: 'Sí, las notas son un anexo opcional', reply: 'Las notas **sí** forman parte de los estados. Sin ellas, los números quedan incompletos.' },
+          { text: 'Sí, solo si el banco no las pide', reply: 'No depende de quién las pida: las notas **siempre** forman parte de los estados.' },
         ],
       },
+      { tip: '**Foto:** el balance. **Película:** resultados, cambios en el capital y flujos. Las **notas** van con todos.' },
     ],
-    // De los saldos al estado de resultados
+    // ¿Ganó o perdió el negocio?
     [
-      { text: 'Se parte de la **balanza de comprobación** ya ajustada: la lista de cuentas con su saldo final. Cada cuenta se va a su estado.' },
+      { text: 'Cierre del año en la tortillería. Doña Güera tiene la **balanza de comprobación** ajustada: la lista de todas sus cuentas con su saldo final.' },
+      { text: 'Cada cuenta se va a su estado:\n📸 Activos, pasivos y capital → **balance**.\n🎬 Ingresos, costos y gastos → **estado de resultados**.' },
       {
         sort: {
           title: '¿A qué estado va cada cuenta?',
@@ -52,17 +58,24 @@ export const intCON07: InteractiveLesson = {
             { text: 'Ventas', bucket: 1, why: 'Es un ingreso: va a resultados.' },
             { text: 'Proveedores', bucket: 0, why: 'Es un pasivo: va al balance.' },
             { text: 'Costo de ventas', bucket: 1, why: 'Es un costo: va a resultados.' },
-            { text: 'Capital social', bucket: 0, why: 'Es capital: va al balance.' },
-            { text: 'Sueldos de administración', bucket: 1, why: 'Es un gasto: va a resultados.' },
+            { text: 'Depreciación acumulada', bucket: 0, why: 'Resta al valor de la máquina, que es un activo: va al balance.' },
+            { text: 'Gasto por depreciación', bucket: 1, why: 'Es un gasto del año: va a resultados.' },
+            { text: 'Ingreso por intereses', bucket: 1, why: 'Es un ingreso: va a resultados.' },
           ],
         },
       },
-      { text: 'El estado de resultados resta **por niveles**, para ver dónde se gana o se pierde. Juega con la tortillería 🌽:' },
+      {
+        order: {
+          title: 'Arma el estado de resultados: ordena los niveles',
+          steps: ['Ventas netas (ventas − devoluciones)', 'Utilidad bruta (− costo de ventas)', 'Utilidad de operación (− gastos de operación)', 'Utilidad antes de impuestos (− gastos financieros)', 'Utilidad neta (− impuestos)'],
+          done: 'Se resta **por niveles** para ver dónde se gana o se pierde: en el costo, en los gastos o en la deuda.',
+        },
+      },
       {
         sim: {
           title: 'Los niveles de la tortillería',
           inputs: [
-            { key: 'v', label: 'Ventas', min: 50000, max: 150000, step: 10000, value: 100000 },
+            { key: 'v', label: 'Ventas netas', min: 50000, max: 150000, step: 10000, value: 100000 },
             { key: 'c', label: 'Costo de ventas', min: 30000, max: 90000, step: 5000, value: 60000 },
             { key: 'g', label: 'Gastos de operación', min: 10000, max: 40000, step: 5000, value: 25000 },
           ],
@@ -79,63 +92,75 @@ export const intCON07: InteractiveLesson = {
       },
       {
         calc: {
+          question: 'La tortillería vendió **$120,000**, le devolvieron **$10,000** y su costo de ventas fue **$60,000**. ¿Cuál es la **utilidad bruta**?',
+          answer: 50000,
+          hint: 'Primero ventas netas: 120,000 − 10,000. Luego resta el costo de ventas.',
+          why: 'Ventas netas: 120,000 − 10,000 = 110,000. Utilidad bruta: 110,000 − 60,000 = **$50,000**.',
+        },
+      },
+      {
+        calc: {
           question: 'Utilidad de operación **$30,000**, gastos financieros **$5,000** e impuestos **$7,500**. ¿Cuál es la **utilidad neta**?',
           answer: 17500,
-          hint: 'primero resta los gastos financieros, luego los impuestos.',
+          hint: 'Primero resta los gastos financieros, luego los impuestos.',
           why: '30,000 − 5,000 = 25,000 antes de impuestos. 25,000 − 7,500 = **$17,500** de utilidad neta.',
         },
       },
-      { tip: 'Niveles: **bruta → de operación → antes de impuestos → neta**.' },
     ],
-    // Balance clasificado y flujo de efectivo
+    // Corto plazo y dinero real
     [
-      { text: 'En el balance se separa lo **circulante** (corto plazo: dentro de un año o del ciclo normal) de lo **no circulante** (largo plazo). Así un banco ve si puedes pagar tus deudas próximas.' },
+      { text: 'La tortillería ganó bien este año... pero se quedó **sin dinero en la caja** 😰.' },
+      {
+        ask: '¿Cómo puede pasar eso?',
+        options: [
+          { text: 'Vendió mucho a crédito y aún no le pagan', ok: true, reply: '¡Eso! La venta cuenta como utilidad, pero el dinero **todavía no llega**. Ganar no es lo mismo que tener efectivo.' },
+          { text: 'Seguro la contabilidad está mal', reply: 'Puede estar bien hecha. Si vendió a crédito, ganó "en papel" pero el dinero **aún no llega**.' },
+          { text: 'Es imposible: si ganas, tienes el dinero', reply: 'Sí es posible: si vendes a crédito, ganas pero el dinero **aún no llega**.' },
+        ],
+      },
+      { text: 'En el balance se separa lo **circulante** (se cobra, vende o paga dentro de un año o del ciclo normal) de lo **no circulante** (largo plazo). Así el banco ve si puede pagar sus deudas próximas.' },
       {
         sort: {
-          title: 'Las cuentas de Grupo Tacos Felices 🌮',
+          title: 'Las cuentas de la tortillería',
           buckets: ['Circulante', 'No circulante'],
           items: [
+            { text: 'Bancos', bucket: 0, why: 'Dinero disponible ya.' },
             { text: 'Clientes que pagan en 30 días', bucket: 0, why: 'Se cobra en menos de un año.' },
-            { text: 'Local comprado para la taquería', bucket: 1, why: 'Se usa muchos años: largo plazo.' },
-            { text: 'Tortillas y carne en inventario', bucket: 0, why: 'Se venden pronto.' },
+            { text: 'Edificio de la tortillería', bucket: 1, why: 'Se usa muchos años: largo plazo.' },
+            { text: 'Maíz y harina en inventario', bucket: 0, why: 'Se usan y venden pronto.' },
             { text: 'Préstamo bancario a 5 años', bucket: 1, why: 'Se paga en más de un año.' },
             { text: 'Proveedores a 15 días', bucket: 0, why: 'Deuda de corto plazo.' },
           ],
         },
       },
-      { text: 'El flujo de efectivo separa el dinero en tres actividades. Recuerda: **ganar no es lo mismo que tener efectivo**.' },
       {
-        match: {
-          title: 'Las tres actividades',
-          pairs: [
-            ['Operación', 'El día a día del negocio'],
-            ['Inversión', 'Comprar o vender activos de largo plazo'],
-            ['Financiamiento', 'Préstamos y aportaciones de dueños'],
-          ],
-        },
+        text: 'El **método indirecto** convierte la utilidad en efectivo de operación. Partes de la utilidad neta, **sumas** la depreciación (gasto sin salida de dinero) y ajustas:\n⬆️ Activo circulante sube → **resta**.\n⬇️ Activo circulante baja → **suma**.\n⬆️ Pasivo circulante sube → **suma**.\n⬇️ Pasivo circulante baja → **resta**.',
       },
-      { text: 'Con el **método indirecto** partes de la utilidad (lo ganado "en papel") y la conviertes en efectivo real.' },
       {
-        multi: {
-          title: '¿Qué se **suma** a la utilidad?',
+        rush: {
+          title: '¿Se suma o se resta a la utilidad?',
+          seconds: 40,
+          labels: ['Se suma', 'Se resta'],
           items: [
-            { text: 'La depreciación', ok: true },
-            { text: 'Una disminución en inventarios', ok: true },
-            { text: 'Un aumento en proveedores', ok: true },
-            { text: 'Un aumento en clientes', ok: false },
+            { text: 'Depreciación del año', ans: 0 },
+            { text: 'Aumentaron los clientes', ans: 1 },
+            { text: 'Bajaron los clientes', ans: 0 },
+            { text: 'Aumentaron los inventarios', ans: 1 },
+            { text: 'Aumentaron los proveedores', ans: 0 },
+            { text: 'Bajaron los proveedores', ans: 1 },
+            { text: 'Bajaron los inventarios', ans: 0 },
           ],
-          why: 'La depreciación fue gasto sin salida de dinero. Si quedaste a deber al proveedor, el dinero sigue en tu caja. Pero si vendiste a crédito (clientes sube), el dinero **aún no llega**: se resta.',
         },
       },
       {
         calc: {
-          question: 'Utilidad neta **$40,000**, depreciación **$5,000**, aumento en inventarios **$6,000** y aumento en proveedores **$3,000**. ¿Cuál es el **flujo de operación**?',
-          answer: 42000,
-          hint: 'suma depreciación y proveedores; resta inventarios.',
-          why: '40,000 + 5,000 − 6,000 + 3,000 = **$42,000**.',
+          question: 'Utilidad neta **$40,000**, depreciación **$5,000**, aumento en inventarios **$6,000**, disminución en clientes **$4,000** y disminución en proveedores **$3,000**. ¿Cuál es el **flujo de operación**?',
+          answer: 40000,
+          hint: 'Suma depreciación y la baja de clientes; resta el aumento de inventarios y la baja de proveedores.',
+          why: '40,000 + 5,000 − 6,000 + 4,000 − 3,000 = **$40,000**.',
         },
       },
-      { tip: 'Activo circulante que **sube** → resta. Pasivo circulante que **sube** → suma.' },
+      { tip: 'El flujo de efectivo separa el dinero en **operación** (día a día), **inversión** (activos de largo plazo) y **financiamiento** (préstamos y aportaciones). Lo que calculaste es el de operación.' },
     ],
   ],
 }

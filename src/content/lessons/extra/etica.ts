@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
       es: "Los números solo sirven si la gente puede confiar en ellos: la ética le da al contador principios, señales de alerta y un método para decidir bien cuando lo presionan.",
       en: "Numbers are only useful if people can trust them: ethics gives accountants principles, warning signs and a method to decide well when they are under pressure.",
     },
-    minutes: 16,
+    minutes: 14,
     objectives: [
       { es: "Explicar por qué la confianza pública depende de la ética del contador y qué pasa cuando los estados financieros son falsos.", en: "Explain why public trust depends on the accountant's ethics and what happens when financial statements are false." },
       { es: "Nombrar y describir los cinco principios fundamentales: integridad, objetividad, competencia y diligencia profesional, confidencialidad y comportamiento profesional.", en: "Name and describe the five fundamental principles: integrity, objectivity, professional competence and due care, confidentiality and professional behavior." },
@@ -28,7 +28,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Por qué la ética importa en la contabilidad", en: "Why ethics matters in accounting" },
+        heading: { es: "¿Por qué confiar en los números?", en: "Why trust the numbers?" },
         body: [
           {
             es: "Imagina que vas a prestarle $20,000 a un amigo para su taquería y te enseña una libreta que dice que gana mucho. Si esa libreta está inventada, perderás tu dinero. Con las empresas pasa lo mismo: bancos, proveedores, inversionistas, trabajadores y el gobierno toman decisiones con los **estados financieros**. Esa **confianza pública** es la razón de ser del contador.",
@@ -51,7 +51,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Los principios fundamentales", en: "The fundamental principles" },
+        heading: { es: "Las cinco reglas del contador", en: "The accountant's five rules" },
         body: [
           {
             es: "A nivel internacional, el **IESBA** (el consejo que emite el Código Internacional de Ética para Profesionales de la Contabilidad) define **cinco principios fundamentales**. En México, el **Código de Ética Profesional del IMCP** (Instituto Mexicano de Contadores Públicos) se alinea en lo general con ese código internacional, así que los principios son los mismos.",
@@ -75,7 +75,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Amenazas y salvaguardas", en: "Threats and safeguards" },
+        heading: { es: "¿Qué te puede desviar?", en: "What can lead you astray?" },
         body: [
           {
             es: "Una **amenaza** es una situación que puede empujarte a romper un principio, aunque no quieras. Una **salvaguarda** es una acción que reduce esa amenaza a un nivel aceptable: pedir que otra persona revise, rotar al responsable, documentar, o en el extremo, rechazar el trabajo.",
@@ -99,7 +99,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Dilemas reales y cómo decidir", en: "Real dilemmas and how to decide" },
+        heading: { es: "Cuando te presionan", en: "When you are pressured" },
         body: [
           {
             es: "Un **dilema ético** aparece cuando hay presión para hacer algo que choca con tus principios. Ejemplos cotidianos: un cliente te pide \"maquillar\" las ventas (subirlas) para que el banco le preste; tu jefe te pide no registrar un gasto de este mes para que la utilidad se vea mejor; un amigo te pregunta cuánto gana tu cliente.",
@@ -224,7 +224,7 @@ export const lessons: Lesson[] = [
       { es: "Ante un dilema: hechos, principios, opciones, consulta, decisión documentada.", en: "Facing a dilemma: facts, principles, options, consultation, documented decision." },
     ],
     normativeNote: NOTE_ETHICS,
-    exerciseIds: ['ET-001', 'ET-002', 'ET-003', 'ET-004', 'ET-005', 'ET-006', 'ET-007', 'ET-008'],
+    exerciseIds: ['ET-001', 'ET-002', 'ET-003', 'ET-006', 'ET-008'],
   },
 ]
 

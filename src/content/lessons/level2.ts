@@ -16,7 +16,7 @@ export const lessons: Lesson[] = [
       es: "Estructura, clasificación y lectura de los dos estados financieros básicos.",
       en: "Structure, classification and reading of the two basic financial statements.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Presentar un estado de situación financiera clasificado en circulante y no circulante.", en: "Present a statement of financial position classified into current and non-current." },
       { es: "Construir el estado de resultados hasta la utilidad neta.", en: "Build the income statement down to net profit." },
@@ -25,7 +25,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Estado de situación financiera", en: "Statement of financial position" },
+        heading: { es: "¿Qué tiene y qué debe?", en: "What do you own and owe?" },
         body: [
           {
             es: "En palabras sencillas: es una **foto** de lo que el negocio **tiene** y de lo que **debe** en un día concreto. Los **activos** son lo que tiene (dinero en el banco, lo que le deben los clientes, mercancía, maquinaria). Los **pasivos** son lo que debe a otros (proveedores, préstamos). El **capital contable** es lo que realmente pertenece a los dueños: lo que queda si con los activos se pagaran todas las deudas.",
@@ -112,7 +112,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Estado de resultados", en: "Income statement" },
+        heading: { es: "¿Ganaste o perdiste?", en: "Did you earn or lose?" },
         body: [
           {
             es: "En palabras sencillas: es la **película** de un periodo (un mes, un año). Responde: ¿cuánto vendí, cuánto me costó y cuánto gané o perdí? Se lee de arriba hacia abajo, como una escalera: empiezas con las ventas y en cada escalón restas un tipo de costo o gasto hasta llegar a la **utilidad neta**, lo que de verdad quedó para los dueños.",
@@ -160,7 +160,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Relación entre ambos estados", en: "How the two statements connect" },
+        heading: { es: "¿Cómo se unen foto y película?", en: "How photo and movie connect" },
         body: [
           {
             es: "La utilidad neta del estado de resultados se suma al **capital ganado** en el estado de situación financiera. Por eso un periodo con utilidades aumenta el capital contable y uno con pérdidas lo reduce. Las cuentas de resultados se 'cierran' al final del ejercicio y su saldo pasa a Utilidad del ejercicio.",
@@ -210,7 +210,7 @@ export const lessons: Lesson[] = [
       es: "Jurisdicción: México (NIF B-6 y NIF B-3, emitidas por el CINIF) con referencia internacional a IAS 1 e IFRS 18 (IASB). Contenido educativo; la tasa de ISR de 30 % se usa sólo como supuesto de cálculo. Verifica las normas y la legislación fiscal vigentes (DOF) a la fecha de consulta (2026).",
       en: "Jurisdiction: Mexico (NIF B-6 and NIF B-3, issued by CINIF) with international reference to IAS 1 and IFRS 18 (IASB). Educational content; the 30% income tax rate is used only as a calculation assumption. Verify current standards and tax law (DOF) as of the date you consult them (2026).",
     },
-    exerciseIds: ['N2-001', 'N2-002', 'N2-003', 'N2-005', 'N2-006', 'N2-004'],
+    exerciseIds: ['N2-002', 'N2-003', 'N2-004', 'N2-005', 'N2-006'],
   },
 
   // ───────────────────────────── L2-02 ─────────────────────────────
@@ -223,7 +223,7 @@ export const lessons: Lesson[] = [
       es: "De dónde vino y a dónde fue el efectivo, y cómo se movieron las cuentas del capital contable.",
       en: "Where cash came from and went, and how equity accounts moved.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Clasificar flujos en actividades de operación, inversión y financiamiento.", en: "Classify cash flows into operating, investing and financing activities." },
       { es: "Determinar el flujo de operación por el método indirecto.", en: "Determine operating cash flow using the indirect method." },
@@ -231,7 +231,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Las tres actividades", en: "The three activities" },
+        heading: { es: "¿Por dónde entró y salió?", en: "Where did the cash go?" },
         body: [
           {
             es: "El estado de flujos de efectivo (NIF B-2 / IAS 7) explica la variación del efectivo del periodo. Las **actividades de operación** son las principales generadoras de ingresos (cobros a clientes, pagos a proveedores y empleados). Las de **inversión** se refieren a la adquisición y venta de activos de largo plazo (maquinaria, terrenos, inversiones). Las de **financiamiento** cambian el tamaño y composición del capital y la deuda (préstamos recibidos o pagados, aportaciones, dividendos pagados).",
@@ -269,7 +269,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Método indirecto", en: "Indirect method" },
+        heading: { es: "De utilidad a efectivo", en: "From profit to cash" },
         body: [
           {
             es: "Parte de la utilidad antes de impuestos o de la utilidad neta y la ajusta por partidas que no movieron efectivo (depreciación, estimaciones) y por cambios en el capital de trabajo. Un **aumento** en un activo circulante de operación (clientes, inventarios) **resta**, porque el efectivo quedó invertido ahí; un **aumento** en un pasivo de operación (proveedores) **suma**, porque se dejó de pagar.",
@@ -317,7 +317,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Estado de cambios en el capital contable", en: "Statement of changes in equity" },
+        heading: { es: "¿Cómo cambió lo de los dueños?", en: "How did owners' equity change?" },
         body: [
           {
             es: "Muestra, por cada componente del capital (capital social, utilidades retenidas, otros resultados integrales), el saldo inicial, los movimientos del periodo y el saldo final (NIF B-4 / IAS 1). Los movimientos típicos son: aportaciones o reembolsos de capital, utilidad o pérdida integral del periodo y dividendos decretados.",
@@ -412,7 +412,7 @@ export const lessons: Lesson[] = [
       es: "Jurisdicción: México (NIF B-2 Estado de flujos de efectivo y NIF B-4 Estado de cambios en el capital contable, CINIF) con referencia a IAS 7 e IAS 1 (IASB). Contenido educativo y simplificado; las normas permiten ciertas opciones de clasificación (p. ej., intereses y dividendos). Verifica la versión vigente de las normas a la fecha de consulta (2026).",
       en: "Jurisdiction: Mexico (NIF B-2 Statement of cash flows and NIF B-4 Statement of changes in equity, CINIF) with reference to IAS 7 and IAS 1 (IASB). Educational, simplified content; the standards allow some classification choices (e.g. interest and dividends). Verify the current version of the standards as of the date you consult them (2026).",
     },
-    exerciseIds: ['N2-007', 'N2-008', 'N2-009', 'N2-010', 'N2-011', 'N2-012'],
+    exerciseIds: ['N2-007', 'N2-012', 'N2-008', 'N2-010', 'N2-011'],
   },
 
   // ───────────────────────────── L2-03 ─────────────────────────────
@@ -425,7 +425,7 @@ export const lessons: Lesson[] = [
       es: "Asientos de ajuste al cierre del periodo y cálculo de la depreciación en línea recta y por unidades producidas.",
       en: "Period-end adjusting entries and depreciation using the straight-line and units-of-production methods.",
     },
-    minutes: 21,
+    minutes: 11,
     objectives: [
       { es: "Identificar los tipos de ajuste: anticipados, acumulados y estimaciones.", en: "Identify adjustment types: deferrals, accruals and estimates." },
       { es: "Registrar ajustes de pagos anticipados, sueldos devengados e ingresos cobrados por anticipado.", en: "Record adjustments for prepaid expenses, accrued salaries and unearned revenue." },
@@ -434,7 +434,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Por qué se ajusta?", en: "Why adjust?" },
+        heading: { es: "¿Cuándo se anota un gasto?", en: "When is an expense recorded?" },
         body: [
           {
             es: "Por **devengación**, los ingresos y gastos deben reconocerse en el periodo en que ocurren. Al cierre, algunas cuentas no reflejan esa realidad porque el efectivo se movió antes o después. Los **asientos de ajuste** corrigen esto antes de preparar los estados financieros; casi siempre afectan una cuenta de resultados y una de balance, y nunca a Bancos.",
@@ -480,7 +480,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Depreciación", en: "Depreciation" },
+        heading: { es: "Repartir el costo en años", en: "Spreading cost over years" },
         body: [
           {
             es: "La **depreciación** distribuye de forma sistemática el **monto depreciable** (costo menos valor residual) de un activo de propiedades, planta y equipo a lo largo de su vida útil (NIF C-6 / IAS 16). No pretende reflejar el valor de mercado del activo. Se registra con cargo a Gasto por depreciación y abono a Depreciación acumulada, cuenta complementaria que se resta del costo para obtener el **valor en libros**.",
@@ -539,7 +539,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Unidades producidas", en: "Units of production" },
+        heading: { es: "Depreciar según el uso", en: "Depreciation by use" },
         body: [
           {
             es: "Cuando el desgaste depende del uso, se calcula una cuota por unidad (pieza, hora máquina, kilómetro) y se multiplica por las unidades del periodo. El gasto varía con la actividad.",
@@ -622,7 +622,7 @@ export const lessons: Lesson[] = [
       es: "Jurisdicción: México (NIF C-6 Propiedades, planta y equipo, CINIF) con referencia a IAS 16 (IASB). Contenido educativo. La depreciación fiscal se rige por la Ley del ISR y puede diferir de la contable. Verifica normas y legislación vigentes (DOF) a la fecha de consulta (2026).",
       en: "Jurisdiction: Mexico (NIF C-6 Property, plant and equipment, CINIF) with reference to IAS 16 (IASB). Educational content. Tax depreciation is governed by the Mexican Income Tax Law and may differ from book depreciation. Verify current standards and law (DOF) as of the date you consult them (2026).",
     },
-    exerciseIds: ['N2-013', 'N2-014', 'N2-015', 'N2-020', 'N2-016', 'N2-017', 'N2-018', 'N2-019', 'N2-021'],
+    exerciseIds: ['N2-017', 'N2-019', 'N2-014', 'N2-021', 'N2-015'],
   },
 
   // ───────────────────────────── L2-04 ─────────────────────────────
@@ -635,7 +635,7 @@ export const lessons: Lesson[] = [
       es: "Costeo de inventarios con PEPS y costo promedio, y estimación para cuentas incobrables.",
       en: "Inventory costing with FIFO and weighted average, and the allowance for doubtful accounts.",
     },
-    minutes: 21,
+    minutes: 11,
     objectives: [
       { es: "Determinar qué costos forman parte del costo de los inventarios.", en: "Determine which costs form part of inventory cost." },
       { es: "Calcular costo de ventas e inventario final con PEPS y costo promedio.", en: "Compute cost of goods sold and ending inventory with FIFO and weighted average." },
@@ -644,7 +644,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Costo de los inventarios", en: "Cost of inventories" },
+        heading: { es: "¿Cuánto costó tu mercancía?", en: "What did your goods cost?" },
         body: [
           {
             es: "El costo de adquisición incluye el precio de compra, los aranceles e impuestos **no recuperables**, los fletes y demás costos necesarios para dejar la mercancía en su ubicación y condición actuales, menos descuentos y rebajas. No se incluyen las mermas anormales, los gastos de venta ni el IVA acreditable (que es recuperable). Al cierre, los inventarios se valúan al **menor entre su costo y su valor neto de realización** (NIF C-4 / IAS 2).",
@@ -653,7 +653,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Fórmulas de asignación del costo", en: "Cost formulas" },
+        heading: { es: "¿Qué mercancía sale primero?", en: "Which goods go out first?" },
         body: [
           {
             es: "**PEPS** (primeras entradas, primeras salidas; FIFO) supone que salen primero las unidades más antiguas: el inventario final queda a los costos más recientes. **Costo promedio** asigna a cada unidad el costo promedio ponderado de las unidades disponibles. Para artículos no intercambiables se usa el **costo identificado** de cada unidad.",
@@ -724,7 +724,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cuentas por cobrar e incobrables", en: "Receivables and doubtful accounts" },
+        heading: { es: "Clientes que no pagarán", en: "Customers who won't pay" },
         body: [
           {
             es: "Las cuentas por cobrar se reconocen por el importe de la transacción y se presentan netas de una **estimación para cuentas incobrables** (pérdidas crediticias esperadas, NIF C-16 / IFRS 9). La estimación se ajusta al cierre: se carga Gasto por cuentas incobrables y se abona la Estimación por la diferencia entre el saldo requerido y el saldo existente.",
@@ -807,7 +807,7 @@ export const lessons: Lesson[] = [
       es: "Jurisdicción: México (NIF C-4 Inventarios; NIF C-3 Cuentas por cobrar y NIF C-16 Deterioro de instrumentos financieros por cobrar, CINIF) con referencia a IAS 2 e IFRS 9 (IASB). Contenido educativo: el porcentaje fijo sobre saldos simplifica el modelo de pérdidas crediticias esperadas. Verifica las normas vigentes a la fecha de consulta (2026).",
       en: "Jurisdiction: Mexico (NIF C-4 Inventories; NIF C-3 Accounts receivable and NIF C-16 Impairment of financial instruments receivable, CINIF) with reference to IAS 2 and IFRS 9 (IASB). Educational content: a fixed percentage of balances simplifies the expected-credit-loss model. Verify the current standards as of the date you consult them (2026).",
     },
-    exerciseIds: ['N2-022', 'N2-023', 'N2-024', 'N2-025', 'N2-026', 'N2-027', 'N2-028', 'N2-029'],
+    exerciseIds: ['N2-023', 'N2-022', 'N2-024', 'N2-027', 'N2-029'],
   },
 
   // ───────────────────────────── L2-05 ─────────────────────────────
@@ -820,7 +820,7 @@ export const lessons: Lesson[] = [
       es: "Quién emite las normas contables en México y en el mundo, y cuándo reconocer una provisión o revelar un pasivo contingente.",
       en: "Who issues accounting standards in Mexico and worldwide, and when to recognize a provision or disclose a contingent liability.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Identificar al CINIF y al IASB y la estructura de las NIF.", en: "Identify CINIF and the IASB and the structure of the NIF." },
       { es: "Aplicar los tres criterios de reconocimiento de una provisión.", en: "Apply the three recognition criteria for a provision." },
@@ -829,7 +829,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "NIF e IFRS: quién emite las normas", en: "NIF and IFRS: who issues the standards" },
+        heading: { es: "¿Quién pone las reglas?", en: "Who sets the rules?" },
         body: [
           {
             es: "En México, las **Normas de Información Financiera (NIF)** las emite el **CINIF** (Consejo Mexicano de Normas de Información Financiera), organismo independiente del sector privado. Las **IFRS** (Normas Internacionales de Información Financiera) las emite el **IASB**, bajo la IFRS Foundation. El CINIF busca la convergencia de las NIF con las IFRS, aunque subsisten diferencias.",
@@ -849,7 +849,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Provisiones", en: "Provisions" },
+        heading: { es: "Deudas seguras de monto incierto", en: "Sure debts, unsure amounts" },
         body: [
           {
             es: "Una **provisión** es un pasivo de cuantía o vencimiento inciertos. Según la NIF C-9 y IAS 37, se reconoce sólo si se cumplen **tres criterios**: (1) existe una **obligación presente** (legal o asumida) como resultado de un evento pasado; (2) es **probable** la salida de recursos económicos para liquidarla; y (3) puede hacerse una **estimación confiable** del monto.",
@@ -894,7 +894,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Pasivos y activos contingentes", en: "Contingent liabilities and assets" },
+        heading: { es: "Deudas que quizá existan", en: "Debts that may exist" },
         body: [
           {
             es: "Un **pasivo contingente** es una obligación posible (cuya existencia depende de eventos futuros inciertos) o una obligación presente que no cumple los criterios de reconocimiento. **No se reconoce**: se **revela** en notas, salvo que la salida de recursos sea remota. Los **activos contingentes** no se reconocen; se revelan cuando la entrada de beneficios es probable.",
@@ -943,7 +943,7 @@ export const lessons: Lesson[] = [
       es: "Jurisdicción: México (NIF C-9 Provisiones, contingencias y compromisos, y Marco Conceptual de las NIF, CINIF) con referencia a IAS 37 (IASB). Contenido educativo. Verifica la estructura y la versión vigente de las NIF y de las IFRS a la fecha de consulta (2026).",
       en: "Jurisdiction: Mexico (NIF C-9 Provisions, contingencies and commitments, and the NIF Conceptual Framework, CINIF) with reference to IAS 37 (IASB). Educational content. Verify the structure and current version of the NIF and IFRS as of the date you consult them (2026).",
     },
-    exerciseIds: ['N2-030', 'N2-031', 'N2-032', 'N2-033', 'N2-034', 'N2-035', 'N2-036'],
+    exerciseIds: ['N2-030', 'N2-032', 'N2-035', 'N2-033', 'N2-034'],
   },
 
   // ───────────────────────────── L2-06 ─────────────────────────────
@@ -956,7 +956,7 @@ export const lessons: Lesson[] = [
       es: "El modelo de activo por derecho de uso para el arrendatario y los fundamentos del control y la consolidación.",
       en: "The right-of-use model for lessees and the basics of control and consolidation.",
     },
-    minutes: 23,
+    minutes: 14,
     objectives: [
       { es: "Reconocer inicialmente un arrendamiento como activo por derecho de uso y pasivo por arrendamiento.", en: "Initially recognize a lease as a right-of-use asset and a lease liability." },
       { es: "Calcular el interés y la depreciación del primer año de un arrendamiento.", en: "Compute first-year interest and depreciation on a lease." },
@@ -965,7 +965,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Arrendamientos: modelo del arrendatario", en: "Leases: the lessee model" },
+        heading: { es: "Rentar también es deber", en: "Renting is also owing" },
         body: [
           {
             es: "Bajo la NIF D-5 e IFRS 16, el arrendatario reconoce en su balance casi todos los arrendamientos: un **activo por derecho de uso** y un **pasivo por arrendamiento**. El pasivo se mide inicialmente al **valor presente de los pagos** pendientes, descontados con la tasa implícita del arrendamiento o, si no se puede determinar, con la tasa incremental de financiamiento del arrendatario. El activo parte de ese mismo importe (más costos directos iniciales y pagos anticipados, entre otros ajustes).",
@@ -1008,7 +1008,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Medición posterior", en: "Subsequent measurement" },
+        heading: { es: "¿Cómo baja la deuda de renta?", en: "How the lease debt shrinks" },
         body: [
           {
             es: "El pasivo devenga **interés** (saldo × tasa) y disminuye con cada pago. El activo por derecho de uso se **deprecia**, normalmente en línea recta durante el plazo del arrendamiento (o la vida útil, si es menor). Así, en el estado de resultados aparecen gasto por intereses y gasto por depreciación, en lugar de un gasto de renta.",
@@ -1059,7 +1059,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Control y consolidación", en: "Control and consolidation" },
+        heading: { es: "¿Quién manda en otra empresa?", en: "Who controls another company?" },
         body: [
           {
             es: "En palabras sencillas: cuando una empresa (la **controladora**) manda sobre otra (la **subsidiaria**), presenta sus números como si fueran un solo negocio; a eso se le llama **consolidar**. La clave no es solo cuántas acciones tienes, sino si de verdad **decides** lo importante de la otra empresa y te beneficias de ello.",
@@ -1076,7 +1076,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Eliminaciones intercompañía", en: "Intercompany eliminations" },
+        heading: { es: "El grupo como un solo negocio", en: "The group as one business" },
         body: [
           {
             es: "Los estados consolidados presentan al grupo como **una sola entidad económica**. Se suman renglón por renglón los estados de la controladora y las subsidiarias y se **eliminan**: la inversión de la controladora contra el capital de la subsidiaria, los saldos por cobrar y por pagar entre ellas, las ventas y compras entre ellas y las utilidades no realizadas. La parte del capital de la subsidiaria que no pertenece a la controladora se presenta como **participación no controladora**.",
@@ -1153,7 +1153,7 @@ export const lessons: Lesson[] = [
       es: "Jurisdicción: México (NIF D-5 Arrendamientos; NIF B-8 Estados financieros consolidados o combinados; NIF C-7 Inversiones en asociadas, CINIF) con referencia a IFRS 16, IFRS 10 e IAS 28 (IASB). Contenido educativo de nivel introductorio que omite casos especiales. Verifica las normas vigentes a la fecha de consulta (2026).",
       en: "Jurisdiction: Mexico (NIF D-5 Leases; NIF B-8 Consolidated or combined financial statements; NIF C-7 Investments in associates, CINIF) with reference to IFRS 16, IFRS 10 and IAS 28 (IASB). Introductory educational content that omits special cases. Verify the current standards as of the date you consult them (2026).",
     },
-    exerciseIds: ['N2-037', 'N2-038', 'N2-039', 'N2-040', 'N2-041', 'N2-042', 'N2-043', 'N2-044'],
+    exerciseIds: ['N2-037', 'N2-038', 'N2-041', 'N2-043', 'N2-044'],
   },
 ]
 

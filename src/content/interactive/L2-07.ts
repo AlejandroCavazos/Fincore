@@ -3,18 +3,18 @@ import type { InteractiveLesson } from './types'
 export const intL207: InteractiveLesson = {
   lessonId: 'L2-07',
   sections: [
-    // Por qué la ética importa en la contabilidad
+    // ¿Por qué confiar en los números?
     [
       { text: 'Tu amigo te pide **$20,000** para su taquería 🌮 y te enseña una libreta que dice que gana mucho. ¿Le prestas? Depende de algo muy simple: **¿esa libreta dice la verdad?**' },
       {
         ask: 'Con las empresas pasa igual. ¿Por qué la gente confía en los **estados financieros** (los reportes con los números del negocio)?',
         options: [
-          { text: 'Porque los hace una computadora y no se equivoca', reply: 'Las computadoras solo suman lo que alguien anota. Si lo anotado es falso, el reporte también.' },
+          { text: 'Porque los hace una computadora y no se equivoca', reply: 'Las computadoras solo suman lo que alguien anota. Si lo anotado es falso, el reporte también. Se confía en que **el contador dijo la verdad**.' },
           { text: 'Porque confía en que el contador dijo la verdad con los números', ok: true, reply: '¡Exacto! Esa **confianza pública** es la razón de ser del contador.' },
-          { text: 'Porque siempre los revisa el gobierno antes', reply: 'No siempre. La confianza descansa sobre todo en que el contador actúe con ética.' },
+          { text: 'Porque siempre los revisa el gobierno antes', reply: 'No siempre. La confianza descansa sobre todo en que **el contador actúe con ética**.' },
         ],
       },
-      { text: 'Cuando los números son falsos, el daño no se queda en la empresa. Piensa en todos los que deciden con esos reportes.' },
+      { text: 'Bancos, proveedores, inversionistas, trabajadores y el gobierno **deciden** con esos números. La **ética profesional** es parte del trabajo, igual que saber hacer una póliza.' },
       {
         multi: {
           title: 'Si una empresa infla sus números, ¿a quién puede dañar? Marca todos.',
@@ -28,11 +28,19 @@ export const intL207: InteractiveLesson = {
           why: 'Un engaño contable daña a **muchas personas**. Casos como el de Enron terminaron en quiebras, juicios y reglas más estrictas para toda la profesión.',
         },
       },
+      {
+        ask: '¿Por qué la ética pesa tanto en la contabilidad?',
+        options: [
+          { text: 'Porque muchas personas deciden confiando en los estados financieros', ok: true, reply: '¡Eso! Los números solo ayudan a decidir **si son confiables**.' },
+          { text: 'Porque así el contador cobra más caro', reply: 'No se trata de cobrar. Importa porque **muchas personas deciden** con esos números.' },
+          { text: 'Solo importa en empresas grandes', reply: 'Importa en cualquier negocio, incluso la taquería: alguien **decide** con esos números.' },
+        ],
+      },
       { tip: 'La reputación de un contador tarda **años** en construirse y **un día** en perderse.' },
     ],
-    // Los principios fundamentales
+    // Las cinco reglas del contador
     [
-      { text: 'El **IESBA** (el consejo que emite el código internacional de ética) define **cinco principios**. El **Código de Ética del IMCP** en México se alinea en lo general con él.' },
+      { text: 'Ahora trabajas en un despacho contable 🏢. El código internacional de ética (del **IESBA**) y el **Código de Ética del IMCP** en México piden **cinco principios**.' },
       {
         match: {
           title: 'Une cada principio con su idea clave',
@@ -45,72 +53,94 @@ export const intL207: InteractiveLesson = {
           ],
         },
       },
-      { text: 'Ahora ponlo en práctica en un despacho contable 🏢.' },
+      {
+        sort: {
+          title: '¿Qué principio está en riesgo?',
+          buckets: ['Integridad', 'Objetividad', 'Competencia'],
+          items: [
+            { text: 'Firmar un reporte con ventas que sabes que están infladas', bucket: 0, why: 'Firmar algo falso rompe la **integridad**.' },
+            { text: 'Aceptar un viaje pagado por el cliente justo antes de revisar sus cuentas', bucket: 1, why: 'El regalo puede torcer tu juicio: **objetividad**.' },
+            { text: 'Llevar una constructora sin conocer las reglas del sector ni capacitarte', bucket: 2, why: 'Hay que saber hacer el trabajo: **competencia y diligencia**.' },
+            { text: 'Presentar gastos que no existieron', bucket: 0, why: 'Información falsa: **integridad**.' },
+            { text: 'Entregar la declaración tarde y sin revisarla', bucket: 2, why: 'Hacerlo con cuidado y a tiempo: **diligencia**.' },
+          ],
+        },
+      },
       {
         ask: 'En una fiesta, un amigo te pregunta: «¿Cuánto gana la cafetería que llevas?». ¿Qué principio está en juego?',
         options: [
           { text: 'Confidencialidad', ok: true, reply: '¡Bien! La información del cliente no se cuenta, salvo que tengas permiso o la ley te obligue.' },
-          { text: 'Competencia', reply: 'Competencia es saber hacer bien el trabajo. Aquí el tema es **guardar** la información.' },
+          { text: 'Competencia', reply: 'Competencia es saber hacer bien el trabajo. Aquí el tema es **guardar** la información: confidencialidad.' },
           { text: 'Ninguno, es solo plática', reply: 'Aunque sea plática, contar los números del cliente rompe la **confidencialidad**.' },
         ],
       },
       {
         ask: 'Un colega pone en redes: «Yo le bajo los impuestos a cualquiera 😎». ¿Qué principio rompe?',
         options: [
-          { text: 'Objetividad', reply: 'No se trata de un juicio sesgado, sino de algo que **desprestigia** a la profesión.' },
+          { text: 'Objetividad', reply: 'No es un juicio sesgado, sino algo que **desprestigia** a la profesión: comportamiento profesional.' },
           { text: 'Comportamiento profesional', ok: true, reply: '¡Eso! Presumir algo así daña la imagen de toda la profesión.' },
           { text: 'Confidencialidad', reply: 'No reveló datos de nadie. Lo que falla es el **comportamiento profesional**.' },
         ],
       },
-      { tip: 'Truco para recordar: **honesto, sin sesgos, preparado, discreto y respetuoso de la ley**.' },
+      { tip: 'Para recordarlos: **honesto, sin sesgos, preparado, discreto y respetuoso de la ley**.' },
     ],
-    // Amenazas y salvaguardas
+    // ¿Qué te puede desviar?
     [
-      { text: 'Una **amenaza** es una situación que te puede empujar a romper un principio. Una **salvaguarda** es lo que haces para bajar ese riesgo: que alguien más revise, rotar al responsable, documentar o, en el extremo, rechazar el trabajo.' },
+      { text: 'Ana revisa las cuentas de la panadería de su compadre desde hace **10 años** 🥖. Ya casi no pide comprobantes: "él nunca se equivoca".' },
+      {
+        ask: '¿Qué riesgo ves?',
+        options: [
+          { text: 'Que confíe de más y no vea los errores', ok: true, reply: '¡Exacto! La cercanía la vuelve demasiado confiada. Eso es una **amenaza**.' },
+          { text: 'Ninguno: conocerlo bien es una ventaja', reply: 'Conocerlo ayuda, pero por eso mismo puede **confiar de más** y no ver errores.' },
+          { text: 'Que le cobre muy caro', reply: 'El cobro no es el problema. El riesgo es que **confíe de más** y no revise.' },
+        ],
+      },
+      { text: 'Una **amenaza** te puede empujar a romper un principio. Hay cinco:\n💰 **Interés propio:** ganas algo según el resultado.\n🪞 **Autorrevisión:** revisas tu propio trabajo.\n📢 **Abogacía:** defiendes tanto al cliente que pierdes objetividad.\n🤝 **Familiaridad:** la cercanía te confía de más.\n😠 **Intimidación:** te presionan con perder algo.' },
+      {
+        match: {
+          title: 'Une cada amenaza con su caso',
+          pairs: [
+            ['Interés propio', 'Tu bono depende de la utilidad que tú calculas'],
+            ['Autorrevisión', 'Auditas el sistema que tú mismo diseñaste'],
+            ['Abogacía', 'Promueves al cliente ante el banco para que le presten'],
+            ['Familiaridad', 'El dueño que revisas es tu cuñado'],
+            ['Intimidación', '«Si no aceptas mi cifra, me voy a otro despacho»'],
+          ],
+        },
+      },
+      { text: 'Una **salvaguarda** baja la amenaza: que otra persona revise, rotar al responsable, documentar o, en el extremo, rechazar el trabajo.' },
       {
         rush: {
           title: '¿Amenaza o salvaguarda?',
           seconds: 40,
           labels: ['Amenaza', 'Salvaguarda'],
           items: [
-            { text: 'Tu bono depende de las ventas que tú mismo registras', ans: 0 },
+            { text: 'Tienes acciones de la empresa que revisas', ans: 0 },
             { text: 'Otro contador del despacho revisa tu trabajo', ans: 1 },
             { text: 'El cliente es tu compadre desde hace 10 años', ans: 0 },
             { text: 'La cuenta del cliente pasa a otra persona', ans: 1 },
             { text: '«Si no lo haces, te despido»', ans: 0 },
             { text: 'Dejas por escrito qué pasó y por qué', ans: 1 },
-            { text: 'Revisas el sistema que tú mismo diseñaste', ans: 0 },
-            { text: 'Rechazas el trabajo', ans: 1 },
           ],
         },
       },
-      { text: 'El código describe **cinco tipos** de amenaza. Clasifica cada caso.' },
       {
-        sort: {
-          title: '¿Qué tipo de amenaza es?',
-          buckets: ['Interés propio', 'Autorrevisión', 'Abogacía', 'Familiaridad', 'Intimidación'],
+        multi: {
+          title: '¿Qué salvaguardas ayudan a Ana? Marca todas.',
           items: [
-            { text: 'Te pagan un premio si la utilidad del taller sale alta', bucket: 0, why: 'Ganas algo si el resultado sale de cierta forma.' },
-            { text: 'Auditas el sistema de cobro que tú mismo instalaste', bucket: 1, why: 'Revisas tu propio trabajo: es difícil ver tus errores.' },
-            { text: 'Defiendes al cliente ante el banco para que le presten', bucket: 2, why: 'Promover al cliente puede hacerte perder objetividad.' },
-            { text: 'Ana revisa la panadería de su compadre desde hace 10 años', bucket: 3, why: 'La cercanía te vuelve demasiado confiado.' },
-            { text: 'El dueño dice: «O lo haces o me llevo mi cuenta a otro despacho»', bucket: 4, why: 'Te presionan con perder el cliente.' },
+            { text: 'Que otro contador del despacho revise su trabajo', ok: true },
+            { text: 'Pasar la cuenta a otra persona', ok: true },
+            { text: 'Volver a pedir los comprobantes, como con cualquier cliente', ok: true },
+            { text: 'Seguir igual: la confianza ahorra tiempo', ok: false },
+            { text: 'Aceptar un regalo para cuidar la amistad', ok: false },
           ],
+          why: 'Revisión de otro, rotación y volver a revisar soportes bajan la **familiaridad**. Seguir igual o aceptar regalos la empeoran.',
         },
       },
-      {
-        ask: 'Ana lleva 10 años con la panadería de su compadre (familiaridad). ¿Cuál es una buena **salvaguarda**?',
-        options: [
-          { text: 'Que otro contador del despacho revise su trabajo', ok: true, reply: '¡Bien! Una segunda mirada reduce la amenaza. También podría pasar la cuenta a otra persona.' },
-          { text: 'Que Ana prometa tener más cuidado', reply: 'La buena intención ayuda, pero no es una acción que reduzca la amenaza.' },
-          { text: 'No hacer nada: confía en su compadre', reply: 'Esa confianza de más es justo la amenaza de **familiaridad**.' },
-        ],
-      },
-      { tip: 'Primero **nombra la amenaza**; luego busca la **salvaguarda** que la baje a un nivel aceptable.' },
     ],
-    // Dilemas reales y cómo decidir
+    // Cuando te presionan
     [
-      { text: 'Un **dilema ético** aparece cuando te presionan para hacer algo que choca con tus principios. Para no decidir con nervios, hay **cinco pasos**.' },
+      { text: 'Un **dilema ético** aparece cuando te presionan para hacer algo que choca con tus principios. Para no decidir con nervios, sigue **cinco pasos**:\n1️⃣ Identifica los **hechos** (qué te piden y con qué cifras).\n2️⃣ Ubica **principios y amenazas**.\n3️⃣ Enumera **opciones** y consecuencias.\n4️⃣ **Consulta** a quien corresponda.\n5️⃣ **Decide y documenta**.' },
       {
         order: {
           title: 'Ordena los pasos para resolver un dilema',
@@ -124,14 +154,21 @@ export const intL207: InteractiveLesson = {
           done: 'Hechos → principios → opciones → consulta → decisión documentada.',
         },
       },
-      { text: 'En el paso 1 conviene **poner el engaño en números**. Una papelería vendió **$250,000** y el dueño quiere reportar **$300,000** al banco.' },
       {
         calc: {
-          question: '¿En qué **porcentaje** se inflarían las ventas? (escribe solo el número)',
+          question: 'Paso 1: pon el engaño en números. Una papelería vendió **$250,000** y el dueño quiere reportar **$300,000** al banco. ¿En qué **porcentaje** se inflarían las ventas?',
           answer: 20, unit: '%',
-          hint: 'diferencia ÷ cifra **real** × 100.',
-          why: '$300,000 − $250,000 = $50,000. $50,000 ÷ $250,000 = 0.20 → **20%**. Ojo: se divide entre la cifra real, no entre la pedida.',
+          hint: 'Diferencia ÷ cifra **real** × 100.',
+          why: '$300,000 − $250,000 = $50,000. $50,000 ÷ $250,000 = 0.20 → **20%**. Se divide entre la cifra real, no entre la pedida.',
         },
+      },
+      {
+        ask: 'El dueño agrega: «Si no lo haces, me voy con otro contador». ¿Qué está pasando y qué haces?',
+        options: [
+          { text: 'Es intimidación: reporto los $250,000 reales aunque pierda el cliente', ok: true, reply: '¡Correcto! La presión es **intimidación**, y la **integridad** pide reportar la cifra real.' },
+          { text: 'Lo inflo solo un poco, a $270,000', reply: 'Inflar poco sigue siendo inflar: rompe la **integridad** igual. Se reporta la cifra real.' },
+          { text: 'No hay problema: el cliente responde por lo que pide al banco', reply: 'Si tú lo firmas, también es tu responsabilidad. Es **intimidación** y se reporta la cifra real.' },
+        ],
       },
       {
         sim: {

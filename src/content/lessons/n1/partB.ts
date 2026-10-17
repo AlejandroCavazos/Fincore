@@ -21,7 +21,7 @@ export const lessons: Lesson[] = [
       es: "Todo lo que tiene un negocio se financió con dinero de alguien más (pasivo) o de sus dueños (capital), y por eso Activo = Pasivo + Capital siempre se cumple.",
       en: "Everything a business owns was financed with someone else's money (liabilities) or its owners' money (equity), which is why Assets = Liabilities + Equity always holds.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar con tus palabras la ecuación Activo = Pasivo + Capital.", en: "Explain the equation Assets = Liabilities + Equity in your own words." },
       { es: "Despejar cualquier elemento de la ecuación cuando conoces los otros dos.", en: "Solve for any element of the equation when you know the other two." },
@@ -30,7 +30,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Activo = Pasivo + Capital", en: "Assets = Liabilities + Equity" },
+        heading: { es: "Lo que tienes, ¿de dónde salió?", en: "Where did what you have come from?" },
         body: [
           {
             es: "Ya conoces los tres elementos: el **activo** es lo que el negocio tiene (efectivo, mercancía, equipo); el **pasivo** es lo que debe a otros (proveedores, bancos); y el **capital contable** es la parte que pertenece a los dueños.",
@@ -81,7 +81,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "El equilibrio contable", en: "The accounting balance" },
+        heading: { es: "¿Por qué siempre cuadra?", en: "Why does it always balance?" },
         body: [
           {
             es: "La ecuación es como una **balanza de dos platos**: de un lado el activo, del otro el pasivo más el capital. Cada operación mueve la balanza, pero siempre queda **nivelada**, porque cada operación tiene dos efectos que se compensan.",
@@ -130,7 +130,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ejercicio interactivo: mueve la ecuación paso a paso", en: "Interactive exercise: move the equation step by step" },
+        heading: { es: "La cafetería de Ana, paso a paso", en: "Ana's coffee shop, step by step" },
         body: [
           {
             es: "Vamos a seguir a Ana, que abre una **cafetería**. Para cada operación hazte tres preguntas: ¿qué elementos cambian?, ¿suben o bajan?, ¿la ecuación sigue igual de los dos lados? Anota los totales después de cada paso.",
@@ -188,7 +188,7 @@ export const lessons: Lesson[] = [
       { es: "Comprar de contado solo cambia la forma del activo, no su total.", en: "Buying with cash only changes the form of assets, not their total." },
       { es: "Pagar una deuda baja los dos lados de la ecuación por igual.", en: "Paying a debt lowers both sides of the equation equally." },
     ],
-    exerciseIds: ['N1B-001', 'N1B-002', 'N1B-003', 'N1B-004', 'N1B-005', 'N1B-006', 'N1B-007'],
+    exerciseIds: ['N1B-001', 'N1B-002', 'N1B-003', 'N1B-006', 'N1B-005'],
   },
 
   // ───────────────────────────── L1-07 ─────────────────────────────
@@ -201,7 +201,7 @@ export const lessons: Lesson[] = [
       es: "Las NIF son las reglas comunes que usan las empresas en México para que su información financiera sea confiable y comparable, y la devengación indica cuándo se registra cada operación.",
       en: "The NIF are the common rules companies in Mexico use so their financial information is reliable and comparable, and accrual tells you when each transaction is recorded.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué son las NIF, quién las emite y para qué sirven.", en: "Explain what the NIF are, who issues them and what they are for." },
       { es: "Distinguir las NIF de las leyes fiscales.", en: "Tell the NIF apart from tax laws." },
@@ -210,7 +210,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué son las NIF y para qué sirven", en: "What the NIF are and what they are for" },
+        heading: { es: "¿Quién pone las reglas?", en: "Who sets the rules?" },
         body: [
           {
             es: "Imagina un partido de futbol donde cada equipo usa sus propias reglas: sería imposible saber quién ganó. Con la contabilidad pasa igual. Las **NIF (Normas de Información Financiera)** son las **reglas del juego** que dicen cómo registrar y presentar la información financiera en México.",
@@ -232,7 +232,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Postulados básicos esenciales", en: "Essential basic postulates" },
+        heading: { es: "Las ideas de fondo", en: "The underlying ideas" },
         body: [
           {
             es: "Los **postulados básicos** son las ideas de fondo sobre las que se construye toda la contabilidad. El Marco Conceptual de las NIF reconoce ocho: sustancia económica, entidad económica, negocio en marcha, devengación contable, asociación de costos y gastos con ingresos, valuación, dualidad económica y consistencia. Para empezar, conoce bien estos:",
@@ -249,7 +249,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Introducción a la devengación contable", en: "Introduction to accrual accounting" },
+        heading: { es: "¿Cuándo se anota?", en: "When do you record it?" },
         body: [
           {
             es: "La **devengación contable** responde a la pregunta: **¿cuándo registro?** La respuesta: cuando la operación **ocurre**, no cuando se cobra o se paga. Un ingreso se reconoce cuando vendes o prestas el servicio; un gasto, cuando lo consumes o lo utilizas.",
@@ -331,7 +331,7 @@ export const lessons: Lesson[] = [
       { es: "Devengación: registras cuando ocurre la operación, no cuando cobras o pagas.", en: "Accrual: you record when the transaction happens, not when you collect or pay." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1B-008', 'N1B-009', 'N1B-010', 'N1B-011', 'N1B-012', 'N1B-013', 'N1B-014'],
+    exerciseIds: ['N1B-008', 'N1B-009', 'N1B-014', 'N1B-011', 'N1B-012'],
   },
 
   // ───────────────────────────── L1-08 ─────────────────────────────
@@ -344,7 +344,7 @@ export const lessons: Lesson[] = [
       es: "Las cuentas son los cajones donde se ordena cada operación, y su naturaleza (deudora o acreedora) indica de qué lado crecen y qué saldo deben tener.",
       en: "Accounts are the drawers where each transaction is sorted, and their nature (debit or credit) tells you which side they grow on and which balance they should show.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es una cuenta contable y qué es un catálogo de cuentas.", en: "Explain what an account is and what a chart of accounts is." },
       { es: "Clasificar cuentas en activo, pasivo, capital, ingresos y gastos.", en: "Classify accounts into assets, liabilities, equity, revenue and expenses." },
@@ -353,7 +353,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Clasificación de cuentas", en: "Classifying accounts" },
+        heading: { es: "¿Dónde se anota cada cosa?", en: "Where does each thing go?" },
         body: [
           {
             es: "Una **cuenta contable** es como un **cajón con etiqueta** donde guardas todos los movimientos de una misma cosa. Hay un cajón para el efectivo (Caja), otro para el dinero en el banco (Bancos), otro para lo que debes a quien te vende mercancía (Proveedores), y así.",
@@ -377,7 +377,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Naturaleza deudora y acreedora", en: "Debit and credit nature" },
+        heading: { es: "¿De qué lado crece?", en: "Which side does it grow on?" },
         body: [
           {
             es: "Cada cuenta tiene un **lado favorito** donde crece: eso es su **naturaleza**. Las cuentas de **naturaleza deudora** crecen con **cargos** (lado izquierdo). Las de **naturaleza acreedora** crecen con **abonos** (lado derecho). En el siguiente tema verás a fondo qué son cargos y abonos.",
@@ -398,7 +398,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Saldos contables", en: "Account balances" },
+        heading: { es: "¿Cuánto queda en el cajón?", en: "How much is left in the drawer?" },
         body: [
           {
             es: "El **saldo** es lo que queda en el cajón después de todos los movimientos: la diferencia entre lo que se anotó de un lado y lo que se anotó del otro. Si los cargos son mayores, el saldo es **deudor**; si los abonos son mayores, es **acreedor**; si son iguales, la cuenta está **saldada** (en cero).",
@@ -501,7 +501,7 @@ export const lessons: Lesson[] = [
       { es: "Saldo deudor = cargos − abonos; saldo acreedor = abonos − cargos.", en: "Debit balance = debits − credits; credit balance = credits − debits." },
       { es: "Un saldo contrario a la naturaleza de la cuenta suele indicar un error.", en: "A balance opposite to the account's nature usually signals an error." },
     ],
-    exerciseIds: ['N1B-015', 'N1B-016', 'N1B-017', 'N1B-018', 'N1B-019', 'N1B-020', 'N1B-021'],
+    exerciseIds: ['N1B-015', 'N1B-017', 'N1B-018', 'N1B-020', 'N1B-019'],
   },
 
   // ───────────────────────────── L1-09 ─────────────────────────────
@@ -514,7 +514,7 @@ export const lessons: Lesson[] = [
       es: "Cargar es anotar en el lado izquierdo (debe) y abonar es anotar en el derecho (haber); si suben o bajan depende de la naturaleza de la cuenta.",
       en: "Debiting is writing on the left side and crediting is writing on the right side; whether the account goes up or down depends on its nature.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué significan debe, haber, cargo y abono.", en: "Explain what the debit side, credit side, debit and credit mean." },
       { es: "Aplicar las reglas de cargos y abonos a cada tipo de cuenta.", en: "Apply the debit and credit rules to each type of account." },
@@ -522,7 +522,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Debe y haber", en: "Debit side and credit side" },
+        heading: { es: "Los dos lados de una cuenta", en: "The two sides of an account" },
         body: [
           {
             es: "Toda cuenta tiene dos lados. El lado **izquierdo** se llama **debe**, y anotar ahí se llama **cargar** (hacer un **cargo**). El lado **derecho** se llama **haber**, y anotar ahí se llama **abonar** (hacer un **abono**).",
@@ -540,7 +540,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Reglas de cargos y abonos", en: "Rules of debits and credits" },
+        heading: { es: "¿Cuándo cargo y cuándo abono?", en: "When to debit, when to credit?" },
         body: [
           {
             es: "Las reglas salen de la naturaleza que aprendiste en el tema anterior. **Una cuenta aumenta del lado de su naturaleza y disminuye del lado contrario.** Así de simple.",
@@ -564,7 +564,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ejercicios de clasificación guiados", en: "Guided classification practice" },
+        heading: { es: "Tres pasos para decidir", en: "Three steps to decide" },
         body: [
           {
             es: "Para decidir si un movimiento es cargo o abono, sigue siempre **tres pasos**: (1) ¿qué cuenta se mueve?; (2) ¿de qué naturaleza es?; (3) ¿aumenta o disminuye? Con esas respuestas, la regla te da el lado.",
@@ -620,7 +620,7 @@ export const lessons: Lesson[] = [
       { es: "En contabilidad, cargo y abono no significan \"bueno\" o \"malo\".", en: "In accounting, debit and credit do not mean \"good\" or \"bad\"." },
       { es: "Usa los tres pasos: cuenta, naturaleza, ¿aumenta o disminuye?", en: "Use the three steps: account, nature, increase or decrease?" },
     ],
-    exerciseIds: ['N1B-022', 'N1B-023', 'N1B-024', 'N1B-025', 'N1B-026', 'N1B-027', 'N1B-028'],
+    exerciseIds: ['N1B-022', 'N1B-023', 'N1B-024', 'N1B-026', 'N1B-028'],
   },
 
   // ───────────────────────────── L1-10 ─────────────────────────────
@@ -633,7 +633,7 @@ export const lessons: Lesson[] = [
       es: "Cada operación afecta al menos dos cuentas y, en todo registro, la suma de los cargos es igual a la suma de los abonos.",
       en: "Every transaction affects at least two accounts and, in every entry, total debits equal total credits.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Explicar el principio de dualidad en el que se basa la partida doble.", en: "Explain the duality principle behind double-entry bookkeeping." },
       { es: "Comprobar que en un asiento los cargos sean iguales a los abonos.", en: "Check that debits equal credits in an entry." },
@@ -642,7 +642,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Principio de dualidad", en: "The duality principle" },
+        heading: { es: "Todo tiene dos caras", en: "Everything has two sides" },
         body: [
           {
             es: "En la vida diaria, todo intercambio tiene dos caras: cuando compras un pan, recibes el pan y entregas dinero. En contabilidad pasa lo mismo: **cada operación tiene al menos dos efectos**, y por eso se registra en **al menos dos cuentas**. A esto se le llama **partida doble**.",
@@ -659,7 +659,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Igualdad entre cargos y abonos", en: "Equality of debits and credits" },
+        heading: { es: "Cargos y abonos siempre cuadran", en: "Debits always equal credits" },
         body: [
           {
             es: "La regla de oro: **en todo asiento, la suma de los cargos es igual a la suma de los abonos**. Un **asiento** (en México también **póliza**) es el registro de una operación: qué cuentas se cargan, cuáles se abonan y por cuánto.",
@@ -724,7 +724,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Operaciones sencillas", en: "Simple transactions" },
+        heading: { es: "Tus primeras pólizas", en: "Your first entries" },
         body: [
           {
             es: "Para registrar cualquier operación, junta lo que ya sabes: (1) identifica las cuentas que se mueven; (2) decide si cada una aumenta o disminuye; (3) aplica la regla de cargos y abonos; (4) comprueba que los cargos sumen lo mismo que los abonos.",
@@ -779,7 +779,7 @@ export const lessons: Lesson[] = [
       { es: "Un asiento cuadrado aún puede tener la cuenta equivocada: revisa también el sentido.", en: "A balanced entry can still use the wrong account: check the logic too." },
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['N1B-029', 'N1B-030', 'N1B-031', 'N1B-032', 'N1B-033', 'N1B-034', 'N1B-035', 'N1B-036'],
+    exerciseIds: ['N1B-029', 'N1B-030', 'N1B-035', 'N1B-033', 'N1B-036'],
   },
 ]
 
