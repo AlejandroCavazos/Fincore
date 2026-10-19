@@ -41,7 +41,7 @@ export const lessons: Lesson[] = [
       es: "El dinero nació para resolver los problemas del trueque y hoy cumple tres funciones: sirve para intercambiar, para medir precios y para guardar valor.",
       en: "Money was born to solve the problems of barter and today it has three functions: it is used to exchange, to measure prices and to store value.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Explicar por qué el trueque era incómodo y cómo el dinero resolvió ese problema.", en: "Explain why barter was inconvenient and how money solved that problem." },
       { es: "Describir las etapas del dinero: mercancía, monedas, billetes y dinero digital.", en: "Describe the stages of money: commodity, coins, notes and digital money." },
@@ -50,7 +50,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Del trueque al dinero mercancía", en: "From barter to commodity money" },
+        heading: { es: "¿Cómo se compraba sin dinero?", en: "How did people buy without money?" },
         body: [
           {
             es: "Antes del dinero existía el **trueque**: cambiar una cosa por otra. Si tú tenías maíz y querías sandalias, buscabas a alguien con sandalias que quisiera maíz. Funciona en una comunidad pequeña, pero se complica rápido.",
@@ -76,7 +76,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Monedas, billetes y dinero digital", en: "Coins, notes and digital money" },
+        heading: { es: "¿Por qué un billete vale?", en: "Why is a bill worth something?" },
         body: [
           {
             es: "Con el tiempo, los metales como el oro y la plata ganaron terreno porque duran y se pueden dividir. Luego se acuñaron **monedas**: piezas de metal con un sello que garantizaba su peso y pureza, así nadie tenía que pesarlas en cada compra.",
@@ -124,7 +124,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Las tres funciones del dinero y sus características", en: "The three functions of money and its characteristics" },
+        heading: { es: "¿Para qué sirve el dinero?", en: "What is money for?" },
         body: [
           {
             es: "Los economistas dicen que el dinero cumple **tres funciones**. Es **medio de cambio**: lo das a cambio de bienes y servicios. Es **unidad de cuenta**: todos los precios se expresan en la misma medida (pesos), así puedes comparar. Y es **depósito de valor**: puedes guardarlo hoy y usarlo después.",
@@ -195,7 +195,7 @@ export const lessons: Lesson[] = [
       { es: "Buen dinero: aceptado, durable, divisible, portátil y difícil de falsificar.", en: "Good money: accepted, durable, divisible, portable and hard to counterfeit." },
     ],
     normativeNote: NOTE_MONEY,
-    exerciseIds: ['PER-01-E1', 'PER-01-E2', 'PER-01-E3', 'PER-01-E4', 'PER-01-E5', 'PER-01-E6'],
+    exerciseIds: ['PER-01-E2', 'PER-01-E3', 'PER-01-E4', 'PER-01-E5', 'PER-01-E6'],
   },
 
   // ───────────────────────────── PER-02 ─────────────────────────────
@@ -208,7 +208,7 @@ export const lessons: Lesson[] = [
       es: "La educación financiera es saber, querer y poder usar tu dinero para decidir mejor: distinguir necesidades de deseos, ponerte metas claras y comparar antes de comprometerte.",
       en: "Financial literacy is knowing, wanting and being able to use your money to decide better: telling needs from wants, setting clear goals and comparing before committing.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es la educación financiera y por qué no depende de cuánto ganas.", en: "Explain what financial literacy is and why it does not depend on how much you earn." },
       { es: "Distinguir necesidades de deseos y entender el costo de oportunidad.", en: "Tell needs from wants and understand opportunity cost." },
@@ -217,7 +217,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es la educación financiera?", en: "What is financial literacy?" },
+        heading: { es: "¿Qué es saber de dinero?", en: "What is knowing about money?" },
         body: [
           {
             es: "La **educación financiera** es el conjunto de **conocimientos, habilidades y actitudes** que te ayudan a tomar buenas decisiones con tu dinero. No basta con saber: también hay que **actuar** con esos conocimientos todos los días.",
@@ -240,7 +240,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Necesidades, deseos y costo de oportunidad", en: "Needs, wants and opportunity cost" },
+        heading: { es: "¿Lo necesito o lo quiero?", en: "Do I need it or want it?" },
         body: [
           {
             es: "Una **necesidad** es algo indispensable para vivir o trabajar: comida, vivienda, transporte, medicinas. Un **deseo** es algo que te gusta pero puedes posponer o sustituir: el celular de último modelo, comer fuera, ropa de marca. Ambos son válidos, pero las necesidades van primero.",
@@ -257,7 +257,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Metas claras y decisiones informadas", en: "Clear goals and informed decisions" },
+        heading: { es: "Metas claras y compras informadas", en: "Clear goals, informed purchases" },
         body: [
           {
             es: "Una meta financiera sirve si es **concreta, medible, alcanzable, relevante y con fecha** (a veces se le llama meta SMART por sus siglas en inglés). \"Quiero ahorrar\" no es una meta; \"quiero juntar $6,000 para el uniforme y útiles antes de agosto\" sí lo es.",
@@ -377,7 +377,7 @@ export const lessons: Lesson[] = [
       { es: "Metas concretas, medibles y con fecha; compara siempre el costo total.", en: "Goals that are concrete, measurable and dated; always compare the total cost." },
     ],
     normativeNote: NOTE_CONSUMER,
-    exerciseIds: ['PER-02-E1', 'PER-02-E2', 'PER-02-E3', 'PER-02-E4', 'PER-02-E5', 'PER-02-E6'],
+    exerciseIds: ['PER-02-E1', 'PER-02-E3', 'PER-02-E4', 'PER-02-E5', 'PER-02-E6'],
   },
 
   // ───────────────────────────── PER-03 ─────────────────────────────
@@ -390,7 +390,7 @@ export const lessons: Lesson[] = [
       es: "Administrar tu dinero es saber cuánto entra, cuánto sale y cuándo, para organizar tus pagos, evitar fugas y no quedarte sin efectivo antes de la siguiente quincena.",
       en: "Managing your money means knowing how much comes in, how much goes out and when, so you can organize payments, stop leaks and not run out of cash before the next payday.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es el flujo de efectivo personal y calcular tu saldo al final del periodo.", en: "Explain what personal cash flow is and compute your balance at the end of the period." },
       { es: "Registrar gastos y detectar gastos hormiga.", en: "Track expenses and spot small leaks (\"ant expenses\")." },
@@ -398,7 +398,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Tu flujo de efectivo personal", en: "Your personal cash flow" },
+        heading: { es: "¿Cuándo entra y sale tu dinero?", en: "When does your money come and go?" },
         body: [
           {
             es: "El **flujo de efectivo** es el movimiento de tu dinero: lo que **entra** (sueldo, ventas, apoyos) y lo que **sale** (renta, comida, transporte). Administrar el dinero empieza por conocer ese flujo, igual que una tienda que cuenta su caja al cerrar.",
@@ -445,7 +445,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Registrar gastos y detectar fugas", en: "Tracking expenses and spotting leaks" },
+        heading: { es: "¿En qué se te va?", en: "Where does it go?" },
         body: [
           {
             es: "No puedes administrar lo que no mides. **Registrar tus gastos** durante al menos un mes (en una libreta, una hoja de cálculo o una app) te muestra en qué se va realmente tu dinero. Anota fecha, concepto, monto y forma de pago.",
@@ -496,7 +496,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Organizar: calendario de pagos y pagarte primero", en: "Organizing: payment calendar and paying yourself first" },
+        heading: { es: "¿Cómo apartar antes de gastar?", en: "How to set aside before spending?" },
         body: [
           {
             es: "Un **calendario de pagos** es una lista con la fecha de cada ingreso y de cada pago fijo (renta, luz, internet, colegiatura). Te ayuda a **apartar** el dinero de cada compromiso en la quincena correcta y a no pagar recargos por atraso.",
@@ -586,7 +586,7 @@ export const lessons: Lesson[] = [
       { es: "Un calendario de pagos evita atrasos y recargos.", en: "A payment calendar avoids delays and late fees." },
       { es: "Pagarte primero: separa tu ahorro el día que cobras.", en: "Pay yourself first: set aside savings on payday." },
     ],
-    exerciseIds: ['PER-03-E1', 'PER-03-E2', 'PER-03-E3', 'PER-03-E4', 'PER-03-E5', 'PER-03-E6'],
+    exerciseIds: ['PER-03-E1', 'PER-03-E2', 'PER-03-E4', 'PER-03-E5', 'PER-03-E6'],
   },
 
   // ───────────────────────────── PER-04 ─────────────────────────────
@@ -599,7 +599,7 @@ export const lessons: Lesson[] = [
       es: "Un presupuesto es un plan que decide por adelantado a dónde irá cada peso del mes; se arma con el ingreso neto, se reparte entre gastos fijos, variables y ahorro, y se revisa contra lo real.",
       en: "A budget is a plan that decides in advance where each peso of the month will go; it is built from net income, split between fixed costs, variable costs and savings, and checked against reality.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es un presupuesto y en qué se diferencia de solo registrar gastos.", en: "Explain what a budget is and how it differs from just tracking expenses." },
       { es: "Clasificar gastos en fijos y variables e incluir gastos anuales prorrateados.", en: "Classify expenses as fixed or variable and include prorated annual expenses." },
@@ -608,7 +608,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué es un presupuesto y cómo se arma", en: "What a budget is and how to build one" },
+        heading: { es: "Tu plan antes del mes", en: "Your plan before the month" },
         body: [
           {
             es: "Registrar gastos mira **hacia atrás** (en qué se fue el dinero). Un **presupuesto** mira **hacia adelante**: es un plan donde decides, antes de que empiece el mes, cuánto vas a destinar a cada cosa.",
@@ -676,7 +676,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Dos métodos sencillos: 50/30/20 y base cero", en: "Two simple methods: 50/30/20 and zero-based" },
+        heading: { es: "¿Cómo repartir tu ingreso?", en: "How to split your income?" },
         body: [
           {
             es: "La **regla 50/30/20** es una guía para repartir el ingreso neto: **50%** para necesidades (vivienda, comida, transporte, servicios), **30%** para deseos (salidas, entretenimiento, gustos) y **20%** para ahorro y pago de deudas. Es un punto de partida, no una ley: si tu renta es alta, quizá las necesidades ocupen más.",
@@ -745,7 +745,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "El presupuesto familiar: seguimiento y ajustes", en: "The family budget: tracking and adjusting" },
+        heading: { es: "¿Cómo les fue este mes?", en: "How did the month go?" },
         body: [
           {
             es: "En una familia, el presupuesto funciona mejor si se arma **en conjunto**: quién aporta cuánto, qué gastos son compartidos y qué metas tienen en común. Involucrar a los hijos (según su edad) les enseña a decidir con límites.",
@@ -836,7 +836,7 @@ export const lessons: Lesson[] = [
       { es: "Compara presupuestado contra real y ajusta en familia.", en: "Compare budgeted versus actual and adjust as a family." },
     ],
     normativeNote: NOTE_BUDGET,
-    exerciseIds: ['PER-04-E1', 'PER-04-E2', 'PER-04-E3', 'PER-04-E4', 'PER-04-E5', 'PER-04-E6'],
+    exerciseIds: ['PER-04-E2', 'PER-04-E3', 'PER-04-E4', 'PER-04-E5', 'PER-04-E6'],
   },
 
   // ───────────────────────────── PER-05 ─────────────────────────────
@@ -849,7 +849,7 @@ export const lessons: Lesson[] = [
       es: "Lo que ahorras es la diferencia entre lo que ganas y lo que gastas; conocer tus tipos de ingreso y de gasto te permite aumentar esa diferencia y guardarla en un lugar seguro.",
       en: "What you save is the difference between what you earn and what you spend; knowing your types of income and expenses lets you widen that gap and keep it somewhere safe.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Distinguir ingreso bruto y neto, y ingreso activo y pasivo.", en: "Distinguish gross and net income, and active and passive income." },
       { es: "Clasificar gastos en necesarios y discrecionales para encontrar margen de ahorro.", en: "Classify expenses as necessary or discretionary to find room to save." },
@@ -858,7 +858,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Tipos de ingreso", en: "Types of income" },
+        heading: { es: "¿Cuánto ganas de verdad?", en: "How much do you really earn?" },
         body: [
           {
             es: "El **ingreso bruto** es lo que ganas antes de descuentos. El **ingreso neto** es lo que de verdad recibes después de retenciones (como impuestos y cuotas de seguridad social). Para planear, **usa siempre el neto**: es el dinero con el que realmente cuentas.",
@@ -899,7 +899,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Gastos necesarios y discrecionales", en: "Necessary and discretionary expenses" },
+        heading: { es: "¿Qué gasto puedes recortar?", en: "Which spending can you cut?" },
         body: [
           {
             es: "Además de fijos y variables, conviene separar los gastos por **qué tan indispensables** son. **Necesarios**: los que mantienen tu vida y tu trabajo funcionando (vivienda, comida básica, transporte, salud). **Discrecionales**: los que eliges y podrías reducir sin poner en riesgo lo básico (comer fuera, ropa extra, suscripciones).",
@@ -916,7 +916,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "El ahorro: cuánto, para qué y dónde", en: "Saving: how much, what for and where" },
+        heading: { es: "¿Cuánto ahorrar y dónde?", en: "How much to save, and where?" },
         body: [
           {
             es: "**Ahorrar** es guardar hoy una parte del ingreso para usarla después. La **tasa de ahorro** te dice qué porcentaje de tu ingreso neto logras guardar; muchas guías sugieren empezar con al menos 10% y subir poco a poco, pero empezar con algo es mejor que no empezar.",
@@ -1074,7 +1074,7 @@ export const lessons: Lesson[] = [
       { es: "El ahorro formal ofrece supervisión y, en bancos, seguro de depósitos; el informal no.", en: "Formal saving offers supervision and, at banks, deposit insurance; informal saving does not." },
     ],
     normativeNote: NOTE_SAVING,
-    exerciseIds: ['PER-05-E1', 'PER-05-E2', 'PER-05-E3', 'PER-05-E4', 'PER-05-E5', 'PER-05-E6'],
+    exerciseIds: ['PER-05-E1', 'PER-05-E2', 'PER-05-E3', 'PER-05-E4', 'PER-05-E5'],
   },
 
   // ───────────────────────────── PER-06 ─────────────────────────────
@@ -1087,7 +1087,7 @@ export const lessons: Lesson[] = [
       es: "La inflación es el aumento generalizado de los precios; hace que el mismo dinero compre menos, por eso tu ingreso y tu ahorro deben crecer al menos al mismo ritmo para no perder poder adquisitivo.",
       en: "Inflation is the general rise in prices; it makes the same money buy less, so your income and savings must grow at least at the same pace to avoid losing purchasing power.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Definir inflación y poder adquisitivo con ejemplos cotidianos.", en: "Define inflation and purchasing power with everyday examples." },
       { es: "Explicar cómo se mide la inflación en México con el INPC.", en: "Explain how inflation is measured in Mexico with the INPC." },
@@ -1142,7 +1142,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo se mide: el INPC", en: "How it is measured: the INPC" },
+        heading: { es: "¿Cómo se mide la inflación?", en: "How is inflation measured?" },
         body: [
           {
             es: "En México, la inflación se mide con el **Índice Nacional de Precios al Consumidor (INPC)**, que publica el **INEGI**. Funciona como una gran **canasta**: registra los precios de cientos de bienes y servicios que compran los hogares (comida, transporte, renta, educación) y los resume en un solo número.",
@@ -1187,7 +1187,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Poder adquisitivo: lo que tu dinero realmente compra", en: "Purchasing power: what your money really buys" },
+        heading: { es: "¿Cuánto compra tu dinero?", en: "How much does your money buy?" },
         body: [
           {
             es: "El **poder adquisitivo** es la cantidad de cosas que puedes comprar con tu dinero. Con inflación, el mismo billete compra **menos**. Por eso se distingue el valor **nominal** (el número que ves: $1,000) del valor **real** (lo que ese dinero compra a precios de hoy).",
@@ -1308,7 +1308,7 @@ export const lessons: Lesson[] = [
       { es: "Un aumento o rendimiento solo te mejora si supera la inflación.", en: "A raise or a return only helps you if it beats inflation." },
     ],
     normativeNote: NOTE_INFLATION,
-    exerciseIds: ['PER-06-E1', 'PER-06-E2', 'PER-06-E3', 'PER-06-E4', 'PER-06-E5', 'PER-06-E6'],
+    exerciseIds: ['PER-06-E1', 'PER-06-E2', 'PER-06-E3', 'PER-06-E5', 'PER-06-E6'],
   },
 ]
 

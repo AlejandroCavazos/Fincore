@@ -16,7 +16,7 @@ export const lessons: Lesson[] = [
       es: "Un seguro te permite pagar una cantidad pequeña y conocida para no tener que cargar tú solo con una pérdida grande e inesperada.",
       en: "Insurance lets you pay a small, known amount so you do not have to carry a large, unexpected loss on your own.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Explicar cómo funciona un seguro y qué son la prima, la suma asegurada, el deducible y el coaseguro.", en: "Explain how insurance works and what the premium, sum insured, deductible and coinsurance are." },
       { es: "Elegir el tipo de seguro adecuado para cada riesgo de tu vida (salud, vida, auto, hogar).", en: "Choose the right type of insurance for each risk in your life (health, life, car, home)." },
@@ -24,7 +24,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Cómo funciona un seguro: transferir el riesgo", en: "How insurance works: transferring risk" },
+        heading: { es: "¿Para qué sirve un seguro?", en: "What is insurance for?" },
         body: [
           {
             es: "Un **riesgo** es algo malo que podría pasar y costarte dinero: enfermarte, chocar, que se inunde tu casa o que falte quien mantiene a la familia. Un **seguro** es un contrato: tú pagas una cantidad fija y, si el riesgo ocurre, la **aseguradora** paga la pérdida según lo pactado. Así **transfieres** el riesgo.",
@@ -47,7 +47,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Deducible y coaseguro: la parte que pagas tú", en: "Deductible and coinsurance: the part you pay" },
+        heading: { es: "¿Qué parte pagas tú?", en: "Which part do you pay?" },
         body: [
           {
             es: "Casi ningún seguro paga el 100 %. El **deducible** es la cantidad fija que tú pagas primero en cada siniestro antes de que la aseguradora entre. El **coaseguro** es un **porcentaje** de lo que queda después del deducible que también te toca pagar.",
@@ -88,7 +88,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Qué seguros necesitas y cuánto asegurar", en: "Which insurance you need and how much to cover" },
+        heading: { es: "¿Qué seguro necesitas?", en: "Which insurance do you need?" },
         body: [
           {
             es: "Los más comunes son: **gastos médicos mayores** (enfermedades y accidentes graves), **vida** (deja dinero a tus dependientes si falleces), **auto** (daños a terceros, a tu coche y robo) y **hogar** (daños a la vivienda y contenidos). El de auto con **responsabilidad civil** cubre lo que dañes a otras personas; en muchos casos la ley lo exige.",
@@ -175,7 +175,7 @@ export const lessons: Lesson[] = [
       es: "Contenido educativo. Las referencias a la CNSF, a la CONDUSEF y a la obligación de contar con seguro de responsabilidad civil son generales; las reglas, coberturas y condiciones cambian y varían por póliza y por estado, así que verifica la versión vigente (2026) y lee tu póliza antes de decidir. Los montos y porcentajes son ilustrativos.",
       en: "Educational content. References to the CNSF, CONDUSEF and the requirement to carry liability insurance are general; rules, coverages and conditions change and vary by policy and by state, so verify the current version (2026) and read your policy before deciding. Amounts and percentages are illustrative.",
     },
-    exerciseIds: ['PER-13-E1', 'PER-13-E2', 'PER-13-E3', 'PER-13-E4', 'PER-13-E5', 'PER-13-E6'],
+    exerciseIds: ['PER-13-E1', 'PER-13-E2', 'PER-13-E3', 'PER-13-E4', 'PER-13-E5'],
   },
 
   // ───────────────────────────── PER-14 ─────────────────────────────
@@ -188,7 +188,7 @@ export const lessons: Lesson[] = [
       es: "Tu AFORE guarda e invierte el ahorro para tu retiro; entender cómo funciona, cuánto cobra y cuánto te faltará te permite actuar desde hoy.",
       en: "Your AFORE holds and invests your retirement savings; understanding how it works, what it charges and how much you will be short lets you act today.",
     },
-    minutes: 19,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es una AFORE, qué es una SIEFORE y qué subcuentas forman tu cuenta individual.", en: "Explain what an AFORE is, what a SIEFORE is and which sub-accounts make up your individual account." },
       { es: "Distinguir el régimen de la Ley 73 del de la Ley 97 del IMSS.", en: "Distinguish the IMSS 1973 Law regime from the 1997 Law regime." },
@@ -197,7 +197,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué es una AFORE y cómo se forma tu cuenta", en: "What an AFORE is and how your account is built" },
+        heading: { es: "¿Qué hace tu AFORE?", en: "What does your AFORE do?" },
         body: [
           {
             es: "Una **AFORE** (Administradora de Fondos para el Retiro) es una empresa financiera que **administra tu cuenta individual** para el retiro. Tu dinero no se queda quieto: la AFORE lo invierte en fondos llamados **SIEFORES**. Todas están reguladas y supervisadas por la **CONSAR**.",
@@ -220,7 +220,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ley 73 y Ley 97: dos maneras de calcular la pensión", en: "1973 Law and 1997 Law: two ways to compute the pension" },
+        heading: { es: "¿De qué depende tu pensión?", en: "What does your pension depend on?" },
         body: [
           {
             es: "En el IMSS conviven dos regímenes. Si empezaste a cotizar **antes del 1 de julio de 1997**, perteneces a la **Ley 73**: tu pensión depende sobre todo de tus **semanas cotizadas** y de tu **salario promedio** de los últimos años, y al retirarte puedes elegir el régimen que te convenga.",
@@ -259,7 +259,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Comisiones, rendimiento neto y ahorro voluntario", en: "Fees, net return and voluntary savings" },
+        heading: { es: "¿Cómo crece tu ahorro?", en: "How do your savings grow?" },
         body: [
           {
             es: "Las AFORE cobran una **comisión anual** como porcentaje de tu saldo. Pero no compares solo la comisión: lo que importa es el **rendimiento neto**, lo que gana tu dinero **después** de comisiones. La CONSAR publica un indicador de rendimiento neto para comparar. Puedes **cambiarte de AFORE** (hacer un traspaso) siguiendo sus reglas.",
@@ -367,7 +367,7 @@ export const lessons: Lesson[] = [
       es: "Contenido educativo basado en reglas generales del Sistema de Ahorro para el Retiro (Ley del SAR, Ley del Seguro Social de 1973 y de 1997) supervisado por la CONSAR. Los porcentajes de aportación, comisiones, requisitos de semanas, edades, límites fiscales y reglas de traspaso cambian con reformas: verifica la versión vigente (2026) con tu AFORE o la CONSAR. Los rendimientos y comisiones de los ejemplos son hipotéticos.",
       en: "Educational content based on general rules of the Retirement Savings System (SAR Law, 1973 and 1997 Social Security Laws) supervised by CONSAR. Contribution percentages, fees, weeks requirements, ages, tax limits and transfer rules change with reforms: verify the current version (2026) with your AFORE or CONSAR. Returns and fees in the examples are hypothetical.",
     },
-    exerciseIds: ['PER-14-E1', 'PER-14-E2', 'PER-14-E3', 'PER-14-E4', 'PER-14-E5', 'PER-14-E6'],
+    exerciseIds: ['PER-14-E1', 'PER-14-E2', 'PER-14-E3', 'PER-14-E4', 'PER-14-E5'],
   },
 
   // ───────────────────────────── PER-15 ─────────────────────────────
@@ -380,7 +380,7 @@ export const lessons: Lesson[] = [
       es: "La planeación financiera y patrimonial une tus metas, tu patrimonio y la protección de tu familia en un plan que revisas cada año y que define qué pasará con tus bienes.",
       en: "Financial and estate planning brings together your goals, your net worth and your family's protection in a plan you review every year and that defines what will happen to your assets.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Calcular tu patrimonio neto con un balance personal.", en: "Compute your net worth with a personal balance sheet." },
       { es: "Convertir metas de largo plazo en un ahorro mensual concreto.", en: "Turn long-term goals into a concrete monthly saving amount." },
@@ -388,7 +388,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "El plan financiero: dónde estás y a dónde vas", en: "The financial plan: where you are and where you are going" },
+        heading: { es: "¿Cuánto es realmente tuyo?", en: "How much is really yours?" },
         body: [
           {
             es: "Un **plan financiero** es un mapa con tres partes: **dónde estás** (lo que tienes y lo que debes), **a dónde quieres llegar** (tus metas) y **cómo vas a llegar** (cuánto ahorrar, invertir y proteger). No es solo para ricos: sirve igual con un sueldo modesto.",
@@ -427,7 +427,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Metas por etapas de vida", en: "Goals by life stage" },
+        heading: { es: "Metas con cifra y fecha", en: "Goals with an amount and date" },
         body: [
           {
             es: "Tus metas cambian con la edad. Al empezar a trabajar importan el fondo de emergencia y salir de deudas caras; con familia, la vivienda, la educación de los hijos y los seguros; cerca del retiro, conservar lo ahorrado y planear la herencia. Ordena tus metas en **corto** (menos de 1 año), **mediano** (1 a 5) y **largo plazo** (más de 5).",
@@ -464,7 +464,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Planeación patrimonial: proteger y transmitir", en: "Estate planning: protect and pass on" },
+        heading: { es: "¿Qué pasa con tus bienes?", en: "What happens to your belongings?" },
         body: [
           {
             es: "La **planeación patrimonial** decide qué pasará con tus bienes si faltas o ya no puedes decidir. Su herramienta básica es el **testamento**: un documento, normalmente hecho ante **notario**, donde dices quién recibe cada bien y quién cuidará a tus hijos menores (tutor).",
@@ -532,7 +532,7 @@ export const lessons: Lesson[] = [
       es: "Contenido educativo. Las reglas de testamentos, sucesiones y designación de beneficiarios dependen de la legislación civil de cada estado y de la regulación financiera; las campañas de descuento notarial varían cada año. Verifica la versión vigente (2026) y consulta a un notario para tu caso.",
       en: "Educational content. Rules on wills, successions and beneficiary designation depend on each state's civil law and on financial regulation; notary discount campaigns vary each year. Verify the current version (2026) and consult a notary for your case.",
     },
-    exerciseIds: ['PER-15-E1', 'PER-15-E2', 'PER-15-E3', 'PER-15-E4', 'PER-15-E5', 'PER-15-E6'],
+    exerciseIds: ['PER-15-E2', 'PER-15-E3', 'PER-15-E4', 'PER-15-E5', 'PER-15-E6'],
   },
 
   // ───────────────────────────── PER-16 ─────────────────────────────
@@ -545,7 +545,7 @@ export const lessons: Lesson[] = [
       es: "Los fraudes financieros explotan la prisa, el miedo y la ambición; reconocer sus señales y verificar antes de actuar protege tu dinero y tus datos.",
       en: "Financial fraud exploits haste, fear and greed; recognizing its signs and verifying before acting protects your money and your data.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Reconocer los fraudes más comunes: phishing, vishing, smishing, robo de identidad, pirámides y préstamos abusivos.", en: "Recognize the most common frauds: phishing, vishing, smishing, identity theft, pyramids and abusive loans." },
       { es: "Detectar con números una promesa de rendimiento imposible.", en: "Detect with numbers an impossible return promise." },
@@ -553,7 +553,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Fraudes por suplantación: te engañan para que tú les des acceso", en: "Impersonation fraud: they trick you into giving access" },
+        heading: { es: "¿Te piden tu código?", en: "Are they asking for your code?" },
         body: [
           {
             es: "Muchos fraudes no rompen ningún sistema: te convencen a **ti** de entregar tus datos. Se hacen pasar por tu banco, una paquetería, el SAT o un familiar. El **phishing** llega por correo o páginas falsas; el **smishing**, por SMS o WhatsApp; el **vishing**, por llamada.",
@@ -576,7 +576,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Fraudes de inversión: pirámides y promesas imposibles", en: "Investment fraud: pyramids and impossible promises" },
+        heading: { es: "¿Ganancia segura y enorme?", en: "Huge, guaranteed profit?" },
         body: [
           {
             es: "Un **esquema Ponzi** o **pirámide** promete rendimientos altos y seguros, pero no tiene un negocio real: paga a los primeros con el dinero de los que entran después. Mientras entra gente nueva parece funcionar; cuando deja de entrar, se derrumba y la mayoría pierde.",
@@ -633,7 +633,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Préstamos abusivos y qué hacer si te defraudan", en: "Abusive loans and what to do if you are defrauded" },
+        heading: { es: "Préstamos trampa y cómo reaccionar", en: "Trap loans and how to react" },
         body: [
           {
             es: "Las **apps de préstamo fraudulentas** (a veces llamadas \"montadeudas\") prestan poco, cobran mucho y piden permiso para ver tus contactos y fotos; si no pagas, te amenazan o exhiben ante tu familia. Antes de pedir prestado o invertir, **verifica** que la entidad esté registrada, por ejemplo en el registro de prestadores de servicios financieros de la **CONDUSEF** (SIPRES).",
@@ -695,7 +695,7 @@ export const lessons: Lesson[] = [
       es: "Contenido educativo. Las referencias a la CONDUSEF, a su registro de prestadores de servicios financieros (SIPRES) y a la policía cibernética son generales; los procedimientos, plazos de aclaración y canales oficiales cambian, así que verifica la versión vigente (2026) en fuentes oficiales.",
       en: "Educational content. References to CONDUSEF, its registry of financial service providers (SIPRES) and the cyber police are general; procedures, dispute deadlines and official channels change, so verify the current version (2026) with official sources.",
     },
-    exerciseIds: ['PER-16-E1', 'PER-16-E2', 'PER-16-E3', 'PER-16-E4', 'PER-16-E5', 'PER-16-E6'],
+    exerciseIds: ['PER-16-E1', 'PER-16-E2', 'PER-16-E3', 'PER-16-E4', 'PER-16-E6'],
   },
 
   // ───────────────────────────── PER-17 ─────────────────────────────
@@ -708,7 +708,7 @@ export const lessons: Lesson[] = [
       es: "Las finanzas conductuales muestran que decidimos con atajos mentales que nos hacen gastar o invertir mal; conocerlos y diseñar buenos hábitos te ayuda a actuar a tu favor.",
       en: "Behavioral finance shows that we decide with mental shortcuts that make us spend or invest badly; knowing them and designing good habits helps you act in your favor.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Identificar los sesgos más comunes en decisiones de dinero.", en: "Identify the most common biases in money decisions." },
       { es: "Calcular el costo de una decisión sesgada, como mantener ahorro y deuda cara al mismo tiempo.", en: "Compute the cost of a biased decision, such as keeping savings and expensive debt at the same time." },
@@ -716,7 +716,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "No somos calculadoras: atajos mentales y sesgos", en: "We are not calculators: mental shortcuts and biases" },
+        heading: { es: "¿Decides siempre con la cabeza?", en: "Do you always decide rationally?" },
         body: [
           {
             es: "La economía clásica supone que decidimos de forma totalmente racional. Las **finanzas conductuales** estudian cómo decidimos **en la vida real**: con emociones, prisa y **atajos mentales**. Cuando esos atajos nos llevan a errores repetidos se llaman **sesgos**. Daniel Kahneman y Richard Thaler recibieron el Premio Nobel de Economía por estudiar estos temas.",
@@ -740,7 +740,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Contabilidad mental, anclaje y manada: sesgos que cuestan", en: "Mental accounting, anchoring and herding: costly biases" },
+        heading: { es: "Trampas que te cuestan dinero", en: "Traps that cost you money" },
         body: [
           {
             es: "La **contabilidad mental** es tratar el dinero distinto según su \"etiqueta\": el aguinaldo se gasta como \"dinero extra\" y se guardan ahorros al 5 % mientras se debe una tarjeta al 40 %. Pero un peso es un peso: si el ahorro no es tu fondo de emergencia, pagar la deuda cara suele ser mejor.",
@@ -780,7 +780,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Diseña hábitos que trabajen por ti", en: "Design habits that work for you" },
+        heading: { es: "Hábitos que trabajan por ti", en: "Habits that work for you" },
         body: [
           {
             es: "Como la fuerza de voluntad se cansa, conviene **diseñar el entorno**. Un **empujón** (nudge) es un pequeño cambio que facilita la buena decisión sin prohibir nada: por ejemplo, que el ahorro sea la opción automática. La **inercia** (sesgo del statu quo) juega a tu favor si lo bueno ocurre sin que tengas que hacer nada.",
@@ -867,7 +867,7 @@ export const lessons: Lesson[] = [
       { es: "Diseña el entorno: automatiza el ahorro y págate primero.", en: "Design your environment: automate saving and pay yourself first." },
       { es: "Un hábito se forma con señal, rutina y recompensa.", en: "A habit is formed with cue, routine and reward." },
     ],
-    exerciseIds: ['PER-17-E1', 'PER-17-E2', 'PER-17-E3', 'PER-17-E4', 'PER-17-E5', 'PER-17-E6'],
+    exerciseIds: ['PER-17-E1', 'PER-17-E2', 'PER-17-E3', 'PER-17-E5', 'PER-17-E6'],
   },
 
   // ───────────────────────────── PER-18 ─────────────────────────────
@@ -880,7 +880,7 @@ export const lessons: Lesson[] = [
       es: "Separar el dinero del negocio del tuyo te permite saber si el negocio realmente gana, pagarte un sueldo sostenible y cumplir mejor con impuestos y créditos.",
       en: "Separating the business's money from yours lets you know whether the business really makes money, pay yourself a sustainable salary and better meet tax and credit requirements.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Explicar por qué el negocio es una entidad distinta de su dueño.", en: "Explain why the business is an entity separate from its owner." },
       { es: "Calcular la utilidad real de un negocio cuando se mezclan gastos personales.", en: "Compute a business's real profit when personal expenses are mixed in." },
@@ -888,7 +888,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Tu negocio no eres tú: la entidad económica", en: "Your business is not you: the economic entity" },
+        heading: { es: "¿El negocio eres tú?", en: "Are you the business?" },
         body: [
           {
             es: "En contabilidad hay una idea básica: el **negocio es una entidad distinta** de su dueño, con su propio dinero, deudas y resultados. Las NIF lo llaman **postulado de entidad económica**. Aunque tú seas el único dueño, el dinero del negocio no es tu cartera.",
@@ -926,7 +926,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo separar en la práctica", en: "How to separate in practice" },
+        heading: { es: "¿Cómo separas las cuentas?", en: "How do you separate accounts?" },
         body: [
           {
             es: "Abre una **cuenta bancaria solo para el negocio** y una tarjeta para sus gastos. Todo lo que el negocio cobra entra ahí y todo lo que el negocio paga sale de ahí. Pide **comprobantes** (en México, facturas electrónicas o CFDI) de los gastos del negocio.",
@@ -970,7 +970,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Págate un sueldo y separa reservas", en: "Pay yourself a salary and set aside reserves" },
+        heading: { es: "Págate un sueldo fijo", en: "Pay yourself a fixed salary" },
         body: [
           {
             es: "En lugar de sacar dinero cada vez que lo necesitas, asígnate un **sueldo fijo** que el negocio pueda pagar incluso en meses flojos. Una forma: toma la **utilidad promedio** de varios meses, aparta primero una **reserva para impuestos** y otra para **reinversión o colchón del negocio**, y lo que queda es el máximo que puedes pagarte.",
@@ -1056,7 +1056,7 @@ export const lessons: Lesson[] = [
       es: "Contenido educativo. Las referencias a las NIF (CINIF), a los regímenes fiscales de personas físicas y morales, a los CFDI y a la deducibilidad de gastos son generales; las reglas fiscales cambian cada año, así que verifica la versión vigente (2026) con el SAT o un contador. Los porcentajes de reserva son ilustrativos.",
       en: "Educational content. References to NIF (CINIF), the tax regimes for individuals and legal entities, CFDI and expense deductibility are general; tax rules change every year, so verify the current version (2026) with the SAT or an accountant. Reserve percentages are illustrative.",
     },
-    exerciseIds: ['PER-18-E1', 'PER-18-E2', 'PER-18-E3', 'PER-18-E4', 'PER-18-E5', 'PER-18-E6'],
+    exerciseIds: ['PER-18-E1', 'PER-18-E2', 'PER-18-E3', 'PER-18-E4', 'PER-18-E6'],
   },
 ]
 

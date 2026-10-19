@@ -46,7 +46,7 @@ export const lessons: Lesson[] = [
       es: "El interés es el precio del dinero en el tiempo: el simple se calcula siempre sobre lo que prestaste o ahorraste, y el compuesto también sobre los intereses acumulados, por eso crece cada vez más rápido.",
       en: "Interest is the price of money over time: simple interest is always computed on what you lent or saved, while compound interest is also computed on accumulated interest, which is why it grows faster and faster.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es el interés y calcular interés simple y monto final con la fórmula I = C × i × t.", en: "Explain what interest is and compute simple interest and final amount with the formula I = C × i × t." },
       { es: "Calcular el monto con interés compuesto y explicar por qué crece más rápido que el simple.", en: "Compute the amount with compound interest and explain why it grows faster than simple interest." },
@@ -55,7 +55,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es el interés? El interés simple", en: "What is interest? Simple interest" },
+        heading: { es: "¿Cuánto cuesta usar dinero ajeno?", en: "What does borrowed money cost?" },
         body: [
           {
             es: "El **interés** es lo que se paga por usar dinero ajeno durante un tiempo. Si pides prestado, pagas interés; si ahorras en un banco, el banco te paga interés a ti porque usa tu dinero. Es como una **renta del dinero**.",
@@ -99,7 +99,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Interés compuesto: intereses que generan intereses", en: "Compound interest: interest earning interest" },
+        heading: { es: "Intereses que generan intereses", en: "Interest that earns interest" },
         body: [
           {
             es: "En el **interés compuesto**, al terminar cada periodo los intereses se **suman al capital** (a esto se le llama **capitalizar**). En el siguiente periodo se calcula interés sobre ese nuevo saldo más grande. Es la famosa **bola de nieve**: mientras más rueda, más crece.",
@@ -147,7 +147,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Capitalización, tasa por periodo y la regla del 72", en: "Compounding frequency, rate per period and the rule of 72" },
+        heading: { es: "¿Cada cuánto crece tu dinero?", en: "How often does your money grow?" },
         body: [
           {
             es: "Muchas tasas se anuncian **anuales**, pero se capitalizan cada mes, cada día o cada 28 días. Para usar la fórmula, divide la tasa anual entre el número de capitalizaciones al año (m) y multiplica los años por m. Así obtienes la **tasa por periodo** y el **número de periodos**.",
@@ -259,7 +259,7 @@ export const lessons: Lesson[] = [
       { es: "El compuesto ayuda al ahorro de largo plazo y castiga las deudas que no se pagan.", en: "Compounding helps long-term saving and punishes unpaid debts." },
     ],
     normativeNote: NOTE_RATES,
-    exerciseIds: ['PER-07-E1', 'PER-07-E2', 'PER-07-E3', 'PER-07-E4', 'PER-07-E5', 'PER-07-E6'],
+    exerciseIds: ['PER-07-E1', 'PER-07-E2', 'PER-07-E3', 'PER-07-E4', 'PER-07-E6'],
   },
 
   // ───────────────────────────── PER-08 ─────────────────────────────
@@ -272,7 +272,7 @@ export const lessons: Lesson[] = [
       es: "El crédito te permite usar hoy dinero que pagarás después con un costo; la tarjeta de crédito es una herramienta útil si conoces sus fechas, su límite y pagas a tiempo el total.",
       en: "Credit lets you use money today that you will pay back later at a cost; a credit card is a useful tool if you know its dates and limit and pay the full balance on time.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es el crédito y distinguir el crédito revolvente del no revolvente.", en: "Explain what credit is and distinguish revolving from non-revolving credit." },
       { es: "Identificar los elementos de una tarjeta de crédito: límite, fecha de corte, fecha límite de pago, pago mínimo y pago para no generar intereses.", en: "Identify the elements of a credit card: limit, statement date, payment due date, minimum payment and payment to avoid interest." },
@@ -281,7 +281,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es el crédito y qué tipos hay?", en: "What is credit and what types are there?" },
+        heading: { es: "¿Qué es pedir crédito?", en: "What is credit?" },
         body: [
           {
             es: "Un **crédito** es un acuerdo en el que una institución (el **acreedor**) te presta dinero o te deja comprar ahora, y tú (el **deudor**) te comprometes a pagarlo después, normalmente con **intereses** y a veces con **comisiones**. Es como pedir prestado a un amigo, pero con contrato, plazos y costo.",
@@ -298,7 +298,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo funciona una tarjeta de crédito", en: "How a credit card works" },
+        heading: { es: "¿Cómo funciona tu tarjeta?", en: "How does your card work?" },
         body: [
           {
             es: "La tarjeta tiene un **límite de crédito**: lo máximo que puedes deber. Lo que te queda por usar es el **crédito disponible** = límite − saldo que debes. Mini ejemplo: límite de $20,000 y debes $6,000; te quedan $14,000 disponibles.",
@@ -346,7 +346,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Meses sin intereses y uso inteligente", en: "Interest-free installments and smart use" },
+        heading: { es: "Meses sin intereses sin sustos", en: "Interest-free months, no surprises" },
         body: [
           {
             es: "Con **meses sin intereses (MSI)** divides una compra en partes iguales sin pagar intereses, **siempre que pagues cada mensualidad a tiempo**. Pero ojo: la compra completa **ocupa tu límite** desde el primer día y se va liberando conforme pagas. Además, cada mensualidad se suma a tus demás pagos del mes.",
@@ -437,7 +437,7 @@ export const lessons: Lesson[] = [
       { es: "Pagar puntual construye un buen historial crediticio.", en: "Paying on time builds a good credit history." },
     ],
     normativeNote: NOTE_CREDIT,
-    exerciseIds: ['PER-08-E1', 'PER-08-E2', 'PER-08-E3', 'PER-08-E4', 'PER-08-E5', 'PER-08-E6'],
+    exerciseIds: ['PER-08-E1', 'PER-08-E2', 'PER-08-E3', 'PER-08-E4', 'PER-08-E6'],
   },
 
   // ───────────────────────────── PER-09 ─────────────────────────────
@@ -450,7 +450,7 @@ export const lessons: Lesson[] = [
       es: "Para saber cuánto cuesta de verdad un crédito no basta la tasa: el CAT suma intereses y comisiones, y tu razón de endeudamiento te dice cuánta deuda puedes cargar sin ahogarte.",
       en: "To know what a loan really costs, the rate is not enough: the CAT adds up interest and fees, and your debt-to-income ratio tells you how much debt you can carry without drowning.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Distinguir tasa anual, tasa mensual, tasa fija, tasa variable, tasa ordinaria y tasa moratoria.", en: "Distinguish annual rate, monthly rate, fixed rate, variable rate, ordinary rate and default (late) rate." },
       { es: "Explicar qué es el CAT y usarlo para comparar créditos parecidos.", en: "Explain what the CAT is and use it to compare similar loans." },
@@ -458,7 +458,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Las tasas de interés y sus apellidos", en: "Interest rates and their labels" },
+        heading: { es: "Los apellidos de la tasa", en: "The rate’s last names" },
         body: [
           {
             es: "La **tasa de interés** es el porcentaje que te cobran por el dinero prestado. Casi siempre se anuncia **anual**, pero en tarjetas y préstamos se cobra cada mes. Una forma sencilla de ver la **tasa mensual** es dividir la anual entre 12: una tasa de 36% anual equivale a 3% mensual.",
@@ -505,7 +505,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "El CAT: el costo completo en un solo número", en: "The CAT: the full cost in a single number" },
+        heading: { es: "¿Qué crédito sale más barato?", en: "Which loan is cheaper?" },
         body: [
           {
             es: "Dos créditos con la misma tasa pueden costar distinto porque uno cobra **comisiones** (por apertura, anualidad o administración) y el otro no. Por eso en México existe el **CAT (Costo Anual Total)**: un porcentaje anual que junta **intereses, comisiones y otros cargos** del crédito en un solo indicador.",
@@ -528,7 +528,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Endeudamiento: ¿cuánta deuda aguantas?", en: "Indebtedness: how much debt can you handle?" },
+        heading: { es: "¿Cuánta deuda aguantas?", en: "How much debt can you handle?" },
         body: [
           {
             es: "El **endeudamiento** es la carga de deudas que tienes frente a lo que ganas. Lo que importa no es solo cuánto debes, sino cuánto de tu ingreso se va cada mes en pagarlo. Para medirlo se usa la **razón de endeudamiento** (o razón deuda/ingreso).",
@@ -614,7 +614,7 @@ export const lessons: Lesson[] = [
       { es: "Razón de endeudamiento = pagos de deuda ÷ ingreso neto; como guía práctica, mantenla por debajo de 30% a 35%.", en: "Debt-to-income ratio = debt payments ÷ net income; as a practical guideline, keep it below 30% to 35%." },
     ],
     normativeNote: NOTE_CAT,
-    exerciseIds: ['PER-09-E1', 'PER-09-E2', 'PER-09-E3', 'PER-09-E4', 'PER-09-E5', 'PER-09-E6'],
+    exerciseIds: ['PER-09-E1', 'PER-09-E2', 'PER-09-E3', 'PER-09-E4', 'PER-09-E6'],
   },
 
   // ───────────────────────────── PER-10 ─────────────────────────────
@@ -627,7 +627,7 @@ export const lessons: Lesson[] = [
       es: "Salir de deudas empieza con una lista honesta de lo que debes, sigue con un método claro (avalancha o bola de nieve) y se apoya en negociar, consolidar y evitar trampas.",
       en: "Getting out of debt starts with an honest list of what you owe, continues with a clear method (avalanche or snowball) and relies on negotiating, consolidating and avoiding traps.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Hacer un inventario de deudas con saldo, tasa, pago mínimo y fecha de pago.", en: "Build a debt inventory with balance, rate, minimum payment and due date." },
       { es: "Aplicar los métodos avalancha y bola de nieve para decidir qué deuda pagar primero.", en: "Apply the avalanche and snowball methods to decide which debt to pay first." },
@@ -635,7 +635,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Primer paso: el diagnóstico de tus deudas", en: "First step: diagnosing your debts" },
+        heading: { es: "¿Cuánto debes, de verdad?", en: "How much do you really owe?" },
         body: [
           {
             es: "No puedes ganarle a lo que no conoces. Haz una **lista de deudas** con cada acreedor: cuánto debes (**saldo**), qué tasa o CAT te cobran, cuál es el **pago mínimo** o mensualidad y en qué fecha vence. Muchas personas se sorprenden al ver el total por primera vez.",
@@ -658,7 +658,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Dos métodos para pagar: avalancha y bola de nieve", en: "Two payoff methods: avalanche and snowball" },
+        heading: { es: "¿Qué deuda pagas primero?", en: "Which debt do you pay first?" },
         body: [
           {
             es: "En ambos métodos la regla base es igual: **pagas el mínimo en todas tus deudas** para no atrasarte y destinas **todo el dinero extra** a una sola deuda. Cuando la liquidas, sumas lo que pagabas en ella a la siguiente. Así el pago extra crece como una bola.",
@@ -675,7 +675,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Negociar, consolidar y evitar trampas", en: "Negotiating, consolidating and avoiding traps" },
+        heading: { es: "Negociar sin caer en trampas", en: "Negotiate without falling for traps" },
         body: [
           {
             es: "**Negociar**: si no puedes pagar, habla con tu acreedor **antes** de atrasarte. Puede ofrecerte una **reestructura** (cambiar plazo o mensualidad) o un convenio. Pide todo por escrito. **Consolidar** es pedir un solo crédito más barato para pagar varias deudas caras: tendrás un solo pago y, si el CAT es menor, pagarás menos intereses.",
@@ -759,7 +759,7 @@ export const lessons: Lesson[] = [
       { es: "Nadie puede borrar legalmente un historial crediticio verdadero.", en: "Nobody can legally erase a true credit history." },
     ],
     normativeNote: NOTE_DEBT,
-    exerciseIds: ['PER-10-E1', 'PER-10-E2', 'PER-10-E3', 'PER-10-E4', 'PER-10-E5', 'PER-10-E6'],
+    exerciseIds: ['PER-10-E1', 'PER-10-E2', 'PER-10-E3', 'PER-10-E4', 'PER-10-E5'],
   },
 
   // ───────────────────────────── PER-11 ─────────────────────────────
@@ -772,7 +772,7 @@ export const lessons: Lesson[] = [
       es: "El fondo de emergencia es un colchón de dinero disponible, seguro y separado que cubre varios meses de tus gastos esenciales para que un imprevisto no se convierta en deuda.",
       en: "An emergency fund is a cushion of available, safe and separate money that covers several months of your essential expenses so a surprise does not turn into debt.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es un fondo de emergencia y qué cuenta como emergencia.", en: "Explain what an emergency fund is and what counts as an emergency." },
       { es: "Calcular la meta del fondo a partir de los gastos esenciales mensuales.", en: "Compute the fund's target from essential monthly expenses." },
@@ -780,7 +780,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es y para qué sirve?", en: "What is it and what is it for?" },
+        heading: { es: "¿Esto es una emergencia?", en: "Is this an emergency?" },
         body: [
           {
             es: "Un **fondo de emergencia** es dinero apartado **solo** para imprevistos importantes: perder el empleo, una enfermedad, una reparación urgente de la casa o del auto que usas para trabajar. Su trabajo es que, cuando llegue el golpe, **no tengas que endeudarte**.",
@@ -802,7 +802,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "¿Cuánto necesitas?", en: "How much do you need?" },
+        heading: { es: "¿Cuánto necesitas guardar?", en: "How much should you save?" },
         body: [
           {
             es: "La meta se calcula con tus **gastos esenciales**: lo que no puedes dejar de pagar aunque no tengas ingreso. Incluye renta o hipoteca, comida, luz, agua y gas, transporte al trabajo y los pagos mínimos de tus deudas. No incluye restaurantes, plataformas de streaming ni compras por gusto.",
@@ -843,7 +843,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Dónde guardarlo y cómo construirlo", en: "Where to keep it and how to build it" },
+        heading: { es: "¿Dónde lo guardas y cómo?", en: "Where and how do you keep it?" },
         body: [
           {
             es: "El fondo debe cumplir tres reglas: **liquidez** (que puedas sacarlo rápido, idealmente el mismo día o al siguiente), **seguridad** (que no pierda valor de golpe) y estar **separado** de tu cuenta de gastos diarios para que no te lo gastes sin darte cuenta.",
@@ -925,7 +925,7 @@ export const lessons: Lesson[] = [
       { es: "Automatiza el ahorro y repón el fondo cada vez que lo uses.", en: "Automate saving and replenish the fund every time you use it." },
     ],
     normativeNote: NOTE_EMERGENCY,
-    exerciseIds: ['PER-11-E1', 'PER-11-E2', 'PER-11-E3', 'PER-11-E4', 'PER-11-E5', 'PER-11-E6'],
+    exerciseIds: ['PER-11-E1', 'PER-11-E2', 'PER-11-E3', 'PER-11-E4', 'PER-11-E5'],
   },
 
   // ───────────────────────────── PER-12 ─────────────────────────────
@@ -938,7 +938,7 @@ export const lessons: Lesson[] = [
       es: "Invertir es poner tu dinero a trabajar para que crezca más que la inflación, eligiendo instrumentos según tu meta, tu plazo y el riesgo que puedes aguantar, y repartiendo para no depender de uno solo.",
       en: "Investing is putting your money to work so it grows faster than inflation, choosing instruments according to your goal, your time horizon and the risk you can bear, and spreading it so you do not depend on just one.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Distinguir ahorrar de invertir y calcular el rendimiento de una inversión.", en: "Distinguish saving from investing and compute an investment's return." },
       { es: "Explicar la relación entre riesgo, rendimiento, liquidez y plazo.", en: "Explain the relationship between risk, return, liquidity and time horizon." },
@@ -946,7 +946,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Ahorrar no es lo mismo que invertir", en: "Saving is not the same as investing" },
+        heading: { es: "¿Guardar o poner a trabajar?", en: "Save it or put it to work?" },
         body: [
           {
             es: "**Ahorrar** es guardar una parte de tu ingreso. **Invertir** es poner ese dinero en algo que pueda **generar más dinero**: prestarlo al gobierno o a una empresa a cambio de intereses, o volverte dueño de una parte de un negocio. Si solo guardas, la **inflación** se come poco a poco tu poder de compra.",
@@ -1014,7 +1014,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Riesgo, rendimiento, liquidez y plazo", en: "Risk, return, liquidity and time horizon" },
+        heading: { es: "¿Cuánto riesgo aguantas?", en: "How much risk can you take?" },
         body: [
           {
             es: "El **riesgo** es la posibilidad de que obtengas menos de lo esperado o incluso pierdas parte de tu dinero. La regla de oro: **a mayor rendimiento esperado, mayor riesgo**. Nadie regala rendimientos altos sin riesgo; si alguien te los \"garantiza\", desconfía.",
@@ -1037,7 +1037,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Tipos de instrumentos y diversificación", en: "Types of instruments and diversification" },
+        heading: { es: "No todo en una canasta", en: "Not all eggs in one basket" },
         body: [
           {
             es: "Los **instrumentos de deuda** (o renta fija) son préstamos que tú haces: al gobierno (como los **Cetes**, que son valores gubernamentales de corto plazo), a un banco (**pagarés**) o a empresas (**bonos**). Te prometen un interés; suelen tener menos riesgo y rendimientos más estables.",
@@ -1126,7 +1126,7 @@ export const lessons: Lesson[] = [
       { es: "Diversificar reduce el riesgo, pero no lo elimina.", en: "Diversifying reduces risk, but does not eliminate it." },
     ],
     normativeNote: NOTE_INVEST,
-    exerciseIds: ['PER-12-E1', 'PER-12-E2', 'PER-12-E3', 'PER-12-E4', 'PER-12-E5', 'PER-12-E6'],
+    exerciseIds: ['PER-12-E1', 'PER-12-E2', 'PER-12-E3', 'PER-12-E4', 'PER-12-E5'],
   },
 ]
 
