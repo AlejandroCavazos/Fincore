@@ -25,7 +25,7 @@ export const lessons: Lesson[] = [
       es: "Una serie de tiempo financiera es una lista ordenada de precios o rendimientos; para modelarla conviene trabajar con rendimientos, revisar si es estacionaria y usar modelos como AR para pronosticar.",
       en: "A financial time series is an ordered list of prices or returns; to model it you should work with returns, check whether it is stationary and use models such as AR to forecast.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Calcular rendimientos simples y logarítmicos a partir de una serie de precios y explicar cuándo usar cada uno.", en: "Compute simple and log returns from a price series and explain when to use each." },
       { es: "Distinguir una serie estacionaria de una no estacionaria (tendencia, caminata aleatoria) y explicar la autocorrelación.", en: "Distinguish a stationary series from a non-stationary one (trend, random walk) and explain autocorrelation." },
@@ -33,7 +33,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Precios, rendimientos simples y logarítmicos", en: "Prices, simple and log returns" },
+        heading: { es: "¿Cuánto cambió el precio?", en: "How much did the price change?" },
         body: [
           {
             es: "Una **serie de tiempo** es una lista de datos ordenados en el tiempo: el precio de cierre diario de una acción, el tipo de cambio peso-dólar cada mañana o la tasa de interés de cada mes. Lo que la hace especial es que **el orden importa**: el dato de hoy suele tener relación con el de ayer.",
@@ -102,7 +102,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Estacionariedad, autocorrelación y caminata aleatoria", en: "Stationarity, autocorrelation and random walk" },
+        heading: { es: "¿La serie tiene memoria?", en: "Does the series have memory?" },
         body: [
           {
             es: "Una serie es **estacionaria** cuando su comportamiento promedio no cambia con el tiempo: su media, su varianza y la relación entre datos separados por el mismo número de periodos se mantienen estables. Es como el clima de tu ciudad: cada día es distinto, pero los promedios del año son parecidos. Los modelos clásicos necesitan series estacionarias para que lo aprendido del pasado sirva para el futuro.",
@@ -125,7 +125,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Modelos AR, MA y pronóstico", en: "AR and MA models and forecasting" },
+        heading: { es: "¿Cómo pronosticar el siguiente dato?", en: "How to forecast the next value?" },
         body: [
           {
             es: "En palabras sencillas: un AR(1) es una regla de pronóstico que dice \"mañana se parecerá a hoy, pero un poco jalado hacia su promedio\". Un modelo **autorregresivo de orden 1, AR(1)**, dice que el valor de hoy depende del de ayer más un **choque** (una sorpresa que nadie pudo anticipar): X_t = c + φ·X_(t−1) + ε_t. El coeficiente **φ (fi)** mide la memoria: qué parte del dato de ayer sigue pesando hoy. Si |φ| < 1 la serie es estacionaria y **regresa a su media** de largo plazo, que vale c / (1 − φ). Si φ = 1 tenemos una caminata aleatoria.",
@@ -238,7 +238,7 @@ export const lessons: Lesson[] = [
       { es: "AR(1) con |φ| < 1 revierte a la media c / (1 − φ); los pronósticos se acercan a ella paso a paso.", en: "An AR(1) with |φ| < 1 reverts to the mean c / (1 − φ); forecasts approach it step by step." },
     ],
     normativeNote: NOTE_QUANT,
-    exerciseIds: ['CUA-07-E1', 'CUA-07-E2', 'CUA-07-E3', 'CUA-07-E4', 'CUA-07-E5', 'CUA-07-E6'],
+    exerciseIds: ['CUA-07-E1', 'CUA-07-E2', 'CUA-07-E3', 'CUA-07-E5', 'CUA-07-E6'],
   },
 
   // ───────────────────────────── CUA-08 ─────────────────────────────
@@ -251,7 +251,7 @@ export const lessons: Lesson[] = [
       es: "La volatilidad mide qué tanto se mueven los rendimientos; como cambia con el tiempo y se agrupa en rachas, se estima con modelos como EWMA y GARCH que dan más peso a la información reciente.",
       en: "Volatility measures how much returns move; since it changes over time and clusters in streaks, it is estimated with models such as EWMA and GARCH that give more weight to recent information.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Calcular la volatilidad histórica y anualizarla con la regla de la raíz del tiempo.", en: "Compute historical volatility and annualize it with the square-root-of-time rule." },
       { es: "Explicar el agrupamiento de volatilidad y actualizar una estimación EWMA.", en: "Explain volatility clustering and update an EWMA estimate." },
@@ -260,7 +260,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Volatilidad histórica y su anualización", en: "Historical volatility and annualization" },
+        heading: { es: "¿Qué tan brincón es un precio?", en: "How jumpy is a price?" },
         body: [
           {
             es: "En palabras sencillas: la volatilidad dice qué tan \"brincón\" es un precio. Técnicamente, la **volatilidad** es la **desviación estándar** de los rendimientos: mide qué tanto se alejan, en promedio, de su media. Su cuadrado se llama **varianza**; los modelos trabajan con la varianza y al final sacas raíz cuadrada para volver a la volatilidad. Una acción con volatilidad diaria de 2% se mueve típicamente alrededor de ±2% en un día; una con 0.5% es mucho más tranquila. No dice hacia dónde se moverá el precio, solo **qué tan fuerte**.",
@@ -302,7 +302,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Agrupamiento de volatilidad y EWMA", en: "Volatility clustering and EWMA" },
+        heading: { es: "¿Por qué hay rachas agitadas?", en: "Why do rough streaks happen?" },
         body: [
           {
             es: "En los mercados reales la volatilidad **no es constante**: hay rachas tranquilas y rachas agitadas. A esto se le llama **agrupamiento de volatilidad**: después de días con movimientos grandes suelen venir más días con movimientos grandes, aunque su dirección (alza o baja) sea impredecible. Piensa en una temporada de noticias económicas fuertes: el tipo de cambio se mueve mucho varios días seguidos.",
@@ -350,7 +350,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "GARCH(1,1) y volatilidad implícita", en: "GARCH(1,1) and implied volatility" },
+        heading: { es: "Volatilidad que regresa a lo normal", en: "Volatility that returns to normal" },
         body: [
           {
             es: "En palabras sencillas: GARCH es como EWMA, pero con un \"resorte\" que siempre jala la volatilidad hacia un nivel normal; después de una tormenta, el mercado tiende a calmarse. El modelo **GARCH(1,1)** agrega a EWMA un término constante **ω (omega)** que jala la varianza hacia un nivel de largo plazo. Tiene tres parámetros: ω, **α (alfa)**, que mide cuánto reacciona la varianza al último rendimiento, y **β (beta)**, que mide cuánto recuerda la varianza anterior. La suma **α + β es la persistencia**: si es cercana a 1, los choques de volatilidad tardan mucho en disiparse.",
@@ -468,7 +468,7 @@ export const lessons: Lesson[] = [
       { es: "La volatilidad implícita sale de precios de opciones y refleja expectativas del mercado.", en: "Implied volatility comes from option prices and reflects market expectations." },
     ],
     normativeNote: NOTE_QUANT,
-    exerciseIds: ['CUA-08-E1', 'CUA-08-E2', 'CUA-08-E3', 'CUA-08-E4', 'CUA-08-E5', 'CUA-08-E6'],
+    exerciseIds: ['CUA-08-E1', 'CUA-08-E2', 'CUA-08-E4', 'CUA-08-E5', 'CUA-08-E6'],
   },
 
   // ───────────────────────────── CUA-09 ─────────────────────────────
@@ -481,7 +481,7 @@ export const lessons: Lesson[] = [
       es: "La teoría de Markowitz muestra que el riesgo de un portafolio depende de cómo se mueven juntos sus activos, que la diversificación reduce riesgo y que los portafolios eficientes dan el mayor rendimiento para cada nivel de riesgo.",
       en: "Markowitz's theory shows that a portfolio's risk depends on how its assets move together, that diversification reduces risk and that efficient portfolios give the highest return for each level of risk.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Calcular el rendimiento esperado y la volatilidad de un portafolio de dos activos.", en: "Compute the expected return and volatility of a two-asset portfolio." },
       { es: "Explicar con covarianza y correlación por qué la diversificación reduce el riesgo.", en: "Explain with covariance and correlation why diversification reduces risk." },
@@ -489,7 +489,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Rendimiento y riesgo de un portafolio", en: "Portfolio return and risk" },
+        heading: { es: "¿Cuánto rinde tu mezcla?", en: "What does your mix return?" },
         body: [
           {
             es: "Harry Markowitz propuso en 1952 una idea que cambió la inversión: no basta con ver cada activo por separado; hay que ver el **portafolio completo**. Cada inversión se describe con dos números: su **rendimiento esperado** (lo que en promedio esperas ganar) y su **riesgo**, medido con la volatilidad (desviación estándar).",
@@ -530,7 +530,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Covarianza, correlación y diversificación", en: "Covariance, correlation and diversification" },
+        heading: { es: "¿Por qué conviene combinar inversiones?", en: "Why combine investments?" },
         body: [
           {
             es: "En palabras sencillas: si vendes paraguas y también lentes de sol, cuando llueve ganas con uno y cuando hace sol con el otro; tus ingresos se mueven menos. Eso es lo que buscan medir estos números. La **covarianza** mide si dos activos tienden a subir y bajar al mismo tiempo. La **correlación (ρ, rho)** es la covarianza \"estandarizada\": va de −1 a +1. Con ρ = +1 se mueven siempre en la misma dirección; con ρ = 0 no tienen relación lineal; con ρ = −1 uno sube exactamente cuando el otro baja. Se relacionan así: Cov(A,B) = ρ × σ_A × σ_B.",
@@ -600,7 +600,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Frontera eficiente e índice de Sharpe", en: "Efficient frontier and Sharpe ratio" },
+        heading: { es: "¿Cuál mezcla paga mejor el riesgo?", en: "Which mix pays best for risk?" },
         body: [
           {
             es: "Si combinas los activos de todas las formas posibles y grafica cada combinación (riesgo en el eje horizontal, rendimiento en el vertical), obtienes una nube de puntos. Su borde superior izquierdo es la **frontera eficiente**: los portafolios que dan el **mayor rendimiento esperado para cada nivel de riesgo**. Un portafolio debajo de la frontera es **ineficiente**: existe otro con el mismo riesgo y más rendimiento.",
@@ -693,7 +693,7 @@ export const lessons: Lesson[] = [
       { es: "La frontera eficiente da el máximo rendimiento por nivel de riesgo; el Sharpe mide rendimiento extra por unidad de riesgo.", en: "The efficient frontier gives maximum return per level of risk; Sharpe measures extra return per unit of risk." },
     ],
     normativeNote: NOTE_QUANT,
-    exerciseIds: ['CUA-09-E1', 'CUA-09-E2', 'CUA-09-E3', 'CUA-09-E4', 'CUA-09-E5', 'CUA-09-E6'],
+    exerciseIds: ['CUA-09-E1', 'CUA-09-E3', 'CUA-09-E4', 'CUA-09-E5', 'CUA-09-E6'],
   },
 
   // ───────────────────────────── CUA-10 ─────────────────────────────
@@ -706,7 +706,7 @@ export const lessons: Lesson[] = [
       es: "Optimizar es elegir la mejor decisión posible respetando reglas: se define qué se decide, qué se quiere maximizar o minimizar y qué restricciones hay, y se resuelve con programación lineal o con optimización media-varianza.",
       en: "Optimizing means choosing the best possible decision while respecting rules: you define what is decided, what you want to maximize or minimize and which constraints apply, and solve it with linear programming or mean-variance optimization.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Identificar variables de decisión, función objetivo y restricciones en un problema financiero.", en: "Identify decision variables, objective function and constraints in a financial problem." },
       { es: "Resolver un problema sencillo de programación lineal para asignar un presupuesto de inversión.", en: "Solve a simple linear programming problem to allocate an investment budget." },
@@ -715,7 +715,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Las piezas de un problema de optimización", en: "The pieces of an optimization problem" },
+        heading: { es: "¿Qué eliges y qué reglas sigues?", en: "What you choose, which rules apply" },
         body: [
           {
             es: "Optimizar es buscar **la mejor opción posible** dentro de lo permitido. Lo haces a diario: con tu quincena quieres cubrir gastos y ahorrar lo más posible, pero sin dejar de pagar renta. En finanzas se escribe de forma ordenada con tres piezas.",
@@ -738,7 +738,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Programación lineal", en: "Linear programming" },
+        heading: { es: "La mejor respuesta está en esquina", en: "The best answer is a corner" },
         body: [
           {
             es: "Cuando el objetivo y las restricciones son **lineales** (sumas de variables multiplicadas por números, sin cuadrados ni productos entre variables) se habla de **programación lineal**. Es muy usada para asignar presupuestos, armar carteras de bonos con límites o planear flujos de efectivo al menor costo.",
@@ -781,7 +781,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Optimización media-varianza", en: "Mean-variance optimization" },
+        heading: { es: "Menos riesgo con la mezcla justa", en: "Less risk with the right mix" },
         body: [
           {
             es: "La teoría de portafolios se convierte en un problema de optimización: **minimizar la varianza** del portafolio sujeto a obtener cierto rendimiento esperado, o **maximizar el rendimiento** sujeto a un riesgo máximo. Como la varianza tiene términos al cuadrado, ya no es lineal: es un problema **cuadrático**, que se resuelve con software.",
@@ -871,7 +871,7 @@ export const lessons: Lesson[] = [
       { es: "Los resultados son sensibles a errores de estimación; las restricciones los vuelven más razonables.", en: "Results are sensitive to estimation errors; constraints make them more reasonable." },
     ],
     normativeNote: NOTE_QUANT,
-    exerciseIds: ['CUA-10-E1', 'CUA-10-E2', 'CUA-10-E3', 'CUA-10-E4', 'CUA-10-E5', 'CUA-10-E6'],
+    exerciseIds: ['CUA-10-E1', 'CUA-10-E2', 'CUA-10-E4', 'CUA-10-E5', 'CUA-10-E6'],
   },
 
   // ───────────────────────────── CUA-11 ─────────────────────────────
@@ -884,7 +884,7 @@ export const lessons: Lesson[] = [
       es: "El VaR resume en un solo monto la pérdida que no debería superarse con cierta confianza y en cierto horizonte; se calcula por método paramétrico, histórico o Monte Carlo y se complementa con el Expected Shortfall.",
       en: "VaR summarizes in a single amount the loss that should not be exceeded with a given confidence over a given horizon; it is computed by the parametric, historical or Monte Carlo method and complemented with Expected Shortfall.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Interpretar correctamente un VaR con su nivel de confianza y horizonte.", en: "Correctly interpret a VaR with its confidence level and horizon." },
       { es: "Calcular el VaR paramétrico y escalarlo a otros horizontes.", en: "Compute parametric VaR and scale it to other horizons." },
@@ -893,7 +893,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué es el VaR y cómo se lee", en: "What VaR is and how to read it" },
+        heading: { es: "¿Cuánto podrías perder en un día?", en: "How much could you lose daily?" },
         body: [
           {
             es: "El **Value at Risk (VaR)**, o valor en riesgo, responde a una pregunta muy práctica: **¿cuánto podría perder, como máximo, en un día normal?** Se expresa con tres datos: un **monto**, un **horizonte** (1 día, 10 días) y un **nivel de confianza** (95%, 99%).",
@@ -910,7 +910,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Tres formas de calcularlo", en: "Three ways to compute it" },
+        heading: { es: "Tres formas de medirlo", en: "Three ways to measure it" },
         body: [
           {
             es: "**Paramétrico (varianza-covarianza)**: supone que los rendimientos siguen una distribución normal con media cercana a cero. Basta multiplicar el valor del portafolio por su volatilidad y por un factor **z** de la normal: 1.645 para 95% y 2.326 para 99%. El factor z dice cuántas volatilidades hay que alejarse del promedio para dejar fuera solo el 5% (o el 1%) de los días más malos. Es rápido, pero subestima el riesgo si las pérdidas extremas son más frecuentes que en la normal (\"colas pesadas\").",
@@ -977,7 +977,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Limitaciones y Expected Shortfall", en: "Limitations and Expected Shortfall" },
+        heading: { es: "¿Y en los días muy malos?", en: "And on the really bad days?" },
         body: [
           {
             es: "El VaR tiene puntos ciegos: **no dice qué pasa más allá** del umbral, depende de supuestos (normalidad, que el pasado se repita) y puede no premiar la diversificación en algunos casos (técnicamente, no siempre es \"subaditivo\"). Dos portafolios pueden tener el mismo VaR y pérdidas extremas muy distintas.",
@@ -1071,7 +1071,7 @@ export const lessons: Lesson[] = [
       { es: "Un buen modelo de VaR se revisa contando cuántas veces lo superaron las pérdidas reales.", en: "A good VaR model is reviewed by counting how often actual losses exceeded it." },
     ],
     normativeNote: NOTE_RISK_REG,
-    exerciseIds: ['CUA-11-E1', 'CUA-11-E2', 'CUA-11-E3', 'CUA-11-E4', 'CUA-11-E5', 'CUA-11-E6'],
+    exerciseIds: ['CUA-11-E1', 'CUA-11-E2', 'CUA-11-E4', 'CUA-11-E5', 'CUA-11-E6'],
   },
 
   // ───────────────────────────── CUA-12 ─────────────────────────────
@@ -1084,7 +1084,7 @@ export const lessons: Lesson[] = [
       es: "Las instituciones financieras enfrentan tres riesgos financieros centrales: perder por movimientos de precios (mercado), porque alguien no paga (crédito) o por no poder vender o fondearse a tiempo (liquidez); cada uno se mide con herramientas propias.",
       en: "Financial institutions face three core financial risks: losing from price moves (market), because someone does not pay (credit) or from not being able to sell or fund in time (liquidity); each one is measured with its own tools.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Distinguir riesgo de mercado, de crédito y de liquidez con ejemplos reales.", en: "Distinguish market, credit and liquidity risk with real examples." },
       { es: "Estimar el efecto de un cambio de tasas en un portafolio de bonos con la duración modificada.", en: "Estimate the effect of a rate change on a bond portfolio with modified duration." },
@@ -1093,7 +1093,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Riesgo de mercado", en: "Market risk" },
+        heading: { es: "Cuando los precios se mueven", en: "When market prices move" },
         body: [
           {
             es: "El **riesgo de mercado** es la posibilidad de perder porque cambian los **precios del mercado**. Sus fuentes principales son cuatro: **tasas de interés**, **tipo de cambio**, **precios de acciones** y **precios de materias primas** (petróleo, maíz, metales). Ejemplo cotidiano: si tienes una deuda en dólares y el peso se deprecia, necesitas más pesos para pagarla.",
@@ -1139,7 +1139,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Riesgo de crédito", en: "Credit risk" },
+        heading: { es: "Cuando alguien no te paga", en: "When someone does not pay you" },
         body: [
           {
             es: "El **riesgo de crédito** es la posibilidad de perder porque **alguien no te paga** lo que te debe: un cliente que deja de pagar su préstamo, una empresa que no paga su bono o la contraparte de un contrato que incumple. También hay pérdida si la calidad crediticia del deudor **empeora** (por ejemplo, le bajan la calificación) y su deuda vale menos en el mercado.",
@@ -1186,7 +1186,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Riesgo de liquidez y cómo se conectan", en: "Liquidity risk and how they connect" },
+        heading: { es: "¿Puedes vender o pagar a tiempo?", en: "Can you sell or pay on time?" },
         body: [
           {
             es: "El **riesgo de liquidez** tiene dos caras. La **liquidez de mercado** es no poder vender un activo rápido **sin castigar su precio**: un bono poco operado o un terreno. La **liquidez de fondeo** es no tener efectivo para **pagar obligaciones a tiempo**, aunque el negocio sea rentable: como una empresa con muchas ventas a crédito que no tiene dinero para la nómina del viernes.",
@@ -1280,7 +1280,7 @@ export const lessons: Lesson[] = [
       { es: "Los tres riesgos se contagian entre sí en momentos de estrés.", en: "The three risks spread to each other in times of stress." },
     ],
     normativeNote: NOTE_RISK_REG,
-    exerciseIds: ['CUA-12-E1', 'CUA-12-E2', 'CUA-12-E3', 'CUA-12-E4', 'CUA-12-E5', 'CUA-12-E6'],
+    exerciseIds: ['CUA-12-E1', 'CUA-12-E2', 'CUA-12-E3', 'CUA-12-E4', 'CUA-12-E5'],
   },
 ]
 

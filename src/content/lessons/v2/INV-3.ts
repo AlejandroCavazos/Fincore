@@ -42,7 +42,7 @@ export const lessons: Lesson[] = [
       es: "Un derivado es un contrato cuyo valor depende de otro activo; forwards, futuros, opciones y swaps sirven para cubrirse de riesgos o para especular con apalancamiento.",
       en: "A derivative is a contract whose value depends on another asset; forwards, futures, options and swaps are used to hedge risks or to speculate with leverage.",
     },
-    minutes: 19,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es un derivado y qué es su activo subyacente.", en: "Explain what a derivative is and what its underlying asset is." },
       { es: "Distinguir forwards, futuros, opciones y swaps.", en: "Distinguish forwards, futures, options and swaps." },
@@ -51,7 +51,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es un derivado? Forwards y futuros", en: "What is a derivative? Forwards and futures" },
+        heading: { es: "¿Qué es un derivado?", en: "What is a derivative?" },
         body: [
           {
             es: "Un **derivado** es un contrato cuyo valor **se deriva** de otra cosa, llamada **activo subyacente**: el dólar, una acción, un índice, el maíz o una tasa de interés. El contrato no es el dólar; es un acuerdo sobre qué pasará con el dólar.",
@@ -107,7 +107,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Opciones: el derecho, no la obligación", en: "Options: the right, not the obligation" },
+        heading: { es: "Opciones: derecho, no obligación", en: "Options: a right, not a duty" },
         body: [
           {
             es: "Una **opción** da a quien la compra el **derecho, pero no la obligación**, de comprar o vender un activo a un precio fijo llamado **precio de ejercicio** (strike), hasta o en una fecha de vencimiento. Por ese derecho paga una **prima**, como el seguro del coche.",
@@ -182,7 +182,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cobertura, especulación, apalancamiento y swaps", en: "Hedging, speculation, leverage and swaps" },
+        heading: { es: "¿Protegerte o apostar?", en: "Protect yourself or bet?" },
         body: [
           {
             es: "**Cubrirse** es usar un derivado para reducir un riesgo que ya tienes: el agricultor que vende futuros de maíz para asegurar su precio, o la empresa con deuda en dólares que compra dólares a futuro. **Especular** es tomar un riesgo que no tenías para intentar ganar con un movimiento del precio.",
@@ -278,7 +278,7 @@ export const lessons: Lesson[] = [
       { es: "El apalancamiento multiplica ganancias y pérdidas; puede costar más que lo invertido.", en: "Leverage multiplies gains and losses; it can cost more than what you invested." },
     ],
     normativeNote: NOTE_DERIV,
-    exerciseIds: ['INV-13-E1', 'INV-13-E2', 'INV-13-E3', 'INV-13-E4', 'INV-13-E5', 'INV-13-E6'],
+    exerciseIds: ['INV-13-E2', 'INV-13-E3', 'INV-13-E4', 'INV-13-E5', 'INV-13-E6'],
   },
 
   // ───────────────────────────── INV-14 ─────────────────────────────
@@ -291,7 +291,7 @@ export const lessons: Lesson[] = [
       es: "Los criptoactivos son registros digitales que se transfieren sin intermediarios gracias a la criptografía; pueden ser útiles, pero son muy volátiles y exigen cuidar la custodia, el tamaño de la posición y las estafas.",
       en: "Crypto-assets are digital records transferred without intermediaries thanks to cryptography; they can be useful, but they are very volatile and demand care with custody, position size and scams.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es un criptoactivo, una billetera y una clave privada.", en: "Explain what a crypto-asset, a wallet and a private key are." },
       { es: "Distinguir criptomonedas, tokens, stablecoins, NFT y monedas digitales de bancos centrales.", en: "Distinguish cryptocurrencies, tokens, stablecoins, NFTs and central bank digital currencies." },
@@ -300,7 +300,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué es un criptoactivo y cómo se guarda", en: "What a crypto-asset is and how it is held" },
+        heading: { es: "¿Dónde vive tu cripto?", en: "Where does your crypto live?" },
         body: [
           {
             es: "Un **criptoactivo** es un registro de valor digital que vive en una **blockchain**: un libro de cuentas compartido por miles de computadoras. Nadie lo emite como un banco; las reglas están escritas en el software y se protegen con **criptografía** (matemáticas para cifrar y firmar).",
@@ -321,7 +321,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Tipos de activos digitales", en: "Types of digital assets" },
+        heading: { es: "¿Todo lo digital es cripto?", en: "Is everything digital crypto?" },
         body: [
           {
             es: "No todo lo digital es igual. Las **criptomonedas nativas** (como bitcoin o ether) son la moneda propia de su red. Los **tokens** se crean sobre una red existente y representan algo: acceso a un servicio, un voto o un derecho.",
@@ -345,7 +345,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Riesgos y cómo dimensionar tu posición", en: "Risks and how to size your position" },
+        heading: { es: "¿Cuánto arriesgar en cripto?", en: "How much to risk in crypto?" },
         body: [
           {
             es: "La mayoría de los criptoactivos **no generan flujos** como dividendos o intereses: su precio depende de cuánta gente los quiera usar o comprar. Por eso son muy **volátiles**: caídas de más de la mitad de su valor han ocurrido varias veces en su historia.",
@@ -439,7 +439,7 @@ export const lessons: Lesson[] = [
       { es: "Alta volatilidad y fraudes: limita la posición a lo que puedas perder.", en: "High volatility and scams: limit the position to what you can afford to lose." },
     ],
     normativeNote: NOTE_CRYPTO,
-    exerciseIds: ['INV-14-E1', 'INV-14-E2', 'INV-14-E3', 'INV-14-E4', 'INV-14-E5', 'INV-14-E6'],
+    exerciseIds: ['INV-14-E2', 'INV-14-E3', 'INV-14-E4', 'INV-14-E5', 'INV-14-E6'],
   },
 
   // ───────────────────────────── INV-15 ─────────────────────────────
@@ -452,7 +452,7 @@ export const lessons: Lesson[] = [
       es: "Bitcoin es dinero digital escaso, Ethereum es una plataforma de contratos inteligentes y las stablecoins buscan un precio estable; cada uno tiene un diseño, un uso y riesgos distintos.",
       en: "Bitcoin is scarce digital money, Ethereum is a smart-contract platform and stablecoins seek a stable price; each has a different design, use and set of risks.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Describir el suministro limitado, la minería y la unidad mínima de Bitcoin.", en: "Describe Bitcoin's limited supply, mining and smallest unit." },
       { es: "Explicar qué son los contratos inteligentes y las comisiones de gas en Ethereum.", en: "Explain what smart contracts and gas fees on Ethereum are." },
@@ -461,7 +461,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Bitcoin: dinero digital con oferta fija", en: "Bitcoin: digital money with fixed supply" },
+        heading: { es: "Bitcoin: dinero con tope", en: "Bitcoin: money with a cap" },
         body: [
           {
             es: "**Bitcoin** nació en 2009 con un documento firmado con el seudónimo Satoshi Nakamoto. Su idea: un dinero digital que se transfiere entre personas sin banco, donde la red entera verifica que nadie gaste dos veces lo mismo.",
@@ -507,7 +507,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Ethereum: una computadora mundial", en: "Ethereum: a world computer" },
+        heading: { es: "¿Qué hace distinto a Ethereum?", en: "What makes Ethereum different?" },
         body: [
           {
             es: "**Ethereum** (lanzado en 2015) no solo mueve una moneda: permite programar **contratos inteligentes**, programas que se ejecutan solos cuando se cumplen condiciones. Es como una máquina expendedora: metes la moneda correcta y el refresco sale sin que nadie intervenga.",
@@ -553,7 +553,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Stablecoins: estables… mientras funcione el respaldo", en: "Stablecoins: stable… as long as the backing holds" },
+        heading: { es: "¿Estable significa sin riesgo?", en: "Does stable mean risk-free?" },
         body: [
           {
             es: "Una **stablecoin** busca valer siempre 1 dólar (u otra moneda). Sirve para moverse entre criptoactivos sin volver al banco, para pagos internacionales rápidos y como resguardo dentro del ecosistema cripto. Su estabilidad depende de **cómo se respalda**.",
@@ -645,7 +645,7 @@ export const lessons: Lesson[] = [
       { es: "Una stablecoin puede perder su paridad: estable no significa sin riesgo.", en: "A stablecoin can lose its peg: stable does not mean risk-free." },
     ],
     normativeNote: NOTE_STABLE,
-    exerciseIds: ['INV-15-E1', 'INV-15-E2', 'INV-15-E3', 'INV-15-E4', 'INV-15-E5', 'INV-15-E6'],
+    exerciseIds: ['INV-15-E1', 'INV-15-E2', 'INV-15-E3', 'INV-15-E4', 'INV-15-E6'],
   },
 
   // ───────────────────────────── INV-16 ─────────────────────────────
@@ -658,7 +658,7 @@ export const lessons: Lesson[] = [
       es: "Blockchain es un registro compartido e inalterable que puede tokenizar activos, acelerar la liquidación y automatizar contratos, aunque enfrenta límites técnicos, legales y de confianza en los datos.",
       en: "Blockchain is a shared, tamper-resistant ledger that can tokenize assets, speed up settlement and automate contracts, although it faces technical, legal and data-trust limits.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar cómo funciona una blockchain: bloques, hash y consenso.", en: "Explain how a blockchain works: blocks, hash and consensus." },
       { es: "Distinguir blockchains públicas y permisionadas.", en: "Distinguish public and permissioned blockchains." },
@@ -667,7 +667,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Cómo funciona una blockchain", en: "How a blockchain works" },
+        heading: { es: "¿Cómo funciona una blockchain?", en: "How does a blockchain work?" },
         body: [
           {
             es: "Una **blockchain** es un **registro distribuido**: un libro de cuentas del que muchas computadoras (nodos) tienen copia. Las operaciones se agrupan en **bloques**, y cada bloque guarda el **hash** del anterior. Un hash es una huella digital: un código corto que cambia por completo si alteras un solo dato.",
@@ -688,7 +688,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Tokenización, liquidación y contratos inteligentes", en: "Tokenization, settlement and smart contracts" },
+        heading: { es: "¿Qué es tokenizar un activo?", en: "What is tokenizing an asset?" },
         body: [
           {
             es: "**Tokenizar** es representar un activo real (un bono, un inmueble, una participación en un fondo) como un token en una blockchain. Permite dividirlo en fracciones pequeñas, transferirlo a cualquier hora y llevar el registro de dueños en un solo lugar.",
@@ -740,7 +740,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Límites y riesgos", en: "Limits and risks" },
+        heading: { es: "¿Qué no resuelve la blockchain?", en: "What blockchain does not solve" },
         body: [
           {
             es: "La blockchain garantiza que el registro no se altere, pero **no garantiza que el dato sea verdadero**. Si alguien registra que un inmueble existe y no existe, el token no vale nada. Los servicios que traen datos del mundo real a la cadena se llaman **oráculos**, y son un punto débil.",
@@ -804,7 +804,7 @@ export const lessons: Lesson[] = [
       { es: "Inalterable no es verdadero: datos externos, código, ley y liquidez siguen siendo riesgos.", en: "Tamper-resistant is not true: external data, code, law and liquidity remain risks." },
     ],
     normativeNote: NOTE_BLOCKCHAIN,
-    exerciseIds: ['INV-16-E1', 'INV-16-E2', 'INV-16-E3', 'INV-16-E4', 'INV-16-E5', 'INV-16-E6'],
+    exerciseIds: ['INV-16-E1', 'INV-16-E2', 'INV-16-E3', 'INV-16-E5', 'INV-16-E6'],
   },
 
   // ───────────────────────────── INV-17 ─────────────────────────────
@@ -817,7 +817,7 @@ export const lessons: Lesson[] = [
       es: "Gestionar el riesgo es identificar qué puede salir mal, medirlo con herramientas como la volatilidad, la caída máxima y el valor en riesgo, y controlarlo con el tamaño de posición, límites y coberturas.",
       en: "Managing risk means identifying what can go wrong, measuring it with tools such as volatility, maximum drawdown and value at risk, and controlling it with position sizing, limits and hedges.",
     },
-    minutes: 19,
+    minutes: 11,
     objectives: [
       { es: "Clasificar los principales tipos de riesgo de una inversión.", en: "Classify the main types of investment risk." },
       { es: "Calcular la caída máxima (drawdown) y la ganancia necesaria para recuperarse.", en: "Compute maximum drawdown and the gain needed to recover." },
@@ -826,7 +826,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Mapa de riesgos: qué puede salir mal", en: "Risk map: what can go wrong" },
+        heading: { es: "¿Qué puede salir mal?", en: "What can go wrong?" },
         body: [
           {
             es: "**Riesgo** es la posibilidad de que el resultado sea distinto (sobre todo peor) de lo que esperabas. Gestionarlo no es eliminarlo: es decidir **cuánto riesgo aceptas**, de qué tipo y a cambio de qué rendimiento.",
@@ -851,7 +851,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Medir el riesgo: volatilidad, drawdown y VaR", en: "Measuring risk: volatility, drawdown and VaR" },
+        heading: { es: "¿Cómo se mide el riesgo?", en: "How is risk measured?" },
         body: [
           {
             es: "La **volatilidad** (desviación estándar de los rendimientos) mide cuánto se mueven los precios alrededor de su promedio. A mayor volatilidad, más amplios son los sustos, hacia arriba y hacia abajo.",
@@ -945,7 +945,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Controlar el riesgo: tamaño, límites y coberturas", en: "Controlling risk: size, limits and hedges" },
+        heading: { es: "¿Cuánto arriesgar en cada compra?", en: "How much to risk per trade?" },
         body: [
           {
             es: "La herramienta más poderosa es el **tamaño de la posición**. Una regla común entre inversionistas activos es arriesgar solo un porcentaje pequeño del capital (por ejemplo, 1 % o 2 %) en cada operación. Se calcula cuántas acciones comprar según la distancia entre el precio de compra y el precio en que saldrías.",
@@ -1039,7 +1039,7 @@ export const lessons: Lesson[] = [
       { es: "El tamaño de la posición es la herramienta de control más poderosa.", en: "Position size is the most powerful control tool." },
       { es: "Un stop-loss no garantiza el precio de venta.", en: "A stop-loss does not guarantee the sale price." },
     ],
-    exerciseIds: ['INV-17-E1', 'INV-17-E2', 'INV-17-E3', 'INV-17-E4', 'INV-17-E5', 'INV-17-E6'],
+    exerciseIds: ['INV-17-E1', 'INV-17-E2', 'INV-17-E4', 'INV-17-E5', 'INV-17-E6'],
   },
 
   // ───────────────────────────── INV-18 ─────────────────────────────
@@ -1052,7 +1052,7 @@ export const lessons: Lesson[] = [
       es: "Invertir a largo plazo funciona mejor con un plan sencillo: aportar con disciplina, mantener costos bajos, ajustar el riesgo a la etapa de vida y no intentar adivinar el mercado.",
       en: "Long-term investing works best with a simple plan: contribute with discipline, keep costs low, match risk to your life stage and do not try to time the market.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Comparar la inversión pasiva (indexada) con la gestión activa.", en: "Compare passive (index) investing with active management." },
       { es: "Calcular el costo promedio con aportaciones periódicas.", en: "Compute the average cost with periodic contributions." },
@@ -1061,7 +1061,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Comprar y mantener: pasivo frente a activo", en: "Buy and hold: passive versus active" },
+        heading: { es: "¿Seguir al mercado o ganarle?", en: "Follow the market or beat it?" },
         body: [
           {
             es: "**Comprar y mantener** es invertir en activos diversificados y conservarlos por años, dejando que el **interés compuesto** trabaje: ganas rendimiento sobre tus rendimientos anteriores. El gran enemigo no es la caída temporal, sino vender por miedo en el peor momento.",
@@ -1112,7 +1112,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Aportaciones periódicas y costo promedio", en: "Periodic contributions and dollar-cost averaging" },
+        heading: { es: "¿Invertir lo mismo cada mes?", en: "Invest the same every month?" },
         body: [
           {
             es: "El **costo promedio** (en inglés, dollar-cost averaging) consiste en invertir **la misma cantidad cada mes**, sin importar el precio. Cuando el precio está bajo compras más unidades y cuando está alto compras menos.",
@@ -1164,7 +1164,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Un plan para toda la vida", en: "A plan for life" },
+        heading: { es: "¿Cómo armo mi plan?", en: "How do I build my plan?" },
         body: [
           {
             es: "Una buena estrategia empieza por **objetivos con fecha**: retiro en 30 años, enganche en 7, universidad de los hijos en 15. Cada meta tiene su horizonte y, por tanto, su nivel de riesgo adecuado.",
@@ -1235,7 +1235,7 @@ export const lessons: Lesson[] = [
       { es: "El ciclo de vida reduce la renta variable conforme se acerca la meta.", en: "The life-cycle approach reduces equities as the goal approaches." },
     ],
     normativeNote: NOTE_LONG,
-    exerciseIds: ['INV-18-E1', 'INV-18-E2', 'INV-18-E3', 'INV-18-E4', 'INV-18-E5', 'INV-18-E6'],
+    exerciseIds: ['INV-18-E1', 'INV-18-E2', 'INV-18-E3', 'INV-18-E4', 'INV-18-E6'],
   },
 ]
 

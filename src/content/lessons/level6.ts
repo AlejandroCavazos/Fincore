@@ -14,7 +14,7 @@ export const lessons: Lesson[] = [
       "Calcula e interpreta razones de liquidez, apalancamiento, rentabilidad y eficiencia, y descompón el ROE con el modelo DuPont para entender de dónde viene el rendimiento.",
       "Compute and interpret liquidity, leverage, profitability and efficiency ratios, and break down ROE with the DuPont model to understand where returns come from."
     ),
-    minutes: 18,
+    minutes: 14,
     objectives: [
       t("Calcular razones de liquidez y apalancamiento a partir del balance.", "Compute liquidity and leverage ratios from the balance sheet."),
       t("Calcular ROA, ROE y márgenes de rentabilidad.", "Compute ROA, ROE and profitability margins."),
@@ -23,7 +23,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Para qué sirve el análisis de razones", "What ratio analysis is for"),
+        heading: t("¿Para qué sirve una razón?", "What is a ratio for?"),
         body: [
           t(
             "En palabras sencillas: una **razón financiera** es una división entre dos números de los estados financieros que te dice algo útil. Es como el «kilómetros por litro» de un coche: saber que gastó 40 litros no dice mucho, pero saber que rinde 12 km por litro sí te permite compararlo con otros coches.",
@@ -36,7 +36,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Liquidez y apalancamiento", "Liquidity and leverage"),
+        heading: t("¿Puede pagar lo que debe?", "Can it pay what it owes?"),
         body: [
           t(
             "La **liquidez** mide la capacidad de cubrir obligaciones de corto plazo: ¿te alcanza para pagar lo que vence este año? El **activo circulante** es lo que tienes o cobrarás en menos de un año (efectivo, clientes, inventarios) y el **pasivo circulante** es lo que debes pagar en menos de un año (proveedores, préstamos cortos). La razón circulante compara ambos; la **prueba ácida** excluye los inventarios, que son el activo circulante menos líquido (primero hay que venderlos para tener dinero).",
@@ -123,7 +123,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Rentabilidad y eficiencia", "Profitability and efficiency"),
+        heading: t("Ganar y aprovechar lo que tienes", "Earning and using what you have"),
         body: [
           t(
             "La **rentabilidad** relaciona utilidades con ventas o con la inversión: margen neto (utilidad neta ÷ ventas), **ROA** (utilidad neta ÷ activo total) y **ROE** (utilidad neta ÷ capital contable). La **eficiencia** mide qué tan bien se usan los activos: rotación de activos (ventas ÷ activo total), rotación de inventarios (costo de ventas ÷ inventario) y **días de cobranza** (clientes ÷ ventas × 365).",
@@ -200,7 +200,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("El modelo DuPont", "The DuPont model"),
+        heading: t("¿De dónde sale la ganancia?", "Where does the profit come from?"),
         body: [
           t(
             "DuPont descompone el ROE en tres palancas: **margen neto** (rentabilidad de cada peso vendido), **rotación de activos** (eficiencia) y **multiplicador de capital** (activo total ÷ capital, es decir, apalancamiento). Dos empresas con el mismo ROE pueden lograrlo de forma muy distinta: una con alto margen, otra con alta rotación y otra con mucha deuda.",
@@ -277,7 +277,7 @@ export const lessons: Lesson[] = [
       t("ROE = margen × rotación × multiplicador de capital.", "ROE = margin × turnover × equity multiplier."),
       t("Un ROE alto puede venir de más deuda, lo que también eleva el riesgo.", "A high ROE can come from more debt, which also raises risk."),
     ],
-    exerciseIds: ["N6-001", "N6-002", "N6-003", "N6-004", "N6-005", "N6-006", "N6-007"],
+    exerciseIds: ["N6-001", "N6-002", "N6-003", "N6-005", "N6-006"],
   },
   // ───────────────────────────── L6-02 ─────────────────────────────
   {
@@ -289,7 +289,7 @@ export const lessons: Lesson[] = [
       "Proyecta estados financieros, calcula el flujo libre de efectivo de la empresa (FCFF), estima un valor terminal con el modelo de Gordon y valúa la empresa descontando al WACC, revisando cómo cambia el valor ante los supuestos.",
       "Project financial statements, compute free cash flow to the firm (FCFF), estimate a terminal value with the Gordon model and value the company by discounting at WACC, checking how value changes with the assumptions."
     ),
-    minutes: 22,
+    minutes: 14,
     objectives: [
       t("Proyectar ventas y partidas clave con supuestos explícitos.", "Project sales and key line items with explicit assumptions."),
       t("Calcular el FCFF a partir del EBIT.", "Compute FCFF starting from EBIT."),
@@ -298,7 +298,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Forecasting y modelos integrados", "Forecasting and integrated models"),
+        heading: t("Proyectar los próximos años", "Projecting the coming years"),
         body: [
           t(
             "El pronóstico parte de **impulsores (drivers)**: crecimiento de ventas, márgenes, días de capital de trabajo y CapEx como % de ventas. En un **modelo integrado**, los tres estados se conectan: la utilidad neta pasa a utilidades retenidas; la depreciación reduce el activo fijo y se suma en el flujo de operación; el efectivo final del flujo de efectivo debe coincidir con el efectivo del balance, y el balance debe cuadrar.",
@@ -336,7 +336,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Flujo libre de efectivo de la empresa (FCFF)", "Free cash flow to the firm (FCFF)"),
+        heading: t("¿Cuánto dinero libre deja?", "How much free cash is left?"),
         body: [
           t(
             "El FCFF es el efectivo disponible para **todos** los proveedores de capital (acreedores y accionistas) después de impuestos operativos, inversiones en activo fijo y en capital de trabajo. Como incluye a los acreedores, se descuenta al **WACC** y el resultado es el **Enterprise Value**.",
@@ -376,7 +376,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Valor terminal con Gordon", "Terminal value with Gordon"),
+        heading: t("¿Y todo lo que viene después?", "And everything after that?"),
         body: [
           t(
             "Después del periodo explícito (por ejemplo 5 años) se supone crecimiento constante g a perpetuidad. El modelo de Gordon solo tiene sentido si **r > g**: si g ≥ r el denominador es cero o negativo y el valor sería infinito o negativo. Además, g de largo plazo no debería superar el crecimiento nominal de la economía.",
@@ -444,7 +444,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Análisis de sensibilidad", "Sensitivity analysis"),
+        heading: t("¿Y si me equivoqué un poquito?", "What if I am a bit off?"),
         body: [
           t(
             "Un DCF es tan bueno como sus supuestos. La **sensibilidad** cambia un supuesto a la vez (WACC, g, margen) y muestra el efecto en el valor; una tabla de doble entrada WACC × g es lo más común. Los escenarios (base, optimista, pesimista) cambian varios supuestos a la vez de forma coherente.",
@@ -519,7 +519,7 @@ export const lessons: Lesson[] = [
       t("El valor terminal suele dominar el valor: haz sensibilidad sobre WACC y g.", "Terminal value often dominates value: run sensitivities on WACC and g."),
       t("En un modelo integrado, el efectivo del flujo debe igualar al del balance.", "In an integrated model, cash-flow cash must equal balance-sheet cash."),
     ],
-    exerciseIds: ["N6-008", "N6-009", "N6-010", "N6-011", "N6-012", "N6-013", "N6-014", "N6-015"],
+    exerciseIds: ["N6-009", "N6-010", "N6-011", "N6-014", "N6-015"],
   },
   // ───────────────────────────── L6-03 ─────────────────────────────
   {
@@ -531,7 +531,7 @@ export const lessons: Lesson[] = [
       "Construye el puente entre Enterprise Value y Equity Value y valúa una empresa con múltiplos comparables como EV/EBITDA y P/E, cuidando la consistencia entre numerador y denominador.",
       "Build the bridge between Enterprise Value and Equity Value and value a company with comparable multiples such as EV/EBITDA and P/E, keeping numerator and denominator consistent."
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Calcular el Enterprise Value a partir de la capitalización de mercado.", "Compute Enterprise Value from market capitalization."),
       t("Pasar de EV a valor del capital y a valor por acción.", "Move from EV to equity value and value per share."),
@@ -540,7 +540,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Dos formas de medir el valor", "Two ways to measure value"),
+        heading: t("¿Valor del negocio o del dueño?", "Value of the business or the owner?"),
         body: [
           t(
             "El **Equity Value** (valor del capital) es lo que vale la empresa para sus accionistas; en una empresa pública es la **capitalización de mercado** (acciones en circulación × precio). El **Enterprise Value (EV)** es el valor del negocio operativo para todos los proveedores de capital: accionistas, acreedores, accionistas preferentes y participación no controladora (minoritarios).",
@@ -579,7 +579,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Por qué se resta el efectivo", "Why cash is subtracted"),
+        heading: t("¿Por qué se resta el efectivo?", "Why is cash subtracted?"),
         body: [
           t(
             "El efectivo excedente no es parte del negocio operativo: quien compra la empresa «recupera» ese efectivo. Por eso se usa **deuda neta** (deuda − efectivo). Una consecuencia: pagar deuda con efectivo no cambia el EV (baja la deuda y baja el efectivo en la misma cantidad) ni el equity value.",
@@ -588,7 +588,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Valuación por múltiplos", "Multiples valuation"),
+        heading: t("¿Cuánto valen las parecidas?", "What are similar companies worth?"),
         body: [
           t(
             "La valuación relativa aplica a la empresa objetivo el múltiplo típico (mediana) de **comparables** del mismo sector, tamaño y crecimiento. La regla de oro es la **consistencia**: si el numerador es EV (todos los inversionistas), el denominador debe ser una métrica antes de intereses (ventas, EBITDA, EBIT). Si el numerador es el precio o equity value, el denominador es una métrica para el accionista (utilidad neta, valor en libros).",
@@ -693,7 +693,7 @@ export const lessons: Lesson[] = [
       t("Usa múltiplos consistentes: EV con EBITDA/EBIT/ventas; precio con utilidad neta.", "Use consistent multiples: EV with EBITDA/EBIT/sales; price with net income."),
       t("Pagar deuda con efectivo no cambia el EV.", "Repaying debt with cash does not change EV."),
     ],
-    exerciseIds: ["N6-016", "N6-017", "N6-018", "N6-019", "N6-020", "N6-021", "N6-022"],
+    exerciseIds: ["N6-016", "N6-017", "N6-018", "N6-019", "N6-021"],
   },
   // ───────────────────────────── L6-04 ─────────────────────────────
   {
@@ -705,7 +705,7 @@ export const lessons: Lesson[] = [
       "Evalúa sinergias, analiza si una adquisición pagada con acciones es acretiva o dilutiva para la UPA y mide los rendimientos de un LBO con MOIC y TIR.",
       "Evaluate synergies, analyze whether a stock-financed acquisition is accretive or dilutive to EPS, and measure LBO returns with MOIC and IRR."
     ),
-    minutes: 20,
+    minutes: 11,
     objectives: [
       t("Distinguir sinergias de costos, de ingresos y financieras.", "Distinguish cost, revenue and financial synergies."),
       t("Calcular la UPA pro forma y el efecto de acreción o dilución.", "Compute pro forma EPS and the accretion or dilution effect."),
@@ -714,7 +714,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Por qué se compran empresas", "Why companies are acquired"),
+        heading: t("¿Por qué comprar otra empresa?", "Why buy another company?"),
         body: [
           t(
             "Una adquisición crea valor si el valor combinado supera la suma de las partes más la prima pagada. La diferencia viene de las **sinergias**: de **costos** (eliminar duplicidades, economías de escala en compras), de **ingresos** (venta cruzada, nuevos canales) y **financieras** (menor costo de deuda). Las sinergias de costos suelen ser más confiables que las de ingresos.",
@@ -751,7 +751,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Acreción y dilución", "Accretion and dilution"),
+        heading: t("¿Cada acción gana más o menos?", "Does each share earn more or less?"),
         body: [
           t(
             "Una operación es **acretiva** si la UPA (utilidad por acción) pro forma del comprador sube, y **dilutiva** si baja. En una compra pagada con acciones y sin sinergias, una regla rápida: si el P/E del comprador es **mayor** que el P/E pagado por el objetivo, la operación es acretiva; si es menor, dilutiva. La acreción no garantiza creación de valor: es un indicador contable de corto plazo.",
@@ -792,7 +792,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Leveraged buyout (LBO)", "Leveraged buyout (LBO)"),
+        heading: t("Comprar una empresa con deuda", "Buying a company with debt"),
         body: [
           t(
             "En un LBO, un fondo de capital privado compra una empresa financiando gran parte del precio con **deuda** que se paga con los flujos de la propia empresa. Los rendimientos vienen de tres fuentes: crecimiento del EBITDA, **pago de deuda** (desapalancamiento) y posible expansión del múltiplo de salida.",
@@ -893,7 +893,7 @@ export const lessons: Lesson[] = [
       t("En un LBO el pago de deuda transfiere valor a los accionistas.", "In an LBO, debt paydown transfers value to shareholders."),
       t("MOIC ignora el tiempo; la TIR lo incorpora.", "MOIC ignores time; IRR incorporates it."),
     ],
-    exerciseIds: ["N6-023", "N6-024", "N6-025", "N6-026", "N6-027", "N6-028", "N6-029"],
+    exerciseIds: ["N6-023", "N6-024", "N6-025", "N6-027", "N6-029"],
   },
   // ───────────────────────────── L6-05 ─────────────────────────────
   {
@@ -905,7 +905,7 @@ export const lessons: Lesson[] = [
       "Valúa un bono descontando sus cupones, entiende el rendimiento al vencimiento y la relación inversa precio-tasa, y calcula los pagos de forwards, futuros y opciones.",
       "Value a bond by discounting its coupons, understand yield to maturity and the inverse price-yield relationship, and compute the payoffs of forwards, futures and options."
     ),
-    minutes: 20,
+    minutes: 14,
     objectives: [
       t("Calcular el precio de un bono con cupón fijo.", "Compute the price of a fixed-coupon bond."),
       t("Explicar el rendimiento al vencimiento (YTM) y por qué precio y tasa se mueven en sentido contrario.", "Explain yield to maturity (YTM) and why price and yield move in opposite directions."),
@@ -914,7 +914,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Precio de un bono", "Bond pricing"),
+        heading: t("¿Cuánto pagar hoy por un bono?", "How much to pay for a bond?"),
         body: [
           t(
             "Un bono paga cupones periódicos (tasa cupón × valor nominal) y devuelve el **valor nominal** al vencimiento. Su precio es el valor presente de esos flujos descontados al rendimiento que exige el mercado.",
@@ -960,7 +960,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Rendimiento al vencimiento y relación precio-tasa", "Yield to maturity and the price-yield relationship"),
+        heading: t("Tasas suben, precio baja", "Rates up, price down"),
         body: [
           t(
             "El **YTM** es la tasa que iguala el valor presente de los flujos del bono con su precio de mercado; es la TIR del bono si se mantiene al vencimiento y los cupones se reinvierten a esa misma tasa. Se obtiene por iteración o con calculadora financiera.",
@@ -977,7 +977,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Forwards y futuros", "Forwards and futures"),
+        heading: t("Apartar hoy el precio del dólar", "Locking in the dollar price today"),
         body: [
           t(
             "Un **forward** es un contrato privado (OTC), hecho a la medida, para comprar o vender un activo a un precio pactado en una fecha futura; se liquida al vencimiento y tiene riesgo de contraparte. Un **futuro** es similar pero estandarizado, se negocia en bolsa (en México, MexDer), pasa por una cámara de compensación y se **liquida diariamente** (marcado a mercado con márgenes).",
@@ -1014,7 +1014,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Opciones", "Options"),
+        heading: t("Un derecho, no una obligación", "A right, not an obligation"),
         body: [
           t(
             "Una **opción** da al comprador el **derecho, no la obligación**, de comprar (call) o vender (put) a un precio de ejercicio K; por ese derecho paga una **prima** por adelantado. El vendedor de la opción recibe la prima y asume la obligación.",
@@ -1091,7 +1091,7 @@ export const lessons: Lesson[] = [
       t("Forward: OTC y a la medida; futuro: en bolsa, estandarizado y con liquidación diaria.", "Forward: OTC and customized; future: exchange-traded, standardized and settled daily."),
       t("El comprador de una opción paga prima y su pérdida máxima es esa prima.", "An option buyer pays a premium and the maximum loss is that premium."),
     ],
-    exerciseIds: ["N6-030", "N6-031", "N6-032", "N6-033", "N6-034", "N6-035", "N6-036"],
+    exerciseIds: ["N6-031", "N6-033", "N6-034", "N6-035", "N6-036"],
   },
   // ───────────────────────────── L6-06 ─────────────────────────────
   {
@@ -1103,7 +1103,7 @@ export const lessons: Lesson[] = [
       "Calcula el rendimiento esperado y el riesgo de un portafolio de dos activos, entiende cómo la correlación genera diversificación y da tus primeros pasos con el VaR paramétrico.",
       "Compute the expected return and risk of a two-asset portfolio, understand how correlation drives diversification and take your first steps with parametric VaR."
     ),
-    minutes: 20,
+    minutes: 14,
     objectives: [
       t("Calcular el rendimiento esperado de un portafolio.", "Compute a portfolio's expected return."),
       t("Calcular la desviación estándar de un portafolio de dos activos con correlación.", "Compute the standard deviation of a two-asset portfolio with correlation."),
@@ -1112,7 +1112,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Rendimiento esperado del portafolio", "Portfolio expected return"),
+        heading: t("¿Cuánto rinde tu mezcla?", "What does your mix return?"),
         body: [
           t(
             "El rendimiento esperado de un portafolio es el **promedio ponderado** de los rendimientos esperados de sus activos, con ponderaciones iguales a la proporción invertida en cada uno (que suman 100 %).",
@@ -1149,7 +1149,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Riesgo de dos activos y correlación", "Two-asset risk and correlation"),
+        heading: t("¿Se mueven juntas o al revés?", "Do they move together or apart?"),
         body: [
           t(
             "El riesgo (desviación estándar) del portafolio **no** es el promedio ponderado de los riesgos, salvo que la correlación sea +1. El término de covarianza depende de la **correlación ρ** (entre −1 y +1): cuanto más baja, menor el riesgo del portafolio para el mismo rendimiento esperado. Con ρ = −1 es posible, en teoría, eliminar por completo el riesgo con las ponderaciones adecuadas.",
@@ -1193,7 +1193,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Diversificación y medidas de desempeño", "Diversification and performance measures"),
+        heading: t("¿Diversificar quita todo el riesgo?", "Does diversifying remove all risk?"),
         body: [
           t(
             "La diversificación reduce el **riesgo no sistemático** (específico de cada empresa), pero no elimina el **riesgo sistemático** (de mercado: tasas, recesiones), que es el que el mercado remunera (beta en CAPM). Para comparar portafolios con distinto riesgo se usa el **índice de Sharpe**: exceso de rendimiento sobre la tasa libre de riesgo por unidad de volatilidad.",
@@ -1230,7 +1230,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Introducción al Valor en Riesgo (VaR)", "Introduction to Value at Risk (VaR)"),
+        heading: t("¿Cuánto podrías perder en un día?", "How much could you lose in a day?"),
         body: [
           t(
             "El **VaR** estima la pérdida que no debería superarse con cierto **nivel de confianza** en un horizonte dado. En el método paramétrico, suponiendo rendimientos normales con media cercana a cero: VaR = Valor × σ del horizonte × z (z ≈ 1.645 al 95 %, ≈ 2.326 al 99 %).",
@@ -1306,7 +1306,7 @@ export const lessons: Lesson[] = [
       t("La diversificación elimina riesgo no sistemático, no el sistemático.", "Diversification removes unsystematic risk, not systematic risk."),
       t("El VaR no es la pérdida máxima; es un umbral con cierto nivel de confianza.", "VaR is not the maximum loss; it is a threshold at a given confidence level."),
     ],
-    exerciseIds: ["N6-037", "N6-038", "N6-039", "N6-040", "N6-041", "N6-042", "N6-043"],
+    exerciseIds: ["N6-037", "N6-038", "N6-041", "N6-042", "N6-043"],
   },
 ]
 

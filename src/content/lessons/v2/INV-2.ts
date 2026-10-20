@@ -36,7 +36,7 @@ export const lessons: Lesson[] = [
       es: "Una acción te hace dueño de una pequeña parte de una empresa; ganas por dividendos y por la subida del precio, pero tu rendimiento no está garantizado.",
       en: "A share makes you owner of a small part of a company; you earn through dividends and price increases, but your return is not guaranteed.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es una acción y qué derechos te da como accionista.", en: "Explain what a share is and what rights it gives you as a shareholder." },
       { es: "Calcular el rendimiento total de una acción sumando ganancia de precio y dividendos.", en: "Compute a stock's total return by adding price gain and dividends." },
@@ -44,7 +44,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es una acción y por qué se llama renta variable?", en: "What is a share and why is it called equity (variable income)?" },
+        heading: { es: "¿Qué compras con una acción?", en: "What do you buy with a share?" },
         body: [
           {
             es: "Una **acción** es una parte del capital de una empresa. Si una empresa tuviera 1,000 acciones y tú compras 10, eres dueño del 1 % de ella. No le prestas dinero: te vuelves **socio**. Por eso, si a la empresa le va bien, a ti también; si le va mal, tu inversión pierde valor.",
@@ -67,7 +67,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo ganas (y pierdes) con acciones", en: "How you earn (and lose) with stocks" },
+        heading: { es: "¿Cómo ganas o pierdes?", en: "How do you win or lose?" },
         body: [
           {
             es: "Hay dos fuentes de ganancia. La **ganancia de capital** (o plusvalía) es la diferencia entre el precio al que vendes y el precio al que compraste. El **dividendo** es la parte de la utilidad que la empresa reparte en efectivo a sus accionistas. Sumarlas te da el **rendimiento total**.",
@@ -135,7 +135,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo se compran acciones en México", en: "How shares are bought in Mexico" },
+        heading: { es: "¿Cómo compras acciones en México?", en: "How do you buy shares in Mexico?" },
         body: [
           {
             es: "Las acciones de empresas mexicanas cotizan en la **Bolsa Mexicana de Valores (BMV)** o en la **Bolsa Institucional de Valores (BIVA)**. Tú no entras directo a la bolsa: abres una cuenta con un **intermediario**, normalmente una **casa de bolsa** autorizada y supervisada por la CNBV, que envía tus órdenes. Acciones extranjeras pueden comprarse a través del **SIC** (Sistema Internacional de Cotizaciones).",
@@ -222,7 +222,7 @@ export const lessons: Lesson[] = [
       { es: "Orden a mercado: rapidez sin precio seguro. Orden limitada: precio seguro sin ejecución segura.", en: "Market order: speed without a sure price. Limit order: a sure price without sure execution." },
     ],
     normativeNote: NOTE_EQUITIES,
-    exerciseIds: ['INV-07-E1', 'INV-07-E2', 'INV-07-E3', 'INV-07-E4', 'INV-07-E5', 'INV-07-E6'],
+    exerciseIds: ['INV-07-E1', 'INV-07-E2', 'INV-07-E3', 'INV-07-E4', 'INV-07-E5'],
   },
 
   // ───────────────────────────── INV-08 ─────────────────────────────
@@ -235,7 +235,7 @@ export const lessons: Lesson[] = [
       es: "Los fondos de inversión y los ETFs juntan el dinero de muchas personas para comprar una canasta de valores, lo que te da diversificación con poco dinero; sus costos y su forma de operar marcan la diferencia.",
       en: "Investment funds and ETFs pool many people's money to buy a basket of securities, giving you diversification with little money; their costs and the way they trade make the difference.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es un fondo de inversión y cómo se calcula el precio de su acción.", en: "Explain what an investment fund is and how its share price is computed." },
       { es: "Distinguir un ETF de un fondo de inversión tradicional por la forma de comprarlo y su precio.", en: "Distinguish an ETF from a traditional investment fund by how you buy it and how it is priced." },
@@ -243,7 +243,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Fondos de inversión: una canasta compartida", en: "Investment funds: a shared basket" },
+        heading: { es: "¿Qué es un fondo de inversión?", en: "What is an investment fund?" },
         body: [
           {
             es: "Un **fondo de inversión** junta el dinero de muchas personas y lo invierte en una **cartera** de valores (bonos, acciones o ambos) según una estrategia escrita en su **prospecto**. Lo administra una **operadora** profesional. Piensa en una tanda gigante donde, en lugar de turnarse el dinero, todos compran juntos una canasta y cada quien es dueño de una parte.",
@@ -284,7 +284,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "ETFs: un fondo que cotiza como acción", en: "ETFs: a fund that trades like a stock" },
+        heading: { es: "¿Qué es un ETF?", en: "What is an ETF?" },
         body: [
           {
             es: "Un **ETF** (Exchange Traded Fund, o fondo cotizado) también es una canasta de valores, pero **cotiza en bolsa**: lo compras y vendes con tu casa de bolsa durante el horario de operación, a un precio que cambia a lo largo del día, igual que una acción.",
@@ -307,7 +307,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Gestión activa, pasiva y el peso de las comisiones", en: "Active and passive management and the weight of fees" },
+        heading: { es: "¿Cuánto te cuestan las comisiones?", en: "How much do fees cost you?" },
         body: [
           {
             es: "Un fondo de **gestión activa** tiene un equipo que elige qué comprar intentando ganarle al mercado. Uno de **gestión pasiva** (como la mayoría de los ETFs) solo copia un índice. La gestión activa suele cobrar más, y no siempre logra superar a su índice de referencia después de comisiones.",
@@ -418,7 +418,7 @@ export const lessons: Lesson[] = [
       { es: "Las comisiones anuales se acumulan con el tiempo y reducen tu interés compuesto.", en: "Annual fees accumulate over time and reduce your compound interest." },
     ],
     normativeNote: NOTE_FUNDS,
-    exerciseIds: ['INV-08-E1', 'INV-08-E2', 'INV-08-E3', 'INV-08-E4', 'INV-08-E5', 'INV-08-E6'],
+    exerciseIds: ['INV-08-E1', 'INV-08-E3', 'INV-08-E4', 'INV-08-E5', 'INV-08-E6'],
   },
 
   // ───────────────────────────── INV-09 ─────────────────────────────
@@ -431,7 +431,7 @@ export const lessons: Lesson[] = [
       es: "Las FIBRAs te permiten invertir en bienes raíces desde la bolsa con poco dinero: cobras parte de las rentas mediante distribuciones, aunque el precio del certificado sube y baja como cualquier valor.",
       en: "FIBRAs let you invest in real estate through the stock exchange with little money: you collect part of the rents through distributions, although the certificate's price rises and falls like any security.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es una FIBRA y qué compras al adquirir sus certificados.", en: "Explain what a FIBRA is and what you buy when you acquire its certificates." },
       { es: "Calcular el rendimiento por distribuciones y la tasa de ocupación de una FIBRA.", en: "Compute a FIBRA's distribution yield and occupancy rate." },
@@ -456,7 +456,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo genera rendimiento una FIBRA", en: "How a FIBRA generates returns" },
+        heading: { es: "¿Cómo te paga una FIBRA?", en: "How does a FIBRA pay you?" },
         body: [
           {
             es: "La FIBRA cobra **rentas** a sus inquilinos, paga gastos e intereses, y reparte buena parte de lo que queda a los tenedores en forma de **distribuciones**, normalmente cada trimestre. Por ley, las FIBRAs deben distribuir la mayor parte de su resultado fiscal (se suele citar al menos 95 %), por eso son atractivas para quien busca un **flujo periódico**.",
@@ -543,7 +543,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "FIBRA vs. comprar un inmueble directamente", en: "FIBRA vs. buying a property directly" },
+        heading: { es: "¿FIBRA o comprar un departamento?", en: "FIBRA or buying an apartment?" },
         body: [
           {
             es: "Comprar un departamento para rentarlo exige mucho dinero, trámites, encontrar inquilinos, dar mantenimiento y, si necesitas el dinero, venderlo puede tardar meses. Con una FIBRA inviertes montos pequeños, la administración la hacen profesionales y puedes vender tus CBFIs en bolsa en días hábiles.",
@@ -609,7 +609,7 @@ export const lessons: Lesson[] = [
       { es: "Frente a un inmueble directo: menos dinero, más liquidez y diversificación, pero menos control y precio volátil.", en: "Versus a direct property: less money, more liquidity and diversification, but less control and a volatile price." },
     ],
     normativeNote: NOTE_FIBRAS,
-    exerciseIds: ['INV-09-E1', 'INV-09-E2', 'INV-09-E3', 'INV-09-E4', 'INV-09-E5', 'INV-09-E6'],
+    exerciseIds: ['INV-09-E1', 'INV-09-E3', 'INV-09-E4', 'INV-09-E5', 'INV-09-E6'],
   },
 
   // ───────────────────────────── INV-10 ─────────────────────────────
@@ -622,7 +622,7 @@ export const lessons: Lesson[] = [
       es: "Un portafolio se construye decidiendo qué porcentaje va a cada tipo de activo según tu objetivo, se diversifica para no depender de una sola apuesta y se rebalancea para mantener el plan.",
       en: "A portfolio is built by deciding what percentage goes to each asset type according to your goal, diversified so you do not depend on a single bet, and rebalanced to stay on plan.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Definir una asignación de activos a partir del objetivo, el horizonte y la tolerancia al riesgo.", en: "Define an asset allocation based on goal, horizon and risk tolerance." },
       { es: "Explicar cómo la diversificación reduce el riesgo específico, pero no el riesgo de mercado.", en: "Explain how diversification reduces specific risk but not market risk." },
@@ -630,7 +630,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Asignación de activos: el plan del portafolio", en: "Asset allocation: the portfolio plan" },
+        heading: { es: "¿Cómo repartes tu dinero?", en: "How do you split your money?" },
         body: [
           {
             es: "Un **portafolio** (o cartera) es el conjunto de todas tus inversiones. Construirlo empieza por la **asignación de activos**: decidir qué porcentaje pones en cada tipo de inversión, por ejemplo 60 % en renta variable, 30 % en deuda y 10 % en FIBRAs. Esa decisión explica gran parte de cómo se comportará tu dinero.",
@@ -653,7 +653,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Diversificación: no todo en la misma canasta", en: "Diversification: not all eggs in one basket" },
+        heading: { es: "¿Por qué no todo junto?", en: "Why not all in one place?" },
         body: [
           {
             es: "**Diversificar** es repartir tu dinero entre inversiones que no se mueven igual, para que si una cae, otras compensen. Se puede diversificar por **tipo de activo** (acciones, deuda, inmuebles), por **sector** (bancos, consumo, energía), por **región** (México, Estados Unidos, otros países) y por **moneda** (pesos, dólares).",
@@ -670,7 +670,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Rendimiento ponderado y rebalanceo", en: "Weighted return and rebalancing" },
+        heading: { es: "¿Cómo regresas a tu plan?", en: "How do you get back to your plan?" },
         body: [
           {
             es: "El rendimiento de tu portafolio no es el promedio simple de tus inversiones: cada una cuenta según su **peso** (qué porcentaje del total ocupa). Se multiplica el peso de cada activo por su rendimiento y se suman los resultados.",
@@ -778,7 +778,7 @@ export const lessons: Lesson[] = [
       { es: "Diversificar reduce el riesgo específico, no el riesgo de mercado.", en: "Diversifying reduces specific risk, not market risk." },
       { es: "Rendimiento del portafolio = suma de peso × rendimiento; rebalancea para volver a tu plan.", en: "Portfolio return = sum of weight × return; rebalance to get back to your plan." },
     ],
-    exerciseIds: ['INV-10-E1', 'INV-10-E2', 'INV-10-E3', 'INV-10-E4', 'INV-10-E5', 'INV-10-E6'],
+    exerciseIds: ['INV-10-E1', 'INV-10-E3', 'INV-10-E4', 'INV-10-E5', 'INV-10-E6'],
   },
 
   // ───────────────────────────── INV-11 ─────────────────────────────
@@ -791,7 +791,7 @@ export const lessons: Lesson[] = [
       es: "El análisis fundamental estudia el negocio y los números de una empresa para estimar cuánto vale y compararlo con su precio en bolsa.",
       en: "Fundamental analysis studies a company's business and numbers to estimate what it is worth and compare that with its market price.",
     },
-    minutes: 19,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué busca el análisis fundamental y qué información usa.", en: "Explain what fundamental analysis seeks and what information it uses." },
       { es: "Calcular e interpretar UPA, P/U, P/VL, ROE y margen neto.", en: "Compute and interpret EPS, P/E, P/B, ROE and net margin." },
@@ -799,7 +799,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Precio no es lo mismo que valor", en: "Price is not the same as value" },
+        heading: { es: "¿Precio o valor?", en: "Price or value?" },
         body: [
           {
             es: "El **análisis fundamental** busca responder: ¿cuánto vale realmente esta empresa? Para eso estudia su **negocio** (qué vende, a quién, qué ventaja tiene frente a la competencia), su **administración** y sus **números** (ventas, utilidades, deudas, flujo de efectivo). El **precio** es lo que pagas hoy en bolsa; el **valor** es lo que, según tu análisis, vale la empresa.",
@@ -816,7 +816,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Las razones financieras clave", en: "Key financial ratios" },
+        heading: { es: "¿Cómo comparas empresas?", en: "How do you compare companies?" },
         body: [
           {
             es: "En palabras sencillas: una utilidad de $1 millón es mucho para una tiendita y poco para una cadena nacional; por eso los números se comparan en proporción. Una **razón financiera** divide un dato entre otro para poder comparar empresas de tamaños distintos. La **utilidad por acción (UPA)** reparte la utilidad neta entre las acciones: cuánto ganó la empresa por cada acción. El **múltiplo precio/utilidad (P/U)** te dice cuántos pesos pagas por cada peso de utilidad anual.",
@@ -894,7 +894,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Valor intrínseco y margen de seguridad", en: "Intrinsic value and margin of safety" },
+        heading: { es: "¿Cuánto vale de verdad?", en: "What is it really worth?" },
         body: [
           {
             es: "El **valor intrínseco** es tu estimación de lo que vale una acción. Una forma sencilla de estimarlo es con **múltiplos**: si las empresas parecidas cotizan a un P/U de 14 y esperas una UPA de $3, una estimación razonable es 14 × $3 = $42 por acción. Existen métodos más completos (como descontar flujos futuros), pero todos dependen de supuestos.",
@@ -1002,7 +1002,7 @@ export const lessons: Lesson[] = [
       { es: "El margen de seguridad protege contra errores en tu estimación de valor.", en: "The margin of safety protects against errors in your value estimate." },
     ],
     normativeNote: NOTE_REPORTS,
-    exerciseIds: ['INV-11-E1', 'INV-11-E2', 'INV-11-E3', 'INV-11-E4', 'INV-11-E5', 'INV-11-E6'],
+    exerciseIds: ['INV-11-E1', 'INV-11-E2', 'INV-11-E3', 'INV-11-E5', 'INV-11-E6'],
   },
 
   // ───────────────────────────── INV-12 ─────────────────────────────
@@ -1015,7 +1015,7 @@ export const lessons: Lesson[] = [
       es: "El análisis técnico estudia las gráficas de precio y volumen para identificar tendencias, soportes y resistencias; es una herramienta de probabilidades, no una bola de cristal.",
       en: "Technical analysis studies price and volume charts to identify trends, support and resistance; it is a tool of probabilities, not a crystal ball.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Leer una vela japonesa e identificar si es alcista o bajista.", en: "Read a candlestick and identify whether it is bullish or bearish." },
       { es: "Reconocer tendencias, soportes y resistencias en una gráfica.", en: "Recognize trends, support and resistance on a chart." },
@@ -1023,7 +1023,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué es el análisis técnico y cómo leer una vela", en: "What technical analysis is and how to read a candle" },
+        heading: { es: "¿Cómo se lee una vela?", en: "How do you read a candle?" },
         body: [
           {
             es: "El **análisis técnico** estudia el **comportamiento del precio y del volumen** en una gráfica para estimar hacia dónde es más probable que se mueva. A diferencia del análisis fundamental, no pregunta cuánto vale la empresa, sino **cómo se están comportando compradores y vendedores**.",
@@ -1070,7 +1070,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Tendencias, soportes y resistencias", en: "Trends, support and resistance" },
+        heading: { es: "¿Hacia dónde va el precio?", en: "Where is the price going?" },
         body: [
           {
             es: "Una **tendencia alcista** forma máximos y mínimos cada vez más altos, como una escalera que sube. Una **bajista**, máximos y mínimos cada vez más bajos. Si el precio se mueve de lado sin dirección clara se dice que está en **rango** o lateral.",
@@ -1093,7 +1093,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Indicadores básicos y control del riesgo", en: "Basic indicators and risk control" },
+        heading: { es: "Indicadores y cómo limitar pérdidas", en: "Indicators and how to limit losses" },
         body: [
           {
             es: "La **media móvil simple** (SMA) es el promedio de los últimos N cierres; se recalcula cada periodo y suaviza el ruido para ver la tendencia. Si el precio está por encima de su media móvil, la tendencia de ese plazo suele considerarse alcista. Cuando una media corta cruza hacia arriba a una larga, muchos lo leen como señal alcista.",
@@ -1207,7 +1207,7 @@ export const lessons: Lesson[] = [
       { es: "Soporte es un piso y resistencia un techo; el volumen confirma las rupturas.", en: "Support is a floor and resistance a ceiling; volume confirms breakouts." },
       { es: "SMA y RSI son alertas útiles; usa siempre un stop loss para limitar pérdidas.", en: "SMA and RSI are useful alerts; always use a stop loss to limit losses." },
     ],
-    exerciseIds: ['INV-12-E1', 'INV-12-E2', 'INV-12-E3', 'INV-12-E4', 'INV-12-E5', 'INV-12-E6'],
+    exerciseIds: ['INV-12-E1', 'INV-12-E2', 'INV-12-E3', 'INV-12-E5', 'INV-12-E6'],
   },
 ]
 

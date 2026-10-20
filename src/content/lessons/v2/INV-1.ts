@@ -40,7 +40,7 @@ export const lessons: Lesson[] = [
       es: "Invertir es poner tu dinero a trabajar para que crezca más que la inflación, entendiendo siempre la relación entre rendimiento, riesgo, liquidez y plazo.",
       en: "Investing is putting your money to work so it grows faster than inflation, always understanding the relationship between return, risk, liquidity and time horizon.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Distinguir entre ahorrar e invertir y explicar por qué el dinero guardado pierde valor con la inflación.", en: "Distinguish saving from investing and explain why idle money loses value to inflation." },
       { es: "Describir las cuatro características de toda inversión: rendimiento, riesgo, liquidez y plazo.", en: "Describe the four features of every investment: return, risk, liquidity and time horizon." },
@@ -48,7 +48,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Ahorrar no es lo mismo que invertir", en: "Saving is not the same as investing" },
+        heading: { es: "¿Guardar o poner a trabajar?", en: "Save it or put it to work?" },
         body: [
           {
             es: "**Ahorrar** es apartar una parte de tu ingreso en lugar de gastarla, como guardar billetes en un sobre o en el colchón. **Invertir** es dar un paso más: poner ese dinero ahorrado en algo que pueda **generar más dinero**, como prestarlo al gobierno, comprar una parte de una empresa o un inmueble que se renta.",
@@ -70,7 +70,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Rendimiento, riesgo, liquidez y plazo", en: "Return, risk, liquidity and time horizon" },
+        heading: { es: "¿Qué mirar antes de invertir?", en: "What to check before investing?" },
         body: [
           {
             es: "Toda inversión se describe con cuatro rasgos. El **rendimiento** es lo que ganas, normalmente en porcentaje del dinero que pusiste. El **riesgo** es la posibilidad de que el resultado sea distinto al esperado, incluso de perder parte de tu dinero.",
@@ -93,7 +93,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo medir lo que ganas: rendimiento nominal y real", en: "How to measure what you earn: nominal and real return" },
+        heading: { es: "¿Cuánto ganaste de verdad?", en: "How much did you really earn?" },
         body: [
           {
             es: "El **rendimiento** de un periodo compara lo que tienes al final, más lo que te pagaron en el camino (intereses o dividendos), contra lo que pusiste al inicio. Ese porcentaje es el **rendimiento nominal**: el que ves en tu estado de cuenta.",
@@ -211,7 +211,7 @@ export const lessons: Lesson[] = [
       { es: "El rendimiento real descuenta la inflación: (1 + nominal) ÷ (1 + inflación) − 1.", en: "Real return removes inflation: (1 + nominal) ÷ (1 + inflation) − 1." },
     ],
     normativeNote: NOTE_INVEST,
-    exerciseIds: ['INV-01-E1', 'INV-01-E2', 'INV-01-E3', 'INV-01-E4', 'INV-01-E5', 'INV-01-E6'],
+    exerciseIds: ['INV-01-E1', 'INV-01-E2', 'INV-01-E3', 'INV-01-E4', 'INV-01-E6'],
   },
 
   // ───────────────────────────── INV-02 ─────────────────────────────
@@ -224,7 +224,7 @@ export const lessons: Lesson[] = [
       es: "El sistema financiero mexicano conecta a quienes tienen dinero con quienes lo necesitan, a través de intermediarios vigilados por autoridades que regulan, supervisan y protegen al usuario.",
       en: "The Mexican financial system connects those who have money with those who need it, through intermediaries overseen by authorities that regulate, supervise and protect users.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar la función del sistema financiero: canalizar el ahorro hacia la inversión.", en: "Explain the role of the financial system: channeling savings into investment." },
       { es: "Identificar a las principales autoridades financieras de México y qué vigila cada una.", en: "Identify Mexico's main financial authorities and what each one oversees." },
@@ -232,7 +232,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Para qué sirve el sistema financiero", en: "What the financial system is for" },
+        heading: { es: "¿Quién une ahorro y préstamo?", en: "Who links savers and borrowers?" },
         body: [
           {
             es: "En cualquier país hay personas y empresas a las que **les sobra dinero** por un tiempo (ahorradores) y otras a las que **les falta** para un proyecto (una familia que quiere casa, una empresa que quiere una fábrica). El **sistema financiero** es el conjunto de instituciones, mercados y reglas que **conecta a unos con otros**.",
@@ -255,7 +255,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Las autoridades: quién vigila a quién", en: "The authorities: who oversees whom" },
+        heading: { es: "¿Quién vigila a los bancos?", en: "Who watches over the banks?" },
         body: [
           {
             es: "La **SHCP** (Secretaría de Hacienda y Crédito Público) encabeza el sistema: diseña la política financiera y coordina a los órganos supervisores. El **Banco de México (Banxico)** es autónomo; su objetivo prioritario es mantener el **poder adquisitivo de la moneda** (controlar la inflación) y para ello usa la tasa de interés objetivo. También vela por el buen funcionamiento de los sistemas de pagos.",
@@ -278,7 +278,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Intermediarios y cómo se protege tu dinero", en: "Intermediaries and how your money is protected" },
+        heading: { es: "¿Está protegido tu dinero?", en: "Is your money protected?" },
         body: [
           {
             es: "Los **intermediarios** son las instituciones con las que tratas directamente. Los **bancos** (banca múltiple, y la banca de desarrollo del gobierno) captan depósitos y prestan. Las **casas de bolsa** compran y venden valores por cuenta de sus clientes. Las **operadoras de fondos de inversión** administran fondos donde muchas personas juntan su dinero. También existen **aseguradoras**, **afores** y entidades de ahorro y crédito popular como **SOFIPOs** y **cooperativas**.",
@@ -356,7 +356,7 @@ export const lessons: Lesson[] = [
       { es: "Antes de invertir, verifica que la entidad esté autorizada.", en: "Before investing, check that the entity is authorized." },
     ],
     normativeNote: NOTE_SFM,
-    exerciseIds: ['INV-02-E1', 'INV-02-E2', 'INV-02-E3', 'INV-02-E4', 'INV-02-E5', 'INV-02-E6'],
+    exerciseIds: ['INV-02-E1', 'INV-02-E2', 'INV-02-E4', 'INV-02-E5', 'INV-02-E6'],
   },
 
   // ───────────────────────────── INV-03 ─────────────────────────────
@@ -369,7 +369,7 @@ export const lessons: Lesson[] = [
       es: "Los mercados financieros son los lugares donde se compran y venden instrumentos financieros; en la bolsa, los precios se forman por oferta y demanda a través de órdenes de compra y venta.",
       en: "Financial markets are the places where financial instruments are bought and sold; on the stock exchange, prices are set by supply and demand through buy and sell orders.",
     },
-    minutes: 16,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es un mercado financiero y qué funciones cumple.", en: "Explain what a financial market is and what functions it serves." },
       { es: "Distinguir el mercado primario del secundario y el bursátil del extrabursátil.", en: "Distinguish the primary from the secondary market and exchange-traded from over-the-counter." },
@@ -377,7 +377,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué es un mercado financiero", en: "What a financial market is" },
+        heading: { es: "¿Para qué sirve un mercado?", en: "What is a market for?" },
         body: [
           {
             es: "Un **mercado** es cualquier lugar, físico o electrónico, donde compradores y vendedores se encuentran. En un tianguis se intercambian jitomates; en un **mercado financiero** se intercambian **instrumentos financieros**: acciones, bonos, divisas (monedas de otros países) o contratos.",
@@ -399,7 +399,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Mercado primario, secundario y la bolsa", en: "Primary market, secondary market and the exchange" },
+        heading: { es: "¿Nuevo o de segunda mano?", en: "Brand new or second-hand?" },
         body: [
           {
             es: "En el **mercado primario** un título se vende **por primera vez**: el dinero va directo al emisor (la empresa o el gobierno). Cuando una empresa vende acciones al público por primera vez se llama **oferta pública inicial**. En el **mercado secundario**, los inversionistas **se revenden** esos títulos entre sí; el emisor ya no recibe dinero, pero ese mercado da liquidez.",
@@ -416,7 +416,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo se forma un precio en bolsa", en: "How a price forms on the exchange" },
+        heading: { es: "¿Cómo se pone un precio?", en: "How is a price set?" },
         body: [
           {
             es: "En la bolsa, quien quiere comprar pone una **postura de compra** (cuánto está dispuesto a pagar) y quien quiere vender una **postura de venta** (cuánto pide). La mejor postura de compra es el precio más alto que alguien ofrece; la mejor de venta, el precio más bajo que alguien acepta. La diferencia entre ambas es el **diferencial** o **spread**.",
@@ -509,7 +509,7 @@ export const lessons: Lesson[] = [
       { es: "Orden de mercado: ejecución inmediata; orden limitada: tú fijas el precio.", en: "Market order: immediate execution; limit order: you set the price." },
     ],
     normativeNote: NOTE_MARKETS,
-    exerciseIds: ['INV-03-E1', 'INV-03-E2', 'INV-03-E3', 'INV-03-E4', 'INV-03-E5', 'INV-03-E6'],
+    exerciseIds: ['INV-03-E1', 'INV-03-E2', 'INV-03-E4', 'INV-03-E5', 'INV-03-E6'],
   },
 
   // ───────────────────────────── INV-04 ─────────────────────────────
@@ -522,7 +522,7 @@ export const lessons: Lesson[] = [
       es: "El mercado de dinero negocia deuda de corto plazo, líquida y de bajo riesgo; el mercado de capitales financia proyectos de largo plazo con acciones y deuda a varios años.",
       en: "The money market trades short-term, liquid, low-risk debt; the capital market funds long-term projects with stocks and multi-year debt.",
     },
-    minutes: 15,
+    minutes: 11,
     objectives: [
       { es: "Distinguir el mercado de dinero del de capitales por plazo, riesgo y propósito.", en: "Distinguish the money market from the capital market by term, risk and purpose." },
       { es: "Reconocer instrumentos típicos de cada mercado.", en: "Recognize typical instruments of each market." },
@@ -530,7 +530,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Dos mercados según el plazo", en: "Two markets by term" },
+        heading: { es: "¿Corto o largo plazo?", en: "Short or long term?" },
         body: [
           {
             es: "Los mercados financieros se suelen dividir por **plazo**. El **mercado de dinero** es donde se negocian instrumentos de **deuda de corto plazo**, en general de **un año o menos**. Sirve para que gobiernos, bancos y empresas cubran necesidades de efectivo inmediatas, y para que los inversionistas estacionen dinero con poco riesgo.",
@@ -551,7 +551,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Instrumentos del mercado de dinero", en: "Money-market instruments" },
+        heading: { es: "¿Dónde estacionar dinero poco tiempo?", en: "Where to park money briefly?" },
         body: [
           {
             es: "Los más conocidos en México son los **CETES** (deuda del gobierno federal a corto plazo, que verás a detalle en el siguiente tema), los **pagarés bancarios** (un banco te paga un interés fijo por prestarle a un plazo, como 28 o 91 días) y el **papel comercial** (deuda de corto plazo de empresas).",
@@ -589,7 +589,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Mercado de capitales y cómo elegir", en: "Capital market and how to choose" },
+        heading: { es: "¿Cuál le conviene a tu meta?", en: "Which one fits your goal?" },
         body: [
           {
             es: "En el mercado de capitales, al comprar **acciones** te vuelves socio: ganas si la empresa crece (sube el precio o reparte dividendos) y pierdes si le va mal. Con **bonos de largo plazo** prestas a varios años a cambio de intereses periódicos. Ambos pueden subir y bajar de precio antes de su vencimiento o de que vendas.",
@@ -648,7 +648,7 @@ export const lessons: Lesson[] = [
       { es: "Elige el mercado según cuándo necesitas el dinero.", en: "Choose the market according to when you need the money." },
     ],
     normativeNote: NOTE_INVEST,
-    exerciseIds: ['INV-04-E1', 'INV-04-E2', 'INV-04-E3', 'INV-04-E4', 'INV-04-E5', 'INV-04-E6'],
+    exerciseIds: ['INV-04-E1', 'INV-04-E2', 'INV-04-E3', 'INV-04-E4', 'INV-04-E6'],
   },
 
   // ───────────────────────────── INV-05 ─────────────────────────────
@@ -661,7 +661,7 @@ export const lessons: Lesson[] = [
       es: "Los CETES son préstamos de corto plazo que le haces al Gobierno Federal: los compras con descuento y al vencimiento recibes $10 por título; junto con Bonos M, Udibonos y Bondes forman la deuda gubernamental.",
       en: "CETES are short-term loans you make to the Federal Government: you buy them at a discount and at maturity you receive $10 per security; together with Bonos M, Udibonos and Bondes they make up government debt.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué son los CETES, quién los emite y cómo funcionan a descuento.", en: "Explain what CETES are, who issues them and how they work at a discount." },
       { es: "Calcular el precio de un CETE a partir de su tasa y su ganancia al vencimiento.", en: "Compute a CETE's price from its rate and its gain at maturity." },
@@ -669,7 +669,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Qué son los CETES y cómo funcionan", en: "What CETES are and how they work" },
+        heading: { es: "¿Prestarle dinero al gobierno?", en: "Lend money to the government?" },
         body: [
           {
             es: "Los **CETES** (Certificados de la Tesorería de la Federación) son títulos de deuda que emite el **Gobierno Federal** para conseguir dinero a corto plazo. Cuando compras CETES, **le prestas al gobierno**. Se consideran de los instrumentos de **menor riesgo en pesos** en México, porque el emisor es el propio gobierno.",
@@ -692,7 +692,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Precio y rendimiento de un CETE", en: "Price and return of a CETE" },
+        heading: { es: "¿Cuánto pagas por un CETE?", en: "How much does a CETE cost?" },
         body: [
           {
             es: "En palabras sencillas: el precio de hoy es la cantidad que, sumándole los intereses del plazo, se convierte justo en $10 al vencimiento. La **tasa de rendimiento** de un CETE es anual y se calcula con año de 360 días. Para saber cuánto pagas hoy, divides los $10 que recibirás entre uno más la parte de la tasa que corresponde al plazo. Entre **más alta la tasa** o **más largo el plazo**, **más bajo** es el precio de hoy.",
@@ -765,7 +765,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Otros bonos del gobierno: Bonos M, Udibonos y Bondes", en: "Other government bonds: Bonos M, Udibonos and Bondes" },
+        heading: { es: "¿Y si la inflación sube?", en: "What if inflation rises?" },
         body: [
           {
             es: "Para plazos más largos, el gobierno emite otros instrumentos. Los **Bonos M** son de **tasa fija**: pagan un **cupón** (un interés periódico, cada seis meses) siempre igual, y devuelven su valor nominal al final, a varios años. Si la inflación sube mucho, ese pago fijo pierde poder de compra.",
@@ -831,7 +831,7 @@ export const lessons: Lesson[] = [
       { es: "La ganancia paga impuestos; revisa la regla fiscal vigente.", en: "The gain is taxed; check the current tax rule." },
     ],
     normativeNote: NOTE_GOV_DEBT,
-    exerciseIds: ['INV-05-E1', 'INV-05-E2', 'INV-05-E3', 'INV-05-E4', 'INV-05-E5', 'INV-05-E6'],
+    exerciseIds: ['INV-05-E1', 'INV-05-E3', 'INV-05-E4', 'INV-05-E5', 'INV-05-E6'],
   },
 
   // ───────────────────────────── INV-06 ─────────────────────────────
@@ -844,7 +844,7 @@ export const lessons: Lesson[] = [
       es: "Un bono es un préstamo que le haces a un emisor a cambio de cupones y la devolución del valor nominal; su precio se mueve al revés que las tasas y su riesgo depende de quién lo emite.",
       en: "A bond is a loan you make to an issuer in exchange for coupons and the return of the face value; its price moves opposite to rates and its risk depends on who issues it.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Identificar las partes de un bono: emisor, valor nominal, cupón y vencimiento.", en: "Identify a bond's parts: issuer, face value, coupon and maturity." },
       { es: "Explicar por qué el precio de un bono baja cuando suben las tasas y calcular su rendimiento corriente.", en: "Explain why a bond's price falls when rates rise and compute its current yield." },
@@ -852,7 +852,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Anatomía de un bono", en: "Anatomy of a bond" },
+        heading: { es: "¿Qué trae un bono por dentro?", en: "What is inside a bond?" },
         body: [
           {
             es: "Un **bono** es un título de deuda: cuando lo compras, **le prestas dinero al emisor** (un gobierno o una empresa). A cambio, el emisor se compromete a pagarte **intereses** periódicos y a devolverte el dinero en una fecha fija. Se llama **renta fija** porque los pagos están **definidos desde el inicio**, no porque no tenga riesgo.",
@@ -888,7 +888,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Precio y tasas: el sube y baja", en: "Price and rates: the seesaw" },
+        heading: { es: "Tasas suben, precio baja", en: "Rates up, price down" },
         body: [
           {
             es: "El **valor presente** es cuánto vale hoy un pago que recibirás en el futuro: un peso de dentro de un año vale menos que uno de hoy, porque el de hoy lo podrías invertir. El precio de un bono es el valor presente de todo lo que te pagará: cada cupón y el valor nominal, \"traídos a hoy\" con la tasa que el mercado exige. Si el precio es igual al valor nominal se dice que cotiza **a la par**; si es menor, **bajo par**; si es mayor, **sobre par**.",
@@ -942,7 +942,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Riesgos y calificaciones de la renta fija", en: "Fixed-income risks and ratings" },
+        heading: { es: "¿Qué puede salir mal?", en: "What can go wrong?" },
         body: [
           {
             es: "La renta fija tiene riesgos. El **riesgo de crédito** es que el emisor no pague completo o a tiempo. El **riesgo de tasa** es que suban las tasas y baje el precio si necesitas vender antes del vencimiento. El **riesgo de inflación** es que los pagos fijos compren menos. El **riesgo de liquidez** es no encontrar comprador rápido a buen precio.",
@@ -1008,7 +1008,7 @@ export const lessons: Lesson[] = [
       { es: "Riesgos: crédito, tasa, inflación y liquidez; las calificaciones miden el de crédito.", en: "Risks: credit, rate, inflation and liquidity; ratings measure credit risk." },
     ],
     normativeNote: NOTE_BONDS,
-    exerciseIds: ['INV-06-E1', 'INV-06-E2', 'INV-06-E3', 'INV-06-E4', 'INV-06-E5', 'INV-06-E6'],
+    exerciseIds: ['INV-06-E1', 'INV-06-E2', 'INV-06-E3', 'INV-06-E4', 'INV-06-E5'],
   },
 ]
 

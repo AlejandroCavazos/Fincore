@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
       "Las finanzas corporativas deciden en qué invertir, cómo pagarlo y qué hacer con las ganancias, buscando crear valor sin perder de vista el riesgo ni el efectivo.",
       "Corporate finance decides what to invest in, how to pay for it and what to do with profits, aiming to create value without losing sight of risk or cash.",
     ),
-    minutes: 15,
+    minutes: 11,
     objectives: [
       t("Explicar qué son las finanzas corporativas y cuál es su objetivo principal.", "Explain what corporate finance is and what its main objective is."),
       t("Distinguir las decisiones de inversión, de financiamiento y de dividendos.", "Distinguish investment, financing and dividend decisions."),
@@ -48,7 +48,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué son las finanzas corporativas?", "What is corporate finance?"),
+        heading: t("¿Para qué sirven las finanzas?", "What is finance for?"),
         body: [
           t(
             "Las **finanzas** estudian cómo se consigue, se usa y se cuida el dinero. Las **finanzas corporativas** aplican esa idea a una empresa: desde una taquería con dos sucursales hasta una cadena de autoservicio.",
@@ -65,7 +65,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Las tres grandes decisiones", "The three big decisions"),
+        heading: t("Tres preguntas sobre el dinero", "Three questions about money"),
         body: [
           t(
             "Casi todo lo que hace el área de finanzas cae en tres preguntas. La **decisión de inversión**: ¿en qué gastamos el dinero para que produzca más? Por ejemplo, comprar un horno nuevo o abrir otra sucursal.",
@@ -88,7 +88,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Riesgo, rendimiento y efectivo", "Risk, return and cash"),
+        heading: t("Ganancia, riesgo y efectivo", "Return, risk and cash"),
         body: [
           t(
             "El **rendimiento** es lo que ganas con una inversión, medido en porcentaje de lo que pusiste. El **riesgo** es la posibilidad de que el resultado sea distinto (sobre todo peor) de lo esperado. Regla básica: **a mayor riesgo, se exige mayor rendimiento**. Nadie presta a un negocio nuevo y desconocido a la misma tasa que al gobierno.",
@@ -199,7 +199,7 @@ export const lessons: Lesson[] = [
       t("Rendimiento = ganancia total ÷ lo invertido.", "Return = total gain ÷ amount invested."),
       t("Utilidad no es efectivo: un negocio rentable puede quedarse sin liquidez.", "Profit is not cash: a profitable business can run out of liquidity."),
     ],
-    exerciseIds: ['FIN-01-E1', 'FIN-01-E2', 'FIN-01-E3', 'FIN-01-E4', 'FIN-01-E5', 'FIN-01-E6'],
+    exerciseIds: ['FIN-01-E1', 'FIN-01-E2', 'FIN-01-E3', 'FIN-01-E4', 'FIN-01-E5'],
   },
 
   // ───────────────────────────── FIN-02 ─────────────────────────────
@@ -212,7 +212,7 @@ export const lessons: Lesson[] = [
       "Las matemáticas financieras te enseñan a calcular intereses: el simple, que se cobra solo sobre el capital, y el compuesto, que también genera intereses sobre los intereses.",
       "Financial mathematics teaches you to compute interest: simple interest, charged only on the principal, and compound interest, which also earns interest on interest.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Usar porcentajes y expresar tasas y plazos en la misma unidad de tiempo.", "Use percentages and express rates and terms in the same time unit."),
       t("Calcular interés simple y monto final.", "Compute simple interest and final amount."),
@@ -221,7 +221,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Tasas, plazos y porcentajes", "Rates, terms and percentages"),
+        heading: t("¿Cuánto cuesta usar dinero ajeno?", "What does borrowed money cost?"),
         body: [
           t(
             "El **interés** es el precio de usar dinero ajeno. Si pides prestado, lo pagas; si ahorras o prestas, lo cobras. El dinero que prestas o pides se llama **capital** o **principal** (P).",
@@ -269,7 +269,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Interés simple", "Simple interest"),
+        heading: t("Interés simple: siempre igual", "Simple interest: always the same"),
         body: [
           t(
             "En el **interés simple** los intereses se calculan siempre sobre el **capital original**. Los intereses no se suman al capital para generar más intereses. Se usa en préstamos de corto plazo, pagarés y algunos créditos entre comercios.",
@@ -313,7 +313,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Interés compuesto y tasa efectiva", "Compound interest and effective rate"),
+        heading: t("Interés sobre interés", "Interest on interest"),
         body: [
           t(
             "En el **interés compuesto**, al final de cada periodo los intereses se **suman al capital** (se \"capitalizan\") y el siguiente periodo ganan intereses también. Es \"interés sobre interés\" y hace que el dinero crezca cada vez más rápido. Así funcionan casi todas las inversiones y créditos de largo plazo.",
@@ -425,7 +425,7 @@ export const lessons: Lesson[] = [
       t("Para comparar opciones, usa tasas efectivas anuales.", "To compare options, use effective annual rates."),
     ],
     normativeNote: NOTE_RATES,
-    exerciseIds: ['FIN-02-E1', 'FIN-02-E2', 'FIN-02-E3', 'FIN-02-E4', 'FIN-02-E5', 'FIN-02-E6'],
+    exerciseIds: ['FIN-02-E1', 'FIN-02-E2', 'FIN-02-E3', 'FIN-02-E4', 'FIN-02-E6'],
   },
 
   // ───────────────────────────── FIN-03 ─────────────────────────────
@@ -438,7 +438,7 @@ export const lessons: Lesson[] = [
       "Un peso hoy vale más que un peso mañana; por eso, para comparar cantidades de fechas distintas, se llevan todas a la misma fecha con valor futuro o valor presente.",
       "A peso today is worth more than a peso tomorrow; so, to compare amounts on different dates, you bring them all to the same date using future value or present value.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Explicar por qué el dinero tiene un valor distinto según la fecha.", "Explain why money has a different value depending on the date."),
       t("Calcular el valor futuro y el valor presente de una cantidad.", "Compute the future value and the present value of an amount."),
@@ -447,7 +447,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Por qué un peso hoy vale más?", "Why is a peso today worth more?"),
+        heading: t("¿Hoy o dentro de un año?", "Today or in a year?"),
         body: [
           t(
             "Si te ofrecen $10,000 hoy o $10,000 dentro de un año, casi todos elegimos hoy. Esa intuición tiene nombre: **valor del dinero en el tiempo**. Hay tres razones.",
@@ -469,7 +469,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Valor futuro y valor presente", "Future value and present value"),
+        heading: t("Llevar y traer dinero", "Moving money through time"),
         body: [
           t(
             "El **valor futuro** (VF) responde: \"si invierto esto hoy, ¿cuánto tendré después?\". Es el interés compuesto que ya conoces: VF = VP × (1 + i)ⁿ. Llevar dinero hacia adelante se llama **capitalizar**.",
@@ -538,7 +538,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Anualidades: series de pagos iguales", "Annuities: series of equal payments"),
+        heading: t("Pagos iguales cada periodo", "Equal payments every period"),
         body: [
           t(
             "Una **anualidad** es una serie de pagos **iguales** hechos cada periodo durante un plazo fijo: las mensualidades de un auto, la renta de un local o un ahorro mensual fijo. Aunque se llame \"anualidad\", el periodo puede ser mes, bimestre o año.",
@@ -626,7 +626,7 @@ export const lessons: Lesson[] = [
       t("Una anualidad es una serie de pagos iguales; su VP es menor que la suma simple de los pagos.", "An annuity is a series of equal payments; its PV is less than the simple sum of the payments."),
     ],
     normativeNote: NOTE_TVM,
-    exerciseIds: ['FIN-03-E1', 'FIN-03-E2', 'FIN-03-E3', 'FIN-03-E4', 'FIN-03-E5', 'FIN-03-E6'],
+    exerciseIds: ['FIN-03-E1', 'FIN-03-E2', 'FIN-03-E3', 'FIN-03-E4', 'FIN-03-E5'],
   },
 
   // ───────────────────────────── FIN-04 ─────────────────────────────
@@ -639,7 +639,7 @@ export const lessons: Lesson[] = [
       "Analizar estados financieros es convertir sus cifras en historias: con el análisis vertical ves el peso de cada partida y con el horizontal cómo cambió de un año a otro.",
       "Analyzing financial statements turns their figures into stories: vertical analysis shows the weight of each item and horizontal analysis shows how it changed from one year to the next.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Identificar qué pregunta responde cada estado financiero básico.", "Identify which question each basic financial statement answers."),
       t("Aplicar el análisis vertical (porcentajes integrales).", "Apply vertical analysis (common-size percentages)."),
@@ -648,7 +648,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Qué cuenta cada estado financiero", "What each financial statement tells"),
+        heading: t("Cuatro reportes, cuatro preguntas", "Four reports, four questions"),
         body: [
           t(
             "Los **estados financieros** son los reportes que resumen la vida económica de una empresa. Para el análisis importan sobre todo cuatro, y cada uno responde una pregunta distinta.",
@@ -671,7 +671,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Análisis vertical", "Vertical analysis"),
+        heading: t("¿En qué se va cada peso?", "Where does each peso go?"),
         body: [
           t(
             "El **análisis vertical** compara cada partida contra una **cifra base del mismo estado y del mismo periodo**. En el estado de resultados la base suele ser las **ventas** (100 %); en el balance, el **activo total** (100 %). El resultado se llama **porcentaje integral**.",
@@ -712,7 +712,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Análisis horizontal e interpretación", "Horizontal analysis and interpretation"),
+        heading: t("¿Qué creció más rápido?", "What grew faster?"),
         body: [
           t(
             "El **análisis horizontal** compara **la misma partida en dos o más periodos** y mide cuánto cambió, en pesos y en porcentaje. Responde: ¿qué creció, qué bajó y a qué ritmo?",
@@ -800,7 +800,7 @@ export const lessons: Lesson[] = [
       t("Interpretar es comparar ritmos y hacer preguntas, no solo calcular.", "Interpreting means comparing paces and asking questions, not just computing."),
     ],
     normativeNote: NOTE_NIF,
-    exerciseIds: ['FIN-04-E1', 'FIN-04-E2', 'FIN-04-E3', 'FIN-04-E4', 'FIN-04-E5', 'FIN-04-E6'],
+    exerciseIds: ['FIN-04-E1', 'FIN-04-E2', 'FIN-04-E3', 'FIN-04-E4', 'FIN-04-E5'],
   },
 
   // ───────────────────────────── FIN-05 ─────────────────────────────
@@ -813,7 +813,7 @@ export const lessons: Lesson[] = [
       "Las razones financieras dividen una cifra entre otra para medir, de forma rápida, la liquidez, el endeudamiento, la eficiencia y la rentabilidad de una empresa.",
       "Financial ratios divide one figure by another to quickly measure a company's liquidity, leverage, efficiency and profitability.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Calcular e interpretar razones de liquidez: circulante y prueba ácida.", "Compute and interpret liquidity ratios: current ratio and quick ratio."),
       t("Calcular e interpretar razones de endeudamiento.", "Compute and interpret leverage ratios."),
@@ -822,7 +822,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Liquidez: ¿alcanza para pagar a corto plazo?", "Liquidity: is there enough to pay in the short term?"),
+        heading: t("¿Alcanza para pagar pronto?", "Enough to pay soon?"),
         body: [
           t(
             "Una **razón financiera** es una división entre dos cifras de los estados financieros que dice algo útil. Solo, un número como \"$300,000 de deuda\" dice poco; dividido entre lo que la empresa tiene para pagarla, dice mucho.",
@@ -886,7 +886,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Endeudamiento: ¿quién financia a la empresa?", "Leverage: who finances the company?"),
+        heading: t("¿Quién pagó lo que tienes?", "Who paid for what you own?"),
         body: [
           t(
             "Las **razones de endeudamiento** (o apalancamiento) miden qué parte de la empresa se financia con dinero prestado. La más común es **pasivo total ÷ activo total**: si da 40 %, de cada $100 de activos, $40 se pagaron con deuda y $60 con dinero de los dueños.",
@@ -930,7 +930,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Rentabilidad y actividad", "Profitability and activity"),
+        heading: t("¿Cuánto gana y qué tan rápido?", "How much it earns, how fast"),
         body: [
           t(
             "Las **razones de rentabilidad** miden cuánto gana la empresa en relación con lo que vende o con lo que usa. El **margen neto** = utilidad neta ÷ ventas. El **ROA** (rendimiento sobre activos) = utilidad neta ÷ activo total. El **ROE** (rendimiento sobre capital) = utilidad neta ÷ capital contable: lo que ganan los dueños por cada peso que tienen invertido.",
@@ -1048,7 +1048,7 @@ export const lessons: Lesson[] = [
       t("Una razón solo tiene sentido comparada con años previos y con el sector.", "A ratio only makes sense compared with prior years and the industry."),
     ],
     normativeNote: NOTE_RATIOS,
-    exerciseIds: ['FIN-05-E1', 'FIN-05-E2', 'FIN-05-E3', 'FIN-05-E4', 'FIN-05-E5', 'FIN-05-E6'],
+    exerciseIds: ['FIN-05-E1', 'FIN-05-E2', 'FIN-05-E3', 'FIN-05-E4', 'FIN-05-E6'],
   },
 
   // ───────────────────────────── FIN-06 ─────────────────────────────
@@ -1061,7 +1061,7 @@ export const lessons: Lesson[] = [
       "Administrar el capital de trabajo es manejar efectivo, cobranza, inventarios y proveedores para que el negocio opere sin quedarse sin dinero y sin tener recursos ociosos.",
       "Managing working capital means handling cash, collections, inventory and suppliers so the business operates without running out of money and without idle resources.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Calcular el capital de trabajo y explicar qué significa.", "Compute working capital and explain what it means."),
       t("Calcular el ciclo de conversión del efectivo.", "Compute the cash conversion cycle."),
@@ -1069,7 +1069,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué es el capital de trabajo?", "What is working capital?"),
+        heading: t("El colchón del día a día", "The day-to-day cushion"),
         body: [
           t(
             "El **capital de trabajo** son los recursos de corto plazo con los que la empresa opera día a día: efectivo, cuentas por cobrar a clientes e inventarios, menos lo que debe pagar pronto, como proveedores y sueldos por pagar.",
@@ -1113,7 +1113,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("El ciclo de conversión del efectivo", "The cash conversion cycle"),
+        heading: t("Los días del dinero atrapado", "Days your cash is stuck"),
         body: [
           t(
             "Imagina una tienda de ropa: compra prendas, las tiene en el aparador unos días, las vende a crédito y después cobra. Mientras tanto, también debe pagar al proveedor. El **ciclo de conversión del efectivo** (CCE) mide cuántos días pasa el dinero \"atrapado\" en la operación.",
@@ -1189,7 +1189,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Cómo se administra en la práctica", "How it is managed in practice"),
+        heading: t("Palancas para liberar efectivo", "Levers to free up cash"),
         body: [
           t(
             "Cada parte del ciclo tiene palancas. En **cobranza**: definir a quién dar crédito, recordar pagos antes del vencimiento y ofrecer un pequeño descuento por pronto pago. En **inventarios**: comprar según lo que realmente se vende y liquidar lo que no se mueve.",
@@ -1247,7 +1247,7 @@ export const lessons: Lesson[] = [
       t("Un ciclo más corto requiere menos financiamiento.", "A shorter cycle requires less financing."),
       t("Las palancas son cobranza, inventarios, proveedores y presupuesto de efectivo.", "The levers are collections, inventory, suppliers and the cash budget."),
     ],
-    exerciseIds: ['FIN-06-E1', 'FIN-06-E2', 'FIN-06-E3', 'FIN-06-E4', 'FIN-06-E5', 'FIN-06-E6'],
+    exerciseIds: ['FIN-06-E1', 'FIN-06-E2', 'FIN-06-E3', 'FIN-06-E4', 'FIN-06-E5'],
   },
 ]
 

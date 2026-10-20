@@ -5,6 +5,8 @@ import { cx, Rich } from '../ui'
 
 const mxn = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 0 })
 const money = (n: number) => `$${mxn.format(n)}`
+const num = new Intl.NumberFormat('es-MX', { maximumFractionDigits: 4 })
+const calcMoney = (n: number) => `$${num.format(n)}`
 const SIDE = { D: 'Debe (cargo)', C: 'Haber (abono)' } as const
 
 function Shell({ icon, title, tone, children, testid }: { icon: ReactNode; title: string; tone: string; children: ReactNode; testid: string }) {
@@ -274,8 +276,8 @@ export function CalcBlock({ game, onSolved }: { game: Calc; onSolved: () => void
   const done = ok || tries >= 2
   const check = () => {
     if (done || !val.trim()) return
-    const n = Number(val.replace(/[$,\s]/g, ''))
-    if (n === game.answer) {
+    const n = Number(val.replace(/[$,%\s]/g, '').replace(/[−–]/g, '-'))
+    if (Number.isFinite(n) && Math.abs(n - game.answer) < 1e-6) {
       setOk(true)
       onSolved()
     } else {
@@ -292,7 +294,7 @@ export function CalcBlock({ game, onSolved }: { game: Calc; onSolved: () => void
         <div className="flex flex-1 items-center rounded-xl border-2 border-navy-200 px-3 focus-within:border-teal-500 dark:border-navy-700">
           {!game.unit && <span className="text-lg font-bold text-navy-400">$</span>}
           <input
-            inputMode="numeric"
+            inputMode={game.answer < 0 ? 'text' : Number.isInteger(game.answer) ? 'numeric' : 'decimal'}
             data-testid="calc-input"
             value={val}
             disabled={done}
@@ -311,7 +313,7 @@ export function CalcBlock({ game, onSolved }: { game: Calc; onSolved: () => void
       {!done && tries === 1 && <p className="animate-shake mt-2 text-sm text-amber-700 dark:text-amber-300">🤔 Casi. Pista: <Rich text={game.hint} /></p>}
       {done && (
         <p className={cx('animate-pop mt-3 rounded-xl p-3 text-[15px] text-navy-800 ring-1 dark:text-navy-100', ok ? 'bg-money-50 ring-money-500/50 dark:bg-money-500/10' : 'bg-amber-50 ring-amber-400 dark:bg-amber-500/10')}>
-          <Rich text={`${ok ? '✅ ¡Exacto! ' : `💡 Era **${game.unit ? `${mxn.format(game.answer)}${game.unit === '%' ? '%' : ` ${game.unit}`}` : money(game.answer)}**. `}${game.why}`} />
+          <Rich text={`${ok ? '✅ ¡Exacto! ' : `💡 Era **${game.unit ? `${num.format(game.answer)}${game.unit === '%' ? '%' : ` ${game.unit}`}` : calcMoney(game.answer)}**. `}${game.why}`} />
         </p>
       )}
     </Shell>

@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
       "Valuar una empresa es estimar cuánto vale hoy por el efectivo que generará en el futuro, con flujos descontados o comparándola con empresas parecidas.",
       "Valuing a business means estimating what it is worth today based on the cash it will generate in the future, using discounted cash flows or comparing it with similar companies.",
     ),
-    minutes: 19,
+    minutes: 11,
     objectives: [
       t("Distinguir valor contable, valor de mercado y valor intrínseco, y el valor de la empresa (EV) del valor del capital.", "Distinguish book value, market value and intrinsic value, and enterprise value (EV) from equity value."),
       t("Calcular el flujo libre de efectivo de la empresa y el valor terminal con el modelo de crecimiento perpetuo.", "Compute free cash flow to the firm and terminal value with the perpetual growth model."),
@@ -48,7 +48,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("¿Qué significa que una empresa \"valga\" algo?", "What does it mean for a company to be \"worth\" something?"),
+        heading: t("¿Cuánto vale un negocio?", "How much is a business worth?"),
         body: [
           t(
             "Imagina que quieres comprar la **taquería** de tu vecino. Él dice que vale $2 millones porque eso costaron el local, la plancha y las mesas. Tú piensas distinto: lo que te importa es **cuánto dinero te dejará** en los próximos años. Esa diferencia es el corazón de la valuación.",
@@ -125,7 +125,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Flujos descontados (DCF) y valor terminal", "Discounted cash flows (DCF) and terminal value"),
+        heading: t("¿Cuánto vale el dinero futuro?", "What is future money worth?"),
         body: [
           t(
             "En palabras sencillas: un DCF suma todo el dinero que el negocio te dará en el futuro, pero antes \"lo encoge\" a valor de hoy, porque un peso que recibirás en 5 años vale menos que un peso en tu mano hoy (no lo puedes usar ni invertir mientras tanto, y hay riesgo de que no llegue). A ese \"encoger\" se le llama **descontar**.",
@@ -230,7 +230,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Valuación por múltiplos (comparables)", "Valuation by multiples (comparables)"),
+        heading: t("¿Cuánto valen los parecidos?", "What are similar ones worth?"),
         body: [
           t(
             "Cuando vendes un departamento, el agente mira cuánto se vendieron otros parecidos **por metro cuadrado**. La valuación por **múltiplos** hace lo mismo con empresas: busca negocios comparables (mismo giro, tamaño y riesgo) y aplica su razón precio/indicador a la empresa que valúas.",
@@ -325,7 +325,7 @@ export const lessons: Lesson[] = [
       t("Los múltiplos (EV/EBITDA, P/U) comparan con empresas parecidas; presenta siempre un rango.", "Multiples (EV/EBITDA, P/E) compare with similar companies; always present a range."),
     ],
     normativeNote: NOTE_VALUATION,
-    exerciseIds: ['FIN-13-E1', 'FIN-13-E2', 'FIN-13-E3', 'FIN-13-E4', 'FIN-13-E5', 'FIN-13-E6'],
+    exerciseIds: ['FIN-13-E1', 'FIN-13-E2', 'FIN-13-E3', 'FIN-13-E4', 'FIN-13-E5'],
   },
 
   // ───────────────────────────── FIN-14 ─────────────────────────────
@@ -338,7 +338,7 @@ export const lessons: Lesson[] = [
       "Un modelo financiero es una hoja de cálculo ordenada que, a partir de supuestos claros, proyecta los tres estados financieros conectados y permite probar escenarios.",
       "A financial model is an organized spreadsheet that, starting from clear assumptions, projects the three linked financial statements and lets you test scenarios.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Organizar un modelo en supuestos, cálculos y resultados siguiendo buenas prácticas.", "Organize a model into assumptions, calculations and outputs following good practices."),
       t("Proyectar estado de resultados y partidas de balance con generadores (drivers) como crecimiento, márgenes y días.", "Project the income statement and balance sheet items with drivers such as growth, margins and days."),
@@ -347,7 +347,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Anatomía de un buen modelo", "Anatomy of a good model"),
+        heading: t("¿Cómo se arma un buen modelo?", "How do you build a good model?"),
         body: [
           t(
             "Un **modelo financiero** es como una receta de cocina en una hoja de cálculo: los **ingredientes** son los supuestos (cuánto crecerán las ventas, qué margen tendrás), el **procedimiento** son los cálculos y el **platillo** son los resultados (utilidad, flujo de efectivo, valor). Sirve para decidir: abrir una sucursal, pedir un crédito o valuar una empresa.",
@@ -371,7 +371,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Los tres estados conectados", "The three linked statements"),
+        heading: t("¿Cómo se conectan los estados?", "How do the statements connect?"),
         body: [
           t(
             "Un modelo completo proyecta el **estado de resultados**, el **balance general** y el **estado de flujos de efectivo**, y los conecta como engranes. Primero proyectas con **generadores** (drivers): ventas con una tasa de crecimiento, costos como **porcentaje de ventas** y cuentas de capital de trabajo con **días** (por ejemplo, cuántos días tardan en pagarte los clientes).",
@@ -470,7 +470,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Escenarios y sensibilidad", "Scenarios and sensitivity"),
+        heading: t("¿Y si cambian los supuestos?", "What if the assumptions change?"),
         body: [
           t(
             "Un modelo con un solo resultado da una falsa sensación de certeza. Por eso se arman **escenarios**: base (lo más probable), optimista y pesimista, cada uno con su propio juego de supuestos. Así el director ve no solo cuánto se espera ganar, sino cuánto se podría perder.",
@@ -535,7 +535,7 @@ export const lessons: Lesson[] = [
       t("Un check de balance en cero confirma que el modelo está bien conectado.", "A balance check at zero confirms the model is properly linked."),
       t("Escenarios y sensibilidad muestran qué supuestos son críticos.", "Scenarios and sensitivity show which assumptions are critical."),
     ],
-    exerciseIds: ['FIN-14-E1', 'FIN-14-E2', 'FIN-14-E3', 'FIN-14-E4', 'FIN-14-E5', 'FIN-14-E6'],
+    exerciseIds: ['FIN-14-E1', 'FIN-14-E2', 'FIN-14-E3', 'FIN-14-E4', 'FIN-14-E5'],
   },
 
   // ───────────────────────────── FIN-15 ─────────────────────────────
@@ -548,7 +548,7 @@ export const lessons: Lesson[] = [
       "Una fusión o adquisición crea valor solo si las sinergias superan la prima pagada; el tipo de operación, el precio y la forma de pago deciden quién se queda con ese valor.",
       "A merger or acquisition creates value only if synergies exceed the premium paid; the type of deal, the price and the form of payment decide who keeps that value.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Distinguir fusión de adquisición y clasificar operaciones en horizontales, verticales y de conglomerado.", "Distinguish a merger from an acquisition and classify deals as horizontal, vertical and conglomerate."),
       t("Calcular la prima de control y el valor neto que obtiene el comprador considerando sinergias.", "Compute the control premium and the net value the buyer obtains considering synergies."),
@@ -557,7 +557,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Tipos de operaciones", "Types of deals"),
+        heading: t("¿Cómo se juntan dos empresas?", "How do two companies join?"),
         body: [
           t(
             "En una **adquisición**, una empresa (la **compradora**) toma el control de otra (la **objetivo**) comprando sus acciones o sus activos; la objetivo puede seguir existiendo como subsidiaria. En una **fusión**, dos empresas se unen y al menos una deja de existir legalmente porque se integra en la otra o en una nueva.",
@@ -580,7 +580,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Sinergias, prima y quién gana", "Synergies, premium and who wins"),
+        heading: t("¿Quién gana con la compra?", "Who wins from the deal?"),
         body: [
           t(
             "Una **sinergia** es el valor extra que aparece al juntar dos empresas: \"1 + 1 = 3\". Puede venir de **costos** (cerrar oficinas duplicadas, comprar en mayor volumen) o de **ingresos** (vender los productos de una a los clientes de la otra). Las de costos suelen ser más fáciles de lograr que las de ingresos.",
@@ -649,7 +649,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Proceso, forma de pago y efecto en la UPA", "Process, form of payment and EPS effect"),
+        heading: t("¿Cómo se paga una compra?", "How is a deal paid for?"),
         body: [
           t(
             "El proceso típico: estrategia y búsqueda de objetivos, primeros acercamientos y acuerdo de confidencialidad, **carta de intención** (precio y condiciones preliminares), **debida diligencia** (due diligence: revisión a fondo de finanzas, impuestos, contratos, juicios y asuntos laborales), contrato definitivo, **autorizaciones** (por ejemplo, de la autoridad de competencia) y cierre. Después viene la parte más difícil: la **integración**.",
@@ -744,7 +744,7 @@ export const lessons: Lesson[] = [
       t("Con pago en acciones, pagar un P/U menor que el propio es acretivo (sin sinergias), pero acreción no es lo mismo que crear valor.", "With stock payment, paying a P/E lower than your own is accretive (without synergies), but accretion is not the same as creating value."),
     ],
     normativeNote: NOTE_MA,
-    exerciseIds: ['FIN-15-E1', 'FIN-15-E2', 'FIN-15-E3', 'FIN-15-E4', 'FIN-15-E5', 'FIN-15-E6'],
+    exerciseIds: ['FIN-15-E1', 'FIN-15-E2', 'FIN-15-E3', 'FIN-15-E4', 'FIN-15-E6'],
   },
 
   // ───────────────────────────── FIN-16 ─────────────────────────────
@@ -757,7 +757,7 @@ export const lessons: Lesson[] = [
       "Las empresas que compran, venden o invierten en otras monedas deben entender el tipo de cambio, sus paridades y cómo cubrirse del riesgo cambiario.",
       "Companies that buy, sell or invest in other currencies must understand the exchange rate, its parity relationships and how to hedge currency risk.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Leer cotizaciones de tipo de cambio e identificar apreciación y depreciación del peso.", "Read exchange-rate quotes and identify appreciation and depreciation of the peso."),
       t("Calcular un tipo de cambio a plazo con la paridad de tasas de interés y uno esperado con la paridad del poder de compra relativa.", "Compute a forward exchange rate with interest rate parity and an expected one with relative purchasing power parity."),
@@ -766,7 +766,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El tipo de cambio: spot y forward", "The exchange rate: spot and forward"),
+        heading: t("¿Cuántos pesos cuesta un dólar?", "How many pesos is a dollar?"),
         body: [
           t(
             "El **tipo de cambio** es el precio de una moneda en otra. En México solemos verlo como **pesos por dólar**: si el dólar está en 18, necesitas $18 para comprar un dólar. Si pasa de 18 a 20, cada dólar cuesta más pesos: el **peso se depreció** (perdió valor). Si baja de 20 a 18, el **peso se apreció**.",
@@ -788,7 +788,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Paridades: tasas de interés y poder de compra", "Parities: interest rates and purchasing power"),
+        heading: t("¿Qué conecta tasas y dólar?", "What links rates and the dollar?"),
         body: [
           t(
             "En palabras sencillas: una **paridad** es una regla que conecta el tipo de cambio con otra cosa. La de tasas dice que el dólar \"a plazo\" se ajusta para que dé igual ahorrar en pesos o en dólares. La del poder de compra dice que, con los años, la moneda del país con más inflación pierde valor, porque con ella compras menos.",
@@ -865,7 +865,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Riesgo cambiario y coberturas", "Currency risk and hedging"),
+        heading: t("¿Cómo protegerte del dólar?", "How to protect yourself from the dollar?"),
         body: [
           t(
             "Hay tres tipos de **riesgo cambiario**. El de **transacción**: una cuenta por pagar o cobrar en otra moneda cuyo valor en pesos cambia antes de liquidarse. El de **traducción** (o conversión): al consolidar los estados financieros de una subsidiaria extranjera, sus cifras en pesos cambian con el tipo de cambio. El **económico**: el tipo de cambio altera a largo plazo tu competitividad, tus precios y tus ventas, aunque no tengas operaciones en dólares.",
@@ -959,7 +959,7 @@ export const lessons: Lesson[] = [
       t("Cubrirse elimina incertidumbre; no garantiza ganar más.", "Hedging removes uncertainty; it does not guarantee earning more."),
     ],
     normativeNote: NOTE_FX,
-    exerciseIds: ['FIN-16-E1', 'FIN-16-E2', 'FIN-16-E3', 'FIN-16-E4', 'FIN-16-E5', 'FIN-16-E6'],
+    exerciseIds: ['FIN-16-E1', 'FIN-16-E2', 'FIN-16-E3', 'FIN-16-E4', 'FIN-16-E5'],
   },
 
   // ───────────────────────────── FIN-17 ─────────────────────────────
@@ -972,7 +972,7 @@ export const lessons: Lesson[] = [
       "Cuando una empresa ya no puede con su deuda, la reestructuración ajusta plazos, montos y dueños para salvar el negocio viable, por acuerdo privado o por un proceso judicial.",
       "When a company can no longer carry its debt, restructuring adjusts maturities, amounts and owners to save the viable business, through a private agreement or a court process.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Distinguir un problema de liquidez de uno de solvencia y reconocer señales de alerta.", "Distinguish a liquidity problem from a solvency problem and recognize warning signs."),
       t("Calcular razones de apalancamiento y cobertura que usan acreedores y covenants.", "Compute leverage and coverage ratios used by lenders and covenants."),
@@ -981,7 +981,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Señales de dificultad financiera", "Signs of financial distress"),
+        heading: t("¿Falta efectivo o sobra deuda?", "Short on cash or too much debt?"),
         body: [
           t(
             "No es lo mismo no tener efectivo hoy que no poder pagar nunca. Un problema de **liquidez** es como una familia con buen sueldo que se quedó sin dinero a mitad de quincena: el negocio es sano, pero el efectivo no llega a tiempo. Un problema de **solvencia** es más grave: lo que la empresa debe es mayor que lo que vale o que lo que puede generar.",
@@ -1053,7 +1053,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Reestructuración extrajudicial", "Out-of-court restructuring"),
+        heading: t("¿Cómo se arregla sin juez?", "How to fix it without a judge?"),
         body: [
           t(
             "Si el negocio es viable, lo más rápido y barato suele ser negociar en privado con los acreedores. Del lado de la **deuda**: ampliar plazos o dar periodos de gracia (refinanciar), bajar la tasa, aplicar una **quita** (perdonar parte del saldo) o una **capitalización de deuda** (los acreedores cambian deuda por acciones y se vuelven socios).",
@@ -1124,7 +1124,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Procesos judiciales y orden de pago", "Court processes and payment order"),
+        heading: t("¿Quién cobra primero?", "Who gets paid first?"),
         body: [
           t(
             "Cuando no hay acuerdo privado, entra un juez. En México existe el **concurso mercantil**, con una etapa de **conciliación**, en la que un conciliador ayuda a que la empresa y sus acreedores firmen un convenio para seguir operando, y, si fracasa, una etapa de **quiebra**, en la que se venden los bienes para pagar. En Estados Unidos, el **Capítulo 11** permite reorganizarse con protección judicial.",
@@ -1210,7 +1210,7 @@ export const lessons: Lesson[] = [
       t("Orden simplificado: garantizados, quirografarios y al final accionistas.", "Simplified order: secured, unsecured and shareholders last."),
     ],
     normativeNote: NOTE_RESTRUCTURING,
-    exerciseIds: ['FIN-17-E1', 'FIN-17-E2', 'FIN-17-E3', 'FIN-17-E4', 'FIN-17-E5', 'FIN-17-E6'],
+    exerciseIds: ['FIN-17-E1', 'FIN-17-E2', 'FIN-17-E3', 'FIN-17-E4', 'FIN-17-E5'],
   },
 ]
 

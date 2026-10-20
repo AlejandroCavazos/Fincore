@@ -418,6 +418,26 @@ test(`interactive games: every activity can be finished (group ${g + 1})`, async
           }
           if ((await page.getByTestId('int-next').isVisible()) || (await page.getByTestId('int-finish').isVisible())) break
         }
+        // Some goals sit in the middle: then walk every step of the sliders.
+        if (!(await page.getByTestId('int-next').isVisible()) && !(await page.getByTestId('int-finish').isVisible())) {
+          const vals: string[][] = []
+          for (let k = 0; k < n; k++) {
+            const el = sliders.nth(k)
+            const [lo, hi, st] = await Promise.all(['min', 'max', 'step'].map(async (a) => Number(await el.getAttribute(a))))
+            const v: string[] = []
+            for (let x = lo; x <= hi + 1e-9; x += st || 1) v.push(String(+x.toFixed(10)))
+            vals.push(v)
+          }
+          const walk = async (k: number): Promise<boolean> => {
+            if (k === n) return (await page.getByTestId('int-next').isVisible()) || (await page.getByTestId('int-finish').isVisible())
+            for (const v of vals[k]) {
+              await sliders.nth(k).fill(v)
+              if (await walk(k + 1)) return true
+            }
+            return false
+          }
+          await walk(0)
+        }
       }
       const key = `${id}:${s}`
       if (!snapped && shots[key] && (await page.getByTestId(shots[key].slice(3)).isVisible())) {

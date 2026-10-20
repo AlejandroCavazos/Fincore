@@ -34,7 +34,7 @@ export const lessons: Lesson[] = [
       "Las finanzas cuantitativas se apoyan en tres herramientas básicas: medir rendimientos (simples y logarítmicos), usar la función exponencial y el logaritmo para el crecimiento continuo, y sumar muchos términos con sumatorias y series geométricas.",
       "Quantitative finance relies on three basic tools: measuring returns (simple and logarithmic), using the exponential function and the logarithm for continuous growth, and adding many terms with summations and geometric series.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Calcular e interpretar rendimientos simples y logarítmicos, y convertir uno en otro.", "Compute and interpret simple and log returns, and convert one into the other."),
       t("Usar la función exponencial y el logaritmo natural para la capitalización continua.", "Use the exponential function and the natural logarithm for continuous compounding."),
@@ -42,7 +42,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Rendimiento simple y rendimiento logarítmico", "Simple return and log return"),
+        heading: t("¿Cuánto creció tu dinero?", "How much did your money grow?"),
         body: [
           t(
             "Un **rendimiento** dice cuánto creció tu dinero en proporción a lo que pusiste. El **rendimiento simple** es el que usas todos los días: si una acción pasa de $100 a $110, ganaste $10 sobre $100, es decir **10 %**.",
@@ -128,7 +128,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Exponencial, logaritmo y capitalización continua", "Exponential, logarithm and continuous compounding"),
+        heading: t("Intereses que crecen sin parar", "Interest that never stops growing"),
         body: [
           t(
             "La **función exponencial** e^x (e ≈ 2.71828) describe algo que crece en proporción a su tamaño, como una deuda que genera intereses sobre intereses. El **logaritmo natural** ln(x) es su operación inversa: responde \"¿a qué potencia debo elevar e para obtener x?\".",
@@ -189,7 +189,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Sumatorias y series geométricas", "Summations and geometric series"),
+        heading: t("Sumar muchos términos rápido", "Adding many terms fast"),
         body: [
           t(
             "La **sumatoria** Σ es una forma corta de escribir \"suma todos estos términos\". Por ejemplo, Σ (de k = 1 a 3) x_k significa x1 + x2 + x3. La verás en promedios, varianzas y valores presentes.",
@@ -291,7 +291,7 @@ export const lessons: Lesson[] = [
       t("Serie geométrica: S = a(1 − r^n)/(1 − r), y tiende a a/(1 − r) si |r| < 1.", "Geometric series: S = a(1 − r^n)/(1 − r), and it tends to a/(1 − r) if |r| < 1."),
     ],
     normativeNote: NOTE_HYPO_MATH,
-    exerciseIds: ['CUA-01-E1', 'CUA-01-E2', 'CUA-01-E3', 'CUA-01-E4', 'CUA-01-E5', 'CUA-01-E6'],
+    exerciseIds: ['CUA-01-E1', 'CUA-01-E2', 'CUA-01-E4', 'CUA-01-E5', 'CUA-01-E6'],
   },
 
   // ═════════════════════════ CUA-02 ═════════════════════════
@@ -304,7 +304,7 @@ export const lessons: Lesson[] = [
       "Los vectores y matrices permiten manejar muchos activos a la vez, y la derivada mide qué tan sensible es un resultado financiero a un cambio pequeño, lo que ayuda a encontrar máximos y mínimos.",
       "Vectors and matrices let you handle many assets at once, and the derivative measures how sensitive a financial result is to a small change, which helps you find maxima and minima.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Representar un portafolio como vector y calcular su rendimiento con el producto punto.", "Represent a portfolio as a vector and compute its return with the dot product."),
       t("Multiplicar matrices, revisar sus dimensiones y resolver un sistema 2×2 con la inversa.", "Multiply matrices, check their dimensions and solve a 2×2 system with the inverse."),
@@ -312,7 +312,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Vectores y producto punto: el portafolio en una línea", "Vectors and the dot product: the portfolio in one line"),
+        heading: t("Tu portafolio en una cuenta", "Your portfolio in one sum"),
         body: [
           t(
             "Un **vector** es una lista ordenada de números. En finanzas, el vector de **pesos** w = (0.5, 0.3, 0.2) dice qué parte de tu dinero está en cada activo: 50 % en el primero, 30 % en el segundo y 20 % en el tercero. Los pesos suman 1.",
@@ -347,7 +347,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Matrices, multiplicación e inversa", "Matrices, multiplication and the inverse"),
+        heading: t("Tablas de números que se multiplican", "Tables of numbers that multiply"),
         body: [
           t(
             "Una **matriz** es una tabla de números con filas y columnas; su tamaño se escribe filas × columnas. Por ejemplo, una tabla con 250 días (filas) y 3 acciones (columnas) es una matriz de 250 × 3.",
@@ -427,7 +427,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Derivadas: sensibilidad y óptimos", "Derivatives: sensitivity and optima"),
+        heading: t("¿Cuánto cambia si muevo algo?", "How much does it change?"),
         body: [
           t(
             "La **derivada** f'(x) mide cuánto cambia una función cuando x cambia un poquito: es la **pendiente** en ese punto. En finanzas se usa como **sensibilidad**: cuánto cambia el precio de un bono si la tasa sube un poco, o cuánto cambia la ganancia si vendes una unidad más.",
@@ -522,7 +522,7 @@ export const lessons: Lesson[] = [
       t("La derivada es la sensibilidad: cambio aproximado = derivada × cambio pequeño.", "The derivative is sensitivity: approximate change = derivative × small change."),
       t("Los óptimos se buscan donde la derivada es cero.", "Optima are found where the derivative is zero."),
     ],
-    exerciseIds: ['CUA-02-E1', 'CUA-02-E2', 'CUA-02-E3', 'CUA-02-E4', 'CUA-02-E5', 'CUA-02-E6'],
+    exerciseIds: ['CUA-02-E1', 'CUA-02-E2', 'CUA-02-E4', 'CUA-02-E5', 'CUA-02-E6'],
   },
 
   // ═════════════════════════ CUA-03 ═════════════════════════
@@ -535,7 +535,7 @@ export const lessons: Lesson[] = [
       "Para medir riesgo describes los rendimientos como variables aleatorias: su valor esperado, su dispersión, cómo se mueven juntos dos activos y qué tan bien (o mal) los describe la distribución normal.",
       "To measure risk you describe returns as random variables: their expected value, their dispersion, how two assets move together and how well (or poorly) the normal distribution describes them.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Calcular valor esperado, varianza y desviación estándar de un rendimiento con escenarios.", "Compute the expected value, variance and standard deviation of a return using scenarios."),
       t("Interpretar covarianza y correlación entre dos activos.", "Interpret covariance and correlation between two assets."),
@@ -543,7 +543,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Variables aleatorias: valor esperado y dispersión", "Random variables: expected value and dispersion"),
+        heading: t("¿Cuánto esperas ganar en promedio?", "What do you expect on average?"),
         body: [
           t(
             "Una **variable aleatoria** es un número cuyo valor todavía no conoces porque depende del azar, como el rendimiento de una acción el próximo año. La describes con sus posibles valores y la **probabilidad** de cada uno.",
@@ -603,7 +603,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Covarianza y correlación", "Covariance and correlation"),
+        heading: t("¿Se mueven juntos o separados?", "Do they move together?"),
         body: [
           t(
             "La **covarianza** dice si dos variables tienden a moverse en la misma dirección (positiva) o en direcciones opuestas (negativa). El problema es que su tamaño depende de las unidades, así que es difícil decir si es \"mucha\" o \"poca\".",
@@ -643,7 +643,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Distribución normal, puntaje z y colas pesadas", "Normal distribution, z-score and fat tails"),
+        heading: t("La campana y sus sorpresas", "The bell curve and its surprises"),
         body: [
           t(
             "La **distribución normal** es la famosa \"campana\": simétrica alrededor de su media μ y definida solo por μ y σ. Es el punto de partida de muchos modelos porque es fácil de usar.",
@@ -751,7 +751,7 @@ export const lessons: Lesson[] = [
       t("Los rendimientos reales suelen tener colas más pesadas que la normal: cuidado con subestimar extremos.", "Real returns usually have fatter tails than the normal: beware of underestimating extremes."),
     ],
     normativeNote: NOTE_HYPO_STATS,
-    exerciseIds: ['CUA-03-E1', 'CUA-03-E2', 'CUA-03-E3', 'CUA-03-E4', 'CUA-03-E5', 'CUA-03-E6'],
+    exerciseIds: ['CUA-03-E2', 'CUA-03-E3', 'CUA-03-E4', 'CUA-03-E5', 'CUA-03-E6'],
   },
 
   // ═════════════════════════ CUA-04 ═════════════════════════
@@ -764,7 +764,7 @@ export const lessons: Lesson[] = [
       "La estadística inferencial usa una muestra de datos para sacar conclusiones sobre algo que no puedes observar completo, como el rendimiento promedio verdadero de una estrategia, midiendo cuánta incertidumbre hay en esa conclusión.",
       "Inferential statistics uses a sample of data to draw conclusions about something you cannot fully observe, like the true average return of a strategy, measuring how much uncertainty there is in that conclusion.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Distinguir población y muestra, y calcular el error estándar de la media.", "Distinguish population and sample, and compute the standard error of the mean."),
       t("Construir e interpretar un intervalo de confianza del 95 %.", "Build and interpret a 95% confidence interval."),
@@ -772,7 +772,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Población, muestra y error estándar", "Population, sample and standard error"),
+        heading: t("Pocos datos, mucha duda", "Few data, lots of doubt"),
         body: [
           t(
             "La **población** es todo lo que te interesa (por ejemplo, todos los rendimientos posibles de una estrategia, incluidos los futuros). La **muestra** es lo que sí tienes: digamos 60 meses de historia. Con la muestra **estimas** características de la población.",
@@ -812,7 +812,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Intervalos de confianza", "Confidence intervals"),
+        heading: t("Un rango en vez de un número", "A range instead of one number"),
         body: [
           t(
             "Un **intervalo de confianza** da un rango de valores plausibles para el parámetro verdadero, no un solo número. Para la media, con muestras grandes, el de **95 %** es x̄ ± 1.96 × EE.",
@@ -852,7 +852,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Pruebas de hipótesis y valor p", "Hypothesis tests and p-value"),
+        heading: t("¿Fue habilidad o pura suerte?", "Skill or pure luck?"),
         body: [
           t(
             "Una **prueba de hipótesis** es como un juicio: la **hipótesis nula** H0 es la postura \"inocente\" (por ejemplo, \"la estrategia no gana nada en promedio\", μ = 0) y la **alternativa** H1 es lo que quieres demostrar (μ ≠ 0 o μ > 0).",
@@ -945,7 +945,7 @@ export const lessons: Lesson[] = [
       t("Error tipo I = falso positivo; error tipo II = falso negativo.", "Type I error = false positive; type II error = false negative."),
     ],
     normativeNote: NOTE_HYPO_STATS,
-    exerciseIds: ['CUA-04-E1', 'CUA-04-E2', 'CUA-04-E3', 'CUA-04-E4', 'CUA-04-E5', 'CUA-04-E6'],
+    exerciseIds: ['CUA-04-E1', 'CUA-04-E2', 'CUA-04-E3', 'CUA-04-E4', 'CUA-04-E5'],
   },
 
   // ═════════════════════════ CUA-05 ═════════════════════════
@@ -958,7 +958,7 @@ export const lessons: Lesson[] = [
       "La econometría financiera usa datos reales y modelos estadísticos para medir relaciones en los mercados, como la beta de una acción, cuidando los tipos de datos y las trampas que pueden llevar a conclusiones falsas.",
       "Financial econometrics uses real data and statistical models to measure relationships in markets, such as a stock's beta, paying attention to data types and the traps that can lead to false conclusions.",
     ),
-    minutes: 16,
+    minutes: 11,
     objectives: [
       t("Distinguir datos de corte transversal, series de tiempo y panel.", "Distinguish cross-sectional, time-series and panel data."),
       t("Estimar e interpretar la beta y el alfa del modelo de mercado.", "Estimate and interpret the beta and alpha of the market model."),
@@ -966,7 +966,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Qué es la econometría y qué datos usa", "What econometrics is and what data it uses"),
+        heading: t("Medir relaciones con datos", "Measuring relationships with data"),
         body: [
           t(
             "La **econometría** junta economía, matemáticas y estadística para **medir** relaciones con datos: ¿cuánto se mueve una acción cuando se mueve el mercado? ¿qué tanto influye la tasa de interés en el precio de los bonos? La versión **financiera** se enfoca en precios, rendimientos y riesgos.",
@@ -987,7 +987,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("El modelo de mercado: alfa y beta", "The market model: alpha and beta"),
+        heading: t("¿Cuánto sigue al mercado?", "How closely does it follow the market?"),
         body: [
           t(
             "El modelo más famoso de la econometría financiera relaciona el rendimiento de una acción con el del mercado: **Ri = α + β × Rm + ε**. La **beta** β mide la sensibilidad: si β = 1.2, cuando el mercado sube 1 % la acción tiende a subir 1.2 %.",
@@ -1048,7 +1048,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Trampas comunes en datos financieros", "Common traps in financial data"),
+        heading: t("Trampas que engañan al analista", "Traps that fool the analyst"),
         body: [
           t(
             "En palabras sencillas: el **error** de un modelo es lo que el modelo no logra explicar en cada dato, y el **error estándar** de un coeficiente dice qué tan preciso es. Los datos financieros tienen problemas típicos. **Heterocedasticidad**: la varianza de los errores no es constante (hay épocas tranquilas y épocas turbulentas). **Autocorrelación**: los errores de un periodo se parecen a los del anterior. Ambas no necesariamente sesgan los coeficientes, pero sí hacen que los errores estándar \"normales\" engañen.",
@@ -1110,7 +1110,7 @@ export const lessons: Lesson[] = [
       t("Cuida sesgos de supervivencia, look-ahead y variable omitida, y errores con heterocedasticidad o autocorrelación.", "Watch for survivorship, look-ahead and omitted-variable biases, and errors with heteroskedasticity or autocorrelation."),
     ],
     normativeNote: NOTE_HYPO_ECON,
-    exerciseIds: ['CUA-05-E1', 'CUA-05-E2', 'CUA-05-E3', 'CUA-05-E4', 'CUA-05-E5', 'CUA-05-E6'],
+    exerciseIds: ['CUA-05-E1', 'CUA-05-E2', 'CUA-05-E3', 'CUA-05-E4', 'CUA-05-E6'],
   },
 
   // ═════════════════════════ CUA-06 ═════════════════════════
@@ -1123,7 +1123,7 @@ export const lessons: Lesson[] = [
       "Una regresión traza la línea que mejor resume cómo cambia una variable cuando cambian otras; aprenderás a estimarla por mínimos cuadrados, a medir qué tan bien ajusta y a interpretar regresiones con varias variables.",
       "A regression draws the line that best summarizes how one variable changes when others change; you will learn to estimate it by least squares, measure how well it fits and interpret regressions with several variables.",
     ),
-    minutes: 19,
+    minutes: 11,
     objectives: [
       t("Estimar la pendiente y la ordenada de una regresión lineal simple por MCO.", "Estimate the slope and intercept of a simple linear regression by OLS."),
       t("Calcular e interpretar el R² y la significancia de un coeficiente con su estadístico t.", "Compute and interpret R² and a coefficient's significance with its t statistic."),
@@ -1131,7 +1131,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Regresión lineal simple y mínimos cuadrados", "Simple linear regression and least squares"),
+        heading: t("La recta que mejor encaja", "The line that fits best"),
         body: [
           t(
             "Una **regresión lineal simple** explica una variable **dependiente** Y con una **independiente** X mediante una recta: Y = a + b·X + e. La **ordenada** a es el valor de Y cuando X = 0, la **pendiente** b dice cuánto cambia Y por cada unidad de X, y **e** es el error.",
@@ -1174,7 +1174,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Bondad de ajuste y significancia", "Goodness of fit and significance"),
+        heading: t("¿Qué tan bien explica la recta?", "How well does the line explain?"),
         body: [
           t(
             "En palabras sencillas: el **R²** es la \"calificación\" de qué tan bien la recta sigue a los datos. Dice qué parte de la variación de Y explica el modelo, de 0 a 1 (o 0 % a 100 %). Se calcula como 1 − SCR / SCT, donde SCR es la suma de cuadrados de los residuales y SCT la suma de cuadrados total (las desviaciones de Y respecto a su promedio).",
@@ -1230,7 +1230,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Regresión múltiple, variables dummy y sobreajuste", "Multiple regression, dummy variables and overfitting"),
+        heading: t("Más variables, más cuidado", "More variables, more care"),
         body: [
           t(
             "La **regresión múltiple** usa varias X a la vez: Y = a + b1·X1 + b2·X2 + … Cada coeficiente se interpreta **ceteris paribus**: cuánto cambia Y si sube una unidad esa X, **manteniendo constantes las demás**.",
@@ -1318,7 +1318,7 @@ export const lessons: Lesson[] = [
       t("En regresión múltiple cada coeficiente es ceteris paribus; usa R² ajustado y validación fuera de muestra.", "In multiple regression each coefficient is ceteris paribus; use adjusted R² and out-of-sample validation."),
     ],
     normativeNote: NOTE_HYPO_ECON,
-    exerciseIds: ['CUA-06-E1', 'CUA-06-E2', 'CUA-06-E3', 'CUA-06-E4', 'CUA-06-E5', 'CUA-06-E6'],
+    exerciseIds: ['CUA-06-E1', 'CUA-06-E2', 'CUA-06-E3', 'CUA-06-E4', 'CUA-06-E6'],
   },
 ]
 

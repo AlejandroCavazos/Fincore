@@ -19,7 +19,7 @@ export const lessons: Lesson[] = [
       'Entiende por qué un peso hoy vale más que un peso mañana, calcula interés simple y compuesto, y convierte tasas nominales en tasas efectivas anuales.',
       'Understand why a peso today is worth more than a peso tomorrow, compute simple and compound interest, and convert nominal rates into effective annual rates.',
     ),
-    minutes: 16,
+    minutes: 14,
     objectives: [
       t(
         'Explicar las razones del valor del dinero en el tiempo: costo de oportunidad, inflación y riesgo.',
@@ -37,7 +37,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('¿Por qué el dinero vale distinto en el tiempo?', 'Why money has different value over time'),
+        heading: t('¿Hoy o dentro de un año?', 'Today or in a year?'),
         body: [
           t(
             'En palabras sencillas: **$1,000 hoy valen más que $1,000 dentro de un año**. Si alguien te ofrece cualquiera de los dos, conviene tomarlos hoy.',
@@ -54,7 +54,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Interés simple', 'Simple interest'),
+        heading: t('¿Cuánto gana un préstamo simple?', 'What does a simple loan earn?'),
         body: [
           t(
             'En el **interés simple** los intereses se calculan siempre sobre el capital original; no se reinvierten. Se usa en operaciones de corto plazo como pagarés y algunos instrumentos de descuento. El tiempo debe expresarse en la misma unidad que la tasa (si la tasa es anual y el plazo es de 9 meses, n = 9/12).',
@@ -94,7 +94,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Interés compuesto', 'Compound interest'),
+        heading: t('La bola de nieve del interés', 'The interest snowball'),
         body: [
           t(
             'En el **interés compuesto** los intereses de cada periodo se suman al capital y generan a su vez intereses ("interés sobre interés"). El crecimiento es exponencial, por lo que la diferencia frente al simple aumenta con el plazo.',
@@ -143,7 +143,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Tasa nominal y tasa efectiva anual', 'Nominal rate and effective annual rate'),
+        heading: t('¿Cuánto cobra de verdad?', 'What does it really cost?'),
         body: [
           t(
             'La **tasa nominal** es la que se anuncia; la **tasa efectiva anual (TEA)** es el rendimiento real en un año considerando la capitalización. A mayor frecuencia de capitalización, mayor TEA para la misma tasa nominal. Para comparar créditos o inversiones con distinta capitalización, siempre compara TEA.',
@@ -244,7 +244,7 @@ export const lessons: Lesson[] = [
         'EAR = (1 + j/m)^m − 1; more compounding → higher EAR.',
       ),
     ],
-    exerciseIds: ['N4-001', 'N4-002', 'N4-003', 'N4-004', 'N4-005', 'N4-006', 'N4-007'],
+    exerciseIds: ['N4-001', 'N4-002', 'N4-004', 'N4-006', 'N4-007'],
   },
 
   // ─────────────── L4-02 ───────────────
@@ -257,7 +257,7 @@ export const lessons: Lesson[] = [
       'Mueve cantidades en el tiempo: capitaliza hacia el futuro, descuenta hacia el presente y despeja la tasa o el plazo de una operación.',
       'Move amounts through time: compound forward, discount back to the present, and solve for the rate or term of an operation.',
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t('Calcular el valor futuro de una cantidad única.', 'Compute the future value of a single amount.'),
       t('Calcular el valor presente de un cobro o pago futuro.', 'Compute the present value of a future receipt or payment.'),
@@ -269,7 +269,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('Valor futuro (capitalización)', 'Future value (compounding)'),
+        heading: t('¿Cuánto tendré después?', 'How much will I have later?'),
         body: [
           t(
             'El **valor futuro (VF)** es lo que valdrá una cantidad actual después de n periodos ganando una tasa r por periodo. El factor (1 + r)^n se llama **factor de capitalización** y siempre es mayor que 1 si r > 0.',
@@ -307,7 +307,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Valor presente (descuento)', 'Present value (discounting)'),
+        heading: t('¿Cuánto vale hoy?', 'What is it worth today?'),
         body: [
           t(
             'El **valor presente (VP)** es lo que vale hoy una cantidad futura. Se obtiene dividiendo entre el factor de capitalización; la tasa usada se llama **tasa de descuento** y refleja el rendimiento que se exige considerando el riesgo.',
@@ -375,7 +375,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Despejar la tasa y el plazo', 'Solving for the rate and the term'),
+        heading: t('¿Qué tasa ganó? ¿Cuántos años?', 'What rate? How many years?'),
         body: [
           t(
             'Conociendo VP, VF y n se puede obtener la **tasa de rendimiento compuesta** de una inversión. Conociendo VP, VF y r se obtiene el **plazo** con logaritmos. La "regla del 72" aproxima los años para duplicar: 72 / tasa en %.',
@@ -482,7 +482,7 @@ export const lessons: Lesson[] = [
       ),
       t('r = (VF/VP)^(1/n) − 1; n = ln(VF/VP) / ln(1 + r).', 'r = (FV/PV)^(1/n) − 1; n = ln(FV/PV) / ln(1 + r).'),
     ],
-    exerciseIds: ['N4-008', 'N4-009', 'N4-010', 'N4-011', 'N4-012', 'N4-013', 'N4-014'],
+    exerciseIds: ['N4-008', 'N4-009', 'N4-010', 'N4-012', 'N4-014'],
   },
 
   // ─────────────── L4-03 ───────────────
@@ -495,7 +495,7 @@ export const lessons: Lesson[] = [
       'Valúa series de pagos iguales: anualidades vencidas y anticipadas, el pago de un crédito y su tabla de amortización.',
       'Value series of equal payments: ordinary annuities and annuities due, a loan payment and its amortization schedule.',
     ),
-    minutes: 19,
+    minutes: 11,
     objectives: [
       t(
         'Distinguir entre anualidad vencida (ordinaria) y anticipada.',
@@ -513,7 +513,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('¿Qué es una anualidad?', 'What is an annuity?'),
+        heading: t('El mismo pago, muchas veces', 'The same payment, many times'),
         body: [
           t(
             'En palabras sencillas: una anualidad es **el mismo pago repetido** cada cierto tiempo, como la mensualidad de un coche o la renta del departamento. En lugar de descontar pago por pago, una sola fórmula lo hace todo de golpe.',
@@ -600,7 +600,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Pago de un préstamo', 'Loan payment'),
+        heading: t('¿Cuánto pagaré cada mes?', 'How much will I pay monthly?'),
         body: [
           t(
             'Un crédito con pagos fijos es una anualidad cuyo valor presente es el monto prestado. Despejando PMT obtenemos la mensualidad. Usa la tasa del periodo de pago (anual / 12 para pagos mensuales) y el número total de pagos.',
@@ -639,7 +639,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Tabla de amortización', 'Amortization schedule'),
+        heading: t('¿A dónde va cada pago?', 'Where does each payment go?'),
         body: [
           t(
             'Cada pago se divide en **interés** (saldo insoluto × tasa) y **abono a capital** (pago − interés). Como el saldo baja con cada pago, el interés disminuye y el abono a capital aumenta; el último pago deja el saldo en cero.',
@@ -761,7 +761,7 @@ export const lessons: Lesson[] = [
         'In amortization, interest = balance × r and the rest of the payment reduces principal.',
       ),
     ],
-    exerciseIds: ['N4-015', 'N4-016', 'N4-017', 'N4-018', 'N4-019', 'N4-020', 'N4-021'],
+    exerciseIds: ['N4-015', 'N4-016', 'N4-017', 'N4-018', 'N4-021'],
   },
 
   // ─────────────── L4-04 ───────────────
@@ -774,7 +774,7 @@ export const lessons: Lesson[] = [
       'Identifica los flujos relevantes de un proyecto y evalúalo con valor presente neto, tasa interna de retorno, periodo de recuperación simple y descontado.',
       'Identify a project\'s relevant cash flows and evaluate it with net present value, internal rate of return, and simple and discounted payback.',
     ),
-    minutes: 23,
+    minutes: 14,
     objectives: [
       t(
         'Identificar los flujos de efectivo incrementales relevantes de un proyecto.',
@@ -792,7 +792,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('Flujos de efectivo relevantes', 'Relevant cash flows'),
+        heading: t('¿Qué dinero cuenta?', 'Which money counts?'),
         body: [
           t(
             'En palabras sencillas: para saber si un proyecto conviene, solo cuenta **el dinero que entra o sale por hacerlo**. Pregúntate: "¿este peso existiría o cambiaría si no hiciera el proyecto?". Si la respuesta es no, ese peso no entra en el análisis.',
@@ -839,7 +839,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Valor presente neto (VPN)', 'Net present value (NPV)'),
+        heading: t('¿Cuánto gano en pesos de hoy?', 'How much do I gain today?'),
         body: [
           t(
             'El **VPN** suma todos los flujos descontados al costo de capital, incluido el flujo inicial (t = 0, negativo). Si VPN > 0 el proyecto genera más que el rendimiento exigido y **crea valor**; si VPN < 0 lo destruye. Es el criterio más confiable porque mide la riqueza creada en pesos.',
@@ -882,7 +882,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Tasa interna de retorno (TIR)', 'Internal rate of return (IRR)'),
+        heading: t('¿Qué rendimiento da el proyecto?', 'What return does it give?'),
         body: [
           t(
             'La **TIR** es la tasa que hace VPN = 0. Se acepta un proyecto si TIR > costo de capital. Se calcula por prueba y error o con calculadora/hoja de cálculo; para proyectos convencionales (un flujo negativo seguido de positivos) existe una sola TIR.',
@@ -929,7 +929,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Periodo de recuperación (payback)', 'Payback period'),
+        heading: t('¿En cuánto tiempo lo recupero?', 'How soon do I recover it?'),
         body: [
           t(
             'El **payback simple** es el tiempo para recuperar la inversión con los flujos sin descontar. Es fácil de entender y sirve como medida de liquidez/riesgo, pero ignora el valor del dinero en el tiempo y los flujos posteriores a la recuperación.',
@@ -1071,7 +1071,7 @@ export const lessons: Lesson[] = [
         'Discounted payback ≥ simple payback; both ignore later flows.',
       ),
     ],
-    exerciseIds: ['N4-022', 'N4-023', 'N4-024', 'N4-025', 'N4-026', 'N4-027'],
+    exerciseIds: ['N4-022', 'N4-023', 'N4-024', 'N4-026', 'N4-027'],
   },
 
   // ─────────────── L4-05 ───────────────
@@ -1087,7 +1087,7 @@ export const lessons: Lesson[] = [
       'Estima el costo del capital propio con CAPM, combínalo con el costo de la deuda en el WACC, entiende cómo influye la estructura de capital y usa la tasa correcta para evaluar proyectos.',
       'Estimate the cost of equity with CAPM, combine it with the cost of debt in the WACC, understand how capital structure matters and use the right rate to evaluate projects.',
     ),
-    minutes: 23,
+    minutes: 17,
     objectives: [
       t(
         'Distinguir riesgo sistemático y no sistemático e interpretar la beta.',
@@ -1109,7 +1109,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t('Riesgo y beta', 'Risk and beta'),
+        heading: t('¿Qué riesgo se puede quitar?', 'Which risk can you remove?'),
         body: [
           t(
             'El riesgo total de una acción tiene dos partes. El **riesgo no sistemático** (específico) se debe a eventos propios de la empresa —una huelga, la salida del director— y se elimina diversificando. El **riesgo sistemático** (de mercado) proviene de factores que afectan a toda la economía —tasas de interés, recesión, inflación— y no se puede diversificar.',
@@ -1148,7 +1148,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('CAPM: costo del capital propio', 'CAPM: cost of equity'),
+        heading: t('¿Cuánto piden los socios?', 'What do shareholders ask for?'),
         body: [
           t(
             'El **modelo de valuación de activos de capital (CAPM)** establece que el rendimiento exigido es la tasa libre de riesgo más una prima por riesgo de mercado multiplicada por la beta. En México suele usarse como tasa libre de riesgo el rendimiento de bonos gubernamentales (Cetes o Bonos M) del plazo adecuado.',
@@ -1191,7 +1191,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('WACC: costo promedio ponderado de capital', 'WACC: weighted average cost of capital'),
+        heading: t('¿Cuánto cuesta todo el dinero?', 'What does all the money cost?'),
         body: [
           t(
             'El **WACC** es el rendimiento mínimo que deben generar los activos para satisfacer a acreedores y accionistas. Pondera cada fuente por su **valor de mercado** y usa el costo de la deuda **después de impuestos**, porque los intereses son deducibles y generan un **escudo fiscal**.',
@@ -1254,7 +1254,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Estructura de capital', 'Capital structure'),
+        heading: t('¿Cuánta deuda es demasiada?', 'How much debt is too much?'),
         body: [
           t(
             'Según Modigliani-Miller sin impuestos, la estructura de capital no cambia el valor. Con impuestos, la deuda agrega valor por el escudo fiscal. La **teoría del trade-off** completa el análisis: a mayor deuda aumentan los **costos de dificultades financieras** (riesgo de quiebra, pérdida de clientes, restricciones), por lo que existe un nivel de deuda óptimo.',
@@ -1271,7 +1271,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t('Evaluación de proyectos con la tasa correcta', 'Evaluating projects with the right rate'),
+        heading: t('¿Qué tasa usar en cada proyecto?', 'Which rate for each project?'),
         body: [
           t(
             'El WACC de la empresa es la tasa adecuada solo para proyectos con **riesgo similar** al de la empresa y financiados con su estructura habitual. Un proyecto más riesgoso (otra industria) requiere una tasa mayor, estimada, por ejemplo, con la beta de empresas comparables (pure play).',
@@ -1367,7 +1367,7 @@ export const lessons: Lesson[] = [
       'Contenido educativo con contexto de México. La tasa de ISR de 30 % para personas morales (Ley del Impuesto sobre la Renta) se usa solo para ilustrar el escudo fiscal; la deducibilidad de intereses está sujeta a requisitos y limitaciones de la LISR. Verifica las disposiciones vigentes en la ley y el DOF a la fecha de consulta (2026).',
       'Educational content with a Mexican context. The 30 % corporate income tax rate (Ley del Impuesto sobre la Renta) is used only to illustrate the tax shield; interest deductibility is subject to requirements and limitations under the LISR. Verify the provisions in force in the law and the DOF as of the consultation date (2026).',
     ),
-    exerciseIds: ['N4-028', 'N4-029', 'N4-030', 'N4-031', 'N4-032', 'N4-033', 'N4-034', 'N4-035'],
+    exerciseIds: ['N4-028', 'N4-029', 'N4-032', 'N4-033', 'N4-035'],
   },
 ]
 

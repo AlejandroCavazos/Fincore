@@ -30,7 +30,7 @@ export const lessons: Lesson[] = [
       es: "Planear es decidir hoy a dónde quiere llegar la empresa y presupuestar es poner ese plan en pesos, mes por mes, para saber si alcanza el dinero y corregir a tiempo.",
       en: "Planning is deciding today where the company wants to go, and budgeting is putting that plan into pesos, month by month, to know whether the money will be enough and to correct course in time.",
     },
-    minutes: 17,
+    minutes: 11,
     objectives: [
       { es: "Distinguir la planeación financiera estratégica (largo plazo) de la operativa (corto plazo).", en: "Distinguish strategic (long-term) from operating (short-term) financial planning." },
       { es: "Describir las piezas del presupuesto maestro y el orden en que se preparan.", en: "Describe the pieces of the master budget and the order in which they are prepared." },
@@ -39,7 +39,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Planear: a dónde vamos y con qué dinero", en: "Planning: where we are going and with what money" },
+        heading: { es: "¿A dónde vamos y con qué?", en: "Where to, and with what?" },
         body: [
           {
             es: "La **planeación financiera** es decidir por adelantado cuánto dinero necesitará la empresa, de dónde saldrá y en qué se usará para cumplir sus metas. Es como planear un viaje: primero eliges el destino y luego calculas gasolina, casetas y hospedaje.",
@@ -62,7 +62,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "El presupuesto maestro, pieza por pieza", en: "The master budget, piece by piece" },
+        heading: { es: "¿Por dónde empieza el presupuesto?", en: "Where does the budget start?" },
         body: [
           {
             es: "El **presupuesto maestro** es el conjunto de todos los presupuestos de la empresa para un periodo. Se divide en dos bloques: el **presupuesto operativo** (lo que pasa en la operación diaria) y el **presupuesto financiero** (el efecto en dinero y en los estados financieros).",
@@ -109,7 +109,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Presupuesto de efectivo y control", en: "Cash budget and control" },
+        heading: { es: "¿Alcanza el dinero cada mes?", en: "Is there enough cash monthly?" },
         body: [
           {
             es: "El **presupuesto de efectivo** proyecta el dinero que entra y sale cada mes. Ojo: vender no es cobrar. Si vendes a crédito, el dinero llega después, así que la **cobranza** se calcula según la política de cobro (por ejemplo, 40% de contado y 60% al mes siguiente).",
@@ -266,7 +266,7 @@ export const lessons: Lesson[] = [
       { es: "Si el saldo final queda bajo el mínimo, la diferencia es el financiamiento necesario.", en: "If the ending balance falls below the minimum, the difference is the financing needed." },
       { es: "Variación favorable sube la utilidad; desfavorable la baja.", en: "A favorable variance raises profit; an unfavorable one lowers it." },
     ],
-    exerciseIds: ['FIN-07-E1', 'FIN-07-E2', 'FIN-07-E3', 'FIN-07-E4', 'FIN-07-E5', 'FIN-07-E6'],
+    exerciseIds: ['FIN-07-E2', 'FIN-07-E3', 'FIN-07-E4', 'FIN-07-E5', 'FIN-07-E6'],
   },
 
   // ───────────────────────────── FIN-08 ─────────────────────────────
@@ -279,7 +279,7 @@ export const lessons: Lesson[] = [
       es: "Evaluar un proyecto es estimar los flujos de efectivo adicionales que genera y medir, con criterios como el periodo de recuperación, si vale la pena arriesgar el dinero.",
       en: "Evaluating a project means estimating the additional cash flows it generates and measuring, with criteria such as the payback period, whether it is worth risking the money.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Reconocer los tipos de proyectos y la diferencia entre independientes y mutuamente excluyentes.", en: "Recognize project types and the difference between independent and mutually exclusive projects." },
       { es: "Identificar qué flujos son relevantes (incrementales) y cuáles no, como los costos hundidos.", en: "Identify which cash flows are relevant (incremental) and which are not, such as sunk costs." },
@@ -288,7 +288,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Qué es un proyecto de inversión?", en: "What is a capital project?" },
+        heading: { es: "¿Vale la pena gastar hoy?", en: "Is spending today worth it?" },
         body: [
           {
             es: "Un **proyecto de inversión** es gastar dinero hoy esperando recibir más dinero en el futuro: comprar una máquina, abrir una sucursal o lanzar un producto. Como el dinero es limitado, la empresa debe elegir los mejores. A esto se le llama **presupuesto de capital**.",
@@ -311,7 +311,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Flujos relevantes: solo lo que cambia", en: "Relevant cash flows: only what changes" },
+        heading: { es: "¿Qué dinero cuenta y cuál no?", en: "Which money counts?" },
         body: [
           {
             es: "Un proyecto se evalúa con **flujos de efectivo**, no con utilidades contables, y solo con los **flujos incrementales**: los que existen **por hacer** el proyecto. La pregunta clave es: ¿este dinero entra o sale solo si acepto el proyecto?",
@@ -357,7 +357,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Criterios sencillos: recuperación y rendimiento contable", en: "Simple criteria: payback and accounting return" },
+        heading: { es: "¿En cuánto recupero mi dinero?", en: "When do I get it back?" },
         body: [
           {
             es: "El **periodo de recuperación** (payback) dice en cuánto tiempo se recupera la inversión con los flujos del proyecto. Se acumulan los flujos año por año hasta igualar la inversión. Es fácil de entender y mide **liquidez y riesgo**: entre más rápido recuperas, menos tiempo estás expuesto.",
@@ -446,7 +446,7 @@ export const lessons: Lesson[] = [
       { es: "El periodo de recuperación mide liquidez pero ignora los flujos posteriores y el valor del dinero en el tiempo.", en: "Payback measures liquidity but ignores later flows and the time value of money." },
     ],
     normativeNote: NOTE_TAX_PROJECTS,
-    exerciseIds: ['FIN-08-E1', 'FIN-08-E2', 'FIN-08-E3', 'FIN-08-E4', 'FIN-08-E5', 'FIN-08-E6'],
+    exerciseIds: ['FIN-08-E2', 'FIN-08-E3', 'FIN-08-E4', 'FIN-08-E5', 'FIN-08-E6'],
   },
 
   // ───────────────────────────── FIN-09 ─────────────────────────────
@@ -459,7 +459,7 @@ export const lessons: Lesson[] = [
       es: "El VPN trae a pesos de hoy todos los flujos de un proyecto, descontados a la tasa que exige la empresa, y le resta la inversión: si queda positivo, el proyecto crea valor.",
       en: "NPV brings all of a project's cash flows into today's pesos, discounted at the rate the company requires, and subtracts the investment: if the result is positive, the project creates value.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué mide el VPN y por qué se usa una tasa de descuento.", en: "Explain what NPV measures and why a discount rate is used." },
       { es: "Calcular el VPN de un proyecto con flujos desiguales.", en: "Compute the NPV of a project with uneven cash flows." },
@@ -468,7 +468,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "La idea: comparar en pesos de hoy", en: "The idea: compare in today's pesos" },
+        heading: { es: "¿Vale igual un peso mañana?", en: "Is tomorrow's peso worth the same?" },
         body: [
           {
             es: "Un peso hoy vale más que un peso dentro de un año, porque hoy lo puedes invertir y porque el futuro es incierto. Por eso no puedes sumar flujos de años distintos como si fueran iguales. El **valor presente neto (VPN)** resuelve esto: convierte cada flujo futuro a pesos de hoy y luego resta la inversión.",
@@ -511,7 +511,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo se calcula y cómo se lee", en: "How to compute and read it" },
+        heading: { es: "¿Crea o destruye valor?", en: "Does it create value?" },
         body: [
           {
             es: "Divides cada flujo entre (1 + k) elevado al número de años que faltan para recibirlo, sumas todos esos valores presentes y restas la inversión inicial (I₀). El resultado es el VPN.",
@@ -565,7 +565,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Usar el VPN para decidir", en: "Using NPV to decide" },
+        heading: { es: "¿Cuál proyecto elijo?", en: "Which project do I pick?" },
         body: [
           {
             es: "Con **proyectos independientes** aceptas todos los que tengan VPN positivo (si hay dinero para todos). Con **proyectos mutuamente excluyentes** eliges el de **mayor VPN**, porque es el que más riqueza agrega en pesos de hoy.",
@@ -625,7 +625,7 @@ export const lessons: Lesson[] = [
       { es: "Entre proyectos mutuamente excluyentes, se elige el de mayor VPN.", en: "Among mutually exclusive projects, choose the highest NPV." },
       { es: "Si la tasa sube, el VPN baja.", en: "If the rate rises, NPV falls." },
     ],
-    exerciseIds: ['FIN-09-E1', 'FIN-09-E2', 'FIN-09-E3', 'FIN-09-E4', 'FIN-09-E5', 'FIN-09-E6'],
+    exerciseIds: ['FIN-09-E1', 'FIN-09-E2', 'FIN-09-E4', 'FIN-09-E5', 'FIN-09-E6'],
   },
 
   // ───────────────────────────── FIN-10 ─────────────────────────────
@@ -638,7 +638,7 @@ export const lessons: Lesson[] = [
       es: "La TIR es la tasa de rendimiento que genera el propio proyecto, es decir, la tasa que hace su VPN igual a cero; se acepta si supera el costo de capital, cuidando sus trampas.",
       en: "IRR is the rate of return generated by the project itself, that is, the rate that makes its NPV equal to zero; it is accepted if it exceeds the cost of capital, while watching out for its pitfalls.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Definir la TIR como la tasa que hace el VPN igual a cero.", en: "Define IRR as the rate that makes NPV equal to zero." },
       { es: "Calcular la TIR en casos sencillos y estimarla por interpolación.", en: "Compute IRR in simple cases and estimate it by interpolation." },
@@ -647,7 +647,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "La tasa que rinde el proyecto", en: "The rate the project earns" },
+        heading: { es: "¿Cuánto rinde mi proyecto?", en: "How much does it earn?" },
         body: [
           {
             es: "La **tasa interna de retorno (TIR)** es el rendimiento anual que da el proyecto por sí mismo. Técnicamente, es la tasa de descuento con la que el **VPN es exactamente cero**: los flujos futuros, traídos a hoy, igualan justo la inversión.",
@@ -690,7 +690,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Cómo se calcula", en: "How to compute it" },
+        heading: { es: "¿Cómo encuentro la TIR?", en: "How do I find the IRR?" },
         body: [
           {
             es: "Con un solo flujo es fácil: TIR = (flujo final ÷ inversión)^(1/n) − 1. Por ejemplo, invertir $100,000 y recibir $121,000 en el año 2 da (1.21)^(1/2) − 1 = 10%. Si el proyecto paga lo mismo para siempre (una **perpetuidad**), TIR = flujo anual ÷ inversión.",
@@ -761,7 +761,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Trampas de la TIR", en: "IRR pitfalls" },
+        heading: { es: "¿Cuándo no confiar en la TIR?", en: "When not to trust IRR?" },
         body: [
           {
             es: "**Flujos no convencionales.** Si los signos de los flujos cambian más de una vez (por ejemplo, inversión, ingresos y luego un gran costo de cierre de una mina), puede haber **varias TIR** o ninguna. Ahí la TIR no sirve para decidir.",
@@ -824,7 +824,7 @@ export const lessons: Lesson[] = [
       { es: "Flujos con varios cambios de signo pueden tener varias TIR.", en: "Flows with several sign changes can have several IRRs." },
       { es: "Si TIR y VPN se contradicen en proyectos excluyentes, manda el VPN.", en: "If IRR and NPV disagree on mutually exclusive projects, NPV rules." },
     ],
-    exerciseIds: ['FIN-10-E1', 'FIN-10-E2', 'FIN-10-E3', 'FIN-10-E4', 'FIN-10-E5', 'FIN-10-E6'],
+    exerciseIds: ['FIN-10-E1', 'FIN-10-E2', 'FIN-10-E3', 'FIN-10-E4', 'FIN-10-E5'],
   },
 
   // ───────────────────────────── FIN-11 ─────────────────────────────
@@ -837,7 +837,7 @@ export const lessons: Lesson[] = [
       es: "El WACC es el costo promedio de todo el dinero que usa la empresa, mezclando lo que cuesta la deuda después de impuestos y lo que exigen los accionistas, según cuánto pesa cada fuente.",
       en: "WACC is the average cost of all the money the company uses, blending the after-tax cost of debt and what shareholders require, according to how much each source weighs.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Explicar qué es el costo de capital y por qué se pondera.", en: "Explain what the cost of capital is and why it is weighted." },
       { es: "Calcular el costo de la deuda después de impuestos.", en: "Compute the after-tax cost of debt." },
@@ -846,7 +846,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "¿Cuánto le cuesta el dinero a la empresa?", en: "How much does money cost the company?" },
+        heading: { es: "¿Cuánto cuesta el dinero?", en: "What does money cost?" },
         body: [
           {
             es: "Una empresa se financia con dos tipos de dinero: el de los **acreedores** (bancos, tenedores de bonos), que prestan y cobran intereses, y el de los **accionistas** (dueños), que ponen capital y esperan un rendimiento. Ninguno de los dos es gratis.",
@@ -863,7 +863,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "El costo de cada fuente", en: "The cost of each source" },
+        heading: { es: "¿Cuánto cuesta cada fuente?", en: "What does each source cost?" },
         body: [
           {
             es: "**Costo de la deuda (kd).** Es la tasa que cobra el acreedor. Como los intereses en general son **deducibles de impuestos**, el costo real para la empresa es menor: kd × (1 − t). Mini ejemplo: un crédito al 10% con tasa de impuestos de 30% cuesta en realidad 10% × 0.70 = 7%.",
@@ -931,7 +931,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Juntar todo: el WACC", en: "Putting it together: WACC" },
+        heading: { es: "¿Cómo se junta todo?", en: "How does it all combine?" },
         body: [
           {
             es: "Se multiplica cada costo por su peso y se suman. Los pesos son D ÷ (D + E) para la deuda y E ÷ (D + E) para el capital, donde D es la deuda y E el capital propio. Lo ideal es usar **valores de mercado** (lo que valen hoy), no los valores en libros.",
@@ -1049,7 +1049,7 @@ export const lessons: Lesson[] = [
       { es: "El WACC es la tasa de descuento para proyectos de riesgo promedio.", en: "WACC is the discount rate for average-risk projects." },
     ],
     normativeNote: NOTE_WACC,
-    exerciseIds: ['FIN-11-E1', 'FIN-11-E2', 'FIN-11-E3', 'FIN-11-E4', 'FIN-11-E5', 'FIN-11-E6'],
+    exerciseIds: ['FIN-11-E1', 'FIN-11-E2', 'FIN-11-E3', 'FIN-11-E4', 'FIN-11-E5'],
   },
 
   // ───────────────────────────── FIN-12 ─────────────────────────────
@@ -1062,7 +1062,7 @@ export const lessons: Lesson[] = [
       es: "La estructura de capital es la mezcla de deuda y capital propio con la que se financia la empresa; la deuda puede multiplicar el rendimiento de los dueños, pero también su riesgo.",
       en: "Capital structure is the mix of debt and equity used to finance the company; debt can multiply the owners' return, but also their risk.",
     },
-    minutes: 18,
+    minutes: 11,
     objectives: [
       { es: "Clasificar las fuentes de financiamiento en deuda y capital, internas y externas.", en: "Classify financing sources into debt and equity, internal and external." },
       { es: "Calcular el efecto del apalancamiento financiero en el rendimiento sobre el capital (ROE).", en: "Compute the effect of financial leverage on return on equity (ROE)." },
@@ -1071,7 +1071,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: { es: "Fuentes de financiamiento", en: "Sources of financing" },
+        heading: { es: "¿Pido prestado o busco socio?", en: "Borrow or find a partner?" },
         body: [
           {
             es: "La **estructura de capital** es la proporción de **deuda** y **capital propio** con que la empresa paga sus activos. Es como comprar una casa: una parte la pones tú (enganche) y otra la pide prestada al banco (hipoteca).",
@@ -1093,7 +1093,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "Apalancamiento financiero: la lupa de los resultados", en: "Financial leverage: the magnifying glass of results" },
+        heading: { es: "¿La deuda ayuda o estorba?", en: "Does debt help or hurt?" },
         body: [
           {
             es: "El **apalancamiento financiero** es usar deuda para financiar activos. Si los activos rinden más que lo que cuesta la deuda, la diferencia queda para los dueños y su **ROE** (utilidad neta ÷ capital propio) sube. Si rinden menos, el ROE cae más de lo que caería sin deuda.",
@@ -1181,7 +1181,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: { es: "¿Existe una mezcla ideal?", en: "Is there an ideal mix?" },
+        heading: { es: "¿Existe la mezcla perfecta?", en: "Is there a perfect mix?" },
         body: [
           {
             es: "**Modigliani y Miller** demostraron que, en un mundo ideal sin impuestos ni costos de quiebra, la mezcla de deuda y capital **no cambia** el valor de la empresa. Con impuestos, la deuda agrega valor por el escudo fiscal. Son un punto de partida teórico.",
@@ -1247,7 +1247,7 @@ export const lessons: Lesson[] = [
       { es: "Pecking order: fondos internos, luego deuda, al final acciones.", en: "Pecking order: internal funds, then debt, lastly shares." },
     ],
     normativeNote: NOTE_CAPITAL,
-    exerciseIds: ['FIN-12-E1', 'FIN-12-E2', 'FIN-12-E3', 'FIN-12-E4', 'FIN-12-E5', 'FIN-12-E6'],
+    exerciseIds: ['FIN-12-E1', 'FIN-12-E2', 'FIN-12-E3', 'FIN-12-E4', 'FIN-12-E5'],
   },
 ]
 

@@ -86,10 +86,22 @@ describe('interactive lessons', () => {
           }
           if ('sim' in b && b.sim.goal) {
             const start = Object.fromEntries(b.sim.inputs.map((i) => [i.key, i.value]))
-            // Some corner of the sliders must reach the goal.
+            // Some reachable slider position (every step, or the corners when the grid is huge) must reach the goal.
             const ins = b.sim.inputs
-            const corners = Array.from({ length: 2 ** ins.length }, (_, m) => Object.fromEntries(ins.map((i, k) => [i.key, m & (1 << k) ? i.max : i.min])))
-            expect(corners.some((c) => b.sim.goal!.check(c))).toBe(true)
+            const values = ins.map((i) => {
+              const st = i.step ?? 1
+              const n = Math.floor((i.max - i.min) / st + 1e-9)
+              return Array.from({ length: n + 1 }, (_, k) => +(i.min + k * st).toFixed(10)).concat(i.max)
+            })
+            const size = values.reduce((p, v) => p * v.length, 1)
+            let points: Record<string, number>[]
+            if (size <= 50000) {
+              points = [{}]
+              ins.forEach((i, k) => { points = points.flatMap((pt) => values[k].map((v) => ({ ...pt, [i.key]: v }))) })
+            } else {
+              points = Array.from({ length: 2 ** ins.length }, (_, m) => Object.fromEntries(ins.map((i, k) => [i.key, m & (1 << k) ? i.max : i.min])))
+            }
+            expect(points.some((c) => b.sim.goal!.check(c))).toBe(true)
             expect(b.sim.goal.check(start)).toBe(false)
           }
         }

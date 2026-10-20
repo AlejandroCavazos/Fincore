@@ -45,7 +45,7 @@ export const lessons: Lesson[] = [
       "Un derivado se valúa por no arbitraje: se replica con el activo subyacente y dinero prestado, y eso lleva al forward, al árbol binomial y a Black-Scholes.",
       "A derivative is priced by no-arbitrage: it is replicated with the underlying asset and borrowed money, which leads to the forward price, the binomial tree and Black-Scholes.",
     ),
-    minutes: 20,
+    minutes: 11,
     objectives: [
       t("Calcular el precio justo de un forward con el argumento de no arbitraje.", "Compute the fair price of a forward using the no-arbitrage argument."),
       t("Valuar una opción con un árbol binomial de un paso y la probabilidad neutral al riesgo.", "Price an option with a one-step binomial tree and the risk-neutral probability."),
@@ -53,7 +53,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("No arbitraje y precio forward", "No-arbitrage and the forward price"),
+        heading: t("Pactar hoy, comprar después", "Agree today, buy later"),
         body: [
           t(
             "Un **derivado** es un contrato cuyo valor depende de otro activo, llamado **subyacente** (una acción, el dólar, el maíz). Un **forward** es un acuerdo hoy para comprar o vender ese activo en una fecha futura a un precio fijado hoy. Por ejemplo, una empresa que importará maquinaria pacta hoy el tipo de cambio al que comprará dólares en seis meses.",
@@ -132,7 +132,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Árbol binomial y probabilidad neutral al riesgo", "Binomial tree and risk-neutral probability"),
+        heading: t("¿Cuánto vale una opción?", "What is an option worth?"),
         body: [
           t(
             "Una **opción call** da el derecho, no la obligación, de comprar el subyacente a un precio fijo llamado **precio de ejercicio** (K). Si al vencimiento el precio S es mayor que K, ganas S − K; si no, no la ejerces y vale 0. Una **put** es el derecho a vender.",
@@ -184,7 +184,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Black-Scholes-Merton y paridad put-call", "Black-Scholes-Merton and put-call parity"),
+        heading: t("La calculadora de opciones", "The option calculator"),
         body: [
           t(
             "En palabras sencillas: Black-Scholes es una 'calculadora' que da el precio justo de una opción a partir de cinco datos que puedes observar o estimar. Es el mismo razonamiento del árbol binomial, pero con el tiempo dividido en pasos tan pequeños que el precio se mueve de forma continua.",
@@ -315,7 +315,7 @@ export const lessons: Lesson[] = [
       t("Paridad put-call: C − P = S − VP(K) para opciones europeas.", "Put-call parity: C − P = S − PV(K) for European options."),
     ],
     normativeNote: NOTE_DERIVATIVES,
-    exerciseIds: ['CUA-13-E1', 'CUA-13-E2', 'CUA-13-E3', 'CUA-13-E4', 'CUA-13-E5', 'CUA-13-E6'],
+    exerciseIds: ['CUA-13-E1', 'CUA-13-E3', 'CUA-13-E4', 'CUA-13-E5', 'CUA-13-E6'],
   },
   // ───────────────────────────── CUA-14 ─────────────────────────────
   {
@@ -327,7 +327,7 @@ export const lessons: Lesson[] = [
       "La simulación Monte Carlo genera miles de escenarios aleatorios con un modelo y promedia sus resultados para estimar precios, riesgos y probabilidades difíciles de calcular a mano.",
       "Monte Carlo simulation generates thousands of random scenarios with a model and averages their results to estimate prices, risks and probabilities that are hard to compute by hand.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Describir los pasos de una simulación Monte Carlo y por qué funciona.", "Describe the steps of a Monte Carlo simulation and why it works."),
       t("Simular un paso del precio de una acción con movimiento browniano geométrico.", "Simulate one step of a stock price with geometric Brownian motion."),
@@ -335,7 +335,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("La idea: muchos escenarios al azar", "The idea: many random scenarios"),
+        heading: t("Jugar el futuro miles de veces", "Play the future thousands of times"),
         body: [
           t(
             "**Monte Carlo** es una técnica que resuelve problemas con números aleatorios. En lugar de buscar una fórmula exacta, le pides a la computadora que 'juegue' el futuro miles de veces siguiendo un modelo, y luego miras qué pasó en promedio y qué tan seguido ocurrió lo malo.",
@@ -390,7 +390,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Simular precios: movimiento browniano geométrico", "Simulating prices: geometric Brownian motion"),
+        heading: t("¿Cómo se simula un precio?", "How is a price simulated?"),
         body: [
           t(
             "El modelo más usado para simular precios de acciones es el **movimiento browniano geométrico** (MBG). Dice que el precio crece a un ritmo promedio μ (la **deriva**) y recibe choques aleatorios cuyo tamaño depende de la volatilidad σ. Al trabajar con exponenciales, el precio nunca se vuelve negativo.",
@@ -440,7 +440,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Precisión, semillas y reducción de varianza", "Precision, seeds and variance reduction"),
+        heading: t("¿Cuánto confiar en el resultado?", "How much to trust the result?"),
         body: [
           t(
             "Una estimación Monte Carlo tiene error por azar. Se mide con el **error estándar**: la desviación estándar de los resultados simulados dividida entre la raíz del número de simulaciones N. Como depende de √N, para **reducir el error a la mitad necesitas 4 veces más** simulaciones.",
@@ -535,7 +535,7 @@ export const lessons: Lesson[] = [
       t("La semilla hace reproducible la simulación; los supuestos determinan la calidad.", "The seed makes the simulation reproducible; the assumptions determine its quality."),
     ],
     normativeNote: NOTE_MC,
-    exerciseIds: ['CUA-14-E1', 'CUA-14-E2', 'CUA-14-E3', 'CUA-14-E4', 'CUA-14-E5', 'CUA-14-E6'],
+    exerciseIds: ['CUA-14-E1', 'CUA-14-E2', 'CUA-14-E4', 'CUA-14-E5', 'CUA-14-E6'],
   },
   // ───────────────────────────── CUA-15 ─────────────────────────────
   {
@@ -547,7 +547,7 @@ export const lessons: Lesson[] = [
       "Python, con NumPy y pandas, permite cargar datos financieros, calcular rendimientos e indicadores de forma vectorizada y hacer análisis reproducibles.",
       "Python, with NumPy and pandas, lets you load financial data, compute returns and indicators in a vectorized way and run reproducible analyses.",
     ),
-    minutes: 17,
+    minutes: 11,
     objectives: [
       t("Identificar para qué sirven NumPy, pandas, matplotlib y SciPy en finanzas.", "Identify what NumPy, pandas, matplotlib and SciPy are used for in finance."),
       t("Calcular rendimientos y promedios móviles con pandas (pct_change, rolling, shift).", "Compute returns and moving averages with pandas (pct_change, rolling, shift)."),
@@ -555,7 +555,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("El ecosistema: por qué Python", "The ecosystem: why Python"),
+        heading: t("¿Por qué Python en finanzas?", "Why Python in finance?"),
         body: [
           t(
             "**Python** es un lenguaje de programación gratuito y fácil de leer. En finanzas se volvió popular porque tiene **bibliotecas** (paquetes de código ya hecho) para casi todo: cálculo numérico, tablas de datos, gráficas, estadística y machine learning. Una biblioteca es como una caja de herramientas: no fabricas el martillo, lo usas.",
@@ -578,7 +578,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Datos financieros con pandas", "Financial data with pandas"),
+        heading: t("Rendimientos en un solo paso", "Returns in a single step"),
         body: [
           t(
             "En pandas, una **Serie** es una columna de datos con índice (normalmente fechas) y un **DataFrame** es una tabla de varias Series. Con unas pocas funciones haces lo que en una hoja de cálculo tomaría muchas fórmulas copiadas hacia abajo.",
@@ -645,7 +645,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Vectorizar y trabajar de forma reproducible", "Vectorize and work reproducibly"),
+        heading: t("Rápido y fácil de repetir", "Fast and easy to repeat"),
         body: [
           t(
             "**Vectorizar** es aplicar una operación a todo un arreglo de una vez en lugar de recorrerlo con un ciclo `for`. Por ejemplo, `precios * 1.1` multiplica toda la columna. Es más corto, más claro y mucho más rápido, porque NumPy y pandas hacen el trabajo pesado en código optimizado.",
@@ -712,7 +712,7 @@ export const lessons: Lesson[] = [
       t("Revisa NaN, fechas y unidades antes de confiar en un resultado.", "Check NaN, dates and units before trusting a result."),
     ],
     normativeNote: NOTE_PYTHON,
-    exerciseIds: ['CUA-15-E1', 'CUA-15-E2', 'CUA-15-E3', 'CUA-15-E4', 'CUA-15-E5', 'CUA-15-E6'],
+    exerciseIds: ['CUA-15-E2', 'CUA-15-E3', 'CUA-15-E4', 'CUA-15-E5', 'CUA-15-E6'],
   },
   // ───────────────────────────── CUA-16 ─────────────────────────────
   {
@@ -724,7 +724,7 @@ export const lessons: Lesson[] = [
       "El machine learning aprende patrones de datos para predecir o agrupar; en finanzas sirve para crédito, fraude y señales, siempre que se valide bien y se cuide el sobreajuste y el sesgo.",
       "Machine learning learns patterns from data to predict or group; in finance it is used for credit, fraud and signals, as long as it is properly validated and overfitting and bias are controlled.",
     ),
-    minutes: 18,
+    minutes: 11,
     objectives: [
       t("Distinguir aprendizaje supervisado (regresión, clasificación) y no supervisado (agrupamiento).", "Distinguish supervised learning (regression, classification) from unsupervised learning (clustering)."),
       t("Reconocer el sobreajuste y separar datos de entrenamiento y prueba respetando el tiempo.", "Recognize overfitting and split training and test data respecting time order."),
@@ -732,7 +732,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Qué es el machine learning y sus tipos", "What machine learning is and its types"),
+        heading: t("Aprender de ejemplos pasados", "Learning from past examples"),
         body: [
           t(
             "El **machine learning** (aprendizaje automático) son métodos que **aprenden reglas a partir de ejemplos** en lugar de que alguien las programe a mano. Le das datos del pasado y el algoritmo encuentra patrones que luego aplica a casos nuevos.",
@@ -754,7 +754,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Entrenar, validar y evitar el sobreajuste", "Train, validate and avoid overfitting"),
+        heading: t("¿Memorizó o aprendió?", "Did it memorize or learn?"),
         body: [
           t(
             "Un modelo se **entrena** con una parte de los datos y se **prueba** con otra que nunca vio. Si se equivoca muy poco en entrenamiento pero mucho en prueba, hay **sobreajuste** (overfitting): memorizó el ruido del pasado en vez de aprender el patrón, como el alumno que se aprende de memoria el examen del año pasado.",
@@ -771,7 +771,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Evaluar un clasificador y usarlo con responsabilidad", "Evaluating a classifier and using it responsibly"),
+        heading: t("¿Qué tan bueno es el detector?", "How good is the detector?"),
         body: [
           t(
             "La **matriz de confusión** cuenta aciertos y errores: **verdaderos positivos** (VP, detectó un fraude real), **falsos positivos** (FP, alarma en una compra legítima), **falsos negativos** (FN, fraude que se escapó) y **verdaderos negativos** (VN). De ahí salen tres métricas: **exactitud** = (VP + VN) / total; **precisión** = VP / (VP + FP), de las alarmas, cuántas eran reales; **sensibilidad** (recall) = VP / (VP + FN), de los fraudes reales, cuántos atrapó.",
@@ -863,7 +863,7 @@ export const lessons: Lesson[] = [
       t("Un modelo financiero debe ser explicable y vigilarse contra sesgos.", "A financial model must be explainable and monitored for bias."),
     ],
     normativeNote: NOTE_ML,
-    exerciseIds: ['CUA-16-E1', 'CUA-16-E2', 'CUA-16-E3', 'CUA-16-E4', 'CUA-16-E5', 'CUA-16-E6'],
+    exerciseIds: ['CUA-16-E2', 'CUA-16-E3', 'CUA-16-E4', 'CUA-16-E5', 'CUA-16-E6'],
   },
   // ───────────────────────────── CUA-17 ─────────────────────────────
   {
@@ -875,7 +875,7 @@ export const lessons: Lesson[] = [
       "El backtesting prueba una estrategia o un modelo con datos históricos, y solo es útil si evita sesgos, incluye costos y se valida fuera de muestra.",
       "Backtesting tests a strategy or model on historical data, and it is only useful if it avoids biases, includes costs and is validated out of sample.",
     ),
-    minutes: 19,
+    minutes: 11,
     objectives: [
       t("Explicar qué es un backtest y calcular métricas como la caída máxima (drawdown).", "Explain what a backtest is and compute metrics such as maximum drawdown."),
       t("Identificar sesgos de anticipación, supervivencia y sobreoptimización, y el efecto de los costos.", "Identify look-ahead, survivorship and over-optimization biases, and the effect of costs."),
@@ -883,7 +883,7 @@ export const lessons: Lesson[] = [
     ],
     theory: [
       {
-        heading: t("Qué es un backtest y cómo se mide", "What a backtest is and how it is measured"),
+        heading: t("Probar la receta con el pasado", "Test the recipe on the past"),
         body: [
           t(
             "Un **backtest** es simular cómo le habría ido a una estrategia si la hubieras aplicado en el pasado, con reglas fijas: cuándo comprar, cuándo vender y cuánto. Es como probar una receta nueva con los ingredientes de la semana pasada antes de venderla en tu restaurante.",
@@ -953,7 +953,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Sesgos y costos que inflan los resultados", "Biases and costs that inflate results"),
+        heading: t("¿Por qué el pasado engaña?", "Why the past deceives"),
         body: [
           t(
             "Un backtest casi siempre se ve mejor que la realidad. El **sesgo de anticipación** (look-ahead) ocurre cuando la estrategia usa información que aún no existía en esa fecha, como resultados anuales publicados meses después. El **sesgo de supervivencia** ocurre al probar solo con empresas que siguen existiendo hoy, ignorando las que quebraron o salieron de la bolsa.",
@@ -1001,7 +1001,7 @@ export const lessons: Lesson[] = [
         ],
       },
       {
-        heading: t("Validar fuera de muestra y backtesting del VaR", "Out-of-sample validation and VaR backtesting"),
+        heading: t("Probar con datos que no viste", "Test on data you did not see"),
         body: [
           t(
             "La defensa principal es la **validación fuera de muestra**: diseñas y ajustas con un periodo y pruebas en otro que no tocaste. El **análisis walk-forward** repite esto en ventanas móviles: ajustas con 2015–2019 y pruebas en 2020; luego ajustas con 2016–2020 y pruebas en 2021, y así sucesivamente.",
@@ -1089,7 +1089,7 @@ export const lessons: Lesson[] = [
       t("Valida fuera de muestra (walk-forward) y cuenta excepciones para validar el VaR.", "Validate out of sample (walk-forward) and count exceptions to validate VaR."),
     ],
     normativeNote: NOTE_BACKTEST,
-    exerciseIds: ['CUA-17-E1', 'CUA-17-E2', 'CUA-17-E3', 'CUA-17-E4', 'CUA-17-E5', 'CUA-17-E6'],
+    exerciseIds: ['CUA-17-E1', 'CUA-17-E2', 'CUA-17-E3', 'CUA-17-E4', 'CUA-17-E6'],
   },
 ]
 
